@@ -1,0 +1,27 @@
+/*
+|--------------------------------------------------------------------------
+|   # custom css for "NH - ECOM"
+|--------------------------------------------------------------------------
+*/
+
+/* sidebar menu */
+.side-nav .side-nav-menu li {
+    border-bottom: 1px solid #edf2f9;
+    transition: .3s all ease-in-out;
+}
+
+.side-nav .side-nav-menu .dropdown-menu li {
+    border-bottom: none !important;
+}
+
+.side-nav .side-nav-inner .side-nav-menu li a:hover {
+    color: #3f87f5 !important;
+}
+
+.parent-menu-active {
+    color: #3f87f5 !important;
+}
+
+.custom-border {
+    border: 1px solid #3f87f5 !important;
+}
