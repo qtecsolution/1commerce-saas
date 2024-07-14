@@ -9,19 +9,32 @@
             <div class="card-body">
                 <div class="row align-items-center">
                     <div class="col-1">
-                        <img src="{{ asset('assets/images/others/subscribe.png') }}" width="100" alt=""
-                            class="img-fluid">
+                        <img src="{{ asset('assets/images/waving-hand.png') }}" width="100" alt="" class="img-fluid">
                     </div>
                     <div class="col">
                         <h3>Hey! {{ auth()->user()->name }}</h3>
                         <p>
                             @php
-                                $package = auth()->user()->subscription_details->package_details;
                                 $subscription = auth()->user()->subscription_details;
+                                $package = auth()->user()->subscription_details?->package_details;
                             @endphp
-                            You're using <strong>{{ $package->title }}</strong> that will expire at
-                            <strong>{{ date('F d, Y', strtotime($subscription->ending_date)) }}</strong>. <br>
-                            Renew your subscription before the expiration date.
+
+                            @if (!is_null($subscription))
+                                @php
+                                    $endingDate = strtotime($subscription->ending_date);
+                                    $today = strtotime(date('Y-m-d'));
+                                @endphp
+
+                                @if ($endingDate > $today)
+                                    You're using <strong>{{ $package->title }}</strong> that will expire at
+                                    <strong>{{ date('F d, Y', strtotime($subscription->ending_date)) }}</strong>.
+                                @else
+                                    Your subscription is expired.
+                                @endif
+                            @else
+                                You don't have any subscription.
+                            @endif
+
                         </p>
                     </div>
                 </div>
@@ -65,8 +78,8 @@
                         @endforeach
                     </ul>
                     <div class="text-center">
-                        <a href="{{ route('subscription.create') }}?package={{ $item->id }}"
-                            class="btn btn-primary">Get Started</a>
+                        <a href="{{ route('subscription.create') }}?package={{ $item->id }}" class="btn btn-primary">Get
+                            Started</a>
                     </div>
                 </div>
             </div>

@@ -10,7 +10,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -61,7 +62,9 @@ class UserController extends Controller
                 'name' => 'required',
                 'phone' => 'required|unique:users,phone',
                 'email' => 'required|unique:users,email',
-                'password' => 'required|min:8',
+                'password' => 'required|min:8|confirmed',
+                'password_confirmation' => 'required|min:8',
+                'package_id' => 'required|exists:packages,id',
             ]);
 
             // create user
@@ -73,22 +76,32 @@ class UserController extends Controller
             $user->password = bcrypt($request->input('password'));
             $user->save();
 
-            // if have selected package
-            if (session()->has('selected_package')) {
-                $package = Package::find(session('selected_package'));
+            $package = Package::find($request->input('package_id'));
 
-                // if package is valid
-                if (!empty($package)) {
-                    // create subscription
-                    $subscription = new SubscriptionController();
-                    $subscription->store($user, $package);
-                }
+            // if package is valid
+            if (!empty($package)) {
+                // create subscription
+                $subscription = new SubscriptionController();
+                $subscription->store($user, $package);
             }
 
-            // return to sign-in
-            return redirect()->route('sign_in');
+            // sign-in
+            Auth::login($user);
+            $request->session()->regenerate();
+
+            // return to user dashboard
+            return redirect()->route('user_dashboard');
         } else {
-            return view('auth.sign-up');
+            // check selected package
+            if (session()->has('selected_package')) {
+                // return to sign-up
+                return view('auth.sign-up');
+            } else {
+                toast('Select a package to sign-up.', 'Info');
+
+                // return to home
+                return redirect()->route('web_packages');
+            }
         }
     }
 
@@ -96,33 +109,45 @@ class UserController extends Controller
     public function sign_out()
     {
         // sign-out
+        Session::flush();
         Auth::logout();
 
         // return to home
-        return redirect()->route('web_packages');
+        toast('Sign-out successfully.', 'Info');
+        return to_route('web.home');
     }
 
-    // function to get user profiles
-    public function user_profiles()
+    // show user profile
+    public function user_profile()
     {
-        $shop = Shop::where('user_id', auth()->id())->first();
-        return view('customer.setting.profiles', compact('shop'));
+        return view('customer.setting.profile');
     }
 
-    // function to update user profile
+    // update user profile
     public function updateProfile(Request $request)
     {
-        // get user data
-        $user = User::find(auth()->id());
-
-        // data validation
-        $request->validate([
-            'name' => 'required',
-            'phone' => 'required|unique:users,phone',
-            'email' => 'required|unique:users,email',
+        // validation
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'phone' => [
+                'required',
+                'max:11',
+                'regex:/^(01)[0-9]{9}$/',
+                'unique:users,phone,' . auth()->id()
+            ],
+            'email' => 'required|email|unique:users,email,' . auth()->id(),
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        // function to user profile update and create
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput()
+                ->withFragment('user_profile');
+        }
+
+        // update user
+        $user = User::find(auth()->id());
         if ($user) {
             $user->update([
                 'name' => $request->name,
@@ -141,30 +166,44 @@ class UserController extends Controller
             }
         }
 
+        // return back
         toast('Profile updated successfully.', 'success');
-        return redirect()->back();
+        return redirect()->back()->withFragment('user_profile');
     }
 
+    // update user password
     public function updatePassword(Request $request)
     {
-        // check method
         $user = User::find(auth()->id());
 
-        // function to match the current password
+        // check current password
         if (!Hash::check($request->input('current_password'), $user->password)) {
-            return redirect()->back()->with('error', 'Current password is not matched.');
+            return redirect()->back()
+                ->withErrors(['current_password' => 'The current password does not match.'])
+                ->withInput()
+                ->withFragment('change_password');
         }
+
         // validation
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'current_password' => 'required',
-            'new_password' => 'required|confirmed|different:current_password',
+            'password' => 'required|confirmed|different:current_password|min:8',
         ]);
 
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput()
+                ->withFragment('change_password');
+        }
+
+        // update password
         $user->update([
             'password' => bcrypt($request->new_password)
         ]);
 
+        // return back
         toast('Password updated successfully.', 'success');
-        return redirect()->back();
+        return redirect()->back()->withFragment('change_password');
     }
 }

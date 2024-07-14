@@ -46,11 +46,11 @@
         </span>
     </a>
     <ul class="dropdown-menu">
-        <li class="{{ Route::currentRouteName() == 'themes.index' ? 'active' : '' }}">
-            <a href="{{ route('themes.index') }}">Landing Pages</a>
+        <li class="">
+            <a href="">Landing Pages</a>
         </li>
-        <li class="{{ Route::currentRouteName() == 'my-themes.index' ? 'active' : '' }}">
-            <a href="{{ route('my-themes.index') }}">My Templates</a>
+        <li class="">
+            <a href="">My Templates</a>
         </li>
     </ul>
 </li>

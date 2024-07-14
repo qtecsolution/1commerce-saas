@@ -31,9 +31,13 @@ class SubscriptionController extends Controller
         $package = Package::find($request->package);
 
         // check if have subscriptioin
-        if ($user->subscription_details != null) {
+        if ($user->subscription_details) {
             // delete old subscription
-            $user->subscription_details->delete();
+            // $user->subscription_details->delete();
+
+            $user->subscription_details->update([
+                'status' => 0
+            ]);
         }
 
         // create subscription

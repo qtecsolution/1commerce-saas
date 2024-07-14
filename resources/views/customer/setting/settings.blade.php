@@ -37,26 +37,22 @@
                 <x-alert />
 
                 <ul class="nav nav-tabs nav-justified" id="myTabJustified" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="payment_methods" data-toggle="tab" href="#payment_methods_s"
+                    {{-- <li class="nav-item">
+                        <a class="nav-link" id="payment_methods_tab" data-toggle="tab" href="#payment_methods"
                             role="tab" aria-controls="payment_methods" aria-selected="true">Payment Methods</a>
                     </li>
-                    {{-- <li class="nav-item">
-                        <a class="nav-link" id="invoice_format" data-toggle="tab" href="#invoice_format_s" role="tab"
-                            aria-controls="invoice_format" aria-selected="false">Invoice Formats</a>
+                    <li class="nav-item">
+                        <a class="nav-link" id="custom_domain_tab" data-toggle="tab" href="#custom_domain" role="tab"
+                            aria-controls="custom_domain" aria-selected="false">Custom Domain</a>
                     </li> --}}
                     <li class="nav-item">
-                        <a class="nav-link" id="custom_domain" data-toggle="tab" href="#custom_domain_s" role="tab"
-                            aria-controls="custom_domain" aria-selected="false">Custom Domain</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="tracking_api" data-toggle="tab" href="#tracking_api_s" role="tab"
-                            aria-controls="tracking_api" aria-selected="false">Tracking Api</a>
+                        <a class="nav-link active" id="tracking_apis_tab" data-toggle="tab" href="#tracking_apis" role="tab"
+                            aria-controls="tracking_apis" aria-selected="false">Tracking Api</a>
                     </li>
                 </ul>
                 <div class="tab-content m-t-15" id="myTabContentJustified">
-                    <div class="tab-pane fade show active" id="payment_methods_s" role="tabpanel"
-                        aria-labelledby="payment_methods">
+                    <div class="tab-pane fade" id="payment_methods" role="tabpanel"
+                        aria-labelledby="payment_methods_tab">
                         <div class="my-4">
                             <h3>Payment Methods</h3>
                         </div>
@@ -158,73 +154,9 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- Bkash Modal Start-->
-                            {{-- <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel"
-                                aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h4>Bkash</h4>
-                                            <button type="button" class="close" data-dismiss="modal">
-                                                <i class="anticon anticon-close"></i>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body text-left">
-                                            <form action="#" method="post" enctype="multipart/form-data">
-                                                @csrf
-                                                <div class="form-group">
-                                                    <label for="" class="form-label">Account Number<span
-                                                            class="text-danger"><sup>*</sup></span> :</label>
-                                                    <input type="number" name="#" placeholder="account number"
-                                                        id="" class="form-control" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="" class="form-label">Account Type:</label>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <select name="#" id="" class="form-control">
-                                                                <option value="0">Choose Type</option>
-                                                                <option value="Personal">Personal</option>
-                                                                <option value="Merchant">Merchant</option>
-                                                                <option value="Agent">Agent</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="" class="form-label">Percentage Type:</label>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="input-group">
-                                                                <input type="text" class="form-control"
-                                                                    placeholder="type your percentage..." aria-label=""
-                                                                    aria-describedby="basic-addon1">
-                                                                <div class="input-group-append">
-                                                                    <button class="btn btn-primary"
-                                                                        type="button">%</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="text-right">
-                                                    <button type="submit" class="btn btn-sm btn-primary">Save</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> --}}
-                            <!-- Bkash Modal End-->
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="invoice_format_s" role="tabpanel" aria-labelledby="invoice_format">
-                        <div class="my-4">
-                            <h3>Invoice Formates</h3>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="custom_domain_s" role="tabpanel" aria-labelledby="custom_domain">
+                    <div class="tab-pane fade" id="custom_domain" role="tabpanel" aria-labelledby="custom_domain_tab">
                         <div class="my-4">
                             <h3>Custom Domain</h3>
                         </div>
@@ -365,7 +297,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="tracking_api_s" role="tabpanel" aria-labelledby="tracking_api">
+                    <div class="tab-pane fade show active" id="tracking_apis" role="tabpanel" aria-labelledby="tracking_apis_tab">
                         <div class="my-4">
                             <h3>Facebook Pixel</h3>
                         </div>
@@ -375,13 +307,13 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="" class="form-label">Facebook Varification</label>
-                                        <textarea name="fb_varification_key" id="" rows="7" class="form-control"></textarea>
+                                        <textarea name="fb_varification_key" id="" rows="7" class="form-control">{{ $trackingApi->fb_varification_key }}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="" class="form-label">Facebook Pixel</label>
-                                        <textarea name="fb_pixel_value" id="" rows="7" class="form-control"></textarea>
+                                        <textarea name="fb_pixel_value" id="" rows="7" class="form-control">{{ $trackingApi->fb_pixel_value }}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -393,13 +325,13 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="" class="form-label">Google Tag Manager (Header)</label>
-                                        <textarea name="gtm_head_key" id="" rows="7" class="form-control"></textarea>
+                                        <textarea name="gtm_head_key" id="" rows="7" class="form-control">{{ $trackingApi->gtm_head_key }}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="" class="form-label">Google Tag Manager (Body)</label>
-                                        <textarea name="gtm_body_value" id="" rows="7" class="form-control"></textarea>
+                                        <textarea name="gtm_body_value" id="" rows="7" class="form-control">{{ $trackingApi->gtm_body_value }}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -407,14 +339,6 @@
                                 <button type="submit" class="btn btn-primary">Save</button>
                             </div>
                         </form>
-                       
-                        {{-- <form action="#" method="POST" class="mt-3">
-                            @csrf
-                           
-                            <div class="text-right">
-                                <button type="submit" class="btn btn-primary">Save</button>
-                            </div>
-                        </form> --}}
                     </div>
                 </div>
             </div>
@@ -423,4 +347,37 @@
     </div>
 @endsection
 @section('page_js')
+    <script>
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     function activateTab(tabId) {
+        //         $('.nav-link').removeClass('active');
+        //         $('.tab-pane').removeClass('show active');
+
+        //         var activeTab = $('#' + tabId);
+        //         if (activeTab.length) {
+        //             $('[href="#' + tabId + '"]').addClass('active');
+        //             activeTab.addClass('show active');
+        //             window.scrollTo(0, 0);
+        //         }
+        //     }
+
+        //     var fragment = window.location.hash.substring(1);
+        //     if (fragment) {
+        //         activateTab(fragment);
+        //     }
+
+        //     $('.nav-link').on('click', function() {
+        //         var tabId = $(this).attr('href').substring(1);
+        //         window.location.hash = tabId;
+        //         activateTab(tabId);
+        //     });
+
+        //     window.addEventListener('hashchange', function() {
+        //         var fragment = window.location.hash.substring(1);
+        //         if (fragment) {
+        //             activateTab(fragment);
+        //         }
+        //     });
+        // });
+    </script>
 @endsection

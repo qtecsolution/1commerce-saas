@@ -86,7 +86,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($tickets as $key => $item)
+                            @forelse ($tickets as $key => $item)
                                 @php
                                     $image = empty($item->image) ? asset('assets/images/others/error.png') : asset('storage/' . $item->image);
                                 @endphp
@@ -194,7 +194,11 @@
                                         </div>
                                     </td>
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td colspan="7" class="text-center">No Data Found</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

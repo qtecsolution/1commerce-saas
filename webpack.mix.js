@@ -12,9 +12,5 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .js('resources/js/product/index.js', 'public/assets/js/product/').vue()
-    .js('resources/js/purchase/index.js', 'public/assets/js/purchase/').vue()
-    .js('resources/js/pos/index.js', 'public/assets/js/pos/').vue()
-    .js('resources/js/product/variation.js', 'public/assets/js/product/').vue()
-    .js('resources/js/template/edit_template_2.js', 'public/assets/js/template/').vue()
+    // .js('resources/js/', 'public/assets/js/').vue()
     .sourceMaps();

@@ -1,26 +1,16 @@
 <?php
 
 use App\Http\Controllers\FrontEnd\PackageController as FrontEnd_PackageController;
+use App\Http\Controllers\FrontEnd\WebController;
 
 use App\Http\Controllers\Auth\UserController;
-use App\Http\Controllers\Courier\CourierController;
-use App\Http\Controllers\Courier\UserCourierController;
 use App\Http\Controllers\Dashboard\AdminDashboard;
 use App\Http\Controllers\Dashboard\CustomerDashboard;
 use App\Http\Controllers\Package\PackageController;
-use App\Http\Controllers\Pos\PosCartController;
-use App\Http\Controllers\Product\BrandController;
-use App\Http\Controllers\Product\ProductController;
-use App\Http\Controllers\Product\CategoryController;
-use App\Http\Controllers\Purchase\PurchaseCartController;
-use App\Http\Controllers\Pos\PosController;
 use App\Http\Controllers\User\ShopController;
-use App\Http\Controllers\Purchase\PurchaseController;
 use App\Http\Controllers\Order\OderController;
 use App\Http\Controllers\Setting\SettingController;
-use App\Http\Controllers\User\SupplierController;
 use App\Http\Controllers\User\CustomerController;
-use App\Http\Controllers\Product\ProductVariationController;
 use App\Http\Controllers\Theme\TemplateController;
 use App\Http\Controllers\Ticket\SupportTicketController;
 use App\Http\Controllers\Test\TestController;
@@ -52,9 +42,12 @@ Route::domain('{shop}.' . env('APP_URL'))->group(function () {
     Route::get('/{slug}', [ShopController::class, 'index'])->name('user_shop');
 });
 
+// home page
+Route::get('/', [WebController::class, 'index'])->name('web.home');
+
 // package route
-Route::get('/', [FrontEnd_PackageController::class, 'index'])->name('web_packages');
-Route::get('/select-package/{id}', [FrontEnd_PackageController::class, 'select_package'])->name('select_package');
+Route::get('/packages', [FrontEnd_PackageController::class, 'index'])->name('web.packages');
+Route::get('/packages/{id}', [FrontEnd_PackageController::class, 'select_package'])->name('web.select_package');
 
 /*
 |--------------------------------------------------------------------------
@@ -77,16 +70,9 @@ Route::prefix('/app')->middleware('user')->group(function () {
     Route::get('/', [CustomerDashboard::class, 'index'])->name('user_dashboard');
 
     // profile routes
-    Route::get('/profiles', [UserController::class, 'user_profiles'])->name('user_profiles');
+    Route::get('/profile', [UserController::class, 'user_profile'])->name('user_profile');
     Route::post('/update-profile', [UserController::class, 'updateProfile'])->name('update_profile');
     Route::post('/update-password', [UserController::class, 'updatePassword'])->name('update_password');
-
-    // theme routes
-    Route::resource('/themes', TemplateController::class);
-    Route::get('/theme/{code}', [TemplateController::class, 'show_template'])->name('show_template');
-
-    Route::resource('my-themes', UserThemeController::class);
-    Route::get('/api/theme-element/{id}', [UserThemeElementController::class, 'get_element'])->name('get_theme_element');
 
     // shop routes
     Route::resource('/shops', ShopController::class);

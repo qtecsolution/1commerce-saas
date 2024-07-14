@@ -22,7 +22,7 @@ return new class extends Migration
             $table->longText('address')->nullable();
             $table->string('nid_number')->nullable();
             $table->tinyInteger('status')->default(1);
-            $table->tinyInteger('is_admin')->default(0);
+            $table->boolean('is_admin')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

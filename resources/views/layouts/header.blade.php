@@ -68,28 +68,38 @@
                 </div>
             </li>
             <li class="dropdown dropdown-animated scale-left">
+                @php
+                    $photo = empty(auth()->user()->photo)
+                        ? asset('assets/images/default-user.jpg')
+                        : asset('storage/' . auth()->user()->photo);
+                @endphp
                 <div class="pointer" data-toggle="dropdown">
                     <div class="avatar avatar-image  m-h-10 m-r-15">
-                        <img src="" alt="">
+                        <img src="{{ $photo }}" alt="{{ Auth::user()->name }}">
                     </div>
                 </div>
                 <div class="p-b-15 p-t-20 dropdown-menu pop-profile">
-                    <div class="p-h-20 p-b-15 m-b-10 border-bottom">
-                        <div class="d-flex m-r-50">
+                    {{-- <div class="p-h-20 p-b-15 m-b-10 border-bottom">
+                        <div class="d-flex m-r-50 align-items-center">
                             <div class="avatar avatar-lg avatar-image">
-                                <img src="" alt="">
+                                <img src="{{ $photo }}" alt="{{ Auth::user()->name }}">
                             </div>
                             <div class="m-l-10">
-                                <p class="m-b-0 text-dark font-weight-semibold">Marshall Nichols</p>
-                                <p class="m-b-0 opacity-07">UI/UX Desinger</p>
+                                @php
+                                    $userName = Auth::user()->name;
+                                    $explodedName = explode(' ', $userName);
+                                    $name = $explodedName[count($explodedName) - 1];
+                                @endphp
+                                <p class="m-b-0 text-dark font-weight-semibold">{{ $name }}</p>
+                                <p class="m-b-0 opacity-07">{{ Auth::user()->email }}</p>
                             </div>
                         </div>
-                    </div>
-                    <a href="{{ route('user_profiles') }}" class="dropdown-item d-block p-h-15 p-v-10">
+                    </div> --}}
+                    <a href="{{ route('user_profile') . '#user_profile' }}" class="dropdown-item d-block p-h-15 p-v-10">
                         <div class="d-flex align-items-center justify-content-between">
                             <div>
                                 <i class="anticon opacity-04 font-size-16 anticon-user"></i>
-                                <span class="m-l-10">Profiles</span>
+                                <span class="m-l-10">Profile</span>
                             </div>
                             <i class="anticon font-size-10 anticon-right"></i>
                         </div>

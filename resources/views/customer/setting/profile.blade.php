@@ -15,84 +15,21 @@
 
                 <ul class="nav nav-tabs nav-justified" id="myTabJustified" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="shop_profile" data-toggle="tab" href="#shop_profile_2" role="tab"
-                            aria-controls="shop_profile" aria-selected="true">Shop Informations</a>
+                        <a class="nav-link" id="user_profile_tab" data-toggle="tab" href="#user_profile" role="tab"
+                            aria-controls="user_profile" aria-selected="false">Personal Information</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="user_profile" data-toggle="tab" href="#user_profile_2" role="tab"
-                            aria-controls="user_profile" aria-selected="false">Personal Informations</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="change_password" data-toggle="tab" href="#change_password_2" role="tab"
-                            aria-controls="change_password" aria-selected="false">Change Password</a>
+                        <a class="nav-link" id="change_password_tab" data-toggle="tab" href="#change_password"
+                            role="tab" aria-controls="change_password" aria-selected="false">Change Password</a>
                     </li>
                 </ul>
                 <div class="tab-content m-t-15" id="myTabContentJustified">
-                    <div class="tab-pane fade show active" id="shop_profile_2" role="tabpanel"
-                        aria-labelledby="shop_profile">
+                    <div class="tab-pane fade" id="user_profile" role="tabpanel" aria-labelledby="user_profile">
                         <div class="my-4">
-                            <h3>Shop Informations</h3>
+                            <h3>Personal Information</h3>
                         </div>
-                        @php
-                            $route = empty($shop) ? route('shops.store') : route('shops.update', $shop->id);
-                        @endphp
-                        <form action="{{ $route }}" method="POST" enctype="multipart/form-data" class="mt-5">
-                            @csrf
-                            @if (!empty($shop))
-                                @method('PUT')
-                            @endif
-                            <div class="form-group">
-                                <div class="row align-items-center">
-                                    <div class="col-lg-4">
-                                        <label for="" class="form-label mb-0">Shop Name <span
-                                                class="text-danger"><sup>*</sup></span> :</label>
-                                    </div>
-                                    <div class="col-lg-8">
-                                        <input type="text" name="name" placeholder="shop name"
-                                            value="{{ !empty($shop) ? $shop->name : '' }}" id=""
-                                            class="form-control" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="row align-items-center">
-                                    <div class="col-lg-4">
-                                        <label for="" class="form-label mb-0">Shop Logo <span
-                                                class="text-danger"><sup>*</sup></span> :</label>
-                                    </div>
-                                    <div class="col-lg-8">
-                                        <div class="mb-2">
-                                            @php
-                                                $logo = empty($shop->logo) ? asset('assets/images/others/error.png') : asset('storage/' . $shop->logo);
-                                            @endphp
-                                            <img src="{{ $logo }}" width="100" alt="" class="img-fluid rounded">
-                                        </div>
-                                        <input type="file" name="logo" placeholder="shop logo" id=""
-                                            class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="row align-items-center">
-                                    <div class="col-lg-4">
-                                        <label for="" class="form-label mb-0">Shop Address <span
-                                                class="text-danger"><sup>*</sup></span> :</label>
-                                    </div>
-                                    <div class="col-lg-8">
-                                        <textarea name="address" placeholder="shop address" id="" rows="10" class="form-control" required>{{ !empty($shop) ? $shop->address : '' }}</textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <button type="submit" class="btn btn-primary">Save</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="tab-pane fade" id="user_profile_2" role="tabpanel" aria-labelledby="user_profile">
-                        <div class="my-4">
-                            <h3>Personal Informations</h3>
-                        </div>
-                        <form action="{{ route('update_profile') }}" method="POST" class="mt-5" enctype="multipart/form-data">
+                        <form action="{{ route('update_profile') }}" method="POST" class="mt-5"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <div class="row align-items-center">
@@ -102,8 +39,7 @@
                                     </div>
                                     <div class="col-lg-8">
                                         <input type="text" name="name" placeholder="name"
-                                            value="{{ auth()->user()->name }}" id="" class="form-control"
-                                            required>
+                                            value="{{ auth()->user()->name }}" id="" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
@@ -127,7 +63,7 @@
                                                 class="text-danger"><sup>*</sup></span> :</label>
                                     </div>
                                     <div class="col-lg-8">
-                                        <input type="email" name="email" placeholder="email"
+                                        <input type="email" name="email" placeholder="Email"
                                             value="{{ auth()->user()->email }}" id="" class="form-control"
                                             required>
                                     </div>
@@ -141,12 +77,15 @@
                                     <div class="col-lg-8">
                                         <div class="mb-2">
                                             @php
-                                                $photo = empty(auth()->user()->photo) ? asset('assets/images/others/error.png') : asset('storage/' . auth()->user()->photo);
+                                                $photo = empty(auth()->user()->photo)
+                                                    ? asset('assets/images/default-user.jpg')
+                                                    : asset('storage/' . auth()->user()->photo);
                                             @endphp
-                                            <img src="{{ $photo }}" width="100" alt="" class="img-fluid rounded">
+                                            <img src="{{ $photo }}" width="100" alt=""
+                                                class="img-fluid rounded" id="photo-preview">
                                         </div>
-                                        <input type="file" name="photo" placeholder="photo" id=""
-                                            class="form-control">
+                                        <input type="file" name="photo" id="photo" class="form-control"
+                                            onchange="photoPreview(event, 'photo-preview')">
                                     </div>
                                 </div>
                             </div>
@@ -156,7 +95,7 @@
                                         <label for="" class="form-label mb-0">Address:</label>
                                     </div>
                                     <div class="col-lg-8">
-                                        <textarea name="address" placeholder="address" id="" rows="10" class="form-control">{{ auth()->user()->address }}</textarea>
+                                        <textarea name="address" placeholder="Address" id="" rows="10" class="form-control">{{ auth()->user()->address }}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -166,7 +105,7 @@
                                         <label for="" class="form-label mb-0">NID Number:</label>
                                     </div>
                                     <div class="col-lg-8">
-                                        <input type="text" name="nid_number" placeholder="nid number"
+                                        <input type="text" name="nid_number" placeholder="NID Number"
                                             value="{{ auth()->user()->nid_number }}" id="" class="form-control">
                                     </div>
                                 </div>
@@ -176,7 +115,7 @@
                             </div>
                         </form>
                     </div>
-                    <div class="tab-pane fade" id="change_password_2" role="tabpanel" aria-labelledby="change_password">
+                    <div class="tab-pane fade" id="change_password" role="tabpanel" aria-labelledby="change_password">
                         <div class="my-4">
                             <h3>Change Password</h3>
                         </div>
@@ -189,7 +128,7 @@
                                                 class="text-danger"><sup>*</sup></span> :</label>
                                     </div>
                                     <div class="col-lg-8">
-                                        <input type="password" name="current_password" placeholder="current password"
+                                        <input type="password" name="current_password" placeholder="Current Password"
                                             id="" class="form-control" required>
                                     </div>
                                 </div>
@@ -201,8 +140,8 @@
                                                 class="text-danger"><sup>*</sup></span> :</label>
                                     </div>
                                     <div class="col-lg-8">
-                                        <input type="password" name="new_password" placeholder="new password"
-                                            id="" class="form-control" required>
+                                        <input type="password" name="password" placeholder="New Password" id=""
+                                            class="form-control" value="{{ old('password') }}" required>
                                     </div>
                                 </div>
                             </div>
@@ -213,8 +152,8 @@
                                                 class="text-danger"><sup>*</sup></span> :</label>
                                     </div>
                                     <div class="col-lg-8">
-                                        <input type="password" name="new_password_confirmation"
-                                            placeholder="confirm password" id="" class="form-control" required>
+                                        <input type="password" name="password_confirmation"
+                                            placeholder="Confirm Password" id="" class="form-control" value="{{ old('password_confirmation') }}" required>
                                     </div>
                                 </div>
                             </div>
@@ -229,5 +168,54 @@
     </div>
 @endsection
 @section('page_js')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function activateTab(tabId) {
+                $('.nav-link').removeClass('active');
+                $('.tab-pane').removeClass('show active');
 
+                var activeTab = $('#' + tabId);
+                if (activeTab.length) {
+                    $('[href="#' + tabId + '"]').addClass('active');
+                    activeTab.addClass('show active');
+                    window.scrollTo(0, 0);
+                }
+            }
+
+            var fragment = window.location.hash.substring(1);
+            if (fragment) {
+                activateTab(fragment);
+            }
+
+            $('.nav-link').on('click', function() {
+                var tabId = $(this).attr('href').substring(1);
+                window.location.hash = tabId;
+                activateTab(tabId);
+            });
+
+            window.addEventListener('hashchange', function() {
+                var fragment = window.location.hash.substring(1);
+                if (fragment) {
+                    activateTab(fragment);
+                }
+            });
+        });
+
+        function photoPreview(event, id) {
+            var input = document.getElementById('photo');
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var img = new Image();
+                    img.onload = function() {
+                        var image = document.getElementById(id);
+                        image.src = URL.createObjectURL(event.target.files[0]);
+                    };
+                    img.src = e.target.result;
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 @endsection

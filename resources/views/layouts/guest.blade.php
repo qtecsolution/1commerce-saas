@@ -16,6 +16,7 @@
     <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet">
 
+    @stack('css')
 </head>
 
 <body>
@@ -31,6 +32,7 @@
     {{-- Sweet Alert JS --}}
     @include('sweetalert::alert')
 
+    @stack('js')
 </body>
 
 </html>

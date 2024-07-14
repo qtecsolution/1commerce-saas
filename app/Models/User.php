@@ -23,12 +23,7 @@ class User extends Authenticatable
     // function to get user subscription details.
     public function subscription_details()
     {
-        return $this->belongsTo(Subscription::class, 'id', 'user_id');
-    }
-
-    // function to get user shop details.
-    public function shop_details()
-    {
-        return $this->belongsTo(Shop::class, 'id', 'user_id');
+        return $this->belongsTo(Subscription::class, 'id', 'user_id')
+            ->orderBy('id', 'desc');
     }
 }

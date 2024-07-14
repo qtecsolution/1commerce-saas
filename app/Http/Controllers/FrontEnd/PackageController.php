@@ -22,7 +22,8 @@ class PackageController extends Controller
         session()->forget('selected_package');
 
         // store
-        session(['selected_package' => $package_id]);
+        $package = Package::findOrFail($package_id);
+        session(['selected_package' => $package]);
 
         // return to sign-up
         return redirect()->route('sign_up');

@@ -14,6 +14,9 @@ class Subscription extends Model
     // function to get package details
     public function package_details()
     {
-        return $this->belongsTo(Package::class, 'package_id', 'id');
+        return $this->belongsTo(Package::class, 'package_id', 'id')
+            ->withDefault([
+                'title' => 'N/A',
+            ]);
     }
 }
