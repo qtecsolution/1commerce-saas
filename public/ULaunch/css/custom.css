@@ -1,0 +1,1416 @@
+/* ----------------------------------------------------------------------------------------
+* Author        : Awaiken
+* Template Name : ULaunch - Multi Purpose Products Landing Page
+* File          : CSS File
+* Version       : 1.0
+* ---------------------------------------------------------------------------------------- */
+/* INDEX
+----------------------------------------------------------------------------------------
+01. General css
+02. Navigation area css
+03. Slider area css
+04. Step area css
+05. Features area css
+06. About Product area css
+07. About Facts area css
+08. Product area css
+09. Testimonial area css
+10. Pricing Plan area css
+11. Buynow Infobar area css
+12. Newsletter Form area css
+13. Contact Us area css
+14. Footer area css
+15. Media Screens
+-------------------------------------------------------------------------------------- */
+
+/************************************/
+/***** 	   01. General css		 ****/
+/************************************/
+
+body{
+	font-size: 16px;
+	font-family: 'Rubik', sans-serif;
+	background: #f7f7f7;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+	margin-top:0;
+	font-weight: 500;
+}
+
+img{
+	max-width: 100%;
+}
+
+a{
+	text-decoration: none;
+}
+
+a:hover{
+	text-decoration: none;
+	outline: 0;
+}
+
+a:focus{
+	text-decoration: none;
+	outline: 0;
+}
+
+.container{
+	max-width: 1160px;
+}
+
+.preloader{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	text-align: center;
+	background: #20bea7;
+	z-index: 9999;
+}
+
+.loader {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  position: relative;
+  border: 4px solid #Fff;
+  top: calc(50% - 15px);
+  animation: loader 2s infinite ease;
+}
+
+.loader-inner {
+  vertical-align: top;
+  display: inline-block;
+  width: 100%;
+  background-color: #fff;
+  animation: loader-inner 2s infinite ease-in;
+}
+
+.btn-custom{
+	display: inline-block;
+	font-size: 16px;
+	font-weight: 500;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	padding: 14px 30px;
+	min-width: 170px;
+	text-align: center;
+	color: #fff;
+	box-shadow: 1px 2px 46px 0px rgba(0,0,0,0.1);
+	background: #16c9f6;
+	background: linear-gradient(to left, #3ccdbb 0%, #16c9f6 100%);
+	background: -webkit-linear-gradient(to left, #3ccdbb 0%, #16c9f6 100%);
+	background: -moz-linear-gradient(to left, #3ccdbb 0%, #16c9f6 100%);
+	background: -o-linear-gradient(to left, #3ccdbb 0%, #16c9f6 100%);
+}
+
+.btn-custom:hover{
+	background: #16c9f6;
+	color: #fff;
+}
+
+/************************************/
+/***** 02. Navigation area css  *****/
+/************************************/
+
+nav.navbar.main-menu{
+	padding: 0;
+	background: none !important;
+	border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.navbar-brand{
+	height: auto;
+	transition: all 0.3s ease-in-out;
+}
+
+.navbar-right{
+	margin-right: 0;
+}
+
+.main-nav{
+	justify-content: flex-end;
+}
+
+nav.navbar.main-menu ul.nav > li > a{
+	font-size: 14px;
+	font-weight: 300;
+	text-transform: uppercase;
+	color: #fff;
+	padding: 38px 0px 34px;
+	line-height: 1em;
+	letter-spacing: 0.05em;
+	transition: all 0.3s ease-in-out;
+}
+
+nav.navbar.main-menu ul.nav > li > a:after{
+	content: '/';
+    padding: 0 14px 0 18px;
+    color: #fff;
+}
+
+nav.navbar.main-menu ul.nav > li:last-child a:after{
+	display: none;
+}
+
+nav.navbar.main-menu ul.nav > li > a.active{
+	color: #000;
+}
+
+nav.navbar.main-menu.sticky-header{
+	background: #20bea7 !important;
+}
+
+nav.navbar.main-menu.sticky-header .navbar-brand{
+	padding-top: 15px;
+}
+
+nav.navbar.main-menu.sticky-header ul.nav > li > a{
+	padding: 30px 0px 26px;
+}
+
+.navbar-toggler{
+	float: right;
+	border: 1px solid #fff;
+	color: #fff;
+	border-radius: 0;
+	padding: 6px 10px;
+	outline: 0;
+	box-shadow: none;
+	margin-top: 2px;
+}
+
+nav.navbar .navbar-toggler:focus{
+	outline: 0;
+	box-shadow: none;
+}
+
+/************************************/
+/*****   03. Slider area css    *****/
+/************************************/
+
+.banner{
+	position: relative;
+	top: 0px;
+	left: 0;
+	width: 100%;
+	background: url(../images/header-bg.jpg) no-repeat center center fixed;
+	background-size: cover;
+	padding: 180px 0 200px;
+}
+
+.banner:before{
+	content: '';
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(32,190,167,0.9);
+}
+
+.banner .row{
+	position: relative;
+	z-index: 1;
+}
+
+.header-content{
+	padding-top: 20px;
+}
+
+.header-content h2{
+	font-size: 46px;
+	color: #fff;
+	font-weight: 500;
+	line-height: 1.2em;
+	margin-bottom: 0.6em;
+}
+
+.header-content h2 span {
+    background: #fff;
+    color: #20bea7;
+    text-transform: uppercase;
+    font-size: 32px;
+    padding: 6px 14px;
+}
+
+.header-content p{
+	color: #fff;
+	line-height: 1.5em;
+	font-size: 14px;
+	letter-spacing: 0.04em;
+	margin-bottom: 1.8em;
+}
+
+.btn-buynow{
+	position: relative;
+	display: inline-block;
+	color: #20bea7;
+	border-radius: 3px;
+	border: 2px solid #20bea7;
+	padding: 14px 30px 12px;
+	font-size: 14px;
+	font-weight: 400;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	transition: all 0.1s linear;
+}
+
+.btn-buynow:hover{
+	background: #20bea7;
+	color: #fff;
+}
+
+.header-content .btn-buynow{
+	color: #fff;
+	border: 2px solid #fff;
+	margin-top: 20px;
+}
+
+.header-content .btn-buynow:hover{
+	background: #fff;
+	color: #20bea7;
+}
+
+.slider-image{
+	text-align: center;
+}
+
+/**********************************/
+/*****   04. Step area css    *****/
+/**********************************/
+
+.step-container{
+	max-width: 800px;
+	margin: 0 auto;
+	background: #fff;
+	box-shadow: 0px 10px 50px 0px rgba(84,110,122,0.15);
+	padding: 30px;
+	margin-top: -110px;
+	border-radius: 2px;
+	z-index: 1;
+	position: relative;
+}
+
+.step-container .col-md-4{
+	border-right: 1px solid #eaeaea;
+}
+
+.step-container .col-md-4:last-child{
+	border: none;
+}
+
+.step-single{
+	text-align: center;
+	padding: 0 10px;
+}
+
+.step-single .icon-box{
+	font-size: 50px;
+	color: #20bea7;
+}
+
+.step-single h3{
+	font-size: 16px;
+	color: #263238;
+	font-weight: 500;
+	margin: 10px 0 14px;
+}
+
+.step-single p{
+	font-size: 13px;
+	color: #546E7A;
+}
+
+/**************************************/
+/*****   05. Features area css    *****/
+/**************************************/
+
+.section-title{
+	text-align: center;
+	margin-bottom: 80px;
+}
+
+.section-title h2{
+	color: #263238;
+	font-size: 40px;
+	font-weight: 400;
+}
+
+.section-title p{
+	color: #546E7A;
+	font-size: 13px;
+	position: relative;
+	padding-bottom: 8px;
+	margin-bottom: 1em;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+}
+
+.section-title p:after{
+	content: '';
+	display: block;
+	width: 30px;
+	height: 1px;
+	margin-left: -15px;
+	background: #20bea7;
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+}
+
+.features{
+	padding: 100px 0;
+}
+
+.feature-single{
+	position: relative;
+	margin-bottom: 40px;
+}
+
+.feature-single .icon-box{
+	width: 50px;
+	height: 50px;
+	font-size: 26px;
+	border: 1px solid #20bea7;
+	border-radius: 50%;
+	color: #20bea7;
+	text-align: center;
+	padding-top: 6px;
+	position: absolute;
+	transition: all 0.3s ease-in-out;
+}
+
+.feature-single:hover .icon-box{
+	background: #20bea7;
+	color: #fff;
+}
+
+.feature-single h3{
+	font-size: 16px;
+	color: #263238;
+	font-weight: 500;
+	margin: 0 0 14px;
+}
+
+.feature-single p{
+	font-size: 13px;
+	color: #546E7A;
+}
+
+.feature-right .icon-box{
+	right: 0;
+	top: 0;
+}
+
+.feature-right{
+	padding-right: 70px;
+	text-align: right;
+}
+
+.feature-left .icon-box{
+	left: 0;
+	top: 0;
+}
+
+.feature-left{
+	padding-left: 70px;
+	text-align: left;
+}
+
+.feature-image{
+	padding-top: 34px;
+	text-align: center;
+}
+
+/**************************************/
+/***** 06. About Product area css *****/
+/**************************************/
+
+.about-product{
+	background: #fff;
+	padding: 100px 0;
+}
+
+.about-product-single{
+	max-width: 960px;
+	border-bottom: 1px dashed #e2e2e2;
+	padding: 60px 0;
+	margin: 0 auto;
+}
+
+.about-product-single:first-child{
+	padding-top: 0;
+}
+
+.about-product-single:last-child{
+	border: none;
+	padding-bottom: 0;
+}
+
+.about-entry{
+	padding-top: 30px;
+}
+
+.about-entry h4{
+	color: #546E7A;
+	font-size: 13px;
+	position: relative;
+	padding-bottom: 8px;
+	margin-bottom: 1em;
+	font-weight: 400;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+}
+
+.about-entry h4:after{
+	content: '';
+	display: block;
+	width: 30px;
+	height: 1px;
+	background: #20bea7;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+.about-entry h3{
+	color: #263238;
+	font-size: 28px;
+	position: relative;
+	padding-bottom: 8px;
+	margin-bottom: 0.5em;
+	line-height: 1.2em;
+	font-weight: 400;
+}
+
+.about-entry p{
+	font-size: 14px;
+	color: #546E7A;
+	line-height: 1.5em;
+	margin-bottom: 1.5em;
+}
+
+.about-image{
+	text-align: center;
+}
+
+/************************************/
+/***** 07. About Facts area css *****/
+/************************************/
+
+.about-facts{
+	padding: 100px 0;
+	position: relative;
+	background: url(../images/counter-bg.jpg) no-repeat center center fixed;
+	background-size: cover;
+}
+
+.about-facts:before{
+	content: '';
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(32,190,167,0.9);
+}
+
+.about-facts .container{
+	position: relative;
+	z-index: 1;
+}
+
+.about-facts .section-title{
+	margin-bottom: 60px;
+}
+
+.about-facts .section-title h2{
+	color: #fff;
+}
+
+.about-facts .section-title p{
+	color: #fff;
+}
+
+.about-facts .section-title p:after{
+	background: #fff;
+}
+
+.facts-single{
+	text-align: center;
+}
+
+.facts-single h3{
+	font-size: 52px;
+	position: relative;
+	color: #fff;
+	font-weight: 500;
+	letter-spacing: 0.04em;
+	padding-bottom: 8px;
+	margin-bottom: 14px;
+}
+
+.facts-single h3:after{
+	content: '';
+	display: block;
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 30px;
+	height: 1px;
+	margin-left: -15px;
+	background: #fff;
+}
+
+.facts-single p{
+	font-size: 13px;
+	color: #fff;
+	letter-spacing: 0.03em;
+}
+
+/************************************/
+/*****  08. Product area css    *****/
+/************************************/
+
+.products{
+	padding: 100px 0;
+	background: url(../images/pricing-bg.png) no-repeat center center;
+}
+
+.product-single:hover .product-box,
+.product-single.hover .product-box{
+	transform: rotateY(180deg);
+}
+
+.product-box{
+	transition: 0.6s;
+	transform-style: preserve-3d;
+	position: relative;
+	background: #fff;
+	border-radius: 2px;
+	box-shadow: 0px 10px 50px 0px rgba(84,110,122,0.15);
+}
+
+.front, .back {
+	backface-visibility: hidden;
+}
+
+.front{
+	padding: 30px;
+	z-index: 2;
+	transform: rotateY(0deg);
+	border: 1px solid #d4d7da;
+	background: linear-gradient(69deg,#fff 0% , #fff 50%, #20bea7 50%, #20bea7 51%);
+	background: -webkit-linear-gradient(69deg,#fff 0% , #fff 50%, #20bea7 50%, #20bea7 51%);
+	background: -moz-linear-gradient(69deg,#fff 0% , #fff 50%, #20bea7 50%, #20bea7 51%);
+	background: -o-linear-gradient(69deg,#fff 0% , #fff 50%, #20bea7 50%, #20bea7 51%);
+}
+
+.product-box .front{
+	text-align: center;
+}
+
+.product-box .front h3{
+	font-size: 18px;
+	color: #263238;
+	font-weight: 400;
+	margin: 20px 0 0;
+}
+
+.product-box .front del{
+	color: #20bea7;
+	padding-left: 6px;
+}
+
+.back{
+	position: absolute;
+	top: 0; 
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: #20bea7;
+	transform: rotateY(180deg);
+}
+
+.product-info{
+	position: absolute;
+	padding: 30px;
+	left: 0;
+	right: 0;
+	top: 50%;
+	text-align: center;
+	transform: translate(0, -50%);
+}
+
+.product-info h3{
+	color: #fff;
+	font-size: 18px;
+	font-weight: 400;
+	position: relative;
+	padding-bottom: 10px;
+}
+
+.product-info h3:after{
+	content: '';
+	display: block;
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	margin-left: -10px;
+	width: 20px;
+	height: 1px;
+	background: #fff;
+}
+
+.product-info p{
+	font-size: 10px;
+	color: #fff;
+	letter-spacing: 0.03em;
+	line-height: 1.5em;
+}
+
+.btn-ordernow{
+	display: inline-block;
+	font-size: 13px;
+	color: #fff;
+	border: 1px solid #fff;
+	text-transform: uppercase;
+	padding: 6px 14px;
+	letter-spacing: 0.04em;
+	margin-top: 10px;
+}
+
+.btn-ordernow:hover{
+	background: #fff;
+	color: #20bea7;
+}
+
+/************************************/
+/***** 09. Testimonial area css *****/
+/************************************/
+
+.testimonials{
+	padding: 100px 0;
+	background: url(../images/header-bg.jpg) no-repeat center center fixed;
+	background-size: cover;
+	position: relative;
+}
+
+.testimonials:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(32,190,167,0.9);
+}
+
+.testimonials .container{
+	position: relative;
+	z-index: 1;
+}
+
+.testimonials .section-title{
+	margin-bottom: 60px;
+}
+
+.testimonials .section-title h2{
+	color: #fff;
+}
+
+.testimonials .section-title p{
+	color: #fff;
+}
+
+.testimonials .section-title p:after{
+	background: #fff;
+}
+
+.testimonials-slider{
+	padding-top: 50px;
+}
+
+.testimonials-slider .testimonial-slide{
+	background: #fff;
+	padding: 60px 30px 30px;
+	position: relative;
+	border-radius: 2px;
+}
+
+.author-info{
+	max-width: 100px;
+	margin: 0 auto;
+	padding: 10px;
+	background: #fff;
+	border-radius: 50%;
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+
+.author-info img{
+	border-radius: 50%;
+}
+
+.testimonial-entry h4{
+	font-size: 14px;
+	font-weight: 500;
+	color: #263238;
+	margin: 20px 0 0;
+}
+
+.testimonial-entry h4 span{
+	color: #546E7A;
+	font-size: 13px;
+	font-weight: 400;
+}
+
+.testimonial-entry p{
+	font-size: 13px;
+	line-height: 1.5em;
+	color: #546E7A;
+}
+
+.testimonial-pagination{
+	text-align: center;
+	padding-top: 40px;
+}
+
+.testimonial-pagination .swiper-pagination-bullet{
+	width: 10px;
+	height: 10px;
+	background: none;
+	border: 1px solid #fff;
+	border-radius: 0;
+	opacity: 0.4;
+}
+
+.testimonial-pagination .swiper-pagination-bullet-active{
+	opacity: 1;
+}
+
+/*************************************/
+/***** 10. Pricing Plan area css *****/
+/*************************************/
+
+.pricing{
+	background: #fff;
+	padding: 100px 0;
+}
+
+.pricing-single{
+	text-align: center;
+	padding: 40px 0;
+	border-radius: 2px;
+}
+
+.recommended{
+	background: #f2f2f3;
+}
+
+.pricing-header{
+	margin-bottom: 40px;
+}
+
+.pricing-header .icon-box{
+	font-size: 60px;
+	color: #546E7A;
+}
+
+.pricing-header h3{
+	font-size: 16px;
+	font-weight: 500;
+	color: #263238;
+}
+
+.pricing-header p{
+	font-size: 80px;
+	font-weight: 400;
+	color: #20bea7;
+	margin: 0;
+}
+
+.pricing-header .btn-buynow{
+	padding: 12px 30px 10px;
+}
+
+.recommended .pricing-header .btn-buynow{
+	background: #20bea7;
+	color: #fff;
+}
+
+.recommended .pricing-header .btn-buynow:hover{
+	background: #263238;
+	border-color: #263238;
+}
+
+.pricing-body ul{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.pricing-body ul li{
+	padding: 6px 0;
+	font-size: 14px;
+	color: #546E7A;
+	letter-spacing: 0.02em;
+}
+
+.pricing-body ul li span{
+	font-weight: 600;
+}
+
+/***************************************/
+/***** 11. Buynow Infobar area css *****/
+/***************************************/
+
+.buynow-infobar{
+	padding: 100px 0;
+	position: relative;
+}
+
+.buynow-infobar .container{
+	position: relative;
+	z-index: 1;
+}
+
+.buynow-infobar .section-title{
+	margin-bottom: 40px;
+	text-align: left;
+}
+
+.buynow-infobar .section-title p:after{
+	background: #fff;
+	left: 0;
+	margin-left: 0;
+}
+
+.buynow-entry p{
+	font-size: 14px;
+	letter-spacing: 0.02em;
+	line-height: 1.6em;
+}
+
+.buynow-entry .btn-buynow{
+    border: 2px solid #20bea7;
+    margin-top: 20px;
+}
+
+.buynow-entry .btn-buynow:hover{
+	background: #20bea7;
+	color: #ffffff;
+}
+
+.buynow-video{
+	text-align: center;
+	padding-top: 70px;
+}
+
+.buynow-video a{
+	display: inline-block;
+	font-size: 100px;
+	color: #20bea7;
+	opacity: 0.8;
+	transition: all 0.3s;
+}
+
+.buynow-video a:hover{
+	opacity: 1;
+}
+
+/****************************************/
+/***** 12. Newsletter Form area css *****/
+/****************************************/
+
+.newsletter-feature{
+	padding: 100px 0;
+	background: #fff;
+}
+
+.newsletter-form{
+	max-width: 568px;
+	margin: 0 auto 80px;
+}
+
+.newsletter-form p{
+	font-size: 14px;
+	letter-spacing: 0.02em;
+	line-height: 1.8em;
+	color: #546E7A;
+	text-align: center;
+	margin-bottom: 1.5em;
+}
+
+.newsletter-form form{
+	margin-top: 40px;
+	border: 4px solid #f1f1f1;
+	border-radius: 30px;
+}
+
+.newsletter-form .form-group{
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.newsletter-form .form-control{
+	border: none;
+	box-shadow: none;
+	border-radius: 20px;
+	box-shadow: none;
+	height: 50px;
+	background: none;
+	font-size: 14px;
+	padding: 0 20px;
+	width: 70%;
+}
+
+.btn-subscribe{
+	background: #20bea7;
+	color: #fff;
+	border: none;
+	height: 50px;
+	width: 30%;
+	margin-left: -4px;
+	border-radius: 0 30px 30px 0;
+	text-transform: uppercase;
+	font-size: 14px;
+	letter-spacing: 0.04em;
+	transition: all 0.3s;
+}
+
+.btn-subscribe:hover{
+	background: #263238;
+}
+
+.btn-subscribe:focus{
+	outline: 0;
+}
+
+.newsletter-feature .col-md-2{
+	border-right: 1px solid #eaeaea;
+}
+
+.newsletter-feature .col-md-2:last-child{
+	border: none;
+}
+
+.small-feature-single{
+	text-align: center;
+}
+
+.small-feature-single .icon-box{
+	color: #20bea7;
+	font-size: 48px;
+}
+
+.small-feature-single p{
+	font-size: 13px;
+	color: #546E7A;
+	margin: 10px 0 0;
+}
+
+.our-clients{
+	padding: 30px 0;
+}
+
+.client-logo{
+	text-align: center;
+	padding: 0 20px;
+}
+
+.client-logo img{
+	opacity: 0.5;
+	transition: all 0.3s ease-in-out;
+}
+
+.client-logo:hover img{
+	opacity: 1;
+}
+
+/****************************************/
+/*****   13. Contact Us area css    *****/
+/****************************************/
+
+.order_area {
+	padding: 60px 0;
+	background: #ffffff;
+}
+
+.contactus{
+	background: #263238;
+	padding: 100px 0 60px;
+}
+
+.contactus .section-title{
+	text-align: left;
+	margin-bottom: 40px;
+}
+
+.contactus .section-title p{
+	color: #20bea7;
+}
+
+.contactus .section-title p:after{
+	left: 0;
+	margin-left: 0;
+}
+
+.contact-form .form-control{
+	border-radius: 0;
+	background: rgba(255,255,255,0.05);
+	font-size: 13px;
+	font-weight: 300;
+	height: auto;
+	letter-spacing: 0.03em;
+	padding: 12px 14px;
+	box-shadow: none;
+	resize: none;
+}
+
+.btn-contact{
+	position: relative;
+    display: inline-block;
+    color: #20bea7;
+    border-radius: 3px;
+	background: none;
+    border: 2px solid #20bea7;
+    padding: 10px 30px 8px;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: all 0.1s linear;
+}
+
+.btn-contact:hover{
+	background: #20bea7;
+	color: #fff;
+}
+
+.with-errors ul{
+	margin: 0;
+	color: #a94442;
+}
+
+.footer-info{	
+	border-left: 1px solid #313c42;
+	padding: 30px 0 30px 30px;
+}
+
+.footer-info img{
+	margin-bottom: 30px;
+}
+
+.footer-info p{
+	color: rgba(255,255,255,0.6);
+	font-size: 13px;
+	letter-spacing: 0.03em;
+	font-weight: 300;
+	margin-bottom: 1.8em;
+}
+
+.contactinfo-single{
+	position: relative;
+	padding-left: 50px;
+	margin-bottom: 30px;
+}
+
+.contactinfo-single h3{
+	color: #20bea7;
+	font-size: 14px;
+	font-weight: 500;
+	margin: 0 0 4px 0;
+	padding-top: 2px;
+}
+
+.contactinfo-single i{
+	width: 36px;
+	height: 36px;
+	color: #20bea7;
+	border: 1px solid #20bea7;
+	border-radius: 50px;
+	text-align: center;
+	padding-top: 9px;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.footer-social a{
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	background: #313c42;
+	color: #20bea7;
+	font-size: 14px;
+	text-align: center;
+	padding-top: 6px;
+	margin-right: 10px;
+	transition: all 0.3s ease-in-out;
+}
+
+.footer-social a:hover{
+	background: #20bea7;
+	color: #fff;
+}
+
+/************************************/
+/*****   14. Footer area css    *****/
+/************************************/
+
+footer{
+	background: #263238;	
+}
+
+.footer-siteinfo{
+	border-top: 1px solid #313c42;
+	padding: 40px 0;
+}
+
+.footer-siteinfo p{
+	text-align: center;
+	color: rgba(255,255,255,0.6);
+	font-size: 13px;
+	font-weight: 300;
+	letter-spacing: 0.04em;
+	margin-bottom: 0;
+}
+
+.jumptotop{
+	position: fixed;
+	right: 30px;
+	bottom: 0px;
+	text-align: center;
+	opacity: 0;
+	transition: all 0.5s ease-in-out;
+}
+
+.btn-active{
+	opacity: 1;
+	bottom: 30px;
+}
+
+.jumptotop a{
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	color: #fff;
+	padding-top: 6px;
+	background: #20bea7;
+	font-size: 18px;
+	border-radius: 2px;
+}
+
+.jumptotop a:hover{
+	background: #313c42;
+}
+
+/************************************/
+/*****    15. Media Screens     *****/
+/************************************/
+
+@media only screen and (max-width: 1200px){
+	.navbar-default .navbar-nav>li>a:after{
+		padding: 0 12px 0 14px;
+	}
+}
+
+@media only screen and (max-width: 991px){
+	nav.navbar.main-menu .navbar-header{
+		width: 100%;
+		padding: 14px 0;
+		position: relative;
+	}
+	
+	nav.navbar.main-menu .navbar-collapse{
+		background: #20bea7;
+		padding: 0 20px;
+		margin-left: -15px;
+		margin-right: -15px;
+	}
+	
+	nav.navbar.main-menu.sticky-header ul.nav > li > a,
+	nav.navbar.main-menu ul.nav > li > a{
+		padding: 12px 0;
+		border: none;
+		margin: 0;
+	}
+	
+	nav.navbar.main-menu ul.nav > li > a:after{
+		display: none;
+	}
+	
+	.header-content{
+		padding-top: 0;
+	}
+	
+	.feature-image{
+		padding: 20px 0 50px;
+	}
+	
+	.feature-right{
+		text-align: left;
+		padding-right: 0;
+		padding-left: 70px;
+	}
+	
+	.feature-right .icon-box{
+		right: auto;
+		left: 0;
+	}
+	
+	.facts-single{
+		margin-bottom: 40px;
+	}
+	
+	.product-box{
+		margin-bottom: 30px;
+	}
+	
+	.newsletter-feature .col-md-2{
+		border: none;
+	}
+	
+	.small-feature-single{
+		margin-bottom: 30px;
+	}
+	
+	.footer-info{
+		padding: 50px 0 0 0;
+		border: none;
+	}
+}
+
+/* Mobile Layout */
+@media only screen and (max-width: 767px){
+	
+	nav.navbar.bootsnav .navbar-collapse{
+		margin-left: -15px;
+		margin-right: -15px;
+	}
+	
+	.banner{
+		padding: 140px 0 160px;
+	}
+	
+	.header-content{
+		text-align: center;
+		margin-bottom: 60px;
+	}
+	
+	.navbar-toggle{
+		margin-right: 15px;
+	}
+	
+	.jumptotop{
+		display: none;
+	}
+	
+	.step-container{
+		padding: 10px 40px;
+	}
+	
+	.step-container .col-md-4{
+		border-right: 0;
+		border-bottom: 1px solid #eaeaea;
+	}
+	
+	.step-single{
+		padding: 20px 0;
+	}
+	
+	.section-title{
+		margin-bottom: 50px;
+	}
+	
+	.section-title h2{
+		font-size: 28px;
+	}
+	
+	.features,
+	.about-product,
+	.products,
+	.testimonials,
+	.pricing,
+	.buynow-infobar,
+	.newsletter-feature{
+		padding: 60px 0;
+	}
+	
+	.newsletter-form{
+		margin-bottom: 60px;
+	}
+	
+	.about-facts{
+		padding: 60px 0 20px;
+	}
+	
+	.about-entry{
+		padding-top: 0;
+		padding-bottom: 50px;
+	}
+	
+	.about-entry h3{
+		font-size: 24px;
+	}
+	
+	.product-box{
+		max-width: 320px;
+		margin: 0 auto 30px;
+	}
+	
+	.buynow-video{
+		padding-top: 40px;
+	}
+	
+	.newsletter-form .form-control{
+		width: 100%;
+		border: 4px solid #f1f1f1;
+		border-radius: 30px;
+		margin-bottom: 20px;
+	}
+	
+	.newsletter-form form{
+		border: none;
+		text-align: center;
+	}
+	
+	.btn-subscribe{
+		width: 100%;
+		border-radius: 40px;
+	}
+}
+
+/* Small Mobile Layout */
+
+@media only screen and (max-width: 480px) {
+	.header-content h2{
+		font-size: 28px;
+		line-height: 1.5em;
+	}
+	
+	.header-content h2 span{
+		font-size: 20px;
+	}
+	
+	.pricing-header p{
+		font-size: 60px;
+	}
+}

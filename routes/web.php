@@ -10,12 +10,10 @@ use App\Http\Controllers\Package\PackageController;
 use App\Http\Controllers\User\ShopController;
 use App\Http\Controllers\Order\OderController;
 use App\Http\Controllers\Setting\SettingController;
+use App\Http\Controllers\Template\TemplateController;
 use App\Http\Controllers\User\CustomerController;
-use App\Http\Controllers\Theme\TemplateController;
 use App\Http\Controllers\Ticket\SupportTicketController;
 use App\Http\Controllers\Test\TestController;
-use App\Http\Controllers\Theme\UserThemeController;
-use App\Http\Controllers\Theme\UserThemeElementController;
 use App\Http\Controllers\User\SubscriptionController;
 use Illuminate\Support\Facades\Route;
 
@@ -42,8 +40,11 @@ Route::domain('{shop}.' . env('APP_URL'))->group(function () {
     Route::get('/{slug}', [ShopController::class, 'index'])->name('user_shop');
 });
 
-// home page
+// home page route
 Route::get('/', [WebController::class, 'index'])->name('web.home');
+
+// templates route
+Route::get('/templates/{slug}', [TemplateController::class, 'show'])->name('web.templates');
 
 // package route
 Route::get('/packages', [FrontEnd_PackageController::class, 'index'])->name('web.packages');
