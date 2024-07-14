@@ -72,7 +72,7 @@ Route::get('/sign-out', [UserController::class, 'sign_out'])->name('sign_out');
 |--------------------------------------------------------------------------
 */
 
-Route::prefix('/user')->middleware('user')->group(function () {
+Route::prefix('/app')->middleware('user')->group(function () {
     // dashboard route
     Route::get('/', [CustomerDashboard::class, 'index'])->name('user_dashboard');
 
