@@ -46,8 +46,8 @@
         </span>
     </a>
     <ul class="dropdown-menu">
-        <li class="">
-            <a href="">Landing Pages</a>
+        <li class="{{ Route::currentRouteName() == 'templates.index' ? 'active' : '' }}">
+            <a href="{{ route('templates.index') }}">Landing Pages</a>
         </li>
         <li class="">
             <a href="">My Templates</a>

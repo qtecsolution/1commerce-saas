@@ -49,7 +49,6 @@
                         href="#"><img
                             src="{{ asset($template['assets'] . '/images/logo.png') }}" class="logo"
                             alt=""></a>
-
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbar-menu" aria-controls="ftco-nav" aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -512,25 +511,29 @@
                             method="post" data-toggle="validator" novalidate="true">
                             <div class="row">
                                 <div class="form-group mb-3 col-md-6 col-sm-6">
+                                    <label for="name" class="form-label">Name:</label>
                                     <input type="text" name="name" id="name" class="form-control"
                                         placeholder="Enter Your Name" required="">
                                     <div class="help-block with-errors"></div>
                                 </div>
 
                                 <div class="form-group mb-3 col-md-6 col-sm-6">
+                                    <label for="mobile" class="form-label">Mobile:</label>
                                     <input type="number" name="mobile" id="mobile" class="form-control"
                                         placeholder="Your Mobile Number" required="">
                                     <div class="help-block with-errors"></div>
                                 </div>
 
                                 <div class="form-group mb-3 col-md-12 col-sm-12">
+                                    <label for="quantity" class="form-label">Quantity:</label>
                                     <input type="number" name="quantity" id="quantity" class="form-control"
                                         placeholder="Quantity" min="1" value="1" required="">
                                     <div class="help-block with-errors"></div>
                                 </div>
 
                                 <div class="form-group mb-3 col-md-12 col-sm-12">
-                                    <textarea rows="8" name="address" id="address" class="form-control" required=""></textarea>
+                                    <label for="address" class="form-label">Address:</label>
+                                    <textarea rows="8" name="address" id="address" placeholder="Address" class="form-control" required=""></textarea>
                                     <div class="help-block with-errors"></div>
                                 </div>
 

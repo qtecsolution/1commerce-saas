@@ -21,10 +21,23 @@ class TemplateController extends Controller
     {
         $template = collect($this->templates)->where('slug', $slug)->first();
         if ($template) {
-            return view('template.' .$template['blade'], compact('template'));
+            return view('template.' . $template['blade'], compact('template'));
         } else {
-            Alert::error('Oops!', 'Template Not Found')->persistent('Close');
+            Alert::error('Oops!', 'Template Not Found.')->persistent('Close');
             return redirect()->back();
         }
+    }
+
+    public function index()
+    {
+        return view('template.index', [
+            'templates' => $this->templates
+        ]);
+    }
+
+    public function selectTemplate($slug)
+    {
+        Alert::info('Info!', 'This feature will be available soon.')->persistent('Close');
+        return redirect()->back();
     }
 }

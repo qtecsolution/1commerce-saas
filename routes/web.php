@@ -101,6 +101,12 @@ Route::prefix('/app')->middleware('user')->group(function () {
 
     // subscription routes
     Route::resource('/subscription', SubscriptionController::class);
+
+    // template routes
+    Route::prefix('/templates')->controller(TemplateController::class)->as('templates.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/{slug}/select', 'selectTemplate')->name('select');
+    });
 });
 
 /*
