@@ -107,6 +107,7 @@ Route::prefix('/app')->middleware('user')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::match(['get', 'post'], '/{slug}/select', 'selectTemplate')->name('select');
         Route::get('mine', 'mine')->name('mine');
+        Route::get('{id}/edit', 'edit')->name('edit');
     });
 });
 

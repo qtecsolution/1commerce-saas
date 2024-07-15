@@ -21,6 +21,7 @@
         "vue-loader": "^16.8.3"
     },
     "dependencies": {
+        "bootstrap-icons": "^1.11.3",
         "sweetalert2": "^11.7.3",
         "vue": "^3.2.47"
     }

@@ -38,7 +38,7 @@
                                             <div class="btn-group">
                                                 <a href="{{ route('web.template', $template['slug']) }}"
                                                     class="btn btn-info btn-sm" target="_blank">Preview</a>
-                                                <a href="{{ route('web.template', $template['slug']) }}"
+                                                <a href="{{ route('templates.edit', $userTemplate['id']) }}"
                                                     class="btn btn-primary btn-sm">Edit</a>
                                             </div>
                                         </div>

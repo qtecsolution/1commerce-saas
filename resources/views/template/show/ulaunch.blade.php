@@ -73,8 +73,7 @@
     <!-- Header Section Ends-->
 
     <!-- Banner Section Starts -->
-    <section class="banner parallaxie" id="home"
-        style="background-image: url(&quot;#images/header-bg.jpg&quot;); background-size: cover; background-repeat: no-repeat; background-attachment: fixed; background-position: center 0px;">
+    <section class="banner parallaxie" id="home">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-sm-6">

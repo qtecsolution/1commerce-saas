@@ -20,7 +20,7 @@ class TemplateController extends Controller
     {
         $template = collect($this->templates)->where('slug', $slug)->first();
         if ($template) {
-            return view('template.' . $template['blade'], compact('template'));
+            return view('template.show.' . $template['blade'], compact('template'));
         } else {
             Alert::error('Oops!', 'Template Not Found.')->persistent('Close');
             return redirect()->back();
@@ -84,5 +84,13 @@ class TemplateController extends Controller
     {
         $templates = UserTemplate::where('user_id', auth()->id())->get();
         return view('template.mine', compact('templates'));
+    }
+
+    public function edit($id)
+    {
+        $userTemplate = UserTemplate::findOrFail($id);
+        $template = collect($this->templates)->where('id', $userTemplate->template_id)->first();
+
+        return view('template.edit.' . $template['slug'] . '.' . $template['blade'], compact('userTemplate', 'template'));
     }
 }
