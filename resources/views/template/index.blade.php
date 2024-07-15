@@ -1,5 +1,5 @@
 @php
-    $title = 'Orders';
+    $title = 'Templates';
 @endphp
 @extends('layouts.app')
 
@@ -26,7 +26,13 @@
 
                                     <div class="card-data py-3 px-3">
                                         <h4>{{ $template['name'] }}</h4>
-                                        <a href="{{ route('templates.select', $template['slug']) }}" class="btn btn-primary">Add</a>
+                                        
+                                        <div class="btn-group">
+                                            <a href="{{ route('web.template', $template['slug']) }}"
+                                                class="btn btn-info btn-sm" target="_blank">Preview</a>
+                                            <a href="{{ route('templates.select', $template['slug']) }}"
+                                                class="btn btn-primary btn-sm">Setup</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

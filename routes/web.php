@@ -44,7 +44,7 @@ Route::domain('{shop}.' . env('APP_URL'))->group(function () {
 Route::get('/', [WebController::class, 'index'])->name('web.home');
 
 // templates route
-Route::get('/templates/{slug}', [TemplateController::class, 'show'])->name('web.templates');
+Route::get('/templates/{slug}', [TemplateController::class, 'show'])->name('web.template');
 
 // package route
 Route::get('/packages', [FrontEnd_PackageController::class, 'index'])->name('web.packages');
@@ -105,7 +105,8 @@ Route::prefix('/app')->middleware('user')->group(function () {
     // template routes
     Route::prefix('/templates')->controller(TemplateController::class)->as('templates.')->group(function () {
         Route::get('/', 'index')->name('index');
-        Route::get('/{slug}/select', 'selectTemplate')->name('select');
+        Route::match(['get', 'post'], '/{slug}/select', 'selectTemplate')->name('select');
+        Route::get('mine', 'mine')->name('mine');
     });
 });
 

@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Template;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class OrderPayment extends Model
+class UlaunchTemplate extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
 }

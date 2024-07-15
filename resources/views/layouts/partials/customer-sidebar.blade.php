@@ -46,11 +46,14 @@
         </span>
     </a>
     <ul class="dropdown-menu">
-        <li class="{{ Route::currentRouteName() == 'templates.index' ? 'active' : '' }}">
+        @php
+            $routes = ['templates.index', 'templates.select'];
+        @endphp
+        <li class="{{ in_array(Route::currentRouteName(), $routes) ? 'active' : '' }}">
             <a href="{{ route('templates.index') }}">Landing Pages</a>
         </li>
-        <li class="">
-            <a href="">My Templates</a>
+        <li class="{{ Route::currentRouteName() == 'templates.mine' ? 'active' : '' }}">
+            <a href="{{ route('templates.mine') }}">My Templates</a>
         </li>
     </ul>
 </li>
