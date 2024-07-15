@@ -12,5 +12,5 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    // .js('resources/js/', 'public/assets/js/').vue()
+    .js('resources/js/template/ulaunch.js', 'public/js/ulaunch.js').vue()
     .sourceMaps();
