@@ -105,9 +105,11 @@ Route::prefix('/app')->middleware('user')->group(function () {
     // template routes
     Route::prefix('/templates')->controller(TemplateController::class)->as('templates.')->group(function () {
         Route::get('/', 'index')->name('index');
-        Route::match(['get', 'post'], '/{slug}/select', 'selectTemplate')->name('select');
+        Route::match(['get', 'post'], '/{id}/select', 'selectTemplate')->name('select');
         Route::get('mine', 'mine')->name('mine');
         Route::get('{id}/edit', 'edit')->name('edit');
+
+        require __DIR__ . '/template/ulaunch.php';
     });
 });
 

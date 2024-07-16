@@ -34,12 +34,12 @@ class TemplateController extends Controller
         ]);
     }
 
-    public function selectTemplate(Request $request, $slug)
+    public function selectTemplate(Request $request, $id)
     {
         // Alert::info('Info!', 'This feature will be available soon.')->persistent('Close');
         // return redirect()->back();
 
-        $template = collect($this->templates)->where('slug', $slug)->first();
+        $template = collect($this->templates)->where('id', $id)->first();
         if ($template) {
             $userTemplate = UserTemplate::where('user_id', auth()->id())->where('template_id', $template['id'])->first();
             if ($userTemplate) {

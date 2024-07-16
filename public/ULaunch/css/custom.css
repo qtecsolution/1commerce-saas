@@ -202,8 +202,6 @@ nav.navbar .navbar-toggler:focus{
 	top: 0px;
 	left: 0;
 	width: 100%;
-	background: url(../images/header-bg.jpg) no-repeat center center fixed;
-	background-size: cover;
 	padding: 180px 0 200px;
 }
 

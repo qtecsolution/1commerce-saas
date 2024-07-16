@@ -30,7 +30,7 @@
                                         <div class="btn-group">
                                             <a href="{{ route('web.template', $template['slug']) }}"
                                                 class="btn btn-info btn-sm" target="_blank">Preview</a>
-                                            <a href="{{ route('templates.select', $template['slug']) }}"
+                                            <a href="{{ route('templates.select', $template['id']) }}"
                                                 class="btn btn-primary btn-sm">Setup</a>
                                         </div>
                                     </div>
