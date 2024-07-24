@@ -11,6 +11,7 @@
         "vite": "^5.0.0"
     },
     "dependencies": {
+        "@headlessui/vue": "^1.7.22",
         "@vitejs/plugin-vue": "^5.0.4",
         "bootstrap": "^5.3.3",
         "build": "^0.1.4",

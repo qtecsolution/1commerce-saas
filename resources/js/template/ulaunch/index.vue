@@ -15,7 +15,7 @@
                                     '/storage/' +
                                     user_template.company_logo
                                 "
-                                width="100"
+                                width="50"
                                 class="logo"
                                 alt=""
                             />
@@ -66,19 +66,6 @@
 
         <!-- Banner Section Starts -->
         <section class="banner parallaxie" id="home">
-            <!-- <div class="position-relative mx-2 mb-4" title="Hero settings">
-                <div
-                    class="bg-primary text-white text-center rounded-circle cursor-pointer"
-                    style="width: 30px; height: 30px"
-                    @click="heroSettings"
-                >
-                    <i
-                        class="fas fa-cog"
-                        style="font-size: 20px; margin-top: 5px"
-                    ></i>
-                </div>
-            </div> -->
-
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
@@ -100,17 +87,10 @@
                             </p>
                             <div class="buy-button position-relative">
                                 <a
-                                    :href="heroButton.hero_button_url"
+                                    :href="heroButton.url"
                                     class="btn-buynow"
-                                    :style="{
-                                        background:
-                                            heroButton.hero_button_color,
-                                        borderColor:
-                                            heroButton.hero_button_border_color,
-                                        color: heroButton.hero_button_text_color,
-                                    }"
                                 >
-                                    {{ heroButton.hero_button_title }}
+                                    {{ heroButton.title }}
                                 </a>
 
                                 <div
@@ -160,7 +140,10 @@
                                 animation-name: fadeInRight;
                             "
                         >
-                            <img :src="heroImage" alt="" />
+                            <img
+                                :src="heroImage"
+                                :alt="user_template.company_name"
+                            />
                         </div>
                     </div>
                 </div>
@@ -177,23 +160,7 @@
                             <div class="row">
                                 <!-- Step start -->
                                 <div class="col-md-4 col-sm-4">
-                                    <div
-                                        class="position-absolute top-0 mt-2"
-                                        title="Icon settings"
-                                    >
-                                        <div
-                                            class="bg-primary text-white text-center rounded-circle"
-                                            style="width: 30px; height: 30px"
-                                        >
-                                            <i
-                                                class="fas fa-cog"
-                                                style="
-                                                    font-size: 20px;
-                                                    margin-top: 5px;
-                                                "
-                                            ></i>
-                                        </div>
-                                    </div>
+                                    
                                     <div
                                         class="step-single wow fadeInUp"
                                         data-wow-delay="0.2s"
@@ -203,12 +170,8 @@
                                             animation-name: fadeInUp;
                                         "
                                     >
-                                        <div
-                                            class="icon-box"
-                                            contenteditable="true"
-                                            @input="stepIcon($event, 0)"
-                                        >
-                                            <i class="fas fa-search-dollar"></i>
+                                        <div class="icon-box">
+                                            <i :class="steps[0].icon"></i>
                                         </div>
                                         <h3
                                             contenteditable="true"
@@ -227,23 +190,7 @@
                                 <!-- Step end -->
                                 <!-- Step start -->
                                 <div class="col-md-4 col-sm-4">
-                                    <div
-                                        class="position-absolute top-0 mt-2"
-                                        title="Icon settings"
-                                    >
-                                        <div
-                                            class="bg-primary text-white text-center rounded-circle"
-                                            style="width: 30px; height: 30px"
-                                        >
-                                            <i
-                                                class="fas fa-cog"
-                                                style="
-                                                    font-size: 20px;
-                                                    margin-top: 5px;
-                                                "
-                                            ></i>
-                                        </div>
-                                    </div>
+                                    
                                     <div
                                         class="step-single wow fadeInUp"
                                         data-wow-delay="0.2s"
@@ -254,7 +201,7 @@
                                         "
                                     >
                                         <div class="icon-box">
-                                            <i class="fas fa-bicycle"></i>
+                                            <i :class="steps[1].icon"></i>
                                         </div>
                                         <h3
                                             contenteditable="true"
@@ -273,23 +220,7 @@
                                 <!-- Step end -->
                                 <!-- Step start -->
                                 <div class="col-md-4 col-sm-4">
-                                    <div
-                                        class="position-absolute top-0 mt-2"
-                                        title="Icon settings"
-                                    >
-                                        <div
-                                            class="bg-primary text-white text-center rounded-circle"
-                                            style="width: 30px; height: 30px"
-                                        >
-                                            <i
-                                                class="fas fa-cog"
-                                                style="
-                                                    font-size: 20px;
-                                                    margin-top: 5px;
-                                                "
-                                            ></i>
-                                        </div>
-                                    </div>
+                                    
                                     <div
                                         class="step-single wow fadeInUp"
                                         data-wow-delay="0.2s"
@@ -300,7 +231,7 @@
                                         "
                                     >
                                         <div class="icon-box">
-                                            <i class="fas fa-fingerprint"></i>
+                                            <i :class="steps[2].icon"></i>
                                         </div>
                                         <h3
                                             contenteditable="true"
@@ -338,8 +269,8 @@
                                 animation-name: fadeInUp;
                             "
                         >
-                            <p>Explore the Awesome</p>
-                            <h2>Product Features</h2>
+                            <p>{{ featureSubTitle }}</p>
+                            <h2>{{ featureTitle }}</h2>
                         </div>
                     </div>
                 </div>
@@ -442,16 +373,32 @@
 
                     <div class="col-lg-4">
                         <div
-                            class="feature-image wow fadeInUp"
+                            class="feature-image wow fadeInUp position-relative"
                             style="
                                 visibility: visible;
                                 animation-name: fadeInUp;
                             "
                         >
-                            <!-- <img
-                                src="{{ asset($template['assets'] . '/images/feature.png') }}"
-                                alt=""
-                            /> -->
+                            <div
+                                class="position-absolute top-0 end-0 mt-2"
+                                title="Image settings"
+                            >
+                                <div
+                                    class="bg-primary text-white text-center rounded-circle cursor-pointer"
+                                    style="width: 30px; height: 30px"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#featureImageModal"
+                                >
+                                    <i
+                                        class="fas fa-cog"
+                                        style="font-size: 20px; margin-top: 5px"
+                                    ></i>
+                                </div>
+                            </div>
+                            <img
+                                :src="featureImage"
+                                :alt="user_template.company_name"
+                            />
                         </div>
                     </div>
 
@@ -566,8 +513,8 @@
                                 animation-name: fadeInUp;
                             "
                         >
-                            <p>Beauty meets functionality</p>
-                            <h2>About Product</h2>
+                            <p>{{ aboutSubTitle }}</p>
+                            <h2>{{ aboutTitle }}</h2>
                         </div>
                     </div>
                 </div>
@@ -579,21 +526,14 @@
                             <div class="row">
                                 <div class="col-md-7 col-sm-7">
                                     <div class="about-entry">
-                                        <h4>Fresh News From The Labs</h4>
+                                        <h4>{{ abouts[0].sub_title }}</h4>
                                         <h3>
-                                            Different preset Signup &amp; Order
-                                            forms ready to use.
+                                            {{ abouts[0].title }}
                                         </h3>
                                         <p>
-                                            Pri quas audiam virtute ut, case
-                                            utamur fuisset eam ut, iisque
-                                            accommodare an eam. Reque blandit
-                                            qui eu, cu vix nonumy volumus.
-                                            Legendos intellegam id usu, vide
-                                            oporteat vix eu, id illud principes
-                                            has.
+                                            {{ abouts[0].description }}
                                         </p>
-                                        <a href="#" class="btn-buynow"
+                                        <a href="#" class="btn-buynow-2"
                                             >Purchase Now</a
                                         >
                                     </div>
@@ -609,10 +549,10 @@
                                             animation-name: fadeInRight;
                                         "
                                     >
-                                        <!-- <img
-                                            src="{{ asset($template['assets'] . '/images/about-1.png') }}"
-                                            alt=""
-                                        /> -->
+                                        <img
+                                            :src="abouts[0].image"
+                                            :alt="user_template.company_name    "
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -622,21 +562,14 @@
                             <div class="row">
                                 <div class="col-md-7 col-sm-7 order-md-2">
                                     <div class="about-entry">
-                                        <h4>Fresh News From The Labs</h4>
+                                        <h4>{{ abouts[1].sub_title }}</h4>
                                         <h3>
-                                            Different preset Signup &amp; Order
-                                            forms ready to use.
+                                            {{ abouts[1].title }}
                                         </h3>
                                         <p>
-                                            Pri quas audiam virtute ut, case
-                                            utamur fuisset eam ut, iisque
-                                            accommodare an eam. Reque blandit
-                                            qui eu, cu vix nonumy volumus.
-                                            Legendos intellegam id usu, vide
-                                            oporteat vix eu, id illud principes
-                                            has.
+                                            {{ abouts[1].description }}
                                         </p>
-                                        <a href="#" class="btn-buynow"
+                                        <a href="#" class="btn-buynow-2"
                                             >Purchase Now</a
                                         >
                                     </div>
@@ -652,10 +585,10 @@
                                             animation-name: fadeInLeft;
                                         "
                                     >
-                                        <!-- <img
-                                            src="{{ asset($template['assets'] . '/images/about-2.png') }}"
-                                            alt=""
-                                        /> -->
+                                        <img
+                                            :src="abouts[1].image"
+                                            :alt="user_template.company_name"
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -1079,51 +1012,95 @@
         <!-- Footer section ends -->
 
         <!-- Modals -->
-        <HeroButton @update="heroButtonSettings" />
-        <HeroImage @update="heroImageSettings" />
+        <ImageModal
+            modalId="heroImageModal"
+            modalTitle="Horo Image"
+            section="hero"
+            @update="updateImage"
+        />
+        <ImageModal
+            modalId="featureImageModal"
+            modalTitle="Feature Image"
+            section="feature"
+            @update="updateImage"
+        />
+
+        <ButtonModal
+            modalId="heroButtonModal"
+            modalTitle="Hero Button"
+            section="hero"
+            @update="updateButton"
+        />
     </div>
 </template>
 
 <script>
-import HeroButton from "./components/hero-button.vue";
-import HeroImage from "./components/hero-image.vue";
+import ButtonModal from "./components/button-modal.vue";
+import ImageModal from "./components/image-modal.vue";
 
 export default {
     name: "Ulaunch",
     props: ["user_template", "template"],
     components: {
-        HeroButton,
-        HeroImage,
+        ImageModal,
+        ButtonModal,
     },
     data() {
         return {
             apiUrl: "",
             appUrl: "",
-            heroTitle: "Hi! Welcome to Ulaunch.",
-            heroDescription:
-                "This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.",
+
+            heroTitle: "Present your awesome product.",
+            heroDescription: "Lorem ipsum dolor sit amet. Reprehenderit, qui blanditiis quidem rerum necessitatibus praesentium voluptatum deleniti atque corrupti, quos dolores eos.",
             heroButton: [],
             heroImage: "",
             heroImageRaw: [],
+
             steps: [
                 {
                     title: "Step 1",
                     description:
                         "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                    icon: "uil uil-rocket",
+                    icon: "flaticon-login",
                 },
                 {
                     title: "Step 2",
                     description:
                         "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                    icon: "uil uil-rocket",
+                    icon: "flaticon-login-1",
                 },
                 {
                     title: "Step 3",
                     description:
                         "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                    icon: "uil uil-rocket",
+                    icon: "flaticon-shopping-cart",
                 },
+            ],
+
+            featureTitle: "Product Features",
+            featureSubTitle: "Explore the awesome",
+            featureImage: "",
+            featureImageRaw: "",
+
+            aboutTitle: "About Product",
+            aboutSubTitle: "BEAUTY MEETS FUNCTIONALITY",
+            abouts: [
+                {
+                    title: "Different preset Signup & Order forms ready to use.",
+                    sub_title: "FRESH NEWS FROM THE LABS",
+                    description: "Pri quas audiam virtute ut, case utamur fuisset eam ut, iisque accommodare an eam. Reque blandit qui eu, cu vix nonumy volumus. Legendos intellegam id usu, vide oporteat vix eu, id illud principes has.",
+                    button: [],
+                    image: "",
+                    image_raw: []
+                },
+                {
+                    title: "Different preset Signup & Order forms ready to use.",
+                    sub_title: "FRESH NEWS FROM THE LABS",
+                    description: "Pri quas audiam virtute ut, case utamur fuisset eam ut, iisque accommodare an eam. Reque blandit qui eu, cu vix nonumy volumus. Legendos intellegam id usu, vide oporteat vix eu, id illud principes has.",
+                    button: [],
+                    image: "",
+                    image_raw: []
+                }
             ],
         };
     },
@@ -1132,17 +1109,42 @@ export default {
         this.appUrl = `${window.location.origin}`;
 
         this.heroButton = {
-            hero_button_title: "Product Details",
-            hero_button_url: "#about",
-            hero_button_color: "transparent",
-            her_button_text_color: "white",
-            hero_button_border_color: "white",
-            hero_button_hover_color: "white",
-            hero_button_hover_text_color: "black",
-            hero_button_hover_border_color: "white",
+            title: "Product Details",
+            url: "#features",
+            color: "transparent",
+            text_color: "white",
+            border_color: "white",
+            hover_color: "white",
+            hover_text_color: "black",
+            hover_border_color: "white",
+        };
+
+        this.abouts[0].button = {
+            title: "Purchase Now",
+            url: "#order",
+            color: "transparent",
+            text_color: "#20bea7",
+            border_color: "#20bea7",
+            hover_color: "#20bea7",
+            hover_text_color: "white",
+            hover_border_color: "#20bea7",
+        };
+
+        this.abouts[1].button = {
+            title: "Purchase Now",
+            url: "#order",
+            color: "transparent",
+            text_color: "#20bea7",
+            border_color: "#20bea7",
+            hover_color: "#20bea7",
+            hover_text_color: "white",
+            hover_border_color: "#20bea7",
         };
 
         this.heroImage = this.imageSource("images/header.png");
+        this.featureImage = this.imageSource("images/feature.png");
+        this.abouts[0].image = this.imageSource("images/about-1.png");
+        this.abouts[1].image = this.imageSource("images/about-2.png");
     },
     methods: {
         updateContent(event) {
@@ -1152,11 +1154,47 @@ export default {
             return sanitizedContent;
         },
 
+        updateImage(data) {
+            // console.log(data);
+
+            switch (data.section) {
+                case "hero":
+                    this.heroImage =
+                        data.image !== null && data.image !== ""
+                            ? data.image
+                            : this.heroImage;
+                    this.heroImageRaw =
+                        data.image_raw !== null && data.image_raw !== ""
+                            ? data.image_raw
+                            : this.heroImageRaw;
+
+                    this.updateHeroArea();
+
+                    break;
+                
+                case "feature":
+                    this.featureImage = data.image !== null && data.image !== ""
+                        ? data.image
+                        : this.featureImage
+                    this.featureImageRaw = data.image_raw !== null && data.image_raw !== ""
+                        ? data.image_raw
+                        : this.featureImageRaw
+
+                    break;
+
+                default:
+                    console.warn("Something is wrong. Try again later.");
+                    break;
+            }
+        },
+
+        updateButton(data) {
+            this.heroButton = data;
+        },
+
         imageSource(path) {
             return `${this.appUrl}/${this.template.assets}/${path}`;
         },
-
-        openModal(component) {},
 
         updateHeroTitle(event) {
             this.heroTitle = this.updateContent(event);
@@ -1170,63 +1208,53 @@ export default {
 
         heroButtonSettings(data) {
             this.heroButton = {
-                hero_button_title:
-                    data.hero_button_title !== null &&
-                    data.hero_button_title !== ""
-                        ? data.hero_button_title
-                        : this.heroButton.hero_button_title,
-                hero_button_url:
-                    data.hero_button_url !== null && data.hero_button_url !== ""
-                        ? data.hero_button_url
-                        : this.heroButton.hero_button_url,
-                hero_button_color:
-                    data.hero_button_color !== null &&
-                    data.hero_button_color !== ""
-                        ? data.hero_button_color
-                        : this.heroButton.hero_button_color,
-                hero_button_text_color:
-                    data.hero_button_text_color !== null &&
-                    data.hero_button_text_color !== ""
-                        ? data.hero_button_text_color
-                        : this.heroButton.hero_button_text_color,
-                hero_button_border_color:
-                    data.hero_button_border_color !== null &&
-                    data.hero_button_border_color !== ""
-                        ? data.hero_button_border_color
-                        : this.heroButton.hero_button_border_color,
-                hero_button_hover_color:
-                    data.hero_button_hover_color !== null &&
-                    data.hero_button_hover_color !== ""
-                        ? data.hero_button_hover_color
-                        : this.heroButton.hero_button_hover_color,
-                hero_button_hover_text_color:
-                    data.hero_button_hover_text_color !== null &&
-                    data.hero_button_hover_text_color !== ""
-                        ? data.hero_button_hover_text_color
-                        : this.heroButton.hero_button_hover_text_color,
-                hero_button_hover_border_color:
-                    data.hero_button_hover_border_color !== null &&
-                    data.hero_button_hover_border_color !== ""
-                        ? data.hero_button_hover_border_color
-                        : this.heroButton.hero_button_hover_border_color,
+                title:
+                    data.title !== null &&
+                    data.title !== ""
+                        ? data.title
+                        : this.heroButton.title,
+                url:
+                    data.url !== null && data.url !== ""
+                        ? data.url
+                        : this.heroButton.url,
+                color:
+                    data.color !== null &&
+                    data.color !== ""
+                        ? data.color
+                        : this.heroButton.color,
+                text_color:
+                    data.text_color !== null &&
+                    data.text_color !== ""
+                        ? data.text_color
+                        : this.heroButton.text_color,
+                border_color:
+                    data.border_color !== null &&
+                    data.border_color !== ""
+                        ? data.border_color
+                        : this.heroButton.border_color,
+                hover_color:
+                    data.hover_color !== null &&
+                    data.hover_color !== ""
+                        ? data.hover_color
+                        : this.heroButton.hover_color,
+                hover_text_color:
+                    data.hover_text_color !== null &&
+                    data.hover_text_color !== ""
+                        ? data.hover_text_color
+                        : this.heroButton.hover_text_color,
+                hover_border_color:
+                    data.hover_border_color !== null &&
+                    data.hover_border_color !== ""
+                        ? data.hover_border_color
+                        : this.heroButton.hover_border_color,
             };
 
             this.updateHeroArea();
         },
 
-        heroImageSettings(data) {
-            this.heroImage =
-                data.hero_image !== null && data.hero_image !== ""
-                    ? data.hero_image
-                    : this.heroImage;
-            this.heroImageRaw =
-                data.hero_image_raw !== null && data.hero_image_raw !== ""
-                    ? data.hero_image_raw
-                    : this.heroImageRaw;
-            this.updateHeroArea();
-        },
-
         updateHeroArea() {
+            return false;
+
             const formData = new FormData();
             formData.append("hero_title", this.heroTitle);
             formData.append("hero_description", this.heroDescription);
@@ -1261,3 +1289,17 @@ export default {
     },
 };
 </script>
+
+<style scoped>
+.btn-buynow {
+    background-color: v-bind("heroButton.color");
+    color: v-bind("heroButton.text_color");
+    border-color: v-bind("heroButton.border_color");
+}
+
+.btn-buynow:hover {
+    background-color: v-bind("heroButton.hover_color") !important;
+    color: v-bind("heroButton.hover_text_color");
+    border-color: v-bind("heroButton.hover_border_color");
+}
+</style>

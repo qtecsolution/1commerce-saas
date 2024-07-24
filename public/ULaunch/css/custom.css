@@ -203,16 +203,6 @@ nav.navbar .navbar-toggler:focus{
 	left: 0;
 	width: 100%;
 	padding: 180px 0 200px;
-}
-
-.banner:before{
-	content: '';
-	display: block;
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
 	background: rgba(32,190,167,0.9);
 }
 

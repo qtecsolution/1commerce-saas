@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Page Title -->
-    <title>{{ $userTemplate['company_name'] }}</title>
+    <title>{{ $userTemplate['company_name'] }} :: Live Edit</title>
     <!-- Bootstrap css -->
     <link href="{{ asset($template['assets'] . '/css/bootstrap.min.css') }}" rel="stylesheet" media="screen">
     <!-- Font Awesome icon css-->

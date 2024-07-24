@@ -2,16 +2,16 @@
     <!-- Modal -->
     <div
         class="modal fade modal-lg"
-        id="heroButtonModal"
+        :id="modalId"
         tabindex="-1"
-        aria-labelledby="heroButtonModalLabel"
+        :aria-labelledby="modalId + 'Label'"
         aria-hidden="true"
     >
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="heroButtonModalLabel">
-                        Hero Area Button Settings
+                    <h1 class="modal-title fs-5" :id="modalId + 'Label'">
+                        {{ modalTitle }}
                     </h1>
                     <button
                         type="button"
@@ -30,7 +30,7 @@
                                 <input
                                     type="text"
                                     placeholder="Get Started"
-                                    v-model="hero_button_title"
+                                    v-model="title"
                                     class="form-control"
                                 />
                             </div>
@@ -44,7 +44,7 @@
                                 <input
                                     type="text"
                                     placeholder="https://example.com"
-                                    v-model="hero_button_url"
+                                    v-model="url"
                                     class="form-control"
                                 />
                             </div>
@@ -58,13 +58,13 @@
                                 <input
                                     type="text"
                                     placeholder="transparent"
-                                    v-model="hero_button_color"
+                                    v-model="color"
                                     class="form-control"
                                 />
                             </div>
                         </div>
 
-                        <!-- <div class="col-md-6">
+                        <div class="col-md-6">
                             <div class="form-group mb-2">
                                 <label for="text" class="form-label"
                                     >Button Hover Color:</label
@@ -72,11 +72,11 @@
                                 <input
                                     type="text"
                                     placeholder="white"
-                                    v-model="hero_button_hover_color"
+                                    v-model="hover_color"
                                     class="form-control"
                                 />
                             </div>
-                        </div> -->
+                        </div>
 
                         <div class="col-md-6">
                             <div class="form-group mb-2">
@@ -86,13 +86,13 @@
                                 <input
                                     type="text"
                                     placeholder="white"
-                                    v-model="hero_button_text_color"
+                                    v-model="text_color"
                                     class="form-control"
                                 />
                             </div>
                         </div>
 
-                        <!-- <div class="col-md-6">
+                        <div class="col-md-6">
                             <div class="form-group mb-2">
                                 <label for="text" class="form-label"
                                     >Button Hover Text Color:</label
@@ -100,11 +100,11 @@
                                 <input
                                     type="text"
                                     placeholder="black"
-                                    v-model="hero_button_hover_text_color"
+                                    v-model="hover_text_color"
                                     class="form-control"
                                 />
                             </div>
-                        </div> -->
+                        </div>
 
                         <div class="col-md-6">
                             <div class="form-group mb-2">
@@ -114,13 +114,13 @@
                                 <input
                                     type="text"
                                     placeholder="white"
-                                    v-model="hero_button_border_color"
+                                    v-model="border_color"
                                     class="form-control"
                                 />
                             </div>
                         </div>
 
-                        <!-- <div class="col-md-6">
+                        <div class="col-md-6">
                             <div class="form-group mb-2">
                                 <label for="text" class="form-label"
                                     >Button Hover Border Color:</label
@@ -128,11 +128,11 @@
                                 <input
                                     type="text"
                                     placeholder="white"
-                                    v-model="hero_button_hover_border_color"
+                                    v-model="hover_border_color"
                                     class="form-control"
                                 />
                             </div>
-                        </div> -->
+                        </div>
                     </div>
                 </div>
                 <!-- <div class="modal-footer">
@@ -154,49 +154,50 @@
 
 <script>
 export default {
-    name: "HeroButton",
+    name: "ButtonModal",
+    props: ["modalId", "modalTitle", "section"], 
     data() {
         return {
-            hero_button_title: "",
-            hero_button_url: "",
-            hero_button_color: "",
-            hero_button_text_color: "",
-            hero_button_border_color: "",
-            hero_button_hover_color: "",
-            hero_button_hover_text_color: "",
-            hero_button_hover_border_color: "",
+            title: "",
+            url: "",
+            color: "",
+            text_color: "",
+            border_color: "",
+            hover_color: "",
+            hover_text_color: "",
+            hover_border_color: "",
         };
     },
     watch: {
-        hero_button_title: function (newValue, oldValue) {
+        title: function (newValue, oldValue) {
             // console.log(newValue, oldValue);
             this.sendToParent();
         },
-        hero_button_url: function (newValue, oldValue) {
+        url: function (newValue, oldValue) {
             // console.log(newValue, oldValue);
             this.sendToParent();
         },
-        hero_button_color: function (newValue, oldValue) {
+        color: function (newValue, oldValue) {
             // console.log(newValue, oldValue);
             this.sendToParent();
         },
-        hero_button_text_color: function (newValue, oldValue) {
+        text_color: function (newValue, oldValue) {
             // console.log(newValue, oldValue);
             this.sendToParent();
         },
-        hero_button_border_color: function (newValue, oldValue) {
+        border_color: function (newValue, oldValue) {
             // console.log(newValue, oldValue);
             this.sendToParent();
         },
-        hero_button_hover_color: function (newValue, oldValue) {
+        hover_color: function (newValue, oldValue) {
             // console.log(newValue, oldValue);
             this.sendToParent();
         },
-        hero_button_hover_text_color: function (newValue, oldValue) {
+        hover_text_color: function (newValue, oldValue) {
             // console.log(newValue, oldValue);
             this.sendToParent();
         },
-        hero_button_hover_border_color: function (newValue, oldValue) {
+        hover_border_color: function (newValue, oldValue) {
             // console.log(newValue, oldValue);
             this.sendToParent();
         },
@@ -204,14 +205,15 @@ export default {
     methods: {
         sendToParent() {
             this.$emit("update", {
-                hero_button_title: this.hero_button_title,
-                hero_button_url: this.hero_button_url,
-                hero_button_color: this.hero_button_color,
-                hero_button_text_color: this.hero_button_text_color,
-                hero_button_border_color: this.hero_button_border_color,
-                hero_button_hover_color: this.hero_button_hover_color,
-                hero_button_hover_text_color: this.hero_button_hover_text_color,
-                hero_button_hover_border_color: this.hero_button_hover_border_color,
+                title: this.title,
+                url: this.url,
+                color: this.color,
+                text_color: this.text_color,
+                border_color: this.border_color,
+                hover_color: this.hover_color,
+                hover_text_color: this.hover_text_color,
+                hover_border_color: this.hover_border_color,
+                section: this.section
             });
         }
     },

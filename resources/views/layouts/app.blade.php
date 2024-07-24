@@ -22,7 +22,7 @@
     <link href="{{ asset('assets/vendors/select2/select2.css') }}" rel="stylesheet">
 
     {{-- sweet alert --}}
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
 
     <!-- Core css -->
     <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet">
