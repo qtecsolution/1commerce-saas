@@ -86,10 +86,7 @@
                                 {{ heroDescription }}
                             </p>
                             <div class="buy-button position-relative">
-                                <a
-                                    :href="heroButton.url"
-                                    class="btn-buynow"
-                                >
+                                <a :href="heroButton.url" class="btn-buynow">
                                     {{ heroButton.title }}
                                 </a>
 
@@ -160,7 +157,6 @@
                             <div class="row">
                                 <!-- Step start -->
                                 <div class="col-md-4 col-sm-4">
-                                    
                                     <div
                                         class="step-single wow fadeInUp"
                                         data-wow-delay="0.2s"
@@ -175,13 +171,13 @@
                                         </div>
                                         <h3
                                             contenteditable="true"
-                                            @input="stepTitle($event, 0)"
+                                            @input="updateStepItem($event, 'title', 1)"
                                         >
                                             {{ steps[0].title }}
                                         </h3>
                                         <p
                                             contenteditable="true"
-                                            @input="stepDescription($event, 0)"
+                                            @input="updateStepItem($event, 'description', 1)"
                                         >
                                             {{ steps[0].description }}
                                         </p>
@@ -190,7 +186,6 @@
                                 <!-- Step end -->
                                 <!-- Step start -->
                                 <div class="col-md-4 col-sm-4">
-                                    
                                     <div
                                         class="step-single wow fadeInUp"
                                         data-wow-delay="0.2s"
@@ -205,13 +200,13 @@
                                         </div>
                                         <h3
                                             contenteditable="true"
-                                            @input="stepTitle($event, 1)"
+                                            @input="updateStepItem($event, 'title', 2)"
                                         >
                                             {{ steps[1].title }}
                                         </h3>
                                         <p
                                             contenteditable="true"
-                                            @input="stepDescription($event, 1)"
+                                            @input="updateStepItem($event, 'description', 2)"
                                         >
                                             {{ steps[1].description }}
                                         </p>
@@ -220,7 +215,6 @@
                                 <!-- Step end -->
                                 <!-- Step start -->
                                 <div class="col-md-4 col-sm-4">
-                                    
                                     <div
                                         class="step-single wow fadeInUp"
                                         data-wow-delay="0.2s"
@@ -276,7 +270,7 @@
                 </div>
                 <!-- Section Title end -->
 
-                <div class="row">
+                <div class="row align-items-center">
                     <div class="col-lg-4">
                         <!-- Feature single start -->
                         <div
@@ -513,8 +507,18 @@
                                 animation-name: fadeInUp;
                             "
                         >
-                            <p>{{ aboutSubTitle }}</p>
-                            <h2>{{ aboutTitle }}</h2>
+                            <p
+                                @input="updateAboutSubTitle"
+                                contenteditable="true"
+                            >
+                                {{ aboutSubTitle }}
+                            </p>
+                            <h2
+                                @input="updateAboutTitle"
+                                contenteditable="true"
+                            >
+                                {{ aboutTitle }}
+                            </h2>
                         </div>
                     </div>
                 </div>
@@ -522,26 +526,84 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="about-product-single">
+                        <div class="about-product-single about-1">
                             <div class="row">
                                 <div class="col-md-7 col-sm-7">
                                     <div class="about-entry">
-                                        <h4>{{ abouts[0].sub_title }}</h4>
-                                        <h3>
+                                        <h4
+                                            @input="
+                                                updateAboutItem(
+                                                    $event,
+                                                    'sub_title',
+                                                    1
+                                                )
+                                            "
+                                            contenteditable="true"
+                                        >
+                                            {{ abouts[0].sub_title }}
+                                        </h4>
+                                        <h3
+                                            @input="
+                                                updateAboutItem(
+                                                    $event,
+                                                    'title',
+                                                    1
+                                                )
+                                            "
+                                            contenteditable="true"
+                                        >
                                             {{ abouts[0].title }}
                                         </h3>
-                                        <p>
+                                        <p
+                                            @input="
+                                                updateAboutItem(
+                                                    $event,
+                                                    'description',
+                                                    1
+                                                )
+                                            "
+                                            contenteditable="true"
+                                        >
                                             {{ abouts[0].description }}
                                         </p>
-                                        <a href="#" class="btn-buynow-2"
-                                            >Purchase Now</a
+                                        <div
+                                            class="btn-wrapper position-relative"
                                         >
+                                            <a
+                                                :href="abouts[0].button.url"
+                                                class="btn-buynow"
+                                                >{{ abouts[0].button.title }}</a
+                                            >
+
+                                            <div
+                                                class="position-absolute top-0 end-0 mt-2"
+                                                title="Button settings"
+                                            >
+                                                <div
+                                                    class="bg-primary text-white text-center rounded-circle cursor-pointer"
+                                                    style="
+                                                        width: 30px;
+                                                        height: 30px;
+                                                    "
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#about1ButtonModal"
+                                                >
+                                                    <i
+                                                        class="fas fa-cog"
+                                                        style="
+                                                            font-size: 20px;
+                                                            margin-top: 5px;
+                                                        "
+                                                    ></i>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="col-md-5 col-sm-5">
                                     <div
-                                        class="about-image wow fadeInRight"
+                                        class="about-image wow fadeInRight position-relative"
                                         data-wow-delay="0.2s"
                                         style="
                                             visibility: visible;
@@ -549,35 +611,115 @@
                                             animation-name: fadeInRight;
                                         "
                                     >
+                                        <div
+                                            class="position-absolute top-0 end-0 mt-2"
+                                            title="Image settings"
+                                        >
+                                            <div
+                                                class="bg-primary text-white text-center rounded-circle cursor-pointer"
+                                                style="
+                                                    width: 30px;
+                                                    height: 30px;
+                                                "
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#about1ImageModal"
+                                            >
+                                                <i
+                                                    class="fas fa-cog"
+                                                    style="
+                                                        font-size: 20px;
+                                                        margin-top: 5px;
+                                                    "
+                                                ></i>
+                                            </div>
+                                        </div>
                                         <img
                                             :src="abouts[0].image"
-                                            :alt="user_template.company_name    "
+                                            :alt="user_template.company_name"
                                         />
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="about-product-single">
+                        <div class="about-product-single about-2">
                             <div class="row">
                                 <div class="col-md-7 col-sm-7 order-md-2">
                                     <div class="about-entry">
-                                        <h4>{{ abouts[1].sub_title }}</h4>
-                                        <h3>
+                                        <h4
+                                            @input="
+                                                updateAboutItem(
+                                                    $event,
+                                                    'sub_title',
+                                                    2
+                                                )
+                                            "
+                                            contenteditable="true"
+                                        >
+                                            {{ abouts[1].sub_title }}
+                                        </h4>
+                                        <h3
+                                            @input="
+                                                updateAboutItem(
+                                                    $event,
+                                                    'title',
+                                                    2
+                                                )
+                                            "
+                                            contenteditable="true"
+                                        >
                                             {{ abouts[1].title }}
                                         </h3>
-                                        <p>
+                                        <p
+                                            @input="
+                                                updateAboutItem(
+                                                    $event,
+                                                    'description',
+                                                    2
+                                                )
+                                            "
+                                            contenteditable="true"
+                                        >
                                             {{ abouts[1].description }}
                                         </p>
-                                        <a href="#" class="btn-buynow-2"
-                                            >Purchase Now</a
+                                        <div
+                                            class="btn-wrapper position-relative"
                                         >
+                                            <a
+                                                :href="abouts[1].button.url"
+                                                class="btn-buynow"
+                                                >{{ abouts[1].button.title }}</a
+                                            >
+
+                                            <div
+                                                class="position-absolute top-0 end-0 mt-2"
+                                                title="Button settings"
+                                            >
+                                                <div
+                                                    class="bg-primary text-white text-center rounded-circle cursor-pointer"
+                                                    style="
+                                                        width: 30px;
+                                                        height: 30px;
+                                                    "
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#about2ButtonModal"
+                                                >
+                                                    <i
+                                                        class="fas fa-cog"
+                                                        style="
+                                                            font-size: 20px;
+                                                            margin-top: 5px;
+                                                        "
+                                                    ></i>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="col-md-5 col-sm-5 order-md-1">
                                     <div
-                                        class="about-image wow fadeInLeft"
+                                        class="about-image wow fadeInLeft position-relative"
                                         data-wow-delay="0.4s"
                                         style="
                                             visibility: visible;
@@ -585,6 +727,28 @@
                                             animation-name: fadeInLeft;
                                         "
                                     >
+                                        <div
+                                            class="position-absolute top-0 start-0 mt-2"
+                                            title="Image settings"
+                                        >
+                                            <div
+                                                class="bg-primary text-white text-center rounded-circle cursor-pointer"
+                                                style="
+                                                    width: 30px;
+                                                    height: 30px;
+                                                "
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#about2ImageModal"
+                                            >
+                                                <i
+                                                    class="fas fa-cog"
+                                                    style="
+                                                        font-size: 20px;
+                                                        margin-top: 5px;
+                                                    "
+                                                ></i>
+                                            </div>
+                                        </div>
                                         <img
                                             :src="abouts[1].image"
                                             :alt="user_template.company_name"
@@ -832,28 +996,54 @@
                                 animation-name: fadeInUp;
                             "
                         >
-                            <p>Get it Today</p>
-                            <h2>Get your Product today!</h2>
+                            <p
+                                @input="updateInfoSubTitle"
+                                contenteditable="true"
+                            >
+                                {{ infoSubTitle }}
+                            </p>
+                            <h2 @input="updateInfoTitle" contenteditable="true">
+                                {{ infoTitle }}
+                            </h2>
                         </div>
 
                         <div class="buynow-entry">
-                            <p>
-                                There are many variations of passages of Lorem
-                                Ipsum available, but the majority have suffered
-                                alteration in some form, by injected humour, or
-                                randomised words which don't look even slightly
-                                believable.
+                            <p
+                                @input="updateInfoDescription"
+                                contenteditable="true"
+                            >
+                                {{ infoDescription }}
                             </p>
 
-                            <a href="#" class="btn-buynow">Orderer Now</a>
+                            <div class="btn-wrapper position-relative">
+                                <a href="#" class="btn-buynow">Orderer Now</a>
+
+                                <div
+                                    class="position-absolute top-0 end-0 mt-2"
+                                    title="Button settings"
+                                >
+                                    <div
+                                        class="bg-primary text-white text-center rounded-circle cursor-pointer"
+                                        style="width: 30px; height: 30px"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#infoButtonModal"
+                                    >
+                                        <i
+                                            class="fas fa-cog"
+                                            style="
+                                                font-size: 20px;
+                                                margin-top: 5px;
+                                            "
+                                        ></i>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="col-lg-6 col-md-4">
                         <div class="buynow-video">
-                            <a
-                                href="http://www.youtube.com/watch?v=JrbJ8dXzmnE"
-                                class="popup-video"
+                            <a :href="infoVideo" class="popup-video"
                                 ><i class="flaticon-play-button"></i
                             ></a>
                         </div>
@@ -996,13 +1186,12 @@
                     <div class="col-md-12">
                         <div class="jumptotop" id="back-to-top">
                             <a href="javascript:void(0);"
-                                ><i class="fa-solid fa-chevron-up"></i
+                                ><i class="fas fa-arrow-up"></i
                             ></a>
                         </div>
                         <div class="footer-siteinfo">
-                            <p>
-                                Copyright © 2023, All Rights Reserved by
-                                {{ user_template.company_name }}
+                            <p @input="updateFooterText" contenteditable="true">
+                                {{ footerText }}
                             </p>
                         </div>
                     </div>
@@ -1024,11 +1213,41 @@
             section="feature"
             @update="updateImage"
         />
+        <ImageModal
+            modalId="about1ImageModal"
+            modalTitle="About Image"
+            section="about-1"
+            @update="updateImage"
+        />
+        <ImageModal
+            modalId="about2ImageModal"
+            modalTitle="About Image"
+            section="about-2"
+            @update="updateImage"
+        />
 
         <ButtonModal
             modalId="heroButtonModal"
             modalTitle="Hero Button"
             section="hero"
+            @update="updateButton"
+        />
+        <ButtonModal
+            modalId="about1ButtonModal"
+            modalTitle="About Button"
+            section="about-1"
+            @update="updateButton"
+        />
+        <ButtonModal
+            modalId="about2ButtonModal"
+            modalTitle="About Button"
+            section="about-2"
+            @update="updateButton"
+        />
+        <ButtonModal
+            modalId="infoButtonModal"
+            modalTitle="Info Button"
+            section="info"
             @update="updateButton"
         />
     </div>
@@ -1051,7 +1270,8 @@ export default {
             appUrl: "",
 
             heroTitle: "Present your awesome product.",
-            heroDescription: "Lorem ipsum dolor sit amet. Reprehenderit, qui blanditiis quidem rerum necessitatibus praesentium voluptatum deleniti atque corrupti, quos dolores eos.",
+            heroDescription:
+                "Lorem ipsum dolor sit amet. Reprehenderit, qui blanditiis quidem rerum necessitatibus praesentium voluptatum deleniti atque corrupti, quos dolores eos.",
             heroButton: [],
             heroImage: "",
             heroImageRaw: [],
@@ -1088,20 +1308,31 @@ export default {
                 {
                     title: "Different preset Signup & Order forms ready to use.",
                     sub_title: "FRESH NEWS FROM THE LABS",
-                    description: "Pri quas audiam virtute ut, case utamur fuisset eam ut, iisque accommodare an eam. Reque blandit qui eu, cu vix nonumy volumus. Legendos intellegam id usu, vide oporteat vix eu, id illud principes has.",
+                    description:
+                        "Pri quas audiam virtute ut, case utamur fuisset eam ut, iisque accommodare an eam. Reque blandit qui eu, cu vix nonumy volumus. Legendos intellegam id usu, vide oporteat vix eu, id illud principes has.",
                     button: [],
                     image: "",
-                    image_raw: []
+                    image_raw: [],
                 },
                 {
                     title: "Different preset Signup & Order forms ready to use.",
                     sub_title: "FRESH NEWS FROM THE LABS",
-                    description: "Pri quas audiam virtute ut, case utamur fuisset eam ut, iisque accommodare an eam. Reque blandit qui eu, cu vix nonumy volumus. Legendos intellegam id usu, vide oporteat vix eu, id illud principes has.",
+                    description:
+                        "Pri quas audiam virtute ut, case utamur fuisset eam ut, iisque accommodare an eam. Reque blandit qui eu, cu vix nonumy volumus. Legendos intellegam id usu, vide oporteat vix eu, id illud principes has.",
                     button: [],
                     image: "",
-                    image_raw: []
-                }
+                    image_raw: [],
+                },
             ],
+
+            infoSubTitle: "GET IT TODAY",
+            infoTitle: "Get your Product today!",
+            infoDescription:
+                "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.",
+            infoButton: [],
+            infoVideo: "https://youtube.com",
+
+            footerText: "Copyright © 2024, All Rights Reserved."
         };
     },
     mounted() {
@@ -1141,6 +1372,17 @@ export default {
             hover_border_color: "#20bea7",
         };
 
+        this.infoButton = {
+            title: "Purchase Now",
+            url: "#order",
+            color: "transparent",
+            text_color: "#20bea7",
+            border_color: "#20bea7",
+            hover_color: "#20bea7",
+            hover_text_color: "white",
+            hover_border_color: "#20bea7",
+        };
+
         this.heroImage = this.imageSource("images/header.png");
         this.featureImage = this.imageSource("images/feature.png");
         this.abouts[0].image = this.imageSource("images/about-1.png");
@@ -1150,13 +1392,12 @@ export default {
         updateContent(event) {
             const rawContent = event.target.innerHTML;
             const sanitizedContent = rawContent.replace(/&nbsp;/g, " ");
+            // const updatedContent = sanitizedContent.trim() + " ";
 
             return sanitizedContent;
         },
 
         updateImage(data) {
-            // console.log(data);
-
             switch (data.section) {
                 case "hero":
                     this.heroImage =
@@ -1171,14 +1412,40 @@ export default {
                     this.updateHeroArea();
 
                     break;
-                
+
                 case "feature":
-                    this.featureImage = data.image !== null && data.image !== ""
-                        ? data.image
-                        : this.featureImage
-                    this.featureImageRaw = data.image_raw !== null && data.image_raw !== ""
-                        ? data.image_raw
-                        : this.featureImageRaw
+                    this.featureImage =
+                        data.image !== null && data.image !== ""
+                            ? data.image
+                            : this.featureImage;
+                    this.featureImageRaw =
+                        data.image_raw !== null && data.image_raw !== ""
+                            ? data.image_raw
+                            : this.featureImageRaw;
+
+                    break;
+
+                case "about-1":
+                    this.abouts[0].image =
+                        data.image !== null && data.image !== ""
+                            ? data.image
+                            : this.abouts[0].image;
+                    this.abouts[0].image_raw =
+                        data.image_raw !== null && data.image_raw !== ""
+                            ? data.image_raw
+                            : this.abouts[0].image_raw;
+
+                    break;
+
+                case "about-2":
+                    this.abouts[1].image =
+                        data.image !== null && data.image !== ""
+                            ? data.image
+                            : this.abouts[1].image;
+                    this.abouts[1].image_raw =
+                        data.image_raw !== null && data.image_raw !== ""
+                            ? data.image_raw
+                            : this.abouts[1].image_raw;
 
                     break;
 
@@ -1189,7 +1456,27 @@ export default {
         },
 
         updateButton(data) {
-            this.heroButton = data;
+            switch (data.section) {
+                case "hero":
+                    this.updateHeroButton(data);
+                    break;
+
+                case "about-1":
+                    this.updateAboutButton(data, 0);
+                    break;
+
+                case "about-2":
+                    this.updateAboutButton(data, 1);
+                    break;
+
+                case "info":
+                    this.updateInfoButton(data);
+                    break;
+
+                default:
+                    console.warn("Something is wrong. Try again later.");
+                    break;
+            }
         },
 
         imageSource(path) {
@@ -1206,11 +1493,10 @@ export default {
             this.updateHeroArea();
         },
 
-        heroButtonSettings(data) {
+        updateHeroButton(data) {
             this.heroButton = {
                 title:
-                    data.title !== null &&
-                    data.title !== ""
+                    data.title !== null && data.title !== ""
                         ? data.title
                         : this.heroButton.title,
                 url:
@@ -1218,23 +1504,19 @@ export default {
                         ? data.url
                         : this.heroButton.url,
                 color:
-                    data.color !== null &&
-                    data.color !== ""
+                    data.color !== null && data.color !== ""
                         ? data.color
                         : this.heroButton.color,
                 text_color:
-                    data.text_color !== null &&
-                    data.text_color !== ""
+                    data.text_color !== null && data.text_color !== ""
                         ? data.text_color
                         : this.heroButton.text_color,
                 border_color:
-                    data.border_color !== null &&
-                    data.border_color !== ""
+                    data.border_color !== null && data.border_color !== ""
                         ? data.border_color
                         : this.heroButton.border_color,
                 hover_color:
-                    data.hover_color !== null &&
-                    data.hover_color !== ""
+                    data.hover_color !== null && data.hover_color !== ""
                         ? data.hover_color
                         : this.heroButton.hover_color,
                 hover_text_color:
@@ -1275,16 +1557,110 @@ export default {
                 });
         },
 
-        stepTitle(event, index) {
-            this.steps[index].title = this.updateContent(event);
+        updateStepItem(event, section, index) {
+            this.steps[index - 1][section] = this.updateContent(event);
         },
 
-        stepDescription(event, index) {
-            this.steps[index].description = this.updateContent(event);
+        updateAboutSubTitle(event) {
+            this.aboutSubTitle = this.updateContent(event);
         },
 
-        stepIcon(event, index) {
-            this.steps[index].icon = event.target.innerHTML;
+        updateAboutTitle(event) {
+            this.aboutTitle = this.updateContent(event);
+        },
+
+        updateAboutItem(event, section, index) {
+            this.abouts[index - 1][section] = this.updateContent(event);
+        },
+
+        updateAboutButton(data, index) {
+            this.abouts[index].button = {
+                title:
+                    data.title !== null && data.title !== ""
+                        ? data.title
+                        : this.abouts[index].button.title,
+                url:
+                    data.url !== null && data.url !== ""
+                        ? data.url
+                        : this.abouts[index].button.url,
+                color:
+                    data.color !== null && data.color !== ""
+                        ? data.color
+                        : this.abouts[index].button.color,
+                text_color:
+                    data.text_color !== null && data.text_color !== ""
+                        ? data.text_color
+                        : this.abouts[index].button.text_color,
+                border_color:
+                    data.border_color !== null && data.border_color !== ""
+                        ? data.border_color
+                        : this.abouts[index].button.border_color,
+                hover_color:
+                    data.hover_color !== null && data.hover_color !== ""
+                        ? data.hover_color
+                        : this.abouts[index].button.hover_color,
+                hover_text_color:
+                    data.hover_text_color !== null &&
+                    data.hover_text_color !== ""
+                        ? data.hover_text_color
+                        : this.abouts[index].button.hover_text_color,
+                hover_border_color:
+                    data.hover_border_color !== null &&
+                    data.hover_border_color !== ""
+                        ? data.hover_border_color
+                        : this.abouts[index].button.hover_border_color,
+            };
+        },
+
+        updateInfoSubTitle(event) {
+            this.infoSubTitle = this.updateContent(event);
+        },
+
+        updateInfoTitle(event) {
+            this.infoTitle = this.updateContent(event);
+        },
+
+        updateInfoDescription(event) {
+            this.infoDescription = this.updateContent(event);
+        },
+
+        updateInfoButton(data) {
+            this.infoButton = {
+                title:
+                    data.title !== null && data.title !== ""
+                        ? data.title
+                        : this.infoButton.title,
+                url:
+                    data.url !== null && data.url !== ""
+                        ? data.url
+                        : this.infoButton.url,
+                color:
+                    data.color !== null && data.color !== ""
+                        ? data.color
+                        : this.infoButton.color,
+                text_color:
+                    data.text_color !== null && data.text_color !== ""
+                        ? data.text_color
+                        : this.infoButton.text_color,
+                border_color:
+                    data.border_color !== null && data.border_color !== ""
+                        ? data.border_color
+                        : this.infoButton.border_color,
+                hover_color:
+                    data.hover_color !== null && data.hover_color !== ""
+                        ? data.hover_color
+                        : this.infoButton.hover_color,
+                hover_text_color:
+                    data.hover_text_color !== null &&
+                    data.hover_text_color !== ""
+                        ? data.hover_text_color
+                        : this.infoButton.hover_text_color,
+                hover_border_color:
+                    data.hover_border_color !== null &&
+                    data.hover_border_color !== ""
+                        ? data.hover_border_color
+                        : this.infoButton.hover_border_color,
+            };
         },
     },
 };
@@ -1301,5 +1677,41 @@ export default {
     background-color: v-bind("heroButton.hover_color") !important;
     color: v-bind("heroButton.hover_text_color");
     border-color: v-bind("heroButton.hover_border_color");
+}
+
+.about-1 .btn-buynow {
+    background-color: v-bind("abouts[0].button.color");
+    color: v-bind("abouts[0].button.text_color");
+    border-color: v-bind("abouts[0].button.border_color");
+}
+
+.about-1 .btn-buynow:hover {
+    background-color: v-bind("abouts[0].button.hover_color") !important;
+    color: v-bind("abouts[0].button.hover_text_color");
+    border-color: v-bind("abouts[0].button.hover_border_color");
+}
+
+.about-2 .btn-buynow {
+    background-color: v-bind("abouts[1].button.color");
+    color: v-bind("abouts[1].button.text_color");
+    border-color: v-bind("abouts[1].button.border_color");
+}
+
+.about-2 .btn-buynow:hover {
+    background-color: v-bind("abouts[1].button.hover_color") !important;
+    color: v-bind("abouts[1].button.hover_text_color");
+    border-color: v-bind("abouts[1].button.hover_border_color");
+}
+
+.buynow-infobar .btn-buynow {
+    background-color: v-bind("infoButton.color");
+    color: v-bind("infoButton.text_color");
+    border-color: v-bind("infoButton.border_color");
+}
+
+.buynow-infobar .btn-buynow:hover {
+    background-color: v-bind("infoButton.hover_color") !important;
+    color: v-bind("infoButton.hover_text_color");
+    border-color: v-bind("infoButton.hover_border_color");
 }
 </style>

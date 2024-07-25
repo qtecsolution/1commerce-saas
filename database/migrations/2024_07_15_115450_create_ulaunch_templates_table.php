@@ -17,6 +17,11 @@ return new class extends Migration
             $table->foreignIdFor(User::class)->constanted()->cascadeOnDelete();
             $table->json('hero_area')->nullable();
             $table->json('steps_area')->nullable();
+            $table->json('features_area')->nullable();
+            $table->json('about_area')->nullable();
+            $table->json('testimonials_area')->nullable();
+            $table->json('info_area')->nullable();
+            $table->json('footer_area')->nullable();
             $table->timestamps();
         });
     }
