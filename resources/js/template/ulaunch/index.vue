@@ -76,12 +76,12 @@
                                 animation-name: fadeInUp;
                             "
                         >
-                            <h2 contenteditable="true" @input="updateHeroTitle">
+                            <h2 contenteditable="true" @blur="updateHeroTitle">
                                 {{ heroTitle }}
                             </h2>
                             <p
                                 contenteditable="true"
-                                @input="updateHeroDescription"
+                                @blur="updateHeroDescription"
                             >
                                 {{ heroDescription }}
                             </p>
@@ -171,7 +171,7 @@
                                         </div>
                                         <h3
                                             contenteditable="true"
-                                            @input="
+                                            @blur="
                                                 updateStepItem(
                                                     $event,
                                                     'title',
@@ -183,7 +183,7 @@
                                         </h3>
                                         <p
                                             contenteditable="true"
-                                            @input="
+                                            @blur="
                                                 updateStepItem(
                                                     $event,
                                                     'description',
@@ -212,7 +212,7 @@
                                         </div>
                                         <h3
                                             contenteditable="true"
-                                            @input="
+                                            @blur="
                                                 updateStepItem(
                                                     $event,
                                                     'title',
@@ -224,7 +224,7 @@
                                         </h3>
                                         <p
                                             contenteditable="true"
-                                            @input="
+                                            @blur="
                                                 updateStepItem(
                                                     $event,
                                                     'description',
@@ -253,13 +253,13 @@
                                         </div>
                                         <h3
                                             contenteditable="true"
-                                            @input="stepTitle($event, 2)"
+                                            @blur="stepTitle($event, 2)"
                                         >
                                             {{ steps[2].title }}
                                         </h3>
                                         <p
                                             contenteditable="true"
-                                            @input="stepDescription($event, 2)"
+                                            @blur="stepDescription($event, 2)"
                                         >
                                             {{ steps[2].description }}
                                         </p>
@@ -305,85 +305,15 @@
                                 animation-delay: 0.2s;
                                 animation-name: fadeInLeft;
                             "
+                            v-for="(item, index) in featureList[0]"
                         >
                             <div class="icon-box">
                                 <i class="flaticon-cpu"></i>
                             </div>
 
-                            <h3>Dual Processor</h3>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit, sed do eiusmod tempor
-                                incididunt ut labore et
-                            </p>
-                        </div>
-                        <!-- Feature single end -->
-
-                        <!-- Feature single start -->
-                        <div
-                            class="feature-single feature-right wow fadeInLeft"
-                            data-wow-delay="0.6s"
-                            style="
-                                visibility: visible;
-                                animation-delay: 0.6s;
-                                animation-name: fadeInLeft;
-                            "
-                        >
-                            <div class="icon-box">
-                                <i class="flaticon-gold-medal"></i>
-                            </div>
-
-                            <h3>Gold aluminum</h3>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit, sed do eiusmod tempor
-                                incididunt ut labore et
-                            </p>
-                        </div>
-                        <!-- Feature single end -->
-
-                        <!-- Feature single start -->
-                        <div
-                            class="feature-single feature-right wow fadeInLeft"
-                            data-wow-delay="0.8s"
-                            style="
-                                visibility: visible;
-                                animation-delay: 0.8s;
-                                animation-name: fadeInLeft;
-                            "
-                        >
-                            <div class="icon-box">
-                                <i class="flaticon-loupe"></i>
-                            </div>
-
-                            <h3>Ion-X glass</h3>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit, sed do eiusmod tempor
-                                incididunt ut labore et
-                            </p>
-                        </div>
-                        <!-- Feature single end -->
-
-                        <!-- Feature single start -->
-                        <div
-                            class="feature-single feature-right wow fadeInLeft"
-                            data-wow-delay="1s"
-                            style="
-                                visibility: visible;
-                                animation-delay: 1s;
-                                animation-name: fadeInLeft;
-                            "
-                        >
-                            <div class="icon-box">
-                                <i class="flaticon-sensor"></i>
-                            </div>
-
-                            <h3>Heart rate sensor</h3>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit, sed do eiusmod tempor
-                                incididunt ut labore et
+                            <h3 contenteditable="true" @blur="updateFeatureItem($event, 'title', index)">{{ item.title }}</h3>
+                            <p contenteditable="true" @blur="updateFeatureItem($event, 'description', index)">
+                                {{ item.description }}
                             </p>
                         </div>
                         <!-- Feature single end -->
@@ -430,85 +360,15 @@
                                 animation-delay: 0.2s;
                                 animation-name: fadeInRight;
                             "
+                            v-for="(item, index) in featureList[1]"
                         >
                             <div class="icon-box">
                                 <i class="flaticon-torch-top-view"></i>
                             </div>
 
-                            <h3>Force Touch</h3>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit, sed do eiusmod tempor
-                                incididunt ut labore et
-                            </p>
-                        </div>
-                        <!-- Feature single end -->
-
-                        <!-- Feature single start -->
-                        <div
-                            class="feature-single feature-left wow fadeInRight"
-                            data-wow-delay="0.4s"
-                            style="
-                                visibility: visible;
-                                animation-delay: 0.4s;
-                                animation-name: fadeInRight;
-                            "
-                        >
-                            <div class="icon-box">
-                                <i class="flaticon-eye"></i>
-                            </div>
-
-                            <h3>Retina display</h3>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit, sed do eiusmod tempor
-                                incididunt ut labore et
-                            </p>
-                        </div>
-                        <!-- Feature single end -->
-
-                        <!-- Feature single start -->
-                        <div
-                            class="feature-single feature-left wow fadeInRight"
-                            data-wow-delay="0.6s"
-                            style="
-                                visibility: visible;
-                                animation-delay: 0.6s;
-                                animation-name: fadeInRight;
-                            "
-                        >
-                            <div class="icon-box">
-                                <i class="flaticon-speaker"></i>
-                            </div>
-
-                            <h3>Fire Speaker</h3>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit, sed do eiusmod tempor
-                                incididunt ut labore et
-                            </p>
-                        </div>
-                        <!-- Feature single end -->
-
-                        <!-- Feature single start -->
-                        <div
-                            class="feature-single feature-left wow fadeInRight"
-                            data-wow-delay="1s"
-                            style="
-                                visibility: visible;
-                                animation-delay: 1s;
-                                animation-name: fadeInRight;
-                            "
-                        >
-                            <div class="icon-box">
-                                <i class="flaticon-wifi"></i>
-                            </div>
-
-                            <h3>Bluetooth &amp; Wi-Fi</h3>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit, sed do eiusmod tempor
-                                incididunt ut labore et
+                            <h3 contenteditable="true" @blur="updateFeatureItem($event, 'title', index + 4)">{{ item.title }}</h3>
+                            <p contenteditable="true" @blur="updateFeatureItem($event, 'description', index + 4)">
+                                {{ item.description }}
                             </p>
                         </div>
                         <!-- Feature single end -->
@@ -532,15 +392,12 @@
                             "
                         >
                             <p
-                                @input="updateAboutSubTitle"
+                                @blur="updateAboutSubTitle"
                                 contenteditable="true"
                             >
                                 {{ aboutSubTitle }}
                             </p>
-                            <h2
-                                @input="updateAboutTitle"
-                                contenteditable="true"
-                            >
+                            <h2 @blur="updateAboutTitle" contenteditable="true">
                                 {{ aboutTitle }}
                             </h2>
                         </div>
@@ -555,7 +412,7 @@
                                 <div class="col-md-7 col-sm-7">
                                     <div class="about-entry">
                                         <h4
-                                            @input="
+                                            @blur="
                                                 updateAboutItem(
                                                     $event,
                                                     'sub_title',
@@ -567,7 +424,7 @@
                                             {{ abouts[0].sub_title }}
                                         </h4>
                                         <h3
-                                            @input="
+                                            @blur="
                                                 updateAboutItem(
                                                     $event,
                                                     'title',
@@ -579,7 +436,7 @@
                                             {{ abouts[0].title }}
                                         </h3>
                                         <p
-                                            @input="
+                                            @blur="
                                                 updateAboutItem(
                                                     $event,
                                                     'description',
@@ -671,7 +528,7 @@
                                 <div class="col-md-7 col-sm-7 order-md-2">
                                     <div class="about-entry">
                                         <h4
-                                            @input="
+                                            @blur="
                                                 updateAboutItem(
                                                     $event,
                                                     'sub_title',
@@ -683,7 +540,7 @@
                                             {{ abouts[1].sub_title }}
                                         </h4>
                                         <h3
-                                            @input="
+                                            @blur="
                                                 updateAboutItem(
                                                     $event,
                                                     'title',
@@ -695,7 +552,7 @@
                                             {{ abouts[1].title }}
                                         </h3>
                                         <p
-                                            @input="
+                                            @blur="
                                                 updateAboutItem(
                                                     $event,
                                                     'description',
@@ -1021,19 +878,19 @@
                             "
                         >
                             <p
-                                @input="updateInfoSubTitle"
+                                @blur="updateInfoSubTitle"
                                 contenteditable="true"
                             >
                                 {{ infoSubTitle }}
                             </p>
-                            <h2 @input="updateInfoTitle" contenteditable="true">
+                            <h2 @blur="updateInfoTitle" contenteditable="true">
                                 {{ infoTitle }}
                             </h2>
                         </div>
 
                         <div class="buynow-entry">
                             <p
-                                @input="updateInfoDescription"
+                                @blur="updateInfoDescription"
                                 contenteditable="true"
                             >
                                 {{ infoDescription }}
@@ -1089,11 +946,22 @@
                                 animation-name: fadeInUp;
                             "
                         >
-                            <p>Get your Product</p>
-                            <h2>Order Now</h2>
+                            <p
+                                @blur="updateOrderSubTitle"
+                                contenteditable="true"
+                            >
+                                {{ orderSubTitle }}
+                            </p>
+                            <h2 @blur="updateOrderTitle" contenteditable="true">
+                                {{ orderTitle }}
+                            </h2>
                         </div>
 
                         <!-- Contact Form start -->
+                        <div class="alert alert-info">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Order Form is not editable.
+                        </div>
                         <div class="contact-form">
                             <form
                                 id="contactForm"
@@ -1194,7 +1062,7 @@
                             ></a>
                         </div>
                         <div class="footer-siteinfo">
-                            <p @input="updateFooterText" contenteditable="true">
+                            <p @blur="updateFooterText" contenteditable="true">
                                 {{ footerText }}
                             </p>
                         </div>
@@ -1305,6 +1173,48 @@ export default {
             featureSubTitle: "Explore the awesome",
             featureImage: "",
             featureImageRaw: "",
+            features: [
+                {
+                    title: "Dual Processor",
+                    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
+                    icon: "ss"
+                },
+                {
+                    title: "Gold aluminum",
+                    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
+                    icon: "ss"
+                },
+                {
+                    title: "Ion-X glass",
+                    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
+                    icon: "ss"
+                },
+                {
+                    title: "Heart rate sensor",
+                    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
+                    icon: "ss"
+                },
+                {
+                    title: "Force Touch",
+                    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
+                    icon: "ss"
+                },
+                {
+                    title: "Retina display",
+                    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
+                    icon: "ss"
+                },
+                {
+                    title: "Fire Speaker",
+                    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
+                    icon: "ss"
+                },
+                {
+                    title: "Bluetooth & Wi-Fi",
+                    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
+                    icon: "ss"
+                }
+            ],
 
             aboutTitle: "About Product",
             aboutSubTitle: "BEAUTY MEETS FUNCTIONALITY",
@@ -1336,8 +1246,19 @@ export default {
             infoButton: [],
             infoVideo: "https://youtube.com",
 
+            orderTitle: "Order Now",
+            orderSubTitle: "GET YOUR PRODUCT",
+
             footerText: "Copyright © 2024, All Rights Reserved.",
         };
+    },
+    computed: {
+        featureList: function () {
+            const row_1 = this.features.slice(0, this.features.length / 2);
+            const row_2 = this.features.slice(this.features.length / 2, this.features.length);
+
+            return [row_1, row_2];
+        }
     },
     mounted() {
         this.apiUrl = `${window.location.origin}/app/templates/ulaunch`;
@@ -1565,6 +1486,10 @@ export default {
             this.steps[index - 1][section] = this.updateContent(event);
         },
 
+        updateFeatureItem(event, section, index) {
+            this.features[index][section] = this.updateContent(event);
+        },
+
         updateAboutSubTitle(event) {
             this.aboutSubTitle = this.updateContent(event);
         },
@@ -1665,6 +1590,14 @@ export default {
                         ? data.hover_border_color
                         : this.infoButton.hover_border_color,
             };
+        },
+
+        updateOrderSubTitle(event) {
+            this.orderSubTitle = this.updateContent(event);
+        },
+
+        updateOrderTitle(event) {
+            this.orderTitle = this.updateContent(event);
         },
 
         updateFooterText(event) {
