@@ -171,13 +171,25 @@
                                         </div>
                                         <h3
                                             contenteditable="true"
-                                            @input="updateStepItem($event, 'title', 1)"
+                                            @input="
+                                                updateStepItem(
+                                                    $event,
+                                                    'title',
+                                                    1
+                                                )
+                                            "
                                         >
                                             {{ steps[0].title }}
                                         </h3>
                                         <p
                                             contenteditable="true"
-                                            @input="updateStepItem($event, 'description', 1)"
+                                            @input="
+                                                updateStepItem(
+                                                    $event,
+                                                    'description',
+                                                    1
+                                                )
+                                            "
                                         >
                                             {{ steps[0].description }}
                                         </p>
@@ -200,13 +212,25 @@
                                         </div>
                                         <h3
                                             contenteditable="true"
-                                            @input="updateStepItem($event, 'title', 2)"
+                                            @input="
+                                                updateStepItem(
+                                                    $event,
+                                                    'title',
+                                                    2
+                                                )
+                                            "
                                         >
                                             {{ steps[1].title }}
                                         </h3>
                                         <p
                                             contenteditable="true"
-                                            @input="updateStepItem($event, 'description', 2)"
+                                            @input="
+                                                updateStepItem(
+                                                    $event,
+                                                    'description',
+                                                    2
+                                                )
+                                            "
                                         >
                                             {{ steps[1].description }}
                                         </p>
@@ -1073,8 +1097,6 @@
                         <div class="contact-form">
                             <form
                                 id="contactForm"
-                                action="#"
-                                method="post"
                                 data-toggle="validator"
                                 novalidate="true"
                             >
@@ -1087,15 +1109,11 @@
                                         >
                                         <input
                                             type="text"
-                                            name="name"
                                             id="name"
                                             class="form-control"
-                                            placeholder="Enter Your Name"
-                                            required=""
+                                            placeholder="Muhaimin Shihab"
+                                            readonly
                                         />
-                                        <div
-                                            class="help-block with-errors"
-                                        ></div>
                                     </div>
 
                                     <div
@@ -1106,15 +1124,11 @@
                                         >
                                         <input
                                             type="number"
-                                            name="mobile"
                                             id="mobile"
                                             class="form-control"
-                                            placeholder="Your Mobile Number"
-                                            required=""
+                                            placeholder="+880 1xxx-xxxxx3"
+                                            readonly
                                         />
-                                        <div
-                                            class="help-block with-errors"
-                                        ></div>
                                     </div>
 
                                     <div
@@ -1125,17 +1139,11 @@
                                         >
                                         <input
                                             type="number"
-                                            name="quantity"
                                             id="quantity"
                                             class="form-control"
-                                            placeholder="Quantity"
-                                            min="1"
                                             value="1"
-                                            required=""
+                                            readonly
                                         />
-                                        <div
-                                            class="help-block with-errors"
-                                        ></div>
                                     </div>
 
                                     <div
@@ -1146,20 +1154,16 @@
                                         >
                                         <textarea
                                             rows="8"
-                                            name="address"
                                             id="address"
-                                            placeholder="Address"
+                                            placeholder="DNCC, Dhaka-1229, Bangladesh"
                                             class="form-control"
-                                            required=""
+                                            readonly
                                         ></textarea>
-                                        <div
-                                            class="help-block with-errors"
-                                        ></div>
                                     </div>
 
                                     <div class="col-md-12 col-sm-12">
                                         <button
-                                            type="submit"
+                                            type="button"
                                             class="btn-contact disabled"
                                         >
                                             Order Now
@@ -1332,7 +1336,7 @@ export default {
             infoButton: [],
             infoVideo: "https://youtube.com",
 
-            footerText: "Copyright © 2024, All Rights Reserved."
+            footerText: "Copyright © 2024, All Rights Reserved.",
         };
     },
     mounted() {
@@ -1661,6 +1665,10 @@ export default {
                         ? data.hover_border_color
                         : this.infoButton.hover_border_color,
             };
+        },
+
+        updateFooterText(event) {
+            this.footerText = this.updateContent(event);
         },
     },
 };
