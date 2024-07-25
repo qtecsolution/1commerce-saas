@@ -897,7 +897,7 @@
                             </p>
 
                             <div class="btn-wrapper position-relative">
-                                <a href="#" class="btn-buynow">Orderer Now</a>
+                                <a :href="infoButton.url" class="btn-buynow">{{ infoButton.title }}</a>
 
                                 <div
                                     class="position-absolute top-0 end-0 mt-2"
