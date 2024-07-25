@@ -11,6 +11,7 @@ use App\Http\Controllers\User\ShopController;
 use App\Http\Controllers\Order\OderController;
 use App\Http\Controllers\Setting\SettingController;
 use App\Http\Controllers\Template\TemplateController;
+use App\Http\Controllers\Template\UlaunchTemplateController;
 use App\Http\Controllers\User\CustomerController;
 use App\Http\Controllers\Ticket\SupportTicketController;
 use App\Http\Controllers\Test\TestController;
@@ -109,7 +110,16 @@ Route::prefix('/app')->middleware('user')->group(function () {
         Route::get('mine', 'mine')->name('mine');
         Route::get('{id}/edit', 'edit')->name('edit');
 
-        require __DIR__ . '/template/ulaunch.php';
+        // ulaunch
+        Route::prefix('ulaunch')->group(function () {
+            Route::post('update-hero-area', [UlaunchTemplateController::class, 'updateHeroArea']);
+            Route::post('update-steps-area', [UlaunchTemplateController::class, 'updateStepsArea']);
+            Route::post('update-features-area', [UlaunchTemplateController::class, 'updateFeaturesArea']);
+            Route::post('update-about-area', [UlaunchTemplateController::class, 'updateAboutArea']);
+            Route::post('update-info-area', [UlaunchTemplateController::class, 'updateInfoArea']);
+            Route::post('update-order-area', [UlaunchTemplateController::class, 'updateOrderArea']);
+            Route::post('update-footer-area', [UlaunchTemplateController::class, 'updateFooterArea']);
+        });
     });
 });
 

@@ -287,8 +287,8 @@
                                 animation-name: fadeInUp;
                             "
                         >
-                            <p>{{ featureSubTitle }}</p>
-                            <h2>{{ featureTitle }}</h2>
+                            <p contenteditable="true" @blur="updateFeatureSubTitle">{{ featureSubTitle }}</p>
+                            <h2 contenteditable="true" @blur="updateFeatureTitle">{{ featureTitle }}</h2>
                         </div>
                     </div>
                 </div>
@@ -1462,13 +1462,11 @@ export default {
         },
 
         updateHeroArea() {
-            return false;
-
             const formData = new FormData();
-            formData.append("hero_title", this.heroTitle);
-            formData.append("hero_description", this.heroDescription);
-            formData.append("hero_button", JSON.stringify(this.heroButton));
-            formData.append("hero_image", this.heroImageRaw);
+            formData.append("title", this.heroTitle);
+            formData.append("description", this.heroDescription);
+            formData.append("button", JSON.stringify(this.heroButton));
+            formData.append("image", this.heroImageRaw);
 
             axios
                 .post(`${this.apiUrl}/update-hero-area`, formData, {
@@ -1480,28 +1478,71 @@ export default {
                     console.log(response.data);
                 })
                 .catch((error) => {
-                    console.log(error);
+                    console.error(error);
                 });
         },
 
         updateStepItem(event, section, index) {
             this.steps[index - 1][section] = this.updateContent(event);
+            this.updateStepsArea();
+        },
+
+        updateStepsArea() {
+            const formData = new FormData();
+            formData.append("items", this.steps);
+
+            axios.post(`${this.apiUrl}/update-steps-area`, formData)
+                .then((response) => {
+                    console.log(response.data);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        },
+
+        updateFeatureSubTitle(event) {
+            this.featureSubTitle = this.updateContent(event);
+            this.updateFeaturesArea();
+        },
+
+        updateFeatureTitle(event) {
+            this.featureTitle = this.updateContent(event);
+            this.updateFeaturesArea();
         },
 
         updateFeatureItem(event, section, index) {
             this.features[index][section] = this.updateContent(event);
+            this.updateFeaturesArea();
+        },
+
+        updateFeaturesArea() {
+            const formData = new FormData();
+            formData.append("title", this.featureTitle);
+            formData.append("sub_title", this.featureSubTitle);
+            formData.append("items", this.features);
+
+            axios.post(`${this.apiUrl}/update-features-area`, formData)
+                .then((response) => {
+                    console.log(response.data);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
         },
 
         updateAboutSubTitle(event) {
             this.aboutSubTitle = this.updateContent(event);
+            this.updateAboutArea();
         },
 
         updateAboutTitle(event) {
             this.aboutTitle = this.updateContent(event);
+            this.updateAboutArea();
         },
 
         updateAboutItem(event, section, index) {
             this.abouts[index - 1][section] = this.updateContent(event);
+            this.updateAboutArea();
         },
 
         updateAboutButton(data, index) {
@@ -1541,18 +1582,38 @@ export default {
                         ? data.hover_border_color
                         : this.abouts[index].button.hover_border_color,
             };
+
+            this.updateAboutArea();
+        },
+
+        updateAboutArea() {
+            const formData = new FormData();
+            formData.append("title", this.aboutTitle);
+            formData.append("sub_title", this.aboutSubTitle);
+            formData.append("items", this.abouts);
+
+            axios.post(`${this.apiUrl}/update-about-area`, formData)
+                .then((response) => {
+                    console.log(response.data);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
         },
 
         updateInfoSubTitle(event) {
             this.infoSubTitle = this.updateContent(event);
+            this.updateInfoArea();
         },
 
         updateInfoTitle(event) {
             this.infoTitle = this.updateContent(event);
+            this.updateInfoArea();
         },
 
         updateInfoDescription(event) {
             this.infoDescription = this.updateContent(event);
+            this.updateInfoArea();
         },
 
         updateInfoButton(data) {
@@ -1592,18 +1653,67 @@ export default {
                         ? data.hover_border_color
                         : this.infoButton.hover_border_color,
             };
+
+            this.updateInfoArea();
+        },
+
+        updateInfoArea() {
+            const formData = new FormData();
+            formData.append("title", this.infoTitle);
+            formData.append("sub_title", this.infoSubTitle);
+            formData.append("description", this.infoDescription);
+            formData.append("button", this.infoButton);
+            formData.append("video_url", this.infoVideo);
+
+            axios.post(`${this.apiUrl}/update-info-area`, formData)
+                .then((response) => {
+                    console.log(response.data);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
         },
 
         updateOrderSubTitle(event) {
             this.orderSubTitle = this.updateContent(event);
+            this.updateOrderArea();
         },
 
         updateOrderTitle(event) {
             this.orderTitle = this.updateContent(event);
+            this.updateOrderArea();
+        },
+
+        updateOrderArea() {
+            const formData = new FormData();
+            formData.append("title", this.infoTitle);
+            formData.append("sub_title", this.infoSubTitle);
+
+            axios.post(`${this.apiUrl}/update-order-area`, formData)
+                .then((response) => {
+                    console.log(response.data);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
         },
 
         updateFooterText(event) {
             this.footerText = this.updateContent(event);
+            this.updateFooterArea();
+        },
+
+        updateFooterArea() {
+            const formData = new FormData();
+            formData.append("text", this.footerText);
+
+            axios.post(`${this.apiUrl}/update-footer-area`, formData)
+                .then((response) => {
+                    console.log(response.data);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
         },
     },
 };
