@@ -18,7 +18,7 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    @foreach ($templates as $userTemplate)
+                    @forelse ($templates as $userTemplate)
                         @php
                             $template = collect(\App\Models\Template\UserTemplate::$templates)->firstWhere(
                                 'id',
@@ -46,7 +46,11 @@
                                 </div>
                             </div>
                         @endif
-                    @endforeach
+                    @empty
+                        <div class="col-12">
+                            <div class="alert alert-info text-center" style="font-weight: bold">No template found.</div>
+                        </div>
+                    @endforelse
                 </div>
             </div>
         </div>
