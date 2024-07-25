@@ -167,7 +167,7 @@
                                         "
                                     >
                                         <div class="icon-box">
-                                            <i :class="steps[0].icon"></i>
+                                            <IconPicker v-model="steps[0].icon" />
                                         </div>
                                         <h3
                                             contenteditable="true"
@@ -208,7 +208,7 @@
                                         "
                                     >
                                         <div class="icon-box">
-                                            <i :class="steps[1].icon"></i>
+                                            <IconPicker v-model="steps[1].icon" />
                                         </div>
                                         <h3
                                             contenteditable="true"
@@ -249,7 +249,7 @@
                                         "
                                     >
                                         <div class="icon-box">
-                                            <i :class="steps[2].icon"></i>
+                                            <IconPicker v-model="steps[2].icon" />
                                         </div>
                                         <h3
                                             contenteditable="true"
@@ -308,7 +308,7 @@
                             v-for="(item, index) in featureList[0]"
                         >
                             <div class="icon-box">
-                                <i class="flaticon-cpu"></i>
+                                <iconPicker v-model="features[index].icon" />
                             </div>
 
                             <h3 contenteditable="true" @blur="updateFeatureItem($event, 'title', index)">{{ item.title }}</h3>
@@ -363,7 +363,7 @@
                             v-for="(item, index) in featureList[1]"
                         >
                             <div class="icon-box">
-                                <i class="flaticon-torch-top-view"></i>
+                                <iconPicker v-model="features[index + 4].icon" />
                             </div>
 
                             <h3 contenteditable="true" @blur="updateFeatureItem($event, 'title', index + 4)">{{ item.title }}</h3>
@@ -1128,6 +1128,7 @@
 <script>
 import ButtonModal from "./components/button-modal.vue";
 import ImageModal from "./components/image-modal.vue";
+import IconPicker from "../../icon-picker/IconPicker.vue";
 
 export default {
     name: "Ulaunch",
@@ -1135,6 +1136,7 @@ export default {
     components: {
         ImageModal,
         ButtonModal,
+        IconPicker
     },
     data() {
         return {
@@ -1177,42 +1179,42 @@ export default {
                 {
                     title: "Dual Processor",
                     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
-                    icon: "ss"
+                    icon: "flaticon-cpu"
                 },
                 {
                     title: "Gold aluminum",
                     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
-                    icon: "ss"
+                    icon: "flaticon-cpu"
                 },
                 {
                     title: "Ion-X glass",
                     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
-                    icon: "ss"
+                    icon: "flaticon-cpu"
                 },
                 {
                     title: "Heart rate sensor",
                     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
-                    icon: "ss"
+                    icon: "flaticon-cpu"
                 },
                 {
                     title: "Force Touch",
                     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
-                    icon: "ss"
+                    icon: "flaticon-cpu"
                 },
                 {
                     title: "Retina display",
                     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
-                    icon: "ss"
+                    icon: "flaticon-cpu"
                 },
                 {
                     title: "Fire Speaker",
                     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
-                    icon: "ss"
+                    icon: "flaticon-cpu"
                 },
                 {
                     title: "Bluetooth & Wi-Fi",
                     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
-                    icon: "ss"
+                    icon: "flaticon-cpu"
                 }
             ],
 
