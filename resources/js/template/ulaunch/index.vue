@@ -167,7 +167,9 @@
                                         "
                                     >
                                         <div class="icon-box">
-                                            <IconPicker v-model="steps[0].icon" />
+                                            <IconPicker
+                                                v-model="steps[0].icon"
+                                            />
                                         </div>
                                         <h3
                                             contenteditable="true"
@@ -208,7 +210,9 @@
                                         "
                                     >
                                         <div class="icon-box">
-                                            <IconPicker v-model="steps[1].icon" />
+                                            <IconPicker
+                                                v-model="steps[1].icon"
+                                            />
                                         </div>
                                         <h3
                                             contenteditable="true"
@@ -249,7 +253,9 @@
                                         "
                                     >
                                         <div class="icon-box">
-                                            <IconPicker v-model="steps[2].icon" />
+                                            <IconPicker
+                                                v-model="steps[2].icon"
+                                            />
                                         </div>
                                         <h3
                                             contenteditable="true"
@@ -287,8 +293,18 @@
                                 animation-name: fadeInUp;
                             "
                         >
-                            <p contenteditable="true" @blur="updateFeatureSubTitle">{{ featureSubTitle }}</p>
-                            <h2 contenteditable="true" @blur="updateFeatureTitle">{{ featureTitle }}</h2>
+                            <p
+                                contenteditable="true"
+                                @blur="updateFeatureSubTitle"
+                            >
+                                {{ featureSubTitle }}
+                            </p>
+                            <h2
+                                contenteditable="true"
+                                @blur="updateFeatureTitle"
+                            >
+                                {{ featureTitle }}
+                            </h2>
                         </div>
                     </div>
                 </div>
@@ -311,8 +327,24 @@
                                 <iconPicker v-model="features[index].icon" />
                             </div>
 
-                            <h3 contenteditable="true" @blur="updateFeatureItem($event, 'title', index)">{{ item.title }}</h3>
-                            <p contenteditable="true" @blur="updateFeatureItem($event, 'description', index)">
+                            <h3
+                                contenteditable="true"
+                                @blur="
+                                    updateFeatureItem($event, 'title', index)
+                                "
+                            >
+                                {{ item.title }}
+                            </h3>
+                            <p
+                                contenteditable="true"
+                                @blur="
+                                    updateFeatureItem(
+                                        $event,
+                                        'description',
+                                        index
+                                    )
+                                "
+                            >
                                 {{ item.description }}
                             </p>
                         </div>
@@ -363,11 +395,33 @@
                             v-for="(item, index) in featureList[1]"
                         >
                             <div class="icon-box">
-                                <iconPicker v-model="features[index + 4].icon" />
+                                <iconPicker
+                                    v-model="features[index + 4].icon"
+                                />
                             </div>
 
-                            <h3 contenteditable="true" @blur="updateFeatureItem($event, 'title', index + 4)">{{ item.title }}</h3>
-                            <p contenteditable="true" @blur="updateFeatureItem($event, 'description', index + 4)">
+                            <h3
+                                contenteditable="true"
+                                @blur="
+                                    updateFeatureItem(
+                                        $event,
+                                        'title',
+                                        index + 4
+                                    )
+                                "
+                            >
+                                {{ item.title }}
+                            </h3>
+                            <p
+                                contenteditable="true"
+                                @blur="
+                                    updateFeatureItem(
+                                        $event,
+                                        'description',
+                                        index + 4
+                                    )
+                                "
+                            >
                                 {{ item.description }}
                             </p>
                         </div>
@@ -657,8 +711,18 @@
                                 animation-name: fadeInUp;
                             "
                         >
-                            <p>Feedback</p>
-                            <h2>What our clients say</h2>
+                            <p
+                                contenteditable="true"
+                                @blur="updateTestimonialSubTitle"
+                            >
+                                {{ testimonialSubTitle }}
+                            </p>
+                            <h2
+                                contenteditable="true"
+                                @blur="updateTestimonialTitle"
+                            >
+                                {{ testimonialTitle }}
+                            </h2>
                         </div>
                     </div>
                 </div>
@@ -838,24 +902,6 @@
                                     tabindex="0"
                                     role="button"
                                     aria-label="Go to slide 3"
-                                ></span
-                                ><span
-                                    class="swiper-pagination-bullet"
-                                    tabindex="0"
-                                    role="button"
-                                    aria-label="Go to slide 4"
-                                ></span
-                                ><span
-                                    class="swiper-pagination-bullet"
-                                    tabindex="0"
-                                    role="button"
-                                    aria-label="Go to slide 5"
-                                ></span
-                                ><span
-                                    class="swiper-pagination-bullet"
-                                    tabindex="0"
-                                    role="button"
-                                    aria-label="Go to slide 6"
                                 ></span>
                             </div>
                         </div>
@@ -897,7 +943,9 @@
                             </p>
 
                             <div class="btn-wrapper position-relative">
-                                <a :href="infoButton.url" class="btn-buynow">{{ infoButton.title }}</a>
+                                <a :href="infoButton.url" class="btn-buynow">{{
+                                    infoButton.title
+                                }}</a>
 
                                 <div
                                     class="position-absolute top-0 end-0 mt-2"
@@ -1136,7 +1184,7 @@ export default {
     components: {
         ImageModal,
         ButtonModal,
-        IconPicker
+        IconPicker,
     },
     data() {
         return {
@@ -1178,44 +1226,52 @@ export default {
             features: [
                 {
                     title: "Dual Processor",
-                    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
-                    icon: "flaticon-cpu"
+                    description:
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
+                    icon: "flaticon-cpu",
                 },
                 {
                     title: "Gold aluminum",
-                    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
-                    icon: "flaticon-cpu"
+                    description:
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
+                    icon: "flaticon-cpu",
                 },
                 {
                     title: "Ion-X glass",
-                    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
-                    icon: "flaticon-cpu"
+                    description:
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
+                    icon: "flaticon-cpu",
                 },
                 {
                     title: "Heart rate sensor",
-                    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
-                    icon: "flaticon-cpu"
+                    description:
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
+                    icon: "flaticon-cpu",
                 },
                 {
                     title: "Force Touch",
-                    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
-                    icon: "flaticon-cpu"
+                    description:
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
+                    icon: "flaticon-cpu",
                 },
                 {
                     title: "Retina display",
-                    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
-                    icon: "flaticon-cpu"
+                    description:
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
+                    icon: "flaticon-cpu",
                 },
                 {
                     title: "Fire Speaker",
-                    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
-                    icon: "flaticon-cpu"
+                    description:
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
+                    icon: "flaticon-cpu",
                 },
                 {
                     title: "Bluetooth & Wi-Fi",
-                    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
-                    icon: "flaticon-cpu"
-                }
+                    description:
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
+                    icon: "flaticon-cpu",
+                },
             ],
 
             aboutTitle: "About Product",
@@ -1241,6 +1297,10 @@ export default {
                 },
             ],
 
+            testimonialSubTitle: "FEEDBACK",
+            testimonialTitle: "What our clients say",
+            testimonials: [],
+
             infoSubTitle: "GET IT TODAY",
             infoTitle: "Get your Product today!",
             infoDescription:
@@ -1257,10 +1317,13 @@ export default {
     computed: {
         featureList: function () {
             const row_1 = this.features.slice(0, this.features.length / 2);
-            const row_2 = this.features.slice(this.features.length / 2, this.features.length);
+            const row_2 = this.features.slice(
+                this.features.length / 2,
+                this.features.length
+            );
 
             return [row_1, row_2];
-        }
+        },
     },
     mounted() {
         this.apiUrl = `${window.location.origin}/app/templates/ulaunch`;
@@ -1491,7 +1554,8 @@ export default {
             const formData = new FormData();
             formData.append("items", this.steps);
 
-            axios.post(`${this.apiUrl}/update-steps-area`, formData)
+            axios
+                .post(`${this.apiUrl}/update-steps-area`, formData)
                 .then((response) => {
                     console.log(response.data);
                 })
@@ -1521,7 +1585,8 @@ export default {
             formData.append("sub_title", this.featureSubTitle);
             formData.append("items", this.features);
 
-            axios.post(`${this.apiUrl}/update-features-area`, formData)
+            axios
+                .post(`${this.apiUrl}/update-features-area`, formData)
                 .then((response) => {
                     console.log(response.data);
                 })
@@ -1592,13 +1657,22 @@ export default {
             formData.append("sub_title", this.aboutSubTitle);
             formData.append("items", this.abouts);
 
-            axios.post(`${this.apiUrl}/update-about-area`, formData)
+            axios
+                .post(`${this.apiUrl}/update-about-area`, formData)
                 .then((response) => {
                     console.log(response.data);
                 })
                 .catch((error) => {
                     console.error(error);
                 });
+        },
+
+        updateTestimonialSubTitle(event) {
+            this.testimonialSubTitle = this.updateContent(event);
+        },
+
+        updateTestimonialTitle(event) {
+            this.testimonialTitle = this.updateContent(event);
         },
 
         updateInfoSubTitle(event) {
@@ -1665,7 +1739,8 @@ export default {
             formData.append("button", this.infoButton);
             formData.append("video_url", this.infoVideo);
 
-            axios.post(`${this.apiUrl}/update-info-area`, formData)
+            axios
+                .post(`${this.apiUrl}/update-info-area`, formData)
                 .then((response) => {
                     console.log(response.data);
                 })
@@ -1689,7 +1764,8 @@ export default {
             formData.append("title", this.infoTitle);
             formData.append("sub_title", this.infoSubTitle);
 
-            axios.post(`${this.apiUrl}/update-order-area`, formData)
+            axios
+                .post(`${this.apiUrl}/update-order-area`, formData)
                 .then((response) => {
                     console.log(response.data);
                 })
@@ -1707,7 +1783,8 @@ export default {
             const formData = new FormData();
             formData.append("text", this.footerText);
 
-            axios.post(`${this.apiUrl}/update-footer-area`, formData)
+            axios
+                .post(`${this.apiUrl}/update-footer-area`, formData)
                 .then((response) => {
                     console.log(response.data);
                 })

@@ -499,19 +499,6 @@ nav.navbar .navbar-toggler:focus{
 .about-facts{
 	padding: 100px 0;
 	position: relative;
-	background: url(../images/counter-bg.jpg) no-repeat center center fixed;
-	background-size: cover;
-}
-
-.about-facts:before{
-	content: '';
-	display: block;
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background: rgba(32,190,167,0.9);
 }
 
 .about-facts .container{
@@ -573,7 +560,6 @@ nav.navbar .navbar-toggler:focus{
 
 .products{
 	padding: 100px 0;
-	background: url(../images/pricing-bg.png) no-repeat center center;
 }
 
 .product-single:hover .product-box,
@@ -690,20 +676,8 @@ nav.navbar .navbar-toggler:focus{
 
 .testimonials{
 	padding: 100px 0;
-	background: url(../images/header-bg.jpg) no-repeat center center fixed;
-	background-size: cover;
 	position: relative;
-}
-
-.testimonials:before {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(32,190,167,0.9);
+	background-color: #20bea7;
 }
 
 .testimonials .container{
