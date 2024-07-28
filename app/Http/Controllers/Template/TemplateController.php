@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Template;
 
 use App\Http\Controllers\Controller;
 use App\Models\Template\Template;
+use App\Models\Template\UlaunchTemplate;
 use App\Models\Template\UserTemplate;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -87,6 +88,13 @@ class TemplateController extends Controller
     public function edit($id)
     {
         $userTemplate = UserTemplate::with('template')->findOrFail($id);
-        return view('template.edit.' . $userTemplate->template->slug . '.' . $userTemplate->template->blade_path, compact('userTemplate'));
+        if ($userTemplate->template_id == 1) {
+            $template = UlaunchTemplate::with([
+                'steps',
+                'features',
+            ])->where('user_id', auth()->id())->first();
+        }
+
+        return view('template.edit.' . $userTemplate->template->slug . '.' . $userTemplate->template->blade_path, compact('userTemplate', 'template'));
     }
 }

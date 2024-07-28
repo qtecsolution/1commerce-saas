@@ -176,6 +176,7 @@ export default {
 
         const insert = () => {
             context.emit("update:modelValue", activeGlyph.value);
+            context.emit("update", activeGlyph.value);
             isVisible.value = false;
         };
 

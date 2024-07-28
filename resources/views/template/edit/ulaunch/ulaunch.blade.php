@@ -52,7 +52,7 @@
     <!-- Preloader Ends -->
 
     <main id="app">
-        <ulaunch :user_template="{{ json_encode($userTemplate) }}" :template="{{ json_encode($userTemplate->template) }}" :assets_path="{{ json_encode($userTemplate->template->assets_path) }}" />
+        <ulaunch :user_template="{{ json_encode($userTemplate) }}" :template="{{ json_encode($template) }}" />
     </main>
 
     <!-- Jquery Library File -->
