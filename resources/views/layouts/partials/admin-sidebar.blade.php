@@ -1,5 +1,5 @@
 <li class="nav-item dropdown">
-    <a href="">
+    <a href="{{ route('admin_dashboard') }}">
         <span class="icon-holder">
             <i class="fas fa-home"></i>
         </span>
@@ -14,14 +14,14 @@
         <span class="title">Packages</span>
     </a>
 </li>
-<li class="nav-item dropdown">
+{{-- <li class="nav-item dropdown">
     <a href="{{ route('couriers.index') }}">
         <span class="icon-holder">
             <i class="fas fa-truck"></i>
         </span>
         <span class="title">Couriers</span>
     </a>
-</li>
+</li> --}}
 <li class="nav-item dropdown">
     <a href="{{ route('support_tickets') }}">
         <span class="icon-holder">

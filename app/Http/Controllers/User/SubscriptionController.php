@@ -30,7 +30,7 @@ class SubscriptionController extends Controller
         $user = User::find(auth()->id());
         $package = Package::find($request->package);
 
-        // check if have subscriptioin
+        // check if have subscription
         if ($user->subscription_details) {
             // delete old subscription
             // $user->subscription_details->delete();
@@ -44,7 +44,7 @@ class SubscriptionController extends Controller
         $this->store($user, $package);
 
         // return back
-        Alert::success('Yahoo!', 'Subscription updated successfully.');
+        alert('Success', 'Subscription created successfully!', 'success');
         return redirect()->back();
     }
 

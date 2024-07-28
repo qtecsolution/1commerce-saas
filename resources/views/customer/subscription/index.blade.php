@@ -26,16 +26,38 @@
                                 @endphp
 
                                 @if ($endingDate > $today)
-                                    You're using <strong>{{ $package->title }}</strong> that will expire at
-                                    <strong>{{ date('F d, Y', strtotime($subscription->ending_date)) }}</strong>.
+                                    You're using <strong class="text-primary">{{ $package->title }}</strong> that will
+                                    expire at
+                                    <strong class="text-danger">
+                                        {{ date('F d, Y', strtotime($subscription->ending_date)) }}
+                                    </strong>.
+
+                                    @if ($subscription->is_paid == 1)
+                                        <form action="javascript:void(0);" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="subscription_id" value="{{ $subscription->id }}">
+                                            <button type="submit" class="btn btn-sm rounded-pill btn-secondary">
+                                                Extend Subscription
+                                            </button>
+                                        </form>
+                                    @endif
                                 @else
                                     Your subscription is expired.
                                 @endif
                             @else
                                 You don't have any subscription.
                             @endif
-
                         </p>
+                        @if ($subscription->is_paid == 0)
+                            <form action="{{ route('ssl-commerz.pay') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="subscription_id" value="{{ $subscription->id }}">
+                                <button type="submit" class="btn btn-sm btn-primary rounded-pill confirmable"
+                                    data-confirmation-text="Are you sure you want to make payment ?">
+                                    Complete Payment
+                                </button>
+                            </form>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -43,6 +65,9 @@
     </div>
     {{-- section area start --}}
     @foreach ($packages as $item)
+        @if ($item->id == $subscription->package_id)
+            @continue
+        @endif
         <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
@@ -78,8 +103,13 @@
                         @endforeach
                     </ul>
                     <div class="text-center">
-                        <a href="{{ route('subscription.create') }}?package={{ $item->id }}" class="btn btn-primary">Get
-                            Started</a>
+                        <div class="text-center">
+                            <a href="{{ route('subscription.create') }}?package={{ $item->id }}"
+                                class="btn btn-primary confirmable"
+                                data-confirmation-text="Are you sure you want to start this subscription?">
+                                Get Started
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

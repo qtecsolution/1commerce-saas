@@ -70,7 +70,7 @@ class UserController extends Controller
             // create user
             $user = new User();
             $user->name = $request->input('name');
-            $user->username = $request->input('phone');
+            $user->username = $request->input('email');
             $user->phone = $request->input('phone');
             $user->email = $request->input('email');
             $user->password = bcrypt($request->input('password'));
