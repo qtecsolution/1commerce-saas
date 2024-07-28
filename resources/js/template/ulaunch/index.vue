@@ -1491,7 +1491,7 @@ export default {
         },
 
         imageSource(path) {
-            return `${this.appUrl}/${this.template.assets}/${path}`;
+            return `${this.appUrl}/${this.template.assets_path}/${path}`;
         },
 
         updateMenuItem(event, index) {

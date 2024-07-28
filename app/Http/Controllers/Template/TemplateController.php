@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Template;
 
 use App\Http\Controllers\Controller;
+use App\Models\Template\Template;
 use App\Models\Template\UserTemplate;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -13,14 +14,14 @@ class TemplateController extends Controller
 
     public function __construct()
     {
-        $this->templates = UserTemplate::$templates;
+        $this->templates = Template::all();
     }
 
     public function show($slug)
     {
-        $template = collect($this->templates)->where('slug', $slug)->first();
+        $template = $this->templates->where('slug', $slug)->first();
         if ($template) {
-            return view('template.show.' . $template['blade'], compact('template'));
+            return view('template.show.' . $template->blade_path, compact('template'));
         } else {
             Alert::error('Oops!', 'Template Not Found.')->persistent('Close');
             return redirect()->back();
@@ -36,14 +37,11 @@ class TemplateController extends Controller
 
     public function selectTemplate(Request $request, $id)
     {
-        // Alert::info('Info!', 'This feature will be available soon.')->persistent('Close');
-        // return redirect()->back();
-
-        $template = collect($this->templates)->where('id', $id)->first();
+        $template = $this->templates->where('id', $id)->first();
         if ($template) {
-            $userTemplate = UserTemplate::where('user_id', auth()->id())->where('template_id', $template['id'])->first();
+            $userTemplate = UserTemplate::where('user_id', auth()->id())->where('template_id', $template->id)->first();
             if ($userTemplate) {
-                Alert::error('Oops!', 'Template already added.')->persistent('Close');
+                Alert::error('Oops!', 'Template Already Added.')->persistent('Close');
                 return redirect()->back();
             }
         } else {
@@ -56,7 +54,7 @@ class TemplateController extends Controller
                 'company_name' => 'required',
                 'company_logo' => 'required|image|mimes:png,jpg,jpeg|max:2048',
                 'product_name' => 'required',
-                'template_id' => 'required|in:' . implode(',', array_column($this->templates, 'id')),
+                'template_id' => 'required|exists:templates,id',
             ]);
 
             $path = null;
@@ -73,7 +71,7 @@ class TemplateController extends Controller
                 'product_name' => $request->product_name,
             ]);
 
-            Alert::success('Success!', 'Template added successfully.')->persistent('Close');
+            Alert::success('Success!', 'Template Added Successfully.')->persistent('Close');
             return to_route('templates.index');
         } else {
             return view('template.setup', compact('template'));
@@ -82,15 +80,13 @@ class TemplateController extends Controller
 
     public function mine()
     {
-        $templates = UserTemplate::where('user_id', auth()->id())->get();
+        $templates = UserTemplate::with('template')->where('user_id', auth()->id())->get();
         return view('template.mine', compact('templates'));
     }
 
     public function edit($id)
     {
-        $userTemplate = UserTemplate::findOrFail($id);
-        $template = collect($this->templates)->where('id', $userTemplate->template_id)->first();
-
-        return view('template.edit.' . $template['slug'] . '.' . $template['blade'], compact('userTemplate', 'template'));
+        $userTemplate = UserTemplate::with('template')->findOrFail($id);
+        return view('template.edit.' . $userTemplate->template->slug . '.' . $userTemplate->template->blade_path, compact('userTemplate'));
     }
 }

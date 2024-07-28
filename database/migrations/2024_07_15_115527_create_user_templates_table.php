@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Template\Template;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -14,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('user_templates', function (Blueprint $table) {
             $table->id();
-            $table->integer('template_id');
+            $table->foreignIdFor(Template::class)->constanted()->cascadeOnDelete();
             $table->foreignIdFor(User::class)->constanted()->cascadeOnDelete();
             $table->string('company_name');
             $table->string('company_logo')->nullable();

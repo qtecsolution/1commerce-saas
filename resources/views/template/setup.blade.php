@@ -1,5 +1,5 @@
 @php
-    $title = 'Setup ' . $template['name'];
+    $title = 'Setup ' . $template->name;
 @endphp
 @extends('layouts.app')
 
@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <form action="{{ route('templates.select', $template['id']) }}" method="POST" class="row" enctype="multipart/form-data">
+                <form action="{{ route('templates.select', $template->id) }}" method="POST" class="row" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="template_id" value="{{ $template['id'] }}">
 
