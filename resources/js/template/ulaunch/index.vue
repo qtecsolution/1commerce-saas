@@ -17,7 +17,7 @@
                                 "
                                 width="50"
                                 class="logo"
-                                alt=""
+                                :alt="user_template.company_name"
                             />
                         </a>
                         <button
@@ -40,20 +40,18 @@
                         id="navbar-menu"
                     >
                         <ul class="navbar-nav nav ml-auto mr-md-3">
-                            <li class="nav-item active">
-                                <a href="#home" class="nav-link active">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#features" class="nav-link"
-                                    >Features</a
-                                >
-                            </li>
-                            <li class="nav-item">
-                                <a href="#about" class="nav-link">About</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#testimonial" class="nav-link"
-                                    >Testimonial</a
+                            <li
+                                class="nav-item"
+                                v-for="(menu, index) in menus"
+                                :key="index"
+                                :class="{ active: index == 0 }"
+                            >
+                                <a
+                                    :href="menu.url"
+                                    class="nav-link"
+                                    contenteditable="true"
+                                    @blur="updateMenuItem($event, index)"
+                                    >{{ menu.title }}</a
                                 >
                             </li>
                         </ul>
@@ -699,7 +697,7 @@
         <!-- About Product section ends -->
 
         <!-- Testimonials starts -->
-        <section class="testimonials parallaxie" id="testimonial">
+        <section class="testimonials parallaxie" id="testimonials">
             <div class="container">
                 <!-- Section Title start -->
                 <div class="row">
@@ -983,7 +981,7 @@
         <!-- Buy Now infobar section ends -->
 
         <!-- Order Now section starts -->
-        <section class="order_area">
+        <section class="order_area" id="order">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2">
@@ -1191,6 +1189,29 @@ export default {
             apiUrl: "",
             appUrl: "",
 
+            menus: [
+                {
+                    title: "Home",
+                    url: "#home",
+                },
+                {
+                    title: "Features",
+                    url: "#features",
+                },
+                {
+                    title: "About",
+                    url: "#about",
+                },
+                {
+                    title: "Testimonials",
+                    url: "#testimonials",
+                },
+                {
+                    title: "Order",
+                    url: "#order",
+                },
+            ],
+
             heroTitle: "Present your awesome product.",
             heroDescription:
                 "Lorem ipsum dolor sit amet. Reprehenderit, qui blanditiis quidem rerum necessitatibus praesentium voluptatum deleniti atque corrupti, quos dolores eos.",
@@ -1326,8 +1347,8 @@ export default {
         },
     },
     mounted() {
-        this.apiUrl = `${window.location.origin}/app/templates/ulaunch`;
         this.appUrl = `${window.location.origin}`;
+        this.apiUrl = `${window.location.origin}/app/templates/ulaunch`;
 
         this.heroButton = {
             title: "Product Details",
@@ -1471,6 +1492,25 @@ export default {
 
         imageSource(path) {
             return `${this.appUrl}/${this.template.assets}/${path}`;
+        },
+
+        updateMenuItem(event, index) {
+            this.menus[index].title = this.updateContent(event);
+            this.updateMenuArea();
+        },
+
+        updateMenuArea() {
+            const formData = new FormData();
+            formData.append("items", this.menus);
+
+            axios
+                .post(`${this.apiUrl}/update-menu-area`, formData)
+                .then((response) => {
+                    console.log(response.data);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
         },
 
         updateHeroTitle(event) {

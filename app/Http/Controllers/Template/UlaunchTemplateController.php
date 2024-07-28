@@ -19,6 +19,13 @@ class UlaunchTemplateController extends Controller
         $this->template = UlaunchTemplate::where('user_id', Auth::id())->first();
     }
 
+    public function updateMenuArea(Request $request)
+    {
+        return response()->json([
+            'message' => 'Menu Area Updated.'
+        ]);
+    }
+
     public function updateHeroArea(Request $request)
     {
         $template = $this->template;
