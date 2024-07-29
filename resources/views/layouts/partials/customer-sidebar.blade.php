@@ -7,24 +7,14 @@
         <span class="title">Dashboard</span>
     </a>
 </li>
-<li class="nav-item dropdown">
-    <a class="dropdown-toggle" href="javascript:void(0);">
+<li class="nav-item">
+    <a href="{{ route('orders') }}"
+        class="{{ Route::currentRouteName() == 'orders' ? 'parent-menu-active' : '' }}">
         <span class="icon-holder">
             <i class="fas fa-clipboard-list"></i>
         </span>
-        <span class="title">Order</span>
-        <span class="arrow">
-            <i class="arrow-icon"></i>
-        </span>
+        <span class="title">Orders</span>
     </a>
-    <ul class="dropdown-menu">
-        <li class="{{ Route::currentRouteName() == 'orders' ? 'active' : '' }}">
-            <a href="{{ route('orders') }}">Orders</a>
-        </li>
-        <li class="{{ Route::currentRouteName() == 'return_orders' ? 'active' : '' }}">
-            <a href="{{ route('return_orders') }}">Returns</a>
-        </li>
-    </ul>
 </li>
 <li class="nav-item">
     <a href="{{ route('tickets.index') }}"
