@@ -211,8 +211,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="d-flex overflow-auto pb-3 justify-content-center"
-                                                id="akash-btn-mbl-scroll">
+                                            <div class="d-flex overflow-auto pb-3 justify-content-center">
                                                 <div class="btn btn-sm btn-primary mx-1">
                                                     .com
                                                 </div>

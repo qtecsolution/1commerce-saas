@@ -93,8 +93,8 @@ Route::prefix('app')->middleware('user')->group(function () {
         // order routes
         Route::controller(OderController::class)->group(function () {
             Route::get("orders", "index")->name('orders');
-            Route::get("return-orders", "returnOrders")->name('return_orders');
-            Route::get("order-details/{invoice}", "orderDetails")->name('order_details');
+            Route::get("update-status/{id}/{status}", "updateStatus")->name('order.update.status');
+            Route::get("order-show/{id}", "show")->name('order.show');
         });
 
         // setting routes
