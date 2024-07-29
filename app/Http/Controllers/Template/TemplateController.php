@@ -72,8 +72,20 @@ class TemplateController extends Controller
                 'product_name' => $request->product_name,
             ]);
 
+            switch ($request->template_id) {
+                case 1:
+                    UlaunchTemplate::create([
+                        'user_id' => auth()->id()
+                    ]);
+                    break;
+                
+                default:
+                    # code...
+                    break;
+            }
+
             Alert::success('Success!', 'Template Added Successfully.')->persistent('Close');
-            return to_route('templates.index');
+            return to_route('templates.mine');
         } else {
             return view('template.setup', compact('template'));
         }

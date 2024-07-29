@@ -117,6 +117,7 @@ Route::prefix('/app')->middleware('user')->group(function () {
             Route::post('update-steps-area', [UlaunchTemplateController::class, 'updateStepsArea']);
             Route::post('update-features-area', [UlaunchTemplateController::class, 'updateFeaturesArea']);
             Route::post('update-about-area', [UlaunchTemplateController::class, 'updateAboutArea']);
+            Route::post('update-testimonials-area', [UlaunchTemplateController::class, 'updateTestimonialsArea']);
             Route::post('update-info-area', [UlaunchTemplateController::class, 'updateInfoArea']);
             Route::post('update-order-area', [UlaunchTemplateController::class, 'updateOrderArea']);
             Route::post('update-footer-area', [UlaunchTemplateController::class, 'updateFooterArea']);

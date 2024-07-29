@@ -1116,6 +1116,7 @@ export default {
             apiUrl: "",
             appUrl: "",
 
+            // menu area
             menus: [
                 {
                     title: "Home",
@@ -1139,6 +1140,7 @@ export default {
                 },
             ],
 
+            // hero area
             heroTitle: "Present your awesome product.",
             heroDescription:
                 "Lorem ipsum dolor sit amet. Reprehenderit, qui blanditiis quidem rerum necessitatibus praesentium voluptatum deleniti atque corrupti, quos dolores eos.",
@@ -1146,6 +1148,7 @@ export default {
             heroImage: "",
             heroImageRaw: [],
 
+            // steps area
             steps: [
                 {
                     title: "Step 1",
@@ -1167,6 +1170,7 @@ export default {
                 }
             ],
 
+            // feature area
             featureTitle: "Product Features",
             featureSubTitle: "Explore the awesome",
             featureImage: "",
@@ -1222,6 +1226,7 @@ export default {
                 },
             ],
 
+            // about area
             aboutTitle: "About Product",
             aboutSubTitle: "BEAUTY MEETS FUNCTIONALITY",
             abouts: [
@@ -1245,10 +1250,12 @@ export default {
                 },
             ],
 
+            // testimonial area
             testimonialSubTitle: "FEEDBACK",
             testimonialTitle: "What our clients say",
             testimonials: [],
 
+            // info area
             infoSubTitle: "GET IT TODAY",
             infoTitle: "Get your Product today!",
             infoDescription:
@@ -1256,9 +1263,11 @@ export default {
             infoButton: [],
             infoVideo: "https://youtube.com",
 
+            // order area
             orderTitle: "Order Now",
             orderSubTitle: "GET YOUR PRODUCT",
 
+            // footer area
             footerText: "Copyright © 2024, All Rights Reserved.",
         };
     },
@@ -1277,8 +1286,12 @@ export default {
         this.appUrl = `${window.location.origin}`;
         this.apiUrl = `${window.location.origin}/app/templates/ulaunch`;
 
+        // menu area
+        const menuArea = this.template.menu_area != null ? JSON.parse(this.template.menu_area) : null;
+        this.menus = menuArea != null ? menuArea : this.menus;
+
         // hero area
-        const heroArea = JSON.parse(this.template.hero_area);
+        const heroArea = this.template.hero_area != null ? JSON.parse(this.template.hero_area) : null;
 
         this.heroTitle = heroArea != null ? heroArea.title : this.heroTitle;
         this.heroDescription = heroArea != null ? heroArea.description : this.heroDescription;
@@ -1298,21 +1311,20 @@ export default {
         this.steps = this.template.steps.length > 0 ? this.template.steps : this.steps;
 
         // features area
-        const featuresArea = JSON.parse(this.template.features_area);
+        const featuresArea = this.template.features_area != null ? JSON.parse(this.template.features_area) : null;
 
         this.featureTitle = featuresArea != null ? featuresArea.title : this.featureTitle;
         this.featureSubTitle = featuresArea != null ? featuresArea.sub_title : this.featureSubTitle;
-        this.featureImage = featuresArea != null ? this.imageSource(featuresArea.image, 'storage') : this.imageSource("images/feature.png");
+        this.featureImage = featuresArea != null && featuresArea.image != null ? this.imageSource(featuresArea.image, 'storage') : this.imageSource("images/feature.png");
         this.features = this.template.features.length > 0 ? this.template.features : this.features;
 
         // about area
-        const aboutArea = JSON.parse(this.template.about_area);
+        const aboutArea = this.template.about_area != null ? JSON.parse(this.template.about_area) : null;
         this.aboutTitle = aboutArea != null ? aboutArea.title : this.aboutTitle;
         this.aboutSubTitle = aboutArea != null ? aboutArea.sub_title : this.aboutSubTitle;
+        this.abouts = aboutArea != null ? aboutArea.items : this.abouts;
 
-        this.abouts = aboutArea != null ? JSON.parse(aboutArea.items) : this.abouts;
-        
-        if (!this.template.about_area) {
+        if (aboutArea == null) {
             this.abouts[0].button = {
                 title: "Purchase Now",
                 url: "#order",
@@ -1336,11 +1348,16 @@ export default {
             };
         }
 
-        const abouts = aboutArea != null ? JSON.parse(aboutArea.items) : [];
-        this.abouts[0].image = abouts.length > 0 && abouts[0].image != null ? this.imageSource(abouts[0].image, 'storage') : this.imageSource("images/about-1.png");
-        this.abouts[1].image = abouts.length > 0 && abouts[1].image != null ? this.imageSource(abouts[1].image, 'storage') : this.imageSource("images/about-2.png");
+        this.abouts[0].image = aboutArea != null && aboutArea.items[0].image != null ? this.imageSource(aboutArea.items[0].image, 'storage') : this.imageSource("images/about-1.png");
+        this.abouts[1].image = aboutArea != null && aboutArea.items[1].image != null ? this.imageSource(aboutArea.items[1].image, 'storage') : this.imageSource("images/about-2.png");
 
-        this.infoButton = {
+        // info area
+        const infoArea = this.template.info_area != null ? JSON.parse(this.template.info_area) : null;
+
+        this.infoTitle = infoArea != null ? infoArea.title : this.infoTitle;
+        this.infoSubTitle = infoArea != null ? infoArea.sub_title : this.infoSubTitle;
+        this.infoVideo = infoArea != null ? infoArea.video : this.infoVideo;
+        this.infoButton = infoArea != null ? infoArea.button : {
             title: "Purchase Now",
             url: "#order",
             color: "transparent",
@@ -1350,6 +1367,20 @@ export default {
             hover_text_color: "white",
             hover_border_color: "#20bea7",
         };
+
+        // testimonials area
+        const testimonialsArea = this.template.testimonials_area != null ? JSON.parse(this.template.testimonials_area) : null;
+        this.testimonialTitle = testimonialsArea != null ? testimonialsArea.title : this.testimonialTitle;
+        this.testimonialSubTitle = testimonialsArea != null ? testimonialsArea.sub_title : this.testimonialSubTitle;
+
+        // order area
+        const orderArea = this.template.order_area != null ? JSON.parse(this.template.order_area) : null;
+        this.orderTitle = orderArea != null ? orderArea.title : this.orderTitle;
+        this.orderSubTitle = orderArea != null ? orderArea.sub_title : this.orderSubTitle;
+
+        // footer area
+        const footerArea = this.template.footer_area != null ? JSON.parse(this.template.footer_area) : null;
+        this.footerText = footerArea != null ? footerArea.text : this.footerText;
     },
     methods: {
         updateContent(event) {
@@ -1551,6 +1582,9 @@ export default {
         },
 
         updateStepsArea() {
+            // console.log(this.steps);
+            // return;
+
             const formData = new FormData();
             formData.append("items", JSON.stringify(this.steps));
 
@@ -1661,6 +1695,8 @@ export default {
             formData.append("title", this.aboutTitle);
             formData.append("sub_title", this.aboutSubTitle);
             formData.append("items", JSON.stringify(this.abouts));
+            formData.append("image_1", this.abouts[0].image_raw);
+            formData.append("image_2", this.abouts[1].image_raw);
 
             axios
                 .post(`${this.apiUrl}/update-about-area`, formData, {
@@ -1678,10 +1714,27 @@ export default {
 
         updateTestimonialSubTitle(event) {
             this.testimonialSubTitle = this.updateContent(event);
+            this.updateTestimonialsArea();
         },
 
         updateTestimonialTitle(event) {
             this.testimonialTitle = this.updateContent(event);
+            this.updateTestimonialsArea();
+        },
+
+        updateTestimonialsArea() {
+            const formData = new FormData();
+            formData.append("title", this.testimonialTitle);
+            formData.append("sub_title", this.testimonialSubTitle);
+
+            axios
+                .post(`${this.apiUrl}/update-testimonials-area`, formData)
+                .then((response) => {
+                    console.log(response.data);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
         },
 
         updateInfoSubTitle(event) {
@@ -1745,7 +1798,7 @@ export default {
             formData.append("title", this.infoTitle);
             formData.append("sub_title", this.infoSubTitle);
             formData.append("description", this.infoDescription);
-            formData.append("button", this.infoButton);
+            formData.append("button", JSON.stringify(this.infoButton));
             formData.append("video_url", this.infoVideo);
 
             axios
@@ -1770,8 +1823,8 @@ export default {
 
         updateOrderArea() {
             const formData = new FormData();
-            formData.append("title", this.infoTitle);
-            formData.append("sub_title", this.infoSubTitle);
+            formData.append("title", this.orderTitle);
+            formData.append("sub_title", this.orderSubTitle);
 
             axios
                 .post(`${this.apiUrl}/update-order-area`, formData)

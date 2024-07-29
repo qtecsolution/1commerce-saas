@@ -23,6 +23,7 @@ return new class extends Migration
             $table->json('about_area')->nullable();
             $table->json('testimonials_area')->nullable();
             $table->json('info_area')->nullable();
+            $table->json('order_area')->nullable();
             $table->json('footer_area')->nullable();
             $table->timestamps();
         });

@@ -195,40 +195,40 @@ class UlaunchTemplateController extends Controller
 
     public function updateAboutArea(Request $request)
     {
+        $decodedData = json_decode($this->template->about_area);
         $abouts = json_decode($request->input('items'));
 
-        foreach ($abouts as $key => $about) {
-            $uploadedPath = null;
+        $uploadedPaths = [null, null];
+        $images = ['image_1', 'image_2'];
 
-            if ($this->template->about_area) {
-                if ($request->hasFile('image_raw')) {
-                    $decodedData = json_decode($this->template->about_area);
-    
-                    if ($decodedData && isset($decodedData->image)) {
-                        $oldImagePath = storage_path('app/public/' . $decodedData->image);
-                        if (file_exists($oldImagePath)) {
-                            unlink($oldImagePath);
-                        }
+        foreach ($images as $index => $image) {
+            if ($request->hasFile($image)) {
+                if ($decodedData && isset($abouts[$index])) {
+                    $oldImagePath = storage_path('app/public/' . $abouts[$index]->image);
+                    if (file_exists($oldImagePath)) {
+                        unlink($oldImagePath);
                     }
-    
-                    $uploadedPath = $request->file('image_raw')->store('public/ulaunch');
-                    $uploadedPath = 'ulaunch/' . basename($uploadedPath);
                 }
-            } else {
-                if ($request->hasFile('image_raw')) {
-                    $uploadedPath = $request->file('image_raw')->store('public/ulaunch');
-                    $uploadedPath = 'ulaunch/' . basename($uploadedPath);
-                }
-            }
 
-            $about->image = $uploadedPath;
-            $about->image_raw = null;
+                $uploadedPath = $request->file($image)->store('public/ulaunch');
+                $uploadedPaths[$index] = 'ulaunch/' . basename($uploadedPath);
+            }
+        }
+
+        if (isset($abouts[0])) {
+            $abouts[0]->image = $uploadedPaths[0] ?? $decodedData->items[0]->image;
+            $abouts[0]->image_raw = null;
+        }
+
+        if (isset($abouts[1])) {
+            $abouts[1]->image = $uploadedPaths[1] ?? $decodedData->items[1]->image;
+            $abouts[1]->image_raw = null;
         }
 
         $this->template->about_area = json_encode([
             'title' => $request->input('title'),
             'sub_title' => $request->input('sub_title'),
-            'items' => json_encode($abouts),
+            'items' => $abouts,
         ]);
         $this->template->save();
 
@@ -238,24 +238,64 @@ class UlaunchTemplateController extends Controller
         ]);
     }
 
+    public function updateTestimonialsArea(Request $request)
+    {
+        $this->template->testimonials_area = json_encode([
+            'title' => $request->input('title'),
+            'sub_title' => $request->input('sub_title')
+        ]);
+        $this->template->save();
+
+        return response()->json([
+            'message' => 'Testimonial Area Updated.',
+            'data' => $this->template->testimonial_area
+        ]);
+    }
+
     public function updateInfoArea(Request $request)
     {
+        $button = json_decode($request->input('button'));
+        $data = json_encode([
+            'title' => $request->input('title'),
+            'sub_title' => $request->input('sub_title'),
+            'description' => $request->input('description'),
+            'button' => $button,
+            'video_url' => $request->input('video'),
+        ]);
+
+        $this->template->info_area = $data;
+        $this->template->save();
+
         return response()->json([
-            'message' => 'Info Area Updated.'
+            'message' => 'Info Area Updated.',
+            'data' => $this->template->info_area
         ]);
     }
 
     public function updateOrderArea(Request $request)
     {
+        $this->template->order_area = json_encode([
+            'title' => $request->input('title'),
+            'sub_title' => $request->input('sub_title')
+        ]);
+        $this->template->save();
+
         return response()->json([
-            'message' => 'Order Area Updated.'
+            'message' => 'Order Area Updated.',
+            'data' => $this->template->order_area
         ]);
     }
 
     public function updateFooterArea(Request $request)
     {
+        $this->template->footer_area = json_encode([
+            'text' => $request->input('text')
+        ]);
+        $this->template->save();
+
         return response()->json([
-            'message' => 'Footer Area Updated.'
+            'message' => 'Footer Area Updated.',
+            'data' => $this->template->footer_area
         ]);
     }
 }
