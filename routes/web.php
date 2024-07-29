@@ -77,7 +77,6 @@ Route::prefix('app')->middleware('user')->group(function () {
     Route::post('update-profile', [UserController::class, 'updateProfile'])->name('update_profile');
     Route::post('update-password', [UserController::class, 'updatePassword'])->name('update_password');
 
-
     Route::middleware('subscribed-and-paid')->group(function () {
         // dashboard route
         Route::get('/', [CustomerDashboard::class, 'index'])->name('user_dashboard');
@@ -105,7 +104,7 @@ Route::prefix('app')->middleware('user')->group(function () {
         });
 
         // template routes
-        Route::prefix('templates')->controller(TemplateController::class)->as('templates.')->group(function () {
+        Route::prefix('/templates')->controller(TemplateController::class)->as('templates.')->group(function () {
             Route::get('/', 'index')->name('index');
             Route::match(['get', 'post'], '/{id}/select', 'selectTemplate')->name('select');
             Route::get('mine', 'mine')->name('mine');
@@ -113,6 +112,7 @@ Route::prefix('app')->middleware('user')->group(function () {
 
             // ulaunch
             Route::prefix('ulaunch')->group(function () {
+                Route::post('update-menu-area', [UlaunchTemplateController::class, 'updateMenuArea']);
                 Route::post('update-hero-area', [UlaunchTemplateController::class, 'updateHeroArea']);
                 Route::post('update-steps-area', [UlaunchTemplateController::class, 'updateStepsArea']);
                 Route::post('update-features-area', [UlaunchTemplateController::class, 'updateFeaturesArea']);

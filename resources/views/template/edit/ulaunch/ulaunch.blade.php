@@ -7,20 +7,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Page Title -->
-    <title>{{ $userTemplate['company_name'] }} :: Live Edit</title>
+    <title>{{ $userTemplate->company_name }} :: Live Edit</title>
     <!-- Bootstrap css -->
-    <link href="{{ asset($template['assets'] . '/css/bootstrap.min.css') }}" rel="stylesheet" media="screen">
+    <link href="{{ asset($userTemplate->template->assets_path . '/css/bootstrap.min.css') }}" rel="stylesheet" media="screen">
     <!-- Font Awesome icon css-->
     <link href="{{ asset('assets/font-awesome/css/all.min.css') }}" rel="stylesheet" media="screen">
-    <link href="{{ asset($template['assets'] . '/css/flaticon.css') }}" rel="stylesheet" media="screen">
+    <link href="{{ asset($userTemplate->template->assets_path . '/css/flaticon.css') }}" rel="stylesheet" media="screen">
     <!-- Swiper's CSS -->
-    <link rel="stylesheet" href="{{ asset($template['assets'] . '/css/swiper.min.css') }}">
+    <link rel="stylesheet" href="{{ asset($userTemplate->template->assets_path . '/css/swiper.min.css') }}">
     <!-- Animated css -->
-    <link href="{{ asset($template['assets'] . '/css/animate.css') }}" rel="stylesheet">
+    <link href="{{ asset($userTemplate->template->assets_path . '/css/animate.css') }}" rel="stylesheet">
     <!-- Magnific Popup CSS -->
-    <link href="{{ asset($template['assets'] . '/css/magnific-popup.css') }}" rel="stylesheet">
+    <link href="{{ asset($userTemplate->template->assets_path . '/css/magnific-popup.css') }}" rel="stylesheet">
     <!-- Main custom css -->
-    <link href="{{ asset($template['assets'] . '/css/custom.css') }}" rel="stylesheet" media="screen">
+    <link href="{{ asset($userTemplate->template->assets_path . '/css/custom.css') }}" rel="stylesheet" media="screen">
 
     <!-- inject:vite (css/js) -->
     @vite('resources/css/app.css')
@@ -56,26 +56,26 @@
     </main>
 
     <!-- Jquery Library File -->
-    <script src="{{ asset($template['assets'] . '/js/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset($userTemplate->template->assets_path . '/js/jquery-3.6.0.min.js') }}"></script>
     <!-- Bootstrap js file -->
-    <script src="{{ asset($template['assets'] . '/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset($userTemplate->template->assets_path . '/js/bootstrap.min.js') }}"></script>
     <!-- Bootstrap form validator -->
-    <script src="{{ asset($template['assets'] . '/js/validator.min.js') }}"></script>
+    <script src="{{ asset($userTemplate->template->assets_path . '/js/validator.min.js') }}"></script>
     <!-- Counterup js file -->
-    <script src="{{ asset($template['assets'] . '/js/jquery.waypoints.min.js') }}"></script>
-    <script src="{{ asset($template['assets'] . '/js/jquery.counterup.min.js') }}"></script>
+    <script src="{{ asset($userTemplate->template->assets_path . '/js/jquery.waypoints.min.js') }}"></script>
+    <script src="{{ asset($userTemplate->template->assets_path . '/js/jquery.counterup.min.js') }}"></script>
     <!-- Wow js file -->
-    <script src="{{ asset($template['assets'] . '/js/wow.js') }}"></script>
+    <script src="{{ asset($userTemplate->template->assets_path . '/js/wow.js') }}"></script>
     <!-- Swiper Carousel js file -->
-    <script src="{{ asset($template['assets'] . '/js/swiper.min.js') }}"></script>
+    <script src="{{ asset($userTemplate->template->assets_path . '/js/swiper.min.js') }}"></script>
     <!-- Magnific Popup core JS file -->
-    <script src="{{ asset($template['assets'] . '/js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset($userTemplate->template->assets_path . '/js/jquery.magnific-popup.min.js') }}"></script>
     <!-- Parallaxie js file -->
-    <script src="{{ asset($template['assets'] . '/js/parallaxie.js') }}"></script>
+    <script src="{{ asset($userTemplate->template->assets_path . '/js/parallaxie.js') }}"></script>
     <!-- SmoothScroll -->
-    <script src="{{ asset($template['assets'] . '/js/SmoothScroll.js') }}"></script>
+    <script src="{{ asset($userTemplate->template->assets_path . '/js/SmoothScroll.js') }}"></script>
     <!-- Main Custom js file -->
-    <script src="{{ asset($template['assets'] . '/js/function.js') }}"></script>
+    <script src="{{ asset($userTemplate->template->assets_path . '/js/function.js') }}"></script>
 </body>
 
 </html>

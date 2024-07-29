@@ -15,6 +15,8 @@ return new class extends Migration
         Schema::create('ulaunch_templates', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->constanted()->cascadeOnDelete();
+            $table->json('global_area')->nullable();
+            $table->json('menu_area')->nullable();
             $table->json('hero_area')->nullable();
             $table->json('steps_area')->nullable();
             $table->json('features_area')->nullable();

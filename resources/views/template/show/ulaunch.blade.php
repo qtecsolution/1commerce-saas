@@ -7,20 +7,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Page Title -->
-    <title>{{ $template['name'] }}</title>
+    <title>{{ $template->name }}</title>
     <!-- Bootstrap css -->
-    <link href="{{ asset($template['assets'] . '/css/bootstrap.min.css') }}" rel="stylesheet" media="screen">
+    <link href="{{ asset($template->assets_path . '/css/bootstrap.min.css') }}" rel="stylesheet" media="screen">
     <!-- Font Awesome icon css-->
-    <link href="{{ asset($template['assets'] . '/css/font-awesome.all.css') }}" rel="stylesheet" media="screen">
-    <link href="{{ asset($template['assets'] . '/css/flaticon.css') }}" rel="stylesheet" media="screen">
+    <link href="{{ asset($template->assets_path . '/css/font-awesome.all.css') }}" rel="stylesheet" media="screen">
+    <link href="{{ asset($template->assets_path . '/css/flaticon.css') }}" rel="stylesheet" media="screen">
     <!-- Swiper's CSS -->
-    <link rel="stylesheet" href="{{ asset($template['assets'] . '/css/swiper.min.css') }}">
+    <link rel="stylesheet" href="{{ asset($template->assets_path . '/css/swiper.min.css') }}">
     <!-- Animated css -->
-    <link href="{{ asset($template['assets'] . '/css/animate.css') }}" rel="stylesheet">
+    <link href="{{ asset($template->assets_path . '/css/animate.css') }}" rel="stylesheet">
     <!-- Magnific Popup CSS -->
-    <link href="{{ asset($template['assets'] . '/css/magnific-popup.css') }}" rel="stylesheet">
+    <link href="{{ asset($template->assets_path . '/css/magnific-popup.css') }}" rel="stylesheet">
     <!-- Main custom css -->
-    <link href="{{ asset($template['assets'] . '/css/custom.css') }}" rel="stylesheet" media="screen">
+    <link href="{{ asset($template->assets_path . '/css/custom.css') }}" rel="stylesheet" media="screen">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -47,7 +47,7 @@
                 <div class="navbar-header">
                     <a class="navbar-brand"
                         href="#"><img
-                            src="{{ asset($template['assets'] . '/images/logo.png') }}" class="logo"
+                            src="{{ asset($template->assets_path . '/images/logo.png') }}" class="logo"
                             alt=""></a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbar-menu" aria-controls="ftco-nav" aria-expanded="false"
@@ -90,7 +90,7 @@
 
                 <div class="col-md-6 col-sm-6">
                     <div class="slider-image wow fadeInRight" style="visibility: visible; animation-name: fadeInRight;">
-                        <img src="{{ asset($template['assets'] . '/images/header.png') }}" alt="">
+                        <img src="{{ asset($template->assets_path . '/images/header.png') }}" alt="">
                     </div>
                 </div>
             </div>
@@ -222,7 +222,7 @@
 
                 <div class="col-lg-4">
                     <div class="feature-image wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-                        <img src="{{ asset($template['assets'] . '/images/feature.png') }}" alt="">
+                        <img src="{{ asset($template->assets_path . '/images/feature.png') }}" alt="">
                     </div>
                 </div>
 
@@ -317,7 +317,7 @@
                             <div class="col-md-5 col-sm-5">
                                 <div class="about-image wow fadeInRight" data-wow-delay="0.2s"
                                     style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInRight;">
-                                    <img src="{{ asset($template['assets'] . '/images/about-1.png') }}"
+                                    <img src="{{ asset($template->assets_path . '/images/about-1.png') }}"
                                         alt="">
                                 </div>
                             </div>
@@ -341,7 +341,7 @@
                             <div class="col-md-5 col-sm-5 order-md-1">
                                 <div class="about-image wow fadeInLeft" data-wow-delay="0.4s"
                                     style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInLeft;">
-                                    <img src="{{ asset($template['assets'] . '/images/about-2.png') }}"
+                                    <img src="{{ asset($template->assets_path . '/images/about-2.png') }}"
                                         alt="">
                                 </div>
                             </div>
@@ -355,7 +355,7 @@
 
     <!-- Testimonials starts -->
     <section class="testimonials parallaxie" id="testimonial"
-        style="background-image: url('{{ asset($template['assets'] . '/images/header-bg.jpg') }}'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed; background-position: center 1842.29px;">
+        style="background-image: url('{{ asset($template->assets_path . '/images/header-bg.jpg') }}'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed; background-position: center 1842.29px;">
         <div class="container">
             <!-- Section Title start -->
             <div class="row">
@@ -380,7 +380,7 @@
                                 role="group" aria-label="1 / 6">
                                 <div class="testimonial-slide">
                                     <div class="author-info">
-                                        <img src="{{ asset($template['assets'] . '/images/author-1.jpg') }}"
+                                        <img src="{{ asset($template->assets_path . '/images/author-1.jpg') }}"
                                             alt="">
                                     </div>
 
@@ -402,7 +402,7 @@
                                 role="group" aria-label="2 / 6">
                                 <div class="testimonial-slide">
                                     <div class="author-info">
-                                        <img src="{{ asset($template['assets'] . '/images/author-2.jpg') }}"
+                                        <img src="{{ asset($template->assets_path . '/images/author-2.jpg') }}"
                                             alt="">
                                     </div>
 
@@ -424,7 +424,7 @@
                                 role="group" aria-label="3 / 6">
                                 <div class="testimonial-slide">
                                     <div class="author-info">
-                                        <img src="{{ asset($template['assets'] . '/images/author-3.jpg') }}"
+                                        <img src="{{ asset($template->assets_path . '/images/author-3.jpg') }}"
                                             alt="">
                                     </div>
 
@@ -568,26 +568,26 @@
     <!-- Footer section ends -->
 
     <!-- Jquery Library File -->
-    <script src="{{ asset($template['assets'] . '/js/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset($template->assets_path . '/js/jquery-3.6.0.min.js') }}"></script>
     <!-- Bootstrap js file -->
-    <script src="{{ asset($template['assets'] . '/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset($template->assets_path . '/js/bootstrap.min.js') }}"></script>
     <!-- Bootstrap form validator -->
-    <script src="{{ asset($template['assets'] . '/js/validator.min.js') }}"></script>
+    <script src="{{ asset($template->assets_path . '/js/validator.min.js') }}"></script>
     <!-- Counterup js file -->
-    <script src="{{ asset($template['assets'] . '/js/jquery.waypoints.min.js') }}"></script>
-    <script src="{{ asset($template['assets'] . '/js/jquery.counterup.min.js') }}"></script>
+    <script src="{{ asset($template->assets_path . '/js/jquery.waypoints.min.js') }}"></script>
+    <script src="{{ asset($template->assets_path . '/js/jquery.counterup.min.js') }}"></script>
     <!-- Wow js file -->
-    <script src="{{ asset($template['assets'] . '/js/wow.js') }}"></script>
+    <script src="{{ asset($template->assets_path . '/js/wow.js') }}"></script>
     <!-- Swiper Carousel js file -->
-    <script src="{{ asset($template['assets'] . '/js/swiper.min.js') }}"></script>
+    <script src="{{ asset($template->assets_path . '/js/swiper.min.js') }}"></script>
     <!-- Magnific Popup core JS file -->
-    <script src="{{ asset($template['assets'] . '/js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset($template->assets_path . '/js/jquery.magnific-popup.min.js') }}"></script>
     <!-- Parallaxie js file -->
-    <script src="{{ asset($template['assets'] . '/js/parallaxie.js') }}"></script>
+    <script src="{{ asset($template->assets_path . '/js/parallaxie.js') }}"></script>
     <!-- SmoothScroll -->
-    <script src="{{ asset($template['assets'] . '/js/SmoothScroll.js') }}"></script>
+    <script src="{{ asset($template->assets_path . '/js/SmoothScroll.js') }}"></script>
     <!-- Main Custom js file -->
-    <script src="{{ asset($template['assets'] . '/js/function.js') }}"></script>
+    <script src="{{ asset($template->assets_path . '/js/function.js') }}"></script>
 
 </body>
 

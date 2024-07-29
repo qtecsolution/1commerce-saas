@@ -17,7 +17,7 @@
                                 "
                                 width="50"
                                 class="logo"
-                                alt=""
+                                :alt="user_template.company_name"
                             />
                         </a>
                         <button
@@ -40,20 +40,18 @@
                         id="navbar-menu"
                     >
                         <ul class="navbar-nav nav ml-auto mr-md-3">
-                            <li class="nav-item active">
-                                <a href="#home" class="nav-link active">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#features" class="nav-link"
-                                    >Features</a
-                                >
-                            </li>
-                            <li class="nav-item">
-                                <a href="#about" class="nav-link">About</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#testimonial" class="nav-link"
-                                    >Testimonial</a
+                            <li
+                                class="nav-item"
+                                v-for="(menu, index) in menus"
+                                :key="index"
+                                :class="{ active: index == 0 }"
+                            >
+                                <a
+                                    :href="menu.url"
+                                    class="nav-link"
+                                    contenteditable="true"
+                                    @blur="updateMenuItem($event, index)"
+                                    >{{ menu.title }}</a
                                 >
                             </li>
                         </ul>
@@ -156,7 +154,7 @@
                         <div class="step-container">
                             <div class="row">
                                 <!-- Step start -->
-                                <div class="col-md-4 col-sm-4">
+                                <div class="col-md-4 col-sm-4" v-for="(step, index) in steps" :key="index">
                                     <div
                                         class="step-single wow fadeInUp"
                                         data-wow-delay="0.2s"
@@ -168,7 +166,8 @@
                                     >
                                         <div class="icon-box">
                                             <IconPicker
-                                                v-model="steps[0].icon"
+                                                v-model="step.icon"
+                                                @update="updateStepsArea"
                                             />
                                         </div>
                                         <h3
@@ -177,11 +176,11 @@
                                                 updateStepItem(
                                                     $event,
                                                     'title',
-                                                    1
+                                                    index + 1
                                                 )
                                             "
                                         >
-                                            {{ steps[0].title }}
+                                            {{ step.title }}
                                         </h3>
                                         <p
                                             contenteditable="true"
@@ -189,85 +188,11 @@
                                                 updateStepItem(
                                                     $event,
                                                     'description',
-                                                    1
+                                                    index + 1
                                                 )
                                             "
                                         >
-                                            {{ steps[0].description }}
-                                        </p>
-                                    </div>
-                                </div>
-                                <!-- Step end -->
-                                <!-- Step start -->
-                                <div class="col-md-4 col-sm-4">
-                                    <div
-                                        class="step-single wow fadeInUp"
-                                        data-wow-delay="0.2s"
-                                        style="
-                                            visibility: visible;
-                                            animation-delay: 0.2s;
-                                            animation-name: fadeInUp;
-                                        "
-                                    >
-                                        <div class="icon-box">
-                                            <IconPicker
-                                                v-model="steps[1].icon"
-                                            />
-                                        </div>
-                                        <h3
-                                            contenteditable="true"
-                                            @blur="
-                                                updateStepItem(
-                                                    $event,
-                                                    'title',
-                                                    2
-                                                )
-                                            "
-                                        >
-                                            {{ steps[1].title }}
-                                        </h3>
-                                        <p
-                                            contenteditable="true"
-                                            @blur="
-                                                updateStepItem(
-                                                    $event,
-                                                    'description',
-                                                    2
-                                                )
-                                            "
-                                        >
-                                            {{ steps[1].description }}
-                                        </p>
-                                    </div>
-                                </div>
-                                <!-- Step end -->
-                                <!-- Step start -->
-                                <div class="col-md-4 col-sm-4">
-                                    <div
-                                        class="step-single wow fadeInUp"
-                                        data-wow-delay="0.2s"
-                                        style="
-                                            visibility: visible;
-                                            animation-delay: 0.2s;
-                                            animation-name: fadeInUp;
-                                        "
-                                    >
-                                        <div class="icon-box">
-                                            <IconPicker
-                                                v-model="steps[2].icon"
-                                            />
-                                        </div>
-                                        <h3
-                                            contenteditable="true"
-                                            @blur="stepTitle($event, 2)"
-                                        >
-                                            {{ steps[2].title }}
-                                        </h3>
-                                        <p
-                                            contenteditable="true"
-                                            @blur="stepDescription($event, 2)"
-                                        >
-                                            {{ steps[2].description }}
+                                            {{ step.description }}
                                         </p>
                                     </div>
                                 </div>
@@ -324,7 +249,7 @@
                             v-for="(item, index) in featureList[0]"
                         >
                             <div class="icon-box">
-                                <iconPicker v-model="features[index].icon" />
+                                <iconPicker v-model="item.icon" @update="updateFeaturesArea" />
                             </div>
 
                             <h3
@@ -396,7 +321,7 @@
                         >
                             <div class="icon-box">
                                 <iconPicker
-                                    v-model="features[index + 4].icon"
+                                    v-model="item.icon" @update="updateFeaturesArea"
                                 />
                             </div>
 
@@ -699,7 +624,7 @@
         <!-- About Product section ends -->
 
         <!-- Testimonials starts -->
-        <section class="testimonials parallaxie" id="testimonial">
+        <section class="testimonials parallaxie" id="testimonials">
             <div class="container">
                 <!-- Section Title start -->
                 <div class="row">
@@ -983,7 +908,7 @@
         <!-- Buy Now infobar section ends -->
 
         <!-- Order Now section starts -->
-        <section class="order_area">
+        <section class="order_area" id="order">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2">
@@ -1191,6 +1116,29 @@ export default {
             apiUrl: "",
             appUrl: "",
 
+            menus: [
+                {
+                    title: "Home",
+                    url: "#home",
+                },
+                {
+                    title: "Features",
+                    url: "#features",
+                },
+                {
+                    title: "About",
+                    url: "#about",
+                },
+                {
+                    title: "Testimonials",
+                    url: "#testimonials",
+                },
+                {
+                    title: "Order",
+                    url: "#order",
+                },
+            ],
+
             heroTitle: "Present your awesome product.",
             heroDescription:
                 "Lorem ipsum dolor sit amet. Reprehenderit, qui blanditiis quidem rerum necessitatibus praesentium voluptatum deleniti atque corrupti, quos dolores eos.",
@@ -1216,7 +1164,7 @@ export default {
                     description:
                         "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                     icon: "flaticon-shopping-cart",
-                },
+                }
             ],
 
             featureTitle: "Product Features",
@@ -1326,10 +1274,16 @@ export default {
         },
     },
     mounted() {
-        this.apiUrl = `${window.location.origin}/app/templates/ulaunch`;
         this.appUrl = `${window.location.origin}`;
+        this.apiUrl = `${window.location.origin}/app/templates/ulaunch`;
 
-        this.heroButton = {
+        // hero area
+        const heroArea = JSON.parse(this.template.hero_area);
+
+        this.heroTitle = heroArea != null ? heroArea.title : this.heroTitle;
+        this.heroDescription = heroArea != null ? heroArea.description : this.heroDescription;
+        this.heroImage = heroArea != null ? this.imageSource(heroArea.image, 'storage') : this.imageSource("images/header.png");
+        this.heroButton = heroArea != null ? JSON.parse(heroArea.button) : {
             title: "Product Details",
             url: "#features",
             color: "transparent",
@@ -1340,27 +1294,51 @@ export default {
             hover_border_color: "white",
         };
 
-        this.abouts[0].button = {
-            title: "Purchase Now",
-            url: "#order",
-            color: "transparent",
-            text_color: "#20bea7",
-            border_color: "#20bea7",
-            hover_color: "#20bea7",
-            hover_text_color: "white",
-            hover_border_color: "#20bea7",
-        };
+        // steps area
+        this.steps = this.template.steps.length > 0 ? this.template.steps : this.steps;
 
-        this.abouts[1].button = {
-            title: "Purchase Now",
-            url: "#order",
-            color: "transparent",
-            text_color: "#20bea7",
-            border_color: "#20bea7",
-            hover_color: "#20bea7",
-            hover_text_color: "white",
-            hover_border_color: "#20bea7",
-        };
+        // features area
+        const featuresArea = JSON.parse(this.template.features_area);
+
+        this.featureTitle = featuresArea != null ? featuresArea.title : this.featureTitle;
+        this.featureSubTitle = featuresArea != null ? featuresArea.sub_title : this.featureSubTitle;
+        this.featureImage = featuresArea != null ? this.imageSource(featuresArea.image, 'storage') : this.imageSource("images/feature.png");
+        this.features = this.template.features.length > 0 ? this.template.features : this.features;
+
+        // about area
+        const aboutArea = JSON.parse(this.template.about_area);
+        this.aboutTitle = aboutArea != null ? aboutArea.title : this.aboutTitle;
+        this.aboutSubTitle = aboutArea != null ? aboutArea.sub_title : this.aboutSubTitle;
+
+        this.abouts = aboutArea != null ? JSON.parse(aboutArea.items) : this.abouts;
+        
+        if (!this.template.about_area) {
+            this.abouts[0].button = {
+                title: "Purchase Now",
+                url: "#order",
+                color: "transparent",
+                text_color: "#20bea7",
+                border_color: "#20bea7",
+                hover_color: "#20bea7",
+                hover_text_color: "white",
+                hover_border_color: "#20bea7",
+            };
+    
+            this.abouts[1].button = {
+                title: "Purchase Now",
+                url: "#order",
+                color: "transparent",
+                text_color: "#20bea7",
+                border_color: "#20bea7",
+                hover_color: "#20bea7",
+                hover_text_color: "white",
+                hover_border_color: "#20bea7",
+            };
+        }
+
+        const abouts = aboutArea != null ? JSON.parse(aboutArea.items) : [];
+        this.abouts[0].image = abouts.length > 0 && abouts[0].image != null ? this.imageSource(abouts[0].image, 'storage') : this.imageSource("images/about-1.png");
+        this.abouts[1].image = abouts.length > 0 && abouts[1].image != null ? this.imageSource(abouts[1].image, 'storage') : this.imageSource("images/about-2.png");
 
         this.infoButton = {
             title: "Purchase Now",
@@ -1372,11 +1350,6 @@ export default {
             hover_text_color: "white",
             hover_border_color: "#20bea7",
         };
-
-        this.heroImage = this.imageSource("images/header.png");
-        this.featureImage = this.imageSource("images/feature.png");
-        this.abouts[0].image = this.imageSource("images/about-1.png");
-        this.abouts[1].image = this.imageSource("images/about-2.png");
     },
     methods: {
         updateContent(event) {
@@ -1413,6 +1386,8 @@ export default {
                             ? data.image_raw
                             : this.featureImageRaw;
 
+                    this.updateFeaturesArea();
+
                     break;
 
                 case "about-1":
@@ -1424,6 +1399,8 @@ export default {
                         data.image_raw !== null && data.image_raw !== ""
                             ? data.image_raw
                             : this.abouts[0].image_raw;
+
+                    this.updateAboutArea();
 
                     break;
 
@@ -1469,8 +1446,31 @@ export default {
             }
         },
 
-        imageSource(path) {
-            return `${this.appUrl}/${this.template.assets}/${path}`;
+        imageSource(path, disk = "public") {
+            if (disk == "storage" && path) {
+                return `${this.appUrl}/storage/${path}`;
+            }
+
+            return `${this.appUrl}/${this.user_template.template.assets_path}/${path}`;
+        },
+
+        updateMenuItem(event, index) {
+            this.menus[index].title = this.updateContent(event);
+            this.updateMenuArea();
+        },
+
+        updateMenuArea() {
+            const formData = new FormData();
+            formData.append("items", JSON.stringify(this.menus));
+
+            axios
+                .post(`${this.apiUrl}/update-menu-area`, formData)
+                .then((response) => {
+                    console.log(response.data);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
         },
 
         updateHeroTitle(event) {
@@ -1552,7 +1552,7 @@ export default {
 
         updateStepsArea() {
             const formData = new FormData();
-            formData.append("items", this.steps);
+            formData.append("items", JSON.stringify(this.steps));
 
             axios
                 .post(`${this.apiUrl}/update-steps-area`, formData)
@@ -1583,10 +1583,15 @@ export default {
             const formData = new FormData();
             formData.append("title", this.featureTitle);
             formData.append("sub_title", this.featureSubTitle);
-            formData.append("items", this.features);
+            formData.append("items", JSON.stringify(this.features));
+            formData.append("image", this.featureImageRaw);
 
             axios
-                .post(`${this.apiUrl}/update-features-area`, formData)
+                .post(`${this.apiUrl}/update-features-area`, formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                })
                 .then((response) => {
                     console.log(response.data);
                 })
@@ -1655,10 +1660,14 @@ export default {
             const formData = new FormData();
             formData.append("title", this.aboutTitle);
             formData.append("sub_title", this.aboutSubTitle);
-            formData.append("items", this.abouts);
+            formData.append("items", JSON.stringify(this.abouts));
 
             axios
-                .post(`${this.apiUrl}/update-about-area`, formData)
+                .post(`${this.apiUrl}/update-about-area`, formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+                })
                 .then((response) => {
                     console.log(response.data);
                 })

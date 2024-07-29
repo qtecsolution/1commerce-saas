@@ -13,14 +13,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_templates', function (Blueprint $table) {
+        Schema::create('template_reviews', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Template::class)->constanted()->cascadeOnDelete();
             $table->foreignIdFor(User::class)->constanted()->cascadeOnDelete();
-            $table->string('company_name');
-            $table->string('company_logo')->nullable();
-            $table->string('product_name');
-            $table->tinyInteger('status')->default(1);
+            $table->text('review')->nullable();
+            $table->string('rating')->nullable();
+            $table->string('reviewer_name')->nullable();
+            $table->string('reviewer_bio')->nullable();
+            $table->string('reviewer_image')->nullable();
+            $table->integer('position')->default(0);
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }
@@ -30,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_templates');
+        Schema::dropIfExists('template_reviews');
     }
 };
