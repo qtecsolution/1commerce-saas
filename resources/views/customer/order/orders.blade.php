@@ -44,39 +44,44 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>SL#</th>
-                                <th>Order No</th>
-                                <th>Order Date</th>
-                                <th>Customer</th>
+                                <th>Sl</th>
+                                <th>Order#</th>
+                                <th>Date/Time</th>
+                                <th>Customer Name/Phone</th>
+                                <th>Shipping Address</th>
+                                <th>Unit Price</th>
+                                <th>Quantity</th>
+                                <th>Discount</th>
                                 <th>Total Amount</th>
-                                <th>Payment Status</th>
                                 <th>Order Status</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>...</td>
-                                <td>...</td>
-                                <td>...</td>
-                                <td>...</td>
-                                <td>...</td>
-                                <td>...</td>
-                                <td>...</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary dropdown-toggle"
-                                            data-toggle="dropdown" data-display="static" aria-expanded="false">
-                                            Actions
-                                        </button>
-                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left">
-                                            <a href="{{ route('order_details', 01) }}" class="dropdown-item"
-                                                type="button">Inspect</a>
-                                            <a href="" class="dropdown-item" type="button">Print</a>
+                            @foreach ($orders as $key => $order)
+                                <tr>
+                                    <td>{{ $key+1 }}</td>
+                                    <td>{{ $order->id . $order->id }}</td>
+                                    <td>...</td>
+                                    <td>...</td>
+                                    <td>...</td>
+                                    <td>...</td>
+                                    <td>...</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-primary dropdown-toggle"
+                                                data-toggle="dropdown" data-display="static" aria-expanded="false">
+                                                Actions
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left">
+                                                <a href="{{ route('order_details', 01) }}" class="dropdown-item"
+                                                    type="button">Inspect</a>
+                                                <a href="" class="dropdown-item" type="button">Print</a>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

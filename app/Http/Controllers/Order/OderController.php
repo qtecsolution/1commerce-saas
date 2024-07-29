@@ -11,7 +11,8 @@ class OderController extends Controller
 {
     public function index()
     {
-        return view('customer.order.orders');
+        $orders = Order::where('user_id', auth()->id())->paginate(10);
+        return view('customer.order.orders', compact('orders'));
     }
 
     public function returnOrders()
