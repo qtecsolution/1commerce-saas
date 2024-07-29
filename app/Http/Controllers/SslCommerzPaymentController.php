@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\SubscriptionPayment;
 use Illuminate\Support\Facades\Auth;
 use App\Library\SslCommerz\SslCommerzNotification;
+use Carbon\Carbon;
 
 class SslCommerzPaymentController extends Controller
 {
@@ -69,6 +70,7 @@ class SslCommerzPaymentController extends Controller
                 'address' => $post_data['cus_add1'],
                 'transaction_id' => $post_data['tran_id'],
                 'currency' => $post_data['currency'],
+                'is_extension_payment' => $request->is_extension_payment ? true : false,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
@@ -93,7 +95,7 @@ class SslCommerzPaymentController extends Controller
         #Check order status in order table against the transaction id or order id.
         $order_details = DB::table('subscription_payments')
             ->where('transaction_id', $tran_id)
-            ->select('transaction_id', 'status', 'currency', 'amount', 'email')
+            ->select('transaction_id', 'status', 'currency', 'amount', 'email', 'is_extension_payment')
             ->first();
 
         $user = User::where('email', $order_details->email)->first();
@@ -116,8 +118,12 @@ class SslCommerzPaymentController extends Controller
 
                 // update subscription status
                 $payment = SubscriptionPayment::where('transaction_id', $tran_id)->first();
-                $subscription = Subscription::find($payment->subscription_id);
-                $subscription->is_paid = 1;
+                $subscription = Subscription::with('package_details')->find($payment->subscription_id);
+                if ($payment->is_extension_payment == 1) {
+                    $subscription->ending_date = Carbon::parse($subscription->ending_date)->addDays($subscription->package_details->duration);
+                } else {
+                    $subscription->is_paid = 1;
+                }
                 $subscription->save();
                 // echo "<br >Transaction is successfully Completed";
 
@@ -145,7 +151,7 @@ class SslCommerzPaymentController extends Controller
 
         $order_details = DB::table('subscription_payments')
             ->where('transaction_id', $tran_id)
-            ->select('transaction_id', 'status', 'currency', 'amount', 'email')
+            ->select('transaction_id', 'status', 'currency', 'amount', 'email', 'is_extension_payment')
             ->first();
 
         $user = User::where('email', $order_details->email)->first();
@@ -177,7 +183,7 @@ class SslCommerzPaymentController extends Controller
 
         $order_details = DB::table('subscription_payments')
             ->where('transaction_id', $tran_id)
-            ->select('transaction_id', 'status', 'currency', 'amount', 'email')
+            ->select('transaction_id', 'status', 'currency', 'amount', 'email', 'is_extension_payment')
             ->first();
 
         $user = User::where('email', $order_details->email)->first();
@@ -211,7 +217,7 @@ class SslCommerzPaymentController extends Controller
             #Check order status in order tabel against the transaction id or order id.
             $order_details = DB::table('subscription_payments')
                 ->where('transaction_id', $tran_id)
-                ->select('transaction_id', 'status', 'currency', 'amount', 'email')
+                ->select('transaction_id', 'status', 'currency', 'amount', 'email', 'is_extension_payment')
                 ->first();
 
             $user = User::where('email', $order_details->email)->first();

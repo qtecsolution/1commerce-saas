@@ -33,10 +33,13 @@
                                     </strong>.
 
                                     @if ($subscription->is_paid == 1)
-                                        <form action="javascript:void(0);" method="POST">
+                                        <form action="{{ route('ssl-commerz.pay') }}" method="POST">
                                             @csrf
                                             <input type="hidden" name="subscription_id" value="{{ $subscription->id }}">
-                                            <button type="submit" class="btn btn-sm rounded-pill btn-secondary">
+                                            <input type="hidden" name="is_extension_payment" value="true">
+
+                                            <button type="submit" class="btn btn-sm rounded-pill btn-secondary confirmable"
+                                                data-confirmation-text="Are you sure you want to extend the subscription period for this package to {{ @$subscription->package_details->duration }} days ?">
                                                 Extend Subscription
                                             </button>
                                         </form>
@@ -52,7 +55,7 @@
                             <form action="{{ route('ssl-commerz.pay') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="subscription_id" value="{{ $subscription->id }}">
-                                <button type="submit" class="btn btn-sm btn-primary rounded-pill confirmable"
+                                <button type="submit" class="btn btn-sm btn-success rounded-pill confirmable"
                                     data-confirmation-text="Are you sure you want to make payment ?">
                                     Complete Payment
                                 </button>

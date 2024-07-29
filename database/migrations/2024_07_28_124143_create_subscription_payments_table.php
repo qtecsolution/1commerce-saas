@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('transaction_id');
             $table->string('currency');
+            $table->boolean('is_extension_payment')->default(false);
             $table->timestamps();
         });
     }
