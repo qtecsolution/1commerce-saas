@@ -102,7 +102,11 @@ class UlaunchTemplateController extends Controller
 
     public function updateStepsArea(Request $request)
     {
-        $steps = json_decode($request->input('items'));
+        $validatedData = $request->validate([
+            'items' => 'required|json',
+        ]);
+
+        $steps = json_decode($validatedData['items']);
 
         foreach ($steps as $key => $step) {
             if (isset($step->id)) {
@@ -124,6 +128,7 @@ class UlaunchTemplateController extends Controller
             }
         }
 
+        // Retrieve the updated steps
         $steps = $this->template->steps;
 
         return response()->json([
@@ -189,7 +194,7 @@ class UlaunchTemplateController extends Controller
 
         return response()->json([
             'message' => 'Features Area Updated.',
-            'data' => [$this->template->features_area, $features]
+            'data' => $features
         ]);
     }
 
@@ -216,12 +221,12 @@ class UlaunchTemplateController extends Controller
         }
 
         if (isset($abouts[0])) {
-            $abouts[0]->image = $uploadedPaths[0] ?? $decodedData->items[0]->image;
+            $abouts[0]->image = $uploadedPaths[0] ?? $decodedData->items[0]->image ?? null;
             $abouts[0]->image_raw = null;
         }
 
         if (isset($abouts[1])) {
-            $abouts[1]->image = $uploadedPaths[1] ?? $decodedData->items[1]->image;
+            $abouts[1]->image = $uploadedPaths[1] ?? $decodedData->items[1]->image ?? null;
             $abouts[1]->image_raw = null;
         }
 

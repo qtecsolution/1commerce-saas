@@ -154,7 +154,11 @@
                         <div class="step-container">
                             <div class="row">
                                 <!-- Step start -->
-                                <div class="col-md-4 col-sm-4" v-for="(step, index) in steps" :key="index">
+                                <div
+                                    class="col-md-4 col-sm-4"
+                                    v-for="(step, index) in steps"
+                                    :key="index"
+                                >
                                     <div
                                         class="step-single wow fadeInUp"
                                         data-wow-delay="0.2s"
@@ -249,7 +253,10 @@
                             v-for="(item, index) in featureList[0]"
                         >
                             <div class="icon-box">
-                                <iconPicker v-model="item.icon" @update="updateFeaturesArea" />
+                                <iconPicker
+                                    v-model="item.icon"
+                                    @update="updateFeaturesArea"
+                                />
                             </div>
 
                             <h3
@@ -321,7 +328,8 @@
                         >
                             <div class="icon-box">
                                 <iconPicker
-                                    v-model="item.icon" @update="updateFeaturesArea"
+                                    v-model="item.icon"
+                                    @update="updateFeaturesArea"
                                 />
                             </div>
 
@@ -653,184 +661,68 @@
                 </div>
                 <!-- Section Title end -->
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <div
-                            class="swiper testimonials-slider swiper-coverflow swiper-3d swiper-initialized swiper-horizontal swiper-watch-progress"
-                        >
-                            <div
-                                class="swiper-wrapper"
-                                id="swiper-wrapper-7863bf9ad17d8bbf"
-                                aria-live="off"
-                                style="
-                                    cursor: grab;
-                                    transition-duration: 0ms;
-                                    transform: translate3d(0px, 0px, 0px);
-                                "
-                            >
-                                <!-- Client Review slide start -->
-                                <div
-                                    class="swiper-slide swiper-slide-visible swiper-slide-prev"
-                                    style="
-                                        width: 378.667px;
-                                        transition-duration: 0ms;
-                                        transform: translate3d(0px, 0px, -100px)
-                                            rotateX(0deg) rotateY(50deg)
-                                            scale(1);
-                                        z-index: 0;
-                                    "
-                                    role="group"
-                                    aria-label="1 / 6"
-                                >
-                                    <div class="testimonial-slide">
-                                        <div class="author-info">
-                                            <!-- <img
-                                                src="{{ asset($template['assets'] . '/images/author-1.jpg') }}"
-                                                alt=""
-                                            /> -->
-                                        </div>
-
-                                        <div class="testimonial-entry">
-                                            <p>
-                                                Lorem Ipsum is simply dummy text
-                                                of the printing and typesetting
-                                                industry. Lorem Ipsum has been
-                                                the industry's standard dummy
-                                                text ever since the 1500s, when
-                                                an unknown printer took a galley
-                                                of type and scrambled it to make
-                                                a type specimen book.
-                                            </p>
-
-                                            <h4>
-                                                Harshad Patel
-                                                <span>/ Web Designer</span>
-                                            </h4>
-                                        </div>
-                                    </div>
+                <div class="row mt-5">
+                    <!-- Client Review slide start -->
+                    <div
+                        class="col-md-4"
+                        v-for="(testimonial, index) in testimonials"
+                        :key="index"
+                    >
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="author-info">
+                                    <img
+                                        :src="testimonial.image"
+                                        :alt="user_template.company_name"
+                                    />
                                 </div>
-                                <!-- Client Review slide end -->
 
-                                <!-- Client Review slide start -->
-                                <div
-                                    class="swiper-slide swiper-slide-visible swiper-slide-active"
-                                    style="
-                                        width: 378.667px;
-                                        transition-duration: 0ms;
-                                        transform: translate3d(
-                                                0px,
-                                                0px,
-                                                -0.0880282px
+                                <div class="testimonial-entry mt-5">
+                                    <p
+                                        contenteditable="true"
+                                        @blur="
+                                            updateTestimonialItem(
+                                                $event,
+                                                index,
+                                                'review'
                                             )
-                                            rotateX(0deg) rotateY(-0.0440141deg)
-                                            scale(1);
-                                        z-index: 1;
-                                    "
-                                    role="group"
-                                    aria-label="2 / 6"
-                                >
-                                    <div class="testimonial-slide">
-                                        <div class="author-info">
-                                            <!-- <img
-                                                src="{{ asset($template['assets'] . '/images/author-2.jpg') }}"
-                                                alt=""
-                                            /> -->
-                                        </div>
+                                        "
+                                    >
+                                        {{ testimonial.review }}
+                                    </p>
 
-                                        <div class="testimonial-entry">
-                                            <p>
-                                                Lorem Ipsum is simply dummy text
-                                                of the printing and typesetting
-                                                industry. Lorem Ipsum has been
-                                                the industry's standard dummy
-                                                text ever since the 1500s, when
-                                                an unknown printer took a galley
-                                                of type and scrambled it to make
-                                                a type specimen book.
-                                            </p>
-
-                                            <h4>
-                                                Jasmin Joshph
-                                                <span>/ Front end</span>
-                                            </h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Client Review slide end -->
-
-                                <!-- Client Review slide start -->
-                                <div
-                                    class="swiper-slide swiper-slide-visible swiper-slide-next"
-                                    style="
-                                        width: 378.667px;
-                                        transition-duration: 0ms;
-                                        transform: translate3d(
-                                                0px,
-                                                0px,
-                                                -99.912px
+                                    <h4
+                                        class="d-inline"
+                                        contenteditable="true"
+                                        @blur="
+                                            updateTestimonialItem(
+                                                $event,
+                                                index,
+                                                'reviewer_name'
                                             )
-                                            rotateX(0deg) rotateY(-49.956deg)
-                                            scale(1);
-                                        z-index: 0;
-                                    "
-                                    role="group"
-                                    aria-label="3 / 6"
-                                >
-                                    <div class="testimonial-slide">
-                                        <div class="author-info">
-                                            <!-- <img
-                                                src="{{ asset($template['assets'] . '/images/author-3.jpg') }}"
-                                                alt=""
-                                            /> -->
-                                        </div>
-
-                                        <div class="testimonial-entry">
-                                            <p>
-                                                Lorem Ipsum is simply dummy text
-                                                of the printing and typesetting
-                                                industry. Lorem Ipsum has been
-                                                the industry's standard dummy
-                                                text ever since the 1500s, when
-                                                an unknown printer took a galley
-                                                of type and scrambled it to make
-                                                a type specimen book.
-                                            </p>
-
-                                            <h4>
-                                                Sweta Silva
-                                                <span>/ Back end</span>
-                                            </h4>
-                                        </div>
-                                    </div>
+                                        "
+                                    >
+                                        {{ testimonial.reviewer_name }}
+                                    </h4>
+                                    <span class="d-inline mx-1">/</span>
+                                    <p
+                                        class="d-inline"
+                                        contenteditable="true"
+                                        @blur="
+                                            updateTestimonialItem(
+                                                $event,
+                                                index,
+                                                'reviewer_bio'
+                                            )
+                                        "
+                                    >
+                                        {{ testimonial.reviewer_bio }}
+                                    </p>
                                 </div>
-                                <!-- Client Review slide end -->
-                            </div>
-
-                            <div
-                                class="testimonial-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"
-                            >
-                                <span
-                                    class="swiper-pagination-bullet"
-                                    tabindex="0"
-                                    role="button"
-                                    aria-label="Go to slide 1"
-                                ></span
-                                ><span
-                                    class="swiper-pagination-bullet swiper-pagination-bullet-active"
-                                    tabindex="0"
-                                    role="button"
-                                    aria-label="Go to slide 2"
-                                    aria-current="true"
-                                ></span
-                                ><span
-                                    class="swiper-pagination-bullet"
-                                    tabindex="0"
-                                    role="button"
-                                    aria-label="Go to slide 3"
-                                ></span>
                             </div>
                         </div>
                     </div>
+                    <!-- Client Review slide end -->
                 </div>
             </div>
         </section>
@@ -1167,7 +1059,7 @@ export default {
                     description:
                         "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                     icon: "flaticon-shopping-cart",
-                }
+                },
             ],
 
             // feature area
@@ -1253,7 +1145,29 @@ export default {
             // testimonial area
             testimonialSubTitle: "FEEDBACK",
             testimonialTitle: "What our clients say",
-            testimonials: [],
+            testimonials: [
+                {
+                    review: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+                    reviewer_name: "Harshad Patel",
+                    reviewer_bio: "Customer",
+                    image: "",
+                    image_raw: [],
+                },
+                {
+                    review: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+                    reviewer_name: "Harshad Patel",
+                    reviewer_bio: "Customer",
+                    image: "",
+                    image_raw: [],
+                },
+                {
+                    review: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+                    reviewer_name: "Harshad Patel",
+                    reviewer_bio: "Customer",
+                    image: "",
+                    image_raw: [],
+                },
+            ],
 
             // info area
             infoSubTitle: "GET IT TODAY",
@@ -1287,41 +1201,72 @@ export default {
         this.apiUrl = `${window.location.origin}/app/templates/ulaunch`;
 
         // menu area
-        const menuArea = this.template.menu_area != null ? JSON.parse(this.template.menu_area) : null;
+        const menuArea =
+            this.template.menu_area != null
+                ? JSON.parse(this.template.menu_area)
+                : null;
         this.menus = menuArea != null ? menuArea : this.menus;
 
         // hero area
-        const heroArea = this.template.hero_area != null ? JSON.parse(this.template.hero_area) : null;
+        const heroArea =
+            this.template.hero_area != null
+                ? JSON.parse(this.template.hero_area)
+                : null;
 
         this.heroTitle = heroArea != null ? heroArea.title : this.heroTitle;
-        this.heroDescription = heroArea != null ? heroArea.description : this.heroDescription;
-        this.heroImage = heroArea != null ? this.imageSource(heroArea.image, 'storage') : this.imageSource("images/header.png");
-        this.heroButton = heroArea != null ? JSON.parse(heroArea.button) : {
-            title: "Product Details",
-            url: "#features",
-            color: "transparent",
-            text_color: "white",
-            border_color: "white",
-            hover_color: "white",
-            hover_text_color: "black",
-            hover_border_color: "white",
-        };
+        this.heroDescription =
+            heroArea != null ? heroArea.description : this.heroDescription;
+        this.heroImage =
+            heroArea != null
+                ? this.imageSource(heroArea.image, "storage")
+                : this.imageSource("images/header.png");
+        this.heroButton =
+            heroArea != null
+                ? JSON.parse(heroArea.button)
+                : {
+                      title: "Product Details",
+                      url: "#features",
+                      color: "transparent",
+                      text_color: "white",
+                      border_color: "white",
+                      hover_color: "white",
+                      hover_text_color: "black",
+                      hover_border_color: "white",
+                  };
 
         // steps area
-        this.steps = this.template.steps.length > 0 ? this.template.steps : this.steps;
+        this.steps =
+            this.template.steps.length > 0 ? this.template.steps : this.steps;
 
         // features area
-        const featuresArea = this.template.features_area != null ? JSON.parse(this.template.features_area) : null;
+        const featuresArea =
+            this.template.features_area != null
+                ? JSON.parse(this.template.features_area)
+                : null;
 
-        this.featureTitle = featuresArea != null ? featuresArea.title : this.featureTitle;
-        this.featureSubTitle = featuresArea != null ? featuresArea.sub_title : this.featureSubTitle;
-        this.featureImage = featuresArea != null && featuresArea.image != null ? this.imageSource(featuresArea.image, 'storage') : this.imageSource("images/feature.png");
-        this.features = this.template.features.length > 0 ? this.template.features : this.features;
+        this.featureTitle =
+            featuresArea != null ? featuresArea.title : this.featureTitle;
+        this.featureSubTitle =
+            featuresArea != null
+                ? featuresArea.sub_title
+                : this.featureSubTitle;
+        this.featureImage =
+            featuresArea != null && featuresArea.image != null
+                ? this.imageSource(featuresArea.image, "storage")
+                : this.imageSource("images/feature.png");
+        this.features =
+            this.template.features.length > 0
+                ? this.template.features
+                : this.features;
 
         // about area
-        const aboutArea = this.template.about_area != null ? JSON.parse(this.template.about_area) : null;
+        const aboutArea =
+            this.template.about_area != null
+                ? JSON.parse(this.template.about_area)
+                : null;
         this.aboutTitle = aboutArea != null ? aboutArea.title : this.aboutTitle;
-        this.aboutSubTitle = aboutArea != null ? aboutArea.sub_title : this.aboutSubTitle;
+        this.aboutSubTitle =
+            aboutArea != null ? aboutArea.sub_title : this.aboutSubTitle;
         this.abouts = aboutArea != null ? aboutArea.items : this.abouts;
 
         if (aboutArea == null) {
@@ -1335,7 +1280,7 @@ export default {
                 hover_text_color: "white",
                 hover_border_color: "#20bea7",
             };
-    
+
             this.abouts[1].button = {
                 title: "Purchase Now",
                 url: "#order",
@@ -1348,39 +1293,75 @@ export default {
             };
         }
 
-        this.abouts[0].image = aboutArea != null && aboutArea.items[0].image != null ? this.imageSource(aboutArea.items[0].image, 'storage') : this.imageSource("images/about-1.png");
-        this.abouts[1].image = aboutArea != null && aboutArea.items[1].image != null ? this.imageSource(aboutArea.items[1].image, 'storage') : this.imageSource("images/about-2.png");
+        this.abouts[0].image =
+            aboutArea != null && aboutArea.items[0].image != null
+                ? this.imageSource(aboutArea.items[0].image, "storage")
+                : this.imageSource("images/about-1.png");
+        this.abouts[1].image =
+            aboutArea != null && aboutArea.items[1].image != null
+                ? this.imageSource(aboutArea.items[1].image, "storage")
+                : this.imageSource("images/about-2.png");
 
         // info area
-        const infoArea = this.template.info_area != null ? JSON.parse(this.template.info_area) : null;
+        const infoArea =
+            this.template.info_area != null
+                ? JSON.parse(this.template.info_area)
+                : null;
 
         this.infoTitle = infoArea != null ? infoArea.title : this.infoTitle;
-        this.infoSubTitle = infoArea != null ? infoArea.sub_title : this.infoSubTitle;
+        this.infoSubTitle =
+            infoArea != null ? infoArea.sub_title : this.infoSubTitle;
         this.infoVideo = infoArea != null ? infoArea.video : this.infoVideo;
-        this.infoButton = infoArea != null ? infoArea.button : {
-            title: "Purchase Now",
-            url: "#order",
-            color: "transparent",
-            text_color: "#20bea7",
-            border_color: "#20bea7",
-            hover_color: "#20bea7",
-            hover_text_color: "white",
-            hover_border_color: "#20bea7",
-        };
+        this.infoButton =
+            infoArea != null
+                ? infoArea.button
+                : {
+                      title: "Purchase Now",
+                      url: "#order",
+                      color: "transparent",
+                      text_color: "#20bea7",
+                      border_color: "#20bea7",
+                      hover_color: "#20bea7",
+                      hover_text_color: "white",
+                      hover_border_color: "#20bea7",
+                  };
 
         // testimonials area
-        const testimonialsArea = this.template.testimonials_area != null ? JSON.parse(this.template.testimonials_area) : null;
-        this.testimonialTitle = testimonialsArea != null ? testimonialsArea.title : this.testimonialTitle;
-        this.testimonialSubTitle = testimonialsArea != null ? testimonialsArea.sub_title : this.testimonialSubTitle;
+        const testimonialsArea =
+            this.template.testimonials_area != null
+                ? JSON.parse(this.template.testimonials_area)
+                : null;
+
+        this.testimonialTitle =
+            testimonialsArea != null
+                ? testimonialsArea.title
+                : this.testimonialTitle;
+        this.testimonialSubTitle =
+            testimonialsArea != null
+                ? testimonialsArea.sub_title
+                : this.testimonialSubTitle;
+
+        console.log(this.testimonials);
+        this.testimonials[0].image = this.imageSource("images/author-1.jpg");
+        this.testimonials[1].image = this.imageSource("images/author-2.jpg");
+        this.testimonials[2].image = this.imageSource("images/author-3.jpg");
 
         // order area
-        const orderArea = this.template.order_area != null ? JSON.parse(this.template.order_area) : null;
+        const orderArea =
+            this.template.order_area != null
+                ? JSON.parse(this.template.order_area)
+                : null;
         this.orderTitle = orderArea != null ? orderArea.title : this.orderTitle;
-        this.orderSubTitle = orderArea != null ? orderArea.sub_title : this.orderSubTitle;
+        this.orderSubTitle =
+            orderArea != null ? orderArea.sub_title : this.orderSubTitle;
 
         // footer area
-        const footerArea = this.template.footer_area != null ? JSON.parse(this.template.footer_area) : null;
-        this.footerText = footerArea != null ? footerArea.text : this.footerText;
+        const footerArea =
+            this.template.footer_area != null
+                ? JSON.parse(this.template.footer_area)
+                : null;
+        this.footerText =
+            footerArea != null ? footerArea.text : this.footerText;
     },
     methods: {
         updateContent(event) {
@@ -1444,6 +1425,8 @@ export default {
                         data.image_raw !== null && data.image_raw !== ""
                             ? data.image_raw
                             : this.abouts[1].image_raw;
+
+                    this.updateAboutArea();
 
                     break;
 
@@ -1582,9 +1565,6 @@ export default {
         },
 
         updateStepsArea() {
-            // console.log(this.steps);
-            // return;
-
             const formData = new FormData();
             formData.append("items", JSON.stringify(this.steps));
 
@@ -1592,6 +1572,7 @@ export default {
                 .post(`${this.apiUrl}/update-steps-area`, formData)
                 .then((response) => {
                     console.log(response.data);
+                    this.steps = response.data.data;
                 })
                 .catch((error) => {
                     console.error(error);
@@ -1628,6 +1609,7 @@ export default {
                 })
                 .then((response) => {
                     console.log(response.data);
+                    this.features = response.data.data;
                 })
                 .catch((error) => {
                     console.error(error);
@@ -1702,7 +1684,7 @@ export default {
                 .post(`${this.apiUrl}/update-about-area`, formData, {
                     headers: {
                         "Content-Type": "multipart/form-data",
-                    },                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+                    },
                 })
                 .then((response) => {
                     console.log(response.data);
@@ -1722,13 +1704,27 @@ export default {
             this.updateTestimonialsArea();
         },
 
+        updateTestimonialItem(event, section, index) {
+            this.testimonials[index][section] = this.updateContent(event);
+            this.updateTestimonialsArea();
+        },
+
         updateTestimonialsArea() {
             const formData = new FormData();
             formData.append("title", this.testimonialTitle);
             formData.append("sub_title", this.testimonialSubTitle);
+            formData.append("items", JSON.stringify(this.testimonials));
+            
+            formData.append("image_1", this.testimonials[0].image_raw);
+            formData.append("image_2", this.testimonials[1].image_raw);
+            formData.append("image_3", this.testimonials[2].image_raw);
 
             axios
-                .post(`${this.apiUrl}/update-testimonials-area`, formData)
+                .post(`${this.apiUrl}/update-testimonials-area`, formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                })
                 .then((response) => {
                     console.log(response.data);
                 })
