@@ -59,7 +59,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <a href="" class="logo">LP-Gen</a>
+                    <a href="" class="logo">{{ env('APP_NAME') }}</a>
                 </div>
                 <div class="col-md-8">
                     <ul>

@@ -59,7 +59,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <a href="" class="logo">LP-Gen</a>
+                    <a href="" class="logo">{{ env('APP_NAME') }}</a>
                 </div>
                 <div class="col-md-8">
                     <ul>
@@ -81,8 +81,10 @@
                 <div class="hero_wrapper row align-items-center justify-content-center">
                     <div class="col-md-12">
                         <div class="hero_content">
-                            <h1>Welcome to LP-Gen</h1>
-                            <p class="mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, voluptatibus.</p>
+                            <h1>Welcome to {{ env('APP_NAME') }}</h1>
+                            <p class="mb-5">
+                                This project is developed using PHP, Laravel, and Vue.js, specifically designed for small and medium-sized enterprises (SMEs) to create and manage landing pages for their niche products. With this platform, users can effortlessly choose and customize their landing pages in real-time with just a few clicks.
+                            </p>
 
                             <a href="{{ route('web.packages') }}" class="btn btn-primary btn-lg">Check Our Packages</a>
                         </div>
