@@ -64,6 +64,7 @@
 
         <!-- Banner Section Starts -->
         <section class="banner parallaxie position-relative" id="home">
+            <ColorPicker section="hero" @update="updateColor" :style="{ margin: '100px 0 0 10px' }" />
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
@@ -1025,6 +1026,7 @@
 import ButtonModal from "./components/button-modal.vue";
 import ImageModal from "./components/image-modal.vue";
 import IconPicker from "../../icon-picker/IconPicker.vue";
+import ColorPicker from "./components/color-picker.vue";
 
 export default {
     name: "Ulaunch",
@@ -1033,6 +1035,7 @@ export default {
         ImageModal,
         ButtonModal,
         IconPicker,
+        ColorPicker
     },
     data() {
         return {
@@ -1070,6 +1073,7 @@ export default {
             heroButton: [],
             heroImage: "",
             heroImageRaw: [],
+            heroBg: "#20bea7",
 
             // steps area
             steps: [
@@ -1098,6 +1102,7 @@ export default {
             featureSubTitle: "Explore the awesome",
             featureImage: "",
             featureImageRaw: "",
+            featureBg: "#f7f7f7",
             features: [
                 {
                     title: "Dual Processor",
@@ -1152,6 +1157,7 @@ export default {
             // about area
             aboutTitle: "About Product",
             aboutSubTitle: "BEAUTY MEETS FUNCTIONALITY",
+            aboutBg: "#ffffff",
             abouts: [
                 {
                     title: "Different preset Signup & Order forms ready to use.",
@@ -1176,6 +1182,7 @@ export default {
             // testimonial area
             testimonialSubTitle: "FEEDBACK",
             testimonialTitle: "What our clients say",
+            testimonialBg: "#20bea7",
             testimonials: [
                 {
                     review: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
@@ -1207,13 +1214,16 @@ export default {
                 "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.",
             infoButton: [],
             infoVideo: "https://youtube.com",
+            infoBg: "#f7f7f7",
 
             // order area
             orderTitle: "Order Now",
             orderSubTitle: "GET YOUR PRODUCT",
+            orderBg: "#ffffff",
 
             // footer area
             footerText: "Copyright © 2024, All Rights Reserved.",
+            footerBg: "#263238"
         };
     },
     computed: {
