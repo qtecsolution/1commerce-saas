@@ -306,13 +306,13 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="" class="form-label">Facebook Varification</label>
-                                        <textarea name="fb_varification_key" id="" rows="7" class="form-control">{{ $trackingApi->fb_varification_key }}</textarea>
+                                        <textarea name="fb_varification_key" id="" rows="7" class="form-control">{{ @$trackingApi->fb_varification_key }}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="" class="form-label">Facebook Pixel</label>
-                                        <textarea name="fb_pixel_value" id="" rows="7" class="form-control">{{ $trackingApi->fb_pixel_value }}</textarea>
+                                        <textarea name="fb_pixel_value" id="" rows="7" class="form-control">{{ @$trackingApi->fb_pixel_value }}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -324,13 +324,13 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="" class="form-label">Google Tag Manager (Header)</label>
-                                        <textarea name="gtm_head_key" id="" rows="7" class="form-control">{{ $trackingApi->gtm_head_key }}</textarea>
+                                        <textarea name="gtm_head_key" id="" rows="7" class="form-control">{{ @$trackingApi->gtm_head_key }}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="" class="form-label">Google Tag Manager (Body)</label>
-                                        <textarea name="gtm_body_value" id="" rows="7" class="form-control">{{ $trackingApi->gtm_body_value }}</textarea>
+                                        <textarea name="gtm_body_value" id="" rows="7" class="form-control">{{ @$trackingApi->gtm_body_value }}</textarea>
                                     </div>
                                 </div>
                             </div>
