@@ -63,7 +63,7 @@
         <!-- Header Section Ends-->
 
         <!-- Banner Section Starts -->
-        <section class="banner parallaxie" id="home">
+        <section class="banner parallaxie position-relative" id="home">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
@@ -1479,6 +1479,7 @@ export default {
                             ? data.image_raw
                             : this.testimonials[0].reviewer_image_raw;
 
+                    // console.log('testimonial 1');
                     this.updateTestimonialsArea();
 
                     break;
@@ -1493,6 +1494,7 @@ export default {
                             ? data.image_raw
                             : this.testimonials[1].reviewer_image_raw;
 
+                    // console.log('testimonial 2');
                     this.updateTestimonialsArea();
 
                     break;
@@ -1507,6 +1509,7 @@ export default {
                             ? data.image_raw
                             : this.testimonials[2].reviewer_image_raw;
 
+                    // console.log('testimonial 3');
                     this.updateTestimonialsArea();
 
                     break;
@@ -1823,7 +1826,9 @@ export default {
                                       testimonial.reviewer_image,
                                       "storage"
                                   )
-                                : this.imageSource(defaultTestimonialImages[index]);
+                                : this.imageSource(
+                                      defaultTestimonialImages[index]
+                                  );
                     });
                 })
                 .catch((error) => {

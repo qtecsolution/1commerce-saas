@@ -47,9 +47,9 @@ export default {
         };
     },
     watch: {
-        image(newValue, oldValue) {
-            this.sendToParent();
-        },
+        // image(newValue, oldValue) {
+        //     this.sendToParent();
+        // },
     },
     methods: {
         sendToParent() {
