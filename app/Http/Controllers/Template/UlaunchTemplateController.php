@@ -248,19 +248,20 @@ class UlaunchTemplateController extends Controller
     {
         $testimonials = json_decode($request->input('items'));
 
+        // Update the testimonials area metadata
         $this->template->testimonials_area = json_encode([
             'title' => $request->input('title'),
             'sub_title' => $request->input('sub_title')
         ]);
         $this->template->save();
 
-        $uploadedPaths = [null, null, null];
+        $uploadedPaths = [];
         $images = ['image_1', 'image_2', 'image_3'];
 
         foreach ($images as $index => $image) {
             if ($request->hasFile($image)) {
-                if ($this->template->testimonials->count() > 0 && $this->template->testimonials[$index] && $this->template->testimonials[$index]->reviewer_image) {
-                    $oldImagePath = storage_path('app/public/' . $this->template->testimonials[$index]->reviewer_image ?? '');
+                if ($this->template->testimonials->count() > 0 && isset($this->template->testimonials[$index]) && $this->template->testimonials[$index]->reviewer_image) {
+                    $oldImagePath = storage_path('app/public/' . $this->template->testimonials[$index]->reviewer_image);
                     if (file_exists($oldImagePath)) {
                         unlink($oldImagePath);
                     }
@@ -269,19 +270,17 @@ class UlaunchTemplateController extends Controller
                 $uploadedPath = $request->file($image)->store('public/ulaunch');
                 $uploadedPaths[$index] = 'ulaunch/' . basename($uploadedPath);
             }
-
-            if (isset($testimonials[$index])) {
-                $testimonials[$index]->image = $uploadedPaths[$index] ?? $this->template->testimonials[$index]->reviewer_image ?? null;
-            }
         }
 
-        foreach ($testimonials as $key => $testimonial) {
+        foreach ($testimonials as $index => $testimonial) {
+            $testimonialImage = $uploadedPaths[$index] ?? $this->template->testimonials[$index]->reviewer_image ?? null;
+
             if (isset($testimonial->id)) {
                 TemplateTestimonial::where('id', $testimonial->id)->update([
                     'review' => $testimonial->review,
                     'reviewer_name' => $testimonial->reviewer_name,
                     'reviewer_bio' => $testimonial->reviewer_bio,
-                    'reviewer_image' => $testimonial->image
+                    'reviewer_image' => $testimonialImage
                 ]);
             } else {
                 TemplateTestimonial::create([
@@ -290,17 +289,17 @@ class UlaunchTemplateController extends Controller
                     'review' => $testimonial->review,
                     'reviewer_name' => $testimonial->reviewer_name,
                     'reviewer_bio' => $testimonial->reviewer_bio,
-                    'reviewer_image' => $testimonial->image
+                    'reviewer_image' => $testimonialImage
                 ]);
             }
         }
 
-        $this->template->push();
-        $testimonials = $this->template->testimonials;
+        // Ensure relationships are reloaded
+        $this->template->load('testimonials');
 
         return response()->json([
             'message' => 'Testimonial Area Updated.',
-            'data' => $testimonials
+            'data' => $this->template->testimonials
         ]);
     }
 

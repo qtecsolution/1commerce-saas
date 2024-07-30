@@ -1367,6 +1367,7 @@ export default {
             testimonialsArea != null
                 ? testimonialsArea.title
                 : this.testimonialTitle;
+
         this.testimonialSubTitle =
             testimonialsArea != null
                 ? testimonialsArea.sub_title
@@ -1376,30 +1377,23 @@ export default {
             this.template.testimonials.length > 0
                 ? this.template.testimonials
                 : this.testimonials;
-        this.testimonials[0].reviewer_image =
-            this.template.testimonials.length > 0 &&
-            this.template.testimonials[0].reviewer_image != null
-                ? this.imageSource(
-                      this.template.testimonials[0].reviewer_image,
-                      "storage"
-                  )
-                : this.imageSource("images/author-1.jpg");
-        this.testimonials[1].reviewer_image =
-            this.template.testimonials.length > 0 &&
-            this.template.testimonials[1].reviewer_image != null
-                ? this.imageSource(
-                      this.template.testimonials[1].reviewer_image,
-                      "storage"
-                  )
-                : this.imageSource("images/author-2.jpg");
-        this.testimonials[2].reviewer_image =
-            this.template.testimonials.length > 0 &&
-            this.template.testimonials[2].reviewer_image != null
-                ? this.imageSource(
-                      this.template.testimonials[2].reviewer_image,
-                      "storage"
-                  )
-                : this.imageSource("images/author-3.jpg");
+
+        const defaultImages = [
+            "images/author-1.jpg",
+            "images/author-2.jpg",
+            "images/author-3.jpg",
+        ];
+
+        this.testimonials.forEach((testimonial, index) => {
+            testimonial.reviewer_image =
+                this.template.testimonials.length > 0 &&
+                this.template.testimonials[index].reviewer_image != null
+                    ? this.imageSource(
+                          this.template.testimonials[index].reviewer_image,
+                          "storage"
+                      )
+                    : this.imageSource(defaultImages[index]);
+        });
 
         // order area
         const orderArea =
@@ -1826,27 +1820,22 @@ export default {
                 .then((response) => {
                     console.log(response.data);
                     this.testimonials = response.data.data;
-                    this.testimonials[0].reviewer_image =
-                        this.template.testimonials[0].reviewer_image != null
-                            ? this.imageSource(
-                                  this.template.testimonials[0].reviewer_image,
-                                  "storage"
-                              )
-                            : this.imageSource("images/author-1.jpg");
-                    this.testimonials[1].reviewer_image =
-                        this.template.testimonials[1].reviewer_image != null
-                            ? this.imageSource(
-                                  this.template.testimonials[1].reviewer_image,
-                                  "storage"
-                              )
-                            : this.imageSource("images/author-2.jpg");
-                    this.testimonials[2].reviewer_image =
-                        this.template.testimonials[2].reviewer_image != null
-                            ? this.imageSource(
-                                  this.template.testimonials[2].reviewer_image,
-                                  "storage"
-                              )
-                            : this.imageSource("images/author-3.jpg");
+
+                    const defaultImages = [
+                        "images/author-1.jpg",
+                        "images/author-2.jpg",
+                        "images/author-3.jpg",
+                    ];
+
+                    this.testimonials.forEach((testimonial, index) => {
+                        testimonial.reviewer_image =
+                            testimonial.reviewer_image != null
+                                ? this.imageSource(
+                                      testimonial.reviewer_image,
+                                      "storage"
+                                  )
+                                : this.imageSource(defaultImages[index]);
+                    });
                 })
                 .catch((error) => {
                     console.error(error);
