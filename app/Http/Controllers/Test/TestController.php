@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\SupportTicket;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Template\UlaunchTemplate;
 use Illuminate\Support\Facades\Auth;
 use Faker\Factory as Faker;
 
@@ -15,6 +16,9 @@ class TestController extends Controller
     // function to test
     public function index(Request $request)
     {
+        $template = UlaunchTemplate::with('testimonials')->get();
+        return $template;
+
         if ($request->fake_order > 0) {
             $faker = Faker::create();
             for ($i = 0; $i < $request->fake_order; $i++) {

@@ -104,6 +104,7 @@ class TemplateController extends Controller
             $template = UlaunchTemplate::with([
                 'steps',
                 'features',
+                'testimonials',
             ])->where('user_id', auth()->id())->first();
         }
 

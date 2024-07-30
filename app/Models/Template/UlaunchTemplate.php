@@ -24,4 +24,10 @@ class UlaunchTemplate extends Model
         return $this->hasMany(TemplateFeature::class, 'user_id', 'user_id')
             ->where('template_id', $this->templateId);
     }
+
+    public function testimonials()
+    {
+        return $this->hasMany(TemplateTestimonial::class, 'user_id', 'user_id')
+            ->where('template_id', $this->templateId);
+    }
 }

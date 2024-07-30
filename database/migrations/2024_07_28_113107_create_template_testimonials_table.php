@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('template_reviews', function (Blueprint $table) {
+        Schema::create('template_testimonials', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Template::class)->constanted()->cascadeOnDelete();
             $table->foreignIdFor(User::class)->constanted()->cascadeOnDelete();
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('template_reviews');
+        Schema::dropIfExists('template_testimonials');
     }
 };

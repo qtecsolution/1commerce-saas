@@ -671,8 +671,31 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="author-info">
+                                    <div
+                                        class="position-absolute top-0 end-0 mt-2"
+                                        title="Image settings"
+                                    >
+                                        <div
+                                            class="bg-primary text-white text-center rounded-circle cursor-pointer"
+                                            style="width: 30px; height: 30px"
+                                            data-bs-toggle="modal"
+                                            :data-bs-target="
+                                                '#testimonial' +
+                                                (index + 1) +
+                                                'ImageModal'
+                                            "
+                                        >
+                                            <i
+                                                class="fas fa-cog"
+                                                style="
+                                                    font-size: 20px;
+                                                    margin-top: 5px;
+                                                "
+                                            ></i>
+                                        </div>
+                                    </div>
                                     <img
-                                        :src="testimonial.image"
+                                        :src="testimonial.reviewer_image"
                                         :alt="user_template.company_name"
                                     />
                                 </div>
@@ -683,8 +706,8 @@
                                         @blur="
                                             updateTestimonialItem(
                                                 $event,
-                                                index,
-                                                'review'
+                                                'review',
+                                                index
                                             )
                                         "
                                     >
@@ -697,8 +720,8 @@
                                         @blur="
                                             updateTestimonialItem(
                                                 $event,
-                                                index,
-                                                'reviewer_name'
+                                                'reviewer_name',
+                                                index
                                             )
                                         "
                                     >
@@ -711,8 +734,8 @@
                                         @blur="
                                             updateTestimonialItem(
                                                 $event,
-                                                index,
-                                                'reviewer_bio'
+                                                'reviewer_bio',
+                                                index
                                             )
                                         "
                                     >
@@ -962,6 +985,14 @@
             section="about-2"
             @update="updateImage"
         />
+        <ImageModal
+            v-for="(testimonial, index) in testimonials"
+            :key="index"
+            :modalId="'testimonial' + (index + 1) + 'ImageModal'"
+            :modalTitle="'Testimonial Image ' + (index + 1)"
+            :section="'testimonial-' + (index + 1)"
+            @update="updateImage"
+        />
 
         <ButtonModal
             modalId="heroButtonModal"
@@ -1150,22 +1181,22 @@ export default {
                     review: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
                     reviewer_name: "Harshad Patel",
                     reviewer_bio: "Customer",
-                    image: "",
-                    image_raw: [],
+                    reviewr_image: "",
+                    reviewer_image_raw: [],
                 },
                 {
                     review: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
                     reviewer_name: "Harshad Patel",
                     reviewer_bio: "Customer",
-                    image: "",
-                    image_raw: [],
+                    reviewr_image: "",
+                    reviewer_image_raw: [],
                 },
                 {
                     review: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
                     reviewer_name: "Harshad Patel",
                     reviewer_bio: "Customer",
-                    image: "",
-                    image_raw: [],
+                    reviewr_image: "",
+                    reviewer_image_raw: [],
                 },
             ],
 
@@ -1238,7 +1269,7 @@ export default {
         this.steps =
             this.template.steps.length > 0 ? this.template.steps : this.steps;
 
-        // features area
+        // feature area
         const featuresArea =
             this.template.features_area != null
                 ? JSON.parse(this.template.features_area)
@@ -1326,7 +1357,7 @@ export default {
                       hover_border_color: "#20bea7",
                   };
 
-        // testimonials area
+        // testimonial area
         const testimonialsArea =
             this.template.testimonials_area != null
                 ? JSON.parse(this.template.testimonials_area)
@@ -1341,10 +1372,34 @@ export default {
                 ? testimonialsArea.sub_title
                 : this.testimonialSubTitle;
 
-        console.log(this.testimonials);
-        this.testimonials[0].image = this.imageSource("images/author-1.jpg");
-        this.testimonials[1].image = this.imageSource("images/author-2.jpg");
-        this.testimonials[2].image = this.imageSource("images/author-3.jpg");
+        this.testimonials =
+            this.template.testimonials.length > 0
+                ? this.template.testimonials
+                : this.testimonials;
+        this.testimonials[0].reviewer_image =
+            this.template.testimonials.length > 0 &&
+            this.template.testimonials[0].reviewer_image != null
+                ? this.imageSource(
+                      this.template.testimonials[0].reviewer_image,
+                      "storage"
+                  )
+                : this.imageSource("images/author-1.jpg");
+        this.testimonials[1].reviewer_image =
+            this.template.testimonials.length > 0 &&
+            this.template.testimonials[1].reviewer_image != null
+                ? this.imageSource(
+                      this.template.testimonials[1].reviewer_image,
+                      "storage"
+                  )
+                : this.imageSource("images/author-2.jpg");
+        this.testimonials[2].reviewer_image =
+            this.template.testimonials.length > 0 &&
+            this.template.testimonials[2].reviewer_image != null
+                ? this.imageSource(
+                      this.template.testimonials[2].reviewer_image,
+                      "storage"
+                  )
+                : this.imageSource("images/author-3.jpg");
 
         // order area
         const orderArea =
@@ -1365,7 +1420,8 @@ export default {
     },
     methods: {
         updateContent(event) {
-            const rawContent = event.target.innerHTML;
+            const rawContent =
+                event.target.innerHTML ?? event.target.textContent;
             const sanitizedContent = rawContent.replace(/&nbsp;/g, " ");
             // const updatedContent = sanitizedContent.trim() + " ";
 
@@ -1427,6 +1483,48 @@ export default {
                             : this.abouts[1].image_raw;
 
                     this.updateAboutArea();
+
+                    break;
+
+                case "testimonial-1":
+                    this.testimonials[0].reviewer_image =
+                        data.image !== null && data.image !== ""
+                            ? data.image
+                            : this.testimonials[0].reviewer_image;
+                    this.testimonials[0].reviewer_image_raw =
+                        data.image_raw !== null && data.image_raw !== ""
+                            ? data.image_raw
+                            : this.testimonials[0].reviewer_image_raw;
+
+                    this.updateTestimonialsArea();
+
+                    break;
+
+                case "testimonial-2":
+                    this.testimonials[1].reviewer_image =
+                        data.image !== null && data.image !== ""
+                            ? data.image
+                            : this.testimonials[1].reviewer_image;
+                    this.testimonials[1].reviewer_image_raw =
+                        data.image_raw !== null && data.image_raw !== ""
+                            ? data.image_raw
+                            : this.testimonials[1].reviewer_image_raw;
+
+                    this.updateTestimonialsArea();
+
+                    break;
+
+                case "testimonial-3":
+                    this.testimonials[2].reviewer_image =
+                        data.image !== null && data.image !== ""
+                            ? data.image
+                            : this.testimonials[2].reviewer_image;
+                    this.testimonials[2].reviewer_image_raw =
+                        data.image_raw !== null && data.image_raw !== ""
+                            ? data.image_raw
+                            : this.testimonials[2].reviewer_image_raw;
+
+                    this.updateTestimonialsArea();
 
                     break;
 
@@ -1714,10 +1812,10 @@ export default {
             formData.append("title", this.testimonialTitle);
             formData.append("sub_title", this.testimonialSubTitle);
             formData.append("items", JSON.stringify(this.testimonials));
-            
-            formData.append("image_1", this.testimonials[0].image_raw);
-            formData.append("image_2", this.testimonials[1].image_raw);
-            formData.append("image_3", this.testimonials[2].image_raw);
+
+            formData.append("image_1", this.testimonials[0].reviewer_image_raw);
+            formData.append("image_2", this.testimonials[1].reviewer_image_raw);
+            formData.append("image_3", this.testimonials[2].reviewer_image_raw);
 
             axios
                 .post(`${this.apiUrl}/update-testimonials-area`, formData, {
@@ -1727,6 +1825,28 @@ export default {
                 })
                 .then((response) => {
                     console.log(response.data);
+                    this.testimonials = response.data.data;
+                    this.testimonials[0].reviewer_image =
+                        this.template.testimonials[0].reviewer_image != null
+                            ? this.imageSource(
+                                  this.template.testimonials[0].reviewer_image,
+                                  "storage"
+                              )
+                            : this.imageSource("images/author-1.jpg");
+                    this.testimonials[1].reviewer_image =
+                        this.template.testimonials[1].reviewer_image != null
+                            ? this.imageSource(
+                                  this.template.testimonials[1].reviewer_image,
+                                  "storage"
+                              )
+                            : this.imageSource("images/author-2.jpg");
+                    this.testimonials[2].reviewer_image =
+                        this.template.testimonials[2].reviewer_image != null
+                            ? this.imageSource(
+                                  this.template.testimonials[2].reviewer_image,
+                                  "storage"
+                              )
+                            : this.imageSource("images/author-3.jpg");
                 })
                 .catch((error) => {
                     console.error(error);
