@@ -1291,47 +1291,36 @@ export default {
                 : this.features;
 
         // about area
-        const aboutArea =
-            this.template.about_area != null
-                ? JSON.parse(this.template.about_area)
-                : null;
-        this.aboutTitle = aboutArea != null ? aboutArea.title : this.aboutTitle;
-        this.aboutSubTitle =
-            aboutArea != null ? aboutArea.sub_title : this.aboutSubTitle;
-        this.abouts = aboutArea != null ? aboutArea.items : this.abouts;
+        const aboutArea = this.template.about_area
+            ? JSON.parse(this.template.about_area)
+            : null;
 
-        if (aboutArea == null) {
-            this.abouts[0].button = {
-                title: "Purchase Now",
-                url: "#order",
-                color: "transparent",
-                text_color: "#20bea7",
-                border_color: "#20bea7",
-                hover_color: "#20bea7",
-                hover_text_color: "white",
-                hover_border_color: "#20bea7",
-            };
+        this.aboutTitle = aboutArea?.title || this.aboutTitle;
+        this.aboutSubTitle = aboutArea?.sub_title || this.aboutSubTitle;
+        this.abouts = aboutArea?.items || this.abouts;
 
-            this.abouts[1].button = {
-                title: "Purchase Now",
-                url: "#order",
-                color: "transparent",
-                text_color: "#20bea7",
-                border_color: "#20bea7",
-                hover_color: "#20bea7",
-                hover_text_color: "white",
-                hover_border_color: "#20bea7",
-            };
+        const defaultButton = {
+            title: "Purchase Now",
+            url: "#order",
+            color: "transparent",
+            text_color: "#20bea7",
+            border_color: "#20bea7",
+            hover_color: "#20bea7",
+            hover_text_color: "white",
+            hover_border_color: "#20bea7",
+        };
+
+        if (!aboutArea) {
+            this.abouts[0].button = defaultButton;
+            this.abouts[1].button = defaultButton;
         }
 
-        this.abouts[0].image =
-            aboutArea != null && aboutArea.items[0].image != null
-                ? this.imageSource(aboutArea.items[0].image, "storage")
-                : this.imageSource("images/about-1.png");
-        this.abouts[1].image =
-            aboutArea != null && aboutArea.items[1].image != null
-                ? this.imageSource(aboutArea.items[1].image, "storage")
-                : this.imageSource("images/about-2.png");
+        const defaultAboutImages = ["images/about-1.png", "images/about-2.png"];
+        this.abouts.forEach((about, index) => {
+            about.image = aboutArea?.items[index]?.image
+                ? this.imageSource(aboutArea.items[index].image, "storage")
+                : this.imageSource(defaultAboutImages[index]);
+        });
 
         // info area
         const infoArea =
@@ -1378,7 +1367,7 @@ export default {
                 ? this.template.testimonials
                 : this.testimonials;
 
-        const defaultImages = [
+        const defaultTestimonialImages = [
             "images/author-1.jpg",
             "images/author-2.jpg",
             "images/author-3.jpg",
@@ -1392,7 +1381,7 @@ export default {
                           this.template.testimonials[index].reviewer_image,
                           "storage"
                       )
-                    : this.imageSource(defaultImages[index]);
+                    : this.imageSource(defaultTestimonialImages[index]);
         });
 
         // order area
@@ -1821,7 +1810,7 @@ export default {
                     console.log(response.data);
                     this.testimonials = response.data.data;
 
-                    const defaultImages = [
+                    const defaultTestimonialImages = [
                         "images/author-1.jpg",
                         "images/author-2.jpg",
                         "images/author-3.jpg",
@@ -1834,7 +1823,7 @@ export default {
                                       testimonial.reviewer_image,
                                       "storage"
                                   )
-                                : this.imageSource(defaultImages[index]);
+                                : this.imageSource(defaultTestimonialImages[index]);
                     });
                 })
                 .catch((error) => {
