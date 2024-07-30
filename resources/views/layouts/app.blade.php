@@ -13,7 +13,7 @@
     <title>{{ config('app.name') }} | {{ $title }}</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ asset('assets/images/logo/favicon.png') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/images/logo/icon.png') }}">
 
     {{-- data table css --}}
     <link href="{{ asset('assets/vendors/datatables/dataTables.bootstrap.min.css') }}" rel="stylesheet">
