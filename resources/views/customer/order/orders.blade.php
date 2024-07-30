@@ -1,10 +1,30 @@
 @php
-    $title = 'Orders';
+    $title = 'All Orders';
+    if (isset($_GET['status'])) {
+        $title = orderStatusText($_GET['status']) . ' Orders';
+    }
 @endphp
 @extends('layouts.app')
 
 @section('page_content')
-    <div class="col-12">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex overflow-auto">
+                    <a href="{{ route('orders') }}"
+                        class="btn btn-sm btn-{{ request()->get('status') ? 'primary' : 'dark' }} mx-1">
+                        All Order
+                    </a>
+                    @foreach (orderStatusList() as $key => $value)
+                        <a href="{{ route('orders', ['status' => $key + 1]) }}"
+                            class="btn btn-sm btn-{{ request()->get('status') == $key + 1 ? 'dark' : 'primary' }} mx-1">
+                            {{ $value['label'] }}
+                        </a>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+
         <div class="card">
             <div class="card-header py-2">
                 <div class="row align-items-center">
@@ -17,29 +37,6 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="d-flex overflow-auto pb-3" id="akash-btn-mbl-scroll">
-                    <button type="button" class="btn btn-sm btn-primary mx-1">
-                        Pendding
-                    </button>
-                    <button type="button" class="btn btn-sm btn-primary mx-1">
-                        Confirm
-                    </button>
-                    <button type="button" class="btn btn-sm btn-primary mx-1">
-                        Cancelled
-                    </button>
-                    <button type="button" class="btn btn-sm btn-primary mx-1">
-                        Shipped
-                    </button>
-                    <button type="button" class="btn btn-sm btn-primary mx-1">
-                        Delivered
-                    </button>
-                    <button type="button" class="btn btn-sm btn-primary mx-1">
-                        Order Return
-                    </button>
-                    <button type="button" class="btn btn-sm btn-primary mx-1">
-                        Follow Up
-                    </button>
-                </div>
                 <div class="table-responsive mt-4">
                     <table class="table table-bordered">
                         <thead>
@@ -60,30 +57,53 @@
                         <tbody>
                             @foreach ($orders as $key => $order)
                                 <tr>
-                                    <td>{{ $key+1 }}</td>
-                                    <td>{{ $order->id . $order->id }}</td>
-                                    <td>...</td>
-                                    <td>...</td>
-                                    <td>...</td>
-                                    <td>...</td>
-                                    <td>...</td>
+                                    <td>{{ $key + 1 }}</td>
+                                    <td>{{ $order->order_prefix . $order->id . $order->order_code }}</td>
                                     <td>
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-primary dropdown-toggle"
+                                        {{ date('d F, Y', strtotime($order->created_at)) }}
+                                        <br>
+                                        {{ date('h:i A', strtotime($order->updated_at)) }}
+                                    </td>
+                                    <td>
+                                        <strong>{{ $order->customer_name }}</strong>
+                                        <br>
+                                        {{ $order->customer_phone }}
+                                    </td>
+                                    <td>{{ $order->customer_address }}</td>
+                                    <td>{{ number_format($order->price, 2) }}</td>
+                                    <td>{{ $order->quantity }}</td>
+                                    <td>{{ number_format($order->discount_amount, 2) }}</td>
+                                    <td>{{ number_format($order->total_amount, 2) }}</td>
+                                    <td>
+                                        <div class="btn-group btn-group-sm">
+                                            <button type="button"
+                                                class="btn btn-{{ orderStatusColor($order->status) }} dropdown-toggle"
                                                 data-toggle="dropdown" data-display="static" aria-expanded="false">
-                                                Actions
+                                                {{ orderStatusText($order->status) }}
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left">
-                                                <a href="{{ route('order_details', 01) }}" class="dropdown-item"
-                                                    type="button">Inspect</a>
-                                                <a href="" class="dropdown-item" type="button">Print</a>
+                                                @foreach (orderStatusList() as $key => $value)
+                                                    <a href="{{ route('order.update.status', [$order->id, $key + 1]) }}"
+                                                        class="dropdown-item">
+                                                        {{ $value['label'] }}
+                                                    </a>
+                                                @endforeach
                                             </div>
                                         </div>
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('order.show', $order->id) }}" class="btn btn-sm btn-dark"
+                                            title="Order Details">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
+                </div>
+                <div class="d-flex justify-content-center">
+                    {{ $orders->appends(['status' => request()->get('status')])->links() }}
                 </div>
             </div>
         </div>
