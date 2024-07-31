@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Page Title -->
-    <title>{{ $template->name }}</title>
+    <title>{{ $userTemplate->company_name ?? $template->name }}</title>
     <!-- Bootstrap css -->
     <link href="{{ asset($template->assets_path . '/css/bootstrap.min.css') }}" rel="stylesheet" media="screen">
     <!-- Font Awesome icon css-->
@@ -45,9 +45,9 @@
             <div class="container">
                 <!-- Start Header Navigation -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">
-                        <img src="{{ asset($template->assets_path . '/images/logo.png') }}" class="logo"
-                            alt="image">
+                    <a class="navbar-brand" href="javascript:void(0)">
+                        <img src="{{ $userTemplate->company_logo ? asset('storage/' . $userTemplate->company_logo) : asset($template->assets_path . '/images/logo.png') }}"
+                            class="logo" width="50" alt="image">
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbar-menu" aria-controls="ftco-nav" aria-expanded="false"
@@ -56,14 +56,14 @@
                     </button>
                 </div>
                 <!-- End Header Navigation -->
-
                 <!-- Navbar Start -->
                 <div class="collapse navbar-collapse main-nav" id="navbar-menu">
                     <ul class="navbar-nav nav ml-auto mr-md-3">
-                        <li class="nav-item active"><a href="#home" class="nav-link active">Home</a></li>
-                        <li class="nav-item"><a href="#features" class="nav-link">Features</a></li>
-                        <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
-                        <li class="nav-item"><a href="#testimonial" class="nav-link">Testimonial</a></li>
+                        @foreach (json_decode($ulaunch->menu_area, true) as $menu)
+                            <li class="nav-item {{ $loop->first ? 'active' : '' }}">
+                                <a href="{{ $menu['url'] }}" class="nav-link">{{ $menu['title'] }}</a>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
                 <!-- Navbar End -->
@@ -78,9 +78,25 @@
             <div class="row">
                 <div class="col-md-6 col-sm-6">
                     <div class="header-content wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-                        <h2><span>Present your</span> <br>Awesome product</h2>
-                        <p>Lorem ipsum dolor sit amet. Reprehenderit, qui blanditiis quidem rerum necessitatibus
-                            praesentium voluptatum deleniti atque corrupti, quos dolores eos.</p>
+                        <h2>
+                            @php
+                                $hero_area = json_decode($ulaunch->hero_area, true);
+                            @endphp
+                            @if ($hero_area['title'])
+                                {{ $hero_area['title'] }}
+                            @else
+                                <span>Present your</span> <br>Awesome product
+                            @endif
+                        </h2>
+                        <p>
+                            @if (isset($hero_area['description']))
+                                {{ $hero_area['description'] }}
+                            @else
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, quod. Repellendus
+                                Lorem ipsum dolor sit amet. Reprehenderit, qui blanditiis quidem rerum necessitatibus
+                                praesentium voluptatum deleniti atque corrupti, quos dolores eos.
+                            @endif
+                        </p>
                         <div class="buy-button">
                             <a href="#" class="btn-buynow">Purchase Now</a>
                         </div>
