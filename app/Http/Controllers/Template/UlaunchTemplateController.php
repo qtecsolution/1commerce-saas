@@ -91,7 +91,7 @@ class UlaunchTemplateController extends Controller
             'title' => $request->input('title'),
             'description' => $request->input('description'),
             'image' => $uploadedPath,
-            'button' => $request->input('button'),
+            'button' => json_decode($request->input('button')),
             'background_color' => $request->input('background_color'),
         ]);
 

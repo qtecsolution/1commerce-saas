@@ -1,13 +1,20 @@
 @php
-    $hero_area = json_decode($ulaunch->hero_area, true);
-    $hero_area_button = json_decode($hero_area['button'], true);
-    $feature_area = json_decode($ulaunch->features_area, true);
-    $features = array_chunk($ulaunch->features->toArray(), ceil(count($ulaunch->features->toArray()) / 2));
-    $about_area = json_decode($ulaunch->about_area, true);
-    $testimonials_area = json_decode($ulaunch->testimonials_area, true);
-    $info_area = json_decode($ulaunch->info_area, true);
-    $order_area = json_decode($ulaunch->order_area, true);
-    $footer_area = json_decode($ulaunch->footer_area, true);
+    $hero_area = $ulaunch->hero_area != null ? json_decode($ulaunch->hero_area, true) : null;
+    $feature_area = $ulaunch->features_area ? json_decode($ulaunch->features_area, true) : null;
+    $features = $feature_area != null ? array_chunk($ulaunch->features->toArray(), ceil(count($ulaunch->features->toArray()) / 2)) : null;
+    $about_area = $ulaunch->about_area != null ? json_decode($ulaunch->about_area, true) : null;
+    $testimonials_area = $ulaunch->testimonials_area != null ? json_decode($ulaunch->testimonials_area, true) : null;
+    $info_area = $ulaunch->info_area != null ? json_decode($ulaunch->info_area, true) : null;
+    $order_area = $ulaunch->order_area != null ? json_decode($ulaunch->order_area, true) : null;
+    $footer_area = $ulaunch->footer_area != null ? json_decode($ulaunch->footer_area, true) : null;
+
+    $areas = [$hero_area, $feature_area, $features, $about_area, $testimonials_area, $info_area, $order_area, $footer_area];
+
+    foreach ($areas as $area) {
+        if ($area === null || empty($area)) {
+            abort(500);
+        }
+    }
 @endphp
 
 <!DOCTYPE html>
@@ -44,7 +51,10 @@
     <![endif]-->
 
     <!-- button styles -->
-    @php $abouts = $about_area['items']; @endphp
+    @php 
+        $abouts = $about_area['items'];
+        $hero_area_button = $hero_area['button'];
+    @endphp
     <style>
         .btn-buynow {
             background-color: {{ $hero_area_button['color'] }};
