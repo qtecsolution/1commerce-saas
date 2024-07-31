@@ -42,7 +42,6 @@
                         <thead>
                             <tr>
                                 <th>Sl</th>
-                                <th>Order#</th>
                                 <th>Date/Time</th>
                                 <th>Customer Name/Phone</th>
                                 <th>Shipping Address</th>
@@ -55,10 +54,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($orders as $key => $order)
+                            @forelse ($orders as $key => $order)
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
-                                    <td>{{ $order->order_prefix . $order->id . $order->order_code }}</td>
                                     <td>
                                         {{ date('d F, Y', strtotime($order->created_at)) }}
                                         <br>
@@ -70,7 +68,7 @@
                                         {{ $order->customer_phone }}
                                     </td>
                                     <td>{{ $order->customer_address }}</td>
-                                    <td>{{ number_format($order->price, 2) }}</td>
+                                    <td>{{ number_format($order->product_price, 2) }}</td>
                                     <td>{{ $order->quantity }}</td>
                                     <td>{{ number_format($order->discount_amount, 2) }}</td>
                                     <td>{{ number_format($order->total_amount, 2) }}</td>
@@ -98,7 +96,13 @@
                                         </a>
                                     </td>
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td colspan="10" class="text-center">
+                                        No Orders Found
+                                    </td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

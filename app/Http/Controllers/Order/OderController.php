@@ -12,12 +12,18 @@ class OderController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Order::where('user_id', auth()->id());
-        if ($request->status) {
-            $query->where('status', $request->status);
+        $template = UserTemplate::where('user_id', auth()->id())->first();
+        if ($template) {
+            $query = Order::where('user_template_id', $template->id);
+            if ($request->status) {
+                $query->where('status', $request->status);
+            }
+            $orders = $query->latest()->paginate(10);
+
+            return view('customer.order.orders', compact('orders'));
         }
-        $orders = $query->latest()->paginate(10);
-        return view('customer.order.orders', compact('orders'));
+
+        abort(403);
     }
 
     public function updateStatus($id, $status)
@@ -26,6 +32,7 @@ class OderController extends Controller
         $order->update([
             'status' => $status
         ]);
+
         toast('Order status updated successfully.', 'success');
         return back();
     }
@@ -65,7 +72,7 @@ class OderController extends Controller
             'total_amount' => $template->product_price * $request->quantity,
         ]);
 
-        Alert::success("Yahoo!", "Order is submitted successfully. Our agent will contact you soon. Thank you.");
-        return redirect()->back();
+        Alert::success("Yahoo!", "You order is submitted successfully. Our agent will contact you soon.");
+        return back();
     }
 }
