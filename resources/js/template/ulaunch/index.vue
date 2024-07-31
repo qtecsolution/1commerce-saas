@@ -63,8 +63,17 @@
         <!-- Header Section Ends-->
 
         <!-- Banner Section Starts -->
-        <section class="banner parallaxie position-relative" id="home">
-            <ColorPicker section="hero" @update="updateColor" :style="{ margin: '100px 0 0 10px' }" />
+        <section
+            class="banner parallaxie position-relative"
+            id="home"
+            :style="{ backgroundColor: heroBg }"
+        >
+            <ColorPicker
+                section="hero"
+                :color="heroBg"
+                @update="updateColor"
+                :style="{ margin: '100px 0 0 10px' }"
+            />
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
@@ -211,7 +220,17 @@
         <!-- Step Section ends -->
 
         <!-- Features section starts -->
-        <section class="features" id="features">
+        <section
+            class="features position-relative"
+            id="features"
+            :style="{ backgroundColor: featureBg }"
+        >
+            <ColorPicker
+                section="feature"
+                :color="featureBg"
+                @update="updateColor"
+                :style="{ margin: '100px 0 0 10px' }"
+            />
             <div class="container">
                 <!-- Section Title start -->
                 <div class="row">
@@ -367,7 +386,17 @@
         <!-- Features section ends -->
 
         <!-- About Product section starts -->
-        <section class="about-product" id="about">
+        <section
+            class="about-product position-relative"
+            id="about"
+            :style="{ backgroundColor: aboutBg }"
+        >
+            <ColorPicker
+                section="about"
+                :color="aboutBg"
+                @update="updateColor"
+                :style="{ margin: '100px 0 0 10px' }"
+            />
             <div class="container">
                 <!-- Section Title start -->
                 <div class="row">
@@ -633,7 +662,17 @@
         <!-- About Product section ends -->
 
         <!-- Testimonials starts -->
-        <section class="testimonials parallaxie" id="testimonials">
+        <section
+            class="testimonials parallaxie position-relative"
+            id="testimonials"
+            :style="{ backgroundColor: testimonialBg }"
+        >
+            <ColorPicker
+                section="testimonials"
+                :color="testimonialBg"
+                @update="updateColor"
+                :style="{ margin: '100px 0 0 10px' }"
+            />
             <div class="container">
                 <!-- Section Title start -->
                 <div class="row">
@@ -753,7 +792,16 @@
         <!-- Testimonials ends -->
 
         <!-- Buy Now infobar section starts -->
-        <div class="buynow-infobar parallaxie">
+        <div
+            class="buynow-infobar parallaxie position-relative"
+            :style="{ backgroundColor: infoBg }"
+        >
+            <ColorPicker
+                section="info"
+                :color="infoBg"
+                @update="updateColor"
+                :style="{ margin: '100px 0 0 10px' }"
+            />
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 col-md-8">
@@ -824,7 +872,17 @@
         <!-- Buy Now infobar section ends -->
 
         <!-- Order Now section starts -->
-        <section class="order_area" id="order">
+        <section
+            class="order_area position-relative"
+            id="order"
+            :style="{ backgroundColor: orderBg }"
+        >
+            <ColorPicker
+                section="order"
+                :color="orderBg"
+                @update="updateColor"
+                :style="{ margin: '100px 0 0 10px' }"
+            />
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2">
@@ -847,6 +905,50 @@
                         </div>
 
                         <!-- Contact Form start -->
+                        <div class="card bg-white shadow border-0 mb-3">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div
+                                        class="col-md-8"
+                                        contenteditable="true"
+                                        @blur="updateProductName"
+                                    >
+                                        {{
+                                            this.user_template.product_name ??
+                                            ""
+                                        }}
+                                    </div>
+                                    <div class="col-md-4 text-end">
+                                        <span
+                                            style="margin-right: 5px"
+                                            contenteditable="true"
+                                            @blur="
+                                                updateProductPrice(
+                                                    event,
+                                                    'currency'
+                                                )
+                                            "
+                                            >{{
+                                                this.user_template.currency ??
+                                                "৳"
+                                            }}</span
+                                        >
+                                        <span
+                                            contenteditable="true"
+                                            @blur="
+                                                updateProductPrice(
+                                                    event,
+                                                    'price'
+                                                )
+                                            "
+                                            >{{
+                                                this.user_template.price ?? 0
+                                            }}</span
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="alert alert-info">
                             <i class="fas fa-exclamation-triangle"></i>
                             Order Form is not editable.
@@ -941,7 +1043,17 @@
         <!-- Order Now section ends -->
 
         <!-- Footer section starts -->
-        <footer>
+        <footer
+            class="position-relative"
+            id="footer"
+            :style="{ backgroundColor: footerBg }"
+        >
+            <ColorPicker
+                section="footer"
+                :color="footerBg"
+                @update="updateColor"
+                :style="{ margin: '10px 0 0 10px' }"
+            />
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -1035,7 +1147,7 @@ export default {
         ImageModal,
         ButtonModal,
         IconPicker,
-        ColorPicker
+        ColorPicker,
     },
     data() {
         return {
@@ -1067,7 +1179,7 @@ export default {
             ],
 
             // hero area
-            heroTitle: "Present your awesome product.",
+            heroTitle: "Best quality smart watch only at Tk 2000.",
             heroDescription:
                 "Lorem ipsum dolor sit amet. Reprehenderit, qui blanditiis quidem rerum necessitatibus praesentium voluptatum deleniti atque corrupti, quos dolores eos.",
             heroButton: [],
@@ -1186,7 +1298,14 @@ export default {
             testimonials: [
                 {
                     review: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-                    reviewer_name: "Harshad Patel",
+                    reviewer_name: "Muhaimin Shihab",
+                    reviewer_bio: "Customer",
+                    reviewr_image: "",
+                    reviewer_image_raw: [],
+                },
+                {
+                    review: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+                    reviewer_name: "Asaduzzaman",
                     reviewer_bio: "Customer",
                     reviewr_image: "",
                     reviewer_image_raw: [],
@@ -1194,14 +1313,7 @@ export default {
                 {
                     review: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
                     reviewer_name: "Harshad Patel",
-                    reviewer_bio: "Customer",
-                    reviewr_image: "",
-                    reviewer_image_raw: [],
-                },
-                {
-                    review: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-                    reviewer_name: "Harshad Patel",
-                    reviewer_bio: "Customer",
+                    reviewer_bio: "NM Babor",
                     reviewr_image: "",
                     reviewer_image_raw: [],
                 },
@@ -1221,9 +1333,14 @@ export default {
             orderSubTitle: "GET YOUR PRODUCT",
             orderBg: "#ffffff",
 
+            // prduct info
+            productName: "",
+            productPrice: "",
+            productCurrency: "",
+
             // footer area
             footerText: "Copyright © 2024, All Rights Reserved.",
-            footerBg: "#263238"
+            footerBg: "#263238",
         };
     },
     computed: {
@@ -1246,6 +1363,7 @@ export default {
             this.template.menu_area != null
                 ? JSON.parse(this.template.menu_area)
                 : null;
+
         this.menus = menuArea != null ? menuArea : this.menus;
 
         // hero area
@@ -1254,26 +1372,28 @@ export default {
                 ? JSON.parse(this.template.hero_area)
                 : null;
 
+        this.heroBg =
+            heroArea != null ? heroArea.background_color : this.heroBg;
         this.heroTitle = heroArea != null ? heroArea.title : this.heroTitle;
         this.heroDescription =
             heroArea != null ? heroArea.description : this.heroDescription;
         this.heroImage =
-            heroArea != null
+            heroArea != null && heroArea.image
                 ? this.imageSource(heroArea.image, "storage")
                 : this.imageSource("images/header.png");
+
+        const defaultHeroButton = {
+            title: "Product Details",
+            url: "#features",
+            color: "transparent",
+            text_color: "white",
+            border_color: "white",
+            hover_color: "white",
+            hover_text_color: "black",
+            hover_border_color: "white",
+        };
         this.heroButton =
-            heroArea != null
-                ? JSON.parse(heroArea.button)
-                : {
-                      title: "Product Details",
-                      url: "#features",
-                      color: "transparent",
-                      text_color: "white",
-                      border_color: "white",
-                      hover_color: "white",
-                      hover_text_color: "black",
-                      hover_border_color: "white",
-                  };
+            heroArea != null ? JSON.parse(heroArea.button) : defaultHeroButton;
 
         // steps area
         this.steps =
@@ -1285,6 +1405,10 @@ export default {
                 ? JSON.parse(this.template.features_area)
                 : null;
 
+        this.featureBg =
+            featuresArea != null
+                ? featuresArea.background_color
+                : this.featureBg;
         this.featureTitle =
             featuresArea != null ? featuresArea.title : this.featureTitle;
         this.featureSubTitle =
@@ -1305,11 +1429,13 @@ export default {
             ? JSON.parse(this.template.about_area)
             : null;
 
+        this.aboutBg =
+            aboutArea != null ? aboutArea.background_color : this.aboutBg;
         this.aboutTitle = aboutArea?.title || this.aboutTitle;
         this.aboutSubTitle = aboutArea?.sub_title || this.aboutSubTitle;
         this.abouts = aboutArea?.items || this.abouts;
 
-        const defaultButton = {
+        const defaultAboutButton = {
             title: "Purchase Now",
             url: "#order",
             color: "transparent",
@@ -1321,8 +1447,8 @@ export default {
         };
 
         if (!aboutArea) {
-            this.abouts[0].button = defaultButton;
-            this.abouts[1].button = defaultButton;
+            this.abouts[0].button = defaultAboutButton;
+            this.abouts[1].button = defaultAboutButton;
         }
 
         const defaultAboutImages = ["images/about-1.png", "images/about-2.png"];
@@ -1338,23 +1464,26 @@ export default {
                 ? JSON.parse(this.template.info_area)
                 : null;
 
+        this.infoBg =
+            infoArea != null ? infoArea.background_color : this.infoBg;
         this.infoTitle = infoArea != null ? infoArea.title : this.infoTitle;
         this.infoSubTitle =
             infoArea != null ? infoArea.sub_title : this.infoSubTitle;
         this.infoVideo = infoArea != null ? infoArea.video : this.infoVideo;
+
+        const defaultInfoButton = {
+            title: "Purchase Now",
+            url: "#order",
+            color: "transparent",
+            text_color: "#20bea7",
+            border_color: "#20bea7",
+            hover_color: "#20bea7",
+            hover_text_color: "white",
+            hover_border_color: "#20bea7",
+        };
+
         this.infoButton =
-            infoArea != null
-                ? infoArea.button
-                : {
-                      title: "Purchase Now",
-                      url: "#order",
-                      color: "transparent",
-                      text_color: "#20bea7",
-                      border_color: "#20bea7",
-                      hover_color: "#20bea7",
-                      hover_text_color: "white",
-                      hover_border_color: "#20bea7",
-                  };
+            infoArea != null ? infoArea.button : defaultInfoButton;
 
         // testimonial area
         const testimonialsArea =
@@ -1362,6 +1491,10 @@ export default {
                 ? JSON.parse(this.template.testimonials_area)
                 : null;
 
+        this.testimonialBg =
+            testimonialsArea != null
+                ? testimonialsArea.background_color
+                : this.testimonialBg;
         this.testimonialTitle =
             testimonialsArea != null
                 ? testimonialsArea.title
@@ -1399,15 +1532,26 @@ export default {
             this.template.order_area != null
                 ? JSON.parse(this.template.order_area)
                 : null;
+
+        this.orderBg =
+            orderArea != null ? orderArea.background_color : this.orderBg;
         this.orderTitle = orderArea != null ? orderArea.title : this.orderTitle;
         this.orderSubTitle =
             orderArea != null ? orderArea.sub_title : this.orderSubTitle;
+
+        // product info
+        this.productName = this.user_template.product_name;
+        this.productPrice = this.user_template.product_price;
+        this.productCurrency = this.user_template.product_currency;
 
         // footer area
         const footerArea =
             this.template.footer_area != null
                 ? JSON.parse(this.template.footer_area)
                 : null;
+
+        this.footerBg =
+            footerArea != null ? footerArea.background_color : this.footerBg;
         this.footerText =
             footerArea != null ? footerArea.text : this.footerText;
     },
@@ -1525,7 +1669,43 @@ export default {
                     break;
 
                 default:
-                    console.warn("Something is wrong. Try again later.");
+                    console.warn("Something is wrong on update image.");
+                    break;
+            }
+        },
+
+        updateColor(data) {
+            switch (data.section) {
+                case "hero":
+                    this.heroBg = data.color;
+                    this.updateHeroArea();
+                    break;
+                case "feature":
+                    this.featureBg = data.color;
+                    this.updateFeaturesArea();
+                    break;
+                case "about":
+                    this.aboutBg = data.color;
+                    this.updateAboutArea();
+                    break;
+                case "testimonials":
+                    this.testimonialBg = data.color;
+                    this.updateTestimonialsArea();
+                    break;
+                case "info":
+                    this.infoBg = data.color;
+                    this.updateInfoArea();
+                    break;
+                case "order":
+                    this.orderBg = data.color;
+                    this.updateOrderArea();
+                    break;
+                case "footer":
+                    this.footerBg = data.color;
+                    this.updateFooterArea();
+                    break;
+                default:
+                    console.warn("Something is wrong on update color.");
                     break;
             }
         },
@@ -1549,7 +1729,7 @@ export default {
                     break;
 
                 default:
-                    console.warn("Something is wrong. Try again later.");
+                    console.warn("Something is wrong on update button.");
                     break;
             }
         },
@@ -1638,6 +1818,7 @@ export default {
             formData.append("description", this.heroDescription);
             formData.append("button", JSON.stringify(this.heroButton));
             formData.append("image", this.heroImageRaw);
+            formData.append("background_color", this.heroBg);
 
             axios
                 .post(`${this.apiUrl}/update-hero-area`, formData, {
@@ -1694,6 +1875,7 @@ export default {
             formData.append("sub_title", this.featureSubTitle);
             formData.append("items", JSON.stringify(this.features));
             formData.append("image", this.featureImageRaw);
+            formData.append("background_color", this.featureBg);
 
             axios
                 .post(`${this.apiUrl}/update-features-area`, formData, {
@@ -1773,6 +1955,7 @@ export default {
             formData.append("items", JSON.stringify(this.abouts));
             formData.append("image_1", this.abouts[0].image_raw);
             formData.append("image_2", this.abouts[1].image_raw);
+            formData.append("background_color", this.aboutBg);
 
             axios
                 .post(`${this.apiUrl}/update-about-area`, formData, {
@@ -1808,7 +1991,7 @@ export default {
             formData.append("title", this.testimonialTitle);
             formData.append("sub_title", this.testimonialSubTitle);
             formData.append("items", JSON.stringify(this.testimonials));
-
+            formData.append("background_color", this.testimonialBg);
             formData.append("image_1", this.testimonials[0].reviewer_image_raw);
             formData.append("image_2", this.testimonials[1].reviewer_image_raw);
             formData.append("image_3", this.testimonials[2].reviewer_image_raw);
@@ -1909,6 +2092,7 @@ export default {
             formData.append("description", this.infoDescription);
             formData.append("button", JSON.stringify(this.infoButton));
             formData.append("video_url", this.infoVideo);
+            formData.append("background_color", this.infoBg);
 
             axios
                 .post(`${this.apiUrl}/update-info-area`, formData)
@@ -1934,9 +2118,41 @@ export default {
             const formData = new FormData();
             formData.append("title", this.orderTitle);
             formData.append("sub_title", this.orderSubTitle);
+            formData.append("background_color", this.orderBg);
 
             axios
                 .post(`${this.apiUrl}/update-order-area`, formData)
+                .then((response) => {
+                    console.log(response.data);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        },
+
+        updateProductName(event) {
+            this.productName = this.updateContent(event);
+            this.updateProductInfo();
+        },
+
+        updateProductPrice(event, type) {
+            if (type == "currency") {
+                this.productCurrency = this.updateContent(event);
+            } else if (type == "price") {
+                this.productPrice = this.updateContent(event);
+            }
+
+            this.updateProductInfo();
+        },
+
+        updateProductInfo() {
+            const formData = new FormData();
+            formData.append("product_name", this.productName);
+            formData.append("product_currency", this.productCurrency);
+            formData.append("product_price", this.productPrice);
+
+            axios
+                .post(`${this.apiUrl}/update-product-info`, formData)
                 .then((response) => {
                     console.log(response.data);
                 })
@@ -1953,6 +2169,7 @@ export default {
         updateFooterArea() {
             const formData = new FormData();
             formData.append("text", this.footerText);
+            formData.append("background_color", this.footerBg);
 
             axios
                 .post(`${this.apiUrl}/update-footer-area`, formData)

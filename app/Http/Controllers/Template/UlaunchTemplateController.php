@@ -7,6 +7,7 @@ use App\Models\Template\TemplateFeature;
 use App\Models\Template\TemplateStep;
 use App\Models\Template\TemplateTestimonial;
 use App\Models\Template\UlaunchTemplate;
+use App\Models\Template\UserTemplate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -91,6 +92,7 @@ class UlaunchTemplateController extends Controller
             'description' => $request->input('description'),
             'image' => $uploadedPath,
             'button' => $request->input('button'),
+            'background_color' => $request->input('background_color'),
         ]);
 
         $this->template->save();
@@ -168,6 +170,7 @@ class UlaunchTemplateController extends Controller
             'title' => $request->input('title'),
             'sub_title' => $request->input('sub_title'),
             'image' => $uploadedPath,
+            'background_color' => $request->input('background_color'),
         ]);
         $this->template->save();
 
@@ -234,6 +237,7 @@ class UlaunchTemplateController extends Controller
         $this->template->about_area = json_encode([
             'title' => $request->input('title'),
             'sub_title' => $request->input('sub_title'),
+            'background_color' => $request->input('background_color'),
             'items' => $abouts,
         ]);
         $this->template->save();
@@ -251,7 +255,8 @@ class UlaunchTemplateController extends Controller
         // Update the testimonials area metadata
         $this->template->testimonials_area = json_encode([
             'title' => $request->input('title'),
-            'sub_title' => $request->input('sub_title')
+            'sub_title' => $request->input('sub_title'),
+            'background_color' => $request->input('background_color'),
         ]);
         $this->template->save();
 
@@ -312,6 +317,7 @@ class UlaunchTemplateController extends Controller
             'description' => $request->input('description'),
             'button' => $button,
             'video_url' => $request->input('video'),
+            'background_color' => $request->input('background_color'),
         ]);
 
         $this->template->info_area = $data;
@@ -327,7 +333,8 @@ class UlaunchTemplateController extends Controller
     {
         $this->template->order_area = json_encode([
             'title' => $request->input('title'),
-            'sub_title' => $request->input('sub_title')
+            'sub_title' => $request->input('sub_title'),
+            'background_color' => $request->input('background_color'),
         ]);
         $this->template->save();
 
@@ -340,13 +347,31 @@ class UlaunchTemplateController extends Controller
     public function updateFooterArea(Request $request)
     {
         $this->template->footer_area = json_encode([
-            'text' => $request->input('text')
+            'text' => $request->input('text'),
+            'background_color' => $request->input('background_color'),
         ]);
         $this->template->save();
 
         return response()->json([
             'message' => 'Footer Area Updated.',
             'data' => $this->template->footer_area
+        ]);
+    }
+
+    public function updateProductInfo(Request $request)
+    {
+        $template = UserTemplate::where('user_id', $this->userId)->where('template_id', $this->templateId)->first();
+        if ($template) {
+            $template->update([
+                'product_name' => $request->input('product_name'),
+                'product_price' => $request->input('product_price'),
+                'product_currency' => $request->input('product_currency'),
+            ]);
+        }
+
+        return response()->json([
+            'message' => 'Product Info Updated.',
+            'data' => $template
         ]);
     }
 }

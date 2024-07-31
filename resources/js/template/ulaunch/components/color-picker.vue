@@ -6,8 +6,8 @@
             :style="style"
             title="Color settings"
         >
-            <input type="color" id="color" v-model="color" @change="updateColor" />
-            <label for="color" style="margin: 0">{{ color }}</label>
+            <input type="color" v-model="updatedColor" />
+            <label style="margin: 0">{{ updatedColor }}</label>
         </button>
     </div>
 </template>
@@ -15,16 +15,26 @@
 <script>
 export default {
     name: "ColorPicker",
-    props: ["style", "section"],
+    props: ["style", "section", "color"],
     data() {
         return {
-            color: "#000",
+            updatedColor: "",
         };
+    },
+    mounted() {
+        this.updatedColor = this.color;
+    },
+    watch: {
+        updatedColor(newValue, oldValue) {
+            if (oldValue !== "") {
+                this.updateColor();
+            }
+        },
     },
     methods: {
         updateColor() {
             this.$emit("update", {
-                color: this.color,
+                color: this.updatedColor,
                 section: this.section
             });
         },
@@ -57,7 +67,7 @@ input[type="color"]::-webkit-color-swatch {
 }
 
 button {
-    z-index: 1500;
+    /* z-index: 1500; */
     cursor: pointer;
 }
 </style>
