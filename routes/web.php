@@ -126,6 +126,7 @@ Route::prefix('app')->middleware('user')->group(function () {
                 Route::post('update-info-area', [UlaunchTemplateController::class, 'updateInfoArea']);
                 Route::post('update-order-area', [UlaunchTemplateController::class, 'updateOrderArea']);
                 Route::post('update-footer-area', [UlaunchTemplateController::class, 'updateFooterArea']);
+                Route::post('update-product-info', [UlaunchTemplateController::class, 'updateProductInfo']);
             });
         });
     });
