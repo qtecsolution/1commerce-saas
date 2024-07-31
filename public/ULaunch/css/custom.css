@@ -856,12 +856,6 @@ nav.navbar .navbar-toggler:focus{
 	text-align: left;
 }
 
-.buynow-infobar .section-title p:after{
-	background: #fff;
-	left: 0;
-	margin-left: 0;
-}
-
 .buynow-entry p{
 	font-size: 14px;
 	letter-spacing: 0.02em;

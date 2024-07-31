@@ -800,13 +800,13 @@
                 section="info"
                 :color="infoBg"
                 @update="updateColor"
-                :style="{ margin: '100px 0 0 10px' }"
+                :style="{ margin: '20px 0 0 10px' }"
             />
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6 col-md-8">
+                    <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2">
                         <div
-                            class="section-title wow fadeInUp"
+                            class="section-title wow fadeInUp text-center"
                             style="
                                 visibility: visible;
                                 animation-name: fadeInUp;
@@ -823,7 +823,7 @@
                             </h2>
                         </div>
 
-                        <div class="buynow-entry">
+                        <div class="buynow-entry text-center">
                             <p
                                 @blur="updateInfoDescription"
                                 contenteditable="true"
@@ -856,14 +856,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 col-md-4">
-                        <div class="buynow-video">
-                            <a :href="infoVideo" class="popup-video"
-                                ><i class="flaticon-play-button"></i
-                            ></a>
                         </div>
                     </div>
                 </div>

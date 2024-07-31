@@ -452,25 +452,18 @@
     <div class="buynow-infobar parallaxie">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-md-8">
-                    <div class="section-title wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+                <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2">
+                    <div class="section-title wow fadeInUp text-center" style="visibility: visible; animation-name: fadeInUp;">
                         <p>Get it Today</p>
                         <h2>Get your Product today!</h2>
                     </div>
 
-                    <div class="buynow-entry">
+                    <div class="buynow-entry text-center">
                         <p>There are many variations of passages of Lorem Ipsum available, but the majority have
                             suffered alteration in some form, by injected humour, or randomised words which don't look
                             even slightly believable.</p>
 
                         <a href="#" class="btn-buynow">Orderer Now</a>
-                    </div>
-                </div>
-
-                <div class="col-lg-6 col-md-4">
-                    <div class="buynow-video">
-                        <a href="http://www.youtube.com/watch?v=JrbJ8dXzmnE" class="popup-video"><i
-                                class="flaticon-play-button"></i></a>
                     </div>
                 </div>
             </div>

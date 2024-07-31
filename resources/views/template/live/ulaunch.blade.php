@@ -407,24 +407,17 @@
     <div class="buynow-infobar parallaxie" style="background-color: {{ $info_area['background_color'] }}">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-md-8">
-                    <div class="section-title wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+                <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2">
+                    <div class="section-title wow fadeInUp text-center" style="visibility: visible; animation-name: fadeInUp;">
                         <p>{{ $info_area['sub_title'] }}</p>
                         <h2>{{ $info_area['title'] }}</h2>
                     </div>
 
-                    <div class="buynow-entry">
+                    <div class="buynow-entry text-center">
                         <p>{{ $info_area['description'] }}</p>
 
                         <a href="{{ $info_area['button']['url'] }}"
                             class="btn-buynow">{{ $info_area['button']['title'] }}</a>
-                    </div>
-                </div>
-
-                <div class="col-lg-6 col-md-4">
-                    <div class="buynow-video">
-                        <a href="{{ $info_area['video_url'] }}" class="popup-video"><i
-                                class="flaticon-play-button"></i></a>
                     </div>
                 </div>
             </div>
