@@ -44,7 +44,7 @@ use App\Http\Controllers\LiveController;
 // });
 
 // live preview
-Route::get('{slug}', [ShopController::class, 'livePreview'])->name('live_preview');
+Route::get('shop/{slug}', [ShopController::class, 'livePreview'])->name('live_preview');
 
 // home page route
 Route::get('/', [WebController::class, 'index'])->name('web.home');
