@@ -18,6 +18,7 @@ use App\Http\Controllers\User\SubscriptionController;
 use App\Http\Controllers\Ticket\SupportTicketController;
 use App\Http\Controllers\Template\UlaunchTemplateController;
 use App\Http\Controllers\FrontEnd\PackageController as FrontEnd_PackageController;
+use App\Http\Controllers\LiveController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,10 +38,13 @@ use App\Http\Controllers\FrontEnd\PackageController as FrontEnd_PackageControlle
 */
 
 // shop routes
-Route::domain('{shop}.' . env('APP_URL'))->group(function () {
-    //  home page
-    Route::get('{slug}', [ShopController::class, 'index'])->name('user_shop');
-});
+// Route::domain('{shop}.' . env('APP_URL'))->group(function () {
+//     //  home page
+//     Route::get('{slug}', [ShopController::class, 'index'])->name('user_shop');
+// });
+
+// live preview
+Route::get('{slug}', [ShopController::class, 'livePreview'])->name('live_preview');
 
 // home page route
 Route::get('/', [WebController::class, 'index'])->name('web.home');
