@@ -107,7 +107,7 @@ class UserController extends Controller
                 toast('Select a package to sign-up.', 'Info');
 
                 // return to home
-                return redirect()->route('web_packages');
+                return redirect()->route('web.packages');
             }
         }
     }

@@ -124,6 +124,7 @@ class SslCommerzPaymentController extends Controller
                 } else {
                     $subscription->is_paid = 1;
                 }
+                $subscription->is_paid = 1;
                 $subscription->save();
                 // echo "<br >Transaction is successfully Completed";
 
