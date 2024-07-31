@@ -18,7 +18,6 @@ use App\Http\Controllers\User\SubscriptionController;
 use App\Http\Controllers\Ticket\SupportTicketController;
 use App\Http\Controllers\Template\UlaunchTemplateController;
 use App\Http\Controllers\FrontEnd\PackageController as FrontEnd_PackageController;
-use App\Http\Controllers\LiveController;
 
 /*
 |--------------------------------------------------------------------------
