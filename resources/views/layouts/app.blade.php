@@ -10,7 +10,7 @@
     <meta name="_token" content="{{ csrf_token() }}">
 
     {{-- Title --}}
-    <title>{{ config('app.name') }} | {{ $title }}</title>
+    <title>{{ config('app.name') }} || {{ $title }}</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ asset('assets/images/logo/icon.png') }}">

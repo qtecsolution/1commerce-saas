@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Template\UserTemplate;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,15 +14,12 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->string('order_prefix');
-            $table->integer('order_code');
+            $table->foreignIdFor(UserTemplate::class)->constrained()->cascadeOnDelete();
             $table->string('customer_name');
             $table->string('customer_phone');
-            $table->string('customer_email');
             $table->longText('customer_address');
             $table->string('product_name')->nullable();
-            $table->double('price')->default(0);
+            $table->double('product_price')->default(0);
             $table->integer('quantity')->default(1);
             $table->double('discount_amount')->default(0);
             $table->double('total_amount')->default(0);

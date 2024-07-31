@@ -53,7 +53,7 @@
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbar-menu" aria-controls="ftco-nav" aria-expanded="false"
                         aria-label="Toggle navigation">
-                        <span class="fa-solid fa-bars"></span>
+                        <span class="fas fa-bars"></span>
                     </button>
                 </div>
                 <!-- End Header Navigation -->

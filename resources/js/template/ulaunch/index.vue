@@ -29,7 +29,7 @@
                             aria-expanded="false"
                             aria-label="Toggle navigation"
                         >
-                            <span class="fa-solid fa-bars"></span>
+                            <span class="fas fa-bars"></span>
                         </button>
                     </div>
                     <!-- End Header Navigation -->
@@ -1386,11 +1386,8 @@ export default {
             heroArea != null ? JSON.parse(heroArea.button) : defaultHeroButton;
 
         // steps area
-        console.log(this.steps);
-        console.log(this.template.steps);
         this.steps =
             this.template.steps.length > 0 ? this.template.steps : this.steps;
-        console.log(this.steps);
 
         // feature area
         const featuresArea =
@@ -1639,7 +1636,6 @@ export default {
                             ? data.image_raw
                             : this.testimonials[0].reviewer_image_raw;
 
-                    // console.log('testimonial 1');
                     this.updateTestimonialsArea();
 
                     break;
@@ -1654,7 +1650,6 @@ export default {
                             ? data.image_raw
                             : this.testimonials[1].reviewer_image_raw;
 
-                    // console.log('testimonial 2');
                     this.updateTestimonialsArea();
 
                     break;
@@ -1669,7 +1664,6 @@ export default {
                             ? data.image_raw
                             : this.testimonials[2].reviewer_image_raw;
 
-                    // console.log('testimonial 3');
                     this.updateTestimonialsArea();
 
                     break;
@@ -1760,7 +1754,7 @@ export default {
             axios
                 .post(`${this.apiUrl}/update-menu-area`, formData)
                 .then((response) => {
-                    console.log(response.data);
+                    // console.log(response.data);
                 })
                 .catch((error) => {
                     console.error(error);
@@ -1833,7 +1827,7 @@ export default {
                     },
                 })
                 .then((response) => {
-                    console.log(response.data);
+                    // console.log(response.data);
                 })
                 .catch((error) => {
                     console.error(error);
@@ -1852,7 +1846,7 @@ export default {
             axios
                 .post(`${this.apiUrl}/update-steps-area`, formData)
                 .then((response) => {
-                    console.log(response.data);
+                    // console.log(response.data);
                     this.steps = response.data.data;
                 })
                 .catch((error) => {
@@ -1890,7 +1884,7 @@ export default {
                     },
                 })
                 .then((response) => {
-                    console.log(response.data);
+                    // console.log(response.data);
                     this.features = response.data.data;
                 })
                 .catch((error) => {
@@ -1970,7 +1964,7 @@ export default {
                     },
                 })
                 .then((response) => {
-                    console.log(response.data);
+                    // console.log(response.data);
                 })
                 .catch((error) => {
                     console.error(error);
@@ -2009,7 +2003,7 @@ export default {
                     },
                 })
                 .then((response) => {
-                    console.log(response.data);
+                    // console.log(response.data);
                     this.testimonials = response.data.data;
 
                     const defaultTestimonialImages = [
@@ -2103,7 +2097,7 @@ export default {
             axios
                 .post(`${this.apiUrl}/update-info-area`, formData)
                 .then((response) => {
-                    console.log(response.data);
+                    // console.log(response.data);
                 })
                 .catch((error) => {
                     console.error(error);
@@ -2129,7 +2123,7 @@ export default {
             axios
                 .post(`${this.apiUrl}/update-order-area`, formData)
                 .then((response) => {
-                    console.log(response.data);
+                    // console.log(response.data);
                 })
                 .catch((error) => {
                     console.error(error);
@@ -2160,7 +2154,7 @@ export default {
             axios
                 .post(`${this.apiUrl}/update-product-info`, formData)
                 .then((response) => {
-                    console.log(response.data);
+                    // console.log(response.data);
                 })
                 .catch((error) => {
                     console.error(error);
@@ -2180,7 +2174,7 @@ export default {
             axios
                 .post(`${this.apiUrl}/update-footer-area`, formData)
                 .then((response) => {
-                    console.log(response.data);
+                    // console.log(response.data);
                 })
                 .catch((error) => {
                     console.error(error);

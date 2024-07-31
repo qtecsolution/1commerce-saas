@@ -16,9 +16,6 @@ class TestController extends Controller
     // function to test
     public function index(Request $request)
     {
-        $template = UlaunchTemplate::with('testimonials')->get();
-        return $template;
-
         if ($request->fake_order > 0) {
             $faker = Faker::create();
             for ($i = 0; $i < $request->fake_order; $i++) {
@@ -28,33 +25,21 @@ class TestController extends Controller
                 $total = $price - $discount;
 
                 DB::table('orders')->insert([
-                    'user_id' => auth()->id(),
-                    'order_prefix' => strtoupper($faker->lexify('ORD')),
-                    'order_code' => $faker->unique()->numberBetween(1000, 9999),
+                    'user_template_id' => 1,
                     'customer_name' => $faker->name,
                     'customer_phone' => $faker->phoneNumber,
-                    'customer_email' => $faker->safeEmail,
                     'customer_address' => $faker->address,
                     'product_name' => $faker->name,
-                    'price' => $price,
+                    'product_price' => $price,
                     'quantity' => $quantity,
-                    'discount_amount' => $discount,
                     'total_amount' => $total,
-                    'status' => 1,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
             }
-            return $request->fake_order . " order placed";
+            return $request->fake_order . " orders placed successfully.";
         }
+
         abort(404);
-
-        // return response()->json([
-        //     'message' => 'Hello World',
-        // ], 500);
-
-        $userName = Auth::user()->name;
-        $explodedName = explode(' ', $userName);
-        return $explodedName[count($explodedName) - 1];
     }
 }

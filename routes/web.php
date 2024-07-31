@@ -98,6 +98,7 @@ Route::prefix('app')->middleware('user')->group(function () {
             Route::get("orders", "index")->name('orders');
             Route::get("update-status/{id}/{status}", "updateStatus")->name('order.update.status');
             Route::get("order-show/{id}", "show")->name('order.show');
+            Route::post("order", "store")->name("order.store");
         });
 
         // setting routes

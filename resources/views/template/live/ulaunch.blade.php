@@ -118,7 +118,7 @@
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbar-menu" aria-controls="ftco-nav" aria-expanded="false"
                         aria-label="Toggle navigation">
-                        <span class="fa-solid fa-bars"></span>
+                        <span class="fas fa-bars"></span>
                     </button>
                 </div>
                 <!-- End Header Navigation -->
@@ -457,21 +457,31 @@
                         </div>
                     </div>
                     <div class="contact-form">
-                        <form id="contactForm" action="#" method="post" data-toggle="validator"
+                        <form id="contactForm" action="{{ route('order.store') }}" method="post" data-toggle="validator"
                             novalidate="true">
+
+                            @csrf
+                            <input type="hidden" name="user_template_id" value="{{ $userTemplate->id }}">
+
                             <div class="row">
                                 <div class="form-group mb-3 col-md-6 col-sm-6">
                                     <label for="name" class="form-label">Name:</label>
-                                    <input type="text" name="name" id="name" class="form-control"
+                                    <input type="text" name="customer_name" value="{{ old('customer_name') }}" id="name" class="form-control"
                                         placeholder="Enter Your Name" required="">
                                     <div class="help-block with-errors"></div>
+                                    @error('customer_name')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group mb-3 col-md-6 col-sm-6">
                                     <label for="mobile" class="form-label">Mobile:</label>
-                                    <input type="number" name="mobile" id="mobile" class="form-control"
+                                    <input type="number" name="customer_phone" value="{{ old('customer_phone') }}" id="mobile" class="form-control"
                                         placeholder="Your Mobile Number" required="">
                                     <div class="help-block with-errors"></div>
+                                    @error('customer_phone')
+                                        <small class="text-dan">{{ $message }}</small>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group mb-3 col-md-12 col-sm-12">
@@ -479,11 +489,14 @@
                                     <input type="number" name="quantity" id="quantity" class="form-control"
                                         placeholder="Quantity" min="1" value="1" required="">
                                     <div class="help-block with-errors"></div>
+                                    @error('quantity')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group mb-3 col-md-12 col-sm-12">
                                     <label for="address" class="form-label">Address:</label>
-                                    <textarea rows="8" name="address" id="address" placeholder="Address" class="form-control" required=""></textarea>
+                                    <textarea rows="8" name="customer_address" id="address" placeholder="Address" class="form-control" required="">{{ old('customer_address') }}</textarea>
                                     <div class="help-block with-errors"></div>
                                 </div>
 
@@ -539,6 +552,8 @@
     <script src="{{ asset($userTemplate->template->assets_path . '/js/SmoothScroll.js') }}"></script>
     <!-- Main Custom js file -->
     <script src="{{ asset($userTemplate->template->assets_path . '/js/function.js') }}"></script>
+    <!-- Sweet Alert -->
+    @include('sweetalert::alert')
 
 </body>
 
