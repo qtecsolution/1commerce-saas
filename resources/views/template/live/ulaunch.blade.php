@@ -45,9 +45,10 @@
             <div class="container">
                 <!-- Start Header Navigation -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#"><img
-                            src="{{ asset($template->assets_path . '/images/logo.png') }}" class="logo"
-                            alt=""></a>
+                    <a class="navbar-brand" href="#">
+                        <img src="{{ asset($template->assets_path . '/images/logo.png') }}" class="logo"
+                            alt="image">
+                    </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbar-menu" aria-controls="ftco-nav" aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -88,7 +89,7 @@
 
                 <div class="col-md-6 col-sm-6">
                     <div class="slider-image wow fadeInRight" style="visibility: visible; animation-name: fadeInRight;">
-                        <img src="{{ asset($template->assets_path . '/images/header.png') }}" alt="">
+                        <img src="{{ asset($template->assets_path . '/images/header.png') }}" alt="image">
                     </div>
                 </div>
             </div>
@@ -220,7 +221,7 @@
 
                 <div class="col-lg-4">
                     <div class="feature-image wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-                        <img src="{{ asset($template->assets_path . '/images/feature.png') }}" alt="">
+                        <img src="{{ asset($template->assets_path . '/images/feature.png') }}" alt="image">
                     </div>
                 </div>
 
@@ -315,7 +316,7 @@
                                 <div class="about-image wow fadeInRight" data-wow-delay="0.2s"
                                     style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInRight;">
                                     <img src="{{ asset($template->assets_path . '/images/about-1.png') }}"
-                                        alt="">
+                                        alt="image">
                                 </div>
                             </div>
                         </div>
@@ -338,7 +339,7 @@
                                 <div class="about-image wow fadeInLeft" data-wow-delay="0.4s"
                                     style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInLeft;">
                                     <img src="{{ asset($template->assets_path . '/images/about-2.png') }}"
-                                        alt="">
+                                        alt="image">
                                 </div>
                             </div>
                         </div>
@@ -377,7 +378,7 @@
                                 <div class="testimonial-slide">
                                     <div class="author-info">
                                         <img src="{{ asset($template->assets_path . '/images/author-1.jpg') }}"
-                                            alt="">
+                                            alt="image">
                                     </div>
 
                                     <div class="testimonial-entry">
@@ -399,7 +400,7 @@
                                 <div class="testimonial-slide">
                                     <div class="author-info">
                                         <img src="{{ asset($template->assets_path . '/images/author-2.jpg') }}"
-                                            alt="">
+                                            alt="image">
                                     </div>
 
                                     <div class="testimonial-entry">
@@ -421,7 +422,7 @@
                                 <div class="testimonial-slide">
                                     <div class="author-info">
                                         <img src="{{ asset($template->assets_path . '/images/author-3.jpg') }}"
-                                            alt="">
+                                            alt="image">
                                     </div>
 
                                     <div class="testimonial-entry">
