@@ -113,7 +113,7 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="javascript:void(0)">
                         <img src="{{ $userTemplate->company_logo ? asset('storage/' . $userTemplate->company_logo) : asset($userTemplate->template->assets_path . '/images/logo.png') }}"
-                            class="logo" width="50" alt="image">
+                            class="logo" width="50" alt="{{ $userTemplate->company_name }}">
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbar-menu" aria-controls="ftco-nav" aria-expanded="false"
@@ -159,8 +159,14 @@
 
                 <div class="col-md-6 col-sm-6">
                     <div class="slider-image wow fadeInRight" style="visibility: visible; animation-name: fadeInRight;">
-                        <img src="{{ asset($userTemplate->template->assets_path . '/images/header.png') }}"
-                            alt="image">
+                        @php
+                            if ($hero_area['image']) {
+                                $link = asset('storage/' . $hero_area['image']);
+                            } else {
+                                $link = asset($userTemplate->template->assets_path . '/images/header.png');
+                            }
+                        @endphp
+                        <img src="{{ $link }}" alt="{{ $userTemplate->company_name }}">
                     </div>
                 </div>
             </div>
@@ -237,7 +243,7 @@
                                 $link = asset($userTemplate->template->assets_path . '/images/feature.png');
                             }
                         @endphp
-                        <img src="{{ $link }}" alt="image">
+                        <img src="{{ $link }}" alt="{{ $userTemplate->company_name }}">
                     </div>
                 </div>
 
@@ -303,7 +309,7 @@
                                             $link = asset($userTemplate->template->assets_path . '/images/about-1.png');
                                         }
                                     @endphp
-                                    <img src="{{ $link }}" alt="image">
+                                    <img src="{{ $link }}" alt="{{ $userTemplate->company_name }}">
                                 </div>
                             </div>
                         </div>
@@ -335,7 +341,7 @@
                                             $link = asset($userTemplate->template->assets_path . '/images/about-2.png');
                                         }
                                     @endphp
-                                    <img src="{{ $link }}" alt="image">
+                                    <img src="{{ $link }}" alt="{{ $userTemplate->company_name }}">
                                 </div>
                             </div>
                         </div>
@@ -377,7 +383,7 @@
                                             );
                                         }
                                     @endphp
-                                    <img src="{{ $link }}" alt="image">
+                                    <img src="{{ $link }}" alt="{{ $userTemplate->company_name }}">
                                 </div>
 
                                 <div class="testimonial-entry mt-5">
