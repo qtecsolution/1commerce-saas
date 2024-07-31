@@ -17,7 +17,7 @@ class SubscribedAndPaid
     public function handle(Request $request, Closure $next): Response
     {
         if (env('APP_ENV') != 'local') {
-            $subscription = Subscription::where('user_id', auth()->id())->first();
+            $subscription = Subscription::where('user_id', auth()->id())->latest()->first();
             if (!$subscription) {
                 alert('Error', 'Subscription not found!', 'error');
                 return to_route('subscription.index');
