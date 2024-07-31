@@ -38,11 +38,11 @@ class UlaunchTemplateController extends Controller
     {
         if ($this->userId) {
             $template = UlaunchTemplate::where('user_id', $this->userId)->first();
-            if (!$template) {
-                $template = UlaunchTemplate::create([
-                    'user_id' => $this->userId,
-                ]);
-            }
+            // if (!$template) {
+            //     $template = UlaunchTemplate::create([
+            //         'user_id' => $this->userId,
+            //     ]);
+            // }
 
             $this->template = $template;
         } else {
@@ -350,6 +350,8 @@ class UlaunchTemplateController extends Controller
             'text' => $request->input('text'),
             'background_color' => $request->input('background_color'),
         ]);
+
+        $this->template->status = 1;
         $this->template->save();
 
         return response()->json([

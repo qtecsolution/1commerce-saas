@@ -1358,19 +1358,6 @@ export default {
         this.appUrl = `${window.location.origin}`;
         this.apiUrl = `${window.location.origin}/app/templates/ulaunch`;
 
-        // check template status
-        if (this.template.status == 0) {
-            this.updateMenuArea();
-            this.updateHeroArea();
-            this.updateStepsArea();
-            this.updateFeaturesArea();
-            this.updateAboutArea();
-            this.updateTestimonialsArea();
-            this.updateInfoArea();
-            this.updateOrderArea();
-            this.updateFooterArea();
-        }
-
         // menu area
         const menuArea =
             this.template.menu_area != null
@@ -1409,8 +1396,11 @@ export default {
             heroArea != null ? JSON.parse(heroArea.button) : defaultHeroButton;
 
         // steps area
+        console.log(this.steps);
+        console.log(this.template.steps);
         this.steps =
             this.template.steps.length > 0 ? this.template.steps : this.steps;
+        console.log(this.steps);
 
         // feature area
         const featuresArea =
@@ -1567,6 +1557,19 @@ export default {
             footerArea != null ? footerArea.background_color : this.footerBg;
         this.footerText =
             footerArea != null ? footerArea.text : this.footerText;
+
+        // check template status
+        if (this.template.status == 0) {
+            this.updateMenuArea();
+            this.updateHeroArea();
+            this.updateStepsArea();
+            this.updateFeaturesArea();
+            this.updateAboutArea();
+            this.updateTestimonialsArea();
+            this.updateInfoArea();
+            this.updateOrderArea();
+            this.updateFooterArea();
+        }
     },
     methods: {
         updateContent(event) {
