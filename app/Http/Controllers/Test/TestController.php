@@ -35,6 +35,7 @@ class TestController extends Controller
                     'customer_phone' => $faker->phoneNumber,
                     'customer_email' => $faker->safeEmail,
                     'customer_address' => $faker->address,
+                    'product_name' => $faker->name,
                     'price' => $price,
                     'quantity' => $quantity,
                     'discount_amount' => $discount,

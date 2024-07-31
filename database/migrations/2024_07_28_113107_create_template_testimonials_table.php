@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('template_testimonials', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Template::class)->constanted()->cascadeOnDelete();
-            $table->foreignIdFor(User::class)->constanted()->cascadeOnDelete();
+            $table->foreignIdFor(Template::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->text('review')->nullable();
             $table->string('rating')->nullable();
             $table->string('reviewer_name')->nullable();

@@ -15,11 +15,14 @@ return new class extends Migration
     {
         Schema::create('user_templates', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Template::class)->constanted()->cascadeOnDelete();
-            $table->foreignIdFor(User::class)->constanted()->cascadeOnDelete();
+            $table->foreignIdFor(Template::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->string('company_name');
+            $table->string('company_slug')->unique();
             $table->string('company_logo')->nullable();
-            $table->string('product_name');
+            $table->string('product_name')->nullable();
+            $table->double('product_price')->default(0);
+            $table->string('product_currency')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
