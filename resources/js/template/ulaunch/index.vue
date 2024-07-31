@@ -1358,6 +1358,19 @@ export default {
         this.appUrl = `${window.location.origin}`;
         this.apiUrl = `${window.location.origin}/app/templates/ulaunch`;
 
+        // check template status
+        if (this.template.status == 0) {
+            this.updateMenuArea();
+            this.updateHeroArea();
+            this.updateStepsArea();
+            this.updateFeaturesArea();
+            this.updateAboutArea();
+            this.updateTestimonialsArea();
+            this.updateInfoArea();
+            this.updateOrderArea();
+            this.updateFooterArea();
+        }
+
         // menu area
         const menuArea =
             this.template.menu_area != null

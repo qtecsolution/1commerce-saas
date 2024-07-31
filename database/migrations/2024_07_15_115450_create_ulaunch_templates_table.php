@@ -25,6 +25,7 @@ return new class extends Migration
             $table->json('info_area')->nullable();
             $table->json('order_area')->nullable();
             $table->json('footer_area')->nullable();
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
     }
