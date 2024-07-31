@@ -16,15 +16,16 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->string('order_prefix');
             $table->integer('order_code');
-            $table->foreignId('customer_id')->default(0);
             $table->string('customer_name');
             $table->string('customer_phone');
             $table->string('customer_email');
             $table->longText('customer_address');
+            $table->string('product_name')->nullable();
+            $table->double('price')->default(0);
+            $table->integer('quantity')->default(1);
             $table->double('discount_amount')->default(0);
             $table->double('total_amount')->default(0);
             $table->tinyInteger('status')->default(1);
-            $table->string('order_from')->default('website');
             $table->timestamps();
         });
     }

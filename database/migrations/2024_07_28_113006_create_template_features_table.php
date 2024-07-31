@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('template_features', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Template::class)->constanted()->cascadeOnDelete();
-            $table->foreignIdFor(User::class)->constanted()->cascadeOnDelete();
+            $table->foreignIdFor(Template::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->string('icon')->nullable();
             $table->string('title')->nullable();
             $table->text('description')->nullable();

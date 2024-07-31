@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignIdFor(Package::class)->constrained()->cascadeOnDelete();
             $table->date('starting_date');
             $table->date('ending_date');
+            $table->boolean('is_paid')->default(false);
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
