@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Template;
 
-use App\Http\Controllers\Controller;
-use App\Models\Template\Template;
-use App\Models\Template\UlaunchTemplate;
-use App\Models\Template\UserTemplate;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\Template\Template;
+use App\Http\Controllers\Controller;
+use App\Models\Template\UserTemplate;
+use App\Models\Template\UlaunchTemplate;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class TemplateController extends Controller
@@ -54,7 +55,14 @@ class TemplateController extends Controller
             $request->validate([
                 'company_name' => 'required',
                 'company_logo' => 'required|image|mimes:png,jpg,jpeg|max:2048',
+                'company_slug' => [
+                    'required',
+                    'unique:user_templates,company_slug',
+                    'regex:/^[\S]+$/', // No spaces allowed
+                ],
                 'product_name' => 'required',
+                'product_price' => 'required|numeric',
+                'product_currency' => 'required|string',
                 'template_id' => 'required|exists:templates,id',
             ]);
 
@@ -69,7 +77,10 @@ class TemplateController extends Controller
                 'template_id' => $request->template_id,
                 'company_name' => $request->company_name,
                 'company_logo' => $path,
-                'product_name' => $request->product_name,
+                'company_slug' => Str::slug($request->company_slug),
+                'product_name' => $request->company_slug,
+                'product_price' => $request->product_price,
+                'product_currency' => $request->product_currency
             ]);
 
             switch ($request->template_id) {
@@ -78,7 +89,7 @@ class TemplateController extends Controller
                         'user_id' => auth()->id()
                     ]);
                     break;
-                
+
                 default:
                     # code...
                     break;
@@ -109,5 +120,18 @@ class TemplateController extends Controller
         }
 
         return view('template.edit.' . $userTemplate->template->slug . '.' . $userTemplate->template->blade_path, compact('userTemplate', 'template'));
+    }
+
+    public function slugAvailability(Request $request)
+    {
+        if (UserTemplate::where('company_slug', $request->slug)->exists()) {
+            return response()->json([
+                'status' => false
+            ]);
+        } else {
+            return response()->json([
+                'status' => true
+            ]);
+        }
     }
 }

@@ -109,6 +109,7 @@ Route::prefix('app')->middleware('user')->group(function () {
             Route::match(['get', 'post'], '/{id}/select', 'selectTemplate')->name('select');
             Route::get('mine', 'mine')->name('mine');
             Route::get('{id}/edit', 'edit')->name('edit');
+            Route::post('slug/availability', 'slugAvailability')->name('slug.availability');
 
             // ulaunch
             Route::prefix('ulaunch')->group(function () {
