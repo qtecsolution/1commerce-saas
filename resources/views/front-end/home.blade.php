@@ -67,7 +67,11 @@
                         <li><a href="{{ route('web.home') }}">About Us</a></li>
                         <li><a href="{{ route('web.packages') }}">Packages</a></li>
                         <li><a href="{{ route('web.home') }}">Contact Us</a></li>
-                        <li><a href="{{ route('sign_in') }}" class="btn btn-primary py-2 text-white">Login</a></li>
+                        <li>
+                            <a href="{{ route('sign_in') }}" class="btn btn-primary py-2 text-white">
+                                {{ auth()->check() ? 'Dashboard' : 'Sign In' }}
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -83,7 +87,10 @@
                         <div class="hero_content">
                             <h1>Welcome to {{ env('APP_NAME') }}</h1>
                             <p class="mb-5">
-                                This project is developed using PHP, Laravel, and Vue.js, specifically designed for small and medium-sized enterprises (SMEs) to create and manage landing pages for their niche products. With this platform, users can effortlessly choose and customize their landing pages in real-time with just a few clicks.
+                                This project is developed using PHP, Laravel, and Vue.js, specifically designed for small
+                                and medium-sized enterprises (SMEs) to create and manage landing pages for their niche
+                                products. With this platform, users can effortlessly choose and customize their landing
+                                pages in real-time with just a few clicks.
                             </p>
 
                             <a href="{{ route('web.packages') }}" class="btn btn-primary btn-lg">Check Our Packages</a>

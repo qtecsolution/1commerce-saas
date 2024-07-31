@@ -922,27 +922,17 @@
                                         <span
                                             style="margin-right: 5px"
                                             contenteditable="true"
-                                            @blur="
-                                                updateProductPrice(
-                                                    event,
-                                                    'currency'
-                                                )
-                                            "
+                                            @blur="updateProductCurrency"
                                             >{{
-                                                this.user_template.currency ??
+                                                this.user_template.product_currency ??
                                                 "৳"
                                             }}</span
                                         >
                                         <span
                                             contenteditable="true"
-                                            @blur="
-                                                updateProductPrice(
-                                                    event,
-                                                    'price'
-                                                )
-                                            "
+                                            @blur="updateProductPrice"
                                             >{{
-                                                this.user_template.price ?? 0
+                                                this.user_template.product_price ?? 0
                                             }}</span
                                         >
                                     </div>
@@ -2151,13 +2141,13 @@ export default {
             this.updateProductInfo();
         },
 
-        updateProductPrice(event, type) {
-            if (type == "currency") {
-                this.productCurrency = this.updateContent(event);
-            } else if (type == "price") {
-                this.productPrice = this.updateContent(event);
-            }
+        updateProductCurrency(event) {
+            this.productCurrency = this.updateContent(event);
+            this.updateProductInfo();
+        },
 
+        updateProductPrice(event) {
+            this.productPrice = this.updateContent(event);
             this.updateProductInfo();
         },
 

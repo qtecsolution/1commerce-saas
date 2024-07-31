@@ -18,7 +18,6 @@ use App\Http\Controllers\User\SubscriptionController;
 use App\Http\Controllers\Ticket\SupportTicketController;
 use App\Http\Controllers\Template\UlaunchTemplateController;
 use App\Http\Controllers\FrontEnd\PackageController as FrontEnd_PackageController;
-use App\Http\Controllers\LiveController;
 
 /*
 |--------------------------------------------------------------------------
@@ -126,6 +125,7 @@ Route::prefix('app')->middleware('user')->group(function () {
                 Route::post('update-info-area', [UlaunchTemplateController::class, 'updateInfoArea']);
                 Route::post('update-order-area', [UlaunchTemplateController::class, 'updateOrderArea']);
                 Route::post('update-footer-area', [UlaunchTemplateController::class, 'updateFooterArea']);
+                Route::post('update-product-info', [UlaunchTemplateController::class, 'updateProductInfo']);
             });
         });
     });

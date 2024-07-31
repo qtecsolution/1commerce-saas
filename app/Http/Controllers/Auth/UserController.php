@@ -18,6 +18,13 @@ class UserController extends Controller
     // function to sign-in user
     public function sign_in(Request $request)
     {
+        if (auth()->check()) {
+            if (auth()->user()->is_admin == 1) {
+                return to_route('admin_dashboard');
+            }
+            return to_route('user_dashboard');
+        }
+
         // check request method
         if ($request->isMethod('post')) {
             // data validation

@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Page Title -->
     <title>{{ $template->name }}</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{ asset($template->assets_path . '/images/logo.png') }}">
     <!-- Bootstrap css -->
     <link href="{{ asset($template->assets_path . '/css/bootstrap.min.css') }}" rel="stylesheet" media="screen">
     <!-- Font Awesome icon css-->
@@ -25,8 +27,8 @@
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
 
@@ -45,8 +47,7 @@
             <div class="container">
                 <!-- Start Header Navigation -->
                 <div class="navbar-header">
-                    <a class="navbar-brand"
-                        href="#"><img
+                    <a class="navbar-brand" href="#"><img
                             src="{{ asset($template->assets_path . '/images/logo.png') }}" class="logo"
                             alt=""></a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -78,12 +79,11 @@
             <div class="row">
                 <div class="col-md-6 col-sm-6">
                     <div class="header-content wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-                        <h2><span>Present your</span> <br>Awesome product</h2>
+                        <h2>Best quality smart watch only at Tk 2000.</h2>
                         <p>Lorem ipsum dolor sit amet. Reprehenderit, qui blanditiis quidem rerum necessitatibus
                             praesentium voluptatum deleniti atque corrupti, quos dolores eos.</p>
                         <div class="buy-button">
-                            <a href="#"
-                                class="btn-buynow">Purchase Now</a>
+                            <a href="#" class="btn-buynow">Purchase Now</a>
                         </div>
                     </div>
                 </div>
@@ -309,8 +309,7 @@
                                     <p>Pri quas audiam virtute ut, case utamur fuisset eam ut, iisque accommodare an
                                         eam. Reque blandit qui eu, cu vix nonumy volumus. Legendos intellegam id usu,
                                         vide oporteat vix eu, id illud principes has.</p>
-                                    <a href="#"
-                                        class="btn-buynow">Purchase Now</a>
+                                    <a href="#" class="btn-buynow">Purchase Now</a>
                                 </div>
                             </div>
 
@@ -333,8 +332,7 @@
                                     <p>Pri quas audiam virtute ut, case utamur fuisset eam ut, iisque accommodare an
                                         eam. Reque blandit qui eu, cu vix nonumy volumus. Legendos intellegam id usu,
                                         vide oporteat vix eu, id illud principes has.</p>
-                                    <a href="#"
-                                        class="btn-buynow">Purchase Now</a>
+                                    <a href="#" class="btn-buynow">Purchase Now</a>
                                 </div>
                             </div>
 
@@ -354,8 +352,7 @@
     <!-- About Product section ends -->
 
     <!-- Testimonials starts -->
-    <section class="testimonials parallaxie" id="testimonial"
-        style="background-image: url('{{ asset($template->assets_path . '/images/header-bg.jpg') }}'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed; background-position: center 1842.29px;">
+    <section class="testimonials parallaxie position-relative" id="testimonial">
         <div class="container">
             <!-- Section Title start -->
             <div class="row">
@@ -368,95 +365,84 @@
             </div>
             <!-- Section Title end -->
 
-            <div class="row">
-                <div class="col-md-12">
-                    <div
-                        class="swiper testimonials-slider swiper-coverflow swiper-3d swiper-initialized swiper-horizontal swiper-watch-progress">
-                        <div class="swiper-wrapper" id="swiper-wrapper-7863bf9ad17d8bbf" aria-live="off"
-                            style="cursor: grab; transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">
-                            <!-- Client Review slide start -->
-                            <div class="swiper-slide swiper-slide-visible swiper-slide-prev"
-                                style="width: 378.667px; transition-duration: 0ms; transform: translate3d(0px, 0px, -100px) rotateX(0deg) rotateY(50deg) scale(1); z-index: 0;"
-                                role="group" aria-label="1 / 6">
-                                <div class="testimonial-slide">
-                                    <div class="author-info">
-                                        <img src="{{ asset($template->assets_path . '/images/author-1.jpg') }}"
-                                            alt="">
-                                    </div>
-
-                                    <div class="testimonial-entry">
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                            Lorem Ipsum has been the industry's standard dummy text ever since the
-                                            1500s, when an unknown printer took a galley of type and scrambled it to
-                                            make a type specimen book.</p>
-
-                                        <h4>Harshad Patel <span>/ Web Designer</span></h4>
-                                    </div>
-                                </div>
+            <div class="row mt-5">
+                <!-- Client Review slide start -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="author-info">
+                                <img src="{{ asset('ULaunch/images/author-1.jpg') }}" />
                             </div>
-                            <!-- Client Review slide end -->
 
-                            <!-- Client Review slide start -->
-                            <div class="swiper-slide swiper-slide-visible swiper-slide-active"
-                                style="width: 378.667px; transition-duration: 0ms; transform: translate3d(0px, 0px, -0.0880282px) rotateX(0deg) rotateY(-0.0440141deg) scale(1); z-index: 1;"
-                                role="group" aria-label="2 / 6">
-                                <div class="testimonial-slide">
-                                    <div class="author-info">
-                                        <img src="{{ asset($template->assets_path . '/images/author-2.jpg') }}"
-                                            alt="">
-                                    </div>
+                            <div class="testimonial-entry mt-5">
+                                <p>
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                                    Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+                                    unknown printer took a galley of type and scrambled it to make a type specimen book.
+                                </p>
 
-                                    <div class="testimonial-entry">
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                            Lorem Ipsum has been the industry's standard dummy text ever since the
-                                            1500s, when an unknown printer took a galley of type and scrambled it to
-                                            make a type specimen book.</p>
-
-                                        <h4>Jasmin Joshph <span>/ Front end</span></h4>
-                                    </div>
-                                </div>
+                                <h4 class="d-inline">
+                                    Harshad Patel
+                                </h4>
+                                <span class="d-inline mx-1">/</span>
+                                <p class="d-inline">
+                                    NM Babor
+                                </p>
                             </div>
-                            <!-- Client Review slide end -->
-
-                            <!-- Client Review slide start -->
-                            <div class="swiper-slide swiper-slide-visible swiper-slide-next"
-                                style="width: 378.667px; transition-duration: 0ms; transform: translate3d(0px, 0px, -99.912px) rotateX(0deg) rotateY(-49.956deg) scale(1); z-index: 0;"
-                                role="group" aria-label="3 / 6">
-                                <div class="testimonial-slide">
-                                    <div class="author-info">
-                                        <img src="{{ asset($template->assets_path . '/images/author-3.jpg') }}"
-                                            alt="">
-                                    </div>
-
-                                    <div class="testimonial-entry">
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                            Lorem Ipsum has been the industry's standard dummy text ever since the
-                                            1500s, when an unknown printer took a galley of type and scrambled it to
-                                            make a type specimen book.</p>
-
-                                        <h4>Sweta Silva <span>/ Back end</span></h4>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Client Review slide end -->
-
-                        </div>
-
-                        <div
-                            class="testimonial-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal">
-                            <span class="swiper-pagination-bullet" tabindex="0" role="button"
-                                aria-label="Go to slide 1"></span><span
-                                class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0"
-                                role="button" aria-label="Go to slide 2" aria-current="true"></span><span
-                                class="swiper-pagination-bullet" tabindex="0" role="button"
-                                aria-label="Go to slide 3"></span><span class="swiper-pagination-bullet"
-                                tabindex="0" role="button" aria-label="Go to slide 4"></span><span
-                                class="swiper-pagination-bullet" tabindex="0" role="button"
-                                aria-label="Go to slide 5"></span><span class="swiper-pagination-bullet"
-                                tabindex="0" role="button" aria-label="Go to slide 6"></span>
                         </div>
                     </div>
                 </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="author-info">
+                                <img src="{{ asset('ULaunch/images/author-2.jpg') }}" />
+                            </div>
+
+                            <div class="testimonial-entry mt-5">
+                                <p>
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                                    Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+                                    unknown printer took a galley of type and scrambled it to make a type specimen book.
+                                </p>
+
+                                <h4 class="d-inline">
+                                    Harshad Patel
+                                </h4>
+                                <span class="d-inline mx-1">/</span>
+                                <p class="d-inline">
+                                    NM Babor
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="author-info">
+                                <img src="{{ asset('ULaunch/images/author-3.jpg') }}" />
+                            </div>
+
+                            <div class="testimonial-entry mt-5">
+                                <p>
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                                    Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+                                    unknown printer took a galley of type and scrambled it to make a type specimen book.
+                                </p>
+
+                                <h4 class="d-inline">
+                                    Harshad Patel
+                                </h4>
+                                <span class="d-inline mx-1">/</span>
+                                <p class="d-inline">
+                                    NM Babor
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Client Review slide end -->
             </div>
         </div>
     </section>
@@ -477,8 +463,7 @@
                             suffered alteration in some form, by injected humour, or randomised words which don't look
                             even slightly believable.</p>
 
-                        <a href="#"
-                            class="btn-buynow">Orderer Now</a>
+                        <a href="#" class="btn-buynow">Orderer Now</a>
                     </div>
                 </div>
 
@@ -504,10 +489,22 @@
                     </div>
 
                     <!-- Contact Form start -->
+                    <div class="card bg-white shadow border-0 mb-3">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    Smart Watch Pro
+                                </div>
+                                <div class="col-md-4 text-end">
+                                    <span style="margin-right: 5px">BDT</span>
+                                    <span>2000</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="contact-form">
-                        <form id="contactForm"
-                            action="#"
-                            method="post" data-toggle="validator" novalidate="true">
+                        <form id="contactForm" action="#" method="post" data-toggle="validator"
+                            novalidate="true">
                             <div class="row">
                                 <div class="form-group mb-3 col-md-6 col-sm-6">
                                     <label for="name" class="form-label">Name:</label>
