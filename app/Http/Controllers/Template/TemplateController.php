@@ -86,8 +86,11 @@ class TemplateController extends Controller
             switch ($request->template_id) {
                 case 1:
                     UlaunchTemplate::create([
-                        'user_id' => auth()->id()
+                        'user_id' => auth()->id(),
+                        'status' => 0
                     ]);
+
+                    return to_route('templates.edit', 1);
                     break;
 
                 default:
