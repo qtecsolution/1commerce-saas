@@ -380,23 +380,14 @@ class UlaunchTemplateController extends Controller
     public function initialSetup($user_id)
     {
         UlaunchTemplate::create([
-            'user_id' => 3,
+            'user_id' => $user_id,
             'status' => 1,
             'menu_area' => json_encode([
-                "title" => "Best quality smart watch only at Tk 2000.",
-                "description" => "Lorem ipsum dolor sit amet. Reprehenderit, qui blanditiis quidem rerum necessitatibus praesentium voluptatum deleniti atque corrupti, quos dolores eos.",
-                "image" => null,
-                "button" => [
-                    "title" => "Product Details",
-                    "url" => "#features",
-                    "color" => "transparent",
-                    "text_color" => "white",
-                    "border_color" => "white",
-                    "hover_color" => "white",
-                    "hover_text_color" => "black",
-                    "hover_border_color" => "white"
-                ],
-                "background_color" => "#20bea7"
+                ["title" => "Home", "url" => "#home"],
+                ["title" => "Features", "url" => "#features"],
+                ["title" => "About", "url" => "#about"],
+                ["title" => "Testimonials", "url" => "#testimonials"],
+                ["title" => "Order", "url" => "#order"]
             ]),
             'hero_area' => json_encode([
                 "title" => "Best quality smart watch only at Tk 2000.",
