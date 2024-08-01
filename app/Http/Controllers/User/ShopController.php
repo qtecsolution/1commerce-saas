@@ -16,8 +16,8 @@ class ShopController extends Controller
         $userTemplate = UserTemplate::with('template')->where('company_slug', $slug)->firstOrFail();
         if ($userTemplate->template_id == 1) {
             $ulaunch = UlaunchTemplate::with(['steps', 'features', 'testimonials'])
-                ->where('user_id', $userTemplate->user_id)
-                ->firstOrFail();
+            ->where('user_id', $userTemplate->user_id)
+            ->firstOrFail();
 
             return view('template.live.ulaunch', compact('ulaunch', 'userTemplate'));
         }

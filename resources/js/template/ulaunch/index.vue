@@ -1538,17 +1538,17 @@ export default {
             footerArea != null ? footerArea.text : this.footerText;
 
         // check template status
-        if (this.template.status == 0) {
-            this.updateMenuArea();
-            this.updateHeroArea();
-            this.updateStepsArea();
-            this.updateFeaturesArea();
-            this.updateAboutArea();
-            this.updateTestimonialsArea();
-            this.updateInfoArea();
-            this.updateOrderArea();
-            this.updateFooterArea();
-        }
+        // if (this.template.status == 0) {
+        //     this.updateMenuArea();
+        //     this.updateHeroArea();
+        //     this.updateStepsArea();
+        //     this.updateFeaturesArea();
+        //     this.updateAboutArea();
+        //     this.updateTestimonialsArea();
+        //     this.updateInfoArea();
+        //     this.updateOrderArea();
+        //     this.updateFooterArea();
+        // }
     },
     methods: {
         updateContent(event) {

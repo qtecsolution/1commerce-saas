@@ -40,14 +40,13 @@ class TemplateController extends Controller
     public function selectTemplate(Request $request, $id)
     {
         $template = $this->templates->where('id', $id)->first();
-        if ($template) {
-            $userTemplate = UserTemplate::where('user_id', auth()->id())->where('template_id', $template->id)->first();
-            if ($userTemplate) {
-                Alert::error('Oops!', 'Template Already Added.')->persistent('Close');
-                return redirect()->back();
-            }
-        } else {
+        if (!$template) {
             Alert::error('Oops!', 'Template Not Found.')->persistent('Close');
+            return redirect()->back();
+        }
+        $userTemplate = UserTemplate::where('user_id', auth()->id())->where('template_id', $template->id)->first();
+        if ($userTemplate) {
+            Alert::error('Oops!', 'Template Already Added.')->persistent('Close');
             return redirect()->back();
         }
 
@@ -85,14 +84,10 @@ class TemplateController extends Controller
 
             switch ($request->template_id) {
                 case 1:
-                    UlaunchTemplate::create([
-                        'user_id' => auth()->id(),
-                        'status' => 0
-                    ]);
-
-                    return to_route('templates.edit', 1);
+                    $ulaunch = new UlaunchTemplateController();
+                    $ulaunch->initialSetup(auth()->id());
+                    return to_route('templates.mine');
                     break;
-
                 default:
                     # code...
                     break;

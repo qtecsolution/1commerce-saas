@@ -1,15 +1,26 @@
 @php
     $hero_area = $ulaunch->hero_area != null ? json_decode($ulaunch->hero_area, true) : null;
     $feature_area = $ulaunch->features_area ? json_decode($ulaunch->features_area, true) : null;
-    $features = $feature_area != null ? array_chunk($ulaunch->features->toArray(), ceil(count($ulaunch->features->toArray()) / 2)) : null;
+    $features =
+        $feature_area != null
+            ? array_chunk($ulaunch->features->toArray(), ceil(count($ulaunch->features->toArray()) / 2))
+            : null;
     $about_area = $ulaunch->about_area != null ? json_decode($ulaunch->about_area, true) : null;
     $testimonials_area = $ulaunch->testimonials_area != null ? json_decode($ulaunch->testimonials_area, true) : null;
     $info_area = $ulaunch->info_area != null ? json_decode($ulaunch->info_area, true) : null;
     $order_area = $ulaunch->order_area != null ? json_decode($ulaunch->order_area, true) : null;
     $footer_area = $ulaunch->footer_area != null ? json_decode($ulaunch->footer_area, true) : null;
 
-    $areas = [$hero_area, $feature_area, $features, $about_area, $testimonials_area, $info_area, $order_area, $footer_area];
-
+    $areas = [
+        $hero_area,
+        $feature_area,
+        $features,
+        $about_area,
+        $testimonials_area,
+        $info_area,
+        $order_area,
+        $footer_area,
+    ];
     foreach ($areas as $area) {
         if ($area === null || empty($area)) {
             abort(500);
@@ -25,7 +36,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="{{ $userTemplate->company_logo ? asset('storage/' . $userTemplate->company_logo) : asset($userTemplate->template->assets_path . '/images/logo.png') }}" type="image/x-icon">
+    <link rel="shortcut icon"
+        href="{{ $userTemplate->company_logo ? asset('storage/' . $userTemplate->company_logo) : asset($userTemplate->template->assets_path . '/images/logo.png') }}"
+        type="image/x-icon">
     <!-- Page Title -->
     <title>{{ $userTemplate->company_name }}</title>
     <!-- Bootstrap css -->
@@ -52,7 +65,7 @@
     <![endif]-->
 
     <!-- button styles -->
-    @php 
+    @php
         $abouts = $about_area['items'];
         $hero_area_button = $hero_area['button'];
     @endphp
@@ -419,7 +432,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2">
-                    <div class="section-title wow fadeInUp text-center" style="visibility: visible; animation-name: fadeInUp;">
+                    <div class="section-title wow fadeInUp text-center"
+                        style="visibility: visible; animation-name: fadeInUp;">
                         <p>{{ $info_area['sub_title'] }}</p>
                         <h2>{{ $info_area['title'] }}</h2>
                     </div>
@@ -461,8 +475,8 @@
                         </div>
                     </div>
                     <div class="contact-form">
-                        <form id="contactForm" action="{{ route('order.store') }}" method="post" data-toggle="validator"
-                            novalidate="true">
+                        <form id="contactForm" action="{{ route('order.store') }}" method="post"
+                            data-toggle="validator" novalidate="true">
 
                             @csrf
                             <input type="hidden" name="user_template_id" value="{{ $userTemplate->id }}">
@@ -470,8 +484,9 @@
                             <div class="row">
                                 <div class="form-group mb-3 col-md-6 col-sm-6">
                                     <label for="name" class="form-label">Name:</label>
-                                    <input type="text" name="customer_name" value="{{ old('customer_name') }}" id="name" class="form-control"
-                                        placeholder="Enter Your Name" required="">
+                                    <input type="text" name="customer_name" value="{{ old('customer_name') }}"
+                                        id="name" class="form-control" placeholder="Enter Your Name"
+                                        required="">
                                     <div class="help-block with-errors"></div>
                                     @error('customer_name')
                                         <small class="text-danger">{{ $message }}</small>
@@ -480,8 +495,9 @@
 
                                 <div class="form-group mb-3 col-md-6 col-sm-6">
                                     <label for="mobile" class="form-label">Mobile:</label>
-                                    <input type="number" name="customer_phone" value="{{ old('customer_phone') }}" id="mobile" class="form-control"
-                                        placeholder="Your Mobile Number" required="">
+                                    <input type="number" name="customer_phone" value="{{ old('customer_phone') }}"
+                                        id="mobile" class="form-control" placeholder="Your Mobile Number"
+                                        required="">
                                     <div class="help-block with-errors"></div>
                                     @error('customer_phone')
                                         <small class="text-dan">{{ $message }}</small>
@@ -500,7 +516,8 @@
 
                                 <div class="form-group mb-3 col-md-12 col-sm-12">
                                     <label for="address" class="form-label">Address:</label>
-                                    <textarea rows="8" name="customer_address" id="address" placeholder="Address" class="form-control" required="">{{ old('customer_address') }}</textarea>
+                                    <textarea rows="8" name="customer_address" id="address" placeholder="Address" class="form-control"
+                                        required="">{{ old('customer_address') }}</textarea>
                                     <div class="help-block with-errors"></div>
                                 </div>
 
