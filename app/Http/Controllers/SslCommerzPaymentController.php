@@ -116,16 +116,7 @@ class SslCommerzPaymentController extends Controller
                     ->where('transaction_id', $tran_id)
                     ->update(['status' => 'Complete']);
 
-                // update subscription status
-                $payment = SubscriptionPayment::where('transaction_id', $tran_id)->first();
-                $subscription = Subscription::with('package_details')->find($payment->subscription_id);
-                if ($payment->is_extension_payment == 1) {
-                    $subscription->ending_date = Carbon::parse($subscription->ending_date)->addDays($subscription->package_details->duration);
-                } else {
-                    $subscription->is_paid = 1;
-                }
-                $subscription->is_paid = 1;
-                $subscription->save();
+                $this->subscriptionUpdate($tran_id);
                 // echo "<br >Transaction is successfully Completed";
 
                 alert('Success', 'Transaction is successfully Completed', 'success');
@@ -134,6 +125,7 @@ class SslCommerzPaymentController extends Controller
             /*
                 That means through IPN Order status already updated. Now you can just show the customer that transaction is completed. No need to update database.
              */
+            $this->subscriptionUpdate($tran_id);
             // echo "Transaction is successfully Completed";
 
             alert('Success', 'Transaction is successfully Completed', 'success');
@@ -144,6 +136,20 @@ class SslCommerzPaymentController extends Controller
             alert('Error', 'Invalid Transaction', 'error');
         }
         return to_route('subscription.index');
+    }
+
+    private function subscriptionUpdate($tran_id)
+    {
+        // update subscription status
+        $payment = SubscriptionPayment::where('transaction_id', $tran_id)->first();
+        $subscription = Subscription::with('package_details')->find($payment->subscription_id);
+        if ($payment->is_extension_payment == 1) {
+            $subscription->ending_date = Carbon::parse($subscription->ending_date)->addDays($subscription->package_details->duration);
+        }
+        $subscription->is_paid = 1;
+        $subscription->save();
+
+        return true;
     }
 
     public function fail(Request $request)

@@ -916,15 +916,16 @@
                                             contenteditable="true"
                                             @blur="updateProductCurrency"
                                             >{{
-                                                this.user_template.product_currency ??
-                                                "৳"
+                                                this.user_template
+                                                    .product_currency ?? "৳"
                                             }}</span
                                         >
                                         <span
                                             contenteditable="true"
                                             @blur="updateProductPrice"
                                             >{{
-                                                this.user_template.product_price ?? 0
+                                                this.user_template
+                                                    .product_price ?? 0
                                             }}</span
                                         >
                                     </div>
@@ -1375,7 +1376,7 @@ export default {
             hover_border_color: "white",
         };
         this.heroButton =
-            heroArea != null ? JSON.parse(heroArea.button) : defaultHeroButton;
+            heroArea != null ? heroArea.button : defaultHeroButton;
 
         // steps area
         this.steps =
