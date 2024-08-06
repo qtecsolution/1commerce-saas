@@ -18,13 +18,13 @@ export default {
     props: ["style", "section", "color"],
     data() {
         return {
-            updatedColor: "",
+            updatedColor: this.color || "",
         };
     },
-    mounted() {
-        this.updatedColor = this.color;
-    },
     watch: {
+        color(newValue) {
+            this.updatedColor = newValue;
+        },
         updatedColor(newValue, oldValue) {
             if (oldValue !== "") {
                 this.updateColor();
@@ -35,7 +35,7 @@ export default {
         updateColor() {
             this.$emit("update", {
                 color: this.updatedColor,
-                section: this.section
+                section: this.section,
             });
         },
     },
