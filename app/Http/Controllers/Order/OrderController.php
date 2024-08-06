@@ -8,7 +8,7 @@ use App\Models\Template\UserTemplate;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class OderController extends Controller
+class OrderController extends Controller
 {
     public function index(Request $request)
     {
@@ -23,7 +23,8 @@ class OderController extends Controller
             return view('customer.order.orders', compact('orders'));
         }
 
-        abort(403);
+        Alert::error('Oops!', 'Template Not Setup yet.');
+        return to_route('templates.index');
     }
 
     public function updateStatus($id, $status)

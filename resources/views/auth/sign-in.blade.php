@@ -4,8 +4,7 @@
 @extends('layouts.guest')
 
 @section('page_content')
-    <div class="container-fluid p-h-0 p-v-20 bg full-height d-flex"
-        style="background-image: url('assets/images/others/login-3.png')">
+    <div class="container-fluid p-h-0 p-v-20 bg full-height d-flex" style="background-image: url('assets/images/login.jpg')">
         <div class="d-flex flex-column justify-content-between w-100">
             <div class="container d-flex h-100">
                 <div class="row align-items-center w-100">
@@ -30,8 +29,10 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="font-weight-semibold" for="password">Password:</label>
-                                        <a class="float-right font-size-13 text-muted" href="">Forget
-                                            Password?</a>
+                                        {{-- <a class="float-right font-size-13 text-muted" href="javascript:void(0)"
+                                            onclick="return alert('Under development !!')">
+                                            Forgot Password?
+                                        </a> --}}
                                         <div class="input-affix m-b-10">
                                             <i class="prefix-icon anticon anticon-lock"></i>
                                             <input type="password" class="form-control" id="password"

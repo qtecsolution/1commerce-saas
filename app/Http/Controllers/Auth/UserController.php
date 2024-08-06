@@ -67,8 +67,8 @@ class UserController extends Controller
             // data validation
             $request->validate([
                 'name' => 'required',
-                'phone' => 'required|unique:users,phone',
-                'email' => 'required|unique:users,email',
+                'phone' => 'required|unique:users,phone|regex:/(01)[0-9]{9}/|max:11',
+                'email' => 'required|unique:users,email|email|max:255',
                 'password' => 'required|min:8|confirmed',
                 'password_confirmation' => 'required|min:8',
                 'package_id' => 'required|exists:packages,id',
@@ -96,8 +96,8 @@ class UserController extends Controller
             Auth::login($user);
             $request->session()->regenerate();
 
-            // return to user dashboard
-            return redirect()->route('user_dashboard');
+            alert('Successfully registered!', 'Please, complete your payment and activate your subscription.', 'success');
+            return to_route('subscription.index');
         } else {
             // check selected package
             if (session()->has('selected_package')) {

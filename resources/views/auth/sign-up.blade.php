@@ -5,7 +5,7 @@
 
 @section('page_content')
     <div class="container-fluid p-h-0 p-v-20 bg full-height d-flex"
-        style="background-image: url('assets/images/others/login-3.png')">
+        style="background-image: url('assets/images/login.jpg')">
         <div class="d-flex flex-column justify-content-between w-100">
             <div class="container d-flex h-100">
                 <div class="row align-items-center w-100">
@@ -36,8 +36,8 @@
                                             <label class="font-weight-semibold" for="phone">Phone:</label>
                                             <div class="input-affix">
                                                 <i class="prefix-icon anticon anticon-phone"></i>
-                                                <input type="text" class="form-control" id="phone" placeholder="phone"
-                                                    name="phone" value="{{ old('phone') }}">
+                                                <input type="text" class="form-control" id="phone"
+                                                    placeholder="phone" name="phone" value="{{ old('phone') }}">
                                             </div>
                                         </div>
                                     </div>
@@ -46,16 +46,14 @@
                                             <label class="font-weight-semibold" for="email">Email:</label>
                                             <div class="input-affix">
                                                 <i class="prefix-icon anticon anticon-mail"></i>
-                                                <input type="text" class="form-control" id="email" placeholder="email"
-                                                    name="email" value="{{ old('email') }}">
+                                                <input type="email" class="form-control" id="email"
+                                                    placeholder="email" name="email" value="{{ old('email') }}">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="font-weight-semibold" for="password">Password:</label>
-                                            {{-- <a class="float-right font-size-13 text-muted" href="">Forget
-                                                Password?</a> --}}
                                             <div class="input-affix m-b-10">
                                                 <i class="prefix-icon anticon anticon-lock"></i>
                                                 <input type="password" class="form-control" id="password"
@@ -65,11 +63,13 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="font-weight-semibold" for="password_confirmation">Confirm Password:</label>
+                                            <label class="font-weight-semibold" for="password_confirmation">Confirm
+                                                Password:</label>
                                             <div class="input-affix m-b-10">
                                                 <i class="prefix-icon anticon anticon-lock"></i>
                                                 <input type="password" class="form-control" id="password_confirmation"
-                                                    placeholder="Confirm Password" name="password_confirmation" value="{{ old('password_confirmation') }}">
+                                                    placeholder="Confirm Password" name="password_confirmation"
+                                                    value="{{ old('password_confirmation') }}">
                                             </div>
                                         </div>
                                     </div>
@@ -78,9 +78,11 @@
                                             <label class="font-weight-semibold" for="package">Package:</label>
                                             <div class="input-affix">
                                                 <i class="prefix-icon anticon anticon-copy"></i>
-                                                <input type="text" class="form-control" id="package" placeholder="package"
-                                                    name="package" value="{{ session('selected_package')['title'] }}" readonly>
-                                                <input type="hidden" name="package_id" value="{{ session('selected_package')['id'] }}">
+                                                <input type="text" class="form-control" id="package"
+                                                    placeholder="package" name="package"
+                                                    value="{{ session('selected_package')['title'] }}" readonly>
+                                                <input type="hidden" name="package_id"
+                                                    value="{{ session('selected_package')['id'] }}">
                                             </div>
                                         </div>
                                     </div>

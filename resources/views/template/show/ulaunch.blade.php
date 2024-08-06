@@ -13,8 +13,9 @@
     <!-- Bootstrap css -->
     <link href="{{ asset($template->assets_path . '/css/bootstrap.min.css') }}" rel="stylesheet" media="screen">
     <!-- Font Awesome icon css-->
-    <link href="{{ asset($template->assets_path . '/css/font-awesome.all.css') }}" rel="stylesheet" media="screen">
+    <link href="{{ asset('assets/font-awesome/css/all.min.css') }}" rel="stylesheet" media="screen">
     <link href="{{ asset($template->assets_path . '/css/flaticon.css') }}" rel="stylesheet" media="screen">
+
     <!-- Swiper's CSS -->
     <link rel="stylesheet" href="{{ asset($template->assets_path . '/css/swiper.min.css') }}">
     <!-- Animated css -->
@@ -47,9 +48,10 @@
             <div class="container">
                 <!-- Start Header Navigation -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#"><img
-                            src="{{ asset($template->assets_path . '/images/logo.png') }}" class="logo"
-                            alt=""></a>
+                    <a class="navbar-brand" href="javascript:void(0)">
+                        <img src="{{ asset($template->assets_path . '/images/logo.png') }}" class="logo"
+                            alt="logo">
+                    </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbar-menu" aria-controls="ftco-nav" aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -83,14 +85,14 @@
                         <p>Lorem ipsum dolor sit amet. Reprehenderit, qui blanditiis quidem rerum necessitatibus
                             praesentium voluptatum deleniti atque corrupti, quos dolores eos.</p>
                         <div class="buy-button">
-                            <a href="#" class="btn-buynow">Purchase Now</a>
+                            <a href="#order-form" class="btn-buynow">Purchase Now</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-6 col-sm-6">
                     <div class="slider-image wow fadeInRight" style="visibility: visible; animation-name: fadeInRight;">
-                        <img src="{{ asset($template->assets_path . '/images/header.png') }}" alt="">
+                        <img src="{{ asset($template->assets_path . '/images/header.png') }}" alt="header">
                     </div>
                 </div>
             </div>
@@ -222,7 +224,7 @@
 
                 <div class="col-lg-4">
                     <div class="feature-image wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-                        <img src="{{ asset($template->assets_path . '/images/feature.png') }}" alt="">
+                        <img src="{{ asset($template->assets_path . '/images/feature.png') }}" alt="feature">
                     </div>
                 </div>
 
@@ -309,7 +311,7 @@
                                     <p>Pri quas audiam virtute ut, case utamur fuisset eam ut, iisque accommodare an
                                         eam. Reque blandit qui eu, cu vix nonumy volumus. Legendos intellegam id usu,
                                         vide oporteat vix eu, id illud principes has.</p>
-                                    <a href="#" class="btn-buynow">Purchase Now</a>
+                                    <a href="#order-form" class="btn-buynow">Purchase Now</a>
                                 </div>
                             </div>
 
@@ -317,7 +319,7 @@
                                 <div class="about-image wow fadeInRight" data-wow-delay="0.2s"
                                     style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInRight;">
                                     <img src="{{ asset($template->assets_path . '/images/about-1.png') }}"
-                                        alt="">
+                                        alt="about">
                                 </div>
                             </div>
                         </div>
@@ -332,7 +334,7 @@
                                     <p>Pri quas audiam virtute ut, case utamur fuisset eam ut, iisque accommodare an
                                         eam. Reque blandit qui eu, cu vix nonumy volumus. Legendos intellegam id usu,
                                         vide oporteat vix eu, id illud principes has.</p>
-                                    <a href="#" class="btn-buynow">Purchase Now</a>
+                                    <a href="#order-form" class="btn-buynow">Purchase Now</a>
                                 </div>
                             </div>
 
@@ -340,7 +342,7 @@
                                 <div class="about-image wow fadeInLeft" data-wow-delay="0.4s"
                                     style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInLeft;">
                                     <img src="{{ asset($template->assets_path . '/images/about-2.png') }}"
-                                        alt="">
+                                        alt="about">
                                 </div>
                             </div>
                         </div>
@@ -453,7 +455,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2">
-                    <div class="section-title wow fadeInUp text-center" style="visibility: visible; animation-name: fadeInUp;">
+                    <div class="section-title wow fadeInUp text-center"
+                        style="visibility: visible; animation-name: fadeInUp;">
                         <p>Get it Today</p>
                         <h2>Get your Product today!</h2>
                     </div>
@@ -463,7 +466,7 @@
                             suffered alteration in some form, by injected humour, or randomised words which don't look
                             even slightly believable.</p>
 
-                        <a href="#" class="btn-buynow">Orderer Now</a>
+                        <a href="#order-form" class="btn-buynow">Order Now</a>
                     </div>
                 </div>
             </div>
@@ -496,7 +499,7 @@
                         </div>
                     </div>
                     <div class="contact-form">
-                        <form id="contactForm" action="#" method="post" data-toggle="validator"
+                        <form id="order-form" action="javascript:void(0)" method="post" data-toggle="validator"
                             novalidate="true">
                             <div class="row">
                                 <div class="form-group mb-3 col-md-6 col-sm-6">
@@ -527,7 +530,7 @@
                                 </div>
 
                                 <div class="col-md-12 col-sm-12">
-                                    <button type="submit" class="btn-contact disabled">Order Now</button>
+                                    <button type="button" class="btn-contact disabled">Order Now</button>
                                     <div id="msgSubmit" class="h3 text-left hidden"></div>
                                 </div>
                             </div>

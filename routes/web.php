@@ -5,7 +5,7 @@ use App\Http\Controllers\Auth\UserController;
 
 use App\Http\Controllers\Test\TestController;
 use App\Http\Controllers\User\ShopController;
-use App\Http\Controllers\Order\OderController;
+use App\Http\Controllers\Order\OrderController;
 use App\Http\Controllers\FrontEnd\WebController;
 use App\Http\Controllers\User\CustomerController;
 use App\Http\Controllers\Dashboard\AdminDashboard;
@@ -97,7 +97,7 @@ Route::prefix('app')->middleware('user')->group(function () {
         Route::post('reply-support-ticket', [SupportTicketController::class, 'customerReplyTicket'])->name('customer_reply_support_ticket');
 
         // order routes
-        Route::controller(OderController::class)->group(function () {
+        Route::controller(OrderController::class)->group(function () {
             Route::get("orders", "index")->name('orders');
             Route::get("update-status/{id}/{status}", "updateStatus")->name('order.update.status');
             Route::get("order-show/{id}", "show")->name('order.show');

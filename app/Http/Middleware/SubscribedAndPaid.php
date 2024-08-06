@@ -19,12 +19,12 @@ class SubscribedAndPaid
         if (env('APP_ENV') != 'local') {
             $subscription = Subscription::where('user_id', auth()->id())->latest()->first();
             if (!$subscription) {
-                alert('Error', 'Subscription not found!', 'error');
+                alert('sorry !!', 'Subscription not found!', 'error');
                 return to_route('subscription.index');
             }
 
             if ($subscription->is_paid == 0) {
-                alert('Error', 'Subscription payment is incomplete!', 'error');
+                alert('Wait !!', 'Your payment is incomplete!', 'error');
                 return to_route('subscription.index');
             }
         }
