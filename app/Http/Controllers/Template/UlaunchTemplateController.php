@@ -50,6 +50,30 @@ class UlaunchTemplateController extends Controller
         }
     }
 
+    public function updateCompanyLogo(Request $request)
+    {
+        $template = UserTemplate::where('user_id', $this->userId)->where('template_id', $this->templateId)->first();
+
+        if ($template) {
+            if ($request->hasFile('image')) {
+                if ($template->company_logo) {
+                    $oldImagePath = storage_path('app/public/' . $template->company_logo);
+                    if (file_exists($oldImagePath)) {
+                        unlink($oldImagePath);
+                    }
+                }
+
+                $request->file('image')->store('public/users/logo');
+                $template->company_logo = 'users/logo/' . $request->file('image')->hashName();
+                $template->save();
+            }
+        }
+
+        return response()->json([
+            'message' => 'Company Logo Updated.',
+        ]);
+    }
+
     public function updateMenuArea(Request $request)
     {
         $this->template->menu_area = $request->input('items');

@@ -10,11 +10,7 @@
                     <div class="navbar-header">
                         <a class="navbar-brand" href="#">
                             <img
-                                :src="
-                                    appUrl +
-                                    '/storage/' +
-                                    user_template.company_logo
-                                "
+                                :src="companyLogo"
                                 width="50"
                                 class="logo"
                                 :alt="user_template.company_name"
@@ -31,6 +27,22 @@
                         >
                             <span class="fas fa-bars"></span>
                         </button>
+                        <div
+                            class="position-absolute top-0 start-0 mt-2"
+                            title="Image settings"
+                        >
+                            <div
+                                class="bg-primary text-white text-center rounded-circle cursor-pointer"
+                                style="width: 30px; height: 30px"
+                                data-bs-toggle="modal"
+                                data-bs-target="#logoImageModal"
+                            >
+                                <i
+                                    class="fas fa-cog"
+                                    style="font-size: 20px; margin-top: 5px"
+                                ></i>
+                            </div>
+                        </div>
                     </div>
                     <!-- End Header Navigation -->
 
@@ -271,6 +283,7 @@
                                 animation-name: fadeInLeft;
                             "
                             v-for="(item, index) in featureList[0]"
+                            :key="item.id"
                         >
                             <div class="icon-box">
                                 <iconPicker
@@ -345,6 +358,7 @@
                                 animation-name: fadeInRight;
                             "
                             v-for="(item, index) in featureList[1]"
+                            :key="item.id"
                         >
                             <div class="icon-box">
                                 <iconPicker
@@ -1058,8 +1072,14 @@
 
         <!-- Modals -->
         <ImageModal
+            modalId="logoImageModal"
+            modalTitle="logo Image"
+            section="logo"
+            @update="updateImage"
+        />
+        <ImageModal
             modalId="heroImageModal"
-            modalTitle="Horo Image"
+            modalTitle="Hero Image"
             section="hero"
             @update="updateImage"
         />
@@ -1320,6 +1340,8 @@ export default {
             productName: "",
             productPrice: "",
             productCurrency: "",
+            companyLogo: "",
+            companyLogoRaw: "",
 
             // footer area
             footerText: "Copyright © 2024, All Rights Reserved.",
@@ -1338,6 +1360,8 @@ export default {
         },
     },
     mounted() {
+        // console.log(this.features);
+
         this.appUrl = `${window.location.origin}`;
         this.apiUrl = `${window.location.origin}/app/templates/ulaunch`;
 
@@ -1526,6 +1550,13 @@ export default {
         this.productName = this.user_template.product_name;
         this.productPrice = this.user_template.product_price;
         this.productCurrency = this.user_template.product_currency;
+        this.companyLogo = this.user_template.company_logo;
+        // console.log(this.user_template);
+        this.companyLogo =
+            this.user_template.company_logo != null &&
+            this.user_template.company_logo
+                ? this.imageSource(this.user_template.company_logo, "storage")
+                : this.imageSource("images/logo.png");
 
         // footer area
         const footerArea =
@@ -1563,6 +1594,21 @@ export default {
 
         updateImage(data) {
             switch (data.section) {
+                case "logo":
+                    this.companyLogo =
+                        data.image !== null && data.image !== ""
+                            ? data.image
+                            : this.companyLogo;
+
+                    this.companyLogoRaw =
+                        data.image_raw !== null && data.image_raw !== ""
+                            ? data.image_raw
+                            : this.companyLogoRaw;
+
+                    this.updateLogo();
+
+                    break;
+
                 case "hero":
                     this.heroImage =
                         data.image !== null && data.image !== ""
@@ -1803,6 +1849,23 @@ export default {
             };
 
             this.updateHeroArea();
+        },
+
+        updateLogo() {
+            const formData = new FormData();
+            formData.append("image", this.companyLogoRaw);
+            axios
+                .post(`${this.apiUrl}/update-company-logo`, formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                })
+                .then((response) => {
+                    // console.log(response);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
         },
 
         updateHeroArea() {
