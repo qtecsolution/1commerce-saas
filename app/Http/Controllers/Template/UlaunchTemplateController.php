@@ -74,6 +74,17 @@ class UlaunchTemplateController extends Controller
         ]);
     }
 
+    public function updateNavColor(Request $request)
+    {
+        $this->template->nav_color = $request->input('nav_color');
+        $this->template->save();
+
+        return response()->json([
+            'message' => 'Nav Color Updated.',
+            'data' => $this->template->nav_color
+        ]);
+    }
+
     public function updateMenuArea(Request $request)
     {
         $this->template->menu_area = $request->input('items');
@@ -406,6 +417,7 @@ class UlaunchTemplateController extends Controller
         UlaunchTemplate::create([
             'user_id' => $user_id,
             'status' => 1,
+            'nav_color' => '#20bea7',
             'menu_area' => json_encode([
                 ["title" => "Home", "url" => "#home"],
                 ["title" => "Features", "url" => "#features"],

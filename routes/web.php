@@ -118,6 +118,7 @@ Route::prefix('app')->middleware('user')->group(function () {
             // ulaunch
             Route::prefix('ulaunch')->group(function () {
                 Route::post('update-company-logo', [UlaunchTemplateController::class, 'updateCompanyLogo']);
+                Route::post('update-nav-color', [UlaunchTemplateController::class, 'updateNavColor']);
                 Route::post('update-menu-area', [UlaunchTemplateController::class, 'updateMenuArea']);
                 Route::post('update-hero-area', [UlaunchTemplateController::class, 'updateHeroArea']);
                 Route::post('update-steps-area', [UlaunchTemplateController::class, 'updateStepsArea']);

@@ -4,17 +4,35 @@
         <header>
             <nav
                 class="navbar navbar-expand-lg fixed-top navbar-scrollspy main-menu"
+                ref="navbarMenu"
             >
                 <div class="container">
                     <!-- Start Header Navigation -->
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="#">
+                        <a class="navbar-brand" href="javascript:void(0)">
                             <img
                                 :src="companyLogo"
                                 width="50"
                                 class="logo"
                                 :alt="user_template.company_name"
                             />
+
+                            <div
+                                class="position-absolute top-0 start-0 ms-2 mt-2"
+                                title="Logo settings"
+                            >
+                                <div
+                                    class="bg-primary text-white text-center rounded-circle cursor-pointer"
+                                    style="width: 30px; height: 30px"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#logoImageModal"
+                                >
+                                    <i
+                                        class="fas fa-cog"
+                                        style="font-size: 20px; margin-top: 5px"
+                                    ></i>
+                                </div>
+                            </div>
                         </a>
                         <button
                             class="navbar-toggler"
@@ -27,30 +45,18 @@
                         >
                             <span class="fas fa-bars"></span>
                         </button>
-                        <div
-                            class="position-absolute top-0 start-0 mt-2"
-                            title="Image settings"
-                        >
-                            <div
-                                class="bg-primary text-white text-center rounded-circle cursor-pointer"
-                                style="width: 30px; height: 30px"
-                                data-bs-toggle="modal"
-                                data-bs-target="#logoImageModal"
-                            >
-                                <i
-                                    class="fas fa-cog"
-                                    style="font-size: 20px; margin-top: 5px"
-                                ></i>
-                            </div>
-                        </div>
                     </div>
+                    <ColorPicker
+                        section="nav"
+                        :color="navBg"
+                        @update="updateColor"
+                        v-if="stickyHeader"
+                        :style="{ margin: '15px 0 0 25%' }"
+                    />
                     <!-- End Header Navigation -->
 
                     <!-- Navbar Start -->
-                    <div
-                        class="collapse navbar-collapse main-nav"
-                        id="navbar-menu"
-                    >
+                    <div class="collapse navbar-collapse main-nav">
                         <ul class="navbar-nav nav ml-auto mr-md-3">
                             <li
                                 class="nav-item"
@@ -1189,6 +1195,7 @@ export default {
             heroImage: "",
             heroImageRaw: [],
             heroBg: "#20bea7",
+            navBg: "#20bea7",
 
             // steps area
             steps: [
@@ -1346,6 +1353,7 @@ export default {
             // footer area
             footerText: "Copyright © 2024, All Rights Reserved.",
             footerBg: "#263238",
+            stickyHeader: false,
         };
     },
     computed: {
@@ -1360,6 +1368,7 @@ export default {
         },
     },
     mounted() {
+        window.addEventListener("scroll", this.checkStickyHeader);
         // console.log(this.features);
 
         this.appUrl = `${window.location.origin}`;
@@ -1558,6 +1567,11 @@ export default {
                 ? this.imageSource(this.user_template.company_logo, "storage")
                 : this.imageSource("images/logo.png");
 
+        this.navBg =
+            this.template.nav_color != null
+                ? this.template.nav_color
+                : this.navBg;
+
         // footer area
         const footerArea =
             this.template.footer_area != null
@@ -1568,21 +1582,18 @@ export default {
             footerArea != null ? footerArea.background_color : this.footerBg;
         this.footerText =
             footerArea != null ? footerArea.text : this.footerText;
-
-        // check template status
-        // if (this.template.status == 0) {
-        //     this.updateMenuArea();
-        //     this.updateHeroArea();
-        //     this.updateStepsArea();
-        //     this.updateFeaturesArea();
-        //     this.updateAboutArea();
-        //     this.updateTestimonialsArea();
-        //     this.updateInfoArea();
-        //     this.updateOrderArea();
-        //     this.updateFooterArea();
-        // }
+    },
+    beforeDestroy() {
+        window.removeEventListener("scroll", this.checkStickyHeader);
     },
     methods: {
+        checkStickyHeader() {
+            if (this.$refs.navbarMenu) {
+                this.stickyHeader =
+                    this.$refs.navbarMenu.classList.contains("sticky-header");
+            }
+        },
+
         updateContent(event) {
             const rawContent =
                 event.target.innerHTML ?? event.target.textContent;
@@ -1715,6 +1726,10 @@ export default {
 
         updateColor(data) {
             switch (data.section) {
+                case "nav":
+                    this.navBg = data.color;
+                    this.updateNavColor();
+                    break;
                 case "hero":
                     this.heroBg = data.color;
                     this.updateHeroArea();
@@ -1878,6 +1893,24 @@ export default {
 
             axios
                 .post(`${this.apiUrl}/update-hero-area`, formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                })
+                .then((response) => {
+                    // console.log(response.data);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        },
+
+        updateNavColor() {
+            const formData = new FormData();
+            formData.append("nav_color", this.navBg);
+
+            axios
+                .post(`${this.apiUrl}/update-nav-color`, formData, {
                     headers: {
                         "Content-Type": "multipart/form-data",
                     },
@@ -2287,5 +2320,13 @@ export default {
     background-color: v-bind("infoButton.hover_color") !important;
     color: v-bind("infoButton.hover_text_color");
     border-color: v-bind("infoButton.hover_border_color");
+}
+
+nav.navbar.main-menu.sticky-header {
+    background: v-bind("navBg") !important;
+}
+
+.jumptotop a {
+    background: v-bind("navBg") !important;
 }
 </style>

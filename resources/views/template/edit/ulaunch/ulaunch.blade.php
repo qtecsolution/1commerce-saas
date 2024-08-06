@@ -8,11 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Page Title -->
     <title>{{ $userTemplate->company_name }} :: Live Edit</title>
+    {{-- fav icon --}}
+    <link rel="shortcut icon"
+        href="{{ $userTemplate->company_logo ? asset('storage/' . $userTemplate->company_logo) : asset($userTemplate->template->assets_path . '/images/logo.png') }}"
+        type="image/x-icon">
     <!-- Bootstrap css -->
-    <link href="{{ asset($userTemplate->template->assets_path . '/css/bootstrap.min.css') }}" rel="stylesheet" media="screen">
+    <link href="{{ asset($userTemplate->template->assets_path . '/css/bootstrap.min.css') }}" rel="stylesheet"
+        media="screen">
     <!-- Font Awesome icon css-->
     <link href="{{ asset('assets/font-awesome/css/all.min.css') }}" rel="stylesheet" media="screen">
-    <link href="{{ asset($userTemplate->template->assets_path . '/css/flaticon.css') }}" rel="stylesheet" media="screen">
+    <link href="{{ asset($userTemplate->template->assets_path . '/css/flaticon.css') }}" rel="stylesheet"
+        media="screen">
     <!-- Swiper's CSS -->
     <link rel="stylesheet" href="{{ asset($userTemplate->template->assets_path . '/css/swiper.min.css') }}">
     <!-- Animated css -->

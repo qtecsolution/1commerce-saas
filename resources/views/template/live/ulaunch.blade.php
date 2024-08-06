@@ -36,11 +36,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Page Title -->
+    <title>{{ $userTemplate->company_name }}</title>
+    {{-- fav icon --}}
     <link rel="shortcut icon"
         href="{{ $userTemplate->company_logo ? asset('storage/' . $userTemplate->company_logo) : asset($userTemplate->template->assets_path . '/images/logo.png') }}"
         type="image/x-icon">
-    <!-- Page Title -->
-    <title>{{ $userTemplate->company_name }}</title>
     <!-- Bootstrap css -->
     <link href="{{ asset($userTemplate->template->assets_path . '/css/bootstrap.min.css') }}" rel="stylesheet"
         media="screen">
@@ -116,6 +117,14 @@
             background-color: {{ $info_area['button']['hover_color'] }} !important;
             color: {{ $info_area['button']['hover_text_color'] }};
             border-color: {{ $info_area['button']['hover_border_color'] }};
+        }
+
+        nav.navbar.main-menu.sticky-header {
+            background: {{ $ulaunch->nav_color }} !important;
+        }
+
+        .jumptotop a {
+            background: {{ $ulaunch->nav_color }};
         }
     </style>
 </head>
