@@ -37,10 +37,13 @@ use App\Http\Controllers\FrontEnd\PackageController as FrontEnd_PackageControlle
 */
 
 // shop routes
-// Route::domain('{shop}.' . env('APP_URL'))->group(function () {
-//     //  home page
-//     Route::get('{slug}', [ShopController::class, 'index'])->name('user_shop');
-// });
+Route::domain('{subdomain}.' . env('APP_DOMAIN'))->group(function () {
+    //  home page
+    Route::get('/', [ShopController::class, 'index'])->name('user_shop');
+});
+
+// place order
+Route::post("place-order", [ShopController::class, 'placeOrder'])->name('place_order');
 
 // live preview
 Route::get('shop/{slug}', [ShopController::class, 'livePreview'])->name('live_preview');
@@ -98,7 +101,6 @@ Route::prefix('app')->middleware('user')->group(function () {
             Route::get("orders", "index")->name('orders');
             Route::get("update-status/{id}/{status}", "updateStatus")->name('order.update.status');
             Route::get("order-show/{id}", "show")->name('order.show');
-            Route::post("order", "store")->name("order.store");
         });
 
         // setting routes

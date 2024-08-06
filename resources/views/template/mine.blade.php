@@ -28,9 +28,13 @@
                                     <div class="card-data py-3 px-3">
                                         <h4>{{ $userTemplate->template->name }}</h4>
                                         <div class="btn-group">
+                                            <a href="{{ route('user_shop', $userTemplate->company_slug) }}"
+                                                class="btn btn-success btn-sm" target="_blank">
+                                                Live 1
+                                            </a>
                                             <a href="{{ route('live_preview', $userTemplate->company_slug) }}"
                                                 class="btn btn-info btn-sm" target="_blank">
-                                                Live
+                                                Live 2
                                             </a>
                                             <a href="{{ route('templates.edit', $userTemplate['id']) }}"
                                                 class="btn btn-primary btn-sm">

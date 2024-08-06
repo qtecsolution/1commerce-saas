@@ -484,9 +484,8 @@
                         </div>
                     </div>
                     <div class="contact-form">
-                        <form id="contactForm" action="{{ route('order.store') }}" method="post"
+                        <form id="order-form" action="{{ route('place_order') }}" method="post"
                             data-toggle="validator" novalidate="true">
-
                             @csrf
                             <input type="hidden" name="user_template_id" value="{{ $userTemplate->id }}">
 
@@ -509,7 +508,7 @@
                                         required="">
                                     <div class="help-block with-errors"></div>
                                     @error('customer_phone')
-                                        <small class="text-dan">{{ $message }}</small>
+                                        <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
 
