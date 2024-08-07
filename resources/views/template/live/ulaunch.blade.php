@@ -208,7 +208,7 @@
     <!-- Banner Section Ends -->
 
     <!-- Step Section starts -->
-    <div class="step-section">
+    <div class="step-section" style="background-color: {{ $feature_area['background_color'] }}">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">

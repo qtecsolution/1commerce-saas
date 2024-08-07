@@ -247,7 +247,7 @@
                 section="feature"
                 :color="featureBg"
                 @update="updateColor"
-                :style="{ margin: '100px 0 0 10px' }"
+                :style="{ margin: '50px 0 0 10px' }"
             />
             <div class="container">
                 <!-- Section Title start -->
@@ -2328,5 +2328,9 @@ nav.navbar.main-menu.sticky-header {
 
 .jumptotop a {
     background: v-bind("navBg") !important;
+}
+
+.step-section{
+    background: v-bind("featureBg");
 }
 </style>
