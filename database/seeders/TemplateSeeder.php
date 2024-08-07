@@ -13,17 +13,21 @@ class TemplateSeeder extends Seeder
      */
     public function run(): void
     {
-        Template::create([
-            'name' => 'ULaunch',
-            'slug' => 'ulaunch',
-            'assets_path' => 'ULaunch',
-            'blade_path' => 'ulaunch'
-        ]);
-        Template::create([
-            'name' => 'Seedee',
-            'slug' => 'seedee',
-            'assets_path' => 'seedee',
-            'blade_path' => 'seedee'
-        ]);
+        if (!Template::where('id', 1)->exists()) {
+            Template::create([
+                'name' => 'ULaunch',
+                'slug' => 'ulaunch',
+                'assets_path' => 'ULaunch',
+                'blade_path' => 'ulaunch'
+            ]);
+        }
+        if (!Template::where('id', 2)->exists()) {
+            Template::create([
+                'name' => 'Seedee',
+                'slug' => 'seedee',
+                'assets_path' => 'Seedee',
+                'blade_path' => 'seedee'
+            ]);
+        }
     }
 }
