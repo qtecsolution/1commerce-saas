@@ -33,7 +33,7 @@ class TemplateController extends Controller
     public function index()
     {
         return view('template.index', [
-            'templates' => $this->templates
+            'templates' => $this->templates->get()
         ]);
     }
 
