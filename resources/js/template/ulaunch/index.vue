@@ -1023,9 +1023,11 @@
                                         ></textarea>
                                     </div>
 
-                                    <div class="col-md-6 col-sm-12 position-relative">
                                     <div
-                                            class="position-absolute top-0 end-0 mt-2"
+                                        class="col-md-6 col-sm-12 position-relative"
+                                    >
+                                        <div
+                                            class="position-absolute top-0 end-0 mt-2 d-none"
                                             title="Button settings"
                                         >
                                             <div
@@ -1056,7 +1058,6 @@
                                             id="msgSubmit"
                                             class="h3 text-left hidden"
                                         ></div>
-                                        
                                     </div>
                                 </div>
                             </form>
