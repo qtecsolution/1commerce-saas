@@ -65,22 +65,25 @@
                             সুপার &ldquo;সিড&ldquo; শরীরের শক্তি ও কর্মক্ষমতা বাড়ানোর জন্য খুবই উপকারী
                         </h2>
                     </div>
-                    <p class="tagline">
-                    <h2 class="elementor-heading-title elementor-size-default">এতে আছে প্রচুর ওমেগা-৩ ফ্যাটি অ্যাসিড,
-                        কোয়েরসেটিন, কেম্পফেরল, ক্লোরোজেনিক অ্যাসিড ও ক্যাফিক অ্যাসিড নামক অ্যান্টি-অক্সিডেন্ট, পটাশিয়াম,
-                        ম্যাগনেশিয়াম, আয়রন, ক্যালসিয়াম এবং দ্রবণীয়&nbsp;</h2>
-                    </p>
+                    <h2 class="tagline">
+                        <p class="elementor-heading-title elementor-size-default">
+                            এতে আছে প্রচুর ওমেগা-৩ ফ্যাটি অ্যাসিড, কোয়েরসেটিন, কেম্পফেরল, ক্লোরোজেনিক অ্যাসিড ও ক্যাফিক
+                            অ্যাসিড নামক অ্যান্টি-অক্সিডেন্ট, পটাশিয়াম, ম্যাগনেশিয়াম, আয়রন, ক্যালসিয়াম এবং দ্রবণীয়
+                        </p>
+                    </h2>
 
                     <a href="#orderForm" class="btn btn-order">অর্ডার করতে চাই</a>
                     <img class="banner-img" src="{{ asset($template->assets_path . '/images/product1.png') }}"
                         alt="image">
 
-                    <p class="tagline">
-                    <h2 class="elementor-heading-title elementor-size-default">সিড পুষ্টিকর খাবার। এতে আছে দুধের
-                        চেয়ে ৫ গুণ বেশি ক্যালসিয়াম, কমলার চেয়ে ৭ গুণ বেশি ভিটামিন সি, পালং শাকের চেয়ে ৩ গুণ বেশি আয়রন,
-                        কলার চেয়ে দ্বিগুণ পটাশিয়াম, মুরগির ডিম থেকে ৩ গুণ বেশি প্রোটিন, স্যামন মাছের চেয়ে ৮ গুণ বেশি
-                        ওমেগা-৩।</h2>
-                    </p>
+                    <h2 class="tagline">
+                        <p class="elementor-heading-title elementor-size-default">
+                            সিড পুষ্টিকর খাবার। এতে আছে দুধের চেয়ে ৫ গুণ বেশি ক্যালসিয়াম, কমলার চেয়ে ৭ গুণ বেশি ভিটামিন
+                            সি, পালং শাকের চেয়ে ৩ গুণ বেশি আয়রন, কলার চেয়ে দ্বিগুণ পটাশিয়াম, মুরগির ডিম থেকে ৩ গুণ বেশি
+                            প্রোটিন, স্যামন মাছের চেয়ে ৮ গুণ বেশি
+                            ওমেগা-৩।
+                        </p>
+                    </h2>
 
                     <a href="#orderForm" class="btn btn-order">অর্ডার করতে চাই</a>
 
@@ -192,39 +195,12 @@
 
                         <div class="form-content text-start">
                             <div class="row row-cols-1 row-cols-md-2 gx-3 gy-2">
-                                <div class="left">
-                                    <div class="form">
-                                        <div class="form-group">
-                                            <label for="">নাম (Name)*</label>
-                                            <input type="text" name="name" class="form-control ">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">মোবাইল নাম্বার (Mobile No)*</label>
-                                            <input type="text" name="billing_phone" pattern="^0\d{8,11}$"
-                                                title="বাংলাদেশের ফোন নম্বর লিখুন, 0xxxxxxxxxx এই ফরম্যাটে"
-                                                class="form-control ">
-                                            <small class="text-dark">মোবাইল নম্বরটি অবশ্যই শূন্য থেকে শুরু
-                                                হবে</small>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="">ডেলিভারি ঠিকানা (Delivery Address)*</label>
-                                            <textarea name="address" rows="2" class="form-control "></textarea>
-                                        </div>
-                                        <div class="right">
-                                            <button class="btn submit-btn bg-danger">
-                                                Place Order
-                                                Tk 1,150.00
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="right">
                                     <div class="product content-section">
                                         <table class="w-100">
                                             <tr>
                                                 <td width="50">
-                                                    <img class="w-100" class="banner-img"
+                                                    <img class="w-100 banner-img"
                                                         src="{{ asset($template->assets_path . '/images/product1.png') }}"
                                                         alt="image">
                                                 </td>
@@ -284,6 +260,32 @@
                                                     Pay with cash upon delivery.
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="left">
+                                    <div class="form">
+                                        <div class="form-group">
+                                            <label for="">নাম (Name)*</label>
+                                            <input type="text" name="name" class="form-control ">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">মোবাইল নাম্বার (Mobile No)*</label>
+                                            <input type="text" name="billing_phone" pattern="^0\d{8,11}$"
+                                                title="বাংলাদেশের ফোন নম্বর লিখুন, 0xxxxxxxxxx এই ফরম্যাটে"
+                                                class="form-control ">
+                                            <small class="text-dark">মোবাইল নম্বরটি অবশ্যই শূন্য থেকে শুরু
+                                                হবে</small>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="">ডেলিভারি ঠিকানা (Delivery Address)*</label>
+                                            <textarea name="address" rows="2" class="form-control "></textarea>
+                                        </div>
+                                        <div class="right">
+                                            <button class="btn submit-btn bg-danger">
+                                                Place Order
+                                            </button>
                                         </div>
                                     </div>
                                 </div>

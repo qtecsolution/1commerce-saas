@@ -6,6 +6,8 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Template\Template;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\SeedeeTemplateController;
+use App\Models\Template\SeedeeTemplate;
 use App\Models\Template\UserTemplate;
 use App\Models\Template\UlaunchTemplate;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -63,6 +65,7 @@ class TemplateController extends Controller
                 'product_price' => 'required|numeric',
                 'product_currency' => 'required|string',
                 'template_id' => 'required|exists:templates,id',
+                'shipping_cost' => 'nullable|numeric',
             ]);
 
             $path = null;
@@ -79,17 +82,21 @@ class TemplateController extends Controller
                 'company_slug' => Str::slug($request->company_slug),
                 'product_name' => $request->company_slug,
                 'product_price' => $request->product_price,
-                'product_currency' => $request->product_currency
+                'product_currency' => $request->product_currency,
+                'shipping_cost' => $request->shipping_cost
             ]);
 
             switch ($request->template_id) {
                 case 1:
                     $ulaunch = new UlaunchTemplateController();
                     $ulaunch->initialSetup(auth()->id());
-                    return to_route('templates.mine');
+                    break;
+                case 2:
+                    $seedee = new SeedeeTemplateController();
+                    $seedee->initialSetup(auth()->id());
                     break;
                 default:
-                    # code...
+                    // code
                     break;
             }
 
@@ -114,7 +121,18 @@ class TemplateController extends Controller
                 'steps',
                 'features',
                 'testimonials',
-            ])->where('user_id', auth()->id())->first();
+            ])
+                ->where('user_id', auth()->id())
+                ->first();
+        } else if ($userTemplate->template_id == 2) {
+            $template = SeedeeTemplate::with([
+                'steps',
+                'features',
+            ])
+                ->where('user_id', auth()->id())
+                ->first();
+        } else {
+            abort(404);
         }
 
         return view('template.edit.' . $userTemplate->template->slug, compact('userTemplate', 'template'));

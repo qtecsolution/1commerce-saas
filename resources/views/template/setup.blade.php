@@ -47,7 +47,7 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="product_name" class="form-label">
                                 Product Name
@@ -60,7 +60,7 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="product_price" class="form-label">
                                 Product Price
@@ -73,7 +73,7 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="product_currency" class="form-label">
                                 Product Currency
@@ -82,6 +82,19 @@
                             <input type="text" name="product_currency" class="form-control"
                                 value="{{ old('product_currency') }}" placeholder="BDT/USD/EUR" required>
                             @error('product_currency')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="shipping_cost" class="form-label">
+                                Shipping Cost
+                                <sup class="text-muted">(optional)</sup>
+                            </label>
+                            <input type="text" name="shipping_cost" class="form-control"
+                                value="{{ old('shipping_cost') }}" placeholder="0.00">
+                            @error('shipping_cost')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
