@@ -6,17 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Models\SupportTicket;
 use App\Models\SupportTicketMessage;
 use Illuminate\Http\Request;
-use PHPUnit\Framework\Attributes\Ticket;
 
 class SupportTicketController extends Controller
 {
     // function to show admin support tickets
     public function tickets()
     {
-        $tickets = SupportTicket::with(['support'])->get();
+        $tickets = SupportTicket::with(['support'])->latest()->paginate(10);
         return view('admin.ticket.tickets', compact('tickets'));
     }
-
 
     // function to show admin inspect ticket
     public function inspectTicket($id)
@@ -32,26 +30,12 @@ class SupportTicketController extends Controller
         return view('customer.ticket.inspect-ticket', compact('item'));
     }
 
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $tickets = SupportTicket::where('user_id', auth()->id())->get();
+        $tickets = SupportTicket::where('user_id', auth()->id())->latest()->paginate(10);
         return view('customer.ticket.tickets', compact('tickets'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         // data validation
@@ -84,25 +68,6 @@ class SupportTicketController extends Controller
         return redirect()->route('tickets.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(SupportTicket $supportTicket)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(SupportTicket $supportTicket)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, $id)
     {
         // data validation
@@ -131,9 +96,6 @@ class SupportTicketController extends Controller
         return redirect()->route('tickets.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
     {
         // delete ticket

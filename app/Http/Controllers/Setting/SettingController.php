@@ -37,7 +37,7 @@ class SettingController extends Controller
         }
 
         // return to customer settings
-        toast('API updated successfully.', 'success');
+        toast('Updated successfully.', 'success');
         return redirect()->back();
     }
 }

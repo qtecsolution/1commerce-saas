@@ -92,8 +92,8 @@
                                     <td>
                                         <span class="badge bg-primary text-light">
                                             {{ $customer->status == 1 ? 'Active' : 'In-active' }}
-                                       </span>
-                                   </td>
+                                        </span>
+                                    </td>
                                     <td>
                                         <div class="btn-group">
                                             <a class="btn btn-sm btn-primary text-white" data-toggle="modal"
@@ -103,7 +103,7 @@
 
                                             <form id="delete-form-{{ $customer->id }}"
                                                 action="{{ route('customers.destroy', $customer->id) }}" method="POST"
-                                                style="display: none;">
+                                                style="display: none;" onsubmit="return confirm('Are you sure?')">
                                                 @csrf
                                                 @method('DELETE')
                                             </form>
@@ -126,23 +126,33 @@
                                                                 @method('PUT')
                                                                 <div class="form-group">
                                                                     <label for="" class="form-label">Name<span
-                                                                            class="text-danger"><sup>*</sup></span> :</label>
-                                                                    <input type="text" name="name" placeholder="name" id="" value="{{ $customer->name }}"
+                                                                            class="text-danger"><sup>*</sup></span>
+                                                                        :</label>
+                                                                    <input type="text" name="name"
+                                                                        placeholder="name" id=""
+                                                                        value="{{ $customer->name }}"
                                                                         class="form-control" required>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="" class="form-label">Phone<span
-                                                                            class="text-danger"><sup>*</sup></span> :</label>
-                                                                    <input type="text" name="phone" placeholder="phone" id="" value="{{ $customer->phone }}"
+                                                                            class="text-danger"><sup>*</sup></span>
+                                                                        :</label>
+                                                                    <input type="text" name="phone"
+                                                                        placeholder="phone" id=""
+                                                                        value="{{ $customer->phone }}"
                                                                         class="form-control" required>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label for="" class="form-label">Email:</label>
-                                                                    <input type="email" name="email" placeholder="email" id="" value="{{ $customer->email }}"
+                                                                    <label for=""
+                                                                        class="form-label">Email:</label>
+                                                                    <input type="email" name="email"
+                                                                        placeholder="email" id=""
+                                                                        value="{{ $customer->email }}"
                                                                         class="form-control">
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label for="" class="form-label">Address:</label>
+                                                                    <label for=""
+                                                                        class="form-label">Address:</label>
                                                                     <textarea name="address" id="" class="form-control" placeholder="address">{{ $customer->address }}</textarea>
                                                                 </div>
                                                                 <div class="text-right">

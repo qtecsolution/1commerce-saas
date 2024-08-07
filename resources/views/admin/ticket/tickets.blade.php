@@ -14,11 +14,10 @@
                 </div>
             </div>
             <div class="card-body">
-
                 {{-- alert --}}
                 <x-alert />
                 <div class="table-responsive">
-                    <table id="table" class="table table-bordered">
+                    <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>SL#</th>
@@ -34,7 +33,9 @@
                         <tbody>
                             @foreach ($tickets as $key => $item)
                                 @php
-                                    $image = empty($item->image) ? asset('assets/images/others/error.png') : asset('storage/' . $item->image);
+                                    $image = empty($item->image)
+                                        ? asset('assets/images/others/error.png')
+                                        : asset('storage/' . $item->image);
                                 @endphp
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
@@ -44,9 +45,9 @@
                                     <td>{{ $item->ticket_subject }}</td>
                                     <td>
                                         @if (isset($item->support))
-                                        {{ $item->support->name }}
-                                        <br>
-                                        {{ $item->support->email }}
+                                            {{ $item->support->name }}
+                                            <br>
+                                            {{ $item->support->email }}
                                         @endif
                                     </td>
                                     <td>
@@ -57,7 +58,10 @@
                                             <a href="{{ route('inspect_support_ticket', $item->id) }}"
                                                 class="btn btn-sm btn-info text-light">Inspect</a>
                                             <a href="{{ route('delete_support_ticket', $item->id) }}"
-                                                class="btn btn-sm btn-danger text-light">Delete</a>
+                                                class="btn btn-sm btn-danger text-light"
+                                                onclick="return confirm('Are you sure?')">
+                                                Delete
+                                            </a>
                                             <div class="dropdown">
                                                 <a class="btn btn-sm btn-primary dropdown-toggle" href="#"
                                                     role="button" data-toggle="dropdown" aria-expanded="false">
@@ -88,16 +92,13 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="d-flex justify-content-center">
+                    {{ $tickets->links() }}
+                </div>
             </div>
         </div>
     </div>
 @endsection
 
 @section('page_js')
-    <script>
-        $(document).ready(function() {
-            // init data table
-            $('#table').DataTable();
-        });
-    </script>
 @endsection

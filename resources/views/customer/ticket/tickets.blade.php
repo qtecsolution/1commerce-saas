@@ -43,7 +43,7 @@
                                                     <div class="form-group">
                                                         <label for="" class="form-label">Note<span
                                                                 class="text-danger"><sup>*</sup></span> :</label>
-                                                        <textarea name="ticket_note" id="" class="form-control"></textarea>
+                                                        <textarea name="ticket_note" id="" class="form-control" required></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
@@ -68,10 +68,8 @@
                 </div>
             </div>
             <div class="card-body">
-
                 {{-- alert --}}
                 <x-alert />
-
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
@@ -88,7 +86,9 @@
                         <tbody>
                             @forelse ($tickets as $key => $item)
                                 @php
-                                    $image = empty($item->image) ? asset('assets/images/others/error.png') : asset('storage/' . $item->image);
+                                    $image = empty($item->image)
+                                        ? asset('assets/images/others/error.png')
+                                        : asset('storage/' . $item->image);
                                 @endphp
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
@@ -186,7 +186,7 @@
 
                                                 <form id="delete-form-{{ $item->id }}"
                                                     action="{{ route('tickets.destroy', $item->id) }}" method="POST"
-                                                    style="display: none;">
+                                                    style="display: none;" onsubmit="return confirm('Are you sure?')">
                                                     @csrf
                                                     @method('DELETE')
                                                 </form>
@@ -201,6 +201,9 @@
                             @endforelse
                         </tbody>
                     </table>
+                </div>
+                <div class="d-flex justify-content-center">
+                    {{ $tickets->links() }}
                 </div>
             </div>
         </div>

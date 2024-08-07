@@ -16,7 +16,7 @@ class TemplateController extends Controller
 
     public function __construct()
     {
-        $this->templates = Template::all();
+        $this->templates = Template::query();
     }
 
     public function show($slug)
