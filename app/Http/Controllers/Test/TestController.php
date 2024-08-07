@@ -3,19 +3,26 @@
 namespace App\Http\Controllers\Test;
 
 use App\Models\PosCart;
+use Faker\Factory as Faker;
 use Illuminate\Http\Request;
 use App\Models\SupportTicket;
+use App\Models\Template\Template;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\Template\UlaunchTemplate;
 use Illuminate\Support\Facades\Auth;
-use Faker\Factory as Faker;
+use App\Models\Template\UlaunchTemplate;
 
 class TestController extends Controller
 {
     // function to test
     public function index(Request $request)
     {
+        // Template::create([
+        //     'name' => 'Seedee',
+        //     'slug' => 'seedee',
+        //     'assets_path' => 'seedee',
+        //     'blade_path' => 'seedee'
+        // ]);
         if ($request->fake_order > 0) {
             $faker = Faker::create();
             for ($i = 0; $i < $request->fake_order; $i++) {

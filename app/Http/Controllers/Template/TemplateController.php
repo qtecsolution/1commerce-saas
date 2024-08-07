@@ -117,7 +117,7 @@ class TemplateController extends Controller
             ])->where('user_id', auth()->id())->first();
         }
 
-        return view('template.edit.' . $userTemplate->template->slug . '.' . $userTemplate->template->blade_path, compact('userTemplate', 'template'));
+        return view('template.edit.' . $userTemplate->template->slug, compact('userTemplate', 'template'));
     }
 
     public function slugAvailability(Request $request)

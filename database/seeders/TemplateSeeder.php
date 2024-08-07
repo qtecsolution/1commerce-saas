@@ -19,5 +19,11 @@ class TemplateSeeder extends Seeder
             'assets_path' => 'ULaunch',
             'blade_path' => 'ulaunch'
         ]);
+        Template::create([
+            'name' => 'Seedee',
+            'slug' => 'seedee',
+            'assets_path' => 'seedee',
+            'blade_path' => 'seedee'
+        ]);
     }
 }
