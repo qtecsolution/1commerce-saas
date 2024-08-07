@@ -1023,7 +1023,29 @@
                                         ></textarea>
                                     </div>
 
-                                    <div class="col-md-12 col-sm-12">
+                                    <div class="col-md-6 col-sm-12 position-relative">
+                                    <div
+                                            class="position-absolute top-0 end-0 mt-2"
+                                            title="Button settings"
+                                        >
+                                            <div
+                                                class="bg-primary text-white text-center rounded-circle cursor-pointer"
+                                                style="
+                                                    width: 30px;
+                                                    height: 30px;
+                                                "
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#about1ButtonModal"
+                                            >
+                                                <i
+                                                    class="fas fa-cog"
+                                                    style="
+                                                        font-size: 20px;
+                                                        margin-top: 5px;
+                                                    "
+                                                ></i>
+                                            </div>
+                                        </div>
                                         <button
                                             type="button"
                                             class="btn-contact disabled"
@@ -1034,6 +1056,7 @@
                                             id="msgSubmit"
                                             class="h3 text-left hidden"
                                         ></div>
+                                        
                                     </div>
                                 </div>
                             </form>
@@ -2330,7 +2353,7 @@ nav.navbar.main-menu.sticky-header {
     background: v-bind("navBg") !important;
 }
 
-.step-section{
+.step-section {
     background: v-bind("featureBg");
 }
 </style>
