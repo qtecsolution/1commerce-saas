@@ -6,6 +6,7 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Template\UserTemplate;
+use App\Models\Template\SeedeeTemplate;
 use App\Models\Template\UlaunchTemplate;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Validation\ValidationException;
@@ -26,6 +27,12 @@ class ShopController extends Controller
                 ->firstOrFail();
 
             return view('template.live.ulaunch', compact('ulaunch', 'userTemplate'));
+        } else if ($userTemplate->template_id == 2) {
+            $seedee = SeedeeTemplate::with(['steps', 'features'])
+                ->where('user_id', $userTemplate->user_id)
+                ->firstOrFail();
+
+            return view('template.live.seedee', compact('seedee', 'userTemplate'));
         }
 
         abort(404);

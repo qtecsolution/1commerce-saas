@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Seedee</title>
 
-    <link href="{{ asset($template->assets_path . '/css/icon.css') }}" rel="stylesheet">
-    <link rel="shortcut icon" href="{{ asset($template->assets_path . '/images/favicon.png') }}" type="image/x-icon">
-    <link href="{{ asset($template->assets_path . '/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset($template->assets_path . '/css/main.min.css') }}">
-    <script src="{{ asset($template->assets_path . '/js/bootstrap.bundle.min.js') }}"></script>
+    <link href="{{ asset($userTemplate->template->assets_path . '/css/icon.css') }}" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ asset($userTemplate->template->assets_path . '/images/favicon.png') }}" type="image/x-icon">
+    <link href="{{ asset($userTemplate->template->assets_path . '/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset($userTemplate->template->assets_path . '/css/main.min.css') }}">
+    <script src="{{ asset($userTemplate->template->assets_path . '/js/bootstrap.bundle.min.js') }}"></script>
 
     <style>
         .call-to-btn {
@@ -73,7 +73,7 @@
                     </h2>
 
                     <a href="#orderForm" class="btn btn-order">অর্ডার করতে চাই</a>
-                    <img class="banner-img" src="{{ asset($template->assets_path . '/images/product1.png') }}"
+                    <img class="banner-img" src="{{ asset($userTemplate->template->assets_path . '/images/product1.png') }}"
                         alt="image">
 
                     <h2 class="tagline">
@@ -154,7 +154,7 @@
                     </div>
 
                     <img class="benifits-img shadow-lg"
-                        src="{{ asset($template->assets_path . '/images/product2.jpg') }}" alt="image">
+                        src="{{ asset($userTemplate->template->assets_path . '/images/product2.jpg') }}" alt="image">
 
                     <div class="facility-title mt-4">
                         আমাদের উপর কেন আস্থা রাখবেন ??
@@ -201,7 +201,7 @@
                                             <tr>
                                                 <td width="50">
                                                     <img class="w-100 banner-img"
-                                                        src="{{ asset($template->assets_path . '/images/product1.png') }}"
+                                                        src="{{ asset($userTemplate->template->assets_path . '/images/product1.png') }}"
                                                         alt="image">
                                                 </td>
                                                 <td>
@@ -299,7 +299,7 @@
             </p>
         </div>
     </section>
-    <script src="{{ asset($template->assets_path . '/js/jquery-3.7.1.min.js') }}"></script>
+    <script src="{{ asset($userTemplate->template->assets_path . '/js/jquery-3.7.1.min.js') }}"></script>
 </body>
 
 </html>
