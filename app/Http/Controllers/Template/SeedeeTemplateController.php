@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Template;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\Template\TemplateStep;
 use App\Models\Template\SeedeeTemplate;
 use App\Models\Template\TemplateFeature;

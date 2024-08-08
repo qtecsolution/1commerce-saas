@@ -188,7 +188,7 @@
                             </a>
                         </div>
                     </div>
-                    <form action="javascript:void(0)" method="POST" id="orderForm" class="order-form">
+                    <form action="javascript:void(0)" method="POST" id="order" class="order-form">
                         <legend>
                             &ldquo;সিড&ldquo; নেয়ার জন্য, নিচের ফর্মটি সম্পূর্ণ পূরণ করুন
                         </legend>

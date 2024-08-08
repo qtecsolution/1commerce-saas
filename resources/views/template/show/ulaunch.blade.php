@@ -85,7 +85,7 @@
                         <p>Lorem ipsum dolor sit amet. Reprehenderit, qui blanditiis quidem rerum necessitatibus
                             praesentium voluptatum deleniti atque corrupti, quos dolores eos.</p>
                         <div class="buy-button">
-                            <a href="#order-form" class="btn-buynow">Purchase Now</a>
+                            <a href="#order" class="btn-buynow">Purchase Now</a>
                         </div>
                     </div>
                 </div>
@@ -311,7 +311,7 @@
                                     <p>Pri quas audiam virtute ut, case utamur fuisset eam ut, iisque accommodare an
                                         eam. Reque blandit qui eu, cu vix nonumy volumus. Legendos intellegam id usu,
                                         vide oporteat vix eu, id illud principes has.</p>
-                                    <a href="#order-form" class="btn-buynow">Purchase Now</a>
+                                    <a href="#order" class="btn-buynow">Purchase Now</a>
                                 </div>
                             </div>
 
@@ -334,7 +334,7 @@
                                     <p>Pri quas audiam virtute ut, case utamur fuisset eam ut, iisque accommodare an
                                         eam. Reque blandit qui eu, cu vix nonumy volumus. Legendos intellegam id usu,
                                         vide oporteat vix eu, id illud principes has.</p>
-                                    <a href="#order-form" class="btn-buynow">Purchase Now</a>
+                                    <a href="#order" class="btn-buynow">Purchase Now</a>
                                 </div>
                             </div>
 
@@ -466,7 +466,7 @@
                             suffered alteration in some form, by injected humour, or randomised words which don't look
                             even slightly believable.</p>
 
-                        <a href="#order-form" class="btn-buynow">Order Now</a>
+                        <a href="#order" class="btn-buynow">Order Now</a>
                     </div>
                 </div>
             </div>
@@ -499,7 +499,7 @@
                         </div>
                     </div>
                     <div class="contact-form">
-                        <form id="order-form" action="javascript:void(0)" method="post" data-toggle="validator"
+                        <form id="order" action="javascript:void(0)" method="post" data-toggle="validator"
                             novalidate="true">
                             <div class="row">
                                 <div class="form-group mb-3 col-md-6 col-sm-6">

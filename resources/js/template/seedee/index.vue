@@ -252,7 +252,7 @@
                     <form
                         action="javascript:void(0)"
                         method="POST"
-                        id="orderForm"
+                        id="order"
                         class="order-form"
                     >
                         <legend>

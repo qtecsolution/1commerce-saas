@@ -36,14 +36,14 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-6" v-if="section != 'order'">
                             <div class="form-group mb-2">
                                 <label for="text" class="form-label"
                                     >Button URL:</label
                                 >
                                 <input
                                     type="text"
-                                    placeholder="https://example.com"
+                                    placeholder="https://example.com | #order"
                                     v-model="url"
                                     class="form-control"
                                 />
@@ -155,7 +155,7 @@
 <script>
 export default {
     name: "ButtonModal",
-    props: ["modalId", "modalTitle", "section"], 
+    props: ["modalId", "modalTitle", "section"],
     data() {
         return {
             title: "",
@@ -213,9 +213,9 @@ export default {
                 hover_color: this.hover_color,
                 hover_text_color: this.hover_text_color,
                 hover_border_color: this.hover_border_color,
-                section: this.section
+                section: this.section,
             });
-        }
+        },
     },
 };
 </script>

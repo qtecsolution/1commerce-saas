@@ -1027,7 +1027,7 @@
                                         class="col-md-6 col-sm-12 position-relative"
                                     >
                                         <div
-                                            class="position-absolute top-0 end-0 mt-2 d-none"
+                                            class="position-absolute top-0 end-0 mt-2"
                                             title="Button settings"
                                         >
                                             <div
@@ -1037,7 +1037,7 @@
                                                     height: 30px;
                                                 "
                                                 data-bs-toggle="modal"
-                                                data-bs-target="#about1ButtonModal"
+                                                data-bs-target="#orderButtonModal"
                                             >
                                                 <i
                                                     class="fas fa-cog"
@@ -1052,7 +1052,7 @@
                                             type="button"
                                             class="btn-contact disabled"
                                         >
-                                            Order Now
+                                            {{ orderButton.title }}
                                         </button>
                                         <div
                                             id="msgSubmit"
@@ -1162,6 +1162,12 @@
             modalId="infoButtonModal"
             modalTitle="Info Button"
             section="info"
+            @update="updateButton"
+        />
+        <ButtonModal
+            modalId="orderButtonModal"
+            modalTitle="Order Button"
+            section="order"
             @update="updateButton"
         />
     </div>
@@ -1366,6 +1372,7 @@ export default {
             orderTitle: "Order Now",
             orderSubTitle: "GET YOUR PRODUCT",
             orderBg: "#ffffff",
+            orderButton: [],
 
             // prduct info
             productName: "",
@@ -1578,6 +1585,20 @@ export default {
         this.orderTitle = orderArea != null ? orderArea.title : this.orderTitle;
         this.orderSubTitle =
             orderArea != null ? orderArea.sub_title : this.orderSubTitle;
+
+        const defaultOrderButton = {
+            title: "Place Order",
+            url: null,
+            color: "transparent",
+            text_color: "white",
+            border_color: "white",
+            hover_color: "white",
+            hover_text_color: "black",
+            hover_border_color: "white",
+        };
+
+        this.orderButton =
+            orderArea != null ? orderArea.button : defaultOrderButton;
 
         // product info
         this.productName = this.user_template.product_name;
@@ -1804,6 +1825,10 @@ export default {
 
                 case "info":
                     this.updateInfoButton(data);
+                    break;
+
+                case "order":
+                    this.updateOrderButton(data);
                     break;
 
                 default:
@@ -2227,10 +2252,52 @@ export default {
             this.updateOrderArea();
         },
 
+        updateOrderButton(data) {
+            this.orderButton = {
+                title:
+                    data.title !== null && data.title !== ""
+                        ? data.title
+                        : this.orderButton.title,
+                url:
+                    data.url !== null && data.url !== ""
+                        ? data.url
+                        : this.orderButton.url,
+                color:
+                    data.color !== null && data.color !== ""
+                        ? data.color
+                        : this.orderButton.color,
+                text_color:
+                    data.text_color !== null && data.text_color !== ""
+                        ? data.text_color
+                        : this.orderButton.text_color,
+                border_color:
+                    data.border_color !== null && data.border_color !== ""
+                        ? data.border_color
+                        : this.orderButton.border_color,
+                hover_color:
+                    data.hover_color !== null && data.hover_color !== ""
+                        ? data.hover_color
+                        : this.orderButton.hover_color,
+                hover_text_color:
+                    data.hover_text_color !== null &&
+                    data.hover_text_color !== ""
+                        ? data.hover_text_color
+                        : this.orderButton.hover_text_color,
+                hover_border_color:
+                    data.hover_border_color !== null &&
+                    data.hover_border_color !== ""
+                        ? data.hover_border_color
+                        : this.orderButton.hover_border_color,
+            };
+
+            this.updateOrderArea();
+        },
+
         updateOrderArea() {
             const formData = new FormData();
             formData.append("title", this.orderTitle);
             formData.append("sub_title", this.orderSubTitle);
+            formData.append("button", JSON.stringify(this.orderButton));
             formData.append("background_color", this.orderBg);
 
             axios
@@ -2356,5 +2423,17 @@ nav.navbar.main-menu.sticky-header {
 
 .step-section {
     background: v-bind("featureBg");
+}
+
+.order_area .btn-contact {
+    background-color: v-bind("orderButton.color");
+    color: v-bind("orderButton.text_color");
+    border-color: v-bind("orderButton.border_color");
+}
+
+.order_area .btn-contact:hover {
+    background-color: v-bind("orderButton.hover_color") !important;
+    color: v-bind("orderButton.hover_text_color");
+    border-color: v-bind("orderButton.hover_border_color");
 }
 </style>

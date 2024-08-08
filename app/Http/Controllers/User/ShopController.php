@@ -63,7 +63,7 @@ class ShopController extends Controller
                 ->back()
                 ->withErrors($e->validator)
                 ->withInput()
-                ->withFragment('order-form');
+                ->withFragment('order');
         }
     }
 }

@@ -21,6 +21,7 @@
         $order_area,
         $footer_area,
     ];
+
     foreach ($areas as $area) {
         if ($area === null || empty($area)) {
             abort(500);
@@ -69,6 +70,7 @@
     @php
         $abouts = $about_area['items'];
         $hero_area_button = $hero_area['button'];
+        $order_area_button = $order_area['button'];
     @endphp
     <style>
         .btn-buynow {
@@ -125,6 +127,18 @@
 
         .jumptotop a {
             background: {{ $ulaunch->nav_color }};
+        }
+
+        .order_area .btn-contact {
+            background-color: {{ $order_area['button']['color'] }};
+            color: {{ $order_area['button']['text_color'] }};
+            border-color: {{ $order_area['button']['border_color'] }};
+        }
+
+        .order_area .btn-contact:hover {
+            background-color: {{ $order_area['button']['hover_color'] }} !important;
+            color: {{ $order_area['button']['hover_text_color'] }};
+            border-color: {{ $order_area['button']['hover_border_color'] }};
         }
     </style>
 </head>
@@ -484,7 +498,7 @@
                         </div>
                     </div>
                     <div class="contact-form">
-                        <form id="order-form" action="{{ route('place_order') }}" method="post"
+                        <form id="order" action="{{ route('place_order') }}" method="post"
                             data-toggle="validator" novalidate="true">
                             @csrf
                             <input type="hidden" name="user_template_id" value="{{ $userTemplate->id }}">

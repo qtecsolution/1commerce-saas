@@ -134,19 +134,8 @@ Route::prefix('app')->middleware('user')->group(function () {
             });
 
             // seedee
-            Route::prefix('ulaunch')->group(function () {
-                Route::post('update-company-logo', [UlaunchTemplateController::class, 'updateCompanyLogo']);
-                Route::post('update-nav-color', [UlaunchTemplateController::class, 'updateNavColor']);
-                Route::post('update-menu-area', [UlaunchTemplateController::class, 'updateMenuArea']);
-                Route::post('update-hero-area', [UlaunchTemplateController::class, 'updateHeroArea']);
-                Route::post('update-steps-area', [UlaunchTemplateController::class, 'updateStepsArea']);
-                Route::post('update-features-area', [UlaunchTemplateController::class, 'updateFeaturesArea']);
-                Route::post('update-about-area', [UlaunchTemplateController::class, 'updateAboutArea']);
-                Route::post('update-testimonials-area', [UlaunchTemplateController::class, 'updateTestimonialsArea']);
-                Route::post('update-info-area', [UlaunchTemplateController::class, 'updateInfoArea']);
-                Route::post('update-order-area', [UlaunchTemplateController::class, 'updateOrderArea']);
-                Route::post('update-footer-area', [UlaunchTemplateController::class, 'updateFooterArea']);
-                Route::post('update-product-info', [UlaunchTemplateController::class, 'updateProductInfo']);
+            Route::prefix('seedee')->group(function () {
+                // Route::post('update-company-logo', [UlaunchTemplateController::class, 'updateCompanyLogo']);
             });
         });
     });

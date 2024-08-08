@@ -10,9 +10,6 @@ use App\Models\Template\UlaunchTemplate;
 use App\Models\Template\UserTemplate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 
 class UlaunchTemplateController extends Controller
 {
@@ -370,6 +367,7 @@ class UlaunchTemplateController extends Controller
             'title' => $request->input('title'),
             'sub_title' => $request->input('sub_title'),
             'background_color' => $request->input('background_color'),
+            'button' => json_decode($request->input('button')),
         ]);
         $this->template->save();
 
@@ -513,7 +511,17 @@ class UlaunchTemplateController extends Controller
             'order_area' => json_encode([
                 "title" => "Order Now",
                 "sub_title" => "GET YOUR PRODUCT",
-                "background_color" => "#ffffff"
+                "background_color" => "#ffffff",
+                "button" => [
+                    "title" => "Order Now",
+                    "url" => null,
+                    "color" => "transparent",
+                    "text_color" => "#20bea7",
+                    "border_color" => "#20bea7",
+                    "hover_color" => "#20bea7",
+                    "hover_text_color" => "white",
+                    "hover_border_color" => "#20bea7"
+                ],
             ]),
             'footer_area' => json_encode([
                 "text" => "Copyright © 2024, All Rights Reserved.",

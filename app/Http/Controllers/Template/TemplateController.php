@@ -6,11 +6,11 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Template\Template;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\SeedeeTemplateController;
-use App\Models\Template\SeedeeTemplate;
 use App\Models\Template\UserTemplate;
+use App\Models\Template\SeedeeTemplate;
 use App\Models\Template\UlaunchTemplate;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Http\Controllers\Template\SeedeeTemplateController;
 
 class TemplateController extends Controller
 {
