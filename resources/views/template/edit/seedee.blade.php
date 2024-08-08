@@ -10,13 +10,18 @@
     <title>{{ $userTemplate->company_name }} :: Live Edit</title>
     {{-- fav icon --}}
     <link rel="shortcut icon"
-        href="{{ $userTemplate->company_logo ? asset('storage/' . $userTemplate->company_logo) : asset($template->assets_path . '/images/favicon.png') }}"
+        href="{{ $userTemplate->company_logo ? asset('storage/' . $userTemplate->company_logo) : asset($userTemplate->template->assets_path . '/images/favicon.png') }}"
         type="image/x-icon">
 
-    <link href="{{ asset($template->assets_path . '/css/icon.css') }}" rel="stylesheet">
-    <link href="{{ asset($template->assets_path . '/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset($template->assets_path . '/css/main.min.css') }}">
-    <script src="{{ asset($template->assets_path . '/js/bootstrap.bundle.min.js') }}"></script>
+    <link href="{{ asset($userTemplate->template->assets_path . '/css/icon.css') }}" rel="stylesheet">
+    <link href="{{ asset($userTemplate->template->assets_path . '/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset($userTemplate->template->assets_path . '/css/main.min.css') }}">
+    <script src="{{ asset($userTemplate->template->assets_path . '/js/bootstrap.bundle.min.js') }}"></script>
+    
+    <!-- inject:vite (css/js) -->
+    @vite('resources/css/app.css')
+    @vite('resources/js/app.js')
+    <!-- /inject:vite (css/js) -->
 
     <style>
         .call-to-btn {

@@ -31,11 +31,7 @@
                     <a href="#orderForm" class="btn btn-order"
                         >অর্ডার করতে চাই</a
                     >
-                    <img
-                        class="banner-img"
-                        src="{{ asset($template->assets_path . '/images/product1.png') }}"
-                        alt="image"
-                    />
+                    <img class="banner-img" :src="heroImage" alt="image" />
 
                     <h2 class="tagline">
                         <p
@@ -206,7 +202,7 @@
 
                     <img
                         class="benifits-img shadow-lg"
-                        src="{{ asset($template->assets_path . '/images/product2.jpg') }}"
+                        :src="featureImage"
                         alt="image"
                     />
 
@@ -273,7 +269,7 @@
                                                 <td width="50">
                                                     <img
                                                         class="w-100 banner-img"
-                                                        src="{{ asset($template->assets_path . '/images/product1.png') }}"
+                                                        :src="orderImage"
                                                         alt="image"
                                                     />
                                                 </td>
@@ -432,12 +428,53 @@ export default {
     props: ["user_template", "template"],
     components: {},
     data() {
-        return {};
+        return {
+            heroImage: "",
+            featureImage: "",
+            orderImage: "",
+            appUrl: `${window.location.origin}`,
+            apiUrl: `${window.location.origin}/app/templates/seedee`,
+        };
     },
     computed: {},
-    mounted() {},
+    mounted() {
+        // hero area
+        const $thisHeroArea =
+            this.template.hero_area != null
+                ? JSON.parse(this.template.hero_area)
+                : null;
+        const $thisFeaturesArea =
+            this.template.features_area != null
+                ? JSON.parse(this.template.features_area)
+                : null;
+        const $thisOrderArea =
+            this.template.order_area != null
+                ? JSON.parse(this.template.order_area)
+                : null;
+
+        this.heroImage =
+            $thisHeroArea != null && $thisHeroArea.image
+                ? this.imageSource($thisHeroArea.image, "storage")
+                : this.imageSource("images/product1.png");
+        this.featureImage =
+            $thisFeaturesArea != null && $thisFeaturesArea.image
+                ? this.imageSource($thisFeaturesArea.image, "storage")
+                : this.imageSource("images/product2.jpg");
+        this.orderImage =
+            $thisOrderArea != null && $thisOrderArea.image
+                ? this.imageSource($thisOrderArea.image, "storage")
+                : this.imageSource("images/product1.png");
+    },
     beforeDestroy() {},
-    methods: {},
+    methods: {
+        imageSource(path, disk = "public") {
+            if (disk == "storage" && path) {
+                return `${this.appUrl}/storage/${path}`;
+            }
+
+            return `${this.appUrl}/${this.user_template.template.assets_path}/${path}`;
+        },
+    },
 };
 </script>
 

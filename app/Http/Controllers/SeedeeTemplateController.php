@@ -53,6 +53,7 @@ class SeedeeTemplateController extends Controller
                 "customer_name_text" => "নাম (Name)*",
                 "customer_phone_text" => "মোবাইল নাম্বার (Mobile No)*",
                 "delivery_address_text" => "ডেলিভারি ঠিকানা (Delivery Address)*",
+                "image" => null,
                 "button" => [
                     "title" => "Place Order",
                     "color" => "#dc3545",
