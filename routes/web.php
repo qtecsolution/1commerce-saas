@@ -18,6 +18,7 @@ use App\Http\Controllers\User\SubscriptionController;
 use App\Http\Controllers\Ticket\SupportTicketController;
 use App\Http\Controllers\Template\UlaunchTemplateController;
 use App\Http\Controllers\FrontEnd\PackageController as FrontEnd_PackageController;
+use App\Http\Controllers\Template\SeedeeTemplateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -135,7 +136,15 @@ Route::prefix('app')->middleware('user')->group(function () {
 
             // seedee
             Route::prefix('seedee')->group(function () {
-                // Route::post('update-company-logo', [UlaunchTemplateController::class, 'updateCompanyLogo']);
+                Route::post('update-product-details', [SeedeeTemplateController::class, 'updateProductDetails']);
+                Route::post('update-content-area', [SeedeeTemplateController::class, 'updateContentArea']);
+                Route::post('update-hero-image', [SeedeeTemplateController::class, 'updateHeroImage']);
+                Route::post('update-feature-image', [SeedeeTemplateController::class, 'updateFeatureImage']);
+                Route::post('update-order-image', [SeedeeTemplateController::class, 'updateOrderImage']);
+                Route::post('update-feature-and-step', [SeedeeTemplateController::class, 'updateFeatureAndStep']);
+                Route::post('delete-feature-or-step', [SeedeeTemplateController::class, 'deleteFeatureOrStep']);
+                Route::post('add-feature-or-step', [SeedeeTemplateController::class, 'addFeatureOrStep']);
+                Route::post('update-page-setup', [SeedeeTemplateController::class, 'updatePageSetup']);
             });
         });
     });

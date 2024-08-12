@@ -17,6 +17,7 @@
         "build": "^0.1.4",
         "filepond": "^4.31.1",
         "vue": "^3.4.19",
-        "vue-filepond": "^7.0.4"
+        "vue-filepond": "^7.0.4",
+        "vue-sweetalert2": "^5.0.11"
     }
 }

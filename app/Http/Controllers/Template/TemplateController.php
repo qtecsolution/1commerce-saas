@@ -14,11 +14,10 @@ use App\Http\Controllers\Template\SeedeeTemplateController;
 
 class TemplateController extends Controller
 {
-    public $templates = [];
-
-    public function __construct()
-    {
-        $this->templates = Template::query();
+    public function __construct(
+        private Template $templates,
+    ) {
+        $this->templates = $templates;
     }
 
     public function show($slug)

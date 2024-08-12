@@ -7,25 +7,54 @@ use App\Http\Controllers\Controller;
 use App\Models\Template\TemplateStep;
 use App\Models\Template\SeedeeTemplate;
 use App\Models\Template\TemplateFeature;
+use App\Models\Template\UserTemplate;
 
 class SeedeeTemplateController extends Controller
 {
+    private $template;
+    private $userId;
+    private $templateId = 2;
+
+    public function __construct()
+    {
+        $this->middleware(function (Request $request, $next) {
+            if (!auth()->check()) {
+                return to_route('sign_in');
+            }
+
+            $this->userId = auth()->id();
+            $this->template = SeedeeTemplate::where('user_id', $this->userId)->first();
+            return $next($request);
+        });
+    }
+
     public function initialSetup($user_id)
     {
         SeedeeTemplate::create([
             'user_id' => $user_id,
             'status' => 1,
             'color' => json_encode([
-                ["foreground_color" => "#ffffff"],
-                ["background_color" => "#cae9d7"],
-                ["primary_text_color" => "#cae9d7"],
-                ["secondary_text_color" => "#000000"],
+                "foreground_color" => "#ffffff",
+                "background_color" => "#cae9d7",
+                "primary_text_color" => "#cae9d7",
+                "secondary_text_color" => "#000000",
             ]),
             'hero_area' => json_encode([
                 "title" => "সুপার “সিড“ শরীরের শক্তি ও কর্মক্ষমতা বাড়ানোর জন্য খুবই উপকারী",
                 "description" => "এতে আছে প্রচুর ওমেগা-৩ ফ্যাটি অ্যাসিড, কোয়েরসেটিন, কেম্পফেরল, ক্লোরোজেনিক অ্যাসিড ও ক্যাফিক অ্যাসিড নামক অ্যান্টি-অক্সিডেন্ট, পটাশিয়াম, ম্যাগনেশিয়াম, আয়রন, ক্যালসিয়াম এবং দ্রবণীয়",
                 "image" => null,
                 "button" => [
+                    "title" => "অর্ডার করতে চাই",
+                    "url" => "#orderForm",
+                    "color" => "#ffc100",
+                    "text_color" => "#000000",
+                    "border_color" => "#ffc100",
+                    "hover_color" => "#ffc100",
+                    "hover_text_color" => "#ffffff",
+                    "hover_border_color" => "#ffc100"
+                ],
+                "bottom_description" => "সিড পুষ্টিকর খাবার। এতে আছে দুধের চেয়ে ৫ গুণ বেশি ক্যালসিয়াম, কমলার চেয়ে ৭ গুণ বেশি ভিটামিন সি, পালং শাকের চেয়ে ৩ গুণ বেশি আয়রন, কলার চেয়ে দ্বিগুণ পটাশিয়াম, মুরগির ডিম থেকে ৩ গুণ বেশি প্রোটিন, স্যামন মাছের চেয়ে ৮ গুণ বেশি ওমেগা-৩।",
+                "bottom_button" => [
                     "title" => "অর্ডার করতে চাই",
                     "url" => "#orderForm",
                     "color" => "#ffc100",
@@ -51,6 +80,13 @@ class SeedeeTemplateController extends Controller
                 "title" => "“সিড“ নেয়ার জন্য, নিচের ফর্মটি সম্পূর্ণ পূরণ করুন",
                 "background_color" => "#e8f5ed",
                 "display_payment_option" => 1,
+                "payment_title" => "Payment Type",
+                "payment_sub_title" => "Cash On Delivery",
+                "payment_tag" => "Pay with cash upon delivery.",
+                "display_shipping_charge" => 1,
+                "product_tag" => "400 g",
+                "shipping_charge_text" => "Shipping Cost",
+                "subtotal_text" => "Subtotal",
                 "customer_name_text" => "নাম (Name)*",
                 "customer_phone_text" => "মোবাইল নাম্বার (Mobile No)*",
                 "delivery_address_text" => "ডেলিভারি ঠিকানা (Delivery Address)*",
@@ -66,6 +102,7 @@ class SeedeeTemplateController extends Controller
                 ],
             ]),
             'footer_area' => json_encode([
+                'display_footer' => 1,
                 'title' => "01230 42 42 42",
                 'color' => "#004111",
                 'background_color' => "#86CD91",
@@ -95,7 +132,7 @@ class SeedeeTemplateController extends Controller
                 'icon' => null,
                 'title' => $variation['title'],
                 'description' => null,
-                'position' => $variation['position'],
+                'position' => null,
                 'is_active' => 1,
             ]);
         }
@@ -121,5 +158,202 @@ class SeedeeTemplateController extends Controller
         }
 
         return true;
+    }
+
+    public function updateProductDetails(Request $request)
+    {
+        $userTemplate = UserTemplate::where('template_id',  $this->templateId)->where('user_id', $this->userId)->first();
+        if (!$userTemplate) {
+            return response()->json(['success' => false, 'error' => 'Template not purchased']);
+        }
+
+        $userTemplate->product_name = $request->product_name;
+        $userTemplate->product_price = $request->product_price;
+        $userTemplate->product_currency = $request->product_currency;
+        $userTemplate->shipping_cost = $request->shipping_cost;
+        $userTemplate->save();
+
+        return response()->json(['success' => true]);
+    }
+
+    public function updateContentArea(Request $request)
+    {
+        if ($request->hero_area) {
+            $this->template->hero_area = $request->input('hero_area');
+        }
+        if ($request->features_area) {
+            $this->template->features_area = $request->input('features_area');
+        }
+        if ($request->about_area) {
+            $this->template->about_area = $request->input('about_area');
+        }
+        if ($request->order_area) {
+            $this->template->order_area = $request->input('order_area');
+        }
+        if ($request->footer_area) {
+            $this->template->footer_area = $request->input('footer_area');
+        }
+        $this->template->save();
+
+        return response()->json(['success' => true]);
+    }
+
+    public function updateHeroImage(Request $request)
+    {
+        $heroArea = $this->template->hero_area;
+        if ($request->hasFile('image')) {
+            $decodedData = json_decode($heroArea);
+
+            if ($decodedData && isset($decodedData->image)) {
+                $oldImagePath = storage_path('app/public/' . $decodedData->image);
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
+                }
+            }
+
+            $uploadedPath = $request->file('image')->store('public/seedee');
+            $uploadedPath = 'seedee/' . basename($uploadedPath);
+
+            return response()->json(['success' => true, 'imagePath' => $uploadedPath]);
+        }
+
+        return response()->json(['success' => false, 'error' => 'No file found']);
+    }
+
+    public function updateFeatureImage(Request $request)
+    {
+        $featuresArea = $this->template->features_area;
+        if ($request->hasFile('image')) {
+            $decodedData = json_decode($featuresArea);
+
+            if ($decodedData && isset($decodedData->image)) {
+                $oldImagePath = storage_path('app/public/' . $decodedData->image);
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
+                }
+            }
+
+            $uploadedPath = $request->file('image')->store('public/seedee');
+            $uploadedPath = 'seedee/' . basename($uploadedPath);
+
+            return response()->json(['success' => true, 'imagePath' => $uploadedPath]);
+        }
+
+        return response()->json(['success' => false, 'error' => 'No file found']);
+    }
+
+    public function updateOrderImage(Request $request)
+    {
+        $featuresArea = $this->template->order_area;
+        if ($request->hasFile('image')) {
+            $decodedData = json_decode($featuresArea);
+
+            if ($decodedData && isset($decodedData->image)) {
+                $oldImagePath = storage_path('app/public/' . $decodedData->image);
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
+                }
+            }
+
+            $uploadedPath = $request->file('image')->store('public/seedee');
+            $uploadedPath = 'seedee/' . basename($uploadedPath);
+
+            return response()->json(['success' => true, 'imagePath' => $uploadedPath]);
+        }
+
+        return response()->json(['success' => false, 'error' => 'No file found']);
+    }
+
+    public function updateFeatureAndStep(Request $request)
+    {
+        if ($request->type == 'feature') {
+            $item = TemplateFeature::find($request->id);
+        }
+        if ($request->type == 'step') {
+            $item = TemplateStep::find($request->id);
+        }
+        if (!$item) {
+            return response()->json(['success' => false, 'error' => 'Item not found']);
+        }
+
+        $item->title = $request->title;
+        $item->save();
+
+        return response()->json(['success' => true]);
+    }
+
+    public function deleteFeatureOrStep(Request $request)
+    {
+        if ($request->type == 'feature') {
+            $item = TemplateFeature::find($request->id);
+        }
+        if ($request->type == 'step') {
+            $item = TemplateStep::find($request->id);
+        }
+        if (!$item) {
+            return response()->json(['success' => false, 'error' => 'Item not found']);
+        }
+
+        $item->delete();
+
+        return response()->json(['success' => true]);
+    }
+
+    public function addFeatureOrStep(Request $request)
+    {
+        if ($request->type == 'feature') {
+            $item = TemplateFeature::create([
+                'user_id' => $this->userId,
+                'template_id' => $this->templateId,
+                'icon' => null,
+                'title' => '-- New Row --',
+                'description' => null,
+                'position' => 0,
+                'is_active' => 1,
+            ]);
+        }
+        if ($request->type == 'step') {
+            $item = TemplateStep::create([
+                'user_id' => $this->userId,
+                'template_id' => $this->templateId,
+                'icon' => null,
+                'title' => '-- New Row --',
+                'description' => null,
+                'position' => 0,
+                'is_active' => 1,
+            ]);
+        }
+        if (!$item) {
+            return response()->json(['success' => false, 'error' => 'Error creating item']);
+        }
+
+        return response()->json(['success' => true, 'newItem' => $item]);
+    }
+
+    public function updatePageSetup(Request $request)
+    {
+
+        $this->template->color = $request->input('color');
+        $this->template->save();
+
+        $uploadedPath = null;
+        if ($request->hasFile('image')) {
+            $userTemplate = UserTemplate::where('template_id',  $this->templateId)->where('user_id', $this->userId)->first();
+
+            if ($userTemplate && isset($userTemplate->company_logo)) {
+                $oldImagePath = storage_path('app/public/' . $userTemplate->company_logo);
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
+                }
+            }
+
+            $uploadedPath = $request->file('image')->store('public/seedee');
+            $uploadedPath = 'seedee/' . basename($uploadedPath);
+
+            $userTemplate->company_logo = $uploadedPath;
+            $userTemplate->save();
+        }
+
+        return response()->json(['success' => true, 'imagePath' => $uploadedPath]);
     }
 }

@@ -189,7 +189,7 @@
                         </div>
                     </div>
                     <form action="javascript:void(0)" method="POST" id="order" class="order-form">
-                        <legend>
+                        <legend style="color: #00560c">
                             &ldquo;সিড&ldquo; নেয়ার জন্য, নিচের ফর্মটি সম্পূর্ণ পূরণ করুন
                         </legend>
 

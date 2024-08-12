@@ -17,7 +17,10 @@
     <link href="{{ asset($userTemplate->template->assets_path . '/css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset($userTemplate->template->assets_path . '/css/main.min.css') }}">
     <script src="{{ asset($userTemplate->template->assets_path . '/js/bootstrap.bundle.min.js') }}"></script>
-    
+
+    <!-- Font Awesome icon css-->
+    <link href="{{ asset('assets/font-awesome/css/all.min.css') }}" rel="stylesheet" media="screen">
+
     <!-- inject:vite (css/js) -->
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')

@@ -11,6 +11,8 @@ class SeedeeTemplate extends Model
 {
     use HasFactory;
 
+    public $templateId = 2;
+
     protected $guarded = [];
 
     public function steps()
