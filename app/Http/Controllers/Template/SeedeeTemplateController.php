@@ -36,7 +36,7 @@ class SeedeeTemplateController extends Controller
             'color' => json_encode([
                 "foreground_color" => "#ffffff",
                 "background_color" => "#cae9d7",
-                "primary_text_color" => "#cae9d7",
+                "primary_text_color" => "#004111",
                 "secondary_text_color" => "#000000",
             ]),
             'hero_area' => json_encode([
@@ -132,7 +132,7 @@ class SeedeeTemplateController extends Controller
                 'icon' => null,
                 'title' => $variation['title'],
                 'description' => null,
-                'position' => null,
+                'position' => $variation['position'],
                 'is_active' => 1,
             ]);
         }
