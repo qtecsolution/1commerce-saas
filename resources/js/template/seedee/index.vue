@@ -23,7 +23,7 @@
 
             <div class="content">
                 <div class="text-center">
-                    <div class="title">
+                    <div class="title primary_text_color">
                         <h2
                             class="elementor-heading-title elementor-size-default"
                             contenteditable="true"
@@ -32,7 +32,7 @@
                             {{ heroArea.title }}
                         </h2>
                     </div>
-                    <h2 class="tagline">
+                    <h2 class="tagline secondary_text_color">
                         <p
                             class="elementor-heading-title elementor-size-default"
                             contenteditable="true"
@@ -60,7 +60,7 @@
                         @save="updateHeroImage"
                     />
 
-                    <h2 class="tagline">
+                    <h2 class="tagline secondary_text_color">
                         <p
                             class="elementor-heading-title elementor-size-default"
                             contenteditable="true"
@@ -111,7 +111,7 @@
                                                         item, index
                                                     ) in featureList"
                                                     :key="item.id"
-                                                    class="elementor-icon-list-item"
+                                                    class="elementor-icon-list-item secondary_text_color"
                                                     contenteditable="true"
                                                     @blur="
                                                         updateFeatureAndStep(
@@ -207,7 +207,7 @@
                                 <li
                                     v-for="(item, index) in stepList"
                                     :key="item.id"
-                                    class="elementor-icon-list-item"
+                                    class="elementor-icon-list-item secondary_text_color"
                                     contenteditable="true"
                                     @blur="updateFeatureAndStep(item, 'step')"
                                 >
@@ -276,6 +276,7 @@
                         class="order-form"
                     >
                         <legend
+                            class="primary_text_color"
                             contenteditable="true"
                             @blur="updateOrderArea('title', $event)"
                         >
@@ -308,7 +309,7 @@
                                                 <td>
                                                     <div class="ps-2">
                                                         <div
-                                                            class="name"
+                                                            class="name secondary_text_color"
                                                             contenteditable="true"
                                                             @blur="
                                                                 updateProductDetails(
@@ -322,7 +323,7 @@
                                                             }}
                                                         </div>
                                                         <div
-                                                            class="tag"
+                                                            class="tag secondary_text_color"
                                                             contenteditable="true"
                                                             @blur="
                                                                 updateOrderArea(
@@ -337,7 +338,9 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td class="text-center">
+                                                <td
+                                                    class="text-center secondary_text_color"
+                                                >
                                                     &times;
                                                 </td>
                                                 <td
@@ -353,12 +356,13 @@
                                                             width: 50px;
                                                             border: none;
                                                         "
+                                                        class="secondary_text_color"
                                                         readonly
                                                     />
                                                 </td>
                                                 <td
                                                     width="50"
-                                                    class="total-price text-end"
+                                                    class="total-price text-end secondary_text_color"
                                                 >
                                                     <span
                                                         class="me-1"
@@ -392,7 +396,9 @@
                                         </table>
                                     </div>
 
-                                    <div class="content-section vat">
+                                    <div
+                                        class="content-section vat primary_text_color"
+                                    >
                                         <div
                                             class="d-flex justify-content-between top"
                                         >
@@ -429,7 +435,7 @@
                                             </span>
                                         </div>
                                         <div
-                                            class="d-flex justify-content-between total"
+                                            class="d-flex justify-content-between total secondary_text_color"
                                         >
                                             <span
                                                 contenteditable="true"
@@ -453,7 +459,7 @@
 
                                     <div class="content-section payment">
                                         <div
-                                            class="d-flex align-items-center head"
+                                            class="d-flex align-items-center head secondary_text_color"
                                         >
                                             <span
                                                 class="material-icons-outlined"
@@ -483,7 +489,7 @@
                                             />
                                             <div>
                                                 <label
-                                                    class="label m-0"
+                                                    class="label m-0 secondary_text_color"
                                                     for="cashOnDelivery"
                                                     contenteditable="true"
                                                     @blur="
@@ -498,7 +504,7 @@
                                                     }}
                                                 </label>
                                                 <div
-                                                    class="tagline"
+                                                    class="tagline secondary_text_color"
                                                     contenteditable="true"
                                                     @blur="
                                                         updateOrderArea(
@@ -518,6 +524,7 @@
                                         <div class="form-group">
                                             <label
                                                 for=""
+                                                class="primary_text_color"
                                                 contenteditable="true"
                                                 @blur="
                                                     updateOrderArea(
@@ -539,6 +546,7 @@
                                         <div class="form-group">
                                             <label
                                                 for=""
+                                                class="primary_text_color"
                                                 contenteditable="true"
                                                 @blur="
                                                     updateOrderArea(
@@ -561,6 +569,7 @@
                                         <div class="form-group">
                                             <label
                                                 for=""
+                                                class="primary_text_color"
                                                 contenteditable="true"
                                                 @blur="
                                                     updateOrderArea(
@@ -1124,8 +1133,11 @@ body {
     color: v-bind("footerArea?.color");
 }
 
-#single1 .content .title,
-#single1 .content .order-form legend {
-    color: v-bind("siteColor?.primary_text_color");
+.primary_text_color {
+    color: v-bind("siteColor?.primary_text_color") !important;
+}
+
+.secondary_text_color {
+    color: v-bind("siteColor?.secondary_text_color") !important;
 }
 </style>
