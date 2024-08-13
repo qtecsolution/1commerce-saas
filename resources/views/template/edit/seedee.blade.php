@@ -10,7 +10,7 @@
     <title>{{ $userTemplate->company_name }} :: Live Edit</title>
     {{-- fav icon --}}
     <link rel="shortcut icon"
-        href="{{ $userTemplate->company_logo ? asset('storage/' . $userTemplate->company_logo) : asset($userTemplate->template->assets_path . '/images/favicon.png') }}"
+        href="{{ $userTemplate->fav_icon ? asset('storage/' . $userTemplate->fav_icon) : asset($userTemplate->template->assets_path . '/images/favicon.png') }}"
         type="image/x-icon">
 
     <link href="{{ asset($userTemplate->template->assets_path . '/css/icon.css') }}" rel="stylesheet">

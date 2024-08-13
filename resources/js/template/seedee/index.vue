@@ -17,7 +17,8 @@
         <div class="container">
             <SetupModal
                 :colorData="siteColor"
-                :logoData="siteLogo"
+                :logoData="favIcon"
+                :companyName="userTemplate.company_name"
                 @save="savePageSetup"
             />
 
@@ -28,6 +29,12 @@
                         width="100px"
                         :src="siteLogo"
                         alt="image"
+                    />
+                    <ImageModal
+                        :modalId="'siteLogoUpdate'"
+                        :modalTitle="'Edit Logo'"
+                        :imgData="siteLogo"
+                        @save="updateSiteLogo"
                     />
 
                     <div class="title primary_text_color">
@@ -666,6 +673,7 @@ export default {
                     ? JSON.parse(this.template.color)
                     : null,
             siteLogo: "",
+            favIcon: "",
         };
     },
     computed: {
@@ -693,6 +701,10 @@ export default {
         this.siteLogo =
             this.user_template != null && this.user_template.company_logo
                 ? this.imageSource(this.user_template.company_logo, "storage")
+                : this.imageSource("images/favicon.png");
+        this.favIcon =
+            this.user_template != null && this.user_template.fav_icon
+                ? this.imageSource(this.user_template.fav_icon, "storage")
                 : this.imageSource("images/favicon.png");
     },
     beforeDestroy() {},
@@ -828,6 +840,24 @@ export default {
                 });
         },
 
+        updateSiteLogo(imageFile) {
+            const formData = new FormData();
+            formData.append("image", imageFile);
+
+            axios
+                .post(`${this.apiUrl}/update-site-logo`, formData)
+                .then((response) => {
+                    this.siteLogo = this.imageSource(
+                        response.data.imagePath,
+                        "storage"
+                    );
+                    this.toast("success", "Updated successfully");
+                })
+                .catch((error) => {
+                    this.toast("error", "Error updating the image:", error);
+                });
+        },
+
         updateHeroImage(imageFile) {
             const formData = new FormData();
             formData.append("image", imageFile);
@@ -835,7 +865,7 @@ export default {
             axios
                 .post(`${this.apiUrl}/update-hero-image`, formData)
                 .then((response) => {
-                    this.heroArea.image = response.data.imagePath; // Update the image path in heroArea
+                    this.heroArea.image = response.data.imagePath;
                     this.saveHeroArea();
                     this.heroImage = this.imageSource(
                         this.heroArea.image,
@@ -992,10 +1022,11 @@ export default {
         },
 
         savePageSetup(data) {
-            const { selectedImage } = data;
+            const { siteTitle, selectedImage } = data;
 
             const formData = new FormData();
             formData.append("image", selectedImage);
+            formData.append("company_name", siteTitle);
             formData.append("color", JSON.stringify(this.siteColor));
 
             axios
@@ -1003,14 +1034,17 @@ export default {
                 .then((response) => {
                     if (response.data.success) {
                         if (response.data.imagePath) {
-                            this.siteLogo = this.imageSource(
+                            this.favicon = this.imageSource(
                                 response.data.imagePath,
                                 "storage"
                             );
                         }
                         this.toast("success", "Updated successfully");
                     } else {
-                        this.toast("error", "Failed to update");
+                        this.toast(
+                            "error",
+                            "Failed to update: " + response.data.message
+                        );
                     }
                 })
                 .catch((error) => {
