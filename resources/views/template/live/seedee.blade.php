@@ -278,6 +278,8 @@
             $(window).on("load", calculateTotal);
         @endif
     </script>
+    <!-- Sweet Alert -->
+    @include('sweetalert::alert')
 </body>
 
 </html>
