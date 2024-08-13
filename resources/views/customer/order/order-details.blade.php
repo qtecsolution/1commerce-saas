@@ -45,7 +45,7 @@
                                             Order#:
                                         </span>
                                     </td>
-                                    <td>{{ $order->order_prefix . $order->id . $order->order_code }}</td>
+                                    <td>{{ $order->id }}</td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -61,15 +61,15 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        Email:
-                                    </td>
-                                    <td>{{ $order->customer_email }}</td>
-                                </tr>
-                                <tr>
-                                    <td>
                                         Delivery Address:
                                     </td>
                                     <td>{{ $order->customer_address }}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Product Name:
+                                    </td>
+                                    <td>{{ @$order->userTemplate->product_name }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -110,19 +110,23 @@
                                         <strong class="text-primary">Order Details:</strong>
                                         <br>
                                         <p>
-                                            Product Unit Price:
-                                            &#2547;
-                                            {{ number_format($order->price, 2) }}
+                                            Unit Price:
+                                            {{ $order->userTemplate->product_currency }}
+                                            {{ number_format($order->product_price, 2) }}
                                             <br>
-                                            Product Quantity:
+                                            Quantity:
                                             {{ $order->quantity }}
                                             <br>
-                                            Product Discount:
-                                            &#2547;
+                                            Shipping:
+                                            {{ $order->userTemplate->product_currency }}
+                                            {{ number_format($order->shipping_cost, 2) }}
+                                            <br>
+                                            Discount:
+                                            {{ $order->userTemplate->product_currency }}
                                             {{ number_format($order->discount_amount, 2) }}
                                             <br>
-                                            Product Total Amount:
-                                            &#2547;
+                                            Total Amount:
+                                            {{ $order->userTemplate->product_currency }}
                                             {{ number_format($order->total_amount, 2) }}
                                         </p>
                                     </td>

@@ -23,6 +23,13 @@
 
             <div class="content">
                 <div class="text-center">
+                    <img
+                        class="img-fluid"
+                        width="100px"
+                        :src="siteLogo"
+                        alt="image"
+                    />
+
                     <div class="title primary_text_color">
                         <h2
                             class="elementor-heading-title elementor-size-default"
@@ -150,16 +157,11 @@
                                                         'feature'
                                                     )
                                                 "
-                                                class="btn btn-sm btn-info rounded-circle"
-                                                style="
-                                                    position: absolute;
-                                                    right: 0;
-                                                    margin-right: 10px;
-                                                    margin-top: -30px;
-                                                "
+                                                class="btn btn-sm btn-info rounded"
                                                 title="Add New Item"
                                             >
                                                 <i class="fas fa-plus"></i>
+                                                Add More
                                             </button>
                                         </div>
                                     </div>
@@ -233,16 +235,11 @@
                             </ul>
                             <button
                                 @click="addFeatureAndStepItem('step')"
-                                class="btn btn-sm btn-info rounded-circle"
-                                style="
-                                    position: absolute;
-                                    right: 0;
-                                    margin-right: 10px;
-                                    margin-top: -30px;
-                                "
+                                class="btn btn-sm btn-info rounded mb-2"
                                 title="Add New Item"
                             >
                                 <i class="fas fa-plus"></i>
+                                Add More
                             </button>
                         </div>
                     </div>

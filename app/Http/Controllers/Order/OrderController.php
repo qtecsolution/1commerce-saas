@@ -40,7 +40,7 @@ class OrderController extends Controller
 
     public function show($id)
     {
-        $order = Order::find($id);
+        $order = Order::with('userTemplate')->find($id);
 
         if (empty($order)) {
             toast('Order details not found.', 'error');
