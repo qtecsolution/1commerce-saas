@@ -111,22 +111,22 @@
                                         <br>
                                         <p>
                                             Unit Price:
-                                            {{ $order->userTemplate->product_currency }}
+                                            {{ $order->currency }}
                                             {{ number_format($order->product_price, 2) }}
                                             <br>
                                             Quantity:
                                             {{ $order->quantity }}
                                             <br>
                                             Shipping:
-                                            {{ $order->userTemplate->product_currency }}
+                                            {{ $order->currency }}
                                             {{ number_format($order->shipping_cost, 2) }}
                                             <br>
                                             Discount:
-                                            {{ $order->userTemplate->product_currency }}
+                                            {{ $order->currency }}
                                             {{ number_format($order->discount_amount, 2) }}
                                             <br>
                                             Total Amount:
-                                            {{ $order->userTemplate->product_currency }}
+                                            {{ $order->currency }}
                                             {{ number_format($order->total_amount, 2) }}
                                         </p>
                                     </td>

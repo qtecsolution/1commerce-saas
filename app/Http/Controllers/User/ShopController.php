@@ -64,6 +64,7 @@ class ShopController extends Controller
                 'product_price' => $template->product_price,
                 'shipping_cost' => $shipping,
                 'total_amount' => round(($template->product_price * $request->quantity) + $shipping, 2),
+                'currency' => $template->product_currency,
             ]);
 
             Alert::success("Yahoo!", "You order is submitted successfully. Our agent will contact you soon.");

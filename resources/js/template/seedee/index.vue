@@ -24,7 +24,7 @@
             <div class="content">
                 <div class="text-center">
                     <img
-                        class="img-fluid"
+                        class="img-fluid mb-2"
                         width="100px"
                         :src="siteLogo"
                         alt="image"

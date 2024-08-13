@@ -71,11 +71,11 @@
                                         {{ $order->customer_phone }}
                                     </td>
                                     <td>{{ $order->customer_address }}</td>
-                                    <td>{{ number_format($order->product_price, 2) }}</td>
+                                    <td>{{ $order->currency }} {{ number_format($order->product_price, 2) }}</td>
                                     <td>{{ $order->quantity }}</td>
-                                    <td>{{ number_format($order->shipping_cost, 2) }}</td>
-                                    <td>{{ number_format($order->discount_amount, 2) }}</td>
-                                    <td>{{ number_format($order->total_amount, 2) }}</td>
+                                    <td>{{ $order->currency }} {{ number_format($order->shipping_cost, 2) }}</td>
+                                    <td>{{ $order->currency }} {{ number_format($order->discount_amount, 2) }}</td>
+                                    <td>{{ $order->currency }} {{ number_format($order->total_amount, 2) }}</td>
                                     <td>
                                         <div class="btn-group btn-group-sm">
                                             <button type="button"
