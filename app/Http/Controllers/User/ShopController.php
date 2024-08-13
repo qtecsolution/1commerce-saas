@@ -31,7 +31,7 @@ class ShopController extends Controller
             $seedee = SeedeeTemplate::with(['steps', 'features'])
                 ->where('user_id', $userTemplate->user_id)
                 ->firstOrFail();
-
+            // dd($seedee);
             return view('template.live.seedee', compact('seedee', 'userTemplate'));
         }
 
@@ -46,10 +46,13 @@ class ShopController extends Controller
                 'customer_name' => 'required',
                 'customer_phone' => 'required|regex:/(01)[0-9]{9}/|max:11',
                 'customer_address' => 'required',
-                'quantity' => 'required|integer|min:1'
+                'quantity' => 'required|integer|min:1',
+                'shipping_cost' => 'nullable',
             ]);
 
             $template = UserTemplate::findOrFail($request->user_template_id);
+
+            $shipping = $template->shipping_cost ?? 0;
 
             Order::create([
                 'user_template_id' => $request->user_template_id,
@@ -59,7 +62,8 @@ class ShopController extends Controller
                 'quantity' => $request->quantity,
                 'product_name' => $template->product_name,
                 'product_price' => $template->product_price,
-                'total_amount' => $template->product_price * $request->quantity,
+                'shipping_cost' => $shipping,
+                'total_amount' => round(($template->product_price * $request->quantity) + $shipping, 2),
             ]);
 
             Alert::success("Yahoo!", "You order is submitted successfully. Our agent will contact you soon.");

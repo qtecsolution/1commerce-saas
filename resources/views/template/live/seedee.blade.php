@@ -1,3 +1,21 @@
+@php
+    $site_color = $seedee->color != null ? json_decode($seedee->color, true) : null;
+    $hero_area = $seedee->hero_area != null ? json_decode($seedee->hero_area, true) : null;
+    $feature_area = $seedee->features_area ? json_decode($seedee->features_area, true) : null;
+    $features = $feature_area != null ? $seedee->features->toArray() : null;
+    $about_area = $seedee->about_area != null ? json_decode($seedee->about_area, true) : null;
+    $steps = $about_area != null ? $seedee->steps->toArray() : null;
+    $order_area = $seedee->order_area != null ? json_decode($seedee->order_area, true) : null;
+    $footer_area = $seedee->footer_area != null ? json_decode($seedee->footer_area, true) : null;
+
+    $areas = [$site_color, $hero_area, $feature_area, $features, $about_area, $steps, $order_area, $footer_area];
+
+    foreach ($areas as $area) {
+        if ($area === null || empty($area)) {
+            abort(500);
+        }
+    }
+@endphp
 <!doctype html>
 <html lang="en">
 
@@ -7,146 +25,77 @@
     <title>Seedee</title>
 
     <link href="{{ asset($userTemplate->template->assets_path . '/css/icon.css') }}" rel="stylesheet">
-    <link rel="shortcut icon" href="{{ asset($userTemplate->template->assets_path . '/images/favicon.png') }}" type="image/x-icon">
+    {{-- favi icon --}}
+    <link rel="shortcut icon"
+        href="{{ $userTemplate->company_logo ? asset('storage/' . $userTemplate->company_logo) : asset($userTemplate->template->assets_path . '/images/favicon.png') }}"
+        type="image/x-icon">
     <link href="{{ asset($userTemplate->template->assets_path . '/css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset($userTemplate->template->assets_path . '/css/main.min.css') }}">
     <script src="{{ asset($userTemplate->template->assets_path . '/js/bootstrap.bundle.min.js') }}"></script>
 
-    <style>
-        .call-to-btn {
-            position: fixed;
-            z-index: 99;
-            bottom: 100px;
-            right: 30px;
-            padding: 10px 10px;
-            background: #86CD91;
-            border-radius: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #004111;
-            font-size: 17px;
-        }
-
-        .call-to-btn .material-icons-outlined {
-            font-size: 17px;
-        }
-
-        @media only screen and (max-width: 575px) {
-            .call-to-btn {
-                bottom: 60px;
-                right: 15px;
-                padding: 5px 8px;
-                font-size: 14px;
-            }
-
-            .call-to-btn .material-icons-outlined {
-                font-size: 14px;
-            }
-        }
-    </style>
+    @include('template.live.styles.seedee')
 </head>
 
-<body>
-    <div>
-        <a class="call-to-btn" href="tel:01230 42 42 42">
-            <span class="material-icons-outlined me-1">
-                call
-            </span>
-            01230 42 42 42
-        </a>
-    </div>
+<body class="site_background_color">
+    <a class="call-to-btn" href="tel:{{ $footer_area['title'] }}">
+        <span class="material-icons-outlined me-1">
+            call
+        </span>
+        {{ $footer_area['title'] }}
+    </a>
     <section id="single1">
         <div class="container">
-            <div class="content">
+            <div class="content site_foreground_color">
                 <div class="text-center">
                     <div class="title">
-                        <h2 class="elementor-heading-title elementor-size-default">
-                            সুপার &ldquo;সিড&ldquo; শরীরের শক্তি ও কর্মক্ষমতা বাড়ানোর জন্য খুবই উপকারী
+                        <h2 class="elementor-heading-title elementor-size-default primary_text_color">
+                            {{ $hero_area['title'] }}
                         </h2>
                     </div>
                     <h2 class="tagline">
-                        <p class="elementor-heading-title elementor-size-default">
-                            এতে আছে প্রচুর ওমেগা-৩ ফ্যাটি অ্যাসিড, কোয়েরসেটিন, কেম্পফেরল, ক্লোরোজেনিক অ্যাসিড ও ক্যাফিক
-                            অ্যাসিড নামক অ্যান্টি-অক্সিডেন্ট, পটাশিয়াম, ম্যাগনেশিয়াম, আয়রন, ক্যালসিয়াম এবং দ্রবণীয়
+                        <p class="elementor-heading-title elementor-size-default secondary_text_color">
+                            {{ $hero_area['description'] }}
                         </p>
                     </h2>
-
-                    <a href="#orderForm" class="btn btn-order">অর্ডার করতে চাই</a>
-                    <img class="banner-img" src="{{ asset($userTemplate->template->assets_path . '/images/product1.png') }}"
+                    <a href="{{ $hero_area['button']['url'] }}" class="btn btn-order btn1">
+                        {{ $hero_area['button']['title'] }}
+                    </a>
+                    <img class="banner-img"
+                        src="{{ fetchImage($hero_area['image'], $userTemplate->template->assets_path . '/images/product1.png') }}"
                         alt="image">
 
                     <h2 class="tagline">
-                        <p class="elementor-heading-title elementor-size-default">
-                            সিড পুষ্টিকর খাবার। এতে আছে দুধের চেয়ে ৫ গুণ বেশি ক্যালসিয়াম, কমলার চেয়ে ৭ গুণ বেশি ভিটামিন
-                            সি, পালং শাকের চেয়ে ৩ গুণ বেশি আয়রন, কলার চেয়ে দ্বিগুণ পটাশিয়াম, মুরগির ডিম থেকে ৩ গুণ বেশি
-                            প্রোটিন, স্যামন মাছের চেয়ে ৮ গুণ বেশি
-                            ওমেগা-৩।
+                        <p class="elementor-heading-title elementor-size-default secondary_text_color">
+                            {{ $hero_area['bottom_description'] }}
                         </p>
                     </h2>
 
-                    <a href="#orderForm" class="btn btn-order">অর্ডার করতে চাই</a>
+                    <a href="{{ $hero_area['bottom_button']['url'] }}" class="btn btn-order btn2">
+                        {{ $hero_area['bottom_button']['title'] }}
+                    </a>
 
-                    <div class="facility-title">
-                        সিড খাওয়ার উপকারিতা
+                    <div class="facility-title text_foreground_color"
+                        style="background-color: {{ $feature_area['background_color'] }}">
+                        {{ $feature_area['title'] }}
                     </div>
 
                     <div class="facilities">
                         <div class="left">
                             <div class="facilities">
-                                <div class="row row-cols-1  ">
-                                    <div>
-                                        <div class="left">
-                                            <ul class="elementor-icon-list-items">
-                                                <li class="elementor-icon-list-item"><span
-                                                        class="elementor-icon-list-text">সিডে থাকা ওমেগা-৩
-                                                        হৃদরোগের ঝুঁকি কমাতে এবং ক্ষতিকর কোলেস্টেরল দূর করতে কাজ
-                                                        করে।</span></li>
-                                                <li class="elementor-icon-list-item"><span
-                                                        class="elementor-icon-list-text">দিনে দুই চা চামচ
-                                                        সিড শরীরের শক্তি দেয় এবং কর্মক্ষমতা বাড়ায়।</span></li>
-                                                <li class="elementor-icon-list-item"><span
-                                                        class="elementor-icon-list-text">প্রচুর পরিমাণে
-                                                        অ্যান্টি-অক্সিডেন্ট থাকায় সিড রোগ প্রতিরোধ ক্ষমতাকে
-                                                        আরও শক্তিশালী করে।</span></li>
-                                                <li class="elementor-icon-list-item"><span
-                                                        class="elementor-icon-list-text">মেটাবলিক সিস্টেমকে
-                                                        উন্নত করার মাধ্যমে এটি ওজন কমাতে সহায়তা করে।</span></li>
-                                                <li class="elementor-icon-list-item"><span
-                                                        class="elementor-icon-list-text">সিড ব্লাড সুগার
-                                                        (রক্তের চিনি) স্বাভাবিক রাখে, যা ডায়াবেটিস হওয়ার ঝুঁকি
-                                                        কমায়</span></li>
-                                                <li class="elementor-icon-list-item"><span
-                                                        class="elementor-icon-list-text">হাড়ের স্বাস্থ্য রক্ষায়
-                                                        সিড দারুণ কাজ করে। কারণ এতে আছে প্রচুর পরিমাণ
-                                                        ক্যালসিয়াম।</span></li>
-                                                <li class="elementor-icon-list-item"><span
-                                                        class="elementor-icon-list-text">সিড কোলন পরিষ্কার
-                                                        রাখতে কাজ করে বলে কোলন ক্যানসারের ঝুঁকি কমে।</span></li>
-                                                <li class="elementor-icon-list-item"><span
-                                                        class="elementor-icon-list-text">সিড শরীর থেকে
-                                                        বিষাক্ত পদার্থ বের করে আনে। দূর করে অ্যাসিডিটির সমস্যা।
-                                                        সিড পেটের প্রদাহজনিত বা গ্যাসের সমস্যা দূর
-                                                        করে।</span></li>
-                                                <li class="elementor-icon-list-item"><span
-                                                        class="elementor-icon-list-text">সিড ভালো ঘুম হতেও
-                                                        সাহায্য করে। সিড ক্যানসার রোধ করে।</span></li>
-                                                <li class="elementor-icon-list-item"><span
-                                                        class="elementor-icon-list-text">সিড হজমে সহায়তা
-                                                        করে।</span></li>
-                                                <li class="elementor-icon-list-item"><span
-                                                        class="elementor-icon-list-text">বীজ হাঁটু ও
-                                                        জয়েন্টের ব্যথা দূর করে।</span></li>
-                                                <li class="elementor-icon-list-item"><span
-                                                        class="elementor-icon-list-text">এটি ত্বক, চুল ও নখ
-                                                        সুন্দর রাখে।</span></li>
-                                            </ul>
-                                        </div>
+                                <div class="row row-cols-1">
+                                    <div class="left">
+                                        <ul class="elementor-icon-list-items">
+                                            @foreach ($features as $feature)
+                                                <li class="elementor-icon-list-item">
+                                                    <span class="elementor-icon-list-text secondary_text_color">
+                                                        {{ $feature['title'] }}
+                                                    </span>
+                                                </li>
+                                            @endforeach
+                                        </ul>
                                     </div>
-                                    <div>
-                                        <div class="right">
-                                            <p class="info-source">&nbsp;</p>
-                                        </div>
+                                    <div class="right">
+                                        <p class="info-source">&nbsp;</p>
                                     </div>
                                 </div>
                             </div>
@@ -154,95 +103,98 @@
                     </div>
 
                     <img class="benifits-img shadow-lg"
-                        src="{{ asset($userTemplate->template->assets_path . '/images/product2.jpg') }}" alt="image">
+                        src="{{ fetchImage($feature_area['image'], $userTemplate->template->assets_path . '/images/product2.jpg') }}"
+                        alt="image">
 
-                    <div class="facility-title mt-4">
-                        আমাদের উপর কেন আস্থা রাখবেন ??
+                    <div class="facility-title mt-4 text_foreground_color"
+                        style="background-color: {{ $about_area['title_background_color'] }}">
+                        {{ $about_area['title'] }}
                     </div>
 
                     <div class="facilities">
                         <div class="left">
                             <ul class="elementor-icon-list-items">
-                                <li class="elementor-icon-list-item"><span class="elementor-icon-list-text">প্রোডাক্ট
-                                        হাতে পেয়ে, দেখে, কোয়ালিটি চেক
-                                        করে পেমেন্টে করার সুবিধা ।</span></li>
-                                <li class="elementor-icon-list-item"><span class="elementor-icon-list-text">প্রোডাক্ট
-                                        পছন্দ না হলে সাথে সাথে
-                                        রিটার্ন দিতে পারবেন ।</span></li>
-                                <li class="elementor-icon-list-item"><span class="elementor-icon-list-text">সারা
-                                        বাংলাদেশে কুরিয়ারের মাধ্যমে হোম ডেলিভারি পাবেন ।</span></li>
-                                <li class="elementor-icon-list-item"><span class="elementor-icon-list-text">যে
-                                        কোন সময় আমাদের সাথে যোগাযোগ করতে পারবেন ।</span></li>
+                                @foreach ($steps as $step)
+                                    <li class="elementor-icon-list-item">
+                                        <span class="elementor-icon-list-text secondary_text_color">
+                                            {{ $step['title'] }}
+                                        </span>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
 
-                    <div class="price-detail">
-                        <div class="contact">
-                            প্রয়োজনে কল করুন-
-                            <a href="callto:01230 42 42 42">
-                                01230 42 42 42
-                            </a>,
-                            <a href="callto:01234 56 78 90">
-                                01234 56 78 90
-                            </a>
+                    <div class="price-detail"
+                        style="background-color: {{ $about_area['sub_title_background_color'] }}">
+                        <div class="contact text_foreground_color">
+                            {{ $about_area['sub_title'] }}
                         </div>
                     </div>
-                    <form action="javascript:void(0)" method="POST" id="order" class="order-form">
-                        <legend style="color: #00560c">
-                            &ldquo;সিড&ldquo; নেয়ার জন্য, নিচের ফর্মটি সম্পূর্ণ পূরণ করুন
+                    <form action="{{ route('place_order') }}" method="POST" id="order" class="order-form">
+                        @csrf
+                        <input type="hidden" name="user_template_id" value="{{ $userTemplate->id }}">
+
+                        <legend class="primary_text_color">
+                            {{ $order_area['title'] }}
                         </legend>
 
-                        <div class="form-content text-start">
+                        <div class="form-content text-start site_background_color">
                             <div class="row row-cols-1 row-cols-md-2 gx-3 gy-2">
                                 <div class="right">
-                                    <div class="product content-section">
+                                    <div class="product content-section site_foreground_color">
                                         <table class="w-100">
                                             <tr>
                                                 <td width="50">
                                                     <img class="w-100 banner-img"
-                                                        src="{{ asset($userTemplate->template->assets_path . '/images/product1.png') }}"
+                                                        src="{{ fetchImage($order_area['image'], $userTemplate->template->assets_path . '/images/product1.png') }}"
                                                         alt="image">
                                                 </td>
                                                 <td>
                                                     <div class="ps-2">
-                                                        <div class="name">
-                                                            Seedee
+                                                        <div class="name secondary_text_color">
+                                                            {{ $userTemplate['product_name'] }}
                                                         </div>
-                                                        <div class="tag">
-                                                            400 g
+                                                        <div class="tag secondary_text_color">
+                                                            {{ $order_area['product_tag'] }}
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td class="text-center">
+                                                <td class="text-center secondary_text_color">
                                                     &times;
                                                 </td>
-                                                <td width="30" class="text-center">
+                                                <td width="20" class="text-center">
                                                     <input type="number" min="1" name="quantity"
-                                                        value="1" style="width: 50px; border: none">
+                                                        value="{{ old('quantity') ?? 1 }}" id="quantity"
+                                                        class="site_foreground_color secondary_text_color"
+                                                        style="width: 50px; border: none">
                                                 </td>
-                                                <td width="50" class="total-price text-end">
-                                                    Tk 1100
+                                                <td width="70" class="total-price text-end secondary_text_color">
+                                                    {{ $userTemplate['product_currency'] . ' ' . $userTemplate['product_price'] }}
                                                 </td>
                                             </tr>
                                         </table>
                                     </div>
-
-                                    <div class="content-section vat">
-                                        <div class="d-flex justify-content-between top">
-                                            <span>Shipping Cost</span>
-                                            <span>Tk 50.00</span>
+                                    <div class="content-section vat site_foreground_color">
+                                        <div class="d-flex justify-content-between top primary_text_color">
+                                            <span>{{ $order_area['shipping_charge_text'] }}</span>
+                                            <span>
+                                                {{ $userTemplate['product_currency'] . ' ' . $userTemplate['shipping_cost'] }}
+                                            </span>
                                         </div>
-                                        <div class="d-flex justify-content-between total">
-                                            <span>Subtotal</span>
+                                        <div class="d-flex justify-content-between total secondary_text_color">
+                                            <span>{{ $order_area['subtotal_text'] }}</span>
                                             <span class="product-price">
-                                                Tk 1,150.00
+                                                {{ $userTemplate['product_currency'] }}
+                                                <span id="subtotal">
+                                                    {{ $userTemplate['product_price'] + $userTemplate['shipping_cost'] }}
+                                                </span>
                                             </span>
                                         </div>
                                     </div>
 
-                                    <div class="content-section payment">
-                                        <div class="d-flex align-items-center head">
+                                    <div class="content-section payment site_foreground_color">
+                                        <div class="d-flex align-items-center head secondary_text_color">
                                             <span class="material-icons-outlined">
                                                 paid
                                             </span>
@@ -252,39 +204,49 @@
                                         <div class="d-flex align-items-start">
                                             <input type="radio" checked name="delivery-area"
                                                 class="form-check-input me-2" id="cashOnDelivery">
-                                            <div>
-                                                <label class="label m-0" for="cashOnDelivery">
-                                                    Cash On Delivery
-                                                </label>
-                                                <div class="tagline">
-                                                    Pay with cash upon delivery.
-                                                </div>
+                                            <label class="label m-0 secondary_text_color" for="cashOnDelivery">
+                                                {{ $order_area['payment_title'] }}
+                                            </label>
+                                            <div class="tagline secondary_text_color">
+                                                {{ $order_area['payment_sub_title'] }}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="left">
-                                    <div class="form">
+                                    <div class="form site_foreground_color">
                                         <div class="form-group">
-                                            <label for="">নাম (Name)*</label>
-                                            <input type="text" name="name" class="form-control ">
+                                            <label for="" class="primary_text_color">
+                                                {{ $order_area['customer_name_text'] }}
+                                            </label>
+                                            <input type="text" name="customer_name"
+                                                class="form-control site_background_color" required>
+                                            @error('customer_name')
+                                                <small class="text-danger">{{ $message }}</small>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
-                                            <label for="">মোবাইল নাম্বার (Mobile No)*</label>
-                                            <input type="text" name="billing_phone" pattern="^0\d{8,11}$"
-                                                title="বাংলাদেশের ফোন নম্বর লিখুন, 0xxxxxxxxxx এই ফরম্যাটে"
-                                                class="form-control ">
-                                            <small class="text-dark">মোবাইল নম্বরটি অবশ্যই শূন্য থেকে শুরু
-                                                হবে</small>
+                                            <label for="" class="primary_text_color">
+                                                {{ $order_area['customer_phone_text'] }}
+                                            </label>
+                                            <input type="text" name="customer_phone" pattern="^0\d{8,11}$"
+                                                class="form-control site_background_color" required>
+                                            @error('customer_phone')
+                                                <small class="text-danger">{{ $message }}</small>
+                                            @enderror
                                         </div>
-
                                         <div class="form-group">
-                                            <label for="">ডেলিভারি ঠিকানা (Delivery Address)*</label>
-                                            <textarea name="address" rows="2" class="form-control "></textarea>
+                                            <label for="" class="primary_text_color">
+                                                {{ $order_area['delivery_address_text'] }}
+                                            </label>
+                                            <textarea name="customer_address" rows="2" class="form-control site_background_color" required>{{ old('customer_address') }}</textarea>
+                                            @error('customer_address')
+                                                <small class="text-danger">{{ $message }}</small>
+                                            @enderror
                                         </div>
                                         <div class="right">
-                                            <button class="btn submit-btn bg-danger">
-                                                Place Order
+                                            <button type="submit" class="btn submit-btn bg-danger">
+                                                {{ $order_area['button']['title'] }}
                                             </button>
                                         </div>
                                     </div>
@@ -300,6 +262,22 @@
         </div>
     </section>
     <script src="{{ asset($userTemplate->template->assets_path . '/js/jquery-3.7.1.min.js') }}"></script>
+    <script>
+        $("#quantity").on("input", function() {
+            calculateTotal();
+        });
+
+        function calculateTotal() {
+            var price = {{ $userTemplate['product_price'] }};
+            var shipping = {{ $userTemplate['shipping_cost'] }};
+            var quantity = $("#quantity").val();
+            var total = (price * quantity + shipping).toFixed(2);
+            $("#subtotal").html(total);
+        }
+        @if (old('quantity'))
+            $(window).on("load", calculateTotal);
+        @endif
+    </script>
 </body>
 
 </html>

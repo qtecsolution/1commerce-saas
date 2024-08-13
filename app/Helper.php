@@ -73,3 +73,17 @@ if (!function_exists("orderStatusColor")) {
         return $color;
     }
 }
+
+
+if (!function_exists("fetchImage")) {
+    function fetchImage($path, $alter_path)
+    {
+        if ($path) {
+            $link = asset('storage/' . $path);
+        } else {
+            $link = asset($alter_path);
+        }
+
+        return $link;
+    }
+}

@@ -45,7 +45,7 @@ class SeedeeTemplateController extends Controller
                 "image" => null,
                 "button" => [
                     "title" => "অর্ডার করতে চাই",
-                    "url" => "#orderForm",
+                    "url" => "#order",
                     "color" => "#ffc100",
                     "text_color" => "#000000",
                     "border_color" => "#ffc100",
@@ -56,7 +56,7 @@ class SeedeeTemplateController extends Controller
                 "bottom_description" => "সিড পুষ্টিকর খাবার। এতে আছে দুধের চেয়ে ৫ গুণ বেশি ক্যালসিয়াম, কমলার চেয়ে ৭ গুণ বেশি ভিটামিন সি, পালং শাকের চেয়ে ৩ গুণ বেশি আয়রন, কলার চেয়ে দ্বিগুণ পটাশিয়াম, মুরগির ডিম থেকে ৩ গুণ বেশি প্রোটিন, স্যামন মাছের চেয়ে ৮ গুণ বেশি ওমেগা-৩।",
                 "bottom_button" => [
                     "title" => "অর্ডার করতে চাই",
-                    "url" => "#orderForm",
+                    "url" => "#order",
                     "color" => "#ffc100",
                     "text_color" => "#000000",
                     "border_color" => "#ffc100",

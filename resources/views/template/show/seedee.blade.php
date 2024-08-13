@@ -72,7 +72,7 @@
                         </p>
                     </h2>
 
-                    <a href="#orderForm" class="btn btn-order">অর্ডার করতে চাই</a>
+                    <a href="#order" class="btn btn-order">অর্ডার করতে চাই</a>
                     <img class="banner-img" src="{{ asset($template->assets_path . '/images/product1.png') }}"
                         alt="image">
 
@@ -85,7 +85,7 @@
                         </p>
                     </h2>
 
-                    <a href="#orderForm" class="btn btn-order">অর্ডার করতে চাই</a>
+                    <a href="#order" class="btn btn-order">অর্ডার করতে চাই</a>
 
                     <div class="facility-title">
                         সিড খাওয়ার উপকারিতা
@@ -272,10 +272,7 @@
                                         <div class="form-group">
                                             <label for="">মোবাইল নাম্বার (Mobile No)*</label>
                                             <input type="text" name="billing_phone" pattern="^0\d{8,11}$"
-                                                title="বাংলাদেশের ফোন নম্বর লিখুন, 0xxxxxxxxxx এই ফরম্যাটে"
                                                 class="form-control ">
-                                            <small class="text-dark">মোবাইল নম্বরটি অবশ্যই শূন্য থেকে শুরু
-                                                হবে</small>
                                         </div>
 
                                         <div class="form-group">

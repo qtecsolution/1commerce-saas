@@ -1066,6 +1066,18 @@ export default {
     border-color: v-bind("heroArea.bottom_button.hover_border_color");
 }
 
+#single1 .content .form-content .right .submit-btn {
+    background-color: v-bind("orderArea.button.color") !important;
+    color: v-bind("orderArea.button.text_color") !important;
+    border-color: v-bind("orderArea.button.border_color") !important;
+}
+
+#single1 .content .form-content .right .submit-btn:hover {
+    background-color: v-bind("orderArea.button.hover_color") !important;
+    color: v-bind("orderArea.button.hover_text_color") !important;
+    border-color: v-bind("orderArea.button.hover_border_color") !important;
+}
+
 .btn-info:hover,
 .btn-danger:hover,
 .footer-gear-icon:hover {

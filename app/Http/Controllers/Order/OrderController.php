@@ -12,9 +12,9 @@ class OrderController extends Controller
 {
     public function index(Request $request)
     {
-        $template = UserTemplate::where('user_id', auth()->id())->first();
-        if ($template) {
-            $query = Order::where('user_template_id', $template->id);
+        $templateIds = UserTemplate::where('user_id', auth()->id())->pluck('id');
+        if (count($templateIds) > 0) {
+            $query = Order::with(['userTemplate'])->whereIn('user_template_id', $templateIds);
             if ($request->status) {
                 $query->where('status', $request->status);
             }

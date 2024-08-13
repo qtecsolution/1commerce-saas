@@ -43,10 +43,12 @@
                             <tr>
                                 <th>Sl</th>
                                 <th>Date/Time</th>
+                                <th>Product Name</th>
                                 <th>Customer Name/Phone</th>
                                 <th>Shipping Address</th>
                                 <th>Unit Price</th>
                                 <th>Quantity</th>
+                                <th>Shipping Cost</th>
                                 <th>Discount</th>
                                 <th>Total Amount</th>
                                 <th>Order Status</th>
@@ -62,6 +64,7 @@
                                         <br>
                                         {{ date('h:i A', strtotime($order->updated_at)) }}
                                     </td>
+                                    <td>{{ @$order->UserTemplate->product_name }}</td>
                                     <td>
                                         <strong>{{ $order->customer_name }}</strong>
                                         <br>
@@ -70,6 +73,7 @@
                                     <td>{{ $order->customer_address }}</td>
                                     <td>{{ number_format($order->product_price, 2) }}</td>
                                     <td>{{ $order->quantity }}</td>
+                                    <td>{{ number_format($order->shipping_cost, 2) }}</td>
                                     <td>{{ number_format($order->discount_amount, 2) }}</td>
                                     <td>{{ number_format($order->total_amount, 2) }}</td>
                                     <td>

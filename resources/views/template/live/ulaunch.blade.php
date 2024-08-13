@@ -508,7 +508,7 @@
                                     <label for="name" class="form-label">Name:</label>
                                     <input type="text" name="customer_name" value="{{ old('customer_name') }}"
                                         id="name" class="form-control" placeholder="Enter Your Name"
-                                        required="">
+                                        value="{{ old('customer_name') }}" required>
                                     <div class="help-block with-errors"></div>
                                     @error('customer_name')
                                         <small class="text-danger">{{ $message }}</small>
@@ -519,7 +519,7 @@
                                     <label for="mobile" class="form-label">Mobile:</label>
                                     <input type="number" name="customer_phone" value="{{ old('customer_phone') }}"
                                         id="mobile" class="form-control" placeholder="Your Mobile Number"
-                                        required="">
+                                        value="{{ old('customer_phone') }}" required>
                                     <div class="help-block with-errors"></div>
                                     @error('customer_phone')
                                         <small class="text-danger">{{ $message }}</small>
@@ -529,7 +529,8 @@
                                 <div class="form-group mb-3 col-md-12 col-sm-12">
                                     <label for="quantity" class="form-label">Quantity:</label>
                                     <input type="number" name="quantity" id="quantity" class="form-control"
-                                        placeholder="Quantity" min="1" value="1" required="">
+                                        placeholder="Quantity" min="1" value="{{ old('quantity') ?? 1 }}"
+                                        required>
                                     <div class="help-block with-errors"></div>
                                     @error('quantity')
                                         <small class="text-danger">{{ $message }}</small>
@@ -541,6 +542,9 @@
                                     <textarea rows="8" name="customer_address" id="address" placeholder="Address" class="form-control"
                                         required="">{{ old('customer_address') }}</textarea>
                                     <div class="help-block with-errors"></div>
+                                    @error('customer_address')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
 
                                 <div class="col-md-12 col-sm-12">
