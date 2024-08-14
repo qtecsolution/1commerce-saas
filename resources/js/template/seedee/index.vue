@@ -592,6 +592,30 @@
                                                 class="form-control"
                                             ></textarea>
                                         </div>
+
+                                        <!-- <div
+                                            v-for="(field, index) in fields"
+                                            :key="index"
+                                        >
+                                            <p>Field Name: {{ field.name }}</p>
+                                            <p>Field Type: {{ field.type }}</p>
+                                            <p v-if="field.options.length">
+                                                Options:
+                                                {{ field.options.join(", ") }}
+                                            </p>
+                                        </div> -->
+                                        <FormField
+                                            v-for="(field, index) in fields"
+                                            :key="index"
+                                            :field="field"
+                                        />
+
+                                        <AddInputModal
+                                            :modalId="'addInputModal'"
+                                            :modalTitle="'Edit Dynamic Form'"
+                                            @save="addField"
+                                        />
+
                                         <div class="right">
                                             <button
                                                 class="btn submit-btn bg-danger"
@@ -626,6 +650,8 @@ import ImageModal from "../components/image-modal.vue";
 import ColorPicker from "../components/color-picker.vue";
 import SetupModal from "./components/setup-modal.vue";
 import FooterModal from "./components/footer-modal.vue";
+import AddInputModal from "../components/add-input-modal.vue";
+import FormField from "../components/form-field.vue";
 
 export default {
     name: "Seedee",
@@ -636,6 +662,8 @@ export default {
         ColorPicker,
         SetupModal,
         FooterModal,
+        AddInputModal,
+        FormField
     },
     data() {
         return {
@@ -674,6 +702,7 @@ export default {
                     : null,
             siteLogo: "",
             favIcon: "",
+            fields: [],
         };
     },
     computed: {
@@ -1067,6 +1096,11 @@ export default {
                 .catch((error) => {
                     this.toast("error", "Error updating:", error);
                 });
+        },
+
+        addField(field) {
+            console.log(field);
+            this.fields.push(field);
         },
     },
 };

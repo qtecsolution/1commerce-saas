@@ -14,7 +14,7 @@
                     <div class="col">
                         <h3>Hey! {{ auth()->user()->name }}</h3>
                         <p>
-                            Welcome back. Today {{ date('dS F, Y') }} <br>
+                            Welcome back. Today is {{ date('dS F, Y') }} <br>
                         </p>
                     </div>
                 </div>
