@@ -415,7 +415,7 @@
                 section="about"
                 :color="aboutBg"
                 @update="updateColor"
-                :style="{ margin: '100px 0 0 10px' }"
+                :style="{ margin: '50px 0 0 10px' }"
             />
             <div class="container">
                 <!-- Section Title start -->
@@ -1105,30 +1105,35 @@
             modalId="logoImageModal"
             modalTitle="logo Image"
             section="logo"
+            :previewURL="companyLogo"
             @update="updateImage"
         />
         <ImageModal
             modalId="heroImageModal"
             modalTitle="Hero Image"
             section="hero"
+            :previewURL="heroImage"
             @update="updateImage"
         />
         <ImageModal
             modalId="featureImageModal"
             modalTitle="Feature Image"
             section="feature"
+            :previewURL="featureImage"
             @update="updateImage"
         />
         <ImageModal
             modalId="about1ImageModal"
             modalTitle="About Image"
             section="about-1"
+            :previewURL="abouts[0].image"
             @update="updateImage"
         />
         <ImageModal
             modalId="about2ImageModal"
             modalTitle="About Image"
             section="about-2"
+            :previewURL="abouts[1].image"
             @update="updateImage"
         />
         <ImageModal
@@ -1137,6 +1142,7 @@
             :modalId="'testimonial' + (index + 1) + 'ImageModal'"
             :modalTitle="'Testimonial Image ' + (index + 1)"
             :section="'testimonial-' + (index + 1)"
+            :previewURL="testimonials[index].reviewer_image"
             @update="updateImage"
         />
 
@@ -1145,30 +1151,35 @@
             modalTitle="Hero Button"
             section="hero"
             @update="updateButton"
+            :buttonData="heroButton"
         />
         <ButtonModal
             modalId="about1ButtonModal"
             modalTitle="About Button"
             section="about-1"
             @update="updateButton"
+            :buttonData="abouts[0].button"
         />
         <ButtonModal
             modalId="about2ButtonModal"
             modalTitle="About Button"
             section="about-2"
             @update="updateButton"
+            :buttonData="abouts[1].button"
         />
         <ButtonModal
             modalId="infoButtonModal"
             modalTitle="Info Button"
             section="info"
             @update="updateButton"
+            :buttonData="infoButton"
         />
         <ButtonModal
             modalId="orderButtonModal"
             modalTitle="Order Button"
             section="order"
             @update="updateButton"
+            :buttonData="orderButton"
         />
     </div>
 </template>
@@ -1340,21 +1351,21 @@ export default {
                     review: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
                     reviewer_name: "Muhaimin Shihab",
                     reviewer_bio: "Customer",
-                    reviewr_image: "",
+                    reviewer_image: "",
                     reviewer_image_raw: [],
                 },
                 {
                     review: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
                     reviewer_name: "Asaduzzaman",
                     reviewer_bio: "Customer",
-                    reviewr_image: "",
+                    reviewer_image: "",
                     reviewer_image_raw: [],
                 },
                 {
                     review: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
                     reviewer_name: "Harshad Patel",
                     reviewer_bio: "NM Babor",
-                    reviewr_image: "",
+                    reviewer_image: "",
                     reviewer_image_raw: [],
                 },
             ],
@@ -1400,7 +1411,6 @@ export default {
     },
     mounted() {
         window.addEventListener("scroll", this.checkStickyHeader);
-        // console.log(this.features);
 
         this.appUrl = `${window.location.origin}`;
         this.apiUrl = `${window.location.origin}/app/templates/ulaunch`;
@@ -1639,6 +1649,17 @@ export default {
             }
         },
 
+        toast(icon, title) {
+            this.$swal({
+                toast: true,
+                icon: icon,
+                title: title,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+            });
+        },
+
         updateContent(event) {
             const rawContent =
                 event.target.innerHTML ?? event.target.textContent;
@@ -1812,23 +1833,23 @@ export default {
         updateButton(data) {
             switch (data.section) {
                 case "hero":
-                    this.updateHeroButton(data);
+                    this.updateHeroButton(data.button);
                     break;
 
                 case "about-1":
-                    this.updateAboutButton(data, 0);
+                    this.updateAboutButton(data.button, 0);
                     break;
 
                 case "about-2":
-                    this.updateAboutButton(data, 1);
+                    this.updateAboutButton(data.button, 1);
                     break;
 
                 case "info":
-                    this.updateInfoButton(data);
+                    this.updateInfoButton(data.button);
                     break;
 
                 case "order":
-                    this.updateOrderButton(data);
+                    this.updateOrderButton(data.button);
                     break;
 
                 default:
@@ -1926,6 +1947,7 @@ export default {
                 })
                 .then((response) => {
                     // console.log(response);
+                    this.toast("success", "Logo Updated.");
                 })
                 .catch((error) => {
                     console.error(error);
@@ -1948,6 +1970,7 @@ export default {
                 })
                 .then((response) => {
                     // console.log(response.data);
+                    this.toast("success", "Resources Updated.");
                 })
                 .catch((error) => {
                     console.error(error);
@@ -1966,6 +1989,7 @@ export default {
                 })
                 .then((response) => {
                     // console.log(response.data);
+                    this.toast("success", "Resources Updated.");
                 })
                 .catch((error) => {
                     console.error(error);
@@ -1986,6 +2010,7 @@ export default {
                 .then((response) => {
                     // console.log(response.data);
                     this.steps = response.data.data;
+                    this.toast("success", "Resources Updated.");
                 })
                 .catch((error) => {
                     console.error(error);
@@ -2024,6 +2049,7 @@ export default {
                 .then((response) => {
                     // console.log(response.data);
                     this.features = response.data.data;
+                    this.toast("success", "Resources Updated.");
                 })
                 .catch((error) => {
                     console.error(error);
@@ -2103,6 +2129,7 @@ export default {
                 })
                 .then((response) => {
                     // console.log(response.data);
+                    this.toast("success", "Resources Updated.");
                 })
                 .catch((error) => {
                     console.error(error);
@@ -2161,6 +2188,8 @@ export default {
                                       defaultTestimonialImages[index]
                                   );
                     });
+
+                    this.toast("success", "Resources Updated.");
                 })
                 .catch((error) => {
                     console.error(error);
@@ -2236,6 +2265,7 @@ export default {
                 .post(`${this.apiUrl}/update-info-area`, formData)
                 .then((response) => {
                     // console.log(response.data);
+                    this.toast("success", "Resources Updated.");
                 })
                 .catch((error) => {
                     console.error(error);
@@ -2304,6 +2334,7 @@ export default {
                 .post(`${this.apiUrl}/update-order-area`, formData)
                 .then((response) => {
                     // console.log(response.data);
+                    this.toast("success", "Resources Updated.");
                 })
                 .catch((error) => {
                     console.error(error);
@@ -2335,6 +2366,7 @@ export default {
                 .post(`${this.apiUrl}/update-product-info`, formData)
                 .then((response) => {
                     // console.log(response.data);
+                    this.toast("success", "Resources Updated.");
                 })
                 .catch((error) => {
                     console.error(error);
@@ -2355,6 +2387,7 @@ export default {
                 .post(`${this.apiUrl}/update-footer-area`, formData)
                 .then((response) => {
                     // console.log(response.data);
+                    this.toast("success", "Resources Updated.");
                 })
                 .catch((error) => {
                     console.error(error);

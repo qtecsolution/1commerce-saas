@@ -21,6 +21,9 @@
                     ></button>
                 </div>
                 <div class="modal-body">
+                    <div class="text-center mb-3">
+                        <img :src="image" width="300" class="img-fluid" />
+                    </div>
                     <div class="form-group">
                         <label for="" class="form-label">Image:</label>
                         <input
@@ -31,6 +34,22 @@
                         />
                     </div>
                 </div>
+                <div class="modal-footer">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                    >
+                        Close
+                    </button>
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        @click="sendToParent"
+                    >
+                        Save changes
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -39,25 +58,34 @@
 <script>
 export default {
     name: "ImageModal",
-    props: ["modalId", "modalTitle", "section"],
+    props: ["modalId", "modalTitle", "section", "previewURL"],
     data() {
         return {
-            image: [],
+            image: "",
             image_raw: [],
         };
     },
     watch: {
-        // image(newValue, oldValue) {
-        //     this.sendToParent();
-        // },
+        previewURL: {
+            immediate: true,
+            handler(newValue) {
+                this.image = newValue || null;
+            },
+        },
     },
     methods: {
         sendToParent() {
             this.$emit("update", {
                 image: this.image,
                 image_raw: this.image_raw,
-                section: this.section
+                section: this.section,
             });
+
+            const modalElement = document.getElementById(this.modalId);
+            const modal = bootstrap.Modal.getInstance(modalElement);
+            if (modal) {
+                modal.hide();
+            }
         },
 
         onFileChange(event) {
@@ -67,7 +95,6 @@ export default {
                 reader.onload = (e) => {
                     this.image = e.target.result;
                     this.image_raw = file;
-                    this.sendToParent();
                 };
                 reader.readAsDataURL(file);
             }
