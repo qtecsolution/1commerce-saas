@@ -27,7 +27,7 @@
     <link href="{{ asset($userTemplate->template->assets_path . '/css/icon.css') }}" rel="stylesheet">
     {{-- favi icon --}}
     <link rel="shortcut icon"
-        href="{{ $userTemplate->company_logo ? asset('storage/' . $userTemplate->company_logo) : asset($userTemplate->template->assets_path . '/images/favicon.png') }}"
+        href="{{ $userTemplate->fav_icon ? asset('storage/' . $userTemplate->fav_icon) : asset($userTemplate->template->assets_path . '/images/favicon.png') }}"
         type="image/x-icon">
     <link href="{{ asset($userTemplate->template->assets_path . '/css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset($userTemplate->template->assets_path . '/css/main.min.css') }}">
@@ -47,6 +47,9 @@
         <div class="container">
             <div class="content site_foreground_color">
                 <div class="text-center">
+                    <img class="img-fluid mb-2" width="100px"
+                        src="{{ fetchImage($userTemplate->company_logo, $userTemplate->template->assets_path . '/images/favicon.png') }}"
+                        alt="image" />
                     <div class="title">
                         <h2 class="elementor-heading-title elementor-size-default primary_text_color">
                             {{ $hero_area['title'] }}

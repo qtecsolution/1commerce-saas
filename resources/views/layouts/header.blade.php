@@ -79,22 +79,6 @@
                     </div>
                 </div>
                 <div class="p-b-15 p-t-20 dropdown-menu pop-profile">
-                    {{-- <div class="p-h-20 p-b-15 m-b-10 border-bottom">
-                        <div class="d-flex m-r-50 align-items-center">
-                            <div class="avatar avatar-lg avatar-image">
-                                <img src="{{ $photo }}" alt="{{ Auth::user()->name }}">
-                            </div>
-                            <div class="m-l-10">
-                                @php
-                                    $userName = Auth::user()->name;
-                                    $explodedName = explode(' ', $userName);
-                                    $name = $explodedName[count($explodedName) - 1];
-                                @endphp
-                                <p class="m-b-0 text-dark font-weight-semibold">{{ $name }}</p>
-                                <p class="m-b-0 opacity-07">{{ Auth::user()->email }}</p>
-                            </div>
-                        </div>
-                    </div> --}}
                     <a href="{{ route('user_profile') . '#user_profile' }}" class="dropdown-item d-block p-h-15 p-v-10">
                         <div class="d-flex align-items-center justify-content-between">
                             <div>

@@ -60,6 +60,8 @@
         <div class="container">
             <div class="content">
                 <div class="text-center">
+                    <img class="img-fluid mb-2" width="100px"
+                        src="{{ asset($template->assets_path . '/images/favicon.png') }}" alt="image" />
                     <div class="title">
                         <h2 class="elementor-heading-title elementor-size-default">
                             সুপার &ldquo;সিড&ldquo; শরীরের শক্তি ও কর্মক্ষমতা বাড়ানোর জন্য খুবই উপকারী

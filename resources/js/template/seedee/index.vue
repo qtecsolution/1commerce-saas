@@ -17,12 +17,26 @@
         <div class="container">
             <SetupModal
                 :colorData="siteColor"
-                :logoData="siteLogo"
+                :logoData="favIcon"
+                :companyName="userTemplate.company_name"
                 @save="savePageSetup"
             />
 
             <div class="content">
                 <div class="text-center">
+                    <img
+                        class="img-fluid mb-2"
+                        width="100px"
+                        :src="siteLogo"
+                        alt="image"
+                    />
+                    <ImageModal
+                        :modalId="'siteLogoUpdate'"
+                        :modalTitle="'Edit Logo'"
+                        :imgData="siteLogo"
+                        @save="updateSiteLogo"
+                    />
+
                     <div class="title primary_text_color">
                         <h2
                             class="elementor-heading-title elementor-size-default"
@@ -150,16 +164,11 @@
                                                         'feature'
                                                     )
                                                 "
-                                                class="btn btn-sm btn-info rounded-circle"
-                                                style="
-                                                    position: absolute;
-                                                    right: 0;
-                                                    margin-right: 10px;
-                                                    margin-top: -30px;
-                                                "
+                                                class="btn btn-sm btn-info rounded"
                                                 title="Add New Item"
                                             >
                                                 <i class="fas fa-plus"></i>
+                                                Add More
                                             </button>
                                         </div>
                                     </div>
@@ -233,16 +242,11 @@
                             </ul>
                             <button
                                 @click="addFeatureAndStepItem('step')"
-                                class="btn btn-sm btn-info rounded-circle"
-                                style="
-                                    position: absolute;
-                                    right: 0;
-                                    margin-right: 10px;
-                                    margin-top: -30px;
-                                "
+                                class="btn btn-sm btn-info rounded mb-2"
                                 title="Add New Item"
                             >
                                 <i class="fas fa-plus"></i>
+                                Add More
                             </button>
                         </div>
                     </div>
@@ -588,6 +592,30 @@
                                                 class="form-control"
                                             ></textarea>
                                         </div>
+
+                                        <!-- <div
+                                            v-for="(field, index) in fields"
+                                            :key="index"
+                                        >
+                                            <p>Field Name: {{ field.name }}</p>
+                                            <p>Field Type: {{ field.type }}</p>
+                                            <p v-if="field.options.length">
+                                                Options:
+                                                {{ field.options.join(", ") }}
+                                            </p>
+                                        </div> -->
+                                        <FormField
+                                            v-for="(field, index) in fields"
+                                            :key="index"
+                                            :field="field"
+                                        />
+
+                                        <AddInputModal
+                                            :modalId="'addInputModal'"
+                                            :modalTitle="'Edit Dynamic Form'"
+                                            @save="addField"
+                                        />
+
                                         <div class="right">
                                             <button
                                                 class="btn submit-btn bg-danger"
@@ -622,6 +650,8 @@ import ImageModal from "../components/image-modal.vue";
 import ColorPicker from "../components/color-picker.vue";
 import SetupModal from "./components/setup-modal.vue";
 import FooterModal from "./components/footer-modal.vue";
+import AddInputModal from "../components/add-input-modal.vue";
+import FormField from "../components/form-field.vue";
 
 export default {
     name: "Seedee",
@@ -632,6 +662,8 @@ export default {
         ColorPicker,
         SetupModal,
         FooterModal,
+        AddInputModal,
+        FormField
     },
     data() {
         return {
@@ -669,6 +701,8 @@ export default {
                     ? JSON.parse(this.template.color)
                     : null,
             siteLogo: "",
+            favIcon: "",
+            fields: [],
         };
     },
     computed: {
@@ -696,6 +730,10 @@ export default {
         this.siteLogo =
             this.user_template != null && this.user_template.company_logo
                 ? this.imageSource(this.user_template.company_logo, "storage")
+                : this.imageSource("images/favicon.png");
+        this.favIcon =
+            this.user_template != null && this.user_template.fav_icon
+                ? this.imageSource(this.user_template.fav_icon, "storage")
                 : this.imageSource("images/favicon.png");
     },
     beforeDestroy() {},
@@ -831,6 +869,24 @@ export default {
                 });
         },
 
+        updateSiteLogo(imageFile) {
+            const formData = new FormData();
+            formData.append("image", imageFile);
+
+            axios
+                .post(`${this.apiUrl}/update-site-logo`, formData)
+                .then((response) => {
+                    this.siteLogo = this.imageSource(
+                        response.data.imagePath,
+                        "storage"
+                    );
+                    this.toast("success", "Updated successfully");
+                })
+                .catch((error) => {
+                    this.toast("error", "Error updating the image:", error);
+                });
+        },
+
         updateHeroImage(imageFile) {
             const formData = new FormData();
             formData.append("image", imageFile);
@@ -838,7 +894,7 @@ export default {
             axios
                 .post(`${this.apiUrl}/update-hero-image`, formData)
                 .then((response) => {
-                    this.heroArea.image = response.data.imagePath; // Update the image path in heroArea
+                    this.heroArea.image = response.data.imagePath;
                     this.saveHeroArea();
                     this.heroImage = this.imageSource(
                         this.heroArea.image,
@@ -995,10 +1051,11 @@ export default {
         },
 
         savePageSetup(data) {
-            const { selectedImage } = data;
+            const { siteTitle, selectedImage } = data;
 
             const formData = new FormData();
             formData.append("image", selectedImage);
+            formData.append("company_name", siteTitle);
             formData.append("color", JSON.stringify(this.siteColor));
 
             axios
@@ -1006,14 +1063,17 @@ export default {
                 .then((response) => {
                     if (response.data.success) {
                         if (response.data.imagePath) {
-                            this.siteLogo = this.imageSource(
+                            this.favicon = this.imageSource(
                                 response.data.imagePath,
                                 "storage"
                             );
                         }
                         this.toast("success", "Updated successfully");
                     } else {
-                        this.toast("error", "Failed to update");
+                        this.toast(
+                            "error",
+                            "Failed to update: " + response.data.message
+                        );
                     }
                 })
                 .catch((error) => {
@@ -1036,6 +1096,11 @@ export default {
                 .catch((error) => {
                     this.toast("error", "Error updating:", error);
                 });
+        },
+
+        addField(field) {
+            console.log(field);
+            this.fields.push(field);
         },
     },
 };

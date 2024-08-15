@@ -8,9 +8,9 @@
 
     {{-- Title --}}
     <title>{{ config('app.name') }} | {{ $title }}</title>
-
+    
     <!-- Favicon -->
-    <link rel="shortcut icon" href="assets/images/logo/favicon.png">
+    <link rel="shortcut icon" href="{{ asset('assets/images/logo/icon.png') }}">
 
     <!-- Core css -->
     <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet">

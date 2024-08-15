@@ -33,15 +33,29 @@
                                 :src="previewUrl"
                                 alt="Preview Image"
                                 class="img-fluid mb-3"
+                                width="50px"
                             />
                         </div>
                         <label for="logoImageInput" class="form-label">
-                            Site Logo:
+                            Favicon:
+                            <small class="text-muted">
+                                (Max size: 100 KB. 1:1 aspect ratio.)
+                            </small>
                         </label>
                         <input
                             type="file"
                             id="logoImageInput"
                             @change="previewImage"
+                            class="form-control"
+                        />
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="logoImageInput" class="form-label">
+                            Site Title:
+                        </label>
+                        <input
+                            type="text"
+                            v-model="siteTitle"
                             class="form-control"
                         />
                     </div>
@@ -162,12 +176,13 @@
 
 <script>
 export default {
-    props: ["colorData", "logoData"],
+    props: ["colorData", "logoData", "companyName"],
     emits: ["save"],
     data() {
         return {
             selectedImage: null,
             previewUrl: null,
+            siteTitle: this.companyName,
         };
     },
     watch: {
@@ -186,7 +201,7 @@ export default {
         },
         saveChanges() {
             const dataToSave = {
-                buttonData: this.buttonData,
+                siteTitle: this.siteTitle,
             };
 
             if (this.selectedImage) {

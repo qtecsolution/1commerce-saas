@@ -10,7 +10,7 @@
     <title>{{ $userTemplate->company_name }} :: Live Edit</title>
     {{-- fav icon --}}
     <link rel="shortcut icon"
-        href="{{ $userTemplate->company_logo ? asset('storage/' . $userTemplate->company_logo) : asset($userTemplate->template->assets_path . '/images/favicon.png') }}"
+        href="{{ $userTemplate->fav_icon ? asset('storage/' . $userTemplate->fav_icon) : asset($userTemplate->template->assets_path . '/images/favicon.png') }}"
         type="image/x-icon">
 
     <link href="{{ asset($userTemplate->template->assets_path . '/css/icon.css') }}" rel="stylesheet">
@@ -62,7 +62,20 @@
 </head>
 
 <body>
-    <main id="app">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #3e3e3e">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ route('templates.mine') }}" title="Back to Admin Panel">
+                <i class="fas fa-arrow-left me-2"></i>
+                ADMIN
+            </a>
+            <a href="{{ route('user_shop', $userTemplate->company_slug) }}" class="btn btn-light px-4" target="_blank"
+                title="Live Preview">
+                VIEW
+            </a>
+        </div>
+    </nav>
+
+    <main id="app" class="mt-5">
         <seedee :user_template="{{ json_encode($userTemplate) }}" :template="{{ json_encode($template) }}" />
     </main>
 </body>
