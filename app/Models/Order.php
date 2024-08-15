@@ -22,4 +22,9 @@ class Order extends Model
     {
         return $this->belongsTo(UserTemplate::class);
     }
+
+    public function dynamicFields()
+    {
+        return $this->hasMany(OrderDynamicField::class);
+    }
 }

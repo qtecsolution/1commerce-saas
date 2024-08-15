@@ -247,6 +247,14 @@
                                                 <small class="text-danger">{{ $message }}</small>
                                             @enderror
                                         </div>
+
+                                        @foreach ($userTemplate->fields as $field)
+                                            <x-form-field :field="$field" :styles="[
+                                                'color' => $site_color['primary_text_color'],
+                                                'background_color' => $site_color['background_color'],
+                                            ]" />
+                                        @endforeach
+
                                         <div class="right">
                                             <button type="submit" class="btn submit-btn bg-danger">
                                                 {{ $order_area['button']['title'] }}

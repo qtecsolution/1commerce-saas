@@ -5,6 +5,8 @@ namespace App\Http\Controllers\User;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\OrderDynamicField;
+use App\Models\OrderFormAdditionalField;
 use App\Models\Template\UserTemplate;
 use App\Models\Template\SeedeeTemplate;
 use App\Models\Template\UlaunchTemplate;
@@ -20,7 +22,7 @@ class ShopController extends Controller
 
     public function livePreview($slug)
     {
-        $userTemplate = UserTemplate::with('template')->where('company_slug', $slug)->firstOrFail();
+        $userTemplate = UserTemplate::with(['template', 'fields'])->where('company_slug', $slug)->firstOrFail();
         if ($userTemplate->template_id == 1) {
             $ulaunch = UlaunchTemplate::with(['steps', 'features', 'testimonials'])
                 ->where('user_id', $userTemplate->user_id)
@@ -54,7 +56,7 @@ class ShopController extends Controller
 
             $shipping = $template->shipping_cost ?? 0;
 
-            Order::create([
+            $order = Order::create([
                 'user_template_id' => $request->user_template_id,
                 'customer_name' => $request->customer_name,
                 'customer_phone' => $request->customer_phone,
@@ -66,6 +68,41 @@ class ShopController extends Controller
                 'total_amount' => round(($template->product_price * $request->quantity) + $shipping, 2),
                 'currency' => $template->product_currency,
             ]);
+
+            // Process dynamic fields
+            $dynamicFields = $request->except([
+                '_token',
+                'delivery-area',
+                'user_template_id',
+                'customer_name',
+                'customer_phone',
+                'customer_address',
+                'quantity',
+                'product_name',
+                'product_price',
+                'shipping_cost',
+                'total_amount',
+                'currency'
+            ]);
+
+            foreach ($dynamicFields as $key => $value) {
+                $record = OrderFormAdditionalField::where('user_template_id', $order->user_template_id)
+                    ->where('name', $key)
+                    ->first();
+
+                if (is_array($value)) {
+                    $value = json_encode($value);
+                }
+
+                OrderDynamicField::create([
+                    'order_id' => $order->id,
+                    'value' => $value,
+                    'title' => $record->title,
+                    'name' => $record->name,
+                    'type' => $record->type,
+                    'options' => $record->options
+                ]);
+            }
 
             Alert::success("Yahoo!", "You order is submitted successfully. Our agent will contact you soon.");
             return back();

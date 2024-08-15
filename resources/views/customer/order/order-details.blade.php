@@ -129,6 +129,20 @@
                                             {{ $order->currency }}
                                             {{ number_format($order->total_amount, 2) }}
                                         </p>
+                                        @if ($order->dynamicFields->count() > 0)
+                                            <strong class="text-primary">Additional Details:</strong>
+                                            <br>
+                                            <p>
+                                                @foreach ($order->dynamicFields as $dynamicField)
+                                                    <strong>{{ $dynamicField->title }}:</strong>
+                                                    @if (is_array(json_decode($dynamicField->value, true)))
+                                                        {{ implode(', ', json_decode($dynamicField->value, true)) }}<br>
+                                                    @else
+                                                        {{ $dynamicField->value }}<br>
+                                                    @endif
+                                                @endforeach
+                                            </p>
+                                        @endif
                                     </td>
                                 </tr>
                             </tbody>
