@@ -8,7 +8,10 @@
             @click="showPicker = !showPicker"
             v-if="!showPicker"
         >
-            <div class="color-preview" :style="{ backgroundColor: updatedColor }"></div>
+            <div
+                class="color-preview"
+                :style="{ backgroundColor: updatedColor }"
+            ></div>
             <label style="margin: 0">{{ updatedColor }}</label>
         </button>
         <button
@@ -20,11 +23,15 @@
         >
             <input type="color" v-model="updatedColor" />
             <input type="text" v-model="updatedColor" />
-            <button @click="updateColor" class="btn btn-light btn-sm">Save</button>
+            <button @click="updateColor" class="btn btn-light btn-sm">
+                Save
+            </button>
             <button
                 class="btn btn-danger btn-sm"
                 @click="showPicker = !showPicker"
-            >Cancel</button>
+            >
+                Cancel
+            </button>
         </button>
     </div>
 </template>
@@ -43,10 +50,13 @@ export default {
         color(newValue) {
             this.updatedColor = newValue;
         },
+
         updatedColor(newValue, oldValue) {
-            if (oldValue !== "") {
-                this.updateColor();
-            }
+            this.$emit("instantUpdate", {
+                color: this.updatedColor,
+                section: this.section,
+            });
+            
         },
     },
     methods: {
@@ -55,6 +65,8 @@ export default {
                 color: this.updatedColor,
                 section: this.section,
             });
+
+            this.showPicker = !this.showPicker;
         },
     },
 };

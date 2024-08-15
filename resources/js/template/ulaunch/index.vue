@@ -52,6 +52,7 @@
                         @update="updateColor"
                         v-if="stickyHeader"
                         :style="{ margin: '15px 0 0 25%' }"
+                        @instantUpdate="instantUpdateColor"
                     />
                     <!-- End Header Navigation -->
 
@@ -91,6 +92,7 @@
                 :color="heroBg"
                 @update="updateColor"
                 :style="{ margin: '100px 0 0 10px' }"
+                @instantUpdate="instantUpdateColor"
             />
             <div class="container">
                 <div class="row">
@@ -248,6 +250,7 @@
                 :color="featureBg"
                 @update="updateColor"
                 :style="{ margin: '50px 0 0 10px' }"
+                @instantUpdate="instantUpdateColor"
             />
             <div class="container">
                 <!-- Section Title start -->
@@ -416,6 +419,7 @@
                 :color="aboutBg"
                 @update="updateColor"
                 :style="{ margin: '50px 0 0 10px' }"
+                @instantUpdate="instantUpdateColor"
             />
             <div class="container">
                 <!-- Section Title start -->
@@ -691,7 +695,8 @@
                 section="testimonials"
                 :color="testimonialBg"
                 @update="updateColor"
-                :style="{ margin: '100px 0 0 10px' }"
+                :style="{ margin: '50px 0 0 10px' }"
+                @instantUpdate="instantUpdateColor"
             />
             <div class="container">
                 <!-- Section Title start -->
@@ -821,6 +826,7 @@
                 :color="infoBg"
                 @update="updateColor"
                 :style="{ margin: '20px 0 0 10px' }"
+                @instantUpdate="instantUpdateColor"
             />
             <div class="container">
                 <div class="row">
@@ -894,6 +900,7 @@
                 :color="orderBg"
                 @update="updateColor"
                 :style="{ margin: '100px 0 0 10px' }"
+                @instantUpdate="instantUpdateColor"
             />
             <div class="container">
                 <div class="row">
@@ -1080,6 +1087,7 @@
                 :color="footerBg"
                 @update="updateColor"
                 :style="{ margin: '10px 0 0 10px' }"
+                @instantUpdate="instantUpdateColor"
             />
             <div class="container">
                 <div class="row">
@@ -1615,7 +1623,7 @@ export default {
         this.productPrice = this.user_template.product_price;
         this.productCurrency = this.user_template.product_currency;
         this.companyLogo = this.user_template.company_logo;
-        // console.log(this.user_template);
+
         this.companyLogo =
             this.user_template.company_logo != null &&
             this.user_template.company_logo
@@ -1823,6 +1831,40 @@ export default {
                 case "footer":
                     this.footerBg = data.color;
                     this.updateFooterArea();
+                    break;
+                default:
+                    console.warn("Something is wrong on update color.");
+                    break;
+            }
+        },
+
+        instantUpdateColor(data) {
+            console.log(data);
+            
+            switch (data.section) {
+                case "nav":
+                    this.navBg = data.color;
+                    break;
+                case "hero":
+                    this.heroBg = data.color;
+                    break;
+                case "feature":
+                    this.featureBg = data.color;
+                    break;
+                case "about":
+                    this.aboutBg = data.color;
+                    break;
+                case "testimonials":
+                    this.testimonialBg = data.color;
+                    break;
+                case "info":
+                    this.infoBg = data.color;
+                    break;
+                case "order":
+                    this.orderBg = data.color;
+                    break;
+                case "footer":
+                    this.footerBg = data.color;
                     break;
                 default:
                     console.warn("Something is wrong on update color.");
