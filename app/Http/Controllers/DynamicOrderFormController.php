@@ -27,4 +27,19 @@ class DynamicOrderFormController extends Controller
         $field->delete();
         return response()->json(['success' => true]);
     }
+
+    public function updateInputField(Request $request)
+    {
+        $field = OrderFormAdditionalField::find($request->id);
+        $field->title = $request->title;
+        $field->name = $request->name;
+        $field->type = $request->type;
+        $field->is_required = $request->is_required;
+        $field->options = $request->options;
+        if ($field->type != 'select' && $field->type != 'radio' && $field->type != 'checkbox') {
+            $field->options = null;
+        }
+        $field->save();
+        return response()->json(['success' => true, 'field' => $field]);
+    }
 }

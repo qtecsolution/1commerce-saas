@@ -614,6 +614,7 @@
                                             :key="index"
                                             :field="field"
                                             @delete="deleteField(index, $event)"
+                                            @update="updateField(index, $event)"
                                         />
 
                                         <AddInputModal
@@ -1108,14 +1109,13 @@ export default {
 
         addField(field) {
             // console.log(field, field.name, field.title);
-
             axios
                 .post(`${this.appUrl}/app/dynamic-form/add-input-field`, {
                     user_template_id: this.userTemplate.id,
                     title: field.title,
                     name: field.name,
                     type: field.type,
-                    is_required: field.required,
+                    is_required: field.is_required,
                     options:
                         field.options.length > 0
                             ? JSON.stringify(field.options)
@@ -1142,6 +1142,34 @@ export default {
                 .then((response) => {
                     if (response.data.success) {
                         this.fields.splice(index, 1);
+                        this.toast("success", "Updated successfully");
+                    } else {
+                        this.toast("error", "Failed to update");
+                    }
+                });
+        },
+
+        updateField(index, field) {
+            axios
+                .post(`${this.appUrl}/app/dynamic-form/update-input-field`, {
+                    id: field.id,
+                    title: field.title,
+                    name: field.name,
+                    type: field.type,
+                    is_required: field.is_required,
+                    options:
+                        field.options.length > 0
+                            ? JSON.stringify(field.options)
+                            : null,
+                })
+                .then((response) => {
+                    if (response.data.success) {
+                        this.fields = [
+                            ...this.fields.slice(0, index),
+                            response.data.field,
+                            ...this.fields.slice(index + 1),
+                        ];
+
                         this.toast("success", "Updated successfully");
                     } else {
                         this.toast("error", "Failed to update");

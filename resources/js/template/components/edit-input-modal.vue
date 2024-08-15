@@ -1,12 +1,12 @@
 <template>
     <button
         type="button"
-        class="btn btn-info btn-sm my-2"
+        class="button1"
         data-bs-toggle="modal"
         :data-bs-target="'#' + modalId"
         :title="modalTitle"
     >
-        Add New Input
+        Edit
     </button>
 
     <div
@@ -38,7 +38,7 @@
                                     Field Name:
                                 </label>
                                 <input
-                                    v-model="field.title"
+                                    v-model="editableField.title"
                                     type="text"
                                     placeholder="Enter field name"
                                     class="form-control"
@@ -51,7 +51,7 @@
                                     Field Type:
                                 </label>
                                 <select
-                                    v-model="field.type"
+                                    v-model="editableField.type"
                                     class="form-control"
                                 >
                                     <option value="text">Text</option>
@@ -73,7 +73,7 @@
                     <!-- Required Checkbox -->
                     <div class="form-check mb-2">
                         <input
-                            v-model="field.is_required"
+                            v-model="editableField.is_required"
                             class="form-check-input"
                             type="checkbox"
                             id="isRequired"
@@ -86,17 +86,19 @@
                     <!-- Options Section for Select, Radio, Checkbox -->
                     <div
                         v-if="
-                            ['select', 'radio', 'checkbox'].includes(field.type)
+                            ['select', 'radio', 'checkbox'].includes(
+                                editableField.type
+                            )
                         "
                     >
                         <div
                             class="form-group mb-2 row"
-                            v-for="(option, index) in field.options"
+                            v-for="(option, index) in editableField.options"
                             :key="index"
                         >
                             <div class="col-10">
                                 <input
-                                    v-model="field.options[index]"
+                                    v-model="editableField.options[index]"
                                     type="text"
                                     class="form-control"
                                     :placeholder="'Enter option ' + (index + 1)"
@@ -145,60 +147,65 @@
 
 <script>
 export default {
-    props: ["modalId", "modalTitle"],
+    props: ["modalId", "modalTitle", "field"],
     emits: ["save"],
     data() {
         return {
-            field: {
-                title: "",
-                name: "",
-                type: "text",
-                required: false,
-                options: [],
+            editableField: {
+                ...this.field,
+                options: this.field.options
+                    ? JSON.parse(this.field.options)
+                    : [],
+                is_required: this.field.is_required == 1 ? true : false,
             },
         };
     },
     watch: {
-        "field.title": {
+        "editableField.title": {
             handler(newValue) {
-                this.field.name = newValue
+                this.editableField.name = newValue
                     .toLowerCase()
-                    .replace(/([a-z])([A-Z])/g, "$1_$2") // Separate camelCase with an underscore
-                    .replace(/\s+/g, "_") // Replace spaces with underscores
-                    .replace(/[\/\(\)\[\]\.]/g, "_") // Replace special characters with underscores
-                    .replace(/_+/g, "_"); // Replace multiple underscores with a single underscore
+                    .replace(/([a-z])([A-Z])/g, "$1_$2")
+                    .replace(/\s+/g, "_")
+                    .replace(/[\/\(\)\[\]\.]/g, "_")
+                    .replace(/_+/g, "_");
             },
             deep: true,
         },
     },
     methods: {
         addOption() {
-            this.field.options.push("");
+            this.editableField.options.push("");
         },
         removeOption(index) {
-            this.field.options.splice(index, 1);
+            this.editableField.options.splice(index, 1);
         },
         saveChanges() {
-            this.$emit("save", this.field);
-            this.resetForm(); // Reset the form after saving
+            // Convert options array back to string if needed
+            this.$emit("save", this.editableField);
 
-            // Hide the modal
             const modalElement = document.getElementById(this.modalId);
             const modal = bootstrap.Modal.getInstance(modalElement);
             if (modal) {
                 modal.hide();
             }
         },
-        resetForm() {
-            // Reset the form fields to their initial state
-            this.field.title = "";
-            this.field.name = "";
-            this.field.type = "text";
-            this.field.is_required = false;
-            this.field.options = [];
-        },
     },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.button1 {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 2px;
+    font-size: 12px;
+}
+
+.button1:hover {
+    background-color: #45a049;
+}
+</style>

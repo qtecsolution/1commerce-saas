@@ -12,7 +12,7 @@
             :type="field.type"
             :name="field.title"
             class="form-control"
-            :required="field.required"
+            :required="field.is_required == 1 ? true : false"
             :style="{
                 background_color: styles.background_color + ' !important',
             }"
@@ -24,7 +24,7 @@
             :name="field.name"
             rows="2"
             class="form-control"
-            :required="field.required"
+            :required="field.is_required == 1 ? true : false"
         ></textarea>
 
         <!-- Select Input -->
@@ -32,7 +32,7 @@
             v-if="field.type === 'select'"
             :name="field.name"
             class="form-control"
-            :required="field.required"
+            :required="field.is_required == 1 ? true : false"
         >
             <option v-for="(option, index) in parsedOptions" :key="index">
                 {{ option }}
@@ -52,7 +52,7 @@
                     :id="field.name + index"
                     :value="option"
                     class="form-check-input"
-                    :required="field.required"
+                    :required="field.is_required == 1 ? true : false"
                 />
                 <label :for="field.name + index" class="form-check-label">
                     {{ option }}
@@ -73,7 +73,7 @@
                     :id="field.name + index"
                     :value="option"
                     class="form-check-input"
-                    :required="field.required"
+                    :required="field.is_required == 1 ? true : false"
                 />
                 <label :for="field.name + index" class="form-check-label">
                     {{ option }}
@@ -82,14 +82,12 @@
         </div>
 
         <div class="mt-1 d-flex justify-content-end">
-            <button
-                type="button"
-                class="button1"
-                @click="deleteField"
-                title="Edit this field"
-            >
-                Edit
-            </button>
+            <EditInputModal
+                :modalId="'editModal' + field.id"
+                modalTitle="Edit Input Field"
+                :field="field"
+                @save="updateField($event)"
+            />
             <button
                 type="button"
                 class="button2"
@@ -103,7 +101,11 @@
 </template>
 
 <script>
+import EditInputModal from "./edit-input-modal.vue";
 export default {
+    components: {
+        EditInputModal,
+    },
     props: {
         field: {
             title: String,
@@ -117,7 +119,10 @@ export default {
         },
         styles: Object,
     },
-    emits: ["edit", "delete"],
+    emits: ["update", "delete"],
+    data() {
+        return {};
+    },
     computed: {
         parsedOptions() {
             if (typeof this.field.options === "string") {
@@ -138,25 +143,14 @@ export default {
         deleteField() {
             this.$emit("delete", this.field);
         },
+        updateField(updatedField) {
+            this.$emit("update", updatedField);
+        },
     },
 };
 </script>
 
 <style scoped>
-.button1 {
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    margin: 2px;
-    font-size: 12px;
-}
-
-.button1:hover {
-    background-color: #45a049;
-}
-
 .button2 {
     background-color: #f44336;
     color: white;

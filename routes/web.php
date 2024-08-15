@@ -154,6 +154,7 @@ Route::prefix('app')->middleware('user')->group(function () {
         Route::prefix('dynamic-form')->group(function () {
             Route::post('add-input-field', [DynamicOrderFormController::class, 'addInputField']);
             Route::post('delete-input-field', [DynamicOrderFormController::class, 'deleteInputField']);
+            Route::post('update-input-field', [DynamicOrderFormController::class, 'updateInputField']);
         });
     });
 
