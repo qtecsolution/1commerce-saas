@@ -114,7 +114,7 @@ class TemplateController extends Controller
 
     public function edit($id)
     {
-        $userTemplate = UserTemplate::with('template')->findOrFail($id);
+        $userTemplate = UserTemplate::with(['template', 'fields'])->findOrFail($id);
         if ($userTemplate->template_id == 1) {
             $template = UlaunchTemplate::with([
                 'steps',

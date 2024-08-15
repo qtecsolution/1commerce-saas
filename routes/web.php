@@ -12,6 +12,7 @@ use App\Http\Controllers\Dashboard\AdminDashboard;
 use App\Http\Controllers\Package\PackageController;
 use App\Http\Controllers\Setting\SettingController;
 use App\Http\Controllers\Dashboard\CustomerDashboard;
+use App\Http\Controllers\DynamicOrderFormController;
 use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\Template\TemplateController;
 use App\Http\Controllers\User\SubscriptionController;
@@ -147,6 +148,11 @@ Route::prefix('app')->middleware('user')->group(function () {
                 Route::post('update-page-setup', [SeedeeTemplateController::class, 'updatePageSetup']);
                 Route::post('update-site-logo', [SeedeeTemplateController::class, 'updateSiteLogo']);
             });
+        });
+
+        // dynamic form routes
+        Route::prefix('dynamic-form')->group(function () {
+            Route::post('add-input-field', [DynamicOrderFormController::class, 'addInputField']);
         });
     });
 

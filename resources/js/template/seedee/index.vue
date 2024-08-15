@@ -605,6 +605,11 @@
                                             </p>
                                         </div> -->
                                         <FormField
+                                            :styles="{
+                                                color: siteColor?.primary_text_color,
+                                                background_color:
+                                                    siteColor?.background_color,
+                                            }"
                                             v-for="(field, index) in fields"
                                             :key="index"
                                             :field="field"
@@ -663,7 +668,7 @@ export default {
         SetupModal,
         FooterModal,
         AddInputModal,
-        FormField
+        FormField,
     },
     data() {
         return {
@@ -735,6 +740,8 @@ export default {
             this.user_template != null && this.user_template.fav_icon
                 ? this.imageSource(this.user_template.fav_icon, "storage")
                 : this.imageSource("images/favicon.png");
+
+        this.fields = this.userTemplate?.fields;
     },
     beforeDestroy() {},
     methods: {
@@ -1099,8 +1106,32 @@ export default {
         },
 
         addField(field) {
-            console.log(field);
-            this.fields.push(field);
+            // console.log(field, field.name, field.title);
+
+            axios
+                .post(`${this.appUrl}/app/dynamic-form/add-input-field`, {
+                    user_template_id: this.userTemplate.id,
+                    title: field.title,
+                    name: field.name,
+                    type: field.type,
+                    is_required: field.required,
+                    options:
+                        field.options.length > 0
+                            ? JSON.stringify(field.options)
+                            : null,
+                })
+                .then((response) => {
+                    // console.log(response);
+                    if (response.data.success) {
+                        this.fields.push(response.data.field);
+                        this.toast("success", "Updated successfully");
+                    } else {
+                        this.toast("error", "Failed to update");
+                    }
+                })
+                .catch((error) => {
+                    this.toast("error", "Error updating:", error);
+                });
         },
     },
 };

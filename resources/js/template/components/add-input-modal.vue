@@ -38,7 +38,7 @@
                                     Field Name:
                                 </label>
                                 <input
-                                    v-model="field.name"
+                                    v-model="field.title"
                                     type="text"
                                     placeholder="Enter field name"
                                     class="form-control"
@@ -59,7 +59,9 @@
                                     <option value="number">Number</option>
                                     <option value="date">Date</option>
                                     <option value="time">Time</option>
-                                    <option value="datetime-local">DateTime</option>
+                                    <option value="datetime-local">
+                                        DateTime
+                                    </option>
                                     <option value="select">Select</option>
                                     <option value="radio">Radio</option>
                                     <option value="checkbox">Checkbox</option>
@@ -148,12 +150,26 @@ export default {
     data() {
         return {
             field: {
+                title: "",
                 name: "",
                 type: "text",
                 required: false, // New property to track whether the field is required
                 options: [], // Array for storing options for select, radio, checkbox
             },
         };
+    },
+    watch: {
+        "field.title": {
+            handler(newValue) {
+                this.field.name = newValue
+                    .toLowerCase()
+                    .replace(/([a-z])([A-Z])/g, "$1_$2") // Separate camelCase with an underscore
+                    .replace(/\s+/g, "_") // Replace spaces with underscores
+                    .replace(/[\/\(\)\[\]\.]/g, "_") // Replace special characters with underscores
+                    .replace(/_+/g, "_"); // Replace multiple underscores with a single underscore
+            },
+            deep: true,
+        },
     },
     methods: {
         addOption() {
@@ -175,6 +191,7 @@ export default {
         },
         resetForm() {
             // Reset the form fields to their initial state
+            this.field.title = "";
             this.field.name = "";
             this.field.type = "text";
             this.field.required = false;

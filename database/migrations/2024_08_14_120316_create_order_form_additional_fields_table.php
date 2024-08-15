@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('order_form_additional_fields', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(UserTemplate::class)->constrained()->onDelete('cascade');
+            $table->string('title');
             $table->string('name');
             $table->string('type');
             $table->string('placeholder')->nullable();
