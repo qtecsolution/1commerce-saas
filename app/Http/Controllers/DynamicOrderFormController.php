@@ -20,4 +20,11 @@ class DynamicOrderFormController extends Controller
 
         return response()->json(['success' => true, 'field' => $field]);
     }
+
+    public function deleteInputField(Request $request)
+    {
+        $field = OrderFormAdditionalField::find($request->id);
+        $field->delete();
+        return response()->json(['success' => true]);
+    }
 }

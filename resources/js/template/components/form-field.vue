@@ -4,7 +4,11 @@
             field.title
         }}</label>
         <input
-            v-if="['text', 'number', 'date', 'time', 'datetime-local'].includes(field.type)"
+            v-if="
+                ['text', 'number', 'date', 'time', 'datetime-local'].includes(
+                    field.type
+                )
+            "
             :type="field.type"
             :name="field.title"
             class="form-control"
@@ -76,6 +80,25 @@
                 </label>
             </div>
         </div>
+
+        <div class="mt-1 d-flex justify-content-end">
+            <button
+                type="button"
+                class="button1"
+                @click="deleteField"
+                title="Edit this field"
+            >
+                Edit
+            </button>
+            <button
+                type="button"
+                class="button2"
+                @click="deleteField"
+                title="Delete this field"
+            >
+                Delete
+            </button>
+        </div>
     </div>
 </template>
 
@@ -94,6 +117,7 @@ export default {
         },
         styles: Object,
     },
+    emits: ["edit", "delete"],
     computed: {
         parsedOptions() {
             if (typeof this.field.options === "string") {
@@ -107,7 +131,43 @@ export default {
             return this.field.options;
         },
     },
+    methods: {
+        deleteField() {
+            this.$emit("edit");
+        },
+        deleteField() {
+            this.$emit("delete", this.field);
+        },
+    },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.button1 {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 2px;
+    font-size: 12px;
+}
+
+.button1:hover {
+    background-color: #45a049;
+}
+
+.button2 {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 2px;
+    font-size: 12px;
+}
+
+.button2 {
+    background-color: #d32f2f;
+}
+</style>

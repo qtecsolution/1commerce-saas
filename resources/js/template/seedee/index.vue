@@ -613,6 +613,7 @@
                                             v-for="(field, index) in fields"
                                             :key="index"
                                             :field="field"
+                                            @delete="deleteField(index, $event)"
                                         />
 
                                         <AddInputModal
@@ -1131,6 +1132,20 @@ export default {
                 })
                 .catch((error) => {
                     this.toast("error", "Error updating:", error);
+                });
+        },
+        deleteField(index, field) {
+            axios
+                .post(`${this.appUrl}/app/dynamic-form/delete-input-field`, {
+                    id: field.id,
+                })
+                .then((response) => {
+                    if (response.data.success) {
+                        this.fields.splice(index, 1);
+                        this.toast("success", "Updated successfully");
+                    } else {
+                        this.toast("error", "Failed to update");
+                    }
                 });
         },
     },
