@@ -52,6 +52,7 @@
                         @update="updateColor"
                         v-if="stickyHeader"
                         :style="{ margin: '15px 0 0 25%' }"
+                        @instantUpdate="instantUpdateColor"
                     />
                     <!-- End Header Navigation -->
 
@@ -91,6 +92,7 @@
                 :color="heroBg"
                 @update="updateColor"
                 :style="{ margin: '100px 0 0 10px' }"
+                @instantUpdate="instantUpdateColor"
             />
             <div class="container">
                 <div class="row">
@@ -208,7 +210,7 @@
                                                 updateStepItem(
                                                     $event,
                                                     'title',
-                                                    index + 1
+                                                    index
                                                 )
                                             "
                                         >
@@ -220,7 +222,7 @@
                                                 updateStepItem(
                                                     $event,
                                                     'description',
-                                                    index + 1
+                                                    index
                                                 )
                                             "
                                         >
@@ -248,6 +250,7 @@
                 :color="featureBg"
                 @update="updateColor"
                 :style="{ margin: '50px 0 0 10px' }"
+                @instantUpdate="instantUpdateColor"
             />
             <div class="container">
                 <!-- Section Title start -->
@@ -415,7 +418,8 @@
                 section="about"
                 :color="aboutBg"
                 @update="updateColor"
-                :style="{ margin: '100px 0 0 10px' }"
+                :style="{ margin: '50px 0 0 10px' }"
+                @instantUpdate="instantUpdateColor"
             />
             <div class="container">
                 <!-- Section Title start -->
@@ -453,7 +457,7 @@
                                                 updateAboutItem(
                                                     $event,
                                                     'sub_title',
-                                                    1
+                                                    0
                                                 )
                                             "
                                             contenteditable="true"
@@ -465,7 +469,7 @@
                                                 updateAboutItem(
                                                     $event,
                                                     'title',
-                                                    1
+                                                    0
                                                 )
                                             "
                                             contenteditable="true"
@@ -477,7 +481,7 @@
                                                 updateAboutItem(
                                                     $event,
                                                     'description',
-                                                    1
+                                                    0
                                                 )
                                             "
                                             contenteditable="true"
@@ -569,7 +573,7 @@
                                                 updateAboutItem(
                                                     $event,
                                                     'sub_title',
-                                                    2
+                                                    1
                                                 )
                                             "
                                             contenteditable="true"
@@ -581,7 +585,7 @@
                                                 updateAboutItem(
                                                     $event,
                                                     'title',
-                                                    2
+                                                    1
                                                 )
                                             "
                                             contenteditable="true"
@@ -593,7 +597,7 @@
                                                 updateAboutItem(
                                                     $event,
                                                     'description',
-                                                    2
+                                                    1
                                                 )
                                             "
                                             contenteditable="true"
@@ -691,7 +695,8 @@
                 section="testimonials"
                 :color="testimonialBg"
                 @update="updateColor"
-                :style="{ margin: '100px 0 0 10px' }"
+                :style="{ margin: '50px 0 0 10px' }"
+                @instantUpdate="instantUpdateColor"
             />
             <div class="container">
                 <!-- Section Title start -->
@@ -821,6 +826,7 @@
                 :color="infoBg"
                 @update="updateColor"
                 :style="{ margin: '20px 0 0 10px' }"
+                @instantUpdate="instantUpdateColor"
             />
             <div class="container">
                 <div class="row">
@@ -894,6 +900,7 @@
                 :color="orderBg"
                 @update="updateColor"
                 :style="{ margin: '100px 0 0 10px' }"
+                @instantUpdate="instantUpdateColor"
             />
             <div class="container">
                 <div class="row">
@@ -1080,6 +1087,7 @@
                 :color="footerBg"
                 @update="updateColor"
                 :style="{ margin: '10px 0 0 10px' }"
+                @instantUpdate="instantUpdateColor"
             />
             <div class="container">
                 <div class="row">
@@ -1105,30 +1113,35 @@
             modalId="logoImageModal"
             modalTitle="logo Image"
             section="logo"
+            :previewURL="companyLogo"
             @update="updateImage"
         />
         <ImageModal
             modalId="heroImageModal"
             modalTitle="Hero Image"
             section="hero"
+            :previewURL="heroImage"
             @update="updateImage"
         />
         <ImageModal
             modalId="featureImageModal"
             modalTitle="Feature Image"
             section="feature"
+            :previewURL="featureImage"
             @update="updateImage"
         />
         <ImageModal
             modalId="about1ImageModal"
             modalTitle="About Image"
             section="about-1"
+            :previewURL="abouts[0].image"
             @update="updateImage"
         />
         <ImageModal
             modalId="about2ImageModal"
             modalTitle="About Image"
             section="about-2"
+            :previewURL="abouts[1].image"
             @update="updateImage"
         />
         <ImageModal
@@ -1137,6 +1150,7 @@
             :modalId="'testimonial' + (index + 1) + 'ImageModal'"
             :modalTitle="'Testimonial Image ' + (index + 1)"
             :section="'testimonial-' + (index + 1)"
+            :previewURL="testimonials[index].reviewer_image"
             @update="updateImage"
         />
 
@@ -1145,30 +1159,35 @@
             modalTitle="Hero Button"
             section="hero"
             @update="updateButton"
+            :buttonData="heroButton"
         />
         <ButtonModal
             modalId="about1ButtonModal"
             modalTitle="About Button"
             section="about-1"
             @update="updateButton"
+            :buttonData="abouts[0].button"
         />
         <ButtonModal
             modalId="about2ButtonModal"
             modalTitle="About Button"
             section="about-2"
             @update="updateButton"
+            :buttonData="abouts[1].button"
         />
         <ButtonModal
             modalId="infoButtonModal"
             modalTitle="Info Button"
             section="info"
             @update="updateButton"
+            :buttonData="infoButton"
         />
         <ButtonModal
             modalId="orderButtonModal"
             modalTitle="Order Button"
             section="order"
             @update="updateButton"
+            :buttonData="orderButton"
         />
     </div>
 </template>
@@ -1178,6 +1197,10 @@ import ButtonModal from "./components/button-modal.vue";
 import ImageModal from "./components/image-modal.vue";
 import IconPicker from "../../icon-picker/IconPicker.vue";
 import ColorPicker from "./components/color-picker.vue";
+
+import UpdateButton from "./components/updateButton.js";
+import UpdateImage from "./components/updateImage.js";
+import UpdateColor from "./components/updateColor.js";
 
 export default {
     name: "Ulaunch",
@@ -1340,21 +1363,21 @@ export default {
                     review: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
                     reviewer_name: "Muhaimin Shihab",
                     reviewer_bio: "Customer",
-                    reviewr_image: "",
+                    reviewer_image: "",
                     reviewer_image_raw: [],
                 },
                 {
                     review: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
                     reviewer_name: "Asaduzzaman",
                     reviewer_bio: "Customer",
-                    reviewr_image: "",
+                    reviewer_image: "",
                     reviewer_image_raw: [],
                 },
                 {
                     review: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
                     reviewer_name: "Harshad Patel",
                     reviewer_bio: "NM Babor",
-                    reviewr_image: "",
+                    reviewer_image: "",
                     reviewer_image_raw: [],
                 },
             ],
@@ -1400,7 +1423,6 @@ export default {
     },
     mounted() {
         window.addEventListener("scroll", this.checkStickyHeader);
-        // console.log(this.features);
 
         this.appUrl = `${window.location.origin}`;
         this.apiUrl = `${window.location.origin}/app/templates/ulaunch`;
@@ -1605,7 +1627,7 @@ export default {
         this.productPrice = this.user_template.product_price;
         this.productCurrency = this.user_template.product_currency;
         this.companyLogo = this.user_template.company_logo;
-        // console.log(this.user_template);
+
         this.companyLogo =
             this.user_template.company_logo != null &&
             this.user_template.company_logo
@@ -1632,6 +1654,10 @@ export default {
         window.removeEventListener("scroll", this.checkStickyHeader);
     },
     methods: {
+        ...UpdateColor,
+        ...UpdateButton,
+        ...UpdateImage,
+
         checkStickyHeader() {
             if (this.$refs.navbarMenu) {
                 this.stickyHeader =
@@ -1639,202 +1665,23 @@ export default {
             }
         },
 
+        toast(icon, title) {
+            this.$swal({
+                toast: true,
+                icon: icon,
+                title: title,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+            });
+        },
+
         updateContent(event) {
             const rawContent =
                 event.target.innerHTML ?? event.target.textContent;
             const sanitizedContent = rawContent.replace(/&nbsp;/g, " ");
-            // const updatedContent = sanitizedContent.trim() + " ";
 
             return sanitizedContent;
-        },
-
-        updateImage(data) {
-            switch (data.section) {
-                case "logo":
-                    this.companyLogo =
-                        data.image !== null && data.image !== ""
-                            ? data.image
-                            : this.companyLogo;
-
-                    this.companyLogoRaw =
-                        data.image_raw !== null && data.image_raw !== ""
-                            ? data.image_raw
-                            : this.companyLogoRaw;
-
-                    this.updateLogo();
-
-                    break;
-
-                case "hero":
-                    this.heroImage =
-                        data.image !== null && data.image !== ""
-                            ? data.image
-                            : this.heroImage;
-                    this.heroImageRaw =
-                        data.image_raw !== null && data.image_raw !== ""
-                            ? data.image_raw
-                            : this.heroImageRaw;
-
-                    this.updateHeroArea();
-
-                    break;
-
-                case "feature":
-                    this.featureImage =
-                        data.image !== null && data.image !== ""
-                            ? data.image
-                            : this.featureImage;
-                    this.featureImageRaw =
-                        data.image_raw !== null && data.image_raw !== ""
-                            ? data.image_raw
-                            : this.featureImageRaw;
-
-                    this.updateFeaturesArea();
-
-                    break;
-
-                case "about-1":
-                    this.abouts[0].image =
-                        data.image !== null && data.image !== ""
-                            ? data.image
-                            : this.abouts[0].image;
-                    this.abouts[0].image_raw =
-                        data.image_raw !== null && data.image_raw !== ""
-                            ? data.image_raw
-                            : this.abouts[0].image_raw;
-
-                    this.updateAboutArea();
-
-                    break;
-
-                case "about-2":
-                    this.abouts[1].image =
-                        data.image !== null && data.image !== ""
-                            ? data.image
-                            : this.abouts[1].image;
-                    this.abouts[1].image_raw =
-                        data.image_raw !== null && data.image_raw !== ""
-                            ? data.image_raw
-                            : this.abouts[1].image_raw;
-
-                    this.updateAboutArea();
-
-                    break;
-
-                case "testimonial-1":
-                    this.testimonials[0].reviewer_image =
-                        data.image !== null && data.image !== ""
-                            ? data.image
-                            : this.testimonials[0].reviewer_image;
-                    this.testimonials[0].reviewer_image_raw =
-                        data.image_raw !== null && data.image_raw !== ""
-                            ? data.image_raw
-                            : this.testimonials[0].reviewer_image_raw;
-
-                    this.updateTestimonialsArea();
-
-                    break;
-
-                case "testimonial-2":
-                    this.testimonials[1].reviewer_image =
-                        data.image !== null && data.image !== ""
-                            ? data.image
-                            : this.testimonials[1].reviewer_image;
-                    this.testimonials[1].reviewer_image_raw =
-                        data.image_raw !== null && data.image_raw !== ""
-                            ? data.image_raw
-                            : this.testimonials[1].reviewer_image_raw;
-
-                    this.updateTestimonialsArea();
-
-                    break;
-
-                case "testimonial-3":
-                    this.testimonials[2].reviewer_image =
-                        data.image !== null && data.image !== ""
-                            ? data.image
-                            : this.testimonials[2].reviewer_image;
-                    this.testimonials[2].reviewer_image_raw =
-                        data.image_raw !== null && data.image_raw !== ""
-                            ? data.image_raw
-                            : this.testimonials[2].reviewer_image_raw;
-
-                    this.updateTestimonialsArea();
-
-                    break;
-
-                default:
-                    console.warn("Something is wrong on update image.");
-                    break;
-            }
-        },
-
-        updateColor(data) {
-            switch (data.section) {
-                case "nav":
-                    this.navBg = data.color;
-                    this.updateNavColor();
-                    break;
-                case "hero":
-                    this.heroBg = data.color;
-                    this.updateHeroArea();
-                    break;
-                case "feature":
-                    this.featureBg = data.color;
-                    this.updateFeaturesArea();
-                    break;
-                case "about":
-                    this.aboutBg = data.color;
-                    this.updateAboutArea();
-                    break;
-                case "testimonials":
-                    this.testimonialBg = data.color;
-                    this.updateTestimonialsArea();
-                    break;
-                case "info":
-                    this.infoBg = data.color;
-                    this.updateInfoArea();
-                    break;
-                case "order":
-                    this.orderBg = data.color;
-                    this.updateOrderArea();
-                    break;
-                case "footer":
-                    this.footerBg = data.color;
-                    this.updateFooterArea();
-                    break;
-                default:
-                    console.warn("Something is wrong on update color.");
-                    break;
-            }
-        },
-
-        updateButton(data) {
-            switch (data.section) {
-                case "hero":
-                    this.updateHeroButton(data);
-                    break;
-
-                case "about-1":
-                    this.updateAboutButton(data, 0);
-                    break;
-
-                case "about-2":
-                    this.updateAboutButton(data, 1);
-                    break;
-
-                case "info":
-                    this.updateInfoButton(data);
-                    break;
-
-                case "order":
-                    this.updateOrderButton(data);
-                    break;
-
-                default:
-                    console.warn("Something is wrong on update button.");
-                    break;
-            }
         },
 
         imageSource(path, disk = "public") {
@@ -1846,6 +1693,11 @@ export default {
         },
 
         updateMenuItem(event, index) {
+            const newValue = event.target.textContent.trim();
+            if (this.menus[index].title == newValue) {
+                return;
+            }
+
             this.menus[index].title = this.updateContent(event);
             this.updateMenuArea();
         },
@@ -1865,53 +1717,22 @@ export default {
         },
 
         updateHeroTitle(event) {
+            const newValue = event.target.textContent.trim();
+            if (this.heroTitle == newValue) {
+                return;
+            }
+
             this.heroTitle = this.updateContent(event);
             this.updateHeroArea();
         },
 
         updateHeroDescription(event) {
+            const newValue = event.target.textContent.trim();
+            if (this.heroDescription == newValue) {
+                return;
+            }
+
             this.heroDescription = this.updateContent(event);
-            this.updateHeroArea();
-        },
-
-        updateHeroButton(data) {
-            this.heroButton = {
-                title:
-                    data.title !== null && data.title !== ""
-                        ? data.title
-                        : this.heroButton.title,
-                url:
-                    data.url !== null && data.url !== ""
-                        ? data.url
-                        : this.heroButton.url,
-                color:
-                    data.color !== null && data.color !== ""
-                        ? data.color
-                        : this.heroButton.color,
-                text_color:
-                    data.text_color !== null && data.text_color !== ""
-                        ? data.text_color
-                        : this.heroButton.text_color,
-                border_color:
-                    data.border_color !== null && data.border_color !== ""
-                        ? data.border_color
-                        : this.heroButton.border_color,
-                hover_color:
-                    data.hover_color !== null && data.hover_color !== ""
-                        ? data.hover_color
-                        : this.heroButton.hover_color,
-                hover_text_color:
-                    data.hover_text_color !== null &&
-                    data.hover_text_color !== ""
-                        ? data.hover_text_color
-                        : this.heroButton.hover_text_color,
-                hover_border_color:
-                    data.hover_border_color !== null &&
-                    data.hover_border_color !== ""
-                        ? data.hover_border_color
-                        : this.heroButton.hover_border_color,
-            };
-
             this.updateHeroArea();
         },
 
@@ -1926,6 +1747,7 @@ export default {
                 })
                 .then((response) => {
                     // console.log(response);
+                    this.toast("success", "Logo Updated.");
                 })
                 .catch((error) => {
                     console.error(error);
@@ -1948,6 +1770,7 @@ export default {
                 })
                 .then((response) => {
                     // console.log(response.data);
+                    this.toast("success", "Resources Updated.");
                 })
                 .catch((error) => {
                     console.error(error);
@@ -1966,6 +1789,7 @@ export default {
                 })
                 .then((response) => {
                     // console.log(response.data);
+                    this.toast("success", "Resources Updated.");
                 })
                 .catch((error) => {
                     console.error(error);
@@ -1973,7 +1797,12 @@ export default {
         },
 
         updateStepItem(event, section, index) {
-            this.steps[index - 1][section] = this.updateContent(event);
+            const newValue = event.target.textContent.trim();
+            if (this.steps[index][section] == newValue) {
+                return;
+            }
+
+            this.steps[index][section] = this.updateContent(event);
             this.updateStepsArea();
         },
 
@@ -1986,6 +1815,7 @@ export default {
                 .then((response) => {
                     // console.log(response.data);
                     this.steps = response.data.data;
+                    this.toast("success", "Resources Updated.");
                 })
                 .catch((error) => {
                     console.error(error);
@@ -1993,16 +1823,31 @@ export default {
         },
 
         updateFeatureSubTitle(event) {
+            const newValue = event.target.textContent.trim();
+            if (this.featureSubTitle == newValue) {
+                return;
+            }
+
             this.featureSubTitle = this.updateContent(event);
             this.updateFeaturesArea();
         },
 
         updateFeatureTitle(event) {
+            const newValue = event.target.textContent.trim();
+            if (this.featureTitle == newValue) {
+                return;
+            }
+
             this.featureTitle = this.updateContent(event);
             this.updateFeaturesArea();
         },
 
         updateFeatureItem(event, section, index) {
+            const newValue = event.target.textContent.trim();
+            if (this.features[index][section] == newValue) {
+                return;
+            }
+
             this.features[index][section] = this.updateContent(event);
             this.updateFeaturesArea();
         },
@@ -2024,6 +1869,7 @@ export default {
                 .then((response) => {
                     // console.log(response.data);
                     this.features = response.data.data;
+                    this.toast("success", "Resources Updated.");
                 })
                 .catch((error) => {
                     console.error(error);
@@ -2031,58 +1877,32 @@ export default {
         },
 
         updateAboutSubTitle(event) {
+            const newValue = event.target.textContent.trim();
+            if (this.aboutSubTitle == newValue) {
+                return;
+            }
+
             this.aboutSubTitle = this.updateContent(event);
             this.updateAboutArea();
         },
 
         updateAboutTitle(event) {
+            const newValue = event.target.textContent.trim();
+            if (this.aboutTitle == newValue) {
+                return;
+            }
+
             this.aboutTitle = this.updateContent(event);
             this.updateAboutArea();
         },
 
         updateAboutItem(event, section, index) {
-            this.abouts[index - 1][section] = this.updateContent(event);
-            this.updateAboutArea();
-        },
+            const newValue = event.target.textContent.trim();
+            if (this.abouts[index][section] == newValue) {
+                return;
+            }
 
-        updateAboutButton(data, index) {
-            this.abouts[index].button = {
-                title:
-                    data.title !== null && data.title !== ""
-                        ? data.title
-                        : this.abouts[index].button.title,
-                url:
-                    data.url !== null && data.url !== ""
-                        ? data.url
-                        : this.abouts[index].button.url,
-                color:
-                    data.color !== null && data.color !== ""
-                        ? data.color
-                        : this.abouts[index].button.color,
-                text_color:
-                    data.text_color !== null && data.text_color !== ""
-                        ? data.text_color
-                        : this.abouts[index].button.text_color,
-                border_color:
-                    data.border_color !== null && data.border_color !== ""
-                        ? data.border_color
-                        : this.abouts[index].button.border_color,
-                hover_color:
-                    data.hover_color !== null && data.hover_color !== ""
-                        ? data.hover_color
-                        : this.abouts[index].button.hover_color,
-                hover_text_color:
-                    data.hover_text_color !== null &&
-                    data.hover_text_color !== ""
-                        ? data.hover_text_color
-                        : this.abouts[index].button.hover_text_color,
-                hover_border_color:
-                    data.hover_border_color !== null &&
-                    data.hover_border_color !== ""
-                        ? data.hover_border_color
-                        : this.abouts[index].button.hover_border_color,
-            };
-
+            this.abouts[index][section] = this.updateContent(event);
             this.updateAboutArea();
         },
 
@@ -2103,6 +1923,7 @@ export default {
                 })
                 .then((response) => {
                     // console.log(response.data);
+                    this.toast("success", "Resources Updated.");
                 })
                 .catch((error) => {
                     console.error(error);
@@ -2110,16 +1931,31 @@ export default {
         },
 
         updateTestimonialSubTitle(event) {
+            const newValue = event.target.textContent.trim();
+            if (this.testimonialSubTitle == newValue) {
+                return;
+            }
+
             this.testimonialSubTitle = this.updateContent(event);
             this.updateTestimonialsArea();
         },
 
         updateTestimonialTitle(event) {
+            const newValue = event.target.textContent.trim();
+            if (this.testimonialTitle == newValue) {
+                return;
+            }
+
             this.testimonialTitle = this.updateContent(event);
             this.updateTestimonialsArea();
         },
 
         updateTestimonialItem(event, section, index) {
+            const newValue = event.target.textContent.trim();
+            if (this.testimonials[index][section] == newValue) {
+                return;
+            }
+
             this.testimonials[index][section] = this.updateContent(event);
             this.updateTestimonialsArea();
         },
@@ -2161,6 +1997,8 @@ export default {
                                       defaultTestimonialImages[index]
                                   );
                     });
+
+                    this.toast("success", "Resources Updated.");
                 })
                 .catch((error) => {
                     console.error(error);
@@ -2168,58 +2006,32 @@ export default {
         },
 
         updateInfoSubTitle(event) {
+            const newValue = event.target.textContent.trim();
+            if (this.infoSubTitle == newValue) {
+                return;
+            }
+
             this.infoSubTitle = this.updateContent(event);
             this.updateInfoArea();
         },
 
         updateInfoTitle(event) {
+            const newValue = event.target.textContent.trim();
+            if (this.infoTitle == newValue) {
+                return;
+            }
+
             this.infoTitle = this.updateContent(event);
             this.updateInfoArea();
         },
 
         updateInfoDescription(event) {
+            const newValue = event.target.textContent.trim();
+            if (this.infoDescription == newValue) {
+                return;
+            }
+
             this.infoDescription = this.updateContent(event);
-            this.updateInfoArea();
-        },
-
-        updateInfoButton(data) {
-            this.infoButton = {
-                title:
-                    data.title !== null && data.title !== ""
-                        ? data.title
-                        : this.infoButton.title,
-                url:
-                    data.url !== null && data.url !== ""
-                        ? data.url
-                        : this.infoButton.url,
-                color:
-                    data.color !== null && data.color !== ""
-                        ? data.color
-                        : this.infoButton.color,
-                text_color:
-                    data.text_color !== null && data.text_color !== ""
-                        ? data.text_color
-                        : this.infoButton.text_color,
-                border_color:
-                    data.border_color !== null && data.border_color !== ""
-                        ? data.border_color
-                        : this.infoButton.border_color,
-                hover_color:
-                    data.hover_color !== null && data.hover_color !== ""
-                        ? data.hover_color
-                        : this.infoButton.hover_color,
-                hover_text_color:
-                    data.hover_text_color !== null &&
-                    data.hover_text_color !== ""
-                        ? data.hover_text_color
-                        : this.infoButton.hover_text_color,
-                hover_border_color:
-                    data.hover_border_color !== null &&
-                    data.hover_border_color !== ""
-                        ? data.hover_border_color
-                        : this.infoButton.hover_border_color,
-            };
-
             this.updateInfoArea();
         },
 
@@ -2236,6 +2048,7 @@ export default {
                 .post(`${this.apiUrl}/update-info-area`, formData)
                 .then((response) => {
                     // console.log(response.data);
+                    this.toast("success", "Resources Updated.");
                 })
                 .catch((error) => {
                     console.error(error);
@@ -2243,53 +2056,22 @@ export default {
         },
 
         updateOrderSubTitle(event) {
+            const newValue = event.target.textContent.trim();
+            if (this.orderSubTitle == newValue) {
+                return;
+            }
+
             this.orderSubTitle = this.updateContent(event);
             this.updateOrderArea();
         },
 
         updateOrderTitle(event) {
+            const newValue = event.target.textContent.trim();
+            if (this.orderTitle == newValue) {
+                return;
+            }
+
             this.orderTitle = this.updateContent(event);
-            this.updateOrderArea();
-        },
-
-        updateOrderButton(data) {
-            this.orderButton = {
-                title:
-                    data.title !== null && data.title !== ""
-                        ? data.title
-                        : this.orderButton.title,
-                url:
-                    data.url !== null && data.url !== ""
-                        ? data.url
-                        : this.orderButton.url,
-                color:
-                    data.color !== null && data.color !== ""
-                        ? data.color
-                        : this.orderButton.color,
-                text_color:
-                    data.text_color !== null && data.text_color !== ""
-                        ? data.text_color
-                        : this.orderButton.text_color,
-                border_color:
-                    data.border_color !== null && data.border_color !== ""
-                        ? data.border_color
-                        : this.orderButton.border_color,
-                hover_color:
-                    data.hover_color !== null && data.hover_color !== ""
-                        ? data.hover_color
-                        : this.orderButton.hover_color,
-                hover_text_color:
-                    data.hover_text_color !== null &&
-                    data.hover_text_color !== ""
-                        ? data.hover_text_color
-                        : this.orderButton.hover_text_color,
-                hover_border_color:
-                    data.hover_border_color !== null &&
-                    data.hover_border_color !== ""
-                        ? data.hover_border_color
-                        : this.orderButton.hover_border_color,
-            };
-
             this.updateOrderArea();
         },
 
@@ -2304,6 +2086,7 @@ export default {
                 .post(`${this.apiUrl}/update-order-area`, formData)
                 .then((response) => {
                     // console.log(response.data);
+                    this.toast("success", "Resources Updated.");
                 })
                 .catch((error) => {
                     console.error(error);
@@ -2311,16 +2094,31 @@ export default {
         },
 
         updateProductName(event) {
+            const newValue = event.target.textContent.trim();
+            if (this.productName == newValue) {
+                return;
+            }
+
             this.productName = this.updateContent(event);
             this.updateProductInfo();
         },
 
         updateProductCurrency(event) {
+            const newValue = event.target.textContent.trim();
+            if (this.productCurrency == newValue) {
+                return;
+            }
+
             this.productCurrency = this.updateContent(event);
             this.updateProductInfo();
         },
 
         updateProductPrice(event) {
+            const newValue = event.target.textContent.trim();
+            if (this.productPrice == newValue) {
+                return;
+            }
+
             this.productPrice = this.updateContent(event);
             this.updateProductInfo();
         },
@@ -2335,6 +2133,7 @@ export default {
                 .post(`${this.apiUrl}/update-product-info`, formData)
                 .then((response) => {
                     // console.log(response.data);
+                    this.toast("success", "Resources Updated.");
                 })
                 .catch((error) => {
                     console.error(error);
@@ -2342,6 +2141,11 @@ export default {
         },
 
         updateFooterText(event) {
+            const newValue = event.target.textContent.trim();
+            if (this.footerText == newValue) {
+                return;
+            }
+
             this.footerText = this.updateContent(event);
             this.updateFooterArea();
         },
@@ -2355,6 +2159,7 @@ export default {
                 .post(`${this.apiUrl}/update-footer-area`, formData)
                 .then((response) => {
                     // console.log(response.data);
+                    this.toast("success", "Resources Updated.");
                 })
                 .catch((error) => {
                     console.error(error);
