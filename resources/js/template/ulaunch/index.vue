@@ -210,7 +210,7 @@
                                                 updateStepItem(
                                                     $event,
                                                     'title',
-                                                    index + 1
+                                                    index
                                                 )
                                             "
                                         >
@@ -222,7 +222,7 @@
                                                 updateStepItem(
                                                     $event,
                                                     'description',
-                                                    index + 1
+                                                    index
                                                 )
                                             "
                                         >
@@ -457,7 +457,7 @@
                                                 updateAboutItem(
                                                     $event,
                                                     'sub_title',
-                                                    1
+                                                    0
                                                 )
                                             "
                                             contenteditable="true"
@@ -469,7 +469,7 @@
                                                 updateAboutItem(
                                                     $event,
                                                     'title',
-                                                    1
+                                                    0
                                                 )
                                             "
                                             contenteditable="true"
@@ -481,7 +481,7 @@
                                                 updateAboutItem(
                                                     $event,
                                                     'description',
-                                                    1
+                                                    0
                                                 )
                                             "
                                             contenteditable="true"
@@ -573,7 +573,7 @@
                                                 updateAboutItem(
                                                     $event,
                                                     'sub_title',
-                                                    2
+                                                    1
                                                 )
                                             "
                                             contenteditable="true"
@@ -585,7 +585,7 @@
                                                 updateAboutItem(
                                                     $event,
                                                     'title',
-                                                    2
+                                                    1
                                                 )
                                             "
                                             contenteditable="true"
@@ -597,7 +597,7 @@
                                                 updateAboutItem(
                                                     $event,
                                                     'description',
-                                                    2
+                                                    1
                                                 )
                                             "
                                             contenteditable="true"
@@ -1198,6 +1198,10 @@ import ImageModal from "./components/image-modal.vue";
 import IconPicker from "../../icon-picker/IconPicker.vue";
 import ColorPicker from "./components/color-picker.vue";
 
+import UpdateButton from "./components/updateButton.js";
+import UpdateImage from "./components/updateImage.js";
+import UpdateColor from "./components/updateColor.js";
+
 export default {
     name: "Ulaunch",
     props: ["user_template", "template"],
@@ -1650,6 +1654,10 @@ export default {
         window.removeEventListener("scroll", this.checkStickyHeader);
     },
     methods: {
+        ...UpdateColor,
+        ...UpdateButton,
+        ...UpdateImage,
+
         checkStickyHeader() {
             if (this.$refs.navbarMenu) {
                 this.stickyHeader =
@@ -1672,232 +1680,8 @@ export default {
             const rawContent =
                 event.target.innerHTML ?? event.target.textContent;
             const sanitizedContent = rawContent.replace(/&nbsp;/g, " ");
-            // const updatedContent = sanitizedContent.trim() + " ";
 
             return sanitizedContent;
-        },
-
-        updateImage(data) {
-            switch (data.section) {
-                case "logo":
-                    this.companyLogo =
-                        data.image !== null && data.image !== ""
-                            ? data.image
-                            : this.companyLogo;
-
-                    this.companyLogoRaw =
-                        data.image_raw !== null && data.image_raw !== ""
-                            ? data.image_raw
-                            : this.companyLogoRaw;
-
-                    this.updateLogo();
-
-                    break;
-
-                case "hero":
-                    this.heroImage =
-                        data.image !== null && data.image !== ""
-                            ? data.image
-                            : this.heroImage;
-                    this.heroImageRaw =
-                        data.image_raw !== null && data.image_raw !== ""
-                            ? data.image_raw
-                            : this.heroImageRaw;
-
-                    this.updateHeroArea();
-
-                    break;
-
-                case "feature":
-                    this.featureImage =
-                        data.image !== null && data.image !== ""
-                            ? data.image
-                            : this.featureImage;
-                    this.featureImageRaw =
-                        data.image_raw !== null && data.image_raw !== ""
-                            ? data.image_raw
-                            : this.featureImageRaw;
-
-                    this.updateFeaturesArea();
-
-                    break;
-
-                case "about-1":
-                    this.abouts[0].image =
-                        data.image !== null && data.image !== ""
-                            ? data.image
-                            : this.abouts[0].image;
-                    this.abouts[0].image_raw =
-                        data.image_raw !== null && data.image_raw !== ""
-                            ? data.image_raw
-                            : this.abouts[0].image_raw;
-
-                    this.updateAboutArea();
-
-                    break;
-
-                case "about-2":
-                    this.abouts[1].image =
-                        data.image !== null && data.image !== ""
-                            ? data.image
-                            : this.abouts[1].image;
-                    this.abouts[1].image_raw =
-                        data.image_raw !== null && data.image_raw !== ""
-                            ? data.image_raw
-                            : this.abouts[1].image_raw;
-
-                    this.updateAboutArea();
-
-                    break;
-
-                case "testimonial-1":
-                    this.testimonials[0].reviewer_image =
-                        data.image !== null && data.image !== ""
-                            ? data.image
-                            : this.testimonials[0].reviewer_image;
-                    this.testimonials[0].reviewer_image_raw =
-                        data.image_raw !== null && data.image_raw !== ""
-                            ? data.image_raw
-                            : this.testimonials[0].reviewer_image_raw;
-
-                    this.updateTestimonialsArea();
-
-                    break;
-
-                case "testimonial-2":
-                    this.testimonials[1].reviewer_image =
-                        data.image !== null && data.image !== ""
-                            ? data.image
-                            : this.testimonials[1].reviewer_image;
-                    this.testimonials[1].reviewer_image_raw =
-                        data.image_raw !== null && data.image_raw !== ""
-                            ? data.image_raw
-                            : this.testimonials[1].reviewer_image_raw;
-
-                    this.updateTestimonialsArea();
-
-                    break;
-
-                case "testimonial-3":
-                    this.testimonials[2].reviewer_image =
-                        data.image !== null && data.image !== ""
-                            ? data.image
-                            : this.testimonials[2].reviewer_image;
-                    this.testimonials[2].reviewer_image_raw =
-                        data.image_raw !== null && data.image_raw !== ""
-                            ? data.image_raw
-                            : this.testimonials[2].reviewer_image_raw;
-
-                    this.updateTestimonialsArea();
-
-                    break;
-
-                default:
-                    console.warn("Something is wrong on update image.");
-                    break;
-            }
-        },
-
-        updateColor(data) {
-            switch (data.section) {
-                case "nav":
-                    this.navBg = data.color;
-                    this.updateNavColor();
-                    break;
-                case "hero":
-                    this.heroBg = data.color;
-                    this.updateHeroArea();
-                    break;
-                case "feature":
-                    this.featureBg = data.color;
-                    this.updateFeaturesArea();
-                    break;
-                case "about":
-                    this.aboutBg = data.color;
-                    this.updateAboutArea();
-                    break;
-                case "testimonials":
-                    this.testimonialBg = data.color;
-                    this.updateTestimonialsArea();
-                    break;
-                case "info":
-                    this.infoBg = data.color;
-                    this.updateInfoArea();
-                    break;
-                case "order":
-                    this.orderBg = data.color;
-                    this.updateOrderArea();
-                    break;
-                case "footer":
-                    this.footerBg = data.color;
-                    this.updateFooterArea();
-                    break;
-                default:
-                    console.warn("Something is wrong on update color.");
-                    break;
-            }
-        },
-
-        instantUpdateColor(data) {
-            console.log(data);
-            
-            switch (data.section) {
-                case "nav":
-                    this.navBg = data.color;
-                    break;
-                case "hero":
-                    this.heroBg = data.color;
-                    break;
-                case "feature":
-                    this.featureBg = data.color;
-                    break;
-                case "about":
-                    this.aboutBg = data.color;
-                    break;
-                case "testimonials":
-                    this.testimonialBg = data.color;
-                    break;
-                case "info":
-                    this.infoBg = data.color;
-                    break;
-                case "order":
-                    this.orderBg = data.color;
-                    break;
-                case "footer":
-                    this.footerBg = data.color;
-                    break;
-                default:
-                    console.warn("Something is wrong on update color.");
-                    break;
-            }
-        },
-
-        updateButton(data) {
-            switch (data.section) {
-                case "hero":
-                    this.updateHeroButton(data.button);
-                    break;
-
-                case "about-1":
-                    this.updateAboutButton(data.button, 0);
-                    break;
-
-                case "about-2":
-                    this.updateAboutButton(data.button, 1);
-                    break;
-
-                case "info":
-                    this.updateInfoButton(data.button);
-                    break;
-
-                case "order":
-                    this.updateOrderButton(data.button);
-                    break;
-
-                default:
-                    console.warn("Something is wrong on update button.");
-                    break;
-            }
         },
 
         imageSource(path, disk = "public") {
@@ -1909,6 +1693,11 @@ export default {
         },
 
         updateMenuItem(event, index) {
+            const newValue = event.target.textContent.trim();
+            if (this.menus[index].title == newValue) {
+                return;
+            }
+
             this.menus[index].title = this.updateContent(event);
             this.updateMenuArea();
         },
@@ -1928,53 +1717,22 @@ export default {
         },
 
         updateHeroTitle(event) {
+            const newValue = event.target.textContent.trim();
+            if (this.heroTitle == newValue) {
+                return;
+            }
+
             this.heroTitle = this.updateContent(event);
             this.updateHeroArea();
         },
 
         updateHeroDescription(event) {
+            const newValue = event.target.textContent.trim();
+            if (this.heroDescription == newValue) {
+                return;
+            }
+
             this.heroDescription = this.updateContent(event);
-            this.updateHeroArea();
-        },
-
-        updateHeroButton(data) {
-            this.heroButton = {
-                title:
-                    data.title !== null && data.title !== ""
-                        ? data.title
-                        : this.heroButton.title,
-                url:
-                    data.url !== null && data.url !== ""
-                        ? data.url
-                        : this.heroButton.url,
-                color:
-                    data.color !== null && data.color !== ""
-                        ? data.color
-                        : this.heroButton.color,
-                text_color:
-                    data.text_color !== null && data.text_color !== ""
-                        ? data.text_color
-                        : this.heroButton.text_color,
-                border_color:
-                    data.border_color !== null && data.border_color !== ""
-                        ? data.border_color
-                        : this.heroButton.border_color,
-                hover_color:
-                    data.hover_color !== null && data.hover_color !== ""
-                        ? data.hover_color
-                        : this.heroButton.hover_color,
-                hover_text_color:
-                    data.hover_text_color !== null &&
-                    data.hover_text_color !== ""
-                        ? data.hover_text_color
-                        : this.heroButton.hover_text_color,
-                hover_border_color:
-                    data.hover_border_color !== null &&
-                    data.hover_border_color !== ""
-                        ? data.hover_border_color
-                        : this.heroButton.hover_border_color,
-            };
-
             this.updateHeroArea();
         },
 
@@ -2039,7 +1797,12 @@ export default {
         },
 
         updateStepItem(event, section, index) {
-            this.steps[index - 1][section] = this.updateContent(event);
+            const newValue = event.target.textContent.trim();
+            if (this.steps[index][section] == newValue) {
+                return;
+            }
+
+            this.steps[index][section] = this.updateContent(event);
             this.updateStepsArea();
         },
 
@@ -2060,16 +1823,31 @@ export default {
         },
 
         updateFeatureSubTitle(event) {
+            const newValue = event.target.textContent.trim();
+            if (this.featureSubTitle == newValue) {
+                return;
+            }
+
             this.featureSubTitle = this.updateContent(event);
             this.updateFeaturesArea();
         },
 
         updateFeatureTitle(event) {
+            const newValue = event.target.textContent.trim();
+            if (this.featureTitle == newValue) {
+                return;
+            }
+
             this.featureTitle = this.updateContent(event);
             this.updateFeaturesArea();
         },
 
         updateFeatureItem(event, section, index) {
+            const newValue = event.target.textContent.trim();
+            if (this.features[index][section] == newValue) {
+                return;
+            }
+
             this.features[index][section] = this.updateContent(event);
             this.updateFeaturesArea();
         },
@@ -2099,58 +1877,32 @@ export default {
         },
 
         updateAboutSubTitle(event) {
+            const newValue = event.target.textContent.trim();
+            if (this.aboutSubTitle == newValue) {
+                return;
+            }
+
             this.aboutSubTitle = this.updateContent(event);
             this.updateAboutArea();
         },
 
         updateAboutTitle(event) {
+            const newValue = event.target.textContent.trim();
+            if (this.aboutTitle == newValue) {
+                return;
+            }
+
             this.aboutTitle = this.updateContent(event);
             this.updateAboutArea();
         },
 
         updateAboutItem(event, section, index) {
-            this.abouts[index - 1][section] = this.updateContent(event);
-            this.updateAboutArea();
-        },
+            const newValue = event.target.textContent.trim();
+            if (this.abouts[index][section] == newValue) {
+                return;
+            }
 
-        updateAboutButton(data, index) {
-            this.abouts[index].button = {
-                title:
-                    data.title !== null && data.title !== ""
-                        ? data.title
-                        : this.abouts[index].button.title,
-                url:
-                    data.url !== null && data.url !== ""
-                        ? data.url
-                        : this.abouts[index].button.url,
-                color:
-                    data.color !== null && data.color !== ""
-                        ? data.color
-                        : this.abouts[index].button.color,
-                text_color:
-                    data.text_color !== null && data.text_color !== ""
-                        ? data.text_color
-                        : this.abouts[index].button.text_color,
-                border_color:
-                    data.border_color !== null && data.border_color !== ""
-                        ? data.border_color
-                        : this.abouts[index].button.border_color,
-                hover_color:
-                    data.hover_color !== null && data.hover_color !== ""
-                        ? data.hover_color
-                        : this.abouts[index].button.hover_color,
-                hover_text_color:
-                    data.hover_text_color !== null &&
-                    data.hover_text_color !== ""
-                        ? data.hover_text_color
-                        : this.abouts[index].button.hover_text_color,
-                hover_border_color:
-                    data.hover_border_color !== null &&
-                    data.hover_border_color !== ""
-                        ? data.hover_border_color
-                        : this.abouts[index].button.hover_border_color,
-            };
-
+            this.abouts[index][section] = this.updateContent(event);
             this.updateAboutArea();
         },
 
@@ -2179,16 +1931,31 @@ export default {
         },
 
         updateTestimonialSubTitle(event) {
+            const newValue = event.target.textContent.trim();
+            if (this.testimonialSubTitle == newValue) {
+                return;
+            }
+
             this.testimonialSubTitle = this.updateContent(event);
             this.updateTestimonialsArea();
         },
 
         updateTestimonialTitle(event) {
+            const newValue = event.target.textContent.trim();
+            if (this.testimonialTitle == newValue) {
+                return;
+            }
+
             this.testimonialTitle = this.updateContent(event);
             this.updateTestimonialsArea();
         },
 
         updateTestimonialItem(event, section, index) {
+            const newValue = event.target.textContent.trim();
+            if (this.testimonials[index][section] == newValue) {
+                return;
+            }
+
             this.testimonials[index][section] = this.updateContent(event);
             this.updateTestimonialsArea();
         },
@@ -2239,58 +2006,32 @@ export default {
         },
 
         updateInfoSubTitle(event) {
+            const newValue = event.target.textContent.trim();
+            if (this.infoSubTitle == newValue) {
+                return;
+            }
+
             this.infoSubTitle = this.updateContent(event);
             this.updateInfoArea();
         },
 
         updateInfoTitle(event) {
+            const newValue = event.target.textContent.trim();
+            if (this.infoTitle == newValue) {
+                return;
+            }
+
             this.infoTitle = this.updateContent(event);
             this.updateInfoArea();
         },
 
         updateInfoDescription(event) {
+            const newValue = event.target.textContent.trim();
+            if (this.infoDescription == newValue) {
+                return;
+            }
+
             this.infoDescription = this.updateContent(event);
-            this.updateInfoArea();
-        },
-
-        updateInfoButton(data) {
-            this.infoButton = {
-                title:
-                    data.title !== null && data.title !== ""
-                        ? data.title
-                        : this.infoButton.title,
-                url:
-                    data.url !== null && data.url !== ""
-                        ? data.url
-                        : this.infoButton.url,
-                color:
-                    data.color !== null && data.color !== ""
-                        ? data.color
-                        : this.infoButton.color,
-                text_color:
-                    data.text_color !== null && data.text_color !== ""
-                        ? data.text_color
-                        : this.infoButton.text_color,
-                border_color:
-                    data.border_color !== null && data.border_color !== ""
-                        ? data.border_color
-                        : this.infoButton.border_color,
-                hover_color:
-                    data.hover_color !== null && data.hover_color !== ""
-                        ? data.hover_color
-                        : this.infoButton.hover_color,
-                hover_text_color:
-                    data.hover_text_color !== null &&
-                    data.hover_text_color !== ""
-                        ? data.hover_text_color
-                        : this.infoButton.hover_text_color,
-                hover_border_color:
-                    data.hover_border_color !== null &&
-                    data.hover_border_color !== ""
-                        ? data.hover_border_color
-                        : this.infoButton.hover_border_color,
-            };
-
             this.updateInfoArea();
         },
 
@@ -2315,53 +2056,22 @@ export default {
         },
 
         updateOrderSubTitle(event) {
+            const newValue = event.target.textContent.trim();
+            if (this.orderSubTitle == newValue) {
+                return;
+            }
+
             this.orderSubTitle = this.updateContent(event);
             this.updateOrderArea();
         },
 
         updateOrderTitle(event) {
+            const newValue = event.target.textContent.trim();
+            if (this.orderTitle == newValue) {
+                return;
+            }
+
             this.orderTitle = this.updateContent(event);
-            this.updateOrderArea();
-        },
-
-        updateOrderButton(data) {
-            this.orderButton = {
-                title:
-                    data.title !== null && data.title !== ""
-                        ? data.title
-                        : this.orderButton.title,
-                url:
-                    data.url !== null && data.url !== ""
-                        ? data.url
-                        : this.orderButton.url,
-                color:
-                    data.color !== null && data.color !== ""
-                        ? data.color
-                        : this.orderButton.color,
-                text_color:
-                    data.text_color !== null && data.text_color !== ""
-                        ? data.text_color
-                        : this.orderButton.text_color,
-                border_color:
-                    data.border_color !== null && data.border_color !== ""
-                        ? data.border_color
-                        : this.orderButton.border_color,
-                hover_color:
-                    data.hover_color !== null && data.hover_color !== ""
-                        ? data.hover_color
-                        : this.orderButton.hover_color,
-                hover_text_color:
-                    data.hover_text_color !== null &&
-                    data.hover_text_color !== ""
-                        ? data.hover_text_color
-                        : this.orderButton.hover_text_color,
-                hover_border_color:
-                    data.hover_border_color !== null &&
-                    data.hover_border_color !== ""
-                        ? data.hover_border_color
-                        : this.orderButton.hover_border_color,
-            };
-
             this.updateOrderArea();
         },
 
@@ -2384,16 +2094,31 @@ export default {
         },
 
         updateProductName(event) {
+            const newValue = event.target.textContent.trim();
+            if (this.productName == newValue) {
+                return;
+            }
+
             this.productName = this.updateContent(event);
             this.updateProductInfo();
         },
 
         updateProductCurrency(event) {
+            const newValue = event.target.textContent.trim();
+            if (this.productCurrency == newValue) {
+                return;
+            }
+
             this.productCurrency = this.updateContent(event);
             this.updateProductInfo();
         },
 
         updateProductPrice(event) {
+            const newValue = event.target.textContent.trim();
+            if (this.productPrice == newValue) {
+                return;
+            }
+
             this.productPrice = this.updateContent(event);
             this.updateProductInfo();
         },
@@ -2416,6 +2141,11 @@ export default {
         },
 
         updateFooterText(event) {
+            const newValue = event.target.textContent.trim();
+            if (this.footerText == newValue) {
+                return;
+            }
+
             this.footerText = this.updateContent(event);
             this.updateFooterArea();
         },
