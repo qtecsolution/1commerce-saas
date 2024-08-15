@@ -1134,6 +1134,7 @@ export default {
                     this.toast("error", "Error updating:", error);
                 });
         },
+        
         deleteField(index, field) {
             axios
                 .post(`${this.appUrl}/app/dynamic-form/delete-input-field`, {
