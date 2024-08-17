@@ -5,6 +5,7 @@
             <nav
                 class="navbar navbar-expand-lg fixed-top navbar-scrollspy main-menu"
                 ref="navbarMenu"
+                style="margin-top: 56px;"
             >
                 <div class="container">
                     <!-- Start Header Navigation -->
@@ -91,11 +92,11 @@
                 section="hero"
                 :color="heroBg"
                 @update="updateColor"
-                :style="{ margin: '100px 0 0 10px' }"
+                :style="{ margin: '160px 0 0 10px' }"
                 @instantUpdate="instantUpdateColor"
             />
             <div class="container">
-                <div class="row">
+                <div class="row mt-4">
                     <div class="col-md-6 col-sm-6">
                         <div
                             class="header-content wow fadeInUp"

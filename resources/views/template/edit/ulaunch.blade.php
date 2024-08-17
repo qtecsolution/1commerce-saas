@@ -57,6 +57,19 @@
     </div>
     <!-- Preloader Ends -->
 
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #3e3e3e">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ route('templates.mine') }}" title="Back to Admin Panel">
+                <i class="fas fa-arrow-left me-2"></i>
+                ADMIN
+            </a>
+            <a href="{{ route('user_shop', $userTemplate->company_slug) }}" class="btn btn-light px-4" target="_blank"
+                title="Live Preview">
+                VIEW
+            </a>
+        </div>
+    </nav>
+
     <main id="app">
         <ulaunch :user_template="{{ json_encode($userTemplate) }}" :template="{{ json_encode($template) }}" />
     </main>
