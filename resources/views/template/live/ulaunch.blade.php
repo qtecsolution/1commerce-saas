@@ -1,4 +1,8 @@
 @php
+    $site_color = $ulaunch->color != null ? json_decode($ulaunch->color, true) : [
+        'background_color' => '#ffffff',
+        'primary_text_color' => '#000000',
+    ];
     $hero_area = $ulaunch->hero_area != null ? json_decode($ulaunch->hero_area, true) : null;
     $feature_area = $ulaunch->features_area ? json_decode($ulaunch->features_area, true) : null;
     $features =
@@ -546,6 +550,13 @@
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
+
+                                @foreach ($userTemplate->fields as $field)
+                                    <x-form-field :field="$field" :styles="[
+                                        'color' => $site_color['primary_text_color'],
+                                        'background_color' => $site_color['background_color'],
+                                    ]" />
+                                @endforeach
 
                                 <div class="col-md-12 col-sm-12">
                                     <button type="submit" class="btn-contact disabled">Order Now</button>

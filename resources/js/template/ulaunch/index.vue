@@ -5,7 +5,7 @@
             <nav
                 class="navbar navbar-expand-lg fixed-top navbar-scrollspy main-menu"
                 ref="navbarMenu"
-                style="margin-top: 56px;"
+                style="margin-top: 56px"
             >
                 <div class="container">
                     <!-- Start Header Navigation -->
@@ -1031,6 +1031,25 @@
                                         ></textarea>
                                     </div>
 
+                                    <FormField
+                                        :styles="{
+                                            color: siteColor?.primary_text_color,
+                                            background_color:
+                                                siteColor?.background_color,
+                                        }"
+                                        v-for="(field, index) in fields"
+                                        :key="index"
+                                        :field="field"
+                                        @delete="deleteField(index, $event)"
+                                        @update="updateField(index, $event)"
+                                    />
+
+                                    <AddInputModal
+                                        :modalId="'addInputModal'"
+                                        :modalTitle="'Add Dynamic Form'"
+                                        @save="addField"
+                                    />
+
                                     <div
                                         class="col-md-6 col-sm-12 position-relative"
                                     >
@@ -1198,6 +1217,8 @@ import ButtonModal from "./components/button-modal.vue";
 import ImageModal from "./components/image-modal.vue";
 import IconPicker from "../../icon-picker/IconPicker.vue";
 import ColorPicker from "./components/color-picker.vue";
+import AddInputModal from "../components/add-input-modal.vue";
+import FormField from "../components/form-field.vue";
 
 import UpdateButton from "./components/updateButton.js";
 import UpdateImage from "./components/updateImage.js";
@@ -1211,6 +1232,8 @@ export default {
         ButtonModal,
         IconPicker,
         ColorPicker,
+        AddInputModal,
+        FormField,
     },
     data() {
         return {
@@ -1397,6 +1420,11 @@ export default {
             orderSubTitle: "GET YOUR PRODUCT",
             orderBg: "#ffffff",
             orderButton: [],
+            siteColor:
+                this.template.color != null
+                    ? JSON.parse(this.template.color)
+                    : null,
+            fields: [],
 
             // prduct info
             productName: "",
@@ -1622,6 +1650,7 @@ export default {
 
         this.orderButton =
             orderArea != null ? orderArea.button : defaultOrderButton;
+        this.fields = this.user_template?.fields;
 
         // product info
         this.productName = this.user_template.product_name;
@@ -2091,6 +2120,82 @@ export default {
                 })
                 .catch((error) => {
                     console.error(error);
+                });
+        },
+
+        addField(field) {
+            axios
+                .post(`${this.appUrl}/app/dynamic-form/add-input-field`, {
+                    user_template_id: this.user_template.id,
+                    title: field.title,
+                    name: field.name,
+                    type: field.type,
+                    is_required: field.is_required,
+                    options:
+                        field.options.length > 0
+                            ? JSON.stringify(field.options)
+                            : null,
+                })
+                .then((response) => {
+                    // console.log(response.data);
+
+                    if (response.data.success) {
+                        this.fields.push(response.data.field);
+                        this.toast("success", "Updated successfully");
+                    } else {
+                        this.toast("error", "Failed to update");
+                    }
+                })
+                .catch((error) => {
+                    // console.error(error);
+                    this.toast("error", "Error updating:", error);
+                });
+        },
+
+        deleteField(index, field) {
+            axios
+                .post(`${this.appUrl}/app/dynamic-form/delete-input-field`, {
+                    id: field.id,
+                })
+                .then((response) => {
+                    // console.log(response.data);
+
+                    if (response.data.success) {
+                        this.fields.splice(index, 1);
+                        this.toast("success", "Updated successfully");
+                    } else {
+                        this.toast("error", "Failed to update");
+                    }
+                });
+        },
+
+        updateField(index, field) {
+            axios
+                .post(`${this.appUrl}/app/dynamic-form/update-input-field`, {
+                    id: field.id,
+                    title: field.title,
+                    name: field.name,
+                    type: field.type,
+                    is_required: field.is_required,
+                    options:
+                        field.options.length > 0
+                            ? JSON.stringify(field.options)
+                            : null,
+                })
+                .then((response) => {
+                    // console.log(response.data);
+
+                    if (response.data.success) {
+                        this.fields = [
+                            ...this.fields.slice(0, index),
+                            response.data.field,
+                            ...this.fields.slice(index + 1),
+                        ];
+
+                        this.toast("success", "Updated successfully");
+                    } else {
+                        this.toast("error", "Failed to update");
+                    }
                 });
         },
 

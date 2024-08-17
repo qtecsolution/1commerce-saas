@@ -1,13 +1,15 @@
 <template>
-    <button
-        type="button"
-        class="btn btn-info btn-sm my-2"
-        data-bs-toggle="modal"
-        :data-bs-target="'#' + modalId"
-        :title="modalTitle"
-    >
-        Add New Input
-    </button>
+    <div class="col-12">
+        <button
+            type="button"
+            class="btn btn-info btn-sm my-2 col-12"
+            data-bs-toggle="modal"
+            :data-bs-target="'#' + modalId"
+            :title="modalTitle"
+        >
+            Add New Input
+        </button>
+    </div>
 
     <div
         class="modal fade"
@@ -153,7 +155,7 @@ export default {
                 title: "",
                 name: "",
                 type: "text",
-                required: false,
+                is_required: false,
                 options: [],
             },
         };
