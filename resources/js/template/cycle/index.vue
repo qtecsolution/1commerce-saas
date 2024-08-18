@@ -1,6 +1,5 @@
 <template>
-
-      <!-- header section start -->
+<!-- header section start -->
       <div class="header_section header_bg">
          <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a href="index.html" class="logo"><img src="{{ asset($template->assets_path . '/images/logo.png')}}"></a>
@@ -13,25 +12,12 @@
                      <a class="nav-link" href="index.html">Home</a>
                   </li>
                   <li class="nav-item">
-                     <a class="nav-link" href="about.html">About</a>
+                     <a class="nav-link" href="#about">About</a>
                   </li>
                   <li class="nav-item">
-                     <a class="nav-link" href="shop.html">Shop</a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="contact.html">Contact Us</a>
-                  </li>
+                    <a class="nav-link" href="#testimonial">Testimonial</a>
+                 </li>
                </ul>
-               <form class="form-inline my-2 my-lg-0">
-                  <div class="login_menu">
-                     <ul>
-                        <li><a href="#">Login</a></li>
-                        <li><a href="#"><img src="{{ asset($template->assets_path . '/images/trolly-icon.png')}}"></a></li>
-                        <li><a href="#"><img src="{{ asset($template->assets_path . '/images/search-icon.png')}}"></a></li>
-                     </ul>
-                  </div>
-                  <div></div>
-               </form>
             </div>
             <div id="main">
                <span style="font-size:36px;cursor:pointer; color: #fff" onclick="openNav()"><img src="{{ asset($template->assets_path . '/images/toggle-icon.png')}}" style="height: 30px;"></span>
@@ -101,7 +87,7 @@
       <!-- cycle section start -->
       <div class="cycle_section layout_padding">
          <div class="container">
-            <h1 class="cycle_taital">Our cycle</h1>
+            <h1 class="cycle_taital">Our Cycle</h1>
             <p class="cycle_text">It is a long established fact that a reader will be distracted by the </p>
             <div class="cycle_section_2 layout_padding">
                <div class="row">
@@ -139,32 +125,11 @@
                   </div>
                </div>
             </div>
-            <div class="cycle_section_2 layout_padding">
-               <div class="row">
-                  <div class="col-md-6">
-                     <div class="box_main_3">
-                        <h6 class="number_text_2">03</h6>
-                        <div class="image_2"><img src="{{ asset($template->assets_path . '/images/img-4.png')}}"></div>
-                     </div>
-                  </div>
-                  <div class="col-md-6">
-                     <h1 class="cycles_text">Mordern <br>Cycle</h1>
-                     <p class="lorem_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p>
-                     <div class="btn_main">
-                        <div class="buy_bt"><a href="#">Buy Now</a></div>
-                        <h4 class="price_text">Price <span style=" color: #f7c17b">$</span> <span style=" color: #325662">200</span></h4>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <div class="read_btn_main">
-               <div class="read_bt"><a href="#">Read More</a></div>
-            </div>
          </div>
       </div>
       <!-- cycle section end -->
       <!-- about section start -->
-      <div class="about_section layout_padding">
+      <div class="about_section layout_padding" id="about" data-target="about">
          <div class="container">
             <h1 class="about_taital">About Our cycle Store</h1>
             <p class="about_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters
@@ -172,12 +137,11 @@
             <div class="about_main">
                <img src="{{ asset($template->assets_path . '/images/img-5.png')}}" class="image_5">
             </div>
-            <div class="read_bt_1"><a href="#">Read More</a></div>
          </div>
       </div>
       <!-- about section end -->
       <!-- client section start -->
-      <div class="client_section layout_padding">
+      <div class="client_section layout_padding" id="testimonial" data-target="testimonial">
          <div id="my_slider" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                <div class="carousel-item active">
@@ -241,53 +205,11 @@
          </div>
       </div>
       <!-- client section end -->
-      <!-- news section start -->
-      <div class="news_section layout_padding">
-         <div class="container">
-            <h1 class="news_taital">News</h1>
-            <p class="news_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using </p>
-            <div class="news_section_2 layout_padding">
-               <div class="row">
-                  <div class="col-sm-4">
-                     <div class="box_main_1">
-                        <div class="zoomout frame"><img src="{{ asset($template->assets_path . '/images/img-6.png')}}"></div>
-                        <div class="padding_15">
-                           <h2 class="speed_text">Speed cycle</h2>
-                           <div class="post_text">Post by : Den <span style="float: right;">20-12-2019</span></div>
-                           <p class="long_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using </p>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-sm-4">
-                     <div class="box_main_1">
-                        <div class="zoomout frame"><img src="{{ asset($template->assets_path . '/images/img-7.png')}}"></div>
-                        <div class="padding_15">
-                           <h2 class="speed_text">Speed cycle</h2>
-                           <div class="post_text">Post by : Den <span style="float: right;">20-12-2019</span></div>
-                           <p class="long_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using </p>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-sm-4">
-                     <div class="box_main_1">
-                        <div class="zoomout frame"><img src="{{ asset($template->assets_path . '/images/img-8.png')}}"></div>
-                        <div class="padding_15">
-                           <h2 class="speed_text">Jaump cycle</h2>
-                           <div class="post_text">Post by : Den <span style="float: right;">20-12-2019</span></div>
-                           <p class="long_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using </p>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-      <!-- news section end -->
       <!-- contact section start -->
       <div class="contact_section layout_padding">
          <div class="container">
             <div class="contact_main">
-               <h1 class="request_text">A Call Back</h1>
+               <h1 class="request_text">Order Now</h1>
                <form action="/action_page.php">
                   <div class="form-group">
                      <input type="text" class="email-bt" placeholder="Name" name="Name">
@@ -299,10 +221,10 @@
                      <input type="text" class="email-bt" placeholder="Phone Numbar" name="Email">
                   </div>
                   <div class="form-group">
-                     <textarea class="massage-bt" placeholder="Massage" rows="5" id="comment" name="Massage"></textarea>
+                     <textarea class="massage-bt" placeholder="Address" rows="5" id="comment" name="Address"></textarea>
                   </div>
                </form>
-               <div class="send_btn"><a href="#">SEND</a></div>
+               <div class="send_btn"><a href="#">Order Now</a></div>
             </div>
          </div>
       </div>
@@ -330,8 +252,6 @@
                         <li><a href="#"><img src="{{ asset($template->assets_path . '/images/instagram-icon.png')}}"></a></li>
                      </ul>
                   </div>
-                  <input type="text" class="email_text" placeholder="Enter Your Email" name="Enter Your Email">
-                  <div class="subscribe_bt"><a href="#">Subscribe</a></div>
                </div>
             </div>
          </div>
@@ -340,7 +260,7 @@
       <!-- copyright section start -->
       <div class="copyright_section">
          <div class="container">
-            <p class="copyright_text">Copyright 2019 All Right Reserved By.<a href="https://html.design"> Free  html Templates</p><p class="copyright_text">Disrtributed By. <a href="https://themewagon.com">ThemeWagon </a></p>
+            <p class="copyright_text">Copyright 2019 All Right Reserved By.<a href="#"> 1commerce</p><p class="copyright_text">Disrtributed By. <a href="#">1commerce </a></p>
          </div>
       </div>
       <!-- copyright section end -->    
