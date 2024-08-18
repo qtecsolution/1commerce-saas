@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->double('price');
             $table->double('discount')->default(0);
+            $table->smallInteger('templates')->default(1);
             $table->integer('duration');
             $table->json('features');
             $table->tinyInteger('status')->default(1);
