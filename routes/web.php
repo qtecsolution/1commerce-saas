@@ -160,6 +160,7 @@ Route::prefix('app')->middleware('user')->group(function () {
 
     // subscription routes
     Route::resource('/subscription', SubscriptionController::class);
+    Route::get('/subscription/extend/{id}', [SubscriptionController::class, 'extend'])->name('subscription.extend');
 });
 
 

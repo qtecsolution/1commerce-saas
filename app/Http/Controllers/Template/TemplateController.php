@@ -11,6 +11,7 @@ use App\Models\Template\SeedeeTemplate;
 use App\Models\Template\UlaunchTemplate;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Controllers\Template\SeedeeTemplateController;
+use App\Models\Subscription;
 
 class TemplateController extends Controller
 {
@@ -42,13 +43,19 @@ class TemplateController extends Controller
     {
         $template = $this->templates->where('id', $id)->first();
         if (!$template) {
-            Alert::error('Oops!', 'Template Not Found.')->persistent('Close');
-            return redirect()->back();
+            Alert::error('Oops!', 'Template Not Found.');
+            return back();
         }
-        $userTemplate = UserTemplate::where('user_id', auth()->id())->where('template_id', $template->id)->first();
-        if ($userTemplate) {
-            Alert::error('Oops!', 'Template Already Added.')->persistent('Close');
-            return redirect()->back();
+        if (UserTemplate::where('user_id', auth()->id())->where('template_id', $template->id)->exists()) {
+            Alert::error('Oops!', 'Template Already Added.');
+            return back();
+        }
+
+        // check subscription and count
+        $subscription = Subscription::with('package_details')->where('user_id', auth()->id())->where('status', 1)->firstOrFail();
+        if (UserTemplate::where('user_id', auth()->id())->count() >= $subscription->package_details->templates) {
+            Alert::error('Oops!', 'Template Limit Reached. Upgrade Package to Add More Templates.');
+            return back();
         }
 
         if ($request->isMethod('post')) {

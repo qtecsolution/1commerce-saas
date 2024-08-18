@@ -16,21 +16,21 @@ class UserSeeder extends Seeder
     {
         // create default admin user
         $user = new User();
-        $user->name = 'Muhaimin Shihab';
-        $user->username = 'a';
+        $user->name = 'Mr Admin';
+        $user->username = 'admin@gmail.com';
         $user->phone = '01234567890';
-        $user->email = 'a@example.com';
-        $user->password = bcrypt('a');
+        $user->email = 'admin@gmail.com';
+        $user->password = bcrypt(12345678);
         $user->is_admin = 1;
         $user->save();
 
         // create default customer user
         $user = new User();
-        $user->name = 'Muhaimin Shihab';
-        $user->username = 'c';
+        $user->name = 'Mr Customer';
+        $user->username = 'customer@gmail.com';
         $user->phone = '01234567891';
-        $user->email = 'c@example.com';
-        $user->password = bcrypt('c');
+        $user->email = 'customer@gmail.com';
+        $user->password = bcrypt(12345678);
         $user->is_admin = 0;
         $user->save();
 
@@ -40,6 +40,7 @@ class UserSeeder extends Seeder
         $subscription->package_id = 1;
         $subscription->starting_date = date('Y-m-d', strtotime('-5 days'));
         $subscription->ending_date = date('Y-m-d', strtotime($subscription->starting_date . '+30 days'));
+        $subscription->is_paid = 1;
         $subscription->save();
     }
 }

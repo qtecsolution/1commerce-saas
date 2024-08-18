@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\User;
 
+use Carbon\Carbon;
+use App\Models\User;
+use App\Models\Package;
 use App\Models\Subscription;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Package;
-use App\Models\User;
 
 class SubscriptionController extends Controller
 {
@@ -25,9 +26,6 @@ class SubscriptionController extends Controller
 
         // check if have subscription
         if ($user->subscription_details) {
-            // delete old subscription
-            // $user->subscription_details->delete();
-
             $user->subscription_details->update([
                 'status' => 0
             ]);
@@ -49,9 +47,20 @@ class SubscriptionController extends Controller
         $subscription->package_id = $package->id;
         $subscription->starting_date = date('Y-m-d');
         $subscription->ending_date = date('Y-m-d', strtotime('+' . $package->duration . 'days'));
+        $subscription->is_paid = $package->id == 1 ? 1 : 0;
         $subscription->save();
 
         // return
         return true;
+    }
+
+    public function extend($id)
+    {
+        $subscription = Subscription::with('package_details')->findOrFail($id);
+        $subscription->ending_date = Carbon::parse($subscription->ending_date)->addDays($subscription->package_details->duration);
+        $subscription->save();
+
+        alert('Success', 'Successfully Completed', 'success');
+        return back();
     }
 }

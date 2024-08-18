@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->json('global_area')->nullable();
+            $table->string('nav_color')->default('#20bea7');
             $table->json('menu_area')->nullable();
             $table->json('hero_area')->nullable();
             $table->json('steps_area')->nullable();

@@ -21,8 +21,10 @@ return new class extends Migration
             $table->string('product_name')->nullable();
             $table->double('product_price')->default(0);
             $table->integer('quantity')->default(1);
+            $table->double('shipping_cost')->default(0);
             $table->double('discount_amount')->default(0);
             $table->double('total_amount')->default(0);
+            $table->string('currency')->nullable()->default('BDT');
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });

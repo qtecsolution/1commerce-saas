@@ -19,8 +19,10 @@ return new class extends Migration
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->string('company_name');
             $table->string('company_slug')->unique();
+            $table->string('fav_icon')->nullable();
             $table->string('company_logo')->nullable();
             $table->string('product_name')->nullable();
+            $table->double('shipping_cost')->nullable();
             $table->double('product_price')->default(0);
             $table->string('product_currency')->nullable();
             $table->tinyInteger('status')->default(1);
