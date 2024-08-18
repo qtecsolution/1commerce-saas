@@ -20,7 +20,7 @@ use App\Http\Controllers\Ticket\SupportTicketController;
 use App\Http\Controllers\Template\UlaunchTemplateController;
 use App\Http\Controllers\FrontEnd\PackageController as FrontEnd_PackageController;
 use App\Http\Controllers\Template\SeedeeTemplateController;
-
+use App\Models\Template\Template;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -204,3 +204,8 @@ Route::prefix('admin')->middleware('admin')->group(function () {
 */
 
 Route::get('test', [TestController::class, 'index']);
+//demo template show
+Route::get('template/{name}',function($name){
+    $template = Template::where('slug', strtolower($name))->firstOrFail();
+    return view('template.show.'.$template->slug,compact('template'));
+});
