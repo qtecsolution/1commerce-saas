@@ -130,7 +130,16 @@ class TemplateController extends Controller
             ])
                 ->where('user_id', auth()->id())
                 ->first();
-        } else {
+        }
+        else if ($userTemplate->template_id == 3) {
+            $template = SeedeeTemplate::with([
+                'steps',
+                'features',
+            ])
+                ->where('user_id', auth()->id())
+                ->first();
+        }
+         else {
             abort(404);
         }
 

@@ -51,7 +51,7 @@
      </nav>
       
       <main id="app" class="mt-5">
-         {{-- <cycle :user_template="{{ json_encode($userTemplate) }}" :template="{{ json_encode($template) }}" /> --}}
+         <cycle :user_template="{{ json_encode($userTemplate) }}" :template="{{ json_encode($template) }}" />
      </main>
 
       <!-- Javascript files-->
