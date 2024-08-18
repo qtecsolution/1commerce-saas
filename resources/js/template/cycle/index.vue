@@ -9,20 +9,20 @@
           class="logo"
           :alt="user_template.company_name"
         />
-        <div
-          class="position-absolute top-0 start-0 ms-2 mt-4"
-          title="Logo settings"
-        >
-          <div
-            class="bg-primary text-white text-center rounded-circle cursor-pointer"
-            style="width: 30px; height: 30px"
-            data-bs-toggle="modal"
-            data-bs-target="#logoImageModal"
-          >
-            <i class="fas fa-cog" style="font-size: 20px; margin-top: 5px"></i>
-          </div>
-        </div>
       </a>
+      <div
+        class="position-absolute top-0 start-0 ms-2 mt-5"
+        title="Logo settings"
+      >
+        <div
+          class="bg-primary text-white text-center rounded-circle cursor-pointer"
+          style="width: 30px; height: 30px"
+          data-bs-toggle="modal"
+          data-bs-target="#logoImageModal"
+        >
+          <i class="fas fa-cog" style="font-size: 20px; margin-top: 5px"></i>
+        </div>
+      </div>
       <button
         class="navbar-toggler"
         type="button"
@@ -52,6 +52,7 @@
           style="font-size: 36px; cursor: pointer; color: #fff"
           onclick="openNav()"
         >
+        
           <!-- <img src="cycle/images/toggle-icon.png" style="height: 30px;"> -->
         </span>
       </div>
@@ -417,7 +418,6 @@
     </div>
   </div>
   <!-- copyright section end -->
-
   <ImageModal
     modalId="logoImageModal"
     modalTitle="logo Image"
@@ -436,7 +436,7 @@ import SetupModal from "./components/setup-modal.vue";
 import FooterModal from "./components/footer-modal.vue";
 import AddInputModal from "../components/add-input-modal.vue";
 import FormField from "../components/form-field.vue";
-
+import UpdateImage from "./components/updateImage.js";
 export default {
   name: "Cycle",
   props: ["user_template", "template"],
@@ -660,6 +660,7 @@ export default {
   },
   beforeDestroy() {},
   methods: {
+    ...UpdateImage,
     toast(icon, title) {
       this.$swal({
         toast: true,
@@ -670,6 +671,25 @@ export default {
         timer: 3000,
       });
     },
+    updateImage() {},
+    updateLogo() {
+        alert("hello1");
+            const formData = new FormData();
+            formData.append("image", this.companyLogoRaw);
+            axios
+                .post(`${this.apiUrl}/update-company-logo`, formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                })
+                .then((response) => {
+                    console.log(response);
+                    this.toast("success", "Logo Updated.");
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        },
 
     imageSource(path, disk = "public") {
       if (disk == "storage" && path) {
