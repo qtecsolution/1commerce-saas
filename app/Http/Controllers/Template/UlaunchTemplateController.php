@@ -413,7 +413,6 @@ class UlaunchTemplateController extends Controller
     public function initialSetup($user_id)
     {
         UlaunchTemplate::create([
-            'user_id' => $user_id,
             'status' => 1,
             'nav_color' => '#20bea7',
             'menu_area' => json_encode([
@@ -432,6 +431,7 @@ class UlaunchTemplateController extends Controller
                     "url" => "#features",
                     "color" => "transparent",
                     "text_color" => "white",
+                    'user_id' => $user_id,
                     "border_color" => "white",
                     "hover_color" => "white",
                     "hover_text_color" => "black",

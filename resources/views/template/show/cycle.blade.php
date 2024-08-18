@@ -274,16 +274,16 @@
                   </div>
                </div>
                <div class="col-lg-4 col-sm-12">
-                  <div class="call_text"><a href="#"><img src="{{ asset($template->assets_path . '/images/map-icon.png')}}"><span class="padding_left_0">Page when looking at its layou</span></a></div>
-                  <div class="call_text"><a href="#"><img src="{{ asset($template->assets_path . '/images/call-icon.png')}}"><span class="padding_left_0">Call Now  +01 123467890</span></a></div>
-                  <div class="call_text"><a href="#"><img src="{{ asset($template->assets_path . '/images/mail-icon.png')}}"><span class="padding_left_0">demo@gmail.com</span></a></div>
+                  <div class="call_text"><a href="#"><span class="padding_left_0">Page when looking at its layou</span></a></div>
+                  <div class="call_text"><a href="#"><span class="padding_left_0">Call Now  +01 123467890</span></a></div>
+                  <div class="call_text"><a href="#"><span class="padding_left_0">demo@gmail.com</span></a></div>
                   <div class="social_icon">
-                     <ul>
+                     {{-- <ul>
                         <li><a href="#"><img src="{{ asset($template->assets_path . '/images/fb-icon1.png')}}"></a></li>
                         <li><a href="#"><img src="{{ asset($template->assets_path . '/images/twitter-icon.png')}}"></a></li>
                         <li><a href="#"><img src="{{ asset($template->assets_path . '/images/linkedin-icon.png')}}"></a></li>
                         <li><a href="#"><img src="{{ asset($template->assets_path . '/images/instagram-icon.png')}}"></a></li>
-                     </ul>
+                     </ul> --}}
                   </div>
                </div>
             </div>

@@ -13,6 +13,9 @@
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
+       <!-- Font Awesome icon css-->
+      <link href="{{ asset('assets/font-awesome/css/all.min.css') }}" rel="stylesheet" media="screen">
+    
       <!-- bootstrap css -->
       <link rel="stylesheet" type="text/css" href="{{ asset($template->assets_path . '/css/bootstrap.min.css')}}">
       <!-- style css -->
