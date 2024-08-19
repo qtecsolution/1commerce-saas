@@ -19,6 +19,7 @@ class TestController extends Controller
     public function index(Request $request)
     {
         abort(404);
+
         if ($request->fake_order > 0) {
             $faker = Faker::create();
             for ($i = 0; $i < $request->fake_order; $i++) {
