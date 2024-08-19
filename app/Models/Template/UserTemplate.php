@@ -5,6 +5,7 @@ namespace App\Models\Template;
 use App\Models\PaymentMethod;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\OrderFormAdditionalField;
+use App\Models\TrackingApi;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class UserTemplate extends Model
@@ -32,5 +33,10 @@ class UserTemplate extends Model
     public function getSSLCommerzAttribute()
     {
         return $this->paymentMethods()->where('payment_method', 'ssl_commerz')->first();
+    }
+
+    public function trackingApi()
+    {
+        return $this->belongsTo(TrackingApi::class, 'id', 'user_template_id');
     }
 }

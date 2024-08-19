@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Subscription;
+use App\Models\Template\UserTemplate;
 use Illuminate\Support\Facades\Artisan;
 
 if (!function_exists('isSubscriptionPaid')) {
@@ -74,7 +75,6 @@ if (!function_exists("orderStatusColor")) {
     }
 }
 
-
 if (!function_exists("fetchImage")) {
     function fetchImage($path, $alter_path)
     {
@@ -85,5 +85,28 @@ if (!function_exists("fetchImage")) {
         }
 
         return $link;
+    }
+}
+
+if (!function_exists('trackingApi')) {
+    function trackingApi($userTemplateId)
+    {
+        $userTemplate = UserTemplate::with('trackingApi')->find($userTemplateId);
+
+        if ($userTemplate && $userTemplate->trackingApi) {
+            $fbPixel = $userTemplate->trackingApi->fb_pixel_value ?? '';
+            $gtmHead = $userTemplate->trackingApi->gtm_head_value ?? '';
+            $gtmBody = $userTemplate->trackingApi->gtm_body_value ?? '';
+
+            return [
+                'head_code' => $gtmHead . $fbPixel,
+                'body_code' => $gtmBody
+            ];
+        }
+
+        return [
+            'head_code' => '',
+            'body_code' => ''
+        ];
     }
 }
