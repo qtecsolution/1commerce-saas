@@ -40,6 +40,10 @@
                                                 class="btn btn-primary btn-sm">
                                                 Edit
                                             </a>
+                                            <a href="{{ route('settings', $userTemplate['id']) }}"
+                                                class="btn bg-orange btn-sm">
+                                                Settings
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
