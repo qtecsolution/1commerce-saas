@@ -436,10 +436,10 @@ class CycleTemplateController extends Controller
             'image' => $uploadedPath,
         ]);
         $this->template->save();
-
         return response()->json([
             'message' => 'About Area Updated.',
-            'data' => $this->template->about_area
+            'data' => $this->template->about_area,
+            'aboutImage'=>$uploadedPath
         ]);
     }
 

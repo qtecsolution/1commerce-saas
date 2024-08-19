@@ -40,16 +40,15 @@ export default {
                 this.updateFeaturesArea();
                 break;
 
-            case "about-1":
-                this.abouts[0].image = this.validateImage(
-                    this.abouts[0].image,
+            case "about":
+                this.aboutImage = this.validateImage(
+                    this.aboutImage,
                     data.image
                 );
-                this.abouts[0].image_raw = this.validateImage(
-                    this.abouts[0].image_raw,
+                this.aboutImageRaw = this.validateImage(
+                    this.aboutImageRaw,
                     data.image_raw
                 );
-
                 this.updateAboutArea();
                 break;
 

@@ -861,7 +861,7 @@ export default {
       const formData = new FormData();
       formData.append("title", this.aboutTitle);
       formData.append("description", this.aboutDescription);
-      formData.append("image", this.aboutImage_raw);
+      formData.append("image", this.aboutImageRaw);
       formData.append("background_color", this.aboutBg);
       axios
         .post(`${this.apiUrl}/update-about-area`, formData, {
@@ -870,7 +870,7 @@ export default {
           },
         })
         .then((response) => {
-          // console.log(response.data);
+          this.aboutImage = this.imageSource(response.data.aboutImage, "storage");
           this.toast("success", "Resources Updated.");
         })
         .catch((error) => {
