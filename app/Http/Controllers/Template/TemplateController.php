@@ -143,15 +143,12 @@ class TemplateController extends Controller
                 ->first();
         }
         else if ($userTemplate->template_id == 3) {
-
-            $template = new \stdClass();
-            // $template = CycleTemplate::with([
-            //     'steps',
-            //     'features',
-            // ])
-            //     ->where('user_id', auth()->id())
-            //     ->first();
-            $template->assets_path = 'cycle';
+            $template = CycleTemplate::with([
+                'steps',
+                'features',
+            ])
+                ->where('user_id', auth()->id())
+                ->first();
         }
          else {
             abort(404);

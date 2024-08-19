@@ -33,6 +33,7 @@ class CycleTemplateController extends Controller
     public function initialSetup($user_id)
     {
         CycleTemplate::create([
+            'user_id' => $user_id,
             'status' => 1,
             'nav_color' => '#20bea7',
             'menu_area' => json_encode([
@@ -66,8 +67,8 @@ class CycleTemplateController extends Controller
                 "background_color" => "#f7f7f7"
             ]),
             'about_area' => json_encode([
-                "title" => "About Product",
-                "sub_title" => "BEAUTY MEETS FUNCTIONALITY",
+                "title" => "About Our cycle Store",
+                "description" => "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
                 "background_color" => "#ffffff",
                 "items" => [
                     [
@@ -290,7 +291,7 @@ class CycleTemplateController extends Controller
             'description' => $request->input('description'),
             'image' => $uploadedPath,
             'button' => json_decode($request->input('button')),
-            'background_color' => $request->input('background_color'),
+            // 'background_color' => $request->input('background_color'),
         ]);
 
         $this->template->save();
@@ -402,41 +403,37 @@ class CycleTemplateController extends Controller
 
     public function updateAboutArea(Request $request)
     {
-        $decodedData = json_decode($this->template->about_area);
-        $abouts = json_decode($request->input('items'));
+        
+        $aboutArea = $this->template->about_area;
+        $uploadedPath = null;
 
-        $uploadedPaths = [null, null];
-        $images = ['image_1', 'image_2'];
+        if ($aboutArea) {
+            if ($request->hasFile('image')) {
+                $decodedData = json_decode($aboutArea);
 
-        foreach ($images as $index => $image) {
-            if ($request->hasFile($image)) {
-                if ($decodedData && isset($abouts[$index])) {
-                    $oldImagePath = storage_path('app/public/' . $abouts[$index]->image);
+                if ($decodedData && isset($decodedData->image)) {
+                    $oldImagePath = storage_path('app/public/' . $decodedData->image);
                     if (file_exists($oldImagePath)) {
                         unlink($oldImagePath);
                     }
                 }
 
-                $uploadedPath = $request->file($image)->store('public/cycle');
-                $uploadedPaths[$index] = 'cycle/' . basename($uploadedPath);
+                $uploadedPath = $request->file('image')->store('public/cycle');
+                $uploadedPath = 'cycle/' . basename($uploadedPath);
+            }
+        } else {
+            if ($request->hasFile('image')) {
+                $uploadedPath = $request->file('image')->store('public/cycle');
+                $uploadedPath = 'cycle/' . basename($uploadedPath);
             }
         }
 
-        if (isset($abouts[0])) {
-            $abouts[0]->image = $uploadedPaths[0] ?? $decodedData->items[0]->image ?? null;
-            $abouts[0]->image_raw = null;
-        }
-
-        if (isset($abouts[1])) {
-            $abouts[1]->image = $uploadedPaths[1] ?? $decodedData->items[1]->image ?? null;
-            $abouts[1]->image_raw = null;
-        }
-
+      
         $this->template->about_area = json_encode([
             'title' => $request->input('title'),
-            'sub_title' => $request->input('sub_title'),
+            'description' => $request->input('description'),
             'background_color' => $request->input('background_color'),
-            'items' => $abouts,
+            'image' => $uploadedPath,
         ]);
         $this->template->save();
 

@@ -52,7 +52,6 @@
           style="font-size: 36px; cursor: pointer; color: #fff"
           onclick="openNav()"
         >
-        
           <!-- <img src="cycle/images/toggle-icon.png" style="height: 30px;"> -->
         </span>
       </div>
@@ -65,17 +64,65 @@
             <div class="container">
               <div class="row">
                 <div class="col-md-7">
-                  <div class="best_text">Best</div>
-                  <div class="image_1"><img :src="`${appUrl}/cycle/images/img-1.png`" alt="Image"></div>
+                  <!-- <div class="best_text">Best</div> -->
+                  <div class="image_1">
+                    <div
+                      class="position-absolute top-0 end-0 mt-2"
+                      title="Image settings"
+                    >
+                      <div
+                        class="bg-primary text-white text-center rounded-circle cursor-pointer"
+                        style="width: 30px; height: 30px"
+                        data-bs-toggle="modal"
+                        data-bs-target="#heroImageModal"
+                      >
+                        <i
+                          class="fas fa-cog"
+                          style="font-size: 20px; margin-top: 5px"
+                        ></i>
+                      </div>
+                    </div>
+                    <img :src="heroImage" alt="Image" />
+                  </div>
                 </div>
                 <div class="col-md-5">
-                  <h2 class="banner_taital" contenteditable="true" @blur="updateHeroTitle">{{heroTitle}}</h2>
-                  <p class="banner_text" contenteditable="true" @blur="updateHeroDescription">
-                    {{heroDescription}}
+                  <h2
+                    class="banner_taital"
+                    contenteditable="true"
+                    @blur="updateHeroTitle"
+                  >
+                    {{ heroTitle }}
+                  </h2>
+                  <p
+                    class="banner_text"
+                    contenteditable="true"
+                    @blur="updateHeroDescription"
+                  >
+                    {{ heroDescription }}
                   </p>
-                  <div class="contact_bt">
-                    <a href="#order">Buy Now</a>
-                  </div>
+
+                  <!-- <div class="contact_bt">
+                    
+                    <a  href="#"> Buy Now
+                    </a>
+                     <div class="position-absolute top-0 end-0 mt-2"
+                                    title="Button settings"
+                                >
+                   <div class="bg-primary text-white text-center rounded-circle cursor-pointer"
+                                        style="width: 30px; height: 30px"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#heroButtonModal"
+                                    >
+                                        <i
+                                            class="fas fa-cog"
+                                            style="
+                                                font-size: 20px;
+                                                margin-top: 5px;
+                                            "
+                                        ></i>
+                                    </div>
+                      </div>
+                  </div> -->
                 </div>
               </div>
             </div>
@@ -134,7 +181,9 @@
           <div class="col-md-6">
             <div class="box_main">
               <h6 class="number_text">01</h6>
-              <div class="image_2"><img :src="`${appUrl}/cycle/images/img-2.png`" alt="Image" /></div>
+              <div class="image_2">
+                <img :src="`${appUrl}/cycle/images/img-2.png`" alt="Image" />
+              </div>
             </div>
           </div>
           <div class="col-md-6">
@@ -176,7 +225,9 @@
           <div class="col-md-6">
             <div class="box_main_3">
               <h6 class="number_text_2">02</h6>
-              <div class="image_2"><img :src="`${appUrl}/cycle/images/img-3.png`"></div>
+              <div class="image_2">
+                <img :src="`${appUrl}/cycle/images/img-3.png`" />
+              </div>
             </div>
           </div>
         </div>
@@ -187,15 +238,27 @@
   <!-- about section start -->
   <div class="about_section layout_padding" id="about" data-target="about">
     <div class="container">
-      <h1 class="about_taital">About Our cycle Store</h1>
-      <p class="about_text">
-        It is a long established fact that a reader will be distracted by the
-        readable content of a page when looking at its layout. The point of
-        using Lorem Ipsum is that it has a more-or-less normal distribution of
-        letters
+      <h1 class="about_taital" contenteditable="true" @blur="updateAboutTitle">
+       {{ aboutTitle }}
+      </h1>
+      <p class="about_text" contenteditable="true" @blur="updateAboutDescription">
+        {{ aboutDescription }}
       </p>
       <div class="about_main">
-        <img :src="`${appUrl}/cycle/images/img-5.png`" class="image_5">
+        <div
+          class="position-absolute top-0 end-0 mt-2"
+          title="About Image settings"
+        >
+          <div
+            class="bg-primary text-white text-center rounded-circle cursor-pointer"
+            style="width: 30px; height: 30px;margin-left:280px;"
+            data-bs-toggle="modal"
+            data-bs-target="#aboutImageModal"
+          >
+            <i class="fas fa-cog" style="font-size: 20px; margin-top: 5px;"></i>
+          </div>
+        </div>
+        <img :src="aboutImage" class="image_5" />
       </div>
     </div>
   </div>
@@ -214,10 +277,17 @@
               <h1 class="client_taital">Says Customers</h1>
               <div class="client_section_2">
                 <div class="client_left">
-                  <div><img :src="`${appUrl}/cycle/images/client-img.png`" class="client_img"></div>
+                  <div>
+                    <img
+                      :src="`${appUrl}/cycle/images/client-img.png`"
+                      class="client_img"
+                    />
+                  </div>
                 </div>
                 <div class="client_right">
-                  <div class="quote_icon"><img :src="`${appUrl}/cycle/images/quote-icon.png`"></div>
+                  <div class="quote_icon">
+                    <img :src="`${appUrl}/cycle/images/quote-icon.png`" />
+                  </div>
                   <p class="client_text">
                     It is a long established fact that a reader will be
                     distracted by the readable content of a page when looking at
@@ -236,10 +306,17 @@
               <h1 class="client_taital">Says Customers</h1>
               <div class="client_section_2">
                 <div class="client_left">
-                  <div><img :src="`${appUrl}/cycle/images/client-img.png`" class="client_img"></div>
+                  <div>
+                    <img
+                      :src="`${appUrl}/cycle/images/client-img.png`"
+                      class="client_img"
+                    />
+                  </div>
                 </div>
                 <div class="client_right">
-                  <div class="quote_icon"><img :src="`${appUrl}/cycle/images/quote-icon.png`"></div>
+                  <div class="quote_icon">
+                    <img :src="`${appUrl}/cycle/images/quote-icon.png`" />
+                  </div>
                   <p class="client_text">
                     It is a long established fact that a reader will be
                     distracted by the readable content of a page when looking at
@@ -404,11 +481,32 @@
     :previewURL="companyLogo"
     @update="updateImage"
   />
+  <ImageModal
+    modalId="heroImageModal"
+    modalTitle="Hero Image"
+    section="hero"
+    :previewURL="heroImage"
+    @update="updateImage"
+  />
+  <ImageModal
+    modalId="aboutImageModal"
+    modalTitle="About Image"
+    section="about"
+    :previewURL="aboutImage"
+    @update="updateImage"
+  />
+  <ButtonModal
+    modalId="heroButtonModal"
+    modalTitle="Hero Button"
+    section="hero"
+    @update="updateButton"
+    :buttonData="heroButton"
+  />
 </template>
 
 <script>
 import axios from "axios";
-import ButtonModal from "../components/button-modal.vue";
+import ButtonModal from "./components/button-modal.vue";
 import ImageModal from "./components/image-modal.vue";
 import ColorPicker from "../components/color-picker.vue";
 import SetupModal from "./components/setup-modal.vue";
@@ -416,6 +514,7 @@ import FooterModal from "./components/footer-modal.vue";
 import AddInputModal from "../components/add-input-modal.vue";
 import FormField from "../components/form-field.vue";
 import UpdateImage from "./components/updateImage.js";
+import UpdateButton from "./components/updateButton.js";
 export default {
   name: "Cycle",
   props: ["user_template", "template"],
@@ -458,13 +557,12 @@ export default {
       ],
 
       // hero area
-      heroTitle: "New Model Cycle",
-      heroDescription:
-        "Lorem ipsum dolor sit amet. Reprehenderit, qui blanditiis quidem rerum necessitatibus praesentium voluptatum deleniti atque corrupti.",
+      heroTitle: "",
+      heroDescription: "",
       heroButton: [],
       heroImage: "",
       heroImageRaw: [],
-      heroBg: "#20bea7",
+      heroBg: "#274d5a",
       navBg: "#20bea7",
 
       // steps area
@@ -495,81 +593,13 @@ export default {
       featureImage: "",
       featureImageRaw: "",
       featureBg: "#f7f7f7",
-      features: [
-        {
-          title: "Dual Processor",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
-          icon: "flaticon-cpu",
-        },
-        {
-          title: "Gold aluminum",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
-          icon: "flaticon-cpu",
-        },
-        {
-          title: "Ion-X glass",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
-          icon: "flaticon-cpu",
-        },
-        {
-          title: "Heart rate sensor",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
-          icon: "flaticon-cpu",
-        },
-        {
-          title: "Force Touch",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
-          icon: "flaticon-cpu",
-        },
-        {
-          title: "Retina display",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
-          icon: "flaticon-cpu",
-        },
-        {
-          title: "Fire Speaker",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
-          icon: "flaticon-cpu",
-        },
-        {
-          title: "Bluetooth & Wi-Fi",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
-          icon: "flaticon-cpu",
-        },
-      ],
 
       // about area
-      aboutTitle: "About Product",
-      aboutSubTitle: "BEAUTY MEETS FUNCTIONALITY",
-      aboutBg: "#ffffff",
-      abouts: [
-        {
-          title: "Different preset Signup & Order forms ready to use.",
-          sub_title: "FRESH NEWS FROM THE LABS",
-          description:
-            "Pri quas audiam virtute ut, case utamur fuisset eam ut, iisque accommodare an eam. Reque blandit qui eu, cu vix nonumy volumus. Legendos intellegam id usu, vide oporteat vix eu, id illud principes has.",
-          button: [],
-          image: "",
-          image_raw: [],
-        },
-        {
-          title: "Different preset Signup & Order forms ready to use.",
-          sub_title: "FRESH NEWS FROM THE LABS",
-          description:
-            "Pri quas audiam virtute ut, case utamur fuisset eam ut, iisque accommodare an eam. Reque blandit qui eu, cu vix nonumy volumus. Legendos intellegam id usu, vide oporteat vix eu, id illud principes has.",
-          button: [],
-          image: "",
-          image_raw: [],
-        },
-      ],
+      aboutTitle: "",
+      aboutDescription: "",
+      aboutBg: "",
+      aboutImage: "",
+      aboutImageRaw: [],
 
       // testimonial area
       testimonialSubTitle: "FEEDBACK",
@@ -635,34 +665,58 @@ export default {
   },
   computed: {},
   mounted() {
-    this.companyLogo = this.user_template.company_logo;
+    this.companyLogo = this.appUrl + "/" + this.user_template.company_logo;
     this.companyLogo =
-            this.user_template.company_logo != null &&
-            this.user_template.company_logo
-                ? this.imageSource(this.user_template.company_logo, "storage")
-                : this.imageSource("images/logo.png");
+      this.user_template.company_logo != null && this.user_template.company_logo
+        ? this.imageSource(this.user_template.company_logo, "storage")
+        : this.imageSource("images/logo.png");
     this.appUrl = `${window.location.origin}`;
     this.apiUrl = `${window.location.origin}/app/templates/cycle`;
-    
+
     // hero area
     const heroArea =
-            this.template.hero_area != null
-                ? JSON.parse(this.template.hero_area)
-                : null;
-    this.heroBg =
-            heroArea != null ? heroArea.background_color : this.heroBg;
-    this.heroTitle = heroArea != null ? heroArea.title : this.heroTitle;
+      this.template.hero_area != null
+        ? JSON.parse(this.template.hero_area)
+        : null;
+    this.heroBg = heroArea != null ? heroArea.background_color : this.heroBg;
+    this.heroTitle = heroArea.title;
     this.heroDescription =
-            heroArea != null ? heroArea.description : this.heroDescription;
+      heroArea != null ? heroArea.description : this.heroDescription;
     this.heroImage =
-            heroArea != null && heroArea.image
-                ? this.imageSource(heroArea.image, "storage")
-                : this.imageSource("images/header.png");
+      heroArea != null && heroArea.image
+        ? this.imageSource(heroArea.image, "storage")
+        : this.appUrl + "/cycle/images/img-1.png";
 
+    // about area
+    const aboutArea = this.template.about_area
+      ? JSON.parse(this.template.about_area)
+      : null;
+
+    this.aboutBg =
+      aboutArea != null ? aboutArea.background_color : this.aboutBg;
+    this.aboutTitle = aboutArea?.title || this.aboutTitle;
+    this.aboutDescription = aboutArea?.description || this.aboutDescription;
+    this.aboutImage =
+      aboutArea != null && aboutArea.image
+        ? this.imageSource(aboutArea.image, "storage")
+        : this.appUrl + "/cycle/images/img-5.png";
+
+    const defaultHeroButton = {
+      title: "Buy Now",
+      url: "#buy",
+      color: "transparent",
+      text_color: "white",
+      border_color: "white",
+      hover_color: "white",
+      hover_text_color: "black",
+      hover_border_color: "white",
+    };
+    this.heroButton = heroArea != null ? heroArea.button : defaultHeroButton;
   },
   beforeDestroy() {},
   methods: {
     ...UpdateImage,
+    ...UpdateButton,
     toast(icon, title) {
       this.$swal({
         toast: true,
@@ -674,71 +728,69 @@ export default {
       });
     },
     updateContent(event) {
-            const rawContent =
-                event.target.innerHTML ?? event.target.textContent;
-            const sanitizedContent = rawContent.replace(/&nbsp;/g, " ");
+      const rawContent = event.target.innerHTML ?? event.target.textContent;
+      const sanitizedContent = rawContent.replace(/&nbsp;/g, " ");
 
-            return sanitizedContent;
+      return sanitizedContent;
     },
     updateLogo() {
-            const formData = new FormData();
-            formData.append("image", this.companyLogoRaw);
-            axios
-                .post(`${this.apiUrl}/update-company-logo`, formData, {
-                    headers: {
-                        "Content-Type": "multipart/form-data",
-                    },
-                })
-                .then((response) => {
-                    console.log("response:",response);
-                    this.toast("success", "Logo Updated.");
-                })
-                .catch((error) => {
-                    console.error("error:",error);
-                });
+      const formData = new FormData();
+      formData.append("image", this.companyLogoRaw);
+      axios
+        .post(`${this.apiUrl}/update-company-logo`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((response) => {
+          console.log("response:", response);
+          this.toast("success", "Logo Updated.");
+        })
+        .catch((error) => {
+          console.error("error:", error);
+        });
     },
     updateHeroArea() {
-            const formData = new FormData();
-            formData.append("title", this.heroTitle);
-            formData.append("description", this.heroDescription);
-            // formData.append("button", JSON.stringify(this.heroButton));
-            // formData.append("image", this.heroImageRaw);
-            // formData.append("background_color", this.heroBg);
+      const formData = new FormData();
+      formData.append("title", this.heroTitle);
+      formData.append("description", this.heroDescription);
+      formData.append("button", JSON.stringify(this.heroButton));
+      formData.append("image", this.heroImageRaw);
+      formData.append("background_color", this.heroBg);
 
-            axios
-                .post(`${this.apiUrl}/update-hero-area`, formData, {
-                    headers: {
-                        "Content-Type": "multipart/form-data",
-                    },
-                })
-                .then((response) => {
-                    console.log(response.data);
-                    this.toast("success", "Resources Updated.");
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        },
-      updateHeroTitle(event) {
-            const newValue = event.target.textContent.trim();
-            if (this.heroTitle == newValue) {
-                return;
-            }
+      axios
+        .post(`${this.apiUrl}/update-hero-area`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          this.toast("success", "Resources Updated.");
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+    updateHeroTitle(event) {
+      const newValue = event.target.textContent.trim();
+      if (this.heroTitle == newValue) {
+        return;
+      }
 
-            this.heroTitle = this.updateContent(event);
-            this.updateHeroArea();
-        },
+      this.heroTitle = this.updateContent(event);
+      this.updateHeroArea();
+    },
 
-        updateHeroDescription(event) {
-            const newValue = event.target.textContent.trim();
-            if (this.heroDescription == newValue) {
-                return;
-            }
+    updateHeroDescription(event) {
+      const newValue = event.target.textContent.trim();
+      if (this.heroDescription == newValue) {
+        return;
+      }
 
-            this.heroDescription = this.updateContent(event);
-            this.updateHeroArea();
-
-        },
+      this.heroDescription = this.updateContent(event);
+      this.updateHeroArea();
+    },
     imageSource(path, disk = "public") {
       if (disk == "storage" && path) {
         return `${this.appUrl}/storage/${path}`;
@@ -746,18 +798,6 @@ export default {
 
       return `${this.appUrl}/${this.user_template.template.assets_path}/${path}`;
     },
-
-    updateHeroArea(key, event) {
-      const newValue = event.target.textContent.trim();
-      if (this.heroArea[key] == newValue) {
-        return;
-      }
-      this.heroArea[key] = newValue;
-
-      // Save the updated hero area when the user blurs out
-      this.saveHeroArea();
-    },
-
     updateFeaturesArea(key, event) {
       const newValue = event.target.textContent.trim();
       if (this.featuresArea[key] == newValue) {
@@ -769,17 +809,6 @@ export default {
       this.saveFeaturesArea();
     },
 
-    updateAboutArea(key, event) {
-      const newValue = event.target.textContent.trim();
-      if (this.aboutArea[key] == newValue) {
-        return;
-      }
-      this.aboutArea[key] = newValue;
-
-      // Save the updated about area when the user blurs out
-      this.saveAboutArea();
-    },
-
     updateOrderArea(key, event) {
       const newValue = event.target.textContent.trim();
       if (this.orderArea[key] == newValue) {
@@ -789,23 +818,6 @@ export default {
 
       // Save the updated about area when the user blurs out
       this.saveOrderArea();
-    },
-
-    saveHeroArea() {
-      axios
-        .post(`${this.apiUrl}/update-content-area`, {
-          hero_area: JSON.stringify(this.heroArea),
-        })
-        .then((response) => {
-          if (response.data.success) {
-            this.toast("success", "Updated successfully");
-          } else {
-            this.toast("error", "Failed to update");
-          }
-        })
-        .catch((error) => {
-          this.toast("error", "Error updating:", error);
-        });
     },
 
     saveFeaturesArea() {
@@ -825,37 +837,44 @@ export default {
         });
     },
 
-    saveAboutArea() {
-      axios
-        .post(`${this.apiUrl}/update-content-area`, {
-          about_area: JSON.stringify(this.aboutArea),
-        })
-        .then((response) => {
-          if (response.data.success) {
-            this.toast("success", "Updated successfully");
-          } else {
-            this.toast("error", "Failed to update");
-          }
-        })
-        .catch((error) => {
-          this.toast("error", "Error updating:", error);
-        });
+    updateAboutDescription(event) {
+      const newValue = event.target.textContent.trim();
+      if (this.aboutDescription == newValue) {
+        return;
+      }
+
+      this.aboutDescription = this.updateContent(event);
+      this.updateAboutArea();
     },
 
-    saveOrderArea() {
+    updateAboutTitle(event) {
+      const newValue = event.target.textContent.trim();
+      if (this.aboutTitle == newValue) {
+        return;
+      }
+
+      this.aboutTitle = this.updateContent(event);
+      this.updateAboutArea();
+    },
+
+    updateAboutArea() {
+      const formData = new FormData();
+      formData.append("title", this.aboutTitle);
+      formData.append("description", this.aboutDescription);
+      formData.append("image", this.aboutImage_raw);
+      formData.append("background_color", this.aboutBg);
       axios
-        .post(`${this.apiUrl}/update-content-area`, {
-          order_area: JSON.stringify(this.orderArea),
+        .post(`${this.apiUrl}/update-about-area`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         })
         .then((response) => {
-          if (response.data.success) {
-            this.toast("success", "Updated successfully");
-          } else {
-            this.toast("error", "Failed to update");
-          }
+          // console.log(response.data);
+          this.toast("success", "Resources Updated.");
         })
         .catch((error) => {
-          this.toast("error", "Error updating:", error);
+          console.error(error);
         });
     },
 
@@ -1147,4 +1166,22 @@ export default {
 </script>
 
 <style scoped>
+.btn-buynow {
+  background-color: v-bind("heroButton.color");
+  color: v-bind("heroButton.text_color");
+  border-color: v-bind("heroButton.border_color");
+}
+
+.btn-buynow:hover {
+  background-color: v-bind("heroButton.hover_color") !important;
+  color: v-bind("heroButton.hover_text_color");
+  border-color: v-bind("heroButton.hover_border_color");
+}
+.header_section {
+  width: 100%;
+  float: left;
+  background-image: linear-gradient(-13deg, #ffffff 30%, heroBg 20%) !important;
+  position: relative;
+  overflow-x: hidden;
+}
 </style>
