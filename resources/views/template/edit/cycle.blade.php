@@ -46,7 +46,7 @@
                  <i class="fas fa-arrow-left me-2"></i>
                  ADMIN
              </a>
-             <a href="{{ url('/cycle') }}" class="btn btn-light px-4" target="_blank"
+             <a href="{{ route('user_shop', $userTemplate->company_slug) }}" class="btn btn-light px-4" target="_blank"
                  title="Live Preview">
                  VIEW
              </a>

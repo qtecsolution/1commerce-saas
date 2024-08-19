@@ -10,6 +10,7 @@ use App\Models\OrderFormAdditionalField;
 use App\Models\Template\UserTemplate;
 use App\Models\Template\SeedeeTemplate;
 use App\Models\Template\UlaunchTemplate;
+use App\Models\Template\CycleTemplate;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Validation\ValidationException;
 
@@ -35,6 +36,13 @@ class ShopController extends Controller
                 ->firstOrFail();
             // dd($seedee);
             return view('template.live.seedee', compact('seedee', 'userTemplate'));
+        }
+        else if ($userTemplate->template_id == 3) {
+            $cycle = CycleTemplate::with(['steps', 'features'])
+                ->where('user_id', $userTemplate->user_id)
+                ->firstOrFail();
+            // dd($seedee);
+            return view('template.live.cycle', compact('cycle', 'userTemplate'));
         }
 
         abort(404);
