@@ -1,4 +1,6 @@
 @php
+    $trackingApi = trackingApi($userTemplate->id);
+
     $site_color = $seedee->color != null ? json_decode($seedee->color, true) : null;
     $hero_area = $seedee->hero_area != null ? json_decode($seedee->hero_area, true) : null;
     $feature_area = $seedee->features_area ? json_decode($seedee->features_area, true) : null;
@@ -34,9 +36,13 @@
     <script src="{{ asset($userTemplate->template->assets_path . '/js/bootstrap.bundle.min.js') }}"></script>
 
     @include('template.live.styles.seedee')
+
+    {!! $trackingApi['head_code'] !!}
 </head>
 
 <body class="site_background_color">
+    {!! $trackingApi['body_code'] !!}
+
     <a class="call-to-btn" href="tel:{{ $footer_area['title'] }}">
         <span class="material-icons-outlined me-1">
             call
