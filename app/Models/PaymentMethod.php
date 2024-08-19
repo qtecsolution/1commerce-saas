@@ -10,4 +10,11 @@ class PaymentMethod extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    protected $appends = ['decoded_credentials'];
+
+    public function getDecodedCredentialsAttribute()
+    {
+        return json_decode($this->credentials, true);
+    }
 }

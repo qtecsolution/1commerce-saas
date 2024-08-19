@@ -110,6 +110,11 @@ Route::prefix('app')->middleware('user')->group(function () {
         Route::controller(SettingController::class)->group(function () {
             Route::get("settings/{id}", "settings")->name('settings');
             Route::post('tracking-api', 'createApi')->name('tracking_api');
+
+            // payment method routes
+            Route::prefix('payment-method')->group(function () {
+                Route::post('update/ssl-commerz', 'updateSslCommerz')->name('update.ssl.commerz');
+            });
         });
 
         // template routes

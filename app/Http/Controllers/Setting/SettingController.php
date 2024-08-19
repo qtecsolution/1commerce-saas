@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Setting;
 
 use App\Http\Controllers\Controller;
+use App\Models\PaymentMethod;
 use App\Models\Template\UserTemplate;
 use App\Models\TrackingApi;
 use Illuminate\Http\Request;
@@ -13,6 +14,7 @@ class SettingController extends Controller
     {
         $userTemplate = UserTemplate::find($id);
         $trackingApi = TrackingApi::where('user_template_id', $id)->first();
+
         return view('customer.setting.settings', compact('trackingApi', 'userTemplate'));
     }
 
@@ -41,5 +43,25 @@ class SettingController extends Controller
         // return to customer settings
         toast('Updated successfully.', 'success');
         return redirect()->back();
+    }
+
+    public function updateSslCommerz(Request $request)
+    {
+        PaymentMethod::updateOrCreate(
+            [
+                'user_template_id' => $request->user_template_id,
+                'payment_method' => 'ssl_commerz'
+            ],
+            [
+                'credentials' => json_encode([
+                    'store_id' => $request->store_id,
+                    'store_password' => $request->store_password,
+                    'test_mode' => $request->sandbox ? true : false,
+                ]),
+            ]
+        );
+
+        toast('Updated successfully.', 'success');
+        return back()->withFragment('payment_methods');
     }
 }

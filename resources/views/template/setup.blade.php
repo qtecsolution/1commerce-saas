@@ -92,7 +92,7 @@
                                 Shipping Cost
                                 <sup class="text-muted">(optional)</sup>
                             </label>
-                            <input type="text" name="shipping_cost" class="form-control"
+                            <input type="nymber" min="0" step="0.01" name="shipping_cost" class="form-control"
                                 value="{{ old('shipping_cost') }}" placeholder="0.00">
                             @error('shipping_cost')
                                 <span class="text-danger">{{ $message }}</span>

@@ -2,15 +2,17 @@
 
 namespace App\Models\Template;
 
+use App\Models\PaymentMethod;
+use Illuminate\Database\Eloquent\Model;
 use App\Models\OrderFormAdditionalField;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 class UserTemplate extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
+    protected $appends = ['ssl_commerz'];
 
     public function template()
     {
@@ -20,5 +22,15 @@ class UserTemplate extends Model
     public function fields()
     {
         return $this->hasMany(OrderFormAdditionalField::class);
+    }
+
+    public function paymentMethods()
+    {
+        return $this->hasMany(PaymentMethod::class);
+    }
+
+    public function getSSLCommerzAttribute()
+    {
+        return $this->paymentMethods()->where('payment_method', 'ssl_commerz')->first();
     }
 }
