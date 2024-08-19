@@ -158,188 +158,188 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="tab-pane fade" id="custom_domain" role="tabpanel" aria-labelledby="custom_domain_tab">
-                    <div class="my-4">
-                        <h3>Custom Domain</h3>
-                    </div>
-                    <div class="d-flex">
-                        <ul class="nav nav-tabs flex-column" id="myTabVertical" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="order_new_domain" data-toggle="tab"
-                                    href="#order_new_domain_s" role="tab" aria-controls="order_new_domain_s"
-                                    aria-selected="true">Order New Domain</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="connect_your_domain" data-toggle="tab"
-                                    href="#connect_your_domain_s" role="tab" aria-controls="connect_your_domain_s"
-                                    aria-selected="false">Connect Your
-                                    Domain</a>
-                            </li>
-                        </ul>
-                        <div class="tab-content m-l-15" id="myTabContentVertical">
-                            <div class="tab-pane fade show active" id="order_new_domain_s" role="tabpanel"
-                                aria-labelledby="order_new_domain">
-                                <div class="card" style="width: 50vw; margin: 0 auto;">
-                                    <div class="card-body">
-                                        <h5 class="card-title mb-5 text-center">Choose your custom domain name</h5>
-                                        <div class="row justify-content-center">
-                                            <div class="col-8">
-                                                <div class="form-group">
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend">
-                                                            <div class="btn btn-primary" type="button">www.</div>
-                                                        </div>
-                                                        <input type="text" class="form-control"
-                                                            placeholder="type your domain..." aria-label=""
-                                                            aria-describedby="basic-addon1">
-                                                        <div class="input-group-append">
-                                                            <select name="" id=""
-                                                                class="form-control bg-primary text-light rounded-0 custom-border">
-                                                                <option value="" class="bg-white text-dark">.com
-                                                                </option>
-                                                                <option value="" class="bg-white text-dark">.xyz
-                                                                </option>
-                                                                <option value="" class="bg-white text-dark">.net
-                                                                </option>
-                                                                <option value="" class="bg-white text-dark">.org
-                                                                </option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="input-group-append">
-                                                            <button class="btn btn-primary" type="button">Search</button>
+                    <div class="tab-pane fade" id="custom_domain" role="tabpanel" aria-labelledby="custom_domain_tab">
+                        <div class="my-4">
+                            <h3>Custom Domain</h3>
+                        </div>
+                        <div class="d-flex">
+                            <ul class="nav nav-tabs flex-column" id="myTabVertical" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="order_new_domain" data-toggle="tab"
+                                        href="#order_new_domain_s" role="tab" aria-controls="order_new_domain_s"
+                                        aria-selected="true">Order New Domain</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="connect_your_domain" data-toggle="tab"
+                                        href="#connect_your_domain_s" role="tab" aria-controls="connect_your_domain_s"
+                                        aria-selected="false">Connect Your
+                                        Domain</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content m-l-15" id="myTabContentVertical">
+                                <div class="tab-pane fade show active" id="order_new_domain_s" role="tabpanel"
+                                    aria-labelledby="order_new_domain">
+                                    <div class="card" style="width: 50vw; margin: 0 auto;">
+                                        <div class="card-body">
+                                            <h5 class="card-title mb-5 text-center">Choose your custom domain name</h5>
+                                            <div class="row justify-content-center">
+                                                <div class="col-8">
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <div class="btn btn-primary" type="button">www.</div>
+                                                            </div>
+                                                            <input type="text" class="form-control"
+                                                                placeholder="type your domain..." aria-label=""
+                                                                aria-describedby="basic-addon1">
+                                                            <div class="input-group-append">
+                                                                <select name="" id=""
+                                                                    class="form-control bg-primary text-light rounded-0 custom-border">
+                                                                    <option value="" class="bg-white text-dark">.com
+                                                                    </option>
+                                                                    <option value="" class="bg-white text-dark">.xyz
+                                                                    </option>
+                                                                    <option value="" class="bg-white text-dark">.net
+                                                                    </option>
+                                                                    <option value="" class="bg-white text-dark">.org
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="input-group-append">
+                                                                <button class="btn btn-primary" type="button">Search</button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="d-flex overflow-auto pb-3 justify-content-center">
-                                            <div class="btn btn-sm btn-primary mx-1">
-                                                .com
-                                            </div>
-                                            <div class="btn btn-sm btn-primary mx-1">
-                                                .xyz
-                                            </div>
-                                            <div class="btn btn-sm btn-primary mx-1">
-                                                .net
-                                            </div>
-                                            <div class="btn btn-sm btn-primary mx-1">
-                                                .org
+                                            <div class="d-flex overflow-auto pb-3 justify-content-center">
+                                                <div class="btn btn-sm btn-primary mx-1">
+                                                    .com
+                                                </div>
+                                                <div class="btn btn-sm btn-primary mx-1">
+                                                    .xyz
+                                                </div>
+                                                <div class="btn btn-sm btn-primary mx-1">
+                                                    .net
+                                                </div>
+                                                <div class="btn btn-sm btn-primary mx-1">
+                                                    .org
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="tab-pane fade" id="connect_your_domain_s" role="tabpanel"
-                                aria-labelledby="connect_your_domain">
-                                <div class="card" style="width: 50vw; margin: 0 auto;">
-                                    <div class="card-body">
-                                        <h4 class="text-center"
-                                            style="text-decoration: underline; text-transform: capitalize;">Read,
-                                            before sending a domain request</h4>
-                                        <div class="text-align-justify mt-4">
-                                            <p>Before sending request for your custom domain, You need to add CNAME
-                                                records (given In below table) In your custom domain From
-                                                your domain registrar account (like namecheap, godaddy, FOR etc..).
-                                                CNAME records are needed to point your custom domain to our
-                                                domain ( globalfastcoder.com ), so that our website can show your webs'.
-                                                on your custom domain Different domain registrar (like godaddy,
-                                                namecheap, POR etc..) has different interface for adding CNAME records.
-                                                If you cannot find the place to add NAME record in your domain
-                                                registrar account., then please contact your domain registrar
-                                                support,they will show you the place to add CNAME record for your custom
-                                                domain.
-                                                They can also help you with adding CNAME record for you.</p>
-                                        </div>
-                                        <h5 class="card-title mt-4">Add CNMA records (taka data from below table) in
-                                            your
-                                            custom domain</h5>
-                                        <div class="table-responsive mt-4">
-                                            <table class="table table-bordered">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Type</th>
-                                                        <th>Host</th>
-                                                        <th>Value</th>
-                                                        <th>TTL</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>CNAME Record</td>
-                                                        <td>www</td>
-                                                        <td>globalfastcoder.com</td>
-                                                        <td>Automatic</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>CNAME Record</td>
-                                                        <td>@</td>
-                                                        <td>globalfastcoder.com</td>
-                                                        <td>Automatic</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Use this if you are using cloudflare</td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>A Record</td>
-                                                        <td>@</td>
-                                                        <td>143.198.195.149</td>
-                                                        <td>Automatic</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                <div class="tab-pane fade" id="connect_your_domain_s" role="tabpanel"
+                                    aria-labelledby="connect_your_domain">
+                                    <div class="card" style="width: 50vw; margin: 0 auto;">
+                                        <div class="card-body">
+                                            <h4 class="text-center"
+                                                style="text-decoration: underline; text-transform: capitalize;">Read,
+                                                before sending a domain request</h4>
+                                            <div class="text-align-justify mt-4">
+                                                <p>Before sending request for your custom domain, You need to add CNAME
+                                                    records (given In below table) In your custom domain From
+                                                    your domain registrar account (like namecheap, godaddy, FOR etc..).
+                                                    CNAME records are needed to point your custom domain to our
+                                                    domain ( globalfastcoder.com ), so that our website can show your webs'.
+                                                    on your custom domain Different domain registrar (like godaddy,
+                                                    namecheap, POR etc..) has different interface for adding CNAME records.
+                                                    If you cannot find the place to add NAME record in your domain
+                                                    registrar account., then please contact your domain registrar
+                                                    support,they will show you the place to add CNAME record for your custom
+                                                    domain.
+                                                    They can also help you with adding CNAME record for you.</p>
+                                            </div>
+                                            <h5 class="card-title mt-4">Add CNMA records (taka data from below table) in
+                                                your
+                                                custom domain</h5>
+                                            <div class="table-responsive mt-4">
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Type</th>
+                                                            <th>Host</th>
+                                                            <th>Value</th>
+                                                            <th>TTL</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>CNAME Record</td>
+                                                            <td>www</td>
+                                                            <td>globalfastcoder.com</td>
+                                                            <td>Automatic</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>CNAME Record</td>
+                                                            <td>@</td>
+                                                            <td>globalfastcoder.com</td>
+                                                            <td>Automatic</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Use this if you are using cloudflare</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>A Record</td>
+                                                            <td>@</td>
+                                                            <td>143.198.195.149</td>
+                                                            <td>Automatic</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="tab-pane fade show active" id="tracking_apis" role="tabpanel"
-                    aria-labelledby="tracking_apis_tab">
-                    <div class="my-4">
-                        <h3>Facebook Pixel</h3>
-                    </div>
-                    <form action="{{ route('tracking_api') }}" method="POST" class="mt-3">
-                        @csrf
-                        <input type="hidden" name="id" value="{{ @$trackingApi->id }}">
-                        <input type="hidden" name="user_template_id" value="{{ @$userTemplate->id }}">
-
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="" class="form-label">Facebook Pixel Code</label>
-                                    <textarea name="fb_pixel" id="" rows="7" class="form-control">{{ @$trackingApi->fb_pixel_value }}</textarea>
-                                </div>
-                            </div>
-                        </div>
-
-                        <hr>
-
+                    <div class="tab-pane fade show active" id="tracking_apis" role="tabpanel"
+                        aria-labelledby="tracking_apis_tab">
                         <div class="my-4">
-                            <h3>Google Tag Manager</h3>
+                            <h3>Facebook Pixel</h3>
                         </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="" class="form-label">Google Tag Manager (Header)</label>
-                                    <textarea name="gtm_head_key" id="" rows="7" class="form-control">{{ @$trackingApi->gtm_head_value }}</textarea>
+                        <form action="{{ route('tracking_api') }}" method="POST" class="mt-3">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ @$trackingApi->id }}">
+                            <input type="hidden" name="user_template_id" value="{{ @$userTemplate->id }}">
+    
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Facebook Pixel Code</label>
+                                        <textarea name="fb_pixel" id="" rows="7" class="form-control">{{ @$trackingApi->fb_pixel_value }}</textarea>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="" class="form-label">Google Tag Manager (Body)</label>
-                                    <textarea name="gtm_body_value" id="" rows="7" class="form-control">{{ @$trackingApi->gtm_body_value }}</textarea>
+    
+                            <hr>
+    
+                            <div class="my-4">
+                                <h3>Google Tag Manager</h3>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Google Tag Manager (Header)</label>
+                                        <textarea name="gtm_head_key" id="" rows="7" class="form-control">{{ @$trackingApi->gtm_head_value }}</textarea>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Google Tag Manager (Body)</label>
+                                        <textarea name="gtm_body_value" id="" rows="7" class="form-control">{{ @$trackingApi->gtm_body_value }}</textarea>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="text-right">
-                            <button type="submit" class="btn btn-primary">Save</button>
-                        </div>
-                    </form>
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
