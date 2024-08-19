@@ -84,6 +84,11 @@
                                                         <br>
                                                         Sandbox:
                                                         {{ @$userTemplate->ssl_commerz->decoded_credentials['test_mode'] ? 'Yes' : 'No' }}
+                                                        @if (@$userTemplate->ssl_commerz->status == 1)
+                                                            <span class="badge badge-success ml-5">Active</span>
+                                                        @else
+                                                            <span class="badge badge-danger ml-5">Inactive</span>
+                                                        @endif
                                                         <br>
                                                     @endif
                                                     <!-- Button trigger modal -->
@@ -131,6 +136,23 @@
                                                                             id="store_password" name="store_password"
                                                                             value="{{ @$userTemplate->ssl_commerz->decoded_credentials['store_password'] }}"
                                                                             required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="status">
+                                                                            Status
+                                                                            <sup class="text-danger">*</sup>
+                                                                        </label>
+                                                                        <select name="status" class="form-control"
+                                                                            id="status">
+                                                                            <option value="1"
+                                                                                {{ @$userTemplate->ssl_commerz->status == 1 ? 'selected' : '' }}>
+                                                                                Active
+                                                                            </option>
+                                                                            <option value="0"
+                                                                                {{ !@$userTemplate->ssl_commerz->status == 0 ? 'selected' : '' }}>
+                                                                                Inactive
+                                                                            </option>
+                                                                        </select>
                                                                     </div>
                                                                     <div class="form-group form-check">
                                                                         <input type="checkbox" class="form-check-input"

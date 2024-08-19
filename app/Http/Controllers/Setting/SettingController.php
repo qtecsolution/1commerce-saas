@@ -58,6 +58,7 @@ class SettingController extends Controller
                     'store_password' => $request->store_password,
                     'test_mode' => $request->sandbox ? true : false,
                 ]),
+                'status' => $request->status
             ]
         );
 
