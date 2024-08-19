@@ -107,7 +107,7 @@ Route::prefix('app')->middleware('user')->group(function () {
 
         // setting routes
         Route::controller(SettingController::class)->group(function () {
-            Route::get("settings", "settings")->name('settings');
+            Route::get("settings/{id}", "settings")->name('settings');
             Route::post('tracking-api', 'createApi')->name('tracking_api');
         });
 

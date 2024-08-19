@@ -37,22 +37,21 @@
                 <x-alert />
 
                 <ul class="nav nav-tabs nav-justified" id="myTabJustified" role="tablist">
-                    {{-- <li class="nav-item">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="tracking_apis_tab" data-toggle="tab" href="#tracking_apis"
+                            role="tab" aria-controls="tracking_apis" aria-selected="false">Tracking Api</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" id="payment_methods_tab" data-toggle="tab" href="#payment_methods"
                             role="tab" aria-controls="payment_methods" aria-selected="true">Payment Methods</a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" id="custom_domain_tab" data-toggle="tab" href="#custom_domain" role="tab"
                             aria-controls="custom_domain" aria-selected="false">Custom Domain</a>
                     </li> --}}
-                    <li class="nav-item">
-                        <a class="nav-link active" id="tracking_apis_tab" data-toggle="tab" href="#tracking_apis" role="tab"
-                            aria-controls="tracking_apis" aria-selected="false">Tracking Api</a>
-                    </li>
                 </ul>
                 <div class="tab-content m-t-15" id="myTabContentJustified">
-                    <div class="tab-pane fade" id="payment_methods" role="tabpanel"
-                        aria-labelledby="payment_methods_tab">
+                    <div class="tab-pane fade" id="payment_methods" role="tabpanel" aria-labelledby="payment_methods_tab">
                         <div class="my-4">
                             <h3>Payment Methods</h3>
                         </div>
@@ -296,27 +295,27 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade show active" id="tracking_apis" role="tabpanel" aria-labelledby="tracking_apis_tab">
+                    <div class="tab-pane fade show active" id="tracking_apis" role="tabpanel"
+                        aria-labelledby="tracking_apis_tab">
                         <div class="my-4">
                             <h3>Facebook Pixel</h3>
                         </div>
                         <form action="{{ route('tracking_api') }}" method="POST" class="mt-3">
                             @csrf
+                            <input type="hidden" name="id" value="{{ @$trackingApi->id }}">
+                            <input type="hidden" name="user_template_id" value="{{ @$userTemplate->id }}">
+
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-12">
                                     <div class="form-group">
-                                        <label for="" class="form-label">Facebook Varification</label>
-                                        <textarea name="fb_varification_key" id="" rows="7" class="form-control">{{ @$trackingApi->fb_varification_key }}</textarea>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Facebook Pixel</label>
-                                        <textarea name="fb_pixel_value" id="" rows="7" class="form-control">{{ @$trackingApi->fb_pixel_value }}</textarea>
+                                        <label for="" class="form-label">Facebook Pixel Code</label>
+                                        <textarea name="fb_pixel" id="" rows="7" class="form-control">{{ @$trackingApi->fb_pixel_value }}</textarea>
                                     </div>
                                 </div>
                             </div>
+
                             <hr>
+
                             <div class="my-4">
                                 <h3>Google Tag Manager</h3>
                             </div>
@@ -324,7 +323,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="" class="form-label">Google Tag Manager (Header)</label>
-                                        <textarea name="gtm_head_key" id="" rows="7" class="form-control">{{ @$trackingApi->gtm_head_key }}</textarea>
+                                        <textarea name="gtm_head_key" id="" rows="7" class="form-control">{{ @$trackingApi->gtm_head_value }}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-6">
@@ -347,36 +346,36 @@
 @endsection
 @section('page_js')
     <script>
-        // document.addEventListener('DOMContentLoaded', function() {
-        //     function activateTab(tabId) {
-        //         $('.nav-link').removeClass('active');
-        //         $('.tab-pane').removeClass('show active');
+        document.addEventListener('DOMContentLoaded', function() {
+            function activateTab(tabId) {
+                $('.nav-link').removeClass('active');
+                $('.tab-pane').removeClass('show active');
 
-        //         var activeTab = $('#' + tabId);
-        //         if (activeTab.length) {
-        //             $('[href="#' + tabId + '"]').addClass('active');
-        //             activeTab.addClass('show active');
-        //             window.scrollTo(0, 0);
-        //         }
-        //     }
+                var activeTab = $('#' + tabId);
+                if (activeTab.length) {
+                    $('[href="#' + tabId + '"]').addClass('active');
+                    activeTab.addClass('show active');
+                    window.scrollTo(0, 0);
+                }
+            }
 
-        //     var fragment = window.location.hash.substring(1);
-        //     if (fragment) {
-        //         activateTab(fragment);
-        //     }
+            var fragment = window.location.hash.substring(1);
+            if (fragment) {
+                activateTab(fragment);
+            }
 
-        //     $('.nav-link').on('click', function() {
-        //         var tabId = $(this).attr('href').substring(1);
-        //         window.location.hash = tabId;
-        //         activateTab(tabId);
-        //     });
+            $('.nav-link').on('click', function() {
+                var tabId = $(this).attr('href').substring(1);
+                window.location.hash = tabId;
+                activateTab(tabId);
+            });
 
-        //     window.addEventListener('hashchange', function() {
-        //         var fragment = window.location.hash.substring(1);
-        //         if (fragment) {
-        //             activateTab(fragment);
-        //         }
-        //     });
-        // });
+            window.addEventListener('hashchange', function() {
+                var fragment = window.location.hash.substring(1);
+                if (fragment) {
+                    activateTab(fragment);
+                }
+            });
+        });
     </script>
 @endsection

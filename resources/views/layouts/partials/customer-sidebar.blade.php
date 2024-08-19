@@ -56,12 +56,3 @@
         <span class="title">Subscription</span>
     </a>
 </li>
-{{-- <li class="nav-item">
-    <a href="{{ route('settings') }}"
-        class="{{ Route::currentRouteName() == 'settings' ? 'parent-menu-active' : '' }}">
-        <span class="icon-holder">
-            <i class="far fa-sun"></i>
-        </span>
-        <span class="title">Settings</span>
-    </a>
-</li> --}}
