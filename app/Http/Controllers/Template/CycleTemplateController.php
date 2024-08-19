@@ -213,4 +213,366 @@ class CycleTemplateController extends Controller
 
         return true;
     }
+    public function updateCompanyLogo(Request $request)
+    {
+        $template = UserTemplate::where('user_id', $this->userId)->where('template_id', $this->templateId)->first();
+
+        if ($template) {
+            if ($request->hasFile('image')) {
+                if ($template->company_logo) {
+                    $oldImagePath = storage_path('app/public/' . $template->company_logo);
+                    if (file_exists($oldImagePath)) {
+                        unlink($oldImagePath);
+                    }
+                }
+
+                $request->file('image')->store('public/users/logo');
+                $template->company_logo = 'users/logo/' . $request->file('image')->hashName();
+                $template->save();
+            }
+        }
+
+        return response()->json([
+            'message' => 'Company Logo Updated.',
+        ]);
+    }
+
+    public function updateNavColor(Request $request)
+    {
+        $this->template->nav_color = $request->input('nav_color');
+        $this->template->save();
+
+        return response()->json([
+            'message' => 'Nav Color Updated.',
+            'data' => $this->template->nav_color
+        ]);
+    }
+
+    public function updateMenuArea(Request $request)
+    {
+        $this->template->menu_area = $request->input('items');
+        $this->template->save();
+
+        return response()->json([
+            'message' => 'Menu Area Updated.',
+            'data' => $this->template->menu_area
+        ]);
+    }
+
+    public function updateHeroArea(Request $request)
+    {
+        $heroArea = $this->template->hero_area;
+        $uploadedPath = null;
+
+        if ($heroArea) {
+            if ($request->hasFile('image')) {
+                $decodedData = json_decode($heroArea);
+
+                if ($decodedData && isset($decodedData->image)) {
+                    $oldImagePath = storage_path('app/public/' . $decodedData->image);
+                    if (file_exists($oldImagePath)) {
+                        unlink($oldImagePath);
+                    }
+                }
+
+                $uploadedPath = $request->file('image')->store('public/cycle');
+                $uploadedPath = 'cycle/' . basename($uploadedPath);
+            }
+        } else {
+            if ($request->hasFile('image')) {
+                $uploadedPath = $request->file('image')->store('public/cycle');
+                $uploadedPath = 'cycle/' . basename($uploadedPath);
+            }
+        }
+
+        $this->template->hero_area = json_encode([
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'image' => $uploadedPath,
+            'button' => json_decode($request->input('button')),
+            'background_color' => $request->input('background_color'),
+        ]);
+
+        $this->template->save();
+
+        return response()->json([
+            'message' => 'Hero Area Updated.',
+            'data' => $this->template->hero_area,
+        ]);
+    }
+
+    public function updateStepsArea(Request $request)
+    {
+        $validatedData = $request->validate([
+            'items' => 'required|json',
+        ]);
+
+        $steps = json_decode($validatedData['items']);
+
+        foreach ($steps as $key => $step) {
+            if (isset($step->id)) {
+                TemplateStep::where('id', $step->id)->update([
+                    'icon' => $step->icon,
+                    'title' => $step->title,
+                    'description' => $step->description,
+                    'position' => $key + 1
+                ]);
+            } else {
+                TemplateStep::create([
+                    'template_id' => $this->templateId,
+                    'user_id' => $this->userId,
+                    'icon' => $step->icon,
+                    'title' => $step->title,
+                    'description' => $step->description,
+                    'position' => $key + 1
+                ]);
+            }
+        }
+
+        // Retrieve the updated steps
+        $steps = $this->template->steps;
+
+        return response()->json([
+            'message' => 'Steps Area Updated.',
+            'data' => $steps
+        ]);
+    }
+
+    public function updateFeaturesArea(Request $request)
+    {
+        $features = json_decode($request->input('items'));
+        $uploadedPath = null;
+
+        if ($this->template->features_area) {
+            if ($request->hasFile('image')) {
+                $decodedData = json_decode($this->template->features_area);
+
+                if ($decodedData && isset($decodedData->image)) {
+                    $oldImagePath = storage_path('app/public/' . $decodedData->image);
+                    if (file_exists($oldImagePath)) {
+                        unlink($oldImagePath);
+                    }
+                }
+
+                $uploadedPath = $request->file('image')->store('public/cycle');
+                $uploadedPath = 'cycle/' . basename($uploadedPath);
+            }
+        } else {
+            if ($request->hasFile('image')) {
+                $uploadedPath = $request->file('image')->store('public/cycle');
+                $uploadedPath = 'cycle/' . basename($uploadedPath);
+            }
+        }
+
+        $this->template->features_area = json_encode([
+            'title' => $request->input('title'),
+            'sub_title' => $request->input('sub_title'),
+            'image' => $uploadedPath,
+            'background_color' => $request->input('background_color'),
+        ]);
+        $this->template->save();
+
+        foreach ($features as $key => $feature) {
+            if (isset($feature->id)) {
+                TemplateFeature::where('id', $feature->id)->update([
+                    'icon' => $feature->icon,
+                    'title' => $feature->title,
+                    'description' => $feature->description,
+                    'position' => $key + 1
+                ]);
+            } else {
+                TemplateFeature::create([
+                    'template_id' => $this->templateId,
+                    'user_id' => $this->userId,
+                    'icon' => $feature->icon,
+                    'title' => $feature->title,
+                    'description' => $feature->description,
+                    'position' => $key + 1
+                ]);
+            }
+        }
+
+        $features = $this->template->features;
+
+        return response()->json([
+            'message' => 'Features Area Updated.',
+            'data' => $features
+        ]);
+    }
+
+    public function updateAboutArea(Request $request)
+    {
+        $decodedData = json_decode($this->template->about_area);
+        $abouts = json_decode($request->input('items'));
+
+        $uploadedPaths = [null, null];
+        $images = ['image_1', 'image_2'];
+
+        foreach ($images as $index => $image) {
+            if ($request->hasFile($image)) {
+                if ($decodedData && isset($abouts[$index])) {
+                    $oldImagePath = storage_path('app/public/' . $abouts[$index]->image);
+                    if (file_exists($oldImagePath)) {
+                        unlink($oldImagePath);
+                    }
+                }
+
+                $uploadedPath = $request->file($image)->store('public/cycle');
+                $uploadedPaths[$index] = 'cycle/' . basename($uploadedPath);
+            }
+        }
+
+        if (isset($abouts[0])) {
+            $abouts[0]->image = $uploadedPaths[0] ?? $decodedData->items[0]->image ?? null;
+            $abouts[0]->image_raw = null;
+        }
+
+        if (isset($abouts[1])) {
+            $abouts[1]->image = $uploadedPaths[1] ?? $decodedData->items[1]->image ?? null;
+            $abouts[1]->image_raw = null;
+        }
+
+        $this->template->about_area = json_encode([
+            'title' => $request->input('title'),
+            'sub_title' => $request->input('sub_title'),
+            'background_color' => $request->input('background_color'),
+            'items' => $abouts,
+        ]);
+        $this->template->save();
+
+        return response()->json([
+            'message' => 'About Area Updated.',
+            'data' => $this->template->about_area
+        ]);
+    }
+
+    public function updateTestimonialsArea(Request $request)
+    {
+        $testimonials = json_decode($request->input('items'));
+
+        // Update the testimonials area metadata
+        $this->template->testimonials_area = json_encode([
+            'title' => $request->input('title'),
+            'sub_title' => $request->input('sub_title'),
+            'background_color' => $request->input('background_color'),
+        ]);
+        $this->template->save();
+
+        $uploadedPaths = [];
+        $images = ['image_1', 'image_2', 'image_3'];
+
+        foreach ($images as $index => $image) {
+            if ($request->hasFile($image)) {
+                if ($this->template->testimonials->count() > 0 && isset($this->template->testimonials[$index]) && $this->template->testimonials[$index]->reviewer_image) {
+                    $oldImagePath = storage_path('app/public/' . $this->template->testimonials[$index]->reviewer_image);
+                    if (file_exists($oldImagePath)) {
+                        unlink($oldImagePath);
+                    }
+                }
+
+                $uploadedPath = $request->file($image)->store('public/cycle');
+                $uploadedPaths[$index] = 'cycle/' . basename($uploadedPath);
+            }
+        }
+
+        foreach ($testimonials as $index => $testimonial) {
+            $testimonialImage = $uploadedPaths[$index] ?? $this->template->testimonials[$index]->reviewer_image ?? null;
+
+            if (isset($testimonial->id)) {
+                TemplateTestimonial::where('id', $testimonial->id)->update([
+                    'review' => $testimonial->review,
+                    'reviewer_name' => $testimonial->reviewer_name,
+                    'reviewer_bio' => $testimonial->reviewer_bio,
+                    'reviewer_image' => $testimonialImage
+                ]);
+            } else {
+                TemplateTestimonial::create([
+                    'template_id' => $this->templateId,
+                    'user_id' => $this->userId,
+                    'review' => $testimonial->review,
+                    'reviewer_name' => $testimonial->reviewer_name,
+                    'reviewer_bio' => $testimonial->reviewer_bio,
+                    'reviewer_image' => $testimonialImage
+                ]);
+            }
+        }
+
+        // Ensure relationships are reloaded
+        $this->template->load('testimonials');
+
+        return response()->json([
+            'message' => 'Testimonial Area Updated.',
+            'data' => $this->template->testimonials
+        ]);
+    }
+
+    public function updateInfoArea(Request $request)
+    {
+        $button = json_decode($request->input('button'));
+        $data = json_encode([
+            'title' => $request->input('title'),
+            'sub_title' => $request->input('sub_title'),
+            'description' => $request->input('description'),
+            'button' => $button,
+            'video_url' => $request->input('video'),
+            'background_color' => $request->input('background_color'),
+        ]);
+
+        $this->template->info_area = $data;
+        $this->template->save();
+
+        return response()->json([
+            'message' => 'Info Area Updated.',
+            'data' => $this->template->info_area
+        ]);
+    }
+
+    public function updateOrderArea(Request $request)
+    {
+        $this->template->order_area = json_encode([
+            'title' => $request->input('title'),
+            'sub_title' => $request->input('sub_title'),
+            'background_color' => $request->input('background_color'),
+            'button' => json_decode($request->input('button')),
+        ]);
+        $this->template->save();
+
+        return response()->json([
+            'message' => 'Order Area Updated.',
+            'data' => $this->template->order_area
+        ]);
+    }
+
+    public function updateFooterArea(Request $request)
+    {
+        $this->template->footer_area = json_encode([
+            'text' => $request->input('text'),
+            'background_color' => $request->input('background_color'),
+        ]);
+
+        $this->template->status = 1;
+        $this->template->save();
+
+        return response()->json([
+            'message' => 'Footer Area Updated.',
+            'data' => $this->template->footer_area
+        ]);
+    }
+
+    public function updateProductInfo(Request $request)
+    {
+        $template = UserTemplate::where('user_id', $this->userId)->where('template_id', $this->templateId)->first();
+        if ($template) {
+            $template->update([
+                'product_name' => $request->input('product_name'),
+                'product_price' => $request->input('product_price'),
+                'product_currency' => $request->input('product_currency'),
+            ]);
+        }
+
+        return response()->json([
+            'message' => 'Product Info Updated.',
+            'data' => $template
+        ]);
+    }
 }

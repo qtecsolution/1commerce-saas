@@ -18,6 +18,7 @@ use App\Http\Controllers\Template\TemplateController;
 use App\Http\Controllers\User\SubscriptionController;
 use App\Http\Controllers\Ticket\SupportTicketController;
 use App\Http\Controllers\Template\UlaunchTemplateController;
+use App\Http\Controllers\Template\CycleTemplateController;
 use App\Http\Controllers\FrontEnd\PackageController as FrontEnd_PackageController;
 use App\Http\Controllers\Template\SeedeeTemplateController;
 use App\Models\Template\Template;
@@ -147,6 +148,21 @@ Route::prefix('app')->middleware('user')->group(function () {
                 Route::post('add-feature-or-step', [SeedeeTemplateController::class, 'addFeatureOrStep']);
                 Route::post('update-page-setup', [SeedeeTemplateController::class, 'updatePageSetup']);
                 Route::post('update-site-logo', [SeedeeTemplateController::class, 'updateSiteLogo']);
+            });
+             // cycle
+             Route::prefix('cycle')->group(function () {
+                Route::post('update-company-logo', [CycleTemplateController::class, 'updateCompanyLogo']);
+                Route::post('update-nav-color', [CycleTemplateController::class, 'updateNavColor']);
+                Route::post('update-menu-area', [CycleTemplateController::class, 'updateMenuArea']);
+                Route::post('update-hero-area', [CycleTemplateController::class, 'updateHeroArea']);
+                Route::post('update-steps-area', [CycleTemplateController::class, 'updateStepsArea']);
+                Route::post('update-features-area', [CycleTemplateController::class, 'updateFeaturesArea']);
+                Route::post('update-about-area', [CycleTemplateController::class, 'updateAboutArea']);
+                Route::post('update-testimonials-area', [CycleTemplateController::class, 'updateTestimonialsArea']);
+                Route::post('update-info-area', [CycleTemplateController::class, 'updateInfoArea']);
+                Route::post('update-order-area', [CycleTemplateController::class, 'updateOrderArea']);
+                Route::post('update-footer-area', [CycleTemplateController::class, 'updateFooterArea']);
+                Route::post('update-product-info', [CycleTemplateController::class, 'updateProductInfo']);
             });
         });
 

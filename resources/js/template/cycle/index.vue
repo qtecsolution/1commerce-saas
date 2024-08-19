@@ -59,34 +59,33 @@
     </nav>
     <!-- banner section start -->
     <div class="banner_section layout_padding">
-      <div id="main_slider" class="carousel slide" data-ride="carousel">
+      <div id="" class="" data-ride="">
         <div class="carousel-inner">
           <div class="carousel-item active">
             <div class="container">
               <div class="row">
                 <div class="col-md-7">
                   <div class="best_text">Best</div>
-                  <!-- <div class="image_1"><img src="cycle/images/img-1.png"></div> -->
+                  <div class="image_1"><img :src="`${appUrl}/cycle/images/img-1.png`" alt="Image"></div>
                 </div>
                 <div class="col-md-5">
-                  <h1 class="banner_taital">New Model Cycle</h1>
-                  <p class="banner_text">
-                    It is a long established fact that a reader will be
-                    distracted by the readable content
+                  <h2 class="banner_taital" contenteditable="true" @blur="updateHeroTitle">{{heroTitle}}</h2>
+                  <p class="banner_text" contenteditable="true" @blur="updateHeroDescription">
+                    {{heroDescription}}
                   </p>
                   <div class="contact_bt">
-                    <a href="contact.html">Shop Now</a>
+                    <a href="#order">Buy Now</a>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="carousel-item">
+          <!-- <div class="carousel-item">
             <div class="container">
               <div class="row">
                 <div class="col-md-7">
                   <div class="best_text">Best</div>
-                  <!-- <div class="image_1"><img src="cycle/images/img-1.png"></div> -->
+                  <div class="image_1"><img src="cycle/images/img-1.png"></div>
                 </div>
                 <div class="col-md-5">
                   <h1 class="banner_taital">New Model Cycle</h1>
@@ -100,29 +99,9 @@
                 </div>
               </div>
             </div>
-          </div>
-          <div class="carousel-item">
-            <div class="container">
-              <div class="row">
-                <div class="col-md-7">
-                  <div class="best_text">Best</div>
-                  <!-- <div class="image_1"><img src="cycle/images/img-1.png"></div> -->
-                </div>
-                <div class="col-md-5">
-                  <h1 class="banner_taital">New Model Cycle</h1>
-                  <p class="banner_text">
-                    It is a long established fact that a reader will be
-                    distracted by the readable content
-                  </p>
-                  <div class="contact_bt">
-                    <a href="contact.html">Shop Now</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          </div> -->
         </div>
-        <a
+        <!-- <a
           class="carousel-control-prev"
           href="#main_slider"
           role="button"
@@ -137,7 +116,7 @@
           data-slide="next"
         >
           <i class="fa fa-angle-right"></i>
-        </a>
+        </a> -->
       </div>
     </div>
     <!-- banner section end -->
@@ -155,7 +134,7 @@
           <div class="col-md-6">
             <div class="box_main">
               <h6 class="number_text">01</h6>
-              <!-- <div class="image_2"><img src="cycle/images/img-2.png"></div> -->
+              <div class="image_2"><img :src="`${appUrl}/cycle/images/img-2.png`" alt="Image" /></div>
             </div>
           </div>
           <div class="col-md-6">
@@ -197,7 +176,7 @@
           <div class="col-md-6">
             <div class="box_main_3">
               <h6 class="number_text_2">02</h6>
-              <!-- <div class="image_2"><img src="cycle/images/img-3.png"></div> -->
+              <div class="image_2"><img :src="`${appUrl}/cycle/images/img-3.png`"></div>
             </div>
           </div>
         </div>
@@ -216,7 +195,7 @@
         letters
       </p>
       <div class="about_main">
-        <!-- <img src="cycle/images/img-5.png" class="image_5"> -->
+        <img :src="`${appUrl}/cycle/images/img-5.png`" class="image_5">
       </div>
     </div>
   </div>
@@ -235,10 +214,10 @@
               <h1 class="client_taital">Says Customers</h1>
               <div class="client_section_2">
                 <div class="client_left">
-                  <!-- <div><img src="cycle/images/client-img.png" class="client_img"></div> -->
+                  <div><img :src="`${appUrl}/cycle/images/client-img.png`" class="client_img"></div>
                 </div>
                 <div class="client_right">
-                  <!-- <div class="quote_icon"><img src="cycle/images/quote-icon.png"></div> -->
+                  <div class="quote_icon"><img :src="`${appUrl}/cycle/images/quote-icon.png`"></div>
                   <p class="client_text">
                     It is a long established fact that a reader will be
                     distracted by the readable content of a page when looking at
@@ -257,10 +236,10 @@
               <h1 class="client_taital">Says Customers</h1>
               <div class="client_section_2">
                 <div class="client_left">
-                  <!-- <div><img src="cycle/images/client-img.png" class="client_img"></div> -->
+                  <div><img :src="`${appUrl}/cycle/images/client-img.png`" class="client_img"></div>
                 </div>
                 <div class="client_right">
-                  <!-- <div class="quote_icon"><img src="cycle/images/quote-icon.png"></div> -->
+                  <div class="quote_icon"><img :src="`${appUrl}/cycle/images/quote-icon.png`"></div>
                   <p class="client_text">
                     It is a long established fact that a reader will be
                     distracted by the readable content of a page when looking at
@@ -316,7 +295,7 @@
   </div>
   <!-- client section end -->
   <!-- contact section start -->
-  <div class="contact_section layout_padding">
+  <div class="contact_section layout_padding" id="order" data-target="order">
     <div class="container">
       <div class="contact_main">
         <h1 class="request_text">Order Now</h1>
@@ -430,7 +409,7 @@
 <script>
 import axios from "axios";
 import ButtonModal from "../components/button-modal.vue";
-import ImageModal from "../components/image-modal.vue";
+import ImageModal from "./components/image-modal.vue";
 import ColorPicker from "../components/color-picker.vue";
 import SetupModal from "./components/setup-modal.vue";
 import FooterModal from "./components/footer-modal.vue";
@@ -479,9 +458,9 @@ export default {
       ],
 
       // hero area
-      heroTitle: "Best quality smart watch only at Tk 2000.",
+      heroTitle: "New Model Cycle",
       heroDescription:
-        "Lorem ipsum dolor sit amet. Reprehenderit, qui blanditiis quidem rerum necessitatibus praesentium voluptatum deleniti atque corrupti, quos dolores eos.",
+        "Lorem ipsum dolor sit amet. Reprehenderit, qui blanditiis quidem rerum necessitatibus praesentium voluptatum deleniti atque corrupti.",
       heroButton: [],
       heroImage: "",
       heroImageRaw: [],
@@ -657,6 +636,29 @@ export default {
   computed: {},
   mounted() {
     this.companyLogo = this.user_template.company_logo;
+    this.companyLogo =
+            this.user_template.company_logo != null &&
+            this.user_template.company_logo
+                ? this.imageSource(this.user_template.company_logo, "storage")
+                : this.imageSource("images/logo.png");
+    this.appUrl = `${window.location.origin}`;
+    this.apiUrl = `${window.location.origin}/app/templates/cycle`;
+    
+    // hero area
+    const heroArea =
+            this.template.hero_area != null
+                ? JSON.parse(this.template.hero_area)
+                : null;
+    this.heroBg =
+            heroArea != null ? heroArea.background_color : this.heroBg;
+    this.heroTitle = heroArea != null ? heroArea.title : this.heroTitle;
+    this.heroDescription =
+            heroArea != null ? heroArea.description : this.heroDescription;
+    this.heroImage =
+            heroArea != null && heroArea.image
+                ? this.imageSource(heroArea.image, "storage")
+                : this.imageSource("images/header.png");
+
   },
   beforeDestroy() {},
   methods: {
@@ -671,9 +673,14 @@ export default {
         timer: 3000,
       });
     },
-    updateImage() {},
+    updateContent(event) {
+            const rawContent =
+                event.target.innerHTML ?? event.target.textContent;
+            const sanitizedContent = rawContent.replace(/&nbsp;/g, " ");
+
+            return sanitizedContent;
+    },
     updateLogo() {
-        alert("hello1");
             const formData = new FormData();
             formData.append("image", this.companyLogoRaw);
             axios
@@ -683,14 +690,55 @@ export default {
                     },
                 })
                 .then((response) => {
-                    console.log(response);
+                    console.log("response:",response);
                     this.toast("success", "Logo Updated.");
+                })
+                .catch((error) => {
+                    console.error("error:",error);
+                });
+    },
+    updateHeroArea() {
+            const formData = new FormData();
+            formData.append("title", this.heroTitle);
+            formData.append("description", this.heroDescription);
+            // formData.append("button", JSON.stringify(this.heroButton));
+            // formData.append("image", this.heroImageRaw);
+            // formData.append("background_color", this.heroBg);
+
+            axios
+                .post(`${this.apiUrl}/update-hero-area`, formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                })
+                .then((response) => {
+                    console.log(response.data);
+                    this.toast("success", "Resources Updated.");
                 })
                 .catch((error) => {
                     console.error(error);
                 });
         },
+      updateHeroTitle(event) {
+            const newValue = event.target.textContent.trim();
+            if (this.heroTitle == newValue) {
+                return;
+            }
 
+            this.heroTitle = this.updateContent(event);
+            this.updateHeroArea();
+        },
+
+        updateHeroDescription(event) {
+            const newValue = event.target.textContent.trim();
+            if (this.heroDescription == newValue) {
+                return;
+            }
+
+            this.heroDescription = this.updateContent(event);
+            this.updateHeroArea();
+
+        },
     imageSource(path, disk = "public") {
       if (disk == "storage" && path) {
         return `${this.appUrl}/storage/${path}`;

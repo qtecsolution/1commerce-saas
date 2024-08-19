@@ -1,7 +1,5 @@
 export default {
     updateImage(data) {
-
-        alert("hello2");
         switch (data.section) {
             case "logo":
                 this.companyLogo = this.validateImage(
