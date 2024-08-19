@@ -104,7 +104,7 @@ class ShopController extends Controller
                 ]);
             }
 
-            Alert::success("Yahoo!", "You order is submitted successfully. Our agent will contact you soon.");
+            Alert::success("Yahoo!", "You order is placed successfully. Our agent will contact you soon.");
             return back();
         } catch (ValidationException $e) {
             // Redirect back with the input and the fragment identifier
@@ -114,5 +114,11 @@ class ShopController extends Controller
                 ->withInput()
                 ->withFragment('order');
         }
+    }
+    
+    public function orderPlaced($order_id)
+    {
+        $order = Order::with('userTemplate')->findOrFail($order_id);
+        return view('front-end.order.placed', compact('order'));
     }
 }

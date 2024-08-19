@@ -46,6 +46,7 @@ Route::domain('{subdomain}.' . env('APP_DOMAIN'))->group(function () {
 
 // place order
 Route::post("place-order", [ShopController::class, 'placeOrder'])->name('place_order');
+Route::get("order-placed/{order_id}", [ShopController::class, 'orderPlaced'])->name('order_placed');
 
 // live preview
 Route::get('shop/{slug}', [ShopController::class, 'livePreview'])->name('live_preview');

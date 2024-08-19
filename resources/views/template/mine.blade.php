@@ -30,11 +30,11 @@
                                         <div class="btn-group">
                                             <a href="{{ route('user_shop', $userTemplate->company_slug) }}"
                                                 class="btn btn-success btn-sm" target="_blank">
-                                                Live 1
+                                                Live
                                             </a>
                                             <a href="{{ route('live_preview', $userTemplate->company_slug) }}"
                                                 class="btn btn-info btn-sm" target="_blank">
-                                                Live 2
+                                                Preview
                                             </a>
                                             <a href="{{ route('templates.edit', $userTemplate['id']) }}"
                                                 class="btn btn-primary btn-sm">
