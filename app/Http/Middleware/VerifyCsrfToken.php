@@ -16,5 +16,8 @@ class VerifyCsrfToken extends Middleware
         '/ssl-commerz/cancel',
         '/ssl-commerz/fail',
         '/ssl-commerz/ipn',
+        '/aamar-pay/success',
+        '/aamar-pay/fail',
+        '/aamar-pay/cancel',
     ];
 }

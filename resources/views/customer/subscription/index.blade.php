@@ -63,7 +63,7 @@
                             @endif
                         </p>
                         @if ($subscription->is_paid == 0)
-                            <form action="{{ route('ssl-commerz.pay') }}" method="POST">
+                            <form action="{{ route('aamar-pay.make-payment') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="subscription_id" value="{{ $subscription->id }}">
                                 <button type="submit" class="btn btn-sm btn-success rounded-pill confirmable"

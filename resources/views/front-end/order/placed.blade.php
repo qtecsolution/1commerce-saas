@@ -23,7 +23,7 @@
         .card {
             margin: auto;
             max-width: 600px;
-            max-height: 772px;
+            max-height: 724px;
             border-radius: 20px
         }
 
@@ -192,14 +192,21 @@
                         <b>{{ $order->currency }} {{ number_format($order->total_amount) }}</b>
                     </div>
                 </div>
-                <button class="btn d-flex mx-auto"> Pay Now </button>
+                @if (@$order->userTemplate->ssl_commerz->status == 1)
+                    <button class="btn d-flex mx-auto"> Pay Now </button>
+                @else
+                    <p class="p-5"></p>
+                    <p class="p-5"></p>
+                @endif
             </div>
         </div>
-        <div class="col d-flex mx-auto" style="padding: 0px 0px 14px 14px">
-            <a href="{{ route('user_shop', $order->userTemplate->company_slug) }}">
+        <div class="col d-flex mx-auto position-relative" style="padding: 0px 0px 14px 14px;">
+            <a href="{{ route('user_shop', $order->userTemplate->company_slug) }}" class="position-absolute"
+                style="bottom: 10px;">
                 Continue Shopping ...
             </a>
         </div>
+
     </div>
 </body>
 
