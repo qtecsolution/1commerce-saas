@@ -3,9 +3,8 @@
     // $feature_area = $cycle->features_area ? json_decode($cycle->features_area, true) : null;
     // $features = $feature_area != null ? $cycle->features->toArray() : null;
     $about_area = $cycle->about_area != null ? json_decode($cycle->about_area, true) : null;
-    // $steps = $about_area != null ? $cycle->steps->toArray() : null;
-    // $order_area = $cycle->order_area != null ? json_decode($cycle->order_area, true) : null;
-    // $footer_area = $cycle->footer_area != null ? json_decode($cycle->footer_area, true) : null;
+   // $order_area = $cycle->order_area != null ? json_decode($cycle->order_area, true) : null;
+    $footer_area = $cycle->footer_area != null ? json_decode($cycle->footer_area, true) : null;
 
 @endphp
 <!DOCTYPE html>
@@ -254,14 +253,14 @@
                <div class="col-lg-8 col-sm-12 padding_0">
                   <div class="map_main">
                      <div class="map-responsive">
-                       <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&amp;q=Eiffel+Tower+Paris+France" width="600" height="400" frameborder="0" style="border:0; width: 100%;" allowfullscreen=""></iframe>
-                     </div>
+                        {!! $footer_area['mapIframe'] !!}
+                      </div>
                   </div>
                </div>
                <div class="col-lg-4 col-sm-12">
-                  <div class="call_text"><a href="#"><span class="padding_left_0">Page when looking at its layou</span></a></div>
-                  <div class="call_text"><a href="#"><span class="padding_left_0">Call Now  +01 123467890</span></a></div>
-                  <div class="call_text"><a href="#"><span class="padding_left_0">demo@gmail.com</span></a></div>
+                  <div class="call_text"><a href="#"><span class="padding_left_0">{{ $footer_area['address'] }}</span></a></div>
+                  <div class="call_text"><a href="#"><span class="padding_left_0">{{ $footer_area['phone'] }}</span></a></div>
+                  <div class="call_text"><a href="#"><span class="padding_left_0">{{ $footer_area['email'] }}</span></a></div>
                   <div class="social_icon">
                      {{-- <ul>
                         <li><a href="#"><img src="{{ asset($userTemplate->template->assets_path . '/images/fb-icon1.png')}}"></a></li>

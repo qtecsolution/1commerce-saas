@@ -423,32 +423,26 @@
         <div class="col-lg-8 col-sm-12 padding_0">
           <div class="map_main">
             <div class="map-responsive">
-              <iframe
-                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&amp;q=Eiffel+Tower+Paris+France"
-                width="600"
-                height="400"
-                frameborder="0"
-                style="border: 0; width: 100%"
-                allowfullscreen=""
-              ></iframe>
+              <div class="bg-primary text-white text-center rounded-circle cursor-pointer"
+                style="width: 30px; height: 30px"
+                data-bs-toggle="modal"
+                data-bs-target="#mapModal"
+              >
+               <i class="fas fa-cog" style="font-size: 20px; margin-top: 5px"></i>
+              </div>
+               <div v-html="mapIframe"></div>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-sm-12">
-          <div class="call_text">
-            <a href="#"
-              ><span class="padding_left_0"
-                >Page when looking at its layou</span
-              ></a
-            >
+          <div class="call_text"><span class="padding_left_0"
+                contenteditable="true" @blur="updateAddress">{{address}}</span
+              >
+          </div>
+          <div class="call_text"><span class="padding_left_0" contenteditable="true" @blur="updatePhone">{{phone}}</span>
           </div>
           <div class="call_text">
-            <a href="#"
-              ><span class="padding_left_0">Call Now +01 123467890</span></a
-            >
-          </div>
-          <div class="call_text">
-            <a href="#"><span class="padding_left_0">demo@gmail.com</span></a>
+            <span class="padding_left_0" contenteditable="true" @blur="updateEmail">{{email}}</span>
           </div>
           <div class="social_icon">
             <!--<ul>
@@ -495,6 +489,14 @@
     :previewURL="aboutImage"
     @update="updateImage"
   />
+  <MapModal
+    modalId="mapModal"
+    modalTitle="Iframe Map"
+    mapSize="(900*500)"
+    section="map"
+    :previewURL="mapIframe"
+    @update="updateMap"
+  />
   <ButtonModal
     modalId="heroButtonModal"
     modalTitle="Hero Button"
@@ -508,6 +510,7 @@
 import axios from "axios";
 import ButtonModal from "./components/button-modal.vue";
 import ImageModal from "./components/image-modal.vue";
+import MapModal from "../components/map-modal.vue";
 import ColorPicker from "../components/color-picker.vue";
 import SetupModal from "./components/setup-modal.vue";
 import FooterModal from "./components/footer-modal.vue";
@@ -526,6 +529,7 @@ export default {
     FooterModal,
     AddInputModal,
     FormField,
+    MapModal,
   },
   data() {
     return {
@@ -658,9 +662,18 @@ export default {
       companyLogoRaw: "",
 
       // footer area
-      footerText: "Copyright © 2024, All Rights Reserved.",
-      footerBg: "#263238",
-      stickyHeader: false,
+      address: "4347 Stone Lane,Pennsylvania,USA",
+      phone: "Call Now +01 123467890",
+      email: "demo@gmail.com",
+      mapIframe: `<iframe
+                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&amp;q=Eiffel+Tower+Paris+France"
+                    width="600"
+                    height="400"
+                    frameborder="0"
+                    style="border: 0; width: 100%"
+                    allowfullscreen
+                  ></iframe>`,
+      footerBg:"#FFFFFF",
     };
   },
   computed: {},
@@ -712,6 +725,25 @@ export default {
       hover_border_color: "white",
     };
     this.heroButton = heroArea != null ? heroArea.button : defaultHeroButton;
+  
+  
+  //foooter area 
+  const footerArea =
+      this.template.footer_area != null
+        ? JSON.parse(this.template.footer_area)
+        : null;
+     this.address =
+      (footerArea != null && footerArea.address) ? footerArea.address : this.address;
+    this.phone = (footerArea != null && footerArea.phone)? footerArea.phone : this.phone;
+    this.email = (footerArea != null && footerArea.email) ? footerArea.email: this.email;
+    this.mapIframe =
+      (footerArea != null && footerArea.mapIframe) ? footerArea.mapIframe : this.mapIframe;
+    this.footerBg =
+      footerArea != null ? footerArea.footerBg : this.footerBg;
+
+  
+  
+  
   },
   beforeDestroy() {},
   methods: {
@@ -1077,24 +1109,6 @@ export default {
           this.toast("error", "Error updating:", error);
         });
     },
-
-    saveFooterArea() {
-      axios
-        .post(`${this.apiUrl}/update-content-area`, {
-          footer_area: JSON.stringify(this.footerArea),
-        })
-        .then((response) => {
-          if (response.data.success) {
-            this.toast("success", "Updated successfully");
-          } else {
-            this.toast("error", "Failed to update");
-          }
-        })
-        .catch((error) => {
-          this.toast("error", "Error updating:", error);
-        });
-    },
-
     addField(field) {
       // console.log(field, field.name, field.title);
       axios
@@ -1161,6 +1175,70 @@ export default {
           }
         });
     },
+
+    saveFooterArea() {
+       const formData = new FormData();
+      formData.append("address", this.address);
+      formData.append("phone", this.phone);
+      formData.append("email", this.email);
+      formData.append("mapIframe", this.mapIframe);
+      formData.append("footerBg", this.footerBg);
+      axios
+        .post(`${this.apiUrl}/update-footer-area`,formData)
+        .then((response) => {
+          console.log("res:",response.data);
+            this.toast("success", "Updated successfully");
+        
+        })
+        .catch((error) => {
+          console.log("error:",error);
+          this.toast("error", "Error updating:", error);
+        });
+    },
+    updateMap(iframetag){
+      if (this.mapIframe == iframetag) {
+        return;
+      }
+      this.mapIframe = iframetag;
+      this.saveFooterArea();
+    },
+    updateAddress(event){
+       const newValue = event.target.textContent.trim();
+      if (this.address == newValue) {
+        return;
+      }
+
+      this.address = this.updateContent(event);
+      this.saveFooterArea();
+    },
+    updatePhone(event){
+       const newValue = event.target.textContent.trim();
+      if (this.phone == newValue) {
+        return;
+      }
+
+      this.phone = this.updateContent(event);
+      this.saveFooterArea();
+    },
+    updateEmail(event){
+       const newValue = event.target.textContent.trim();
+      if (this.email == newValue) {
+        return;
+      }
+
+      this.email = this.updateContent(event);
+      this.saveFooterArea();
+    },
+    updateFooterBg(event){
+       const newValue = event.target.textContent.trim();
+      if (this.footerBg == newValue) {
+        return;
+      }
+
+      this.footerBg = this.updateContent(event);
+      this.saveFooterArea();
+    },
+
   },
 };
 </script>

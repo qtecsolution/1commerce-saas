@@ -145,8 +145,20 @@ class CycleTemplateController extends Controller
                 ],
             ]),
             'footer_area' => json_encode([
-                "text" => "Copyright © 2024, All Rights Reserved.",
-                "background_color" => "#263238"
+                "address" => "Lorem Addresss, Lorem City , Bangladesh",
+                "phone" => "Call Now +263238",
+                "email"=>"demo@gmail.com",
+                "mapIframe"=>'<iframe
+                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&amp;q=Eiffel+Tower+Paris+France"
+                    width="600"
+                    height="400"
+                    frameborder="0"
+                    style="border: 0; width: 100%"
+                    allowfullscreen
+                  ></iframe>',
+                "footerBg"=>"#ffffff",
+                "footerText1"=>"footerText1",
+                "footerText2"=>"footerText2",
             ])
         ]);
 
@@ -543,13 +555,14 @@ class CycleTemplateController extends Controller
     public function updateFooterArea(Request $request)
     {
         $this->template->footer_area = json_encode([
-            'text' => $request->input('text'),
-            'background_color' => $request->input('background_color'),
+            'address' => $request->input('address'),
+            'phone' => $request->input('phone'),
+            'email' => $request->input('email'),
+            'mapIframe' => $request->input('mapIframe'),
+            'footerBg' => $request->input('footerBg'),
         ]);
 
-        $this->template->status = 1;
         $this->template->save();
-
         return response()->json([
             'message' => 'Footer Area Updated.',
             'data' => $this->template->footer_area
