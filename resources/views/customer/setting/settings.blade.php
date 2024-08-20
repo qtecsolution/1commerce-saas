@@ -47,6 +47,10 @@
                             role="tab" aria-controls="tracking_apis" aria-selected="false">Tracking Api</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" id="seo_tags_tab" data-toggle="tab" href="#seo_tags"
+                            role="tab" aria-controls="seo_tags" aria-selected="false">SEO Tags</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" id="payment_methods_tab" data-toggle="tab" href="#payment_methods"
                             role="tab" aria-controls="payment_methods" aria-selected="true">Payment Methods</a>
                     </li>
@@ -56,6 +60,127 @@
                     </li> --}}
                 </ul>
                 <div class="tab-content m-t-15" id="myTabContentJustified">
+                    <div class="tab-pane fade show active" id="tracking_apis" role="tabpanel"
+                        aria-labelledby="tracking_apis_tab">
+                        <div class="my-4">
+                            <h3>Facebook Pixel</h3>
+                            <div class="col-md-6 pl-0">
+                                <h5>Instructions for Adding Facebook Pixel Code</h5>
+                                <ol>
+                                    <li>Login to your <a href="https://www.facebook.com/" target="_blank">Facebook
+                                            account</a>.</li>
+                                    <li>Navigate to the <a href="https://www.facebook.com/events_manager2/"
+                                            target="_blank">Event Manager</a> page.</li>
+                                    <li>In the sidebar, click on "Connect Data Sources."</li>
+                                    <li>Select "Web" from the available options and click "Next."</li>
+                                    <li>Enter a name for the event and click "Create."</li>
+                                    <li>Go to the "Events Overview" tab and click "Set up Meta Pixel" under the "Gather
+                                        website events from browser activity" section.</li>
+                                    <li>Select "Manually add Pixel code to website."</li>
+                                    <li>Copy the provided Pixel code and paste it in the designated area below.</li>
+                                    <li>Click "Save" to complete the setup.</li>
+                                    <li>Congratulations! Your Facebook Pixel setup is now complete.</li>
+                                </ol>
+                            </div>
+                        </div>
+                        <form action="{{ route('tracking_api') }}" method="POST" class="mt-3">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ @$trackingApi->id }}">
+                            <input type="hidden" name="user_template_id" value="{{ @$userTemplate->id }}">
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Facebook Pixel Code</label>
+                                        <textarea name="fb_pixel" id="" rows="7" class="form-control">{{ @$trackingApi->fb_pixel_value }}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <div class="my-4">
+                                <h3>Google Tag Manager</h3>
+                                <div class="col-md-6 pl-0">
+                                    <h5>Instructions for Adding Google Tag Manager Code</h5>
+                                    <ol>
+                                        <li>Login to your <a href="https://tagmanager.google.com" target="_blank">Google
+                                                Tag Manager account</a>.</li>
+                                        <li>Click on the "Create Account".</li>
+                                        <li>Fill up the form and select "Web" on the Target Platform.</li>
+                                        <li>Copy and Paste the provided code.</li>
+                                        <li>Click "Save" to complete the setup.</li>
+                                        <li>Congratulations! Your Google Tag Manager (GTM) setup is now complete.</li>
+                                    </ol>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Google Tag Manager (Header)</label>
+                                        <textarea name="gtm_head_key" id="" rows="7" class="form-control">{{ @$trackingApi->gtm_head_value }}</textarea>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Google Tag Manager (Body)</label>
+                                        <textarea name="gtm_body_value" id="" rows="7" class="form-control">{{ @$trackingApi->gtm_body_value }}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade" id="seo_tags" role="tabpanel"
+                        aria-labelledby="seo_tags_tab">
+                        <div class="my-4">
+                            <h3>SEO Meta Tags</h3>
+                        </div>
+                        @php
+                            $decodedMetaTags = json_decode($SeoTags->tags, true);
+                        @endphp
+                        <form action="{{ route('update_seo_tags', $userTemplate->id) }}" method="POST" class="mt-3" enctype="multipart/form-data">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ @$trackingApi->id }}">
+                            <input type="hidden" name="user_template_id" value="{{ @$userTemplate->id }}">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="mb-2">
+                                            @php
+                                                $photo = Str::startsWith($decodedMetaTags['og:image'], ['http', 'https'])
+                                                ? $decodedMetaTags['og:image']
+                                                : asset('storage/' . $decodedMetaTags['og:image']);
+                                                @endphp
+                                            <img src="{{ $photo }}" width="50%" alt=""
+                                            class="img-fluid rounded" id="photo-preview">
+                                        </div>
+                                        <label for="" class="form-label">Meta Image (Recommended: 1200x630)</label>
+                                        <input type="file" name="image" placeholder="Meta Image" accept="image/*" id="" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6"></div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Meta Title</label>
+                                        <input type="text" name="title" placeholder="Meta Title" value="{{ @$decodedMetaTags['title'] }}" id="" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Meta Description</label>
+                                        <textarea name="description" id="" rows="7" class="form-control" placeholder="Meta Description" required>{{ @$decodedMetaTags['description'] }}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </form>
+                    </div>
                     <div class="tab-pane fade" id="payment_methods" role="tabpanel" aria-labelledby="payment_methods_tab">
                         <div class="my-4">
                             <h3>Payment Methods</h3>
@@ -207,79 +332,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="tab-pane fade show active" id="tracking_apis" role="tabpanel"
-                        aria-labelledby="tracking_apis_tab">
-                        <div class="my-4">
-                            <h3>Facebook Pixel</h3>
-                            <div class="col-md-6 pl-0">
-                                <h5>Instructions for Adding Facebook Pixel Code</h5>
-                                <ol>
-                                    <li>Login to your <a href="https://www.facebook.com/" target="_blank">Facebook
-                                            account</a>.</li>
-                                    <li>Navigate to the <a href="https://www.facebook.com/events_manager2/"
-                                            target="_blank">Event Manager</a> page.</li>
-                                    <li>In the sidebar, click on "Connect Data Sources."</li>
-                                    <li>Select "Web" from the available options and click "Next."</li>
-                                    <li>Enter a name for the event and click "Create."</li>
-                                    <li>Go to the "Events Overview" tab and click "Set up Meta Pixel" under the "Gather
-                                        website events from browser activity" section.</li>
-                                    <li>Select "Manually add Pixel code to website."</li>
-                                    <li>Copy the provided Pixel code and paste it in the designated area below.</li>
-                                    <li>Click "Save" to complete the setup.</li>
-                                    <li>Congratulations! Your Facebook Pixel setup is now complete.</li>
-                                </ol>
-                            </div>
-                        </div>
-                        <form action="{{ route('tracking_api') }}" method="POST" class="mt-3">
-                            @csrf
-                            <input type="hidden" name="id" value="{{ @$trackingApi->id }}">
-                            <input type="hidden" name="user_template_id" value="{{ @$userTemplate->id }}">
-
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Facebook Pixel Code</label>
-                                        <textarea name="fb_pixel" id="" rows="7" class="form-control">{{ @$trackingApi->fb_pixel_value }}</textarea>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <hr>
-
-                            <div class="my-4">
-                                <h3>Google Tag Manager</h3>
-                                <div class="col-md-6 pl-0">
-                                    <h5>Instructions for Adding Google Tag Manager Code</h5>
-                                    <ol>
-                                        <li>Login to your <a href="https://tagmanager.google.com" target="_blank">Google
-                                                Tag Manager account</a>.</li>
-                                        <li>Click on the "Create Account".</li>
-                                        <li>Fill up the form and select "Web" on the Target Platform.</li>
-                                        <li>Copy and Paste the provided code.</li>
-                                        <li>Click "Save" to complete the setup.</li>
-                                        <li>Congratulations! Your Google Tag Manager (GTM) setup is now complete.</li>
-                                    </ol>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Google Tag Manager (Header)</label>
-                                        <textarea name="gtm_head_key" id="" rows="7" class="form-control">{{ @$trackingApi->gtm_head_value }}</textarea>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Google Tag Manager (Body)</label>
-                                        <textarea name="gtm_body_value" id="" rows="7" class="form-control">{{ @$trackingApi->gtm_body_value }}</textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <button type="submit" class="btn btn-primary">Save</button>
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>

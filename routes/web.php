@@ -22,6 +22,7 @@ use App\Http\Controllers\Setting\PaymentMethodController;
 use App\Http\Controllers\Template\SeedeeTemplateController;
 use App\Http\Controllers\Template\UlaunchTemplateController;
 use App\Http\Controllers\FrontEnd\PackageController as FrontEnd_PackageController;
+use App\Http\Controllers\Template\TemplateSeoTagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -112,13 +113,16 @@ Route::prefix('app')->middleware('user')->group(function () {
         Route::controller(SettingController::class)->group(function () {
             Route::get("settings/{id}", "settings")->name('settings');
             Route::post('tracking-api', 'createApi')->name('tracking_api');
+        });
 
-            // payment method routes
-            Route::controller(PaymentMethodController::class)->prefix('payment-method')->group(function () {
-                Route::post('update/one-wallet', 'updateOneWallet')->name('update.one.wallet');
-                Route::post('update/ssl-commerz', 'updateSslCommerz')->name('update.ssl.commerz');
-                Route::post('update/aamar-pay', 'updateAamarPay')->name('update.aamar.pay');
-            });
+        // seo tag routes
+        Route::post('update-seo-tag/{userTemplateId}', [TemplateSeoTagController::class, 'update'])->name('update_seo_tags');
+        
+        // payment method routes
+        Route::controller(PaymentMethodController::class)->prefix('payment-method')->group(function () {
+            Route::post('update/one-wallet', 'updateOneWallet')->name('update.one.wallet');
+            Route::post('update/ssl-commerz', 'updateSslCommerz')->name('update.ssl.commerz');
+            Route::post('update/aamar-pay', 'updateAamarPay')->name('update.aamar.pay');
         });
 
         // template routes
