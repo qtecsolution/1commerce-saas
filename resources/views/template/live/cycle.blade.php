@@ -1,6 +1,6 @@
 @php
     $hero_area = $cycle->hero_area != null ? json_decode($cycle->hero_area, true) : null;
-    // $feature_area = $cycle->features_area ? json_decode($cycle->features_area, true) : null;
+    $feature_area = $cycle->features_area ? json_decode($cycle->features_area, true) : null;
     // $features = $feature_area != null ? $cycle->features->toArray() : null;
     $about_area = $cycle->about_area != null ? json_decode($cycle->about_area, true) : null;
    // $order_area = $cycle->order_area != null ? json_decode($cycle->order_area, true) : null;
@@ -104,8 +104,8 @@
       <!-- cycle section start -->
       <div class="cycle_section layout_padding">
          <div class="container">
-            <h1 class="cycle_taital">Our Cycle</h1>
-            <p class="cycle_text">It is a long established fact that a reader will be distracted by the </p>
+            <h1 class="cycle_taital">{{ $feature_area['feature_title'] }}</h1>
+            <p class="cycle_text">{{ $feature_area['feature_subtitle'] }}</p>
             {{-- <div class="cycle_section_2 layout_padding">
                <div class="row">
                   <div class="col-md-6">
@@ -127,17 +127,17 @@
             <div class="cycle_section_3 layout_padding">
                <div class="row">
                   <div class="col-md-6">
-                     <h1 class="cycles_text">Stylis Cycle</h1>
-                     <p class="lorem_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p>
+                     <h1 class="cycles_text">{{ $userTemplate->product_name }}</h1>
+                     <p class="lorem_text">{{ $feature_area['feature_product_description'] }}</p>
                      <div class="btn_main">
                         <div class="buy_bt"><a href="#">Buy Now</a></div>
-                        <h4 class="price_text">Price <span style=" color: #f7c17b">$</span> <span style=" color: #325662">200</span></h4>
+                        <h4 class="price_text">Price <span style=" color: #f7c17b">{{ $userTemplate->product_currency }}</span> <span style=" color: #325662">{{ $userTemplate->product_price }}</span></h4>
                      </div>
                   </div>
                   <div class="col-md-6">
                      <div class="box_main_3">
-                        <h6 class="number_text_2">02</h6>
-                        <div class="image_2"><img src="{{ asset($userTemplate->template->assets_path . '/images/img-3.png')}}"></div>
+                        {{-- <h6 class="number_text_2">02</h6> --}}
+                        <div class="image_2" style="margin-top: 100px!important"><img src="{{fetchImage($feature_area['image'], $userTemplate->template->assets_path . '/images/product1.png')}}"></div>
                      </div>
                   </div>
                </div>
@@ -148,11 +148,11 @@
       <!-- about section start -->
       <div class="about_section layout_padding" id="about" data-target="about">
          <div class="container">
-            <h1 class="about_taital">About Our cycle Store</h1>
-            <p class="about_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters
+            <h1 class="about_taital">{{ $about_area['title'] }}</h1>
+            <p class="about_text">{{ $about_area['description'] }}
             </p>
             <div class="about_main">
-               <img src="{{ asset($userTemplate->template->assets_path . '/images/img-5.png')}}" class="image_5">
+               <img src="{{fetchImage($about_area['image'], $userTemplate->template->assets_path . '/images/product1.png')}}" class="image_5">
             </div>
          </div>
       </div>

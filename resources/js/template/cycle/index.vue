@@ -172,9 +172,19 @@
   <!-- cycle section start -->
   <div class="cycle_section layout_padding">
     <div class="container">
-      <h1 class="cycle_taital">Our Cycle</h1>
-      <p class="cycle_text">
-        It is a long established fact that a reader will be distracted by the
+      <h1
+        class="cycle_taital"
+        contenteditable="true"
+        @blur="updateSectionTitle1"
+      >
+        {{ sectionTitle1 }}
+      </h1>
+      <p
+        class="cycle_text"
+        contenteditable="true"
+        @blur="updateSectionSubtitle1"
+      >
+        {{ sectionSubtitle1 }}
       </p>
       <!-- <div class="cycle_section_2 layout_padding">
         <div class="row">
@@ -207,26 +217,61 @@
       <div class="cycle_section_3 layout_padding">
         <div class="row">
           <div class="col-md-6">
-            <h1 class="cycles_text">Stylis Cycle</h1>
-            <p class="lorem_text">
-              It is a long established fact that a reader will be distracted by
-              the readable content of a page when looking at its layout. The
-              point of using Lorem Ipsum is that it has a more-or-less normal
-              distribution of letters
+            <h1
+              class="cycles_text"
+              contenteditable="true"
+              @blur="updateProductName"
+            >
+              {{ productName }}
+            </h1>
+            <p
+              class="lorem_text"
+              contenteditable="true"
+              @blur="updateProductDescription"
+            >
+              {{ productDescription }}
             </p>
             <div class="btn_main">
-              <div class="buy_bt"><a href="#">Buy Now</a></div>
+              <div class="buy_bt"><a href="#order">Buy Now</a></div>
               <h4 class="price_text">
-                Price <span style="color: #f7c17b">$</span>
-                <span style="color: #325662">200</span>
+                Price
+                <span
+                  style="color: #f7c17b"
+                  contenteditable="true"
+                  @blur="updateProductCurrency"
+                  >{{ productCurrency }}
+                </span>
+                <span
+                  style="color: #325662"
+                  contenteditable="true"
+                  @blur="updateProductPrice"
+                >
+                  {{ productPrice }}</span
+                >
               </h4>
             </div>
           </div>
           <div class="col-md-6">
             <div class="box_main_3">
-              <h6 class="number_text_2">02</h6>
-              <div class="image_2">
-                <img :src="`${appUrl}/cycle/images/img-3.png`" />
+              <!-- <h6 class="number_text_2">02</h6> -->
+              <div class="image_2" style="margin-top: 100px !important">
+                <div
+                  class="position-absolute top-0 end-0 mt-2"
+                  title="Image settings"
+                >
+                  <div
+                    class="bg-primary text-white text-center rounded-circle cursor-pointer"
+                    style="width: 30px; height: 30px"
+                    data-bs-toggle="modal"
+                    data-bs-target="#featureImageModal"
+                  >
+                    <i
+                      class="fas fa-cog"
+                      style="font-size: 20px; margin-top: 5px"
+                    ></i>
+                  </div>
+                </div>
+                <img :src="featureImage" />
               </div>
             </div>
           </div>
@@ -239,9 +284,13 @@
   <div class="about_section layout_padding" id="about" data-target="about">
     <div class="container">
       <h1 class="about_taital" contenteditable="true" @blur="updateAboutTitle">
-       {{ aboutTitle }}
+        {{ aboutTitle }}
       </h1>
-      <p class="about_text" contenteditable="true" @blur="updateAboutDescription">
+      <p
+        class="about_text"
+        contenteditable="true"
+        @blur="updateAboutDescription"
+      >
         {{ aboutDescription }}
       </p>
       <div class="about_main">
@@ -251,11 +300,11 @@
         >
           <div
             class="bg-primary text-white text-center rounded-circle cursor-pointer"
-            style="width: 30px; height: 30px;margin-left:280px;"
+            style="width: 30px; height: 30px; margin-left: 280px"
             data-bs-toggle="modal"
             data-bs-target="#aboutImageModal"
           >
-            <i class="fas fa-cog" style="font-size: 20px; margin-top: 5px;"></i>
+            <i class="fas fa-cog" style="font-size: 20px; margin-top: 5px"></i>
           </div>
         </div>
         <img :src="aboutImage" class="image_5" />
@@ -274,7 +323,13 @@
         <div class="carousel-item active">
           <div class="container">
             <div class="client_main">
-              <h1 class="client_taital">Says Customers</h1>
+              <h1
+                class="client_taital"
+                contenteditable="true"
+                @blur="updateTestimonialTitle"
+              >
+                Says Customers
+              </h1>
               <div class="client_section_2">
                 <div class="client_left">
                   <div>
@@ -423,26 +478,45 @@
         <div class="col-lg-8 col-sm-12 padding_0">
           <div class="map_main">
             <div class="map-responsive">
-              <div class="bg-primary text-white text-center rounded-circle cursor-pointer"
+              <div
+                class="bg-primary text-white text-center rounded-circle cursor-pointer"
                 style="width: 30px; height: 30px"
                 data-bs-toggle="modal"
                 data-bs-target="#mapModal"
               >
-               <i class="fas fa-cog" style="font-size: 20px; margin-top: 5px"></i>
+                <i
+                  class="fas fa-cog"
+                  style="font-size: 20px; margin-top: 5px"
+                ></i>
               </div>
-               <div v-html="mapIframe"></div>
+              <div v-html="mapIframe"></div>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-sm-12">
-          <div class="call_text"><span class="padding_left_0"
-                contenteditable="true" @blur="updateAddress">{{address}}</span
-              >
-          </div>
-          <div class="call_text"><span class="padding_left_0" contenteditable="true" @blur="updatePhone">{{phone}}</span>
+          <div class="call_text">
+            <span
+              class="padding_left_0"
+              contenteditable="true"
+              @blur="updateAddress"
+              >{{ address }}</span
+            >
           </div>
           <div class="call_text">
-            <span class="padding_left_0" contenteditable="true" @blur="updateEmail">{{email}}</span>
+            <span
+              class="padding_left_0"
+              contenteditable="true"
+              @blur="updatePhone"
+              >{{ phone }}</span
+            >
+          </div>
+          <div class="call_text">
+            <span
+              class="padding_left_0"
+              contenteditable="true"
+              @blur="updateEmail"
+              >{{ email }}</span
+            >
           </div>
           <div class="social_icon">
             <!--<ul>
@@ -474,12 +548,19 @@
     section="logo"
     :previewURL="companyLogo"
     @update="updateImage"
-  />
+  />updateFeaturesImage
   <ImageModal
     modalId="heroImageModal"
     modalTitle="Hero Image"
     section="hero"
     :previewURL="heroImage"
+    @update="updateImage"
+  />
+  <ImageModal
+    modalId="featureImageModal"
+    modalTitle="Product Image"
+    section="feature"
+    :previewURL="featureImage"
     @update="updateImage"
   />
   <ImageModal
@@ -569,28 +650,6 @@ export default {
       heroBg: "#274d5a",
       navBg: "#20bea7",
 
-      // steps area
-      steps: [
-        {
-          title: "Step 1",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-          icon: "flaticon-login",
-        },
-        {
-          title: "Step 2",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-          icon: "flaticon-login-1",
-        },
-        {
-          title: "Step 3",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-          icon: "flaticon-shopping-cart",
-        },
-      ],
-
       // feature area
       featureTitle: "Product Features",
       featureSubTitle: "Explore the awesome",
@@ -607,13 +666,13 @@ export default {
 
       // testimonial area
       testimonialSubTitle: "FEEDBACK",
-      testimonialTitle: "What our clients say",
+      testimonialTitle: "Says Customers",
       testimonialBg: "#20bea7",
       testimonials: [
         {
           review:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-          reviewer_name: "Muhaimin Shihab",
+          reviewer_name: "Azizul Hoque",
           reviewer_bio: "Customer",
           reviewer_image: "",
           reviewer_image_raw: [],
@@ -636,15 +695,6 @@ export default {
         },
       ],
 
-      // info area
-      infoSubTitle: "GET IT TODAY",
-      infoTitle: "Get your Product today!",
-      infoDescription:
-        "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.",
-      infoButton: [],
-      infoVideo: "https://youtube.com",
-      infoBg: "#f7f7f7",
-
       // order area
       orderTitle: "Order Now",
       orderSubTitle: "GET YOUR PRODUCT",
@@ -654,12 +704,17 @@ export default {
         this.template.color != null ? JSON.parse(this.template.color) : null,
       fields: [],
 
-      // prduct info
-      productName: "",
-      productPrice: "",
-      productCurrency: "",
-      companyLogo: "",
-      companyLogoRaw: "",
+      // Our Product
+      sectionTitle1: "Our Cycle",
+      sectionSubtitle1:
+        "It is a long established fact that a reader will be distracted by the",
+      productName: "Stylish Cycle",
+      productDescription:
+        "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
+      productPrice: "400",
+      productCurrency: "$",
+      productImage: this.appUrl + "/cycle/images/img-5.png",
+      productImageRaw: "",
 
       // footer area
       address: "4347 Stone Lane,Pennsylvania,USA",
@@ -673,7 +728,7 @@ export default {
                     style="border: 0; width: 100%"
                     allowfullscreen
                   ></iframe>`,
-      footerBg:"#FFFFFF",
+      footerBg: "#FFFFFF",
     };
   },
   computed: {},
@@ -685,6 +740,28 @@ export default {
         : this.imageSource("images/logo.png");
     this.appUrl = `${window.location.origin}`;
     this.apiUrl = `${window.location.origin}/app/templates/cycle`;
+
+    // product area
+    this.productName = this.user_template.product_name;
+    this.productPrice = this.user_template.product_price;
+    this.productCurrency = this.user_template.product_currency;
+
+    //feature area
+    const featuresArea =
+      this.template.features_area != null
+        ? JSON.parse(this.template.features_area)
+        : null;
+    this.sectionTitle1 =
+      featuresArea != null ? featuresArea.feature_title : this.sectionTitle1;
+    this.sectionSubTitle1 = featuresArea.feature_subtitle;
+    this.productDescription =
+      featuresArea != null
+        ? featuresArea.feature_product_description
+        : this.productDescription;
+    this.featureImage =
+      featuresArea != null && featuresArea.image
+        ? this.imageSource(featuresArea.image, "storage")
+        : this.appUrl + "/cycle/images/img-1.png";
 
     // hero area
     const heroArea =
@@ -725,25 +802,65 @@ export default {
       hover_border_color: "white",
     };
     this.heroButton = heroArea != null ? heroArea.button : defaultHeroButton;
-  
-  
-  //foooter area 
-  const footerArea =
+
+    //foooter area
+    const footerArea =
       this.template.footer_area != null
         ? JSON.parse(this.template.footer_area)
         : null;
-     this.address =
-      (footerArea != null && footerArea.address) ? footerArea.address : this.address;
-    this.phone = (footerArea != null && footerArea.phone)? footerArea.phone : this.phone;
-    this.email = (footerArea != null && footerArea.email) ? footerArea.email: this.email;
+    this.address =
+      footerArea != null && footerArea.address
+        ? footerArea.address
+        : this.address;
+    this.phone =
+      footerArea != null && footerArea.phone ? footerArea.phone : this.phone;
+    this.email =
+      footerArea != null && footerArea.email ? footerArea.email : this.email;
     this.mapIframe =
-      (footerArea != null && footerArea.mapIframe) ? footerArea.mapIframe : this.mapIframe;
-    this.footerBg =
-      footerArea != null ? footerArea.footerBg : this.footerBg;
+      footerArea != null && footerArea.mapIframe
+        ? footerArea.mapIframe
+        : this.mapIframe;
+    this.footerBg = footerArea != null ? footerArea.footerBg : this.footerBg;
 
-  
-  
-  
+    // testimonial area
+    const testimonialsArea =
+      this.template.testimonials_area != null
+        ? JSON.parse(this.template.testimonials_area)
+        : null;
+
+    this.testimonialBg =
+      testimonialsArea != null
+        ? testimonialsArea.background_color
+        : this.testimonialBg;
+    this.testimonialTitle =
+      testimonialsArea != null ? testimonialsArea.title : this.testimonialTitle;
+
+    this.testimonialSubTitle =
+      testimonialsArea != null
+        ? testimonialsArea.sub_title
+        : this.testimonialSubTitle;
+
+    this.testimonials =
+      this.template.testimonials.length > 0
+        ? this.template.testimonials
+        : this.testimonials;
+
+    const defaultTestimonialImages = [
+      "images/author-1.jpg",
+      "images/author-2.jpg",
+      "images/author-3.jpg",
+    ];
+
+    this.testimonials.forEach((testimonial, index) => {
+      testimonial.reviewer_image =
+        this.template.testimonials.length > 0 &&
+        this.template.testimonials[index].reviewer_image != null
+          ? this.imageSource(
+              this.template.testimonials[index].reviewer_image,
+              "storage"
+            )
+          : this.imageSource(defaultTestimonialImages[index]);
+    });
   },
   beforeDestroy() {},
   methods: {
@@ -782,6 +899,8 @@ export default {
           console.error("error:", error);
         });
     },
+
+    //hero area function
     updateHeroArea() {
       const formData = new FormData();
       formData.append("title", this.heroTitle);
@@ -823,22 +942,14 @@ export default {
       this.heroDescription = this.updateContent(event);
       this.updateHeroArea();
     },
+
+    //helper function
     imageSource(path, disk = "public") {
       if (disk == "storage" && path) {
         return `${this.appUrl}/storage/${path}`;
       }
 
       return `${this.appUrl}/${this.user_template.template.assets_path}/${path}`;
-    },
-    updateFeaturesArea(key, event) {
-      const newValue = event.target.textContent.trim();
-      if (this.featuresArea[key] == newValue) {
-        return;
-      }
-      this.featuresArea[key] = newValue;
-
-      // Save the updated features area when the user blurs out
-      this.saveFeaturesArea();
     },
 
     updateOrderArea(key, event) {
@@ -852,23 +963,7 @@ export default {
       this.saveOrderArea();
     },
 
-    saveFeaturesArea() {
-      axios
-        .post(`${this.apiUrl}/update-content-area`, {
-          features_area: JSON.stringify(this.featuresArea),
-        })
-        .then((response) => {
-          if (response.data.success) {
-            this.toast("success", "Updated successfully");
-          } else {
-            this.toast("error", "Failed to update");
-          }
-        })
-        .catch((error) => {
-          this.toast("error", "Error updating:", error);
-        });
-    },
-
+    // aboute area function
     updateAboutDescription(event) {
       const newValue = event.target.textContent.trim();
       if (this.aboutDescription == newValue) {
@@ -902,7 +997,10 @@ export default {
           },
         })
         .then((response) => {
-          this.aboutImage = this.imageSource(response.data.aboutImage, "storage");
+          this.aboutImage = this.imageSource(
+            response.data.aboutImage,
+            "storage"
+          );
           this.toast("success", "Resources Updated.");
         })
         .catch((error) => {
@@ -976,24 +1074,65 @@ export default {
         });
     },
 
-    updateProductDetails(key, event) {
+    //product infor update fucntion
+    updateProductDetails() {
+      const formData = new FormData();
+      formData.append("product_name", this.productName);
+      formData.append("product_price", this.productPrice);
+      formData.append("product_currency", this.productCurrency);
+      axios
+        .post(`${this.apiUrl}/update-product-info`, formData, {})
+        .then((response) => {
+          if (response.data.success) {
+            this.toast("success", "Updated successfully");
+          } else {
+            this.toast("error", "Failed to update");
+          }
+        })
+        .catch((error) => {
+          this.toast("error", "Error updating:", error);
+        });
+    },
+    updateProductName(event) {
       const newValue = event.target.textContent.trim();
-      if (this.userTemplate[key] == newValue) {
+      if (this.productName == newValue) {
         return;
       }
-      this.userTemplate[key] = newValue;
 
-      // Save the updated product area when the user blurs out
-      this.saveProductDetails();
+      this.productName = this.updateContent(event);
+      this.updateProductDetails();
+    },
+    updateProductPrice(event) {
+      const newValue = event.target.textContent.trim();
+      if (this.productPrice == newValue) {
+        return;
+      }
+
+      this.productPrice = this.updateContent(event);
+      this.updateProductDetails();
+    },
+    updateProductCurrency(event) {
+      const newValue = event.target.textContent.trim();
+      if (this.productCurrency == newValue) {
+        return;
+      }
+
+      this.productCurrency = this.updateContent(event);
+      this.updateProductDetails();
     },
 
-    saveProductDetails() {
+    // feature area  (our cycle section)
+    updateFeaturesArea() {
+      const formData = new FormData();
+      formData.append("feature_title", this.sectionTitle1);
+      formData.append("feature_subtitle", this.sectionSubtitle1);
+      formData.append("feature_product_description", this.productDescription);
+      formData.append("image", this.featureImageRaw);
       axios
-        .post(`${this.apiUrl}/update-product-details`, {
-          product_name: this.userTemplate.product_name,
-          product_price: this.userTemplate.product_price,
-          product_currency: this.userTemplate.product_currency,
-          shipping_cost: this.userTemplate.shipping_cost,
+        .post(`${this.apiUrl}/update-features-area`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         })
         .then((response) => {
           if (response.data.success) {
@@ -1006,70 +1145,60 @@ export default {
           this.toast("error", "Error updating:", error);
         });
     },
-
-    updateFeatureAndStep(item, type) {
-      const updatedTitle = event.target.textContent.trim();
-      if (item.title == updatedTitle) {
+    updateProductDescription(event) {
+      const newValue = event.target.textContent.trim();
+      if (this.productDescription == newValue) {
         return;
       }
-      item.title = updatedTitle;
 
-      axios
-        .post(`${this.apiUrl}/update-feature-and-step`, {
-          id: item.id,
-          title: updatedTitle,
-          type: type,
-        })
-        .then((response) => {
-          if (response.data.success) {
-            this.toast("success", "Updated successfully");
-          } else {
-            this.toast("error", "Failed to update");
-          }
-        })
-        .catch((error) => {
-          this.toast("error", "Error updating:", error);
-        });
+      this.productDescription = this.updateContent(event);
+      this.updateFeaturesArea();
+    },
+    updateSectionTitle1(event) {
+      const newValue = event.target.textContent.trim();
+      if (this.sectionTitle1 == newValue) {
+        return;
+      }
+
+      this.sectionTitle1 = this.updateContent(event);
+      this.updateFeaturesArea();
+    },
+    updateSectionSubtitle1(event) {
+      const newValue = event.target.textContent.trim();
+      if (this.sectionSubtitle1 == newValue) {
+        return;
+      }
+      this.sectionSubtitle1 = this.updateContent(event);
+      this.updateFeaturesArea();
     },
 
-    addFeatureAndStepItem(type) {
-      axios
-        .post(`${this.apiUrl}/add-feature-or-step`, {
-          type: type,
-        })
-        .then((response) => {
-          // Add the new item to the list
-          if (type == "feature") {
-            this.featureList.push(response.data.newItem);
-          } else {
-            this.stepList.push(response.data.newItem);
-          }
-          this.toast("success", "Item added successfully");
-        })
-        .catch((error) => {
-          this.toast("error", "Error adding item");
-        });
-    },
+    // testimonial area function
+    updateTestimonialSubTitle(event) {
+      const newValue = event.target.textContent.trim();
+      if (this.testimonialSubTitle == newValue) {
+        return;
+      }
 
-    deleteFeatureOrStep(index, id, type) {
-      // Optionally delete the item from the database
-      axios
-        .post(`${this.apiUrl}/delete-feature-or-step`, {
-          id: id,
-          type: type,
-        })
-        .then((response) => {
-          // Remove the item from the list
-          if (type == "feature") {
-            this.featureList.splice(index, 1);
-          } else {
-            this.stepList.splice(index, 1);
-          }
-          this.toast("success", "Item deleted successfully");
-        })
-        .catch((error) => {
-          this.toast("error", "Error deleting item:", error);
-        });
+      this.testimonialSubTitle = this.updateContent(event);
+      this.updateTestimonialsArea();
+    },
+    updateTestimonialTitle(event) {
+      const newValue = event.target.textContent.trim();
+      if (this.testimonialTitle == newValue) {
+        return;
+      }
+
+      this.testimonialTitle = this.updateContent(event);
+      this.updateTestimonialsArea();
+    },
+    updateTestimonialItem(event, section, index) {
+      const newValue = event.target.textContent.trim();
+      if (this.testimonials[index][section] == newValue) {
+        return;
+      }
+
+      this.testimonials[index][section] = this.updateContent(event);
+      this.updateTestimonialsArea();
     },
 
     saveAboutBgColor(key, data) {
@@ -1177,33 +1306,32 @@ export default {
     },
 
     saveFooterArea() {
-       const formData = new FormData();
+      const formData = new FormData();
       formData.append("address", this.address);
       formData.append("phone", this.phone);
       formData.append("email", this.email);
       formData.append("mapIframe", this.mapIframe);
       formData.append("footerBg", this.footerBg);
       axios
-        .post(`${this.apiUrl}/update-footer-area`,formData)
+        .post(`${this.apiUrl}/update-footer-area`, formData)
         .then((response) => {
-          console.log("res:",response.data);
-            this.toast("success", "Updated successfully");
-        
+          console.log("res:", response.data);
+          this.toast("success", "Updated successfully");
         })
         .catch((error) => {
-          console.log("error:",error);
+          console.log("error:", error);
           this.toast("error", "Error updating:", error);
         });
     },
-    updateMap(iframetag){
+    updateMap(iframetag) {
       if (this.mapIframe == iframetag) {
         return;
       }
       this.mapIframe = iframetag;
       this.saveFooterArea();
     },
-    updateAddress(event){
-       const newValue = event.target.textContent.trim();
+    updateAddress(event) {
+      const newValue = event.target.textContent.trim();
       if (this.address == newValue) {
         return;
       }
@@ -1211,8 +1339,8 @@ export default {
       this.address = this.updateContent(event);
       this.saveFooterArea();
     },
-    updatePhone(event){
-       const newValue = event.target.textContent.trim();
+    updatePhone(event) {
+      const newValue = event.target.textContent.trim();
       if (this.phone == newValue) {
         return;
       }
@@ -1220,8 +1348,8 @@ export default {
       this.phone = this.updateContent(event);
       this.saveFooterArea();
     },
-    updateEmail(event){
-       const newValue = event.target.textContent.trim();
+    updateEmail(event) {
+      const newValue = event.target.textContent.trim();
       if (this.email == newValue) {
         return;
       }
@@ -1229,8 +1357,8 @@ export default {
       this.email = this.updateContent(event);
       this.saveFooterArea();
     },
-    updateFooterBg(event){
-       const newValue = event.target.textContent.trim();
+    updateFooterBg(event) {
+      const newValue = event.target.textContent.trim();
       if (this.footerBg == newValue) {
         return;
       }
@@ -1238,7 +1366,6 @@ export default {
       this.footerBg = this.updateContent(event);
       this.saveFooterArea();
     },
-
   },
 };
 </script>

@@ -413,6 +413,7 @@ class UlaunchTemplateController extends Controller
     public function initialSetup($user_id)
     {
         UlaunchTemplate::create([
+            'user_id' => $user_id,
             'status' => 1,
             'nav_color' => '#20bea7',
             'menu_area' => json_encode([

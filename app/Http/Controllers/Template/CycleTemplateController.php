@@ -61,11 +61,13 @@ class CycleTemplateController extends Controller
                 "background_color" => "#20bea7"
             ]),
             'features_area' => json_encode([
-                "title" => "Product Features",
-                "sub_title" => "Explore the awesome",
+                "features_title" => "Our Cycle",
+                "feature_subtitle" => "It is a long established fact that a reader will be distracted by the",
+                "feature_product_description"=>"It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
                 "image" => null,
                 "background_color" => "#f7f7f7"
             ]),
+            
             'about_area' => json_encode([
                 "title" => "About Our cycle Store",
                 "description" => "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
@@ -353,13 +355,12 @@ class CycleTemplateController extends Controller
 
     public function updateFeaturesArea(Request $request)
     {
-        $features = json_decode($request->input('items'));
+        $featureArea = $this->template->features_area;
         $uploadedPath = null;
 
-        if ($this->template->features_area) {
+        if ($featureArea) {
             if ($request->hasFile('image')) {
-                $decodedData = json_decode($this->template->features_area);
-
+                $decodedData = json_decode($featureArea);
                 if ($decodedData && isset($decodedData->image)) {
                     $oldImagePath = storage_path('app/public/' . $decodedData->image);
                     if (file_exists($oldImagePath)) {
@@ -376,40 +377,19 @@ class CycleTemplateController extends Controller
                 $uploadedPath = 'cycle/' . basename($uploadedPath);
             }
         }
-
         $this->template->features_area = json_encode([
-            'title' => $request->input('title'),
-            'sub_title' => $request->input('sub_title'),
+            'feature_title' => $request->input('feature_title'),
+            'feature_subtitle' => $request->input('feature_subtitle'),
+            'feature_product_description' => $request->input('feature_product_description'),
             'image' => $uploadedPath,
-            'background_color' => $request->input('background_color'),
         ]);
+
         $this->template->save();
-
-        foreach ($features as $key => $feature) {
-            if (isset($feature->id)) {
-                TemplateFeature::where('id', $feature->id)->update([
-                    'icon' => $feature->icon,
-                    'title' => $feature->title,
-                    'description' => $feature->description,
-                    'position' => $key + 1
-                ]);
-            } else {
-                TemplateFeature::create([
-                    'template_id' => $this->templateId,
-                    'user_id' => $this->userId,
-                    'icon' => $feature->icon,
-                    'title' => $feature->title,
-                    'description' => $feature->description,
-                    'position' => $key + 1
-                ]);
-            }
-        }
-
-        $features = $this->template->features;
-
         return response()->json([
-            'message' => 'Features Area Updated.',
-            'data' => $features
+            'success'=>true,
+            'message' => 'Our Product Area Updated.',
+            'data' => $this->template->feature_area,
+            'prductImage'=>$uploadedPath
         ]);
     }
 
@@ -579,8 +559,8 @@ class CycleTemplateController extends Controller
                 'product_currency' => $request->input('product_currency'),
             ]);
         }
-
         return response()->json([
+            'success'=>true,
             'message' => 'Product Info Updated.',
             'data' => $template
         ]);
