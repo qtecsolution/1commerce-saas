@@ -115,6 +115,7 @@ Route::prefix('app')->middleware('user')->group(function () {
             // payment method routes
             Route::prefix('payment-method')->group(function () {
                 Route::post('update/ssl-commerz', 'updateSslCommerz')->name('update.ssl.commerz');
+                Route::post('update/aamar-pay', 'updateAamarPay')->name('update.aamar.pay');
             });
         });
 

@@ -49,8 +49,9 @@ class SettingController extends Controller
     {
         PaymentMethod::updateOrCreate(
             [
+                'user_id' => auth()->id(),
                 'user_template_id' => $request->user_template_id,
-                'payment_method' => 'ssl_commerz'
+                'name' => 'ssl_commerz',
             ],
             [
                 'credentials' => json_encode([
