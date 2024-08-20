@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\Template\UserTemplate;
 use App\Models\User;
+use App\Models\UserWallet;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,12 +13,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('payment_methods', function (Blueprint $table) {
+        Schema::create('withdraws', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(UserTemplate::class)->constrained()->onDelete('cascade');
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
-            $table->string('name');
-            $table->json('credentials');
+            $table->foreignIdFor(UserWallet::class)->constrained()->cascadeOnDelete();
+            $table->double('amount')->default(0);
+            $table->double('charge')->default(0);
+            $table->double('payable')->default(0);
+            $table->string('payment_method');
+            $table->json('details');
+            $table->json('payment_reference')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
@@ -29,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('payment_methods');
+        Schema::dropIfExists('withdraws');
     }
 };
