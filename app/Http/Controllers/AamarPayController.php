@@ -53,7 +53,7 @@ class AamarPayController extends Controller
         ];
 
         #Before  going to initiate the payment order status need to insert or update as Pending.
-        $update_product = DB::table('subscription_payments')
+        DB::table('subscription_payments')
             ->where('transaction_id', $payload['opt_a'])
             ->updateOrInsert([
                 'subscription_id' => $subscription->id,
