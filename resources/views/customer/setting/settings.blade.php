@@ -193,8 +193,8 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="connect_your_domain" data-toggle="tab"
-                                        href="#connect_your_domain_s" role="tab" aria-controls="connect_your_domain_s"
-                                        aria-selected="false">Connect Your
+                                        href="#connect_your_domain_s" role="tab"
+                                        aria-controls="connect_your_domain_s" aria-selected="false">Connect Your
                                         Domain</a>
                                 </li>
                             </ul>
@@ -228,7 +228,8 @@
                                                                 </select>
                                                             </div>
                                                             <div class="input-group-append">
-                                                                <button class="btn btn-primary" type="button">Search</button>
+                                                                <button class="btn btn-primary"
+                                                                    type="button">Search</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -323,12 +324,30 @@
                         aria-labelledby="tracking_apis_tab">
                         <div class="my-4">
                             <h3>Facebook Pixel</h3>
+                            <div class="col-md-6 pl-0">
+                                <h5>Instructions for Adding Facebook Pixel Code</h5>
+                                <ol>
+                                    <li>Login to your <a href="https://www.facebook.com/" target="_blank">Facebook
+                                            account</a>.</li>
+                                    <li>Navigate to the <a href="https://www.facebook.com/events_manager2/"
+                                            target="_blank">Event Manager</a> page.</li>
+                                    <li>In the sidebar, click on "Connect Data Sources."</li>
+                                    <li>Select "Web" from the available options and click "Next."</li>
+                                    <li>Enter a name for the event and click "Create."</li>
+                                    <li>Go to the "Events Overview" tab and click "Set up Meta Pixel" under the "Gather
+                                        website events from browser activity" section.</li>
+                                    <li>Select "Manually add Pixel code to website."</li>
+                                    <li>Copy the provided Pixel code and paste it in the designated area below.</li>
+                                    <li>Click "Save" to complete the setup.</li>
+                                    <li>Congratulations! Your Facebook Pixel setup is now complete.</li>
+                                </ol>
+                            </div>
                         </div>
                         <form action="{{ route('tracking_api') }}" method="POST" class="mt-3">
                             @csrf
                             <input type="hidden" name="id" value="{{ @$trackingApi->id }}">
                             <input type="hidden" name="user_template_id" value="{{ @$userTemplate->id }}">
-    
+
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
@@ -337,11 +356,22 @@
                                     </div>
                                 </div>
                             </div>
-    
+
                             <hr>
-    
+
                             <div class="my-4">
                                 <h3>Google Tag Manager</h3>
+                                <div class="col-md-6 pl-0">
+                                    <h5>Instructions for Adding Google Tag Manager Code</h5>
+                                    <ol>
+                                        <li>Login to your <a href="https://tagmanager.google.com" target="_blank">Google Tag Manager account</a>.</li>
+                                        <li>Click on the "Create Account".</li>
+                                        <li>Fill up the form and select "Web" on the Target Platform.</li>
+                                        <li>Copy and Paste the provided code.</li>
+                                        <li>Click "Save" to complete the setup.</li>
+                                        <li>Congratulations! Your Google Tag Manager (GTM) setup is now complete.</li>
+                                    </ol>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-6">
