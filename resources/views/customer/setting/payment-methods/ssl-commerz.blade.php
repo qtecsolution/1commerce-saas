@@ -9,7 +9,11 @@
                     </div>
                 </div>
                 <div class="col-9">
-                    <h4 class="mb-0">SSL Commercrz</h4>
+                    <h4 class="mb-0">
+                        SSL Commercrz
+                        <i class="far fa-question-circle text-muted" title="Under Development" style="cursor: wait"></i>
+                    </h4>
+                    <p class="text-muted">Comming Soon</p>
                     @if ($userTemplate->ssl_commerz)
                         Store ID:
                         {{ @$userTemplate->ssl_commerz->decoded_credentials['store_id'] }}
@@ -28,7 +32,7 @@
                     @endif
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
-                        data-target="#sslCommerzModal" class="btn btn-sm btn-primary">
+                        data-target="#sslCommerzModal" disabled>
                         <i class="fas fa-cog"></i>
                     </button>
 
@@ -41,7 +45,7 @@
                                 <input type="hidden" name="user_template_id" value="{{ $userTemplate->id }}">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="sslCommerzModalLabel">
-                                        SSL Commercrz
+                                        SSL Commercrz Configuration
                                     </h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
@@ -53,7 +57,7 @@
                                             Store ID
                                             <sup class="text-danger">*</sup>
                                         </label>
-                                        <input type="text" class="form-control" id="store_id" name="store_id"
+                                        <input type="text" class="form-control" name="store_id"
                                             value="{{ @$userTemplate->ssl_commerz->decoded_credentials['store_id'] }}"
                                             required>
                                     </div>
@@ -62,8 +66,7 @@
                                             Store Password
                                             <sup class="text-danger">*</sup>
                                         </label>
-                                        <input type="text" class="form-control" id="store_password"
-                                            name="store_password"
+                                        <input type="text" class="form-control" name="store_password"
                                             value="{{ @$userTemplate->ssl_commerz->decoded_credentials['store_password'] }}"
                                             required>
                                     </div>
@@ -72,20 +75,19 @@
                                             Status
                                             <sup class="text-danger">*</sup>
                                         </label>
-                                        <select name="status" class="form-control" id="status">
+                                        <select name="status" class="form-control">
                                             <option value="1"
                                                 {{ @$userTemplate->ssl_commerz->status == 1 ? 'selected' : '' }}>
                                                 Active
                                             </option>
                                             <option value="0"
-                                                {{ !@$userTemplate->ssl_commerz->status == 0 ? 'selected' : '' }}>
+                                                {{ @$userTemplate->ssl_commerz->status == 0 ? 'selected' : '' }}>
                                                 Inactive
                                             </option>
                                         </select>
                                     </div>
                                     <div class="form-group form-check">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck1"
-                                            name="sandbox"
+                                        <input type="checkbox" class="form-check-input" name="sandbox"
                                             {{ @$userTemplate->ssl_commerz->decoded_credentials['test_mode'] ? 'checked' : '' }}>
                                         <label class="form-check-label" for="exampleCheck1">Test Mode</label>
                                     </div>

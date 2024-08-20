@@ -6,6 +6,7 @@ use App\Models\PaymentMethod;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\OrderFormAdditionalField;
 use App\Models\TrackingApi;
+use App\Models\UserWallet;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class UserTemplate extends Model
@@ -38,6 +39,11 @@ class UserTemplate extends Model
     public function getAamarPayAttribute()
     {
         return $this->paymentMethods()->where('name', 'aamar_pay')->first();
+    }
+
+    public function userWallet()
+    {
+        return $this->hasOne(UserWallet::class, 'user_id', 'user_id');
     }
 
     public function trackingApi()

@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\AamarPayController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AamarPayController;
 use App\Http\Controllers\Auth\UserController;
 
 use App\Http\Controllers\Test\TestController;
@@ -12,15 +12,16 @@ use App\Http\Controllers\User\CustomerController;
 use App\Http\Controllers\Dashboard\AdminDashboard;
 use App\Http\Controllers\Package\PackageController;
 use App\Http\Controllers\Setting\SettingController;
-use App\Http\Controllers\Dashboard\CustomerDashboard;
 use App\Http\Controllers\DynamicOrderFormController;
+use App\Http\Controllers\Dashboard\CustomerDashboard;
 use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\Template\TemplateController;
 use App\Http\Controllers\User\SubscriptionController;
 use App\Http\Controllers\Ticket\SupportTicketController;
+use App\Http\Controllers\Setting\PaymentMethodController;
+use App\Http\Controllers\Template\SeedeeTemplateController;
 use App\Http\Controllers\Template\UlaunchTemplateController;
 use App\Http\Controllers\FrontEnd\PackageController as FrontEnd_PackageController;
-use App\Http\Controllers\Template\SeedeeTemplateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -113,7 +114,8 @@ Route::prefix('app')->middleware('user')->group(function () {
             Route::post('tracking-api', 'createApi')->name('tracking_api');
 
             // payment method routes
-            Route::prefix('payment-method')->group(function () {
+            Route::controller(PaymentMethodController::class)->prefix('payment-method')->group(function () {
+                Route::post('update/one-wallet', 'updateOneWallet')->name('update.one.wallet');
                 Route::post('update/ssl-commerz', 'updateSslCommerz')->name('update.ssl.commerz');
                 Route::post('update/aamar-pay', 'updateAamarPay')->name('update.aamar.pay');
             });
