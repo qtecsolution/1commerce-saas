@@ -1,6 +1,6 @@
 <template>
   <!-- header section start -->
-  <div class="header_section header_bg">
+   <div class="header_section header_bg">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a href="javascript:void(0)" class="logo">
         <img
@@ -320,16 +320,23 @@
   >
     <div id="my_slider" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
+        <h1
+          class="client_taital"
+          contenteditable="true"
+          @blur="updateTestimonialTitle"
+        >
+          {{ testimonialTitle }}
+        </h1> 
+        <div class="bg-primary text-white text-center rounded-circle cursor-pointer"
+                                        style="width: 30px; height: 30px"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#testimonialModal"
+                                    >
+          <i class="fas fa-cog" style=" font-size: 20px; margin-top: 5px;" ></i>
+          </div>
         <div class="carousel-item active">
           <div class="container">
             <div class="client_main">
-              <h1
-                class="client_taital"
-                contenteditable="true"
-                @blur="updateTestimonialTitle"
-              >
-                Says Customers
-              </h1>
               <div class="client_section_2">
                 <div class="client_left">
                   <div>
@@ -343,13 +350,23 @@
                   <div class="quote_icon">
                     <img :src="`${appUrl}/cycle/images/quote-icon.png`" />
                   </div>
-                  <p class="client_text">
+                  <p
+                    class="client_text"
+                    contenteditable="true"
+                    @blur="updateTestimonialTitle"
+                  >
                     It is a long established fact that a reader will be
                     distracted by the readable content of a page when looking at
                     its layout. The point of using Lorem Ipsum is that it has a
                     more-or-less normal distribution of letters
                   </p>
-                  <h3 class="client_name">Channery</h3>
+                  <h3
+                    class="client_name"
+                    contenteditable="true"
+                    @blur="updateTestimonialTitle"
+                  >
+                    Channery
+                  </h3>
                 </div>
               </div>
             </div>
@@ -358,7 +375,6 @@
         <div class="carousel-item">
           <div class="container">
             <div class="client_main">
-              <h1 class="client_taital">Says Customers</h1>
               <div class="client_section_2">
                 <div class="client_left">
                   <div>
@@ -372,13 +388,23 @@
                   <div class="quote_icon">
                     <img :src="`${appUrl}/cycle/images/quote-icon.png`" />
                   </div>
-                  <p class="client_text">
+                  <p
+                    class="client_text"
+                    contenteditable="true"
+                    @blur="updateTestimonialTitle"
+                  >
                     It is a long established fact that a reader will be
                     distracted by the readable content of a page when looking at
                     its layout. The point of using Lorem Ipsum is that it has a
                     more-or-less normal distribution of letters
                   </p>
-                  <h3 class="client_name">Channery</h3>
+                  <h3
+                    class="client_name"
+                    contenteditable="true"
+                    @blur="updateTestimonialTitle"
+                  >
+                    Channery
+                  </h3>
                 </div>
               </div>
             </div>
@@ -387,20 +413,29 @@
         <div class="carousel-item">
           <div class="container">
             <div class="client_main">
-              <h1 class="client_taital">Says Customers</h1>
               <div class="client_section_2">
                 <div class="client_left">
                   <!-- <div><img src="cycle/images/client-img.png" class="client_img"></div> -->
                 </div>
                 <div class="client_right">
                   <!-- <div class="quote_icon"><img src="cycle/images/quote-icon.png"></div> -->
-                  <p class="client_text">
+                  <p
+                    class="client_text"
+                    contenteditable="true"
+                    @blur="updateTestimonialTitle"
+                  >
                     It is a long established fact that a reader will be
                     distracted by the readable content of a page when looking at
                     its layout. The point of using Lorem Ipsum is that it has a
                     more-or-less normal distribution of letters
                   </p>
-                  <h3 class="client_name">Channery</h3>
+                  <h3
+                    class="client_name"
+                    contenteditable="true"
+                    @blur="updateTestimonialTitle"
+                  >
+                    Channery
+                  </h3>
                 </div>
               </div>
             </div>
@@ -584,12 +619,20 @@
     section="hero"
     @update="updateButton"
     :buttonData="heroButton"
+  /> 
+  <TestimonialModal
+    modalId="testimonialModal"
+    modalTitle="Testimonials"
+    section="hero"
+    @update="updateTestimonialsItem"
+    :buttonData="heroButton"
   />
 </template>
 
 <script>
 import axios from "axios";
 import ButtonModal from "./components/button-modal.vue";
+import TestimonialModal from "./components/testimonial-modal.vue";
 import ImageModal from "./components/image-modal.vue";
 import MapModal from "../components/map-modal.vue";
 import ColorPicker from "../components/color-picker.vue";
@@ -611,6 +654,7 @@ export default {
     AddInputModal,
     FormField,
     MapModal,
+    TestimonialModal,
   },
   data() {
     return {
@@ -1173,6 +1217,78 @@ export default {
     },
 
     // testimonial area function
+     updateTestimonialsItem(testimonials) {
+      const formData = new FormData();
+      formData.append("items", JSON.stringify(testimonials));
+
+      axios
+        .post(`${this.apiUrl}/update-testimonials-area`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((response) => {
+          // console.log(response.data);
+          this.testimonials = response.data.data;
+
+          const defaultTestimonialImages = [
+            "images/author-1.jpg",
+            "images/author-2.jpg",
+            "images/author-3.jpg",
+          ];
+
+          this.testimonials.forEach((testimonial, index) => {
+            testimonial.reviewer_image =
+              testimonial.reviewer_image != null
+                ? this.imageSource(testimonial.reviewer_image, "storage")
+                : this.imageSource(defaultTestimonialImages[index]);
+          });
+
+          this.toast("success", "Resources Updated.");
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+    updateTestimonialsArea() {
+      const formData = new FormData();
+      formData.append("title", this.testimonialTitle);
+      formData.append("sub_title", this.testimonialSubTitle);
+      formData.append("items", JSON.stringify(this.testimonials));
+      formData.append("background_color", this.testimonialBg);
+      formData.append("image_1", this.testimonials[0].reviewer_image_raw);
+      formData.append("image_2", this.testimonials[1].reviewer_image_raw);
+      formData.append("image_3", this.testimonials[2].reviewer_image_raw);
+
+      axios
+        .post(`${this.apiUrl}/update-testimonials-area`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((response) => {
+          // console.log(response.data);
+          this.testimonials = response.data.data;
+
+          const defaultTestimonialImages = [
+            "images/author-1.jpg",
+            "images/author-2.jpg",
+            "images/author-3.jpg",
+          ];
+
+          this.testimonials.forEach((testimonial, index) => {
+            testimonial.reviewer_image =
+              testimonial.reviewer_image != null
+                ? this.imageSource(testimonial.reviewer_image, "storage")
+                : this.imageSource(defaultTestimonialImages[index]);
+          });
+
+          this.toast("success", "Resources Updated.");
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
     updateTestimonialSubTitle(event) {
       const newValue = event.target.textContent.trim();
       if (this.testimonialSubTitle == newValue) {

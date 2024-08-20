@@ -438,7 +438,6 @@ class CycleTemplateController extends Controller
     public function updateTestimonialsArea(Request $request)
     {
         $testimonials = json_decode($request->input('items'));
-
         // Update the testimonials area metadata
         $this->template->testimonials_area = json_encode([
             'title' => $request->input('title'),
@@ -471,8 +470,8 @@ class CycleTemplateController extends Controller
                 TemplateTestimonial::where('id', $testimonial->id)->update([
                     'review' => $testimonial->review,
                     'reviewer_name' => $testimonial->reviewer_name,
-                    'reviewer_bio' => $testimonial->reviewer_bio,
-                    'reviewer_image' => $testimonialImage
+                    'reviewer_bio' => $testimonial->reviewer_bio??"",
+                    'reviewer_image' => $testimonialImage??""
                 ]);
             } else {
                 TemplateTestimonial::create([
@@ -480,8 +479,8 @@ class CycleTemplateController extends Controller
                     'user_id' => $this->userId,
                     'review' => $testimonial->review,
                     'reviewer_name' => $testimonial->reviewer_name,
-                    'reviewer_bio' => $testimonial->reviewer_bio,
-                    'reviewer_image' => $testimonialImage
+                    'reviewer_bio' => $testimonial->reviewer_bio??"",
+                    'reviewer_image' => $testimonialImage??""
                 ]);
             }
         }
