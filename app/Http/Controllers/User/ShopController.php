@@ -62,7 +62,7 @@ class ShopController extends Controller
 
             $template = UserTemplate::findOrFail($request->user_template_id);
 
-            $shipping = $template->shipping_cost ?? 0;
+            $shipping = $request->shipping_cost ?? 0;
 
             $order = Order::create([
                 'user_template_id' => $request->user_template_id,
@@ -112,8 +112,9 @@ class ShopController extends Controller
                 ]);
             }
 
-            Alert::success("Yahoo!", "You order is placed successfully. Our agent will contact you soon.");
-            return back();
+            // Alert::success("Yahoo!", "You order is placed successfully. Our agent will contact you soon.");
+            // return back();
+            return to_route('order_placed', $order->id);
         } catch (ValidationException $e) {
             // Redirect back with the input and the fragment identifier
             return redirect()
@@ -123,10 +124,16 @@ class ShopController extends Controller
                 ->withFragment('order');
         }
     }
-    
+
     public function orderPlaced($order_id)
     {
         $order = Order::with('userTemplate')->findOrFail($order_id);
         return view('front-end.order.placed', compact('order'));
+    }
+
+    public function orderPayment($order_id)
+    {
+        $order = Order::with('userTemplate')->findOrFail($order_id);
+        return view('front-end.order.details', compact('order'));
     }
 }

@@ -82,7 +82,7 @@
                                                         Store Password:
                                                         {{ @$userTemplate->ssl_commerz->decoded_credentials['store_password'] }}
                                                         <br>
-                                                        Sandbox:
+                                                        Test Mode:
                                                         {{ @$userTemplate->ssl_commerz->decoded_credentials['test_mode'] ? 'Yes' : 'No' }}
                                                         @if (@$userTemplate->ssl_commerz->status == 1)
                                                             <span class="badge badge-success ml-5">Active</span>
@@ -159,7 +159,7 @@
                                                                             id="exampleCheck1" name="sandbox"
                                                                             {{ @$userTemplate->ssl_commerz->decoded_credentials['test_mode'] ? 'checked' : '' }}>
                                                                         <label class="form-check-label"
-                                                                            for="exampleCheck1">Sandbox</label>
+                                                                            for="exampleCheck1">Test Mode</label>
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-footer">

@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('transaction_id');
             $table->string('currency');
             $table->boolean('is_extension_payment')->default(false);
+            $table->json('payload_response')->nullable();
             $table->timestamps();
         });
     }

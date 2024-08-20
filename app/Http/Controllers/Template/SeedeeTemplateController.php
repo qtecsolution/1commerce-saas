@@ -85,7 +85,8 @@ class SeedeeTemplateController extends Controller
                 "payment_tag" => "Pay with cash upon delivery.",
                 "display_shipping_charge" => 1,
                 "product_tag" => "400 g",
-                "shipping_charge_text" => "Shipping Cost",
+                "shipping_charge_text" => "Shipping Cost (Inside Dhaka)",
+                "shipping_charge_text_outside" => "Shipping Cost (Outside Dhaka)",
                 "subtotal_text" => "Subtotal",
                 "customer_name_text" => "নাম (Name)*",
                 "customer_phone_text" => "মোবাইল নাম্বার (Mobile No)*",
@@ -169,8 +170,8 @@ class SeedeeTemplateController extends Controller
 
         $userTemplate->product_name = $request->product_name;
         $userTemplate->product_price = $request->product_price;
-        $userTemplate->product_currency = $request->product_currency;
-        $userTemplate->shipping_cost = $request->shipping_cost;
+        $userTemplate->shipping_cost_inside_dhaka = $request->shipping_cost_inside_dhaka;
+        $userTemplate->shipping_cost_outside_dhaka = $request->shipping_cost_outside_dhaka;
         $userTemplate->save();
 
         return response()->json(['success' => true]);
