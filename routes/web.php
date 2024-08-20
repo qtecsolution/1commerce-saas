@@ -47,6 +47,7 @@ Route::domain('{subdomain}.' . env('APP_DOMAIN'))->group(function () {
 
 // place order
 Route::post("place-order", [ShopController::class, 'placeOrder'])->name('place_order');
+Route::get("order-placed/{order_id}", [ShopController::class, 'orderPlaced'])->name('order_placed');
 
 // live preview
 Route::get('shop/{slug}', [ShopController::class, 'livePreview'])->name('live_preview');
@@ -108,8 +109,13 @@ Route::prefix('app')->middleware('user')->group(function () {
 
         // setting routes
         Route::controller(SettingController::class)->group(function () {
-            Route::get("settings", "settings")->name('settings');
+            Route::get("settings/{id}", "settings")->name('settings');
             Route::post('tracking-api', 'createApi')->name('tracking_api');
+
+            // payment method routes
+            Route::prefix('payment-method')->group(function () {
+                Route::post('update/ssl-commerz', 'updateSslCommerz')->name('update.ssl.commerz');
+            });
         });
 
         // template routes

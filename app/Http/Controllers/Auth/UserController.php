@@ -104,7 +104,7 @@ class UserController extends Controller
                 // return to sign-up
                 return view('auth.sign-up');
             } else {
-                toast('Select a package to sign-up.', 'Info');
+                toast('Select a package to sign-up.', 'info');
 
                 // return to home
                 return redirect()->route('web.packages');
@@ -120,7 +120,7 @@ class UserController extends Controller
         Auth::logout();
 
         // return to home
-        toast('Sign-out successfully.', 'Info');
+        toast('Sign-out successfully.', 'info');
         return to_route('web.home');
     }
 

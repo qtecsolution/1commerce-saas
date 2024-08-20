@@ -29,30 +29,34 @@
 @section('page_content')
     <div class="col-12">
         <div class="card">
-            <div class="card-header py-2">
+            <div class="card-header py-2 d-flex flex-row align-items-center justify-content-between">
                 <h3 class="mb-0">{{ $title }}</h3>
+                <p class="mb-0">
+                    <a href="{{ route('templates.mine') }}" class="btn brn-sm btn-danger">
+                        Back
+                    </a>
+                </p>
             </div>
             <div class="card-body">
                 {{-- alert --}}
                 <x-alert />
 
                 <ul class="nav nav-tabs nav-justified" id="myTabJustified" role="tablist">
-                    {{-- <li class="nav-item">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="tracking_apis_tab" data-toggle="tab" href="#tracking_apis"
+                            role="tab" aria-controls="tracking_apis" aria-selected="false">Tracking Api</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" id="payment_methods_tab" data-toggle="tab" href="#payment_methods"
                             role="tab" aria-controls="payment_methods" aria-selected="true">Payment Methods</a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" id="custom_domain_tab" data-toggle="tab" href="#custom_domain" role="tab"
                             aria-controls="custom_domain" aria-selected="false">Custom Domain</a>
                     </li> --}}
-                    <li class="nav-item">
-                        <a class="nav-link active" id="tracking_apis_tab" data-toggle="tab" href="#tracking_apis" role="tab"
-                            aria-controls="tracking_apis" aria-selected="false">Tracking Api</a>
-                    </li>
                 </ul>
                 <div class="tab-content m-t-15" id="myTabContentJustified">
-                    <div class="tab-pane fade" id="payment_methods" role="tabpanel"
-                        aria-labelledby="payment_methods_tab">
+                    <div class="tab-pane fade" id="payment_methods" role="tabpanel" aria-labelledby="payment_methods_tab">
                         <div class="my-4">
                             <h3>Payment Methods</h3>
                         </div>
@@ -65,89 +69,109 @@
                                                 <div class="col-3">
                                                     <div class="rounded-circle overflow-hidden text-center"
                                                         style="width: 50px; height: 50px; border-radius: 50%; background: rgba(128, 128, 128, 0.151); line-height: 50px;">
-                                                        <img src="{{ asset('template/media/logo/cashon.png') }}"
+                                                        <img src="{{ asset('assets/images/payment-methods/ssl-commerz.png') }}"
                                                             class="img-fluid w-100">
                                                     </div>
                                                 </div>
                                                 <div class="col-9">
-                                                    <h4 class="mb-0">Cash on delivery</h4>
-                                                    <a href="" class="btn btn-sm btn-primary">Activate</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row align-items-center">
-                                                <div class="col-3">
-                                                    <div class="rounded-circle overflow-hidden text-center"
-                                                        style="width: 50px; height: 50px; border-radius: 50%; background: rgba(128, 128, 128, 0.151); line-height: 50px;">
-                                                        <img src="{{ asset('template/media/logo/bkash.svg') }}"
-                                                            class="img-fluid w-100">
+                                                    <h4 class="mb-0">SSL Commercrz</h4>
+                                                    @if ($userTemplate->ssl_commerz)
+                                                        Store ID:
+                                                        {{ @$userTemplate->ssl_commerz->decoded_credentials['store_id'] }}
+                                                        <br>
+                                                        Store Password:
+                                                        {{ @$userTemplate->ssl_commerz->decoded_credentials['store_password'] }}
+                                                        <br>
+                                                        Sandbox:
+                                                        {{ @$userTemplate->ssl_commerz->decoded_credentials['test_mode'] ? 'Yes' : 'No' }}
+                                                        @if (@$userTemplate->ssl_commerz->status == 1)
+                                                            <span class="badge badge-success ml-5">Active</span>
+                                                        @else
+                                                            <span class="badge badge-danger ml-5">Inactive</span>
+                                                        @endif
+                                                        <br>
+                                                    @endif
+                                                    <!-- Button trigger modal -->
+                                                    <button type="button" class="btn btn-sm btn-primary"
+                                                        data-toggle="modal" data-target="#sslCommerzModal"
+                                                        class="btn btn-sm btn-primary">
+                                                        <i class="fas fa-cog"></i>
+                                                    </button>
+
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="sslCommerzModal" tabindex="-1"
+                                                        aria-labelledby="sslCommerzModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <form action="{{ route('update.ssl.commerz') }}" method="POST"
+                                                                class="modal-content">
+                                                                @csrf
+                                                                <input type="hidden" name="user_template_id"
+                                                                    value="{{ $userTemplate->id }}">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="sslCommerzModalLabel">
+                                                                        SSL Commercrz
+                                                                    </h5>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="form-group">
+                                                                        <label for="store_id">
+                                                                            Store ID
+                                                                            <sup class="text-danger">*</sup>
+                                                                        </label>
+                                                                        <input type="text" class="form-control"
+                                                                            id="store_id" name="store_id"
+                                                                            value="{{ @$userTemplate->ssl_commerz->decoded_credentials['store_id'] }}"
+                                                                            required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="store_password">
+                                                                            Store Password
+                                                                            <sup class="text-danger">*</sup>
+                                                                        </label>
+                                                                        <input type="text" class="form-control"
+                                                                            id="store_password" name="store_password"
+                                                                            value="{{ @$userTemplate->ssl_commerz->decoded_credentials['store_password'] }}"
+                                                                            required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="status">
+                                                                            Status
+                                                                            <sup class="text-danger">*</sup>
+                                                                        </label>
+                                                                        <select name="status" class="form-control"
+                                                                            id="status">
+                                                                            <option value="1"
+                                                                                {{ @$userTemplate->ssl_commerz->status == 1 ? 'selected' : '' }}>
+                                                                                Active
+                                                                            </option>
+                                                                            <option value="0"
+                                                                                {{ !@$userTemplate->ssl_commerz->status == 0 ? 'selected' : '' }}>
+                                                                                Inactive
+                                                                            </option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group form-check">
+                                                                        <input type="checkbox" class="form-check-input"
+                                                                            id="exampleCheck1" name="sandbox"
+                                                                            {{ @$userTemplate->ssl_commerz->decoded_credentials['test_mode'] ? 'checked' : '' }}>
+                                                                        <label class="form-check-label"
+                                                                            for="exampleCheck1">Sandbox</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-dismiss="modal">Close</button>
+                                                                    <button type="submit" class="btn btn-primary">
+                                                                        Submit
+                                                                    </button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-9">
-                                                    <h4 class="mb-0">bKash</h4>
-                                                    <a href="" class="btn btn-sm btn-primary">Activate</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row align-items-center">
-                                                <div class="col-3">
-                                                    <div class="rounded-circle overflow-hidden text-center"
-                                                        style="width: 50px; height: 50px; border-radius: 50%; background: rgba(128, 128, 128, 0.151); line-height: 50px;">
-                                                        <img src="{{ asset('template/media/logo/nagad.png') }}"
-                                                            class="img-fluid w-100">
-                                                    </div>
-                                                </div>
-                                                <div class="col-9">
-                                                    <h4 class="mb-0">Nagad</h4>
-                                                    <a href="" class="btn btn-sm btn-primary">Activate</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row align-items-center">
-                                                <div class="col-3">
-                                                    <div class="rounded-circle overflow-hidden text-center"
-                                                        style="width: 50px; height: 50px; border-radius: 50%; background: rgba(128, 128, 128, 0.151); line-height: 50px;">
-                                                        <img src="{{ asset('template/media/logo/rocket.png') }}"
-                                                            class="img-fluid w-100">
-                                                    </div>
-                                                </div>
-                                                <div class="col-9">
-                                                    <h4 class="mb-0">Rocket</h4>
-                                                    <a href="" class="btn btn-sm btn-primary">Activate</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row align-items-center">
-                                                <div class="col-3">
-                                                    <div class="rounded-circle overflow-hidden text-center"
-                                                        style="width: 50px; height: 50px; border-radius: 50%; background: rgba(128, 128, 128, 0.151); line-height: 50px;">
-                                                        <img src="{{ asset('template/media/logo/ssl.png') }}"
-                                                            class="img-fluid w-100">
-                                                    </div>
-                                                </div>
-                                                <div class="col-9">
-                                                    <h4 class="mb-0">SSL</h4>
-                                                    <a href="" class="btn btn-sm btn-primary">Activate</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -169,8 +193,8 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="connect_your_domain" data-toggle="tab"
-                                        href="#connect_your_domain_s" role="tab"
-                                        aria-controls="connect_your_domain_s" aria-selected="false">Connect Your
+                                        href="#connect_your_domain_s" role="tab" aria-controls="connect_your_domain_s"
+                                        aria-selected="false">Connect Your
                                         Domain</a>
                                 </li>
                             </ul>
@@ -204,8 +228,7 @@
                                                                 </select>
                                                             </div>
                                                             <div class="input-group-append">
-                                                                <button class="btn btn-primary"
-                                                                    type="button">Search</button>
+                                                                <button class="btn btn-primary" type="button">Search</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -296,27 +319,27 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade show active" id="tracking_apis" role="tabpanel" aria-labelledby="tracking_apis_tab">
+                    <div class="tab-pane fade show active" id="tracking_apis" role="tabpanel"
+                        aria-labelledby="tracking_apis_tab">
                         <div class="my-4">
                             <h3>Facebook Pixel</h3>
                         </div>
                         <form action="{{ route('tracking_api') }}" method="POST" class="mt-3">
                             @csrf
+                            <input type="hidden" name="id" value="{{ @$trackingApi->id }}">
+                            <input type="hidden" name="user_template_id" value="{{ @$userTemplate->id }}">
+    
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-12">
                                     <div class="form-group">
-                                        <label for="" class="form-label">Facebook Varification</label>
-                                        <textarea name="fb_varification_key" id="" rows="7" class="form-control">{{ @$trackingApi->fb_varification_key }}</textarea>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label for="" class="form-label">Facebook Pixel</label>
-                                        <textarea name="fb_pixel_value" id="" rows="7" class="form-control">{{ @$trackingApi->fb_pixel_value }}</textarea>
+                                        <label for="" class="form-label">Facebook Pixel Code</label>
+                                        <textarea name="fb_pixel" id="" rows="7" class="form-control">{{ @$trackingApi->fb_pixel_value }}</textarea>
                                     </div>
                                 </div>
                             </div>
+    
                             <hr>
+    
                             <div class="my-4">
                                 <h3>Google Tag Manager</h3>
                             </div>
@@ -324,7 +347,7 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="" class="form-label">Google Tag Manager (Header)</label>
-                                        <textarea name="gtm_head_key" id="" rows="7" class="form-control">{{ @$trackingApi->gtm_head_key }}</textarea>
+                                        <textarea name="gtm_head_key" id="" rows="7" class="form-control">{{ @$trackingApi->gtm_head_value }}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-6">
@@ -344,39 +367,40 @@
         </div>
     </div>
     </div>
+    </div>
 @endsection
 @section('page_js')
     <script>
-        // document.addEventListener('DOMContentLoaded', function() {
-        //     function activateTab(tabId) {
-        //         $('.nav-link').removeClass('active');
-        //         $('.tab-pane').removeClass('show active');
+        document.addEventListener('DOMContentLoaded', function() {
+            function activateTab(tabId) {
+                $('.nav-link').removeClass('active');
+                $('.tab-pane').removeClass('show active');
 
-        //         var activeTab = $('#' + tabId);
-        //         if (activeTab.length) {
-        //             $('[href="#' + tabId + '"]').addClass('active');
-        //             activeTab.addClass('show active');
-        //             window.scrollTo(0, 0);
-        //         }
-        //     }
+                var activeTab = $('#' + tabId);
+                if (activeTab.length) {
+                    $('[href="#' + tabId + '"]').addClass('active');
+                    activeTab.addClass('show active');
+                    window.scrollTo(0, 0);
+                }
+            }
 
-        //     var fragment = window.location.hash.substring(1);
-        //     if (fragment) {
-        //         activateTab(fragment);
-        //     }
+            var fragment = window.location.hash.substring(1);
+            if (fragment) {
+                activateTab(fragment);
+            }
 
-        //     $('.nav-link').on('click', function() {
-        //         var tabId = $(this).attr('href').substring(1);
-        //         window.location.hash = tabId;
-        //         activateTab(tabId);
-        //     });
+            $('.nav-link').on('click', function() {
+                var tabId = $(this).attr('href').substring(1);
+                window.location.hash = tabId;
+                activateTab(tabId);
+            });
 
-        //     window.addEventListener('hashchange', function() {
-        //         var fragment = window.location.hash.substring(1);
-        //         if (fragment) {
-        //             activateTab(fragment);
-        //         }
-        //     });
-        // });
+            window.addEventListener('hashchange', function() {
+                var fragment = window.location.hash.substring(1);
+                if (fragment) {
+                    activateTab(fragment);
+                }
+            });
+        });
     </script>
 @endsection

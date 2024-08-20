@@ -1,8 +1,13 @@
 @php
-    $site_color = $ulaunch->color != null ? json_decode($ulaunch->color, true) : [
-        'background_color' => '#ffffff',
-        'primary_text_color' => '#000000',
-    ];
+    $trackingApi = trackingApi($userTemplate->id);
+
+    $site_color =
+        $ulaunch->color != null
+            ? json_decode($ulaunch->color, true)
+            : [
+                'background_color' => '#ffffff',
+                'primary_text_color' => '#000000',
+            ];
     $hero_area = $ulaunch->hero_area != null ? json_decode($ulaunch->hero_area, true) : null;
     $feature_area = $ulaunch->features_area ? json_decode($ulaunch->features_area, true) : null;
     $features =
@@ -145,9 +150,13 @@
             border-color: {{ $order_area['button']['hover_border_color'] }};
         }
     </style>
+
+    {!! $trackingApi['head_code'] !!}
 </head>
 
 <body data-bs-spy="scroll" data-bs-target=".navbar-scrollspy" data-bs-offset="0">
+    {!! $trackingApi['body_code'] !!}
+
     <!-- Preloader starts -->
     <div class="preloader" style="display: none;">
         <span class="loader">
