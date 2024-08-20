@@ -13,7 +13,7 @@ class UserTemplate extends Model
     use HasFactory;
 
     protected $guarded = [];
-    protected $appends = ['ssl_commerz'];
+    protected $appends = ['ssl_commerz', 'aamar_pay'];
 
     public function template()
     {
@@ -32,7 +32,12 @@ class UserTemplate extends Model
 
     public function getSSLCommerzAttribute()
     {
-        return $this->paymentMethods()->where('payment_method', 'ssl_commerz')->first();
+        return $this->paymentMethods()->where('name', 'ssl_commerz')->first();
+    }
+
+    public function getAamarPayAttribute()
+    {
+        return $this->paymentMethods()->where('name', 'aamar_pay')->first();
     }
 
     public function trackingApi()

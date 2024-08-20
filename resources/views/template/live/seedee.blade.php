@@ -185,18 +185,36 @@
                                         </table>
                                     </div>
                                     <div class="content-section vat site_foreground_color">
-                                        <div class="d-flex justify-content-between top primary_text_color">
-                                            <span>{{ $order_area['shipping_charge_text'] }}</span>
-                                            <span>
-                                                {{ $userTemplate['product_currency'] . ' ' . $userTemplate['shipping_cost'] }}
-                                            </span>
+                                        <div class="form-check d-flex justify-content-between">
+                                            <div>
+                                                <input class="form-check-input" type="radio" name="shipping_cost"
+                                                    id="flexRadioDefault1" checked
+                                                    value="{{ $userTemplate['shipping_cost_inside_dhaka'] }}">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    {{ $order_area['shipping_charge_text'] }}
+                                                </label>
+                                            </div>
+                                            {{ $userTemplate['product_currency'] . ' ' . $userTemplate['shipping_cost_inside_dhaka'] }}
                                         </div>
+                                        <div class="form-check d-flex justify-content-between">
+                                            <div>
+                                                <input class="form-check-input" type="radio" name="shipping_cost"
+                                                    id="flexRadioDefault2"
+                                                    value="{{ $userTemplate['shipping_cost_outside_dhaka'] }}">
+                                                <label class="form-check-label" for="flexRadioDefault2">
+                                                    Shipping Cost (Outside Dhaka)
+                                                </label>
+                                            </div>
+                                            {{ $userTemplate['product_currency'] . ' ' . $userTemplate['shipping_cost_outside_dhaka'] }}
+                                        </div>
+
+                                        <hr>
                                         <div class="d-flex justify-content-between total secondary_text_color">
                                             <span>{{ $order_area['subtotal_text'] }}</span>
                                             <span class="product-price">
                                                 {{ $userTemplate['product_currency'] }}
                                                 <span id="subtotal">
-                                                    {{ $userTemplate['product_price'] + $userTemplate['shipping_cost'] }}
+                                                    {{ $userTemplate['product_price'] + $userTemplate['shipping_cost_inside_dhaka'] }}
                                                 </span>
                                             </span>
                                         </div>
@@ -286,7 +304,8 @@
 
         function calculateTotal() {
             var price = {{ $userTemplate['product_price'] }};
-            var shipping = {{ $userTemplate['shipping_cost'] }};
+            var shipping = $("input[name='shipping_cost']:checked").val() || 0;
+            shipping = parseFloat(shipping);
             var quantity = $("#quantity").val();
             var total = (price * quantity + shipping).toFixed(2);
             $("#subtotal").html(total);

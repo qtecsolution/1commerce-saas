@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AamarPayController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\UserController;
 
@@ -114,6 +115,7 @@ Route::prefix('app')->middleware('user')->group(function () {
             // payment method routes
             Route::prefix('payment-method')->group(function () {
                 Route::post('update/ssl-commerz', 'updateSslCommerz')->name('update.ssl.commerz');
+                Route::post('update/aamar-pay', 'updateAamarPay')->name('update.aamar.pay');
             });
         });
 
@@ -179,6 +181,14 @@ Route::prefix('ssl-commerz')->group(function () {
     Route::post('cancel', [SslCommerzPaymentController::class, 'cancel']);
 
     Route::post('ipn', [SslCommerzPaymentController::class, 'ipn']);
+});
+
+// aamar pay Start
+Route::prefix('aamar-pay')->group(function () {
+    Route::post('make-payment', [AamarPayController::class, 'makePayment'])->name('aamar-pay.make-payment');
+    Route::post('success', [AamarPayController::class, 'success'])->name('aamar-pay.success');
+    Route::post('fail', [AamarPayController::class, 'fail'])->name('aamar-pay.fail');
+    Route::get('cancel', [AamarPayController::class, 'cancel'])->name('aamar-pay.cancel');
 });
 /*
 |--------------------------------------------------------------------------

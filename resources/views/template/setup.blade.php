@@ -76,25 +76,25 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="product_currency" class="form-label">
-                                Product Currency
-                                <sup class="text-danger">*</sup>
+                                Shipping Cost
+                                <sup class="text-muted">(Inside Dhaka)</sup>
                             </label>
-                            <input type="text" name="product_currency" class="form-control"
-                                value="{{ old('product_currency') }}" placeholder="BDT/USD/EUR" required>
-                            @error('product_currency')
+                            <input type="number" min="0" step="0.01" name="shipping_cost_inside_dhaka"
+                                class="form-control" value="{{ old('shipping_cost_inside_dhaka') }}" placeholder="0.00">
+                            @error('shipping_cost_inside_dhaka')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="shipping_cost" class="form-label">
+                            <label for="shipping_cost_outside_dhaka" class="form-label">
                                 Shipping Cost
-                                <sup class="text-muted">(optional)</sup>
+                                <sup class="text-muted">(Outside Dhaka)</sup>
                             </label>
-                            <input type="nymber" min="0" step="0.01" name="shipping_cost" class="form-control"
-                                value="{{ old('shipping_cost') }}" placeholder="0.00">
-                            @error('shipping_cost')
+                            <input type="number" min="0" step="0.01" name="shipping_cost_outside_dhaka"
+                                class="form-control" value="{{ old('shipping_cost_outside_dhaka') }}" placeholder="0.00">
+                            @error('shipping_cost_outside_dhaka')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
