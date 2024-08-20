@@ -54,7 +54,7 @@ class ShopController extends Controller
 
             $template = UserTemplate::findOrFail($request->user_template_id);
 
-            $shipping = $template->shipping_cost ?? 0;
+            $shipping = $request->shipping_cost ?? 0;
 
             $order = Order::create([
                 'user_template_id' => $request->user_template_id,

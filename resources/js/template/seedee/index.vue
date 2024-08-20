@@ -368,16 +368,7 @@
                                                     width="50"
                                                     class="total-price text-end secondary_text_color"
                                                 >
-                                                    <span
-                                                        class="me-1"
-                                                        contenteditable="true"
-                                                        @blur="
-                                                            updateProductDetails(
-                                                                'product_currency',
-                                                                $event
-                                                            )
-                                                        "
-                                                    >
+                                                    <span class="me-1">
                                                         {{
                                                             userTemplate.product_currency
                                                         }}
@@ -403,22 +394,42 @@
                                     <div
                                         class="content-section vat primary_text_color"
                                     >
+                                        <!-- radio start -->
                                         <div
-                                            class="d-flex justify-content-between top"
+                                            class="form-check d-flex justify-content-between"
                                         >
-                                            <span
-                                                contenteditable="true"
-                                                @blur="
-                                                    updateOrderArea(
-                                                        'shipping_charge_text',
-                                                        $event
-                                                    )
-                                                "
-                                            >
-                                                {{
-                                                    orderArea.shipping_charge_text
-                                                }}
-                                            </span>
+                                            <div>
+                                                <input
+                                                    class="form-check-input"
+                                                    type="radio"
+                                                    name="flexRadioDefault"
+                                                    id="flexRadioDefault1"
+                                                    :checked="
+                                                        selectedShippingOption ===
+                                                        'inside_dhaka'
+                                                    "
+                                                />
+                                                <label
+                                                    class="form-check-label"
+                                                    for="flexRadioDefault1"
+                                                >
+                                                    <span
+                                                        style="cursor: auto"
+                                                        contenteditable="true"
+                                                        @blur="
+                                                            updateOrderArea(
+                                                                'shipping_charge_text',
+                                                                $event
+                                                            )
+                                                        "
+                                                    >
+                                                        {{
+                                                            orderArea.shipping_charge_text
+                                                        }}
+                                                    </span>
+                                                </label>
+                                            </div>
+
                                             <span>
                                                 {{
                                                     userTemplate.product_currency
@@ -427,17 +438,73 @@
                                                     contenteditable="true"
                                                     @blur="
                                                         updateProductDetails(
-                                                            'shipping_cost',
+                                                            'shipping_cost_inside_dhaka',
                                                             $event
                                                         )
                                                     "
                                                 >
                                                     {{
-                                                        userTemplate.shipping_cost
+                                                        userTemplate.shipping_cost_inside_dhaka
                                                     }}
                                                 </span>
                                             </span>
                                         </div>
+                                        <div
+                                            class="form-check d-flex justify-content-between"
+                                        >
+                                            <div>
+                                                <input
+                                                    class="form-check-input"
+                                                    type="radio"
+                                                    name="flexRadioDefault"
+                                                    id="flexRadioDefault2"
+                                                    :checked="
+                                                        selectedShippingOption ===
+                                                        'outside_dhaka'
+                                                    "
+                                                />
+                                                <label
+                                                    class="form-check-label"
+                                                    for="flexRadioDefault2"
+                                                >
+                                                    <span
+                                                        style="cursor: auto"
+                                                        contenteditable="true"
+                                                        @blur="
+                                                            updateOrderArea(
+                                                                'shipping_charge_text_outside',
+                                                                $event
+                                                            )
+                                                        "
+                                                    >
+                                                        {{
+                                                            orderArea.shipping_charge_text_outside
+                                                        }}
+                                                    </span>
+                                                </label>
+                                            </div>
+                                            <span>
+                                                {{
+                                                    userTemplate.product_currency
+                                                }}
+                                                <span
+                                                    contenteditable="true"
+                                                    @blur="
+                                                        updateProductDetails(
+                                                            'shipping_cost_outside_dhaka',
+                                                            $event
+                                                        )
+                                                    "
+                                                >
+                                                    {{
+                                                        userTemplate.shipping_cost_outside_dhaka
+                                                    }}
+                                                </span>
+                                            </span>
+                                        </div>
+                                        <!-- radio end -->
+
+                                        <hr />
                                         <div
                                             class="d-flex justify-content-between total secondary_text_color"
                                         >
@@ -593,17 +660,6 @@
                                             ></textarea>
                                         </div>
 
-                                        <!-- <div
-                                            v-for="(field, index) in fields"
-                                            :key="index"
-                                        >
-                                            <p>Field Name: {{ field.name }}</p>
-                                            <p>Field Type: {{ field.type }}</p>
-                                            <p v-if="field.options.length">
-                                                Options:
-                                                {{ field.options.join(", ") }}
-                                            </p>
-                                        </div> -->
                                         <FormField
                                             :styles="{
                                                 color: siteColor?.primary_text_color,
@@ -710,14 +766,21 @@ export default {
             siteLogo: "",
             favIcon: "",
             fields: [],
+            selectedShippingOption: "inside_dhaka",
         };
     },
     computed: {
         subtotal() {
             const productPrice =
                 parseFloat(this.userTemplate.product_price) || 0;
+            const shippingCostInsideDhaka =
+                parseFloat(this.userTemplate.shipping_cost_inside_dhaka) || 0;
+            const shippingCostOutsideDhaka =
+                parseFloat(this.userTemplate.shipping_cost_outside_dhaka) || 0;
             const shippingCost =
-                parseFloat(this.userTemplate.shipping_cost) || 0;
+                this.selectedShippingOption === "inside_dhaka"
+                    ? shippingCostInsideDhaka
+                    : shippingCostOutsideDhaka;
             return (productPrice + shippingCost).toFixed(2);
         },
     },
@@ -969,8 +1032,10 @@ export default {
                 .post(`${this.apiUrl}/update-product-details`, {
                     product_name: this.userTemplate.product_name,
                     product_price: this.userTemplate.product_price,
-                    product_currency: this.userTemplate.product_currency,
-                    shipping_cost: this.userTemplate.shipping_cost,
+                    shipping_cost_inside_dhaka:
+                        this.userTemplate.shipping_cost_inside_dhaka,
+                    shipping_cost_outside_dhaka:
+                        this.userTemplate.shipping_cost_outside_dhaka,
                 })
                 .then((response) => {
                     if (response.data.success) {
@@ -1134,7 +1199,7 @@ export default {
                     this.toast("error", "Error updating:", error);
                 });
         },
-        
+
         deleteField(index, field) {
             axios
                 .post(`${this.appUrl}/app/dynamic-form/delete-input-field`, {

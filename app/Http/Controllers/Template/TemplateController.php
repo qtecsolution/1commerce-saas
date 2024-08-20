@@ -69,9 +69,9 @@ class TemplateController extends Controller
                 ],
                 'product_name' => 'required',
                 'product_price' => 'required|numeric',
-                'product_currency' => 'required|string',
                 'template_id' => 'required|exists:templates,id',
-                'shipping_cost' => 'nullable|numeric',
+                'shipping_cost_inside_dhaka' => 'nullable|numeric',
+                'shipping_cost_outside_dhaka' => 'nullable|numeric',
             ]);
 
             $path = null;
@@ -88,8 +88,8 @@ class TemplateController extends Controller
                 'company_slug' => Str::slug($request->company_slug),
                 'product_name' => $request->company_slug,
                 'product_price' => $request->product_price,
-                'product_currency' => $request->product_currency,
-                'shipping_cost' => $request->shipping_cost
+                'shipping_cost_inside_dhaka' => $request->shipping_cost_inside_dhaka,
+                'shipping_cost_outside_dhaka' => $request->shipping_cost_outside_dhaka,
             ]);
 
             switch ($request->template_id) {

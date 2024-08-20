@@ -22,9 +22,10 @@ return new class extends Migration
             $table->string('fav_icon')->nullable();
             $table->string('company_logo')->nullable();
             $table->string('product_name')->nullable();
-            $table->double('shipping_cost')->nullable();
+            $table->double('shipping_cost_inside_dhaka')->default(0);
+            $table->double('shipping_cost_outside_dhaka')->default(0);
             $table->double('product_price')->default(0);
-            $table->string('product_currency')->nullable();
+            $table->string('product_currency')->default('BDT');
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });

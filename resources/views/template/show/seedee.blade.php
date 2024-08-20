@@ -224,21 +224,38 @@
                                                         value="1" style="width: 50px; border: none">
                                                 </td>
                                                 <td width="50" class="total-price text-end">
-                                                    Tk 1100
+                                                    BDT 1100.00
                                                 </td>
                                             </tr>
                                         </table>
                                     </div>
 
                                     <div class="content-section vat">
-                                        <div class="d-flex justify-content-between top">
-                                            <span>Shipping Cost</span>
-                                            <span>Tk 50.00</span>
+                                        <div class="form-check d-flex justify-content-between">
+                                            <div>
+                                                <input class="form-check-input" type="radio"
+                                                    name="flexRadioDefault" id="flexRadioDefault1" checked>
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    Shipping Cost (Inside Dhaka)
+                                                </label>
+                                            </div>
+                                            BDT 50.00
                                         </div>
+                                        <div class="form-check d-flex justify-content-between">
+                                            <div>
+                                                <input class="form-check-input" type="radio"
+                                                    name="flexRadioDefault" id="flexRadioDefault2">
+                                                <label class="form-check-label" for="flexRadioDefault2">
+                                                    Shipping Cost (Outside Dhaka)
+                                                </label>
+                                            </div>
+                                            BDT 100.00
+                                        </div>
+                                        <hr>
                                         <div class="d-flex justify-content-between total">
                                             <span>Subtotal</span>
                                             <span class="product-price">
-                                                Tk 1,150.00
+                                                BDT 1,150.00
                                             </span>
                                         </div>
                                     </div>
