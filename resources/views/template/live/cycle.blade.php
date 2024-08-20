@@ -106,7 +106,7 @@
          <div class="container">
             <h1 class="cycle_taital">Our Cycle</h1>
             <p class="cycle_text">It is a long established fact that a reader will be distracted by the </p>
-            <div class="cycle_section_2 layout_padding">
+            {{-- <div class="cycle_section_2 layout_padding">
                <div class="row">
                   <div class="col-md-6">
                      <div class="box_main">
@@ -123,7 +123,7 @@
                      </div>
                   </div>
                </div>
-            </div>
+            </div> --}}
             <div class="cycle_section_3 layout_padding">
                <div class="row">
                   <div class="col-md-6">
