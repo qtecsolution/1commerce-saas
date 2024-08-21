@@ -23,13 +23,13 @@
                                 title="Logo settings"
                             >
                                 <div
-                                    class="bg-primary text-white text-center rounded-circle cursor-pointer"
+                                    class="bg-dark text-white text-center rounded-circle cursor-pointer"
                                     style="width: 30px; height: 30px"
                                     data-bs-toggle="modal"
                                     data-bs-target="#logoImageModal"
                                 >
                                     <i
-                                        class="fas fa-cog"
+                                        class="fas fa-pen-nib"
                                         style="font-size: 20px; margin-top: 5px"
                                     ></i>
                                 </div>
@@ -124,13 +124,13 @@
                                     title="Button settings"
                                 >
                                     <div
-                                        class="bg-primary text-white text-center rounded-circle cursor-pointer"
+                                        class="bg-dark text-white text-center rounded-circle cursor-pointer"
                                         style="width: 30px; height: 30px"
                                         data-bs-toggle="modal"
                                         data-bs-target="#heroButtonModal"
                                     >
                                         <i
-                                            class="fas fa-cog"
+                                            class="fas fa-pen-nib"
                                             style="
                                                 font-size: 20px;
                                                 margin-top: 5px;
@@ -148,13 +148,13 @@
                             title="Image settings"
                         >
                             <div
-                                class="bg-primary text-white text-center rounded-circle cursor-pointer"
+                                class="bg-dark text-white text-center rounded-circle cursor-pointer"
                                 style="width: 30px; height: 30px"
                                 data-bs-toggle="modal"
                                 data-bs-target="#heroImageModal"
                             >
                                 <i
-                                    class="fas fa-cog"
+                                    class="fas fa-pen-nib"
                                     style="font-size: 20px; margin-top: 5px"
                                 ></i>
                             </div>
@@ -339,13 +339,13 @@
                                 title="Image settings"
                             >
                                 <div
-                                    class="bg-primary text-white text-center rounded-circle cursor-pointer"
+                                    class="bg-dark text-white text-center rounded-circle cursor-pointer"
                                     style="width: 30px; height: 30px"
                                     data-bs-toggle="modal"
                                     data-bs-target="#featureImageModal"
                                 >
                                     <i
-                                        class="fas fa-cog"
+                                        class="fas fa-pen-nib"
                                         style="font-size: 20px; margin-top: 5px"
                                     ></i>
                                 </div>
@@ -503,7 +503,7 @@
                                                 title="Button settings"
                                             >
                                                 <div
-                                                    class="bg-primary text-white text-center rounded-circle cursor-pointer"
+                                                    class="bg-dark text-white text-center rounded-circle cursor-pointer"
                                                     style="
                                                         width: 30px;
                                                         height: 30px;
@@ -512,7 +512,7 @@
                                                     data-bs-target="#about1ButtonModal"
                                                 >
                                                     <i
-                                                        class="fas fa-cog"
+                                                        class="fas fa-pen-nib"
                                                         style="
                                                             font-size: 20px;
                                                             margin-top: 5px;
@@ -539,7 +539,7 @@
                                             title="Image settings"
                                         >
                                             <div
-                                                class="bg-primary text-white text-center rounded-circle cursor-pointer"
+                                                class="bg-dark text-white text-center rounded-circle cursor-pointer"
                                                 style="
                                                     width: 30px;
                                                     height: 30px;
@@ -548,7 +548,7 @@
                                                 data-bs-target="#about1ImageModal"
                                             >
                                                 <i
-                                                    class="fas fa-cog"
+                                                    class="fas fa-pen-nib"
                                                     style="
                                                         font-size: 20px;
                                                         margin-top: 5px;
@@ -619,7 +619,7 @@
                                                 title="Button settings"
                                             >
                                                 <div
-                                                    class="bg-primary text-white text-center rounded-circle cursor-pointer"
+                                                    class="bg-dark text-white text-center rounded-circle cursor-pointer"
                                                     style="
                                                         width: 30px;
                                                         height: 30px;
@@ -628,7 +628,7 @@
                                                     data-bs-target="#about2ButtonModal"
                                                 >
                                                     <i
-                                                        class="fas fa-cog"
+                                                        class="fas fa-pen-nib"
                                                         style="
                                                             font-size: 20px;
                                                             margin-top: 5px;
@@ -655,7 +655,7 @@
                                             title="Image settings"
                                         >
                                             <div
-                                                class="bg-primary text-white text-center rounded-circle cursor-pointer"
+                                                class="bg-dark text-white text-center rounded-circle cursor-pointer"
                                                 style="
                                                     width: 30px;
                                                     height: 30px;
@@ -664,7 +664,7 @@
                                                 data-bs-target="#about2ImageModal"
                                             >
                                                 <i
-                                                    class="fas fa-cog"
+                                                    class="fas fa-pen-nib"
                                                     style="
                                                         font-size: 20px;
                                                         margin-top: 5px;
@@ -742,7 +742,7 @@
                                         title="Image settings"
                                     >
                                         <div
-                                            class="bg-primary text-white text-center rounded-circle cursor-pointer"
+                                            class="bg-dark text-white text-center rounded-circle cursor-pointer"
                                             style="width: 30px; height: 30px"
                                             data-bs-toggle="modal"
                                             :data-bs-target="
@@ -752,7 +752,7 @@
                                             "
                                         >
                                             <i
-                                                class="fas fa-cog"
+                                                class="fas fa-pen-nib"
                                                 style="
                                                     font-size: 20px;
                                                     margin-top: 5px;
@@ -868,13 +868,13 @@
                                     title="Button settings"
                                 >
                                     <div
-                                        class="bg-primary text-white text-center rounded-circle cursor-pointer"
+                                        class="bg-dark text-white text-center rounded-circle cursor-pointer"
                                         style="width: 30px; height: 30px"
                                         data-bs-toggle="modal"
                                         data-bs-target="#infoButtonModal"
                                     >
                                         <i
-                                            class="fas fa-cog"
+                                            class="fas fa-pen-nib"
                                             style="
                                                 font-size: 20px;
                                                 margin-top: 5px;
@@ -1058,7 +1058,7 @@
                                             title="Button settings"
                                         >
                                             <div
-                                                class="bg-primary text-white text-center rounded-circle cursor-pointer"
+                                                class="bg-dark text-white text-center rounded-circle cursor-pointer"
                                                 style="
                                                     width: 30px;
                                                     height: 30px;
@@ -1067,7 +1067,7 @@
                                                 data-bs-target="#orderButtonModal"
                                             >
                                                 <i
-                                                    class="fas fa-cog"
+                                                    class="fas fa-pen-nib"
                                                     style="
                                                         font-size: 20px;
                                                         margin-top: 5px;
@@ -1081,6 +1081,7 @@
                                         >
                                             {{ orderButton.title }}
                                         </button>
+
                                         <div
                                             id="msgSubmit"
                                             class="h3 text-left hidden"

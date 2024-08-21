@@ -30,4 +30,14 @@ class WalletController extends Controller
         $userWallet = UserWallet::where('user_id', auth()->id())->first();
         return view('customer.finance.my-wallet', compact('userWallet'));
     }
+
+    public function transactionHistory(Request $request)
+    {
+        abort(404);
+    }
+
+    public function withdrawHistory(Request $request)
+    {
+        abort(404);
+    }
 }

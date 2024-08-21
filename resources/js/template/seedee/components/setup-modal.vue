@@ -1,6 +1,6 @@
 <template>
     <i
-        class="fas fa-cog gear-icon"
+        class="fas fa-pen-nib gear-icon"
         data-bs-toggle="modal"
         data-bs-target="#seedeePageSetupModal"
         title="Page Setup"
@@ -232,7 +232,7 @@ export default {
     position: absolute;
     margin-top: -12px;
     margin-left: 2px;
-    background: #0d6efd;
+    background: #000000;
     color: #ffffff;
     padding: 5px;
     border-radius: 50%;
