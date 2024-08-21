@@ -6,11 +6,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Page Title -->
-    <title>{{ $userTemplate->company_name }} :: Live Edit</title>
+    {!! renderSeoTags($userTemplate->id) !!}
+
     {{-- fav icon --}}
     <link rel="shortcut icon"
-        href="{{ $userTemplate->company_logo ? asset('storage/' . $userTemplate->company_logo) : asset($userTemplate->template->assets_path . '/images/logo.png') }}"
+        href="{{ $userTemplate->fav_icon ? asset('storage/' . $userTemplate->fav_icon) : asset($userTemplate->template->assets_path . '/images/favicon.png') }}"
         type="image/x-icon">
     <!-- Bootstrap css -->
     <link href="{{ asset($userTemplate->template->assets_path . '/css/bootstrap.min.css') }}" rel="stylesheet"
@@ -57,18 +57,7 @@
     </div>
     <!-- Preloader Ends -->
 
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #3e3e3e">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{{ route('templates.mine') }}" title="Back to Admin Panel">
-                <i class="fas fa-arrow-left me-2"></i>
-                ADMIN
-            </a>
-            <a href="{{ route('user_shop', $userTemplate->company_slug) }}" class="btn btn-light px-4" target="_blank"
-                title="Live Preview">
-                VIEW
-            </a>
-        </div>
-    </nav>
+    <x-template-edit-bar :userTemplate="$userTemplate" />
 
     <main id="app">
         <ulaunch :user_template="{{ json_encode($userTemplate) }}" :template="{{ json_encode($template) }}" />

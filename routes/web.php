@@ -118,7 +118,7 @@ Route::prefix('app')->middleware('user')->group(function () {
         });
 
         // seo tag routes
-        Route::post('update-seo-tag/{userTemplateId}', [TemplateSeoTagController::class, 'update'])->name('update_seo_tags');
+        Route::post('update-seo-tag', [TemplateSeoTagController::class, 'update'])->name('update_seo_tags');
 
         // payment method routes
         Route::controller(PaymentMethodController::class)->prefix('payment-method')->group(function () {
@@ -142,6 +142,7 @@ Route::prefix('app')->middleware('user')->group(function () {
             Route::get('mine', 'mine')->name('mine');
             Route::get('{id}/edit', 'edit')->name('edit');
             Route::post('slug/availability', 'slugAvailability')->name('slug.availability');
+            Route::post('settings/{id}', 'settings')->name('settings');
 
             // ulaunch
             Route::prefix('ulaunch')->group(function () {
@@ -172,6 +173,7 @@ Route::prefix('app')->middleware('user')->group(function () {
                 Route::post('update-page-setup', [SeedeeTemplateController::class, 'updatePageSetup']);
                 Route::post('update-site-logo', [SeedeeTemplateController::class, 'updateSiteLogo']);
             });
+
             // cycle
             Route::prefix('cycle')->group(function () {
                 Route::post('update-company-logo', [CycleTemplateController::class, 'updateCompanyLogo']);
@@ -221,6 +223,7 @@ Route::prefix('aamar-pay')->group(function () {
     Route::post('fail', [AamarPayController::class, 'fail'])->name('aamar-pay.fail');
     Route::get('cancel', [AamarPayController::class, 'cancel'])->name('aamar-pay.cancel');
 });
+
 /*
 |--------------------------------------------------------------------------
 |   # admin routes

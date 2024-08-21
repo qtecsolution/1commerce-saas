@@ -24,7 +24,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $userTemplate->company_name }}</title>
+    {!! renderSeoTags($userTemplate->id) !!}
 
     <link href="{{ asset($userTemplate->template->assets_path . '/css/icon.css') }}" rel="stylesheet">
     {{-- favi icon --}}

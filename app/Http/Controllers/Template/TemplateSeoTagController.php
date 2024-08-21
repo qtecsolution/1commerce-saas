@@ -36,16 +36,17 @@ class TemplateSeoTagController extends Controller
         return response()->json(['success' => true]);
     }
 
-    public function update(Request $request, $userTemplateId)
+    public function update(Request $request)
     {
         $request->validate([
+            'user_template_id' => 'required|exists:user_templates,id',
             'title' => 'required',
             'description' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048', // 2MB Max
         ]);
 
-        $userTemplate = UserTemplate::findOrFail($userTemplateId);
-        $templateSeoTag = TemplateSeoTag::where('user_template_id', $userTemplateId)->firstOrFail();
+        $userTemplate = UserTemplate::findOrFail($request->user_template_id);
+        $templateSeoTag = TemplateSeoTag::where('user_template_id', $request->user_template_id)->firstOrFail();
         $decodedTags = json_decode($templateSeoTag->tags, true);
 
         $imgPath = fetchImage($userTemplate->company_logo, $userTemplate->template->assets_path . '/images/preview.png');
