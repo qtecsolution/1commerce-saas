@@ -178,6 +178,9 @@ class ShopController extends Controller
                 'response_payload' => json_encode($response),
             ]);
 
+            // code to update user wallet
+            
+
             Alert::success("Great !", "You payment is successful. Our agent will contact you soon.");
             $order = Order::with('userTemplate')->find($payment->order_id);
             if (@$order->userTemplate->company_slug) {
