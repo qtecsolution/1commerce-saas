@@ -4,7 +4,7 @@
             <span class="material-icons-outlined me-1"> call </span>
             {{ footerArea.title }}
             <i
-                class="fas fa-cog footer-gear-icon"
+                class="fas fa-pen-nib footer-gear-icon"
                 data-bs-toggle="modal"
                 data-bs-target="#footerModal"
                 title="Footer Setup"
@@ -1337,7 +1337,7 @@ body {
     position: absolute;
     margin-top: -45px;
     right: 0;
-    background: #0d6efd;
+    background: #000000;
     color: #ffffff;
     padding: 5px;
     border-radius: 50%;

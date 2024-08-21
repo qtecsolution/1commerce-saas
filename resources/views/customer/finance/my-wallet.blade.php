@@ -67,13 +67,13 @@
                         <div class="card shadow-lg">
                             <div class="card-body">
                                 <div class="row align-items-center">
-                                    <div class="col-2">
+                                    <div class="col-md-2">
                                         <div class="rounded-circle overflow-hidden text-center"
                                             style="width: 100px; height: 100px; border-radius: 50%; background: rgba(128, 128, 128, 0.151); line-height: 50px;">
                                             <img src="{{ asset('assets/images/logo/icon.png') }}" class="img-fluid w-100">
                                         </div>
                                     </div>
-                                    <div class="col-8">
+                                    <div class="col-md-6">
                                         <h4 class="mb-0">
                                             1Wallet
                                         </h4>
@@ -82,13 +82,14 @@
                                         <br>
                                         Security Code:
                                         {{ @$userWallet->security_code }}
+                                        <br>
                                         @if (@$userWallet->status == 1)
-                                            <span class="badge badge-success badge-pill ml-5">Active</span>
+                                            <span class="badge badge-success badge-pill">Active</span>
                                         @else
-                                            <span class="badge badge-danger badge-pill ml-5">Inactive</span>
+                                            <span class="badge badge-danger badge-pill">Inactive</span>
                                         @endif
                                     </div>
-                                    <div class="col-2">
+                                    <div class="col-md-4 text-right">
                                         <!-- Button trigger modal -->
                                         <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
                                             data-target="#oneWalletModal">
@@ -158,7 +159,7 @@
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <button type="button" class="btn btn-sm btn-success">
+                        <button type="button" class="btn btn-sm btn-primary">
                             <i class="fas fa-cash-register"></i>
                             Withdraw Cash
                         </button>

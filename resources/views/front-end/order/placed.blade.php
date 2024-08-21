@@ -192,7 +192,7 @@
                         <b>{{ $order->currency }} {{ number_format($order->total_amount) }}</b>
                     </div>
                 </div>
-                @if (@$order->userTemplate->ssl_commerz->status == 1)
+                @if (@$order->userTemplate->one_wallet->status == 1 && @$order->userTemplate->userWallet->status == 1)
                     <button class="btn d-flex mx-auto"> Pay Now </button>
                 @else
                     <p class="p-5"></p>
