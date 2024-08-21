@@ -56,6 +56,15 @@
         <span class="title">Subscription</span>
     </a>
 </li>
+<li class="nav-item">
+    <a href="{{ route('custom-domain.index') }}"
+        class="{{ Route::currentRouteName() == 'custom-domain.index' ? 'parent-menu-active' : '' }}">
+        <span class="icon-holder">
+            <i class="fas fa-globe"></i>
+        </span>
+        <span class="title">Custom Domain</span>
+    </a>
+</li>
 {{-- <li class="nav-item">
     <a href="{{ route('settings') }}"
         class="{{ Route::currentRouteName() == 'settings' ? 'parent-menu-active' : '' }}">
