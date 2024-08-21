@@ -1,6 +1,6 @@
 <template>
   <!-- header section start -->
-   <div class="header_section header_bg">
+  <div class="header_section header_bg">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a href="javascript:void(0)" class="logo">
         <img
@@ -326,18 +326,20 @@
           @blur="updateTestimonialTitle"
         >
           {{ testimonialTitle }}
-        </h1> 
-        <div class="bg-primary text-white text-center rounded-circle cursor-pointer"
-                                        style="width: 30px; height: 30px;margin-left:150px"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#testimonialModal"
-                                    >
-          <i class="fas fa-cog" style=" font-size: 20px; margin-top: 5px;" ></i>
-          </div>
+        </h1>
         <div
-        v-for="(testimonial, index) in testimonials"
-        :key="index" 
-         :class="['carousel-item', index === 0 ? 'active' : '']">
+          class="bg-primary text-white text-center rounded-circle cursor-pointer"
+          style="width: 30px; height: 30px; margin-left: 150px"
+          data-bs-toggle="modal"
+          data-bs-target="#testimonialModal"
+        >
+          <i class="fas fa-cog" style="font-size: 20px; margin-top: 5px"></i>
+        </div>
+        <div
+          v-for="(testimonial, index) in testimonials"
+          :key="index"
+          :class="['carousel-item', index === 0 ? 'active' : '']"
+        >
           <div class="container">
             <div class="client_main">
               <div class="client_section_2">
@@ -353,11 +355,11 @@
                   <div class="quote_icon">
                     <img :src="`${appUrl}/cycle/images/quote-icon.png`" />
                   </div>
-                  <p class="client_text" > 
+                  <p class="client_text">
                     {{ testimonial.review }}
                   </p>
-                  <h3 class="client_name" >
-                   {{ testimonial.reviewer_name }}
+                  <h3 class="client_name">
+                    {{ testimonial.reviewer_name }}
                   </h3>
                 </div>
               </div>
@@ -389,31 +391,58 @@
     <div class="container">
       <div class="contact_main">
         <h1 class="request_text">Order Now</h1>
-        <div class="form-group">
+        <div class="row">
+          <div class="col-md-8">
+            <span class="about_text" contenteditable="true" @blur="updateProductName">{{ productName }}</span>
+          </div>
+          <div class="col-md-4 text-end">
+                <span style="margin-right: 5px" class="about_text" contenteditable="true" @blur="updateProductCurrency">
+                {{ productCurrency}}
+                </span>
+                <span style="margin-right: 5px" class="about_text" contenteditable="true" @blur="updateProductPrice">
+                {{ productPrice }}
+                </span>
+          </div>
         </div>
-        <form action="/action_page.php">
+        <div class="form-group"></div>
+
+        <form
+          action=""
+          method="POST"
+          id="order"
+          class="order-form"
+        >
           <div class="form-group">
             <input
               type="text"
               class="email-bt"
+              value=""
               placeholder="Name"
-              name="Name"
+              name="customer_name"
+              required
             />
+          
           </div>
           <div class="form-group">
             <input
               type="text"
               class="email-bt"
-              placeholder="Email"
-              name="Name"
-            />
-          </div>
+              placeholder="Phone"
+              name="customer_phone"
+              value=""
+              required
+            />  
+            </div>
           <div class="form-group">
             <input
-              type="text"
               class="email-bt"
-              placeholder="Phone Numbar"
-              name="Email"
+              type="number"
+              name="quantity"
+              id="quantity"
+              placeholder="Quantity"
+              min="1"
+              value=""
+              required
             />
           </div>
           <div class="form-group">
@@ -421,13 +450,35 @@
               class="massage-bt"
               placeholder="Address"
               rows="5"
-              id="comment"
-              name="Address"
-            ></textarea>
+              id="customer_address"
+              name="customer_address"
+              required
+              ></textarea
+            >
+          </div>
+          <FormField
+          :styles="{
+            color: siteColor?.primary_text_color,
+            background_color: siteColor?.background_color,
+          }"
+          v-for="(field, index) in fields"
+          :key="index"
+          :field="field"
+          @delete="deleteField(index, $event)"
+          @update="updateField(index, $event)"
+        />
+          <div class="send_btn">
+            <button type="submit">Order Now</button>
           </div>
         </form>
-        <div class="send_btn"><a href="#">Order Now</a></div>
-      </div>
+        
+
+        <AddInputModal
+          :modalId="'addInputModal'"
+          :modalTitle="'Add Dynamic Form'"
+          @save="addField"
+        /> 
+        </div>
     </div>
   </div>
   <!-- contact section end -->
@@ -544,7 +595,7 @@
     section="hero"
     @update="updateButton"
     :buttonData="heroButton"
-  /> 
+  />
   <TestimonialModal
     modalId="testimonialModal"
     modalTitle="Testimonials"
@@ -564,7 +615,7 @@ import ColorPicker from "../components/color-picker.vue";
 import SetupModal from "./components/setup-modal.vue";
 import FooterModal from "./components/footer-modal.vue";
 import AddInputModal from "../components/add-input-modal.vue";
-import FormField from "../components/form-field.vue";
+import FormField from "./components/form-field.vue";
 import UpdateImage from "./components/updateImage.js";
 import UpdateButton from "./components/updateButton.js";
 export default {
@@ -700,8 +751,7 @@ export default {
       footerBg: "#FFFFFF",
     };
   },
-  computed: {
-  },
+  computed: {},
   mounted() {
     this.companyLogo = this.appUrl + "/" + this.user_template.company_logo;
     this.companyLogo =
@@ -773,6 +823,9 @@ export default {
     };
     this.heroButton = heroArea != null ? heroArea.button : defaultHeroButton;
 
+   // order area
+    this.fields = this.user_template?.fields;
+   
     //foooter area
     const footerArea =
       this.template.footer_area != null
@@ -1141,23 +1194,25 @@ export default {
     },
 
     // testimonial area function
-     updateTestimonialsItem(testimonials) {
+    updateTestimonialsItem(testimonials) {
       const formData = new FormData();
       formData.append("title", this.testimonialTitle);
       testimonials.forEach((item, index) => {
         if (item.reviewer_image) {
           //console.log(`Appending file for index ${index}:`, item.reviewer_image);
-          formData.append(`items[${index}][reviewer_image]`, item.reviewer_image);
-        }
-        else{
-           formData.append(`items[${index}][reviewer_image]`, null);
+          formData.append(
+            `items[${index}][reviewer_image]`,
+            item.reviewer_image
+          );
+        } else {
+          formData.append(`items[${index}][reviewer_image]`, null);
         }
         formData.append(`items[${index}][template_id]`, item.template_id);
         formData.append(`items[${index}][user_id]`, item.user_id);
         formData.append(`items[${index}][review]`, item.review);
         formData.append(`items[${index}][reviewer_name]`, item.reviewer_name);
         formData.append(`items[${index}][reviewer_bio]`, item.reviewer_bio);
-    });
+      });
       axios
         .post(`${this.apiUrl}/update-testimonials-area`, formData, {
           headers: {
@@ -1263,74 +1318,82 @@ export default {
         .catch((error) => {
           this.toast("error", "Error updating:", error);
         });
-    },
-    addField(field) {
-      // console.log(field, field.name, field.title);
-      axios
-        .post(`${this.appUrl}/app/dynamic-form/add-input-field`, {
-          user_template_id: this.userTemplate.id,
-          title: field.title,
-          name: field.name,
-          type: field.type,
-          is_required: field.is_required,
-          options:
-            field.options.length > 0 ? JSON.stringify(field.options) : null,
-        })
-        .then((response) => {
-          // console.log(response);
-          if (response.data.success) {
-            this.fields.push(response.data.field);
-            this.toast("success", "Updated successfully");
-          } else {
-            this.toast("error", "Failed to update");
-          }
-        })
-        .catch((error) => {
-          this.toast("error", "Error updating:", error);
-        });
-    },
+    },   
+     addField(field) {
+            axios
+                .post(`${this.appUrl}/app/dynamic-form/add-input-field`, {
+                    user_template_id: this.user_template.id,
+                    title: field.title,
+                    name: field.name,
+                    type: field.type,
+                    is_required: field.is_required,
+                    options:
+                        field.options.length > 0
+                            ? JSON.stringify(field.options)
+                            : null,
+                })
+                .then((response) => {
+                    // console.log(response.data);
 
-    deleteField(index, field) {
-      axios
-        .post(`${this.appUrl}/app/dynamic-form/delete-input-field`, {
-          id: field.id,
-        })
-        .then((response) => {
-          if (response.data.success) {
-            this.fields.splice(index, 1);
-            this.toast("success", "Updated successfully");
-          } else {
-            this.toast("error", "Failed to update");
-          }
-        });
-    },
+                    if (response.data.success) {
+                        this.fields.push(response.data.field);
+                        this.toast("success", "Updated successfully");
+                    } else {
+                        this.toast("error", "Failed to update");
+                    }
+                })
+                .catch((error) => {
+                    // console.error(error);
+                    this.toast("error", "Error updating:", error);
+                });
+        },
 
-    updateField(index, field) {
-      axios
-        .post(`${this.appUrl}/app/dynamic-form/update-input-field`, {
-          id: field.id,
-          title: field.title,
-          name: field.name,
-          type: field.type,
-          is_required: field.is_required,
-          options:
-            field.options.length > 0 ? JSON.stringify(field.options) : null,
-        })
-        .then((response) => {
-          if (response.data.success) {
-            this.fields = [
-              ...this.fields.slice(0, index),
-              response.data.field,
-              ...this.fields.slice(index + 1),
-            ];
+        deleteField(index, field) {
+            axios
+                .post(`${this.appUrl}/app/dynamic-form/delete-input-field`, {
+                    id: field.id,
+                })
+                .then((response) => {
+                    // console.log(response.data);
 
-            this.toast("success", "Updated successfully");
-          } else {
-            this.toast("error", "Failed to update");
-          }
-        });
-    },
+                    if (response.data.success) {
+                        this.fields.splice(index, 1);
+                        this.toast("success", "Updated successfully");
+                    } else {
+                        this.toast("error", "Failed to update");
+                    }
+                });
+        },
 
+        updateField(index, field) {
+            axios
+                .post(`${this.appUrl}/app/dynamic-form/update-input-field`, {
+                    id: field.id,
+                    title: field.title,
+                    name: field.name,
+                    type: field.type,
+                    is_required: field.is_required,
+                    options:
+                        field.options.length > 0
+                            ? JSON.stringify(field.options)
+                            : null,
+                })
+                .then((response) => {
+                    // console.log(response.data);
+
+                    if (response.data.success) {
+                        this.fields = [
+                            ...this.fields.slice(0, index),
+                            response.data.field,
+                            ...this.fields.slice(index + 1),
+                        ];
+
+                        this.toast("success", "Updated successfully");
+                    } else {
+                        this.toast("error", "Failed to update");
+                    }
+                });
+        },
     saveFooterArea() {
       const formData = new FormData();
       formData.append("address", this.address);
