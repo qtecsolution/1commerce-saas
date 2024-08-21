@@ -21,6 +21,7 @@ use App\Http\Controllers\Ticket\SupportTicketController;
 use App\Http\Controllers\Setting\PaymentMethodController;
 use App\Http\Controllers\Template\SeedeeTemplateController;
 use App\Http\Controllers\Template\UlaunchTemplateController;
+use App\Http\Controllers\Template\CycleTemplateController;
 use App\Http\Controllers\FrontEnd\PackageController as FrontEnd_PackageController;
 use App\Http\Controllers\Template\TemplateSeoTagController;
 
@@ -117,7 +118,7 @@ Route::prefix('app')->middleware('user')->group(function () {
 
         // seo tag routes
         Route::post('update-seo-tag', [TemplateSeoTagController::class, 'update'])->name('update_seo_tags');
-        
+
         // payment method routes
         Route::controller(PaymentMethodController::class)->prefix('payment-method')->group(function () {
             Route::post('update/one-wallet', 'updateOneWallet')->name('update.one.wallet');
@@ -163,6 +164,22 @@ Route::prefix('app')->middleware('user')->group(function () {
                 Route::post('update-page-setup', [SeedeeTemplateController::class, 'updatePageSetup']);
                 Route::post('update-site-logo', [SeedeeTemplateController::class, 'updateSiteLogo']);
             });
+
+            // cycle
+            Route::prefix('cycle')->group(function () {
+                Route::post('update-company-logo', [CycleTemplateController::class, 'updateCompanyLogo']);
+                Route::post('update-nav-color', [CycleTemplateController::class, 'updateNavColor']);
+                Route::post('update-menu-area', [CycleTemplateController::class, 'updateMenuArea']);
+                Route::post('update-hero-area', [CycleTemplateController::class, 'updateHeroArea']);
+                Route::post('update-steps-area', [CycleTemplateController::class, 'updateStepsArea']);
+                Route::post('update-features-area', [CycleTemplateController::class, 'updateFeaturesArea']);
+                Route::post('update-about-area', [CycleTemplateController::class, 'updateAboutArea']);
+                Route::post('update-testimonials-area', [CycleTemplateController::class, 'updateTestimonialsArea']);
+                Route::post('update-info-area', [CycleTemplateController::class, 'updateInfoArea']);
+                Route::post('update-order-area', [CycleTemplateController::class, 'updateOrderArea']);
+                Route::post('update-footer-area', [CycleTemplateController::class, 'updateFooterArea']);
+                Route::post('update-product-info', [CycleTemplateController::class, 'updateProductInfo']);
+            });
         });
 
         // dynamic form routes
@@ -197,6 +214,7 @@ Route::prefix('aamar-pay')->group(function () {
     Route::post('fail', [AamarPayController::class, 'fail'])->name('aamar-pay.fail');
     Route::get('cancel', [AamarPayController::class, 'cancel'])->name('aamar-pay.cancel');
 });
+
 /*
 |--------------------------------------------------------------------------
 |   # admin routes

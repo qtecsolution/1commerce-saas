@@ -37,7 +37,7 @@ class UserSeeder extends Seeder
         // create subscription for customer
         $subscription = new Subscription();
         $subscription->user_id = 2;
-        $subscription->package_id = 1;
+        $subscription->package_id = 3;
         $subscription->starting_date = date('Y-m-d', strtotime('-5 days'));
         $subscription->ending_date = date('Y-m-d', strtotime($subscription->starting_date . '+30 days'));
         $subscription->is_paid = 1;

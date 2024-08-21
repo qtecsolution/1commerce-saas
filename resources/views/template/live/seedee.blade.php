@@ -247,7 +247,8 @@
                                                 {{ $order_area['customer_name_text'] }}
                                             </label>
                                             <input type="text" name="customer_name"
-                                                class="form-control site_background_color" required>
+                                                class="form-control site_background_color"
+                                                value="{{ old('customer_name') }}" required>
                                             @error('customer_name')
                                                 <small class="text-danger">{{ $message }}</small>
                                             @enderror
@@ -256,8 +257,9 @@
                                             <label for="" class="primary_text_color">
                                                 {{ $order_area['customer_phone_text'] }}
                                             </label>
-                                            <input type="text" name="customer_phone" pattern="^0\d{8,11}$"
-                                                class="form-control site_background_color" required>
+                                            <input type="tel" name="customer_phone" pattern="^0\d{8,11}$"
+                                                class="form-control site_background_color"
+                                                value="{{ old('customer_phone') }}" required>
                                             @error('customer_phone')
                                                 <small class="text-danger">{{ $message }}</small>
                                             @enderror

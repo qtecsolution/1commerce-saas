@@ -11,13 +11,24 @@ class PaymentMethodController extends Controller
 {
     public function updateOneWallet(Request $request)
     {
-        UserWallet::updateOrCreate(
+        UserWallet::firstOrCreate(
             [
                 'user_id' => auth()->id(),
             ],
             [
-                'security_code' => $request->security_code ?? rand(10000, 99999),
-                'status' => $request->status ?? 1
+                'security_code' => rand(10000, 99999),
+                'status' => 1
+            ]
+        );
+
+        PaymentMethod::updateOrCreate(
+            [
+                'user_id' => auth()->id(),
+                'user_template_id' => $request->user_template_id,
+                'name' => 'one_wallet',
+            ],
+            [
+                'status' => $request->status
             ]
         );
 

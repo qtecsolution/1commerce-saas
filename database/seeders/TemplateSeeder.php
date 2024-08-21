@@ -29,5 +29,13 @@ class TemplateSeeder extends Seeder
                 'blade_path' => 'seedee'
             ]);
         }
+        if (!Template::where('id', 3)->exists()) {
+            Template::create([
+                'name' => 'Cycle',
+                'slug' => 'cycle',
+                'assets_path' => 'cycle',
+                'blade_path' => 'cycle'
+            ]);
+        }
     }
 }

@@ -8,8 +8,7 @@
     </a>
 </li>
 <li class="nav-item">
-    <a href="{{ route('orders') }}"
-        class="{{ Route::currentRouteName() == 'orders' ? 'parent-menu-active' : '' }}">
+    <a href="{{ route('orders') }}" class="{{ Route::currentRouteName() == 'orders' ? 'parent-menu-active' : '' }}">
         <span class="icon-holder">
             <i class="fas fa-clipboard-list"></i>
         </span>
@@ -55,4 +54,33 @@
         </span>
         <span class="title">Subscription</span>
     </a>
+</li>
+<li class="nav-item">
+    <a href="{{ route('subscription.index') }}"
+        class="{{ Route::currentRouteName() == 'subscription.index' ? 'parent-menu-active' : '' }}">
+
+    </a>
+</li>
+
+<li class="nav-item dropdown">
+    <a class="dropdown-toggle" href="javascript:void(0);">
+        <span class="icon-holder">
+            <i class="fas fa-wallet"></i>
+        </span>
+        <span class="title">1Wallet</span>
+        <span class="arrow">
+            <i class="arrow-icon"></i>
+        </span>
+    </a>
+    <ul class="dropdown-menu">
+        <li class="{{ Route::currentRouteName() == 'my.wallet' ? 'active' : '' }}">
+            <a href="{{ route('my.wallet') }}">My Wallet</a>
+        </li>
+        <li class="{{ Route::currentRouteName() == 'wallet.transaction.history' ? 'active' : '' }}">
+            <a href="{{ route('wallet.transaction.history') }}">Transaction History</a>
+        </li>
+        <li class="{{ Route::currentRouteName() == 'wallet.withdraw.history' ? 'active' : '' }}">
+            <a href="{{ route('wallet.withdraw.history') }}">Withdraw History</a>
+        </li>
+    </ul>
 </li>

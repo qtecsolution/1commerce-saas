@@ -8,16 +8,16 @@ use App\Models\Template\Template;
 use App\Http\Controllers\Controller;
 use App\Models\Template\UserTemplate;
 use App\Models\Template\SeedeeTemplate;
+use App\Models\Template\CycleTemplate;
 use App\Models\Template\UlaunchTemplate;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Controllers\Template\SeedeeTemplateController;
+use App\Http\Controllers\Template\CycleTemplateController;
 use App\Models\Subscription;
 
 class TemplateController extends Controller
 {
-    public function __construct(
-        private Template $templates,
-    ) {
+    public function __construct(private Template $templates,) {
         $this->templates = $templates;
     }
 
@@ -104,6 +104,10 @@ class TemplateController extends Controller
                     $seedee = new SeedeeTemplateController();
                     $seedee->initialSetup(auth()->id());
                     break;
+                case 3:
+                    $cycle = new CycleTemplateController();
+                    $cycle->initialSetup(auth()->id());
+                    break;
                 default:
                     // code
                     break;
@@ -140,10 +144,19 @@ class TemplateController extends Controller
             ])
                 ->where('user_id', auth()->id())
                 ->first();
-        } else {
+        }
+        else if ($userTemplate->template_id == 3) {
+            $template = CycleTemplate::with([
+                'steps',
+                'features',
+                'testimonials',
+            ])
+                ->where('user_id', auth()->id())
+                ->first();
+        }
+         else {
             abort(404);
         }
-
         return view('template.edit.' . $userTemplate->template->slug, compact('userTemplate', 'template'));
     }
 

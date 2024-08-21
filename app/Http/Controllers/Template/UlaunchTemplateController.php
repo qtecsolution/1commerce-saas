@@ -432,6 +432,7 @@ class UlaunchTemplateController extends Controller
                     "url" => "#features",
                     "color" => "transparent",
                     "text_color" => "white",
+                    'user_id' => $user_id,
                     "border_color" => "white",
                     "hover_color" => "white",
                     "hover_text_color" => "black",
