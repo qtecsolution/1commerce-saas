@@ -4,18 +4,25 @@ namespace App\Http\Controllers\User;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\OrderDynamicField;
-use App\Models\OrderFormAdditionalField;
+use App\Services\AamarPayService;
+use App\Http\Controllers\Controller;
 use App\Models\Template\UserTemplate;
-use App\Models\Template\SeedeeTemplate;
-use App\Models\Template\UlaunchTemplate;
 use App\Models\Template\CycleTemplate;
+use App\Models\Template\SeedeeTemplate;
+use App\Models\OrderFormAdditionalField;
+use App\Models\OrderPayment;
+use App\Models\Template\UlaunchTemplate;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Validation\ValidationException;
 
 class ShopController extends Controller
 {
+    public function __construct(protected AamarPayService $aamarPayService)
+    {
+        $this->aamarPayService = $aamarPayService;
+    }
+
     public function index($subdomain)
     {
         return $this->livePreview($subdomain);
@@ -36,8 +43,7 @@ class ShopController extends Controller
                 ->firstOrFail();
             // dd($seedee);
             return view('template.live.seedee', compact('seedee', 'userTemplate'));
-        }
-        else if ($userTemplate->template_id == 3) {
+        } else if ($userTemplate->template_id == 3) {
             $cycle = CycleTemplate::with(['steps', 'features'])
                 ->where('user_id', $userTemplate->user_id)
                 ->firstOrFail();
@@ -128,12 +134,69 @@ class ShopController extends Controller
     public function orderPlaced($order_id)
     {
         $order = Order::with('userTemplate')->findOrFail($order_id);
+        $status = request('status');
+
         return view('front-end.order.placed', compact('order'));
     }
 
     public function orderPayment($order_id)
     {
         $order = Order::with('userTemplate')->findOrFail($order_id);
-        return view('front-end.order.details', compact('order'));
+
+        $payload = [
+            'success_url' => route('order_payment_success'),
+            'fail_url' => route('order_payment_fail'),
+            'cancel_url' => route('order_placed', $order->id) . '?status=canceled',
+            'amount' => $order->total_amount,
+            'currency' => 'BDT',
+            'cus_name' => $order->customer_name,
+            'cus_email' => null,
+            'cus_phone' => $order->customer_phone,
+            'desc' => @$order->userTemplate->product_name,
+            'opt_a' => 'Trnx_' . rand(111111, 999999),
+        ];
+
+        OrderPayment::create([
+            'order_id' => $order->id,
+            'transaction_id' => $payload['opt_a'],
+            'payment_method' => 'one_wallet',
+            'amount' => $payload['amount'],
+            'status' => 0,
+        ]);
+
+        $paymentUrl = $this->aamarPayService->paymentRequest($payload);
+        return redirect()->away($paymentUrl);
+    }
+
+    public function paymentSuccess(Request $request)
+    {
+        $response = $this->aamarPayService->verifyPayment($request);
+        $payment = OrderPayment::where('transaction_id', $response['opt_a'])->first();;
+        if ($response) {
+            $payment->update([
+                'status' => 1,
+                'response_payload' => json_encode($response),
+            ]);
+
+            Alert::success("Great !", "You payment is successful. Our agent will contact you soon.");
+            $order = Order::with('userTemplate')->find($payment->order_id);
+            if (@$order->userTemplate->company_slug) {
+                return to_route('live_preview', $order->userTemplate->company_slug);
+            }
+            return redirect('/');
+        } else {
+            return to_route('order_placed', ['order_id' => $payment->order_id, 'status' => 'failed']);
+        }
+    }
+
+    public function paymentFail(Request $request)
+    {
+        $payment = OrderPayment::where('transaction_id', $request['opt_a'])->first();
+        $payment->update([
+            'status' => 2,
+            'response_payload' => json_encode($request),
+        ]);
+
+        return to_route('order_placed', ['order_id' => $payment->order_id, 'status' => 'failed']);
     }
 }

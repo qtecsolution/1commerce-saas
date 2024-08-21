@@ -52,6 +52,9 @@ Route::domain('{subdomain}.' . env('APP_DOMAIN'))->group(function () {
 // place order
 Route::post("place-order", [ShopController::class, 'placeOrder'])->name('place_order');
 Route::get("order-placed/{order_id}", [ShopController::class, 'orderPlaced'])->name('order_placed');
+Route::get("order-pay/{order_id}", [ShopController::class, 'orderPayment'])->name('order_payment');
+Route::post('order-payment/success', [ShopController::class, 'paymentSuccess'])->name('order_payment_success');
+Route::post('order-payment/fail', [ShopController::class, 'paymentFail'])->name('order_payment_fail');
 
 // live preview
 Route::get('shop/{slug}', [ShopController::class, 'livePreview'])->name('live_preview');

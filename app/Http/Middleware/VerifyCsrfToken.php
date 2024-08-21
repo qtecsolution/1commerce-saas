@@ -19,5 +19,8 @@ class VerifyCsrfToken extends Middleware
         '/aamar-pay/success',
         '/aamar-pay/fail',
         '/aamar-pay/cancel',
+        '/order-payment/success',
+        '/order-payment/fail',
+        '/order-payment/cancel',
     ];
 }
