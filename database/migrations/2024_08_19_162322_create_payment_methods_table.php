@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignIdFor(UserTemplate::class)->constrained()->onDelete('cascade');
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->string('name');
-            $table->json('credentials');
+            $table->json('credentials')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
