@@ -110,7 +110,7 @@ class CycleTemplateController extends Controller
                 ]
             ]),
             'testimonials_area' => json_encode([
-                "title" => "What our clients say",
+                "title" => "What our Customer say",
                 "sub_title" => "FEEDBACK",
                 "background_color" => "#20bea7"
             ]),
@@ -209,6 +209,7 @@ class CycleTemplateController extends Controller
 
         // Define the testimonials for title and position
         $testimonials = [
+            ['reviewer_name' => 'Azizul Hoque'],
             ['reviewer_name' => 'Muhaimin Shihab'],
             ['reviewer_name' => 'Asaduzzaman'],
             ['reviewer_name' => 'NM Babor'],
@@ -217,8 +218,8 @@ class CycleTemplateController extends Controller
         foreach ($testimonials as $testimonial) {
             TemplateTestimonial::create([
                 'user_id' => $user_id,
-                'template_id' => 1,
-                'review' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et',
+                'template_id' => 3,
+                'review' => 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
                 'reviewer_name' => $testimonial['reviewer_name'],
                 'reviewer_bio' => 'Customer',
                 'position' => 0,
