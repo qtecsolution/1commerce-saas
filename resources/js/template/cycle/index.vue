@@ -506,7 +506,7 @@
     section="logo"
     :previewURL="companyLogo"
     @update="updateImage"
-  />updateFeaturesImage
+  />
   <ImageModal
     modalId="heroImageModal"
     modalTitle="Hero Image"
@@ -1141,8 +1141,21 @@ export default {
     // testimonial area function
      updateTestimonialsItem(testimonials) {
       const formData = new FormData();
-      formData.append("items", JSON.stringify(testimonials));
-
+      formData.append("title", this.testimonialTitle);
+      testimonials.forEach((item, index) => {
+        if (item.reviewer_image) {
+          //console.log(`Appending file for index ${index}:`, item.reviewer_image);
+          formData.append(`items[${index}][reviewer_image]`, item.reviewer_image);
+        }
+        else{
+           formData.append(`items[${index}][reviewer_image]`, null);
+        }
+        formData.append(`items[${index}][template_id]`, item.template_id);
+        formData.append(`items[${index}][user_id]`, item.user_id);
+        formData.append(`items[${index}][review]`, item.review);
+        formData.append(`items[${index}][reviewer_name]`, item.reviewer_name);
+        formData.append(`items[${index}][reviewer_bio]`, item.reviewer_bio);
+    });
       axios
         .post(`${this.apiUrl}/update-testimonials-area`, formData, {
           headers: {
@@ -1150,7 +1163,7 @@ export default {
           },
         })
         .then((response) => {
-          // console.log(response.data);
+          this.toast("success", "Resources Updated.");
           this.testimonials = response.data.data;
 
           const defaultTestimonialImages = [
@@ -1165,8 +1178,6 @@ export default {
                 ? this.imageSource(testimonial.reviewer_image, "storage")
                 : this.imageSource(defaultTestimonialImages[index]);
           });
-
-          this.toast("success", "Resources Updated.");
         })
         .catch((error) => {
           console.error(error);
@@ -1176,35 +1187,10 @@ export default {
       const formData = new FormData();
       formData.append("title", this.testimonialTitle);
       formData.append("sub_title", this.testimonialSubTitle);
-      formData.append("items", JSON.stringify(this.testimonials));
-      formData.append("background_color", this.testimonialBg);
-      formData.append("image_1", this.testimonials[0].reviewer_image_raw);
-      formData.append("image_2", this.testimonials[1].reviewer_image_raw);
-      formData.append("image_3", this.testimonials[2].reviewer_image_raw);
-
       axios
-        .post(`${this.apiUrl}/update-testimonials-area`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        })
+        .post(`${this.apiUrl}/update-testimonials-area`, formData)
         .then((response) => {
           // console.log(response.data);
-          this.testimonials = response.data.data;
-
-          const defaultTestimonialImages = [
-            "images/author-1.jpg",
-            "images/author-2.jpg",
-            "images/author-3.jpg",
-          ];
-
-          this.testimonials.forEach((testimonial, index) => {
-            testimonial.reviewer_image =
-              testimonial.reviewer_image != null
-                ? this.imageSource(testimonial.reviewer_image, "storage")
-                : this.imageSource(defaultTestimonialImages[index]);
-          });
-
           this.toast("success", "Resources Updated.");
         })
         .catch((error) => {

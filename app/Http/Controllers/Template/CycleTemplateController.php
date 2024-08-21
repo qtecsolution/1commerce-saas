@@ -438,47 +438,45 @@ class CycleTemplateController extends Controller
 
     public function updateTestimonialsArea(Request $request)
     {
-        $testimonials = json_decode($request->input('items'));
-        // Update the testimonials area metadata
-        $this->template->testimonials_area = json_encode([
+
+         // Update the testimonials area metadata
+         $this->template->testimonials_area = json_encode([
             'title' => $request->input('title'),
             'sub_title' => $request->input('sub_title'),
             'background_color' => $request->input('background_color'),
         ]);
         $this->template->save();
-
-        $uploadedPaths = [];
-        $images = ['image_1', 'image_2', 'image_3'];
-
-        foreach ($images as $index => $image) {
-            if ($request->hasFile($image)) {
-                if ($this->template->testimonials->count() > 0 && isset($this->template->testimonials[$index]) && $this->template->testimonials[$index]->reviewer_image) {
-                    $oldImagePath = storage_path('app/public/' . $this->template->testimonials[$index]->reviewer_image);
-                    if (file_exists($oldImagePath)) {
-                        unlink($oldImagePath);
-                    }
-                }
-
-                $uploadedPath = $request->file($image)->store('public/cycle');
-                $uploadedPaths[$index] = 'cycle/' . basename($uploadedPath);
-            }
-        }
+        $items = $request->input('items');
+        if($items){
         TemplateTestimonial::where('template_id',$this->templateId)->delete();
-        foreach ($testimonials as $index => $testimonial) {
-            $testimonialImage = $uploadedPaths[$index] ?? $this->template->testimonials[$index]->reviewer_image ?? null;
-                TemplateTestimonial::create([
-                    'template_id' => $this->templateId,
-                    'user_id' => $this->userId,
-                    'review' => $testimonial->review,
-                    'reviewer_name' => $testimonial->reviewer_name,
-                    'reviewer_bio' => $testimonial->reviewer_bio??"",
-                    'reviewer_image' => $testimonialImage??""
+        foreach ($items as $index => $item) {
+            $path = '';
+            if ($request->hasFile("item[{$index}][reviewer_image]")) {
+                $file = $request->file("items[{$index}][reviewer_image]");
+                // Validate the file
+                $validatedData = $request->validate([
+                    "items[{$index}][reviewer_image]" => 'required|file|image|max:2048',
                 ]);
+    
+                // Store the file
+                $path = $file->store('public/cycle'); // Adjust the path as needed
+            }
+             // Prepare the data for creating a new record
+             $data = [
+                'template_id' => $this->templateId,
+                'user_id' => $this->userId,
+                'review' => $item['review'] ?? '',
+                'reviewer_name' => $item['reviewer_name'] ?? '',
+                'reviewer_bio' => $item['reviewer_bio'] ?? '', // Provide a default value if needed
+                'reviewer_image' => $path ?? '', // Ensure the path is correctly assigned
+            ];
+            // Create a new TemplateTestimonial record
+            TemplateTestimonial::create($data);
+            
         }
-
+       }
         // Ensure relationships are reloaded
         $this->template->load('testimonials');
-
         return response()->json([
             'message' => 'Testimonial Area Updated.',
             'data' => $this->template->testimonials

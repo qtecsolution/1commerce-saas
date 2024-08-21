@@ -1,10 +1,10 @@
 <template>
-    <i
+    <!-- <i
         class="fas fa-cog gear-icon"
         data-bs-toggle="modal"
         :data-bs-target="'#' + modalId"
         :title="modalTitle"
-    ></i>
+    ></i> -->
 
     <div
         class="modal fade"

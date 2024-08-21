@@ -167,7 +167,9 @@
                      <div class="client_main">
                         <div class="client_section_2">
                            <div class="client_left">
-                              <div><img src="{{ asset($userTemplate->template->assets_path . '/images/client-img.png')}}" class="client_img"></div>
+                              <div>
+                                 <img src="{{fetchImage($testimonial['image']??"", $userTemplate->template->assets_path . '/images/client-img.png')}}" class="client_img">
+                              </div>
                            </div>
                            <div class="client_right">
                               <div class="quote_icon"><img src="{{ asset($userTemplate->template->assets_path . '/images/quote-icon.png')}}"></div>
@@ -180,10 +182,20 @@
                </div>
                @endforeach
             </div>
-            <a class="carousel-control-prev" href="#my_slider" role="button" data-slide="prev">
-               <i class="fa fa-angle-left"></i>
+            <a
+              class="carousel-control-prev"
+              href="#my_slider"
+              role="button"
+              data-slide="prev"
+            >
+              <i class="fa fa-angle-left"></i>
             </a>
-            <a class="carousel-control-next" href="#my_slider" role="button" data-slide="next">
+            <a
+              class="carousel-control-next"
+              href="#my_slider"
+              role="button"
+              data-slide="next"
+            >
               <i class="fa fa-angle-right"></i>
             </a>
          </div>
