@@ -80,7 +80,7 @@ class TemplateController extends Controller
                 $path = 'users/logo/' . $request->file('company_logo')->hashName();
             }
 
-            UserTemplate::create([
+            $userTemplate = UserTemplate::create([
                 'user_id' => auth()->id(),
                 'template_id' => $request->template_id,
                 'company_name' => $request->company_name,
@@ -91,6 +91,9 @@ class TemplateController extends Controller
                 'shipping_cost_inside_dhaka' => $request->shipping_cost_inside_dhaka,
                 'shipping_cost_outside_dhaka' => $request->shipping_cost_outside_dhaka,
             ]);
+
+            $templateSeoTag = new TemplateSeoTagController();
+            $templateSeoTag->store($userTemplate->id);
 
             switch ($request->template_id) {
                 case 1:

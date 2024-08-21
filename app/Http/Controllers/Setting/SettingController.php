@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Setting;
 use App\Http\Controllers\Controller;
 use App\Models\PaymentMethod;
 use App\Models\Template\UserTemplate;
+use App\Models\TemplateSeoTag;
 use App\Models\TrackingApi;
 use Illuminate\Http\Request;
 
@@ -12,10 +13,11 @@ class SettingController extends Controller
 {
     public function settings($id)
     {
-        $userTemplate = UserTemplate::with('userWallet')->find($id);
+        $userTemplate = UserTemplate::with(['template', 'userWallet'])->find($id);
         $trackingApi = TrackingApi::where('user_template_id', $id)->first();
+        $SeoTags = TemplateSeoTag::where('user_template_id', $id)->first();
 
-        return view('customer.setting.settings', compact('trackingApi', 'userTemplate'));
+        return view('customer.setting.settings', compact('trackingApi', 'userTemplate', 'SeoTags'));
     }
 
     // function to update and create customer tracking api

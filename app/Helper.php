@@ -2,7 +2,9 @@
 
 use App\Models\Subscription;
 use App\Models\Template\UserTemplate;
+use App\Models\TemplateSeoTag;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Str;
 
 if (!function_exists('isSubscriptionPaid')) {
 
@@ -94,9 +96,9 @@ if (!function_exists('trackingApi')) {
         $userTemplate = UserTemplate::with('trackingApi')->find($userTemplateId);
 
         if ($userTemplate && $userTemplate->trackingApi) {
-            $fbPixel = $userTemplate->trackingApi->fb_pixel_value ?? '';
-            $gtmHead = $userTemplate->trackingApi->gtm_head_value ?? '';
-            $gtmBody = $userTemplate->trackingApi->gtm_body_value ?? '';
+            $fbPixel = $userTemplate->trackingApi->fb_pixel_value ?? '' . PHP_EOL;
+            $gtmHead = $userTemplate->trackingApi->gtm_head_value ?? '' . PHP_EOL;
+            $gtmBody = $userTemplate->trackingApi->gtm_body_value ?? '' . PHP_EOL;
 
             return [
                 'head_code' => $gtmHead . $fbPixel,
@@ -108,5 +110,41 @@ if (!function_exists('trackingApi')) {
             'head_code' => '',
             'body_code' => ''
         ];
+    }
+}
+
+if (!function_exists('renderSeoTags')) {
+    function renderSeoTags($userTemplateId)
+    {
+        $userTemplate = UserTemplate::with('template')->find($userTemplateId);
+        $template = TemplateSeoTag::where('user_template_id', $userTemplate->id)->first();
+        if ($template && $template->tags) {
+            $tags = json_decode($template->tags, true);
+
+            $html = '';
+            foreach ($tags as $tag => $value) {
+                if (str_contains($tag, 'og:')) {
+                    if ($tag === 'og:image') {
+                        $value = Str::startsWith($value, ['http', 'https'])
+                        ? $value
+                        : asset('storage/' . $value);
+    
+                        $html .= "<meta property=\"{$tag}\" content=\"{$value}\">" . PHP_EOL;
+                    } else {
+                        $html .= "<meta property=\"{$tag}\" content=\"{$value}\">" . PHP_EOL;
+                    }
+                } elseif ($tag === 'title') {
+                    $html .= "<title>{$value}</title>" . PHP_EOL;
+                } elseif ($tag === 'description') {
+                    $html .= "<meta name=\"description\" content=\"{$value}\">" . PHP_EOL;
+                } else {
+                    $html .= "<meta name=\"{$tag}\" content=\"{$value}\">" . PHP_EOL;
+                }
+            }
+
+            return $html;
+        }
+
+        return '';
     }
 }
