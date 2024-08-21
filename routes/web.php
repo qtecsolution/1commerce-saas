@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AamarPayController;
 use App\Http\Controllers\Auth\UserController;
-
+use App\Http\Controllers\CustomDomainController;
 use App\Http\Controllers\Test\TestController;
 use App\Http\Controllers\User\ShopController;
 use App\Http\Controllers\Order\OrderController;
@@ -200,6 +200,9 @@ Route::prefix('app')->middleware('user')->group(function () {
             Route::post('delete-input-field', [DynamicOrderFormController::class, 'deleteInputField']);
             Route::post('update-input-field', [DynamicOrderFormController::class, 'updateInputField']);
         });
+
+        // ticket routes
+        Route::resource('custom-domain', CustomDomainController::class);
     });
 
     // subscription routes
