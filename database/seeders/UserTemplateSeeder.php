@@ -25,7 +25,7 @@ class UserTemplateSeeder extends Seeder
             'company_name' => 'Example Company Ltd.',
             'company_slug' => Str::slug('Example Company'),
             'fav_icon' => 'favicon.ico',
-            'company_logo' => 'logo.png',
+            'company_logo' => null,
             'product_name' => 'Example Product',
             'shipping_cost_inside_dhaka' => 100.00,
             'shipping_cost_outside_dhaka' => 200.00,

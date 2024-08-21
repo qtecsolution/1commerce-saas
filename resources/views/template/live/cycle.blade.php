@@ -48,7 +48,7 @@
     <!-- header section start -->
       <div class="header_section header_bg">
          <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a href="index.html" class="logo"><img src="{{ asset($userTemplate->template->assets_path . '/images/logo.png')}}"></a>
+            <a href="index.html" class="logo"><img src="{{fetchImage($userTemplate->company_logo, $userTemplate->template->assets_path . '/images/logo.png')}}"></a>
             {{-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -78,7 +78,7 @@
                         <div class="row">
                            <div class="col-md-7">
                               {{-- <div class="best_text">Best</div> --}}
-                              <div class="image_1"><img src="{{fetchImage($hero_area['image'], $userTemplate->template->assets_path . '/images/product1.png')}}"></div>
+                              <div class="image_1"><img src="{{fetchImage($hero_area['image']??"", $userTemplate->template->assets_path . '/images/img-1.png')}}"></div>
                            </div>
                            <div class="col-md-5">
                               <h1 class="banner_taital">{{ $hero_area['title'] }}</h1>
@@ -136,7 +136,7 @@
                   <div class="col-md-6">
                      <div class="box_main_3">
                         {{-- <h6 class="number_text_2">02</h6> --}}
-                        <div class="image_2" style="margin-top: 100px!important"><img src="{{fetchImage($feature_area['image'], $userTemplate->template->assets_path . '/images/product1.png')}}"></div>
+                        <div class="image_2" style="margin-top: 100px!important"><img src="{{fetchImage($feature_area['image'], $userTemplate->template->assets_path . '/images/img-1.png')}}"></div>
                      </div>
                   </div>
                </div>
@@ -151,7 +151,7 @@
             <p class="about_text">{{ $about_area['description'] }}
             </p>
             <div class="about_main">
-               <img src="{{fetchImage($about_area['image'], $userTemplate->template->assets_path . '/images/product1.png')}}" class="image_5">
+               <img src="{{fetchImage($about_area['image']??"", $userTemplate->template->assets_path . '/images/img-1.png')}}" class="image_5">
             </div>
          </div>
       </div>

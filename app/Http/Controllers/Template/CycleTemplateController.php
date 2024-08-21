@@ -44,8 +44,8 @@ class CycleTemplateController extends Controller
                 ["title" => "Order", "url" => "#order"]
             ]),
             'hero_area' => json_encode([
-                "title" => "Best quality smart watch only at Tk 2000.",
-                "description" => "Lorem ipsum dolor sit amet. Reprehenderit, qui blanditiis quidem rerum necessitatibus praesentium voluptatum deleniti atque corrupti, quos dolores eos.",
+                "title" => "New Model Cycle",
+                "description" => "New Model CycleIt is a long established fact that a reader will be distracted by the readable content",
                 "image" => null,
                 "button" => [
                     "title" => "Product Details",
@@ -61,7 +61,7 @@ class CycleTemplateController extends Controller
                 "background_color" => "#20bea7"
             ]),
             'features_area' => json_encode([
-                "features_title" => "Our Cycle",
+                "feature_title" => "Our Cycle",
                 "feature_subtitle" => "It is a long established fact that a reader will be distracted by the",
                 "feature_product_description"=>"It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
                 "image" => null,
