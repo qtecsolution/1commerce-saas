@@ -36,7 +36,7 @@
                         Add More
                     </button>
                     <div class="row">
-                        <div
+                        <div class="border m-2"
                             v-for="(testimonial, index) in testimonials"
                             :key="index"
                         >
@@ -54,7 +54,7 @@
                                 <input
                                     type="file"
                                     @change="handleFileChange($event, index)"
-                                    class="w-full py-2 border border-indigo-500 rounded"
+                                    class="w-full py-2 border border-indigo-500 rounded mt-3"
                                 />
                                 <button
                                     style="margin-left: 5px"

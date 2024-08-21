@@ -206,21 +206,59 @@
          <div class="container">
             <div class="contact_main">
                <h1 class="request_text">Order Now</h1>
-               <form action="/action_page.php">
+               <div class="row">
+                  <div class="col-md-8 justify-content-start">
+                     <p class="about_text">{{ $userTemplate->product_name }}</p>
+                  </div>
+                  <div class="col-md-4 text-end">
+                      <span style="margin-right: 5px"> <p class="about_text">{{ $userTemplate->product_currency }} {{ $userTemplate->product_price }}</p></span>
+                  </div>
+              </div>
+               
+               <form  action="{{ route('place_order') }}" method="POST" id="order" class="order-form">
+               @csrf
+               <input type="hidden" name="user_template_id" value="{{ $userTemplate->id }}">
+
                   <div class="form-group">
-                     <input type="text" class="email-bt" placeholder="Name" name="Name">
+                     <input type="text" class="email-bt" value="{{ old('customer_name') }}" placeholder="Name" name="customer_name"required>
+                     <div class="help-block with-errors"></div>
+                     @error('customer_name')
+                        <small class="text-danger">{{ $message }}</small>
+                     @enderror
                   </div>
                   <div class="form-group">
-                     <input type="text" class="email-bt" placeholder="Email" name="Name">
+                     <input type="text" class="email-bt" placeholder="Phone" name="customer_phone" value="{{ old('customer_phone') }}" required>
+                     <div class="help-block with-errors"></div>
+                     @error('customer_phone')
+                         <small class="text-danger">{{ $message }}</small>
+                     @enderror
+                  </div>
+
+                  <div class="form-group">
+                     <input class="email-bt" type="number" name="quantity" id="quantity" class="form-control"
+                     placeholder="Quantity" min="1" value="{{ old('quantity') ?? 1 }}"
+                     required >
+                     <div class="help-block with-errors"></div>
+                     @error('quantity')
+                         <small class="text-danger">{{ $message }}</small>
+                     @enderror
                   </div>
                   <div class="form-group">
-                     <input type="text" class="email-bt" placeholder="Phone Numbar" name="Email">
+                     <textarea class="massage-bt" placeholder="Address" rows="5" id="customer_address" name="customer_address" required>{{ old('customer_address') }}</textarea>
+                     @error('customer_address')
+                        <small class="text-danger">{{ $message }}</small>
+                     @enderror
                   </div>
-                  <div class="form-group">
-                     <textarea class="massage-bt" placeholder="Address" rows="5" id="comment" name="Address"></textarea>
-                  </div>
+                  @foreach ($userTemplate->fields as $field)
+                      <x-form-field :field="$field" :styles="[
+                        'color' => $site_color['primary_text_color'],
+                        'background_color' => $site_color['background_color'],
+                        ]" />
+                  @endforeach
+               <div class="send_btn"> 
+                  <button type="submit">Order Now</button>
+               </div>
                </form>
-               <div class="send_btn"><a href="#">Order Now</a></div>
             </div>
          </div>
       </div>

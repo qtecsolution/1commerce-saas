@@ -1016,6 +1016,22 @@ textarea#comment::placeholder {
     color: #000;
     background-color: #ffffff;
 }
+
+
+.send_btn button {
+    width: 100%;
+    float: left;
+    color: #ffffff;
+    font-size: 18px;
+    padding: 10px 0px;
+    background-color: #f7c17b;
+    border-radius: 10px;
+}
+
+.send_btn button:hover {
+    color: #000;
+    background-color: #ffffff;
+}
 /* contact section end*/
 /* footer section start*/
 
