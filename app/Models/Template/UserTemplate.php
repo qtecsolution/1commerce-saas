@@ -6,6 +6,7 @@ use App\Models\PaymentMethod;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\OrderFormAdditionalField;
 use App\Models\TrackingApi;
+use App\Models\UserWallet;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class UserTemplate extends Model
@@ -13,7 +14,7 @@ class UserTemplate extends Model
     use HasFactory;
 
     protected $guarded = [];
-    protected $appends = ['ssl_commerz'];
+    protected $appends = ['ssl_commerz', 'aamar_pay'];
 
     public function template()
     {
@@ -32,7 +33,17 @@ class UserTemplate extends Model
 
     public function getSSLCommerzAttribute()
     {
-        return $this->paymentMethods()->where('payment_method', 'ssl_commerz')->first();
+        return $this->paymentMethods()->where('name', 'ssl_commerz')->first();
+    }
+
+    public function getAamarPayAttribute()
+    {
+        return $this->paymentMethods()->where('name', 'aamar_pay')->first();
+    }
+
+    public function userWallet()
+    {
+        return $this->hasOne(UserWallet::class, 'user_id', 'user_id');
     }
 
     public function trackingApi()

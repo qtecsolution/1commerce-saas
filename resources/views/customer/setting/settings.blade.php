@@ -62,121 +62,9 @@
                         </div>
                         <div class="container">
                             <div class="row">
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row align-items-center">
-                                                <div class="col-3">
-                                                    <div class="rounded-circle overflow-hidden text-center"
-                                                        style="width: 50px; height: 50px; border-radius: 50%; background: rgba(128, 128, 128, 0.151); line-height: 50px;">
-                                                        <img src="{{ asset('assets/images/payment-methods/ssl-commerz.png') }}"
-                                                            class="img-fluid w-100">
-                                                    </div>
-                                                </div>
-                                                <div class="col-9">
-                                                    <h4 class="mb-0">SSL Commercrz</h4>
-                                                    @if ($userTemplate->ssl_commerz)
-                                                        Store ID:
-                                                        {{ @$userTemplate->ssl_commerz->decoded_credentials['store_id'] }}
-                                                        <br>
-                                                        Store Password:
-                                                        {{ @$userTemplate->ssl_commerz->decoded_credentials['store_password'] }}
-                                                        <br>
-                                                        Test Mode:
-                                                        {{ @$userTemplate->ssl_commerz->decoded_credentials['test_mode'] ? 'Yes' : 'No' }}
-                                                        @if (@$userTemplate->ssl_commerz->status == 1)
-                                                            <span class="badge badge-success ml-5">Active</span>
-                                                        @else
-                                                            <span class="badge badge-danger ml-5">Inactive</span>
-                                                        @endif
-                                                        <br>
-                                                    @endif
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-sm btn-primary"
-                                                        data-toggle="modal" data-target="#sslCommerzModal"
-                                                        class="btn btn-sm btn-primary">
-                                                        <i class="fas fa-cog"></i>
-                                                    </button>
-
-                                                    <!-- Modal -->
-                                                    <div class="modal fade" id="sslCommerzModal" tabindex="-1"
-                                                        aria-labelledby="sslCommerzModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog">
-                                                            <form action="{{ route('update.ssl.commerz') }}" method="POST"
-                                                                class="modal-content">
-                                                                @csrf
-                                                                <input type="hidden" name="user_template_id"
-                                                                    value="{{ $userTemplate->id }}">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="sslCommerzModalLabel">
-                                                                        SSL Commercrz
-                                                                    </h5>
-                                                                    <button type="button" class="close"
-                                                                        data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <div class="form-group">
-                                                                        <label for="store_id">
-                                                                            Store ID
-                                                                            <sup class="text-danger">*</sup>
-                                                                        </label>
-                                                                        <input type="text" class="form-control"
-                                                                            id="store_id" name="store_id"
-                                                                            value="{{ @$userTemplate->ssl_commerz->decoded_credentials['store_id'] }}"
-                                                                            required>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label for="store_password">
-                                                                            Store Password
-                                                                            <sup class="text-danger">*</sup>
-                                                                        </label>
-                                                                        <input type="text" class="form-control"
-                                                                            id="store_password" name="store_password"
-                                                                            value="{{ @$userTemplate->ssl_commerz->decoded_credentials['store_password'] }}"
-                                                                            required>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label for="status">
-                                                                            Status
-                                                                            <sup class="text-danger">*</sup>
-                                                                        </label>
-                                                                        <select name="status" class="form-control"
-                                                                            id="status">
-                                                                            <option value="1"
-                                                                                {{ @$userTemplate->ssl_commerz->status == 1 ? 'selected' : '' }}>
-                                                                                Active
-                                                                            </option>
-                                                                            <option value="0"
-                                                                                {{ !@$userTemplate->ssl_commerz->status == 0 ? 'selected' : '' }}>
-                                                                                Inactive
-                                                                            </option>
-                                                                        </select>
-                                                                    </div>
-                                                                    <div class="form-group form-check">
-                                                                        <input type="checkbox" class="form-check-input"
-                                                                            id="exampleCheck1" name="sandbox"
-                                                                            {{ @$userTemplate->ssl_commerz->decoded_credentials['test_mode'] ? 'checked' : '' }}>
-                                                                        <label class="form-check-label"
-                                                                            for="exampleCheck1">Test Mode</label>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary"
-                                                                        data-dismiss="modal">Close</button>
-                                                                    <button type="submit" class="btn btn-primary">
-                                                                        Submit
-                                                                    </button>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @include('customer.setting.payment-methods.1-wallet')
+                                @include('customer.setting.payment-methods.ssl-commerz')
+                                @include('customer.setting.payment-methods.aamar-pay')
                             </div>
                         </div>
                     </div>
@@ -228,7 +116,8 @@
                                                                 </select>
                                                             </div>
                                                             <div class="input-group-append">
-                                                                <button class="btn btn-primary" type="button">Search</button>
+                                                                <button class="btn btn-primary"
+                                                                    type="button">Search</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -323,12 +212,30 @@
                         aria-labelledby="tracking_apis_tab">
                         <div class="my-4">
                             <h3>Facebook Pixel</h3>
+                            <div class="col-md-6 pl-0">
+                                <h5>Instructions for Adding Facebook Pixel Code</h5>
+                                <ol>
+                                    <li>Login to your <a href="https://www.facebook.com/" target="_blank">Facebook
+                                            account</a>.</li>
+                                    <li>Navigate to the <a href="https://www.facebook.com/events_manager2/"
+                                            target="_blank">Event Manager</a> page.</li>
+                                    <li>In the sidebar, click on "Connect Data Sources."</li>
+                                    <li>Select "Web" from the available options and click "Next."</li>
+                                    <li>Enter a name for the event and click "Create."</li>
+                                    <li>Go to the "Events Overview" tab and click "Set up Meta Pixel" under the "Gather
+                                        website events from browser activity" section.</li>
+                                    <li>Select "Manually add Pixel code to website."</li>
+                                    <li>Copy the provided Pixel code and paste it in the designated area below.</li>
+                                    <li>Click "Save" to complete the setup.</li>
+                                    <li>Congratulations! Your Facebook Pixel setup is now complete.</li>
+                                </ol>
+                            </div>
                         </div>
                         <form action="{{ route('tracking_api') }}" method="POST" class="mt-3">
                             @csrf
                             <input type="hidden" name="id" value="{{ @$trackingApi->id }}">
                             <input type="hidden" name="user_template_id" value="{{ @$userTemplate->id }}">
-    
+
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
@@ -337,11 +244,23 @@
                                     </div>
                                 </div>
                             </div>
-    
+
                             <hr>
-    
+
                             <div class="my-4">
                                 <h3>Google Tag Manager</h3>
+                                <div class="col-md-6 pl-0">
+                                    <h5>Instructions for Adding Google Tag Manager Code</h5>
+                                    <ol>
+                                        <li>Login to your <a href="https://tagmanager.google.com" target="_blank">Google
+                                                Tag Manager account</a>.</li>
+                                        <li>Click on the "Create Account".</li>
+                                        <li>Fill up the form and select "Web" on the Target Platform.</li>
+                                        <li>Copy and Paste the provided code.</li>
+                                        <li>Click "Save" to complete the setup.</li>
+                                        <li>Congratulations! Your Google Tag Manager (GTM) setup is now complete.</li>
+                                    </ol>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-6">
