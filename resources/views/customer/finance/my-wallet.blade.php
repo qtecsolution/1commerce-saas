@@ -1,0 +1,172 @@
+@php
+    $title = 'My Wallet';
+@endphp
+@extends('layouts.app')
+
+@section('page_content')
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header py-2">
+                <h3 class="mb-0">{{ $title }}</h3>
+            </div>
+            <div class="card-body">
+                {{-- alert --}}
+                <x-alert />
+                @if (is_null($userWallet))
+                    <form action="{{ route('create.one.wallet') }}" method="POST" class="modal-content">
+                        @csrf
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="oneWalletModalLabel">
+                                1Wallet User Agreement
+                            </h5>
+                        </div>
+                        <div class="modal-body">
+                            @include('customer.finance.components.terms')
+                            <hr>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="security_code">
+                                        Security Code
+                                        <sup class="text-danger">*</sup>
+                                    </label>
+                                    <input type="number" class="form-control" name="security_code" min="0"
+                                        placeholder="Enter Security Code" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="status">
+                                        Status
+                                        <sup class="text-danger">*</sup>
+                                    </label>
+                                    <select name="status" class="form-control">
+                                        <option value="1">
+                                            Active
+                                        </option>
+                                        <option value="0">
+                                            Inactive
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" id="oneWalletExampleCheck1" name="agree"
+                                    required>
+                                <label class="form-check-label" for="oneWalletExampleCheck1">I agree to the
+                                    terms and conditions.</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">
+                                Submit
+                            </button>
+                        </div>
+                    </form>
+                @else
+                    <div class="col-md-12">
+                        <div class="card shadow-lg">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-2">
+                                        <div class="rounded-circle overflow-hidden text-center"
+                                            style="width: 100px; height: 100px; border-radius: 50%; background: rgba(128, 128, 128, 0.151); line-height: 50px;">
+                                            <img src="{{ asset('assets/images/logo/icon.png') }}" class="img-fluid w-100">
+                                        </div>
+                                    </div>
+                                    <div class="col-8">
+                                        <h4 class="mb-0">
+                                            1Wallet
+                                        </h4>
+                                        Current Balance:
+                                        {{ number_format(@$userWallet->balance) }}
+                                        <br>
+                                        Security Code:
+                                        {{ @$userWallet->security_code }}
+                                        @if (@$userWallet->status == 1)
+                                            <span class="badge badge-success badge-pill ml-5">Active</span>
+                                        @else
+                                            <span class="badge badge-danger badge-pill ml-5">Inactive</span>
+                                        @endif
+                                    </div>
+                                    <div class="col-2">
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
+                                            data-target="#oneWalletModal">
+                                            <i class="fas fa-cog"></i>
+                                            Configure
+                                        </button>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="oneWalletModal" tabindex="-1"
+                                            aria-labelledby="oneWalletModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <form action="{{ route('create.one.wallet') }}" method="POST"
+                                                    class="modal-content">
+                                                    @csrf
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="oneWalletModalLabel">
+                                                            1Wallet
+                                                        </h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="form-group col-md-6">
+                                                                <label for="security_code">
+                                                                    Security Code
+                                                                    <sup class="text-danger">*</sup>
+                                                                </label>
+                                                                <input type="number" class="form-control"
+                                                                    name="security_code" min="0"
+                                                                    placeholder="Enter Security Code"
+                                                                    value="{{ @$userWallet->security_code }}" required>
+                                                            </div>
+                                                            <div class="form-group col-md-6">
+                                                                <label for="status">
+                                                                    Status
+                                                                    <sup class="text-danger">*</sup>
+                                                                </label>
+                                                                <select name="status" class="form-control">
+                                                                    <option value="1"
+                                                                        {{ @$userWallet->status == 1 ? 'selected' : '' }}>
+                                                                        Active
+                                                                    </option>
+                                                                    <option value="0"
+                                                                        {{ @$userWallet->status == 0 ? 'selected' : '' }}>
+                                                                        Inactive
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary">
+                                                            Submit
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-sm btn-success">
+                            <i class="fas fa-cash-register"></i>
+                            Withdraw Cash
+                        </button>
+                    </div>
+                @endif
+            </div>
+        </div>
+    </div>
+@endsection
+@section('page_js')
+@endsection

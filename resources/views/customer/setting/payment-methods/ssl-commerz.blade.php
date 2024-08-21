@@ -24,9 +24,9 @@
                         Test Mode:
                         {{ @$userTemplate->ssl_commerz->decoded_credentials['test_mode'] ? 'Yes' : 'No' }}
                         @if (@$userTemplate->ssl_commerz->status == 1)
-                            <span class="badge badge-success ml-5">Active</span>
+                            <span class="badge badge-success badge-pill ml-5">Active</span>
                         @else
-                            <span class="badge badge-danger ml-5">Inactive</span>
+                            <span class="badge badge-danger badge-pill ml-5">Inactive</span>
                         @endif
                         <br>
                     @endif

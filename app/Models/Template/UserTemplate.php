@@ -14,7 +14,7 @@ class UserTemplate extends Model
     use HasFactory;
 
     protected $guarded = [];
-    protected $appends = ['ssl_commerz', 'aamar_pay'];
+    protected $appends = ['ssl_commerz', 'aamar_pay', 'one_wallet'];
 
     public function template()
     {
@@ -39,6 +39,11 @@ class UserTemplate extends Model
     public function getAamarPayAttribute()
     {
         return $this->paymentMethods()->where('name', 'aamar_pay')->first();
+    }
+
+    public function getOneWalletAttribute()
+    {
+        return $this->paymentMethods()->where('name', 'one_wallet')->first();
     }
 
     public function userWallet()

@@ -23,7 +23,8 @@ use App\Http\Controllers\Template\SeedeeTemplateController;
 use App\Http\Controllers\Template\UlaunchTemplateController;
 use App\Http\Controllers\Template\CycleTemplateController;
 use App\Http\Controllers\FrontEnd\PackageController as FrontEnd_PackageController;
-use App\Models\Template\Template;
+use App\Http\Controllers\User\Finance\WalletController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -113,13 +114,21 @@ Route::prefix('app')->middleware('user')->group(function () {
         Route::controller(SettingController::class)->group(function () {
             Route::get("settings/{id}", "settings")->name('settings');
             Route::post('tracking-api', 'createApi')->name('tracking_api');
+        });
 
-            // payment method routes
-            Route::controller(PaymentMethodController::class)->prefix('payment-method')->group(function () {
-                Route::post('update/one-wallet', 'updateOneWallet')->name('update.one.wallet');
-                Route::post('update/ssl-commerz', 'updateSslCommerz')->name('update.ssl.commerz');
-                Route::post('update/aamar-pay', 'updateAamarPay')->name('update.aamar.pay');
-            });
+        // payment method routes
+        Route::controller(PaymentMethodController::class)->prefix('payment-method')->group(function () {
+            Route::post('update/one-wallet', 'updateOneWallet')->name('update.one.wallet');
+            Route::post('update/ssl-commerz', 'updateSslCommerz')->name('update.ssl.commerz');
+            Route::post('update/aamar-pay', 'updateAamarPay')->name('update.aamar.pay');
+        });
+
+        // wallet routes
+        Route::controller(WalletController::class)->prefix('wallet')->group(function () {
+            Route::get("my-wallet", "myWallet")->name('my.wallet');
+            Route::post('create/one-wallet', 'createOneWallet')->name('create.one.wallet');
+            Route::get('transaction-history', 'transactionHistory')->name('wallet.transaction.history');
+            Route::get('withdraw-history', 'withdrawHistory')->name('wallet.withdraw.history');
         });
 
         // template routes
