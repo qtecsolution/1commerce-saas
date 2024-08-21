@@ -462,18 +462,9 @@ class CycleTemplateController extends Controller
                 $uploadedPaths[$index] = 'cycle/' . basename($uploadedPath);
             }
         }
-
+        TemplateTestimonial::where('template_id',$this->templateId)->delete();
         foreach ($testimonials as $index => $testimonial) {
             $testimonialImage = $uploadedPaths[$index] ?? $this->template->testimonials[$index]->reviewer_image ?? null;
-
-            if (isset($testimonial->id)) {
-                TemplateTestimonial::where('id', $testimonial->id)->update([
-                    'review' => $testimonial->review,
-                    'reviewer_name' => $testimonial->reviewer_name,
-                    'reviewer_bio' => $testimonial->reviewer_bio??"",
-                    'reviewer_image' => $testimonialImage??""
-                ]);
-            } else {
                 TemplateTestimonial::create([
                     'template_id' => $this->templateId,
                     'user_id' => $this->userId,
@@ -482,7 +473,6 @@ class CycleTemplateController extends Controller
                     'reviewer_bio' => $testimonial->reviewer_bio??"",
                     'reviewer_image' => $testimonialImage??""
                 ]);
-            }
         }
 
         // Ensure relationships are reloaded

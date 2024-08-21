@@ -27,39 +27,38 @@
           ></button>
         </div>
         <div class="modal-body">
-          <div class="row">
-            <button
+          <button
               type="button"
               class="flex justify-end ml-2 rounded-md border btn btn-success"
               @click="addMore()"
-            >
+            > <i class="fas fa-plus"></i>
               Add More
             </button>
+          <div class="row">
             <div v-for="(testimonial, index) in testimonials" :key="index">
               <div class="flex justify-start ml-2 mt-4">
                 <input
                   v-model="testimonial.review"
                   placeholder="Enter Customer Review"
-                  class="w-full py-2 border border-indigo-500 rounded"
+                  class="w-full py-2 border border-indigo-500 rounded mr-2 col-8"
                 />
                 <input
                   v-model="testimonial.reviewer_name"
                   placeholder="Enter Reviewer Name"
-                  class="w-full py-2 border border-indigo-500 rounded"
+                  class="w-full py-2 border border-indigo-500 rounded col-3"
                 />
                 <!-- <input
                   type="file"
                   @change="handleFileChange($event, index)"
                   class="w-full py-2 border border-indigo-500 rounded"
                 /> -->
-                <button
+                <button style="margin-left:5px;"
                   type="button"
                   class="btn btn-danger"
                   @click="remove(index)"
                   v-show="index != 0"
                 >
                   <i class="fas fa-trash"></i>
-                  Remove
                 </button>
               </div>
             </div>
@@ -84,7 +83,7 @@
 
 <script>
 export default {
-  props: ["modalId", "modalTitle", "buttonData"],
+  props: ["modalId", "modalTitle", "data"],
   data() {
     return {
       testimonials: [
@@ -96,9 +95,37 @@ export default {
       ],
     };
   },
+   watch: {
+    data(newData) {
+      if (newData && newData.length > 0) {
+        // Assign the first item from `data` to `testimonials`
+        this.testimonials[0] = { ...newData[0] };
+      }
+    }
+  },
+  mounted() {
+    // Initialize testimonials on mount in case `data` is available
+    if (this.data && this.data.length > 0) {
+     this.testimonials = this.data.map(element => ({ ...element }));
+    }
+  },
   emits: ["update"],
   methods: {
+    toast(icon, title) {
+      this.$swal({
+        toast: true,
+        icon: icon,
+        title: title,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    },
     addMore() {
+      if(this.testimonials.length==10){
+         this.toast("error", "You cannot add more than 10 items.");
+        return;
+      }
       this.testimonials.push({
         review: "",
         reviewer_name: "",

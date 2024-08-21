@@ -52,7 +52,6 @@
              </a>
          </div>
      </nav>
-      
       <main id="app" class="mt-5">
          <cycle :user_template="{{ json_encode($userTemplate) }}" :template="{{ json_encode($template) }}" />
      </main>

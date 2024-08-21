@@ -146,6 +146,7 @@ class TemplateController extends Controller
             $template = CycleTemplate::with([
                 'steps',
                 'features',
+                'testimonials',
             ])
                 ->where('user_id', auth()->id())
                 ->first();

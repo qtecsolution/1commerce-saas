@@ -328,13 +328,16 @@
           {{ testimonialTitle }}
         </h1> 
         <div class="bg-primary text-white text-center rounded-circle cursor-pointer"
-                                        style="width: 30px; height: 30px"
+                                        style="width: 30px; height: 30px;margin-left:150px"
                                         data-bs-toggle="modal"
                                         data-bs-target="#testimonialModal"
                                     >
           <i class="fas fa-cog" style=" font-size: 20px; margin-top: 5px;" ></i>
           </div>
-        <div class="carousel-item active">
+        <div
+        v-for="(testimonial, index) in testimonials"
+        :key="index" 
+         :class="['carousel-item', index === 0 ? 'active' : '']">
           <div class="container">
             <div class="client_main">
               <div class="client_section_2">
@@ -350,91 +353,11 @@
                   <div class="quote_icon">
                     <img :src="`${appUrl}/cycle/images/quote-icon.png`" />
                   </div>
-                  <p
-                    class="client_text"
-                    contenteditable="true"
-                    @blur="updateTestimonialTitle"
-                  >
-                    It is a long established fact that a reader will be
-                    distracted by the readable content of a page when looking at
-                    its layout. The point of using Lorem Ipsum is that it has a
-                    more-or-less normal distribution of letters
+                  <p class="client_text" > 
+                    {{ testimonial.review }}
                   </p>
-                  <h3
-                    class="client_name"
-                    contenteditable="true"
-                    @blur="updateTestimonialTitle"
-                  >
-                    Channery
-                  </h3>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <div class="container">
-            <div class="client_main">
-              <div class="client_section_2">
-                <div class="client_left">
-                  <div>
-                    <img
-                      :src="`${appUrl}/cycle/images/client-img.png`"
-                      class="client_img"
-                    />
-                  </div>
-                </div>
-                <div class="client_right">
-                  <div class="quote_icon">
-                    <img :src="`${appUrl}/cycle/images/quote-icon.png`" />
-                  </div>
-                  <p
-                    class="client_text"
-                    contenteditable="true"
-                    @blur="updateTestimonialTitle"
-                  >
-                    It is a long established fact that a reader will be
-                    distracted by the readable content of a page when looking at
-                    its layout. The point of using Lorem Ipsum is that it has a
-                    more-or-less normal distribution of letters
-                  </p>
-                  <h3
-                    class="client_name"
-                    contenteditable="true"
-                    @blur="updateTestimonialTitle"
-                  >
-                    Channery
-                  </h3>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <div class="container">
-            <div class="client_main">
-              <div class="client_section_2">
-                <div class="client_left">
-                  <!-- <div><img src="cycle/images/client-img.png" class="client_img"></div> -->
-                </div>
-                <div class="client_right">
-                  <!-- <div class="quote_icon"><img src="cycle/images/quote-icon.png"></div> -->
-                  <p
-                    class="client_text"
-                    contenteditable="true"
-                    @blur="updateTestimonialTitle"
-                  >
-                    It is a long established fact that a reader will be
-                    distracted by the readable content of a page when looking at
-                    its layout. The point of using Lorem Ipsum is that it has a
-                    more-or-less normal distribution of letters
-                  </p>
-                  <h3
-                    class="client_name"
-                    contenteditable="true"
-                    @blur="updateTestimonialTitle"
-                  >
-                    Channery
+                  <h3 class="client_name" >
+                   {{ testimonial.reviewer_name }}
                   </h3>
                 </div>
               </div>
@@ -625,7 +548,7 @@
     modalTitle="Testimonials"
     section="hero"
     @update="updateTestimonialsItem"
-    :buttonData="heroButton"
+    :data="this.template.testimonials"
   />
 </template>
 
@@ -775,7 +698,8 @@ export default {
       footerBg: "#FFFFFF",
     };
   },
-  computed: {},
+  computed: {
+  },
   mounted() {
     this.companyLogo = this.appUrl + "/" + this.user_template.company_logo;
     this.companyLogo =
@@ -883,12 +807,10 @@ export default {
       testimonialsArea != null
         ? testimonialsArea.sub_title
         : this.testimonialSubTitle;
-
     this.testimonials =
       this.template.testimonials.length > 0
         ? this.template.testimonials
         : this.testimonials;
-
     const defaultTestimonialImages = [
       "images/author-1.jpg",
       "images/author-2.jpg",

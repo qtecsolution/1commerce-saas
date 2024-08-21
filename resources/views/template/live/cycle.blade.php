@@ -1,11 +1,10 @@
 @php
     $hero_area = $cycle->hero_area != null ? json_decode($cycle->hero_area, true) : null;
     $feature_area = $cycle->features_area ? json_decode($cycle->features_area, true) : null;
-    // $features = $feature_area != null ? $cycle->features->toArray() : null;
+    $testimonial_area = $cycle->testimonials_area != null ? json_decode($cycle->testimonials_area) : null;
     $about_area = $cycle->about_area != null ? json_decode($cycle->about_area, true) : null;
    // $order_area = $cycle->order_area != null ? json_decode($cycle->order_area, true) : null;
     $footer_area = $cycle->footer_area != null ? json_decode($cycle->footer_area, true) : null;
-
 @endphp
 <!DOCTYPE html>
 <html lang="en">
@@ -161,8 +160,9 @@
       <div class="client_section layout_padding" id="testimonial" data-target="testimonial">
          <div id="my_slider" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
+               <h1 class="client_taital">{{ $testimonial_area->title}} </h1>
                @foreach ($cycle->testimonials as $key => $testimonial)
-               <div class="carousel-item">
+               <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
                   <div class="container">
                      <div class="client_main">
                         <div class="client_section_2">
