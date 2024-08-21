@@ -119,12 +119,20 @@ Route::prefix('app')->middleware('user')->group(function () {
 
         // seo tag routes
         Route::post('update-seo-tag/{userTemplateId}', [TemplateSeoTagController::class, 'update'])->name('update_seo_tags');
-        
+
         // payment method routes
         Route::controller(PaymentMethodController::class)->prefix('payment-method')->group(function () {
             Route::post('update/one-wallet', 'updateOneWallet')->name('update.one.wallet');
             Route::post('update/ssl-commerz', 'updateSslCommerz')->name('update.ssl.commerz');
             Route::post('update/aamar-pay', 'updateAamarPay')->name('update.aamar.pay');
+        });
+
+        // wallet routes
+        Route::controller(WalletController::class)->prefix('wallet')->group(function () {
+            Route::get("my-wallet", "myWallet")->name('my.wallet');
+            Route::post('create/one-wallet', 'createOneWallet')->name('create.one.wallet');
+            Route::get('transaction-history', 'transactionHistory')->name('wallet.transaction.history');
+            Route::get('withdraw-history', 'withdrawHistory')->name('wallet.withdraw.history');
         });
 
         // template routes
@@ -164,8 +172,8 @@ Route::prefix('app')->middleware('user')->group(function () {
                 Route::post('update-page-setup', [SeedeeTemplateController::class, 'updatePageSetup']);
                 Route::post('update-site-logo', [SeedeeTemplateController::class, 'updateSiteLogo']);
             });
-             // cycle
-             Route::prefix('cycle')->group(function () {
+            // cycle
+            Route::prefix('cycle')->group(function () {
                 Route::post('update-company-logo', [CycleTemplateController::class, 'updateCompanyLogo']);
                 Route::post('update-nav-color', [CycleTemplateController::class, 'updateNavColor']);
                 Route::post('update-menu-area', [CycleTemplateController::class, 'updateMenuArea']);
