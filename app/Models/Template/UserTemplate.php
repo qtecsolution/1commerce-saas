@@ -5,6 +5,7 @@ namespace App\Models\Template;
 use App\Models\PaymentMethod;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\OrderFormAdditionalField;
+use App\Models\TemplateSeoTag;
 use App\Models\TrackingApi;
 use App\Models\UserWallet;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -49,5 +50,10 @@ class UserTemplate extends Model
     public function trackingApi()
     {
         return $this->belongsTo(TrackingApi::class, 'id', 'user_template_id');
+    }
+
+    public function seoTags()
+    {
+        return $this->belongsTo(TemplateSeoTag::class, 'id', 'user_template_id');
     }
 }

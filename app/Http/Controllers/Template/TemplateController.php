@@ -159,4 +159,38 @@ class TemplateController extends Controller
             ]);
         }
     }
+
+    public function settings(Request $request, $id)
+    {
+        $request->validate([
+            'favicon' => 'nullable|image|mimes:png,jpg,jpeg|max:2048',
+            'title' => 'required',
+        ]);
+
+        $userTemplate = UserTemplate::with('seoTags')->findOrFail($id);
+        $decodedTags = json_decode($userTemplate->seoTags->tags);
+
+        $imgPath = $userTemplate->fav_icon;
+        if ($request->hasFile('favicon')) {
+            if ($userTemplate->fav_icon) {
+                $oldImagePath = storage_path('app/public/' . $userTemplate->fav_icon);
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
+                }
+            }
+
+            $request->file('favicon')->store('public/favicons');
+            $imgPath = 'favicons/' . $request->file('favicon')->hashName();
+        }
+
+        $userTemplate->fav_icon = $imgPath;
+
+        $decodedTags->title = $request->input('title');
+        $userTemplate->seoTags->tags = json_encode($decodedTags);
+
+        $userTemplate->push();
+
+        Alert::success('Success!', 'Resources Updated Successfully.')->persistent('Close');
+        return back();
+    }
 }

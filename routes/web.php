@@ -116,7 +116,7 @@ Route::prefix('app')->middleware('user')->group(function () {
         });
 
         // seo tag routes
-        Route::post('update-seo-tag/{userTemplateId}', [TemplateSeoTagController::class, 'update'])->name('update_seo_tags');
+        Route::post('update-seo-tag', [TemplateSeoTagController::class, 'update'])->name('update_seo_tags');
         
         // payment method routes
         Route::controller(PaymentMethodController::class)->prefix('payment-method')->group(function () {
@@ -132,6 +132,7 @@ Route::prefix('app')->middleware('user')->group(function () {
             Route::get('mine', 'mine')->name('mine');
             Route::get('{id}/edit', 'edit')->name('edit');
             Route::post('slug/availability', 'slugAvailability')->name('slug.availability');
+            Route::post('settings/{id}', 'settings')->name('settings');
 
             // ulaunch
             Route::prefix('ulaunch')->group(function () {
