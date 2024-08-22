@@ -58,7 +58,7 @@ class CycleTemplateController extends Controller
                     "hover_text_color" => "black",
                     "hover_border_color" => "white"
                 ],
-                "background_color" => "#20bea7"
+                "background_color" => "#283618"
             ]),
             'features_area' => json_encode([
                 "feature_title" => "Our Cycle",
@@ -134,7 +134,7 @@ class CycleTemplateController extends Controller
             'order_area' => json_encode([
                 "title" => "Order Now",
                 "sub_title" => "GET YOUR PRODUCT",
-                "background_color" => "#ffffff",
+                "background_color" => "#283618",
                 "button" => [
                     "title" => "Order Now",
                     "url" => null,
@@ -306,7 +306,7 @@ class CycleTemplateController extends Controller
             'description' => $request->input('description'),
             'image' => $uploadedPath,
             'button' => json_decode($request->input('button')),
-            // 'background_color' => $request->input('background_color'),
+            'background_color' => $request->input('background_color'),
         ]);
 
         $this->template->save();

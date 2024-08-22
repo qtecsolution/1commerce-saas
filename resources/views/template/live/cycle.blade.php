@@ -3,7 +3,7 @@
     $feature_area = $cycle->features_area ? json_decode($cycle->features_area, true) : null;
     $testimonial_area = $cycle->testimonials_area != null ? json_decode($cycle->testimonials_area) : null;
     $about_area = $cycle->about_area != null ? json_decode($cycle->about_area, true) : null;
-   // $order_area = $cycle->order_area != null ? json_decode($cycle->order_area, true) : null;
+   $order_area = $cycle->order_area != null ? json_decode($cycle->order_area, true) : null;
     $footer_area = $cycle->footer_area != null ? json_decode($cycle->footer_area, true) : null;
 @endphp
 <!DOCTYPE html>
@@ -42,7 +42,15 @@
       @vite('resources/css/app.css')
       @vite('resources/js/app.js')
       <!-- /inject:vite (css/js) -->
+      <style>
 
+       .contact_section{
+          background-color: {{$hero_area['background_color']}} !important;
+         }
+        .header_section {
+          background-image: linear-gradient(-13deg, #ffffff 30%, {{$order_area['background_color']}} 20%) !important;
+          }
+      </style>
    </head>
    <body>
     <!-- header section start -->

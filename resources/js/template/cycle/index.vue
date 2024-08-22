@@ -1,6 +1,6 @@
 <template>
   <!-- header section start -->
-  <div class="header_section header_bg">
+  <div class="header_section header_bg" >
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a href="javascript:void(0)" class="logo">
         <img
@@ -58,6 +58,12 @@
     </nav>
     <!-- banner section start -->
     <div class="banner_section layout_padding">
+       <ColorPicker 
+       style="margin-left:1000px;margin-top:-50px;"
+      :color="heroBg"
+      @update="heroBg = $event"
+      @save="saveHeroBgColor('bg_color',$event)"
+      />
       <div id="" class="" data-ride="">
         <div class="carousel-inner">
           <div class="carousel-item active">
@@ -70,6 +76,7 @@
                       class="position-absolute top-0 end-0 mt-2"
                       title="Image settings"
                     >
+                     
                       <div
                         class="bg-primary text-white text-center rounded-circle cursor-pointer"
                         style="width: 30px; height: 30px"
@@ -390,6 +397,12 @@
   <!-- client section end -->
   <!-- contact section start -->
   <div class="contact_section layout_padding" id="order" data-target="order">
+     <ColorPicker 
+        style="margin-left:1000px;margin-top:10px;"
+        :color="orderBg"
+        @update="orderBg = $event"
+        @save="saveOrderNowBgColor('bg_color',$event)"
+        />
     <div class="container">
       <div class="contact_main">
         <h1 class="request_text">Order Now</h1>
@@ -667,7 +680,7 @@ export default {
       heroButton: [],
       heroImage: "",
       heroImageRaw: [],
-      heroBg: "#274d5a",
+      heroBg: "#283618",
       navBg: "#20bea7",
 
       // feature area
@@ -718,7 +731,7 @@ export default {
       // order area
       orderTitle: "Order Now",
       orderSubTitle: "GET YOUR PRODUCT",
-      orderBg: "#ffffff",
+      orderBg: "#283618",
       orderButton: [],
       siteColor:
         this.template.color != null ? JSON.parse(this.template.color) : null,
@@ -826,7 +839,14 @@ export default {
 
    // order area
     this.fields = this.user_template?.fields;
-   
+   //foooter area
+    const orderArea =
+      this.template.order_area != null
+        ? JSON.parse(this.template.order_area)
+        : null;
+    this.orderTitle = aboutArea?.title || this.orderTitle;
+    this.orderBg = orderArea != null ? orderArea.background_color : this.orderBg;
+
     //foooter area
     const footerArea =
       this.template.footer_area != null
@@ -845,7 +865,7 @@ export default {
         ? footerArea.mapIframe
         : this.mapIframe;
     this.footerBg = footerArea != null ? footerArea.footerBg : this.footerBg;
-
+   
     // testimonial area
     const testimonialsArea =
       this.template.testimonials_area != null
@@ -930,7 +950,6 @@ export default {
       formData.append("button", JSON.stringify(this.heroButton));
       formData.append("image", this.heroImageRaw);
       formData.append("background_color", this.heroBg);
-
       axios
         .post(`${this.apiUrl}/update-hero-area`, formData, {
           headers: {
@@ -973,17 +992,23 @@ export default {
 
       return `${this.appUrl}/${this.user_template.template.assets_path}/${path}`;
     },
+    updateOrderArea() {
+            const formData = new FormData();
+            formData.append("title", this.orderTitle);
+            formData.append("sub_title", this.orderSubTitle);
+            formData.append("button", JSON.stringify(this.orderButton));
+            formData.append("background_color", this.orderBg);
 
-    updateOrderArea(key, event) {
-      const newValue = event.target.textContent.trim();
-      if (this.orderArea[key] == newValue) {
-        return;
-      }
-      this.orderArea[key] = newValue;
-
-      // Save the updated about area when the user blurs out
-      this.saveOrderArea();
-    },
+            axios
+                .post(`${this.apiUrl}/update-order-area`, formData)
+                .then((response) => {
+                    // console.log(response.data);
+                    this.toast("success", "Resources Updated.");
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        },
 
     // aboute area function
     updateAboutDescription(event) {
@@ -1274,10 +1299,14 @@ export default {
       this.testimonials[index][section] = this.updateContent(event);
       this.updateTestimonialsArea();
     },
+    saveHeroBgColor(key, data) {
+      this.heroBg = data;
+      this.updateHeroArea();
+    },
 
-    saveAboutBgColor(key, data) {
-      this.aboutArea[key] = data;
-      this.saveAboutArea();
+    saveOrderNowBgColor(key, data) {
+      this.orderBg = data;
+      this.updateOrderArea();
     },
 
     saveFeatureBgColor(key, data) {
@@ -1464,11 +1493,10 @@ export default {
   color: v-bind("heroButton.hover_text_color");
   border-color: v-bind("heroButton.hover_border_color");
 }
+.contact_section{
+  background-color: v-bind("orderBg") !important;
+}
 .header_section {
-  width: 100%;
-  float: left;
-  background-image: linear-gradient(-13deg, #ffffff 30%, heroBg 20%) !important;
-  position: relative;
-  overflow-x: hidden;
+  background-image: linear-gradient(-13deg, #ffffff 30%, v-bind(heroBg) 20%) !important;
 }
 </style>
