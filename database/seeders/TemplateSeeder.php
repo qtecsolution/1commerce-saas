@@ -37,5 +37,13 @@ class TemplateSeeder extends Seeder
                 'blade_path' => 'cycle'
             ]);
         }
+        if (!Template::where('id', 4)->exists()) {
+            Template::create([
+                'name' => 'Attar',
+                'slug' => 'attar',
+                'assets_path' => 'attar',
+                'blade_path' => 'attar'
+            ]);
+        }
     }
 }
