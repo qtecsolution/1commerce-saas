@@ -1,5 +1,5 @@
 @php
-    $title = 'My Wallet';
+    $title = 'Transaction History';
 @endphp
 @extends('layouts.app')
 
@@ -13,7 +13,7 @@
                 {{-- alert --}}
                 <x-alert />
 
-                <div class="table-responsive mt-4">
+                <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
                             <tr>

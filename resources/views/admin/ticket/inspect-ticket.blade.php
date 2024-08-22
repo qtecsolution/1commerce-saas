@@ -25,7 +25,9 @@
                                     <table class="table table-borderless">
                                         <tbody>
                                             @php
-                                                $image = empty($item->image) ? asset('assets/images/others/error.png') : asset('storage/' . $item->image);
+                                                $image = empty($item->image)
+                                                    ? asset('assets/images/others/error.png')
+                                                    : asset('storage/' . $item->image);
                                             @endphp
                                             <tr>
                                                 <td>
@@ -106,7 +108,6 @@
                 </div>
             </div>
         </div>
-
 
         @foreach ($item->messages as $message)
             <x-ticket-replies :message="$message" />
