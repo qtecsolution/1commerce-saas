@@ -289,6 +289,12 @@
   <!-- cycle section end -->
   <!-- about section start -->
   <div class="about_section layout_padding" id="about" data-target="about">
+     <ColorPicker 
+        style="margin-left:1000px;margin-top:10px;"
+        :color="aboutBg"
+        @update="aboutBg = $event"
+        @save="saveOrderNowBgColor('bg_color',$event)"
+        />
     <div class="container">
       <h1 class="about_taital" contenteditable="true" @blur="updateAboutTitle">
         {{ aboutTitle }}
@@ -693,7 +699,7 @@ export default {
       // about area
       aboutTitle: "",
       aboutDescription: "",
-      aboutBg: "",
+      aboutBg: "#283618",
       aboutImage: "",
       aboutImageRaw: [],
 
@@ -888,6 +894,7 @@ export default {
         ? this.template.testimonials
         : this.testimonials;
     const defaultTestimonialImages = [
+      "images/client-img.png",
       "images/client-img.png",
       "images/client-img.png",
       "images/client-img.png",
@@ -1303,12 +1310,15 @@ export default {
       this.heroBg = data;
       this.updateHeroArea();
     },
-
     saveOrderNowBgColor(key, data) {
       this.orderBg = data;
       this.updateOrderArea();
     },
 
+    saveAboutBgColor(key, data) {
+      this.aboutBg = data;
+      this.updateAboutArea();
+    },
     saveFeatureBgColor(key, data) {
       this.featuresArea[key] = data;
       this.saveFeaturesArea();
@@ -1482,19 +1492,14 @@ export default {
 </script>
 
 <style scoped>
-.btn-buynow {
-  background-color: v-bind("heroButton.color");
-  color: v-bind("heroButton.text_color");
-  border-color: v-bind("heroButton.border_color");
-}
-
-.btn-buynow:hover {
-  background-color: v-bind("heroButton.hover_color") !important;
-  color: v-bind("heroButton.hover_text_color");
-  border-color: v-bind("heroButton.hover_border_color");
-}
 .contact_section{
   background-color: v-bind("orderBg") !important;
+}
+.footer_section{
+  background-color: v-bind("orderBg") !important;
+}
+.about_section{
+  background-color: v-bind("aboutBg") !important;
 }
 .header_section {
   background-image: linear-gradient(-13deg, #ffffff 30%, v-bind(heroBg) 20%) !important;

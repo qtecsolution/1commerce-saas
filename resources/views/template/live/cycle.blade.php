@@ -43,12 +43,18 @@
       @vite('resources/js/app.js')
       <!-- /inject:vite (css/js) -->
       <style>
+      .contact_section{
+         background-color: {{$order_area['background_color']}} !important;
+       }
+       .footer_section{
+         background-color: {{$order_area['background_color']}} !important;
+       }
 
-       .contact_section{
-          background-color: {{$hero_area['background_color']}} !important;
+       .about_section{
+          background-color: {{$about_area['background_color']}} !important;
          }
         .header_section {
-          background-image: linear-gradient(-13deg, #ffffff 30%, {{$order_area['background_color']}} 20%) !important;
+          background-image: linear-gradient(-13deg, #ffffff 30%, {{$hero_area['background_color']}} 20%) !important;
           }
       </style>
    </head>

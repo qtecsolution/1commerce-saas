@@ -455,7 +455,7 @@ button {
 }
 
 .cycle_text {
-    width: 100%;
+    width: 100%;NM Babor
     float: left;
     font-size: 16px;
     color: #242424;
@@ -548,14 +548,15 @@ clip-path: polygon(0 0, 75% 8%, 75% 80%, 0% 100%);
     float: left;
     font-size: 18px;
     color: #ffffff;
-    background-color: #325662;
+    /* background-color: #325662; */
+    background-color: #f7c17b;
     padding: 8px 5px;
     text-align: center;
     font-weight: bold;
 }
 .buy_bt a:hover{
     color: #ffffff;
-    background-color: #f7c17b;
+    background-color: #283618;
 }
 
 .price_text {
@@ -635,7 +636,8 @@ clip-path: polygon(0 0, 75% 8%, 75% 80%, 0% 100%);
 .about_section {
     width: 100%;
     float: left;
-    background-image: url(../images/about-bg.png);
+    background-color: #325662;
+    /* background-image: url(../images/about-bg.png); */
     height: auto;
     padding: 90px 0px;
     background-size: 100%;
