@@ -10,4 +10,9 @@ class TemplateSection extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function elements()
+    {
+        return $this->hasMany(TemplateSectionElement::class);
+    }
 }

@@ -23,6 +23,7 @@ use App\Http\Controllers\Template\SeedeeTemplateController;
 use App\Http\Controllers\Template\UlaunchTemplateController;
 use App\Http\Controllers\Template\CycleTemplateController;
 use App\Http\Controllers\FrontEnd\PackageController as FrontEnd_PackageController;
+use App\Http\Controllers\Template\TemplateSectionController;
 use App\Http\Controllers\User\Finance\WalletController;
 use App\Http\Controllers\Template\TemplateSeoTagController;
 
@@ -146,6 +147,18 @@ Route::prefix('app')->middleware('user')->group(function () {
             Route::get('{id}/edit', 'edit')->name('edit');
             Route::post('slug/availability', 'slugAvailability')->name('slug.availability');
             Route::post('settings/{id}', 'settings')->name('settings');
+
+            // Route to create or update a section
+            Route::post('section/update', [TemplateSectionController::class, 'section']);
+
+            // Route to get a section by its ID
+            Route::get('section/{id}', [TemplateSectionController::class, 'getSection']);
+
+            // Route to create or update an element within a section by section ID
+            Route::post('element/update/{sectionId}', [TemplateSectionController::class, 'element']);
+
+            // Route to get an element by its ID
+            Route::get('element/{id}', [TemplateSectionController::class, 'getElement']);
 
             // ulaunch
             Route::prefix('ulaunch')->group(function () {
