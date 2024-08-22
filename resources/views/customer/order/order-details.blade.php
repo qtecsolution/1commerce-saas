@@ -148,10 +148,77 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="col-md-12">
+                        <strong class="text-primary">Payment Details:</strong>
+                        <br>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Sl</th>
+                                    <th>Date/Time</th>
+                                    <th>Payment Method</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Transaction ID</th>
+                                    <th>Response Payload</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($order->payments as $key => $payment)
+                                    <tr>
+                                        <td>{{ $key + 1 }}</td>
+                                        <td>{{ $payment->created_at->format('d F, Y | h:i A') }}</td>
+                                        <td>{{ $payment->payment_method }}</td>
+                                        <td>BDT {{ number_format($payment->amount, 2) }}</td>
+                                        <td>
+                                            {{ $payment->status == 1 ? 'Success' : ($payment->status == 2 ? 'Failed' : 'Canceled') }}
+                                        </td>
+                                        <td>{{ $payment->transaction_id }}</td>
+                                        <td>
+                                            @if ($payment->response_payload != null)
+                                                <a href="javascript:void(0)" class="view-payload"
+                                                    data-payload="{{ $payment->decrypted_payload }}">
+                                                    View
+                                                </a>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="7" class="text-center">
+                                            No Record Found
+                                        </td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="payloadModal" tabindex="-1" role="dialog" aria-labelledby="payloadModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="payloadModalLabel">Response Payload</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <pre id="payloadContent" style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; overflow-x: auto;"></pre>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection
 
 @section('page_js')
@@ -163,5 +230,32 @@
             window.print();
             document.body.innerHTML = originalContents;
         }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add event listener to all "View" links
+            document.querySelectorAll('.view-payload').forEach(function(element) {
+                element.addEventListener('click', function(event) {
+                    event.preventDefault();
+
+                    let payload = event.target.getAttribute('data-payload');
+
+                    // Parse and format the JSON payload (if it's valid JSON)
+                    try {
+                        let jsonPayload = JSON.parse(payload);
+
+                        payload = JSON.stringify(jsonPayload, null, 4);
+                    } catch (error) {
+                        // If parsing fails, show the raw payload
+                    }
+
+                    // Set the content of the modal's body
+                    document.getElementById('payloadContent').textContent = payload;
+
+                    // Show the modal
+                    $('#payloadModal').modal('show');
+                });
+            });
+        });
     </script>
 @endsection

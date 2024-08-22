@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\OrderDynamicField;
 use App\Services\AamarPayService;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\User\Finance\TransactionController;
 use App\Models\Template\UserTemplate;
 use App\Models\Template\CycleTemplate;
 use App\Models\Template\SeedeeTemplate;
@@ -18,9 +19,12 @@ use Illuminate\Validation\ValidationException;
 
 class ShopController extends Controller
 {
-    public function __construct(protected AamarPayService $aamarPayService)
-    {
+    public function __construct(
+        protected AamarPayService $aamarPayService,
+        protected TransactionController $transactionController,
+    ) {
         $this->aamarPayService = $aamarPayService;
+        $this->transactionController = $transactionController;
     }
 
     public function index($subdomain)
@@ -41,13 +45,11 @@ class ShopController extends Controller
             $seedee = SeedeeTemplate::with(['steps', 'features'])
                 ->where('user_id', $userTemplate->user_id)
                 ->firstOrFail();
-            // dd($seedee);
             return view('template.live.seedee', compact('seedee', 'userTemplate'));
         } else if ($userTemplate->template_id == 3) {
             $cycle = CycleTemplate::with(['steps', 'features'])
                 ->where('user_id', $userTemplate->user_id)
                 ->firstOrFail();
-            // dd($seedee);
             return view('template.live.cycle', compact('cycle', 'userTemplate'));
         }
 
@@ -177,12 +179,14 @@ class ShopController extends Controller
                 'status' => 1,
                 'response_payload' => json_encode($response),
             ]);
-
+            $order = Order::with('userTemplate')->find($payment->order_id);
             // code to update user wallet
-            
+            if ($order->userTemplate->userWallet) {
+                $this->transactionController->debitTransaction($order->userTemplate->userWallet->id, $payment);
+            }
+            // code to update user wallet
 
             Alert::success("Great !", "You payment is successful. Our agent will contact you soon.");
-            $order = Order::with('userTemplate')->find($payment->order_id);
             if (@$order->userTemplate->company_slug) {
                 return to_route('live_preview', $order->userTemplate->company_slug);
             }

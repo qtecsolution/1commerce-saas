@@ -62,7 +62,7 @@
                                     <td>
                                         {{ date('d F, Y', strtotime($order->created_at)) }}
                                         <br>
-                                        {{ date('h:i A', strtotime($order->updated_at)) }}
+                                        {{ date('h:i A', strtotime($order->created_at)) }}
                                     </td>
                                     <td>{{ @$order->UserTemplate->product_name }}</td>
                                     <td>

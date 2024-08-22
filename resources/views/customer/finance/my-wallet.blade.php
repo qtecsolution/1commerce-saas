@@ -64,105 +64,75 @@
                     </form>
                 @else
                     <div class="col-md-12">
-                        <div class="card shadow-lg">
-                            <div class="card-body">
-                                <div class="row align-items-center">
-                                    <div class="col-md-2">
-                                        <div class="rounded-circle overflow-hidden text-center"
-                                            style="width: 100px; height: 100px; border-radius: 50%; background: rgba(128, 128, 128, 0.151); line-height: 50px;">
-                                            <img src="{{ asset('assets/images/logo/icon.png') }}" class="img-fluid w-100">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h4 class="mb-0">
-                                            1Wallet
-                                        </h4>
-                                        Current Balance:
-                                        {{ number_format(@$userWallet->balance) }}
-                                        <br>
-                                        Security Code:
-                                        {{ @$userWallet->security_code }}
-                                        <br>
-                                        @if (@$userWallet->status == 1)
-                                            <span class="badge badge-success badge-pill">Active</span>
-                                        @else
-                                            <span class="badge badge-danger badge-pill">Inactive</span>
-                                        @endif
-                                    </div>
-                                    <div class="col-md-4 text-right">
-                                        <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
-                                            data-target="#oneWalletModal">
-                                            <i class="fas fa-cog"></i>
-                                            Configure
-                                        </button>
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                @include('customer.finance.components.card')
+                            </div>
+                            <div class="col-md-4 text-right">
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-sm btn-primary m-2" data-toggle="modal"
+                                    data-target="#oneWalletModal">
+                                    <i class="fas fa-cog"></i>
+                                    Configure
+                                </button>
 
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="oneWalletModal" tabindex="-1"
-                                            aria-labelledby="oneWalletModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <form action="{{ route('create.one.wallet') }}" method="POST"
-                                                    class="modal-content">
-                                                    @csrf
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="oneWalletModalLabel">
-                                                            1Wallet
-                                                        </h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="row">
-                                                            <div class="form-group col-md-6">
-                                                                <label for="security_code">
-                                                                    Security Code
-                                                                    <sup class="text-danger">*</sup>
-                                                                </label>
-                                                                <input type="number" class="form-control"
-                                                                    name="security_code" min="0"
-                                                                    placeholder="Enter Security Code"
-                                                                    value="{{ @$userWallet->security_code }}" required>
-                                                            </div>
-                                                            <div class="form-group col-md-6">
-                                                                <label for="status">
-                                                                    Status
-                                                                    <sup class="text-danger">*</sup>
-                                                                </label>
-                                                                <select name="status" class="form-control">
-                                                                    <option value="1"
-                                                                        {{ @$userWallet->status == 1 ? 'selected' : '' }}>
-                                                                        Active
-                                                                    </option>
-                                                                    <option value="0"
-                                                                        {{ @$userWallet->status == 0 ? 'selected' : '' }}>
-                                                                        Inactive
-                                                                    </option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">Close</button>
-                                                        <button type="submit" class="btn btn-primary">
-                                                            Submit
-                                                        </button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <button type="button" class="btn btn-sm btn-primary m-2">
+                                    <i class="fas fa-cash-register"></i>
+                                    Withdraw Cash
+                                </button>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12">
-                        <button type="button" class="btn btn-sm btn-primary">
-                            <i class="fas fa-cash-register"></i>
-                            Withdraw Cash
-                        </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="oneWalletModal" tabindex="-1" aria-labelledby="oneWalletModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <form action="{{ route('create.one.wallet') }}" method="POST" class="modal-content">
+                                @csrf
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="oneWalletModalLabel">
+                                        1Wallet
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label for="security_code">
+                                                Security Code
+                                                <sup class="text-danger">*</sup>
+                                            </label>
+                                            <input type="number" class="form-control" name="security_code" min="0"
+                                                placeholder="Enter Security Code" value="{{ @$userWallet->security_code }}"
+                                                required>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="status">
+                                                Status
+                                                <sup class="text-danger">*</sup>
+                                            </label>
+                                            <select name="status" class="form-control">
+                                                <option value="1" {{ @$userWallet->status == 1 ? 'selected' : '' }}>
+                                                    Active
+                                                </option>
+                                                <option value="0" {{ @$userWallet->status == 0 ? 'selected' : '' }}>
+                                                    Inactive
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">
+                                        Submit
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 @endif
             </div>
