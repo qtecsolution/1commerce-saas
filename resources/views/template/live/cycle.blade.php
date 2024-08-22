@@ -168,7 +168,7 @@
                         <div class="client_section_2">
                            <div class="client_left">
                               <div>
-                                 <img src="{{fetchImage($testimonial['image']??"", $userTemplate->template->assets_path . '/images/client-img.png')}}" class="client_img">
+                                 <img src="{{fetchImage($testimonial['reviewer_image']??"", $userTemplate->template->assets_path . '/images/client-img.png')}}" class="client_img">
                               </div>
                            </div>
                            <div class="client_right">

@@ -438,41 +438,31 @@ class CycleTemplateController extends Controller
 
     public function updateTestimonialsArea(Request $request)
     {
-
-         // Update the testimonials area metadata
+        //Update the testimonials area metadata
          $this->template->testimonials_area = json_encode([
             'title' => $request->input('title'),
             'sub_title' => $request->input('sub_title'),
             'background_color' => $request->input('background_color'),
         ]);
         $this->template->save();
-        $items = $request->input('items');
-        if($items){
-        TemplateTestimonial::where('template_id',$this->templateId)->delete();
+       TemplateTestimonial::where('template_id',$this->templateId)->delete();
+       $items = $request->input('items', []);
+       if($items){
         foreach ($items as $index => $item) {
-            $path = '';
-            if ($request->hasFile("item[{$index}][reviewer_image]")) {
-                $file = $request->file("items[{$index}][reviewer_image]");
-                // Validate the file
-                $validatedData = $request->validate([
-                    "items[{$index}][reviewer_image]" => 'required|file|image|max:2048',
-                ]);
-    
-                // Store the file
-                $path = $file->store('public/cycle'); // Adjust the path as needed
+            $path = null;
+            if ($request->hasFile("image_{$index}")) {
+                $file = $request->file("image_{$index}");
+                $path = $file->store('public/cycle');
             }
-             // Prepare the data for creating a new record
-             $data = [
+            $data = [
                 'template_id' => $this->templateId,
                 'user_id' => $this->userId,
                 'review' => $item['review'] ?? '',
                 'reviewer_name' => $item['reviewer_name'] ?? '',
-                'reviewer_bio' => $item['reviewer_bio'] ?? '', // Provide a default value if needed
-                'reviewer_image' => $path ?? '', // Ensure the path is correctly assigned
+                'reviewer_bio' => $item['reviewer_bio'] ?? '',
+                'reviewer_image' => $path ? str_replace('public/', '', $path) : '',
             ];
-            // Create a new TemplateTestimonial record
             TemplateTestimonial::create($data);
-            
         }
        }
         // Ensure relationships are reloaded

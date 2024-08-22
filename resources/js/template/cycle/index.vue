@@ -23,7 +23,7 @@
           <i class="fas fa-cog" style="font-size: 20px; margin-top: 5px"></i>
         </div>
       </div>
-      <button
+      <!-- <button
         class="navbar-toggler"
         type="button"
         data-toggle="collapse"
@@ -46,7 +46,7 @@
             <a class="nav-link" href="#testimonial">Testimonial</a>
           </li>
         </ul>
-      </div>
+      </div> -->
       <div id="main">
         <span
           style="font-size: 36px; cursor: pointer; color: #fff"
@@ -345,9 +345,11 @@
               <div class="client_section_2">
                 <div class="client_left">
                   <div>
+
                     <img
-                      :src="`${appUrl}/cycle/images/client-img.png`"
+                      v-bind:src="`${testimonial.reviewer_image}`"
                       class="client_img"
+                      
                     />
                   </div>
                 </div>
@@ -612,7 +614,6 @@ import TestimonialModal from "./components/testimonial-modal.vue";
 import ImageModal from "./components/image-modal.vue";
 import MapModal from "../components/map-modal.vue";
 import ColorPicker from "../components/color-picker.vue";
-import SetupModal from "./components/setup-modal.vue";
 import FooterModal from "./components/footer-modal.vue";
 import AddInputModal from "../components/add-input-modal.vue";
 import FormField from "./components/form-field.vue";
@@ -625,7 +626,6 @@ export default {
     ButtonModal,
     ImageModal,
     ColorPicker,
-    SetupModal,
     FooterModal,
     AddInputModal,
     FormField,
@@ -636,7 +636,7 @@ export default {
     return {
       apiUrl: "",
       appUrl: "",
-
+      onTestimonialImageError:'',
       // menu area
       menus: [
         {
@@ -753,6 +753,7 @@ export default {
   },
   computed: {},
   mounted() {
+    this.onTestimonialImageError = this.appUrl + "/cycle/images/client-img.png"
     this.companyLogo = this.appUrl + "/" + this.user_template.company_logo;
     this.companyLogo =
       this.user_template.company_logo != null && this.user_template.company_logo
@@ -867,16 +868,16 @@ export default {
         ? this.template.testimonials
         : this.testimonials;
     const defaultTestimonialImages = [
-      "images/author-1.jpg",
-      "images/author-2.jpg",
-      "images/author-3.jpg",
+      "images/client-img.png",
+      "images/client-img.png",
+      "images/client-img.png",
     ];
 
     this.testimonials.forEach((testimonial, index) => {
       testimonial.reviewer_image =
-        this.template.testimonials.length > 0 &&
-        this.template.testimonials[index].reviewer_image != null
-          ? this.imageSource(
+        (this.template.testimonials.length > 0 &&
+        this.template.testimonials[index].reviewer_image != null && this.template.testimonials[index].reviewer_image != '') 
+          ?this.imageSource(
               this.template.testimonials[index].reviewer_image,
               "storage"
             )
@@ -1198,15 +1199,7 @@ export default {
       const formData = new FormData();
       formData.append("title", this.testimonialTitle);
       testimonials.forEach((item, index) => {
-        if (item.reviewer_image) {
-          //console.log(`Appending file for index ${index}:`, item.reviewer_image);
-          formData.append(
-            `items[${index}][reviewer_image]`,
-            item.reviewer_image
-          );
-        } else {
-          formData.append(`items[${index}][reviewer_image]`, null);
-        }
+        formData.append(`image_${index}`, item.reviewer_image);
         formData.append(`items[${index}][template_id]`, item.template_id);
         formData.append(`items[${index}][user_id]`, item.user_id);
         formData.append(`items[${index}][review]`, item.review);
@@ -1224,9 +1217,9 @@ export default {
           this.testimonials = response.data.data;
 
           const defaultTestimonialImages = [
-            "images/author-1.jpg",
-            "images/author-2.jpg",
-            "images/author-3.jpg",
+            "images/client-img.png",
+            "images/client-img.png",
+            "images/client-img.png",
           ];
 
           this.testimonials.forEach((testimonial, index) => {
