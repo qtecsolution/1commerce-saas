@@ -1,3 +1,39 @@
+<style>
+    .ms-btn {
+        display: inline-block;
+        font-weight: 400;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        user-select: none;
+        border: 1px solid transparent;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        border-radius: 0.25rem;
+        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        cursor: pointer;
+    }
+
+    .ms-btn-light {
+        color: #212529;
+        background-color: #f8f9fa;
+        border-color: #f8f9fa;
+    }
+
+    /* .px-3 {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    } */
+
+    .ms-btn-sm {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+        line-height: 1.5;
+        border-radius: 0.2rem;
+    }
+</style>
+
 <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #3e3e3e">
     <div class="container-fluid">
         <a class="navbar-brand" href="{{ route('templates.mine') }}" title="Back to Admin Panel">
@@ -5,11 +41,11 @@
             ADMIN
         </a>
         <div>
-            <div class="btn btn-light px-3 btn-sm" title="Page Settings" data-bs-toggle="modal"
+            <div class="ms-btn ms-btn-light px-3 ms-btn-sm" title="Page Settings" data-bs-toggle="modal"
                 data-bs-target="#seedeePageSetupModal">
                 Page Settings
             </div>
-            <a href="{{ route('user_shop', $userTemplate->company_slug) }}" class="btn btn-light px-3 btn-sm"
+            <a href="{{ route('user_shop', $userTemplate->company_slug) }}" class="ms-btn ms-btn-light px-3 ms-btn-sm"
                 target="_blank" title="Live Preview">
                 Live Preview
             </a>

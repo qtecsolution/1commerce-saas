@@ -17,7 +17,8 @@ use App\Models\Subscription;
 
 class TemplateController extends Controller
 {
-    public function __construct(private Template $templates,) {
+    public function __construct(private Template $templates,)
+    {
         $this->templates = $templates;
     }
 
@@ -144,8 +145,7 @@ class TemplateController extends Controller
             ])
                 ->where('user_id', auth()->id())
                 ->first();
-        }
-        else if ($userTemplate->template_id == 3) {
+        } else if ($userTemplate->template_id == 3) {
             $template = CycleTemplate::with([
                 'steps',
                 'features',
@@ -153,10 +153,11 @@ class TemplateController extends Controller
             ])
                 ->where('user_id', auth()->id())
                 ->first();
+        } else {
+            $template = $userTemplate->template;
+            // abort(404);
         }
-         else {
-            abort(404);
-        }
+
         return view('template.edit.' . $userTemplate->template->slug, compact('userTemplate', 'template'));
     }
 
