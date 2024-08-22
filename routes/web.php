@@ -173,7 +173,6 @@ Route::prefix('app')->middleware('user')->group(function () {
                 Route::post('update-feature-and-step', [SeedeeTemplateController::class, 'updateFeatureAndStep']);
                 Route::post('delete-feature-or-step', [SeedeeTemplateController::class, 'deleteFeatureOrStep']);
                 Route::post('add-feature-or-step', [SeedeeTemplateController::class, 'addFeatureOrStep']);
-                Route::post('update-page-setup', [SeedeeTemplateController::class, 'updatePageSetup']);
                 Route::post('update-site-logo', [SeedeeTemplateController::class, 'updateSiteLogo']);
             });
 
