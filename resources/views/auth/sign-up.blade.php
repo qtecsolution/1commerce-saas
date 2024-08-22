@@ -4,7 +4,8 @@
 @extends('layouts.guest')
 
 @section('page_content')
-    <div class="container-fluid p-h-0 p-v-20 bg full-height d-flex" style="background-image: url('assets/images/login.jpg')">
+    <div class="container-fluid p-h-0 p-v-20 bg full-height d-flex"
+        style="background-image: url('{{ asset('assets/images/login.jpg') }}')">
         <div class="d-flex flex-column justify-content-between w-100">
             <div class="container d-flex h-100" style="padding-right: 0; padding-left: 30px;">
                 <div class="row align-items-center w-100">
@@ -14,7 +15,7 @@
                                 {{-- error message --}}
                                 <x-alert />
                                 <div class="d-flex align-items-center justify-content-between m-b-30">
-                                    <img class="img-fluid" alt="" src="assets/images/logo/logo.png">
+                                    <img class="img-fluid" alt="img" src="{{ asset('assets/images/logo/logo.png') }}">
                                     <h2 class="m-b-0">Sign-up</h2>
                                 </div>
                                 <form action="{{ route('sign_up') }}" class="row" method="POST">
@@ -88,7 +89,7 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <span class="font-size-13 text-muted">
-                                                Already have an account? 
+                                                Already have an account?
                                                 <a class="small" href="{{ route('sign_in') }}">Sign-in</a>
                                             </span>
                                             <div class="text-right mt-2">
