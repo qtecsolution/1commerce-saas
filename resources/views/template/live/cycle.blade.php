@@ -3,7 +3,7 @@
     $feature_area = $cycle->features_area ? json_decode($cycle->features_area, true) : null;
     $testimonial_area = $cycle->testimonials_area != null ? json_decode($cycle->testimonials_area) : null;
     $about_area = $cycle->about_area != null ? json_decode($cycle->about_area, true) : null;
-   // $order_area = $cycle->order_area != null ? json_decode($cycle->order_area, true) : null;
+   $order_area = $cycle->order_area != null ? json_decode($cycle->order_area, true) : null;
     $footer_area = $cycle->footer_area != null ? json_decode($cycle->footer_area, true) : null;
 @endphp
 <!DOCTYPE html>
@@ -42,7 +42,21 @@
       @vite('resources/css/app.css')
       @vite('resources/js/app.js')
       <!-- /inject:vite (css/js) -->
+      <style>
+      .contact_section{
+         background-color: {{$order_area['background_color']}} !important;
+       }
+       .footer_section{
+         background-color: {{$order_area['background_color']}} !important;
+       }
 
+       .about_section{
+          background-color: {{$about_area['background_color']}} !important;
+         }
+        .header_section {
+          background-image: linear-gradient(-13deg, #ffffff 30%, {{$hero_area['background_color']}} 20%) !important;
+          }
+      </style>
    </head>
    <body>
     <!-- header section start -->
@@ -168,7 +182,7 @@
                         <div class="client_section_2">
                            <div class="client_left">
                               <div>
-                                 <img src="{{fetchImage($testimonial['image']??"", $userTemplate->template->assets_path . '/images/client-img.png')}}" class="client_img">
+                                 <img src="{{fetchImage($testimonial['reviewer_image']??"", $userTemplate->template->assets_path . '/images/client-img.png')}}" class="client_img">
                               </div>
                            </div>
                            <div class="client_right">
@@ -206,21 +220,56 @@
          <div class="container">
             <div class="contact_main">
                <h1 class="request_text">Order Now</h1>
-               <form action="/action_page.php">
+               <div class="row">
+                  <div class="col-md-8 justify-content-start">
+                     <p class="about_text">{{ $userTemplate->product_name }}</p>
+                  </div>
+                  <div class="col-md-4 text-end">
+                      <span style="margin-right: 5px"> <p class="about_text">{{ $userTemplate->product_currency }} {{ $userTemplate->product_price }}</p></span>
+                  </div>
+              </div>
+               
+               <form  action="{{ route('place_order') }}" method="POST" id="order" class="order-form">
+               @csrf
+               <input type="hidden" name="user_template_id" value="{{ $userTemplate->id }}">
+
                   <div class="form-group">
-                     <input type="text" class="email-bt" placeholder="Name" name="Name">
+                     <input type="text" class="email-bt" value="{{ old('customer_name') }}" placeholder="Name" name="customer_name"required>
+                     <div class="help-block with-errors"></div>
+                     @error('customer_name')
+                        <small class="text-danger">{{ $message }}</small>
+                     @enderror
                   </div>
                   <div class="form-group">
-                     <input type="text" class="email-bt" placeholder="Email" name="Name">
+                     <input type="text" class="email-bt" placeholder="Phone" name="customer_phone" value="{{ old('customer_phone') }}" required>
+                     <div class="help-block with-errors"></div>
+                     @error('customer_phone')
+                         <small class="text-danger">{{ $message }}</small>
+                     @enderror
+                  </div>
+
+                  <div class="form-group">
+                     <input class="email-bt" type="number" name="quantity" id="quantity" class="form-control"
+                     placeholder="Quantity" min="1" value="{{ old('quantity') ?? 1 }}"
+                     required >
+                     <div class="help-block with-errors"></div>
+                     @error('quantity')
+                         <small class="text-danger">{{ $message }}</small>
+                     @enderror
                   </div>
                   <div class="form-group">
-                     <input type="text" class="email-bt" placeholder="Phone Numbar" name="Email">
+                     <textarea class="massage-bt" placeholder="Address" rows="5" id="customer_address" name="customer_address" required>{{ old('customer_address') }}</textarea>
+                     @error('customer_address')
+                        <small class="text-danger">{{ $message }}</small>
+                     @enderror
                   </div>
-                  <div class="form-group">
-                     <textarea class="massage-bt" placeholder="Address" rows="5" id="comment" name="Address"></textarea>
-                  </div>
+                  @foreach ($userTemplate->fields as $field)
+                      <x-cycle-form-field :field="$field"/>
+                  @endforeach
+               <div class="send_btn"> 
+                  <button type="submit">Order Now</button>
+               </div>
                </form>
-               <div class="send_btn"><a href="#">Order Now</a></div>
             </div>
          </div>
       </div>
