@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\User;
-use App\Models\UserWallet;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,6 +18,7 @@ return new class extends Migration
             $table->double('credit')->default(0);
             $table->double('debit')->default(0);
             $table->double('balance')->default(0);
+            $table->string('purpose')->nullable();
             $table->foreignId('reference_id')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();

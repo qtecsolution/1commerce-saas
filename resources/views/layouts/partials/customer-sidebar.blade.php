@@ -46,35 +46,6 @@
         </li>
     </ul>
 </li>
-<li class="nav-item">
-    <a href="{{ route('subscription.index') }}"
-        class="{{ Route::currentRouteName() == 'subscription.index' ? 'parent-menu-active' : '' }}">
-        <span class="icon-holder">
-            <i class="fas fa-donate"></i>
-        </span>
-        <span class="title">Subscription</span>
-    </a>
-</li>
-<li class="nav-item">
-    <a href="{{ route('custom-domain.index') }}"
-        class="{{ Route::currentRouteName() == 'custom-domain.index' ? 'parent-menu-active' : '' }}">
-        <span class="icon-holder">
-            <i class="fas fa-globe"></i>
-        </span>
-        <span class="title">Custom Domain</span>
-    </a>
-</li>
-
-{{-- <li class="nav-item">
-    <a href="{{ route('settings') }}"
-        class="{{ Route::currentRouteName() == 'settings' ? 'parent-menu-active' : '' }}">
-        <span class="icon-holder">
-            <i class="far fa-sun"></i>
-        </span>
-        <span class="title">Settings</span>
-    </a>
-</li>
-
 <li class="nav-item dropdown">
     <a class="dropdown-toggle" href="javascript:void(0);">
         <span class="icon-holder">
@@ -96,4 +67,22 @@
             <a href="{{ route('wallet.withdraw.history') }}">Withdraw History</a>
         </li>
     </ul>
-</li> --}}
+</li>
+<li class="nav-item">
+    <a href="{{ route('subscription.index') }}"
+        class="{{ Route::currentRouteName() == 'subscription.index' ? 'parent-menu-active' : '' }}">
+        <span class="icon-holder">
+            <i class="fas fa-donate"></i>
+        </span>
+        <span class="title">Subscription</span>
+    </a>
+</li>
+<li class="nav-item">
+    <a href="{{ route('custom-domain.index') }}"
+        class="{{ Route::currentRouteName() == 'custom-domain.index' ? 'parent-menu-active' : '' }}">
+        <span class="icon-holder">
+            <i class="fas fa-globe"></i>
+        </span>
+        <span class="title">Custom Domain</span>
+    </a>
+</li>

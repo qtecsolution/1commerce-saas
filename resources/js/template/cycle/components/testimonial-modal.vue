@@ -36,7 +36,7 @@
                         Add More
                     </button>
                     <div class="row">
-                        <div
+                        <div class="border m-2"
                             v-for="(testimonial, index) in testimonials"
                             :key="index"
                         >
@@ -45,16 +45,18 @@
                                     v-model="testimonial.review"
                                     placeholder="Enter Customer Review"
                                     class="w-full py-2 border border-indigo-500 rounded mr-2 col-8"
+                                    required
                                 />
                                 <input
                                     v-model="testimonial.reviewer_name"
                                     placeholder="Enter Reviewer Name"
                                     class="w-full py-2 border border-indigo-500 rounded col-3"
+                                    required
                                 />
                                 <input
                                     type="file"
                                     @change="handleFileChange($event, index)"
-                                    class="w-full py-2 border border-indigo-500 rounded"
+                                    class="w-full py-2 border border-indigo-500 rounded mt-3"
                                 />
                                 <button
                                     style="margin-left: 5px"
@@ -129,6 +131,13 @@ export default {
         showConfirmButton: false,
         timer: 3000,
       });
+    }, 
+    validateTestimonials() {
+      return this.testimonials.every(testimonial => 
+        testimonial.review.trim() !== "" &&
+        testimonial.reviewer_name.trim() !== "" &&
+        testimonial.reviewer_image !== ""
+      );
     },
     addMore() {
       if(this.testimonials.length==5){
@@ -158,11 +167,15 @@ export default {
       }
     },
     saveChanges() {
-      this.$emit("update", this.testimonials);
-      const modalElement = document.getElementById(this.modalId);
+      if (this.validateTestimonials()) {
+        this.$emit("update", this.testimonials);
+        const modalElement = document.getElementById(this.modalId);
       const modal = bootstrap.Modal.getInstance(modalElement);
       if (modal) {
         modal.hide();
+      }
+      } else {
+         this.toast("error", "Please fill all fields.");
       }
     },
   },

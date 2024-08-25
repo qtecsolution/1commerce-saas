@@ -6,7 +6,7 @@
         </a>
         <div>
             <div class="btn btn-light px-3 btn-sm" title="Page Settings" data-bs-toggle="modal"
-                data-bs-target="#seedeePageSetupModal">
+                data-bs-target="#pageSetupModal">
                 Page Settings
             </div>
             <a href="{{ route('user_shop', $userTemplate->company_slug) }}" class="btn btn-light px-3 btn-sm"
@@ -17,12 +17,12 @@
     </div>
 </nav>
 
-<div class="modal fade" id="seedeePageSetupModal" tabindex="-1" aria-labelledby="seedeePageSetupModalLabel"
+<div class="modal fade" id="pageSetupModal" tabindex="-1" aria-labelledby="pageSetupModalLabel"
     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="seedeePageSetupModalLabel">
+                <h1 class="modal-title fs-5" id="pageSetupModalLabel">
                     Page Setup
                 </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

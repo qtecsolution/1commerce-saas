@@ -2,9 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\User;
+use App\Models\OrderPayment;
+use App\Models\OrderDynamicField;
 use App\Models\Template\UserTemplate;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Order extends Model
 {
@@ -26,5 +29,10 @@ class Order extends Model
     public function dynamicFields()
     {
         return $this->hasMany(OrderDynamicField::class);
+    }
+
+    public function payments()
+    {
+        return $this->hasMany(OrderPayment::class);
     }
 }
