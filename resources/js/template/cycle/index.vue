@@ -20,7 +20,7 @@
           data-bs-toggle="modal"
           data-bs-target="#logoImageModal"
         >
-          <i class="fas fa-cog" style="font-size: 20px; margin-top: 5px"></i>
+          <i class="fas fa-pen-nib" style="font-size: 20px; margin-top: 5px"></i>
         </div>
       </div>
       <!-- <button
@@ -83,7 +83,7 @@
                         data-bs-target="#heroImageModal"
                       >
                         <i
-                          class="fas fa-cog"
+                          class="fas fa-pen-nib"
                           style="font-size: 20px; margin-top: 5px"
                         ></i>
                       </div>
@@ -120,7 +120,7 @@
                                         data-bs-target="#heroButtonModal"
                                     >
                                         <i
-                                            class="fas fa-cog"
+                                            class="fas fa-pen-nib"
                                             style="
                                                 font-size: 20px;
                                                 margin-top: 5px;
@@ -272,7 +272,7 @@
                     data-bs-target="#featureImageModal"
                   >
                     <i
-                      class="fas fa-cog"
+                      class="fas fa-pen-nib"
                       style="font-size: 20px; margin-top: 5px"
                     ></i>
                   </div>
@@ -316,7 +316,7 @@
             data-bs-toggle="modal"
             data-bs-target="#aboutImageModal"
           >
-            <i class="fas fa-cog" style="font-size: 20px; margin-top: 5px"></i>
+            <i class="fas fa-pen-nib" style="font-size: 20px; margin-top: 5px"></i>
           </div>
         </div>
         <img :src="aboutImage" class="image_5" />
@@ -345,7 +345,7 @@
           data-bs-toggle="modal"
           data-bs-target="#testimonialModal"
         >
-          <i class="fas fa-cog" style="font-size: 20px; margin-top: 5px"></i>
+          <i class="fas fa-pen-nib" style="font-size: 20px; margin-top: 5px"></i>
         </div>
         <div
           v-for="(testimonial, index) in testimonials"
@@ -521,7 +521,7 @@
                 data-bs-target="#mapModal"
               >
                 <i
-                  class="fas fa-cog"
+                  class="fas fa-pen-nib"
                   style="font-size: 20px; margin-top: 5px"
                 ></i>
               </div>
