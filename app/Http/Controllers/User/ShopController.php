@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\OrderDynamicField;
 use App\Services\AamarPayService;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\FrontEnd\WebController;
 use App\Http\Controllers\User\Finance\TransactionController;
 use App\Models\Template\UserTemplate;
 use App\Models\Template\CycleTemplate;
@@ -29,10 +30,17 @@ class ShopController extends Controller
 
     public function index($subdomain)
     {
-        return $this->livePreview($subdomain);
+        // Validate that the subdomain is permissible and does not conflict with reserved subdomains.
+        $IsAllowed = !in_array($subdomain, resurvedSubDomain());
+        if($IsAllowed){
+            return $this->livePreview($subdomain);
+        }else{
+            // If match with reserved subdomain, it returns global home page 
+            return WebController::index();
+        }
     }
 
-    public function livePreview($slug)
+    public static function livePreview($slug)
     {
         $userTemplate = UserTemplate::with(['template', 'fields'])->where('company_slug', $slug)->firstOrFail();
         if ($userTemplate->template_id == 1) {
