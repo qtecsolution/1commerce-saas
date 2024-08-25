@@ -17,10 +17,10 @@
                 @else
                     <div class="col-md-12">
                         <div class="row align-items-top">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 @include('customer.finance.components.card')
                             </div>
-                            <div class="col-md-8 mt-3">
+                            <div class="col-md-6 mt-3">
                                 <form action="{{ route('wallet.withdraw') }}" method="POST">
                                     @csrf
                                     <div class="form-group">

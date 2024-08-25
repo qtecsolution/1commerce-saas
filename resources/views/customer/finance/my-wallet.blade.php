@@ -17,10 +17,10 @@
                 @else
                     <div class="col-md-12">
                         <div class="row align-items-center">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 @include('customer.finance.components.card')
                             </div>
-                            <div class="col-md-8 text-right">
+                            <div class="col-md-6 text-right">
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-sm btn-primary m-2" data-toggle="modal"
                                     data-target="#oneWalletModal">
