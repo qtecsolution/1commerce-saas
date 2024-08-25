@@ -103,7 +103,8 @@
                                         <div class="d-flex justify-content-between">
                                             <input type="number" class="form-control col-md-4" name="security_code"
                                                 min="0" placeholder="Enter Security Code" required>
-                                            <button type="submit" class="btn btn-primary w-25" id="submit_btn">Submit</button>
+                                            <button type="submit" class="btn btn-primary w-25"
+                                                id="submit_btn">Submit</button>
                                         </div>
                                     </div>
                                 </form>
