@@ -89,8 +89,8 @@ class TemplateController extends Controller
                 'company_slug' => Str::slug($request->company_slug),
                 'product_name' => $request->company_slug,
                 'product_price' => $request->product_price,
-                'shipping_cost_inside_dhaka' => $request->shipping_cost_inside_dhaka,
-                'shipping_cost_outside_dhaka' => $request->shipping_cost_outside_dhaka,
+                'shipping_cost_inside_dhaka' => $request->shipping_cost_inside_dhaka ?? 0,
+                'shipping_cost_outside_dhaka' => $request->shipping_cost_outside_dhaka ?? 0,
             ]);
 
             $templateSeoTag = new TemplateSeoTagController();
@@ -107,6 +107,10 @@ class TemplateController extends Controller
                     break;
                 case 3:
                     $cycle = new CycleTemplateController();
+                    $cycle->initialSetup(auth()->id());
+                    break;
+                case 4:
+                    $cycle = new AttarTemplateController();
                     $cycle->initialSetup(auth()->id());
                     break;
                 default:
@@ -129,7 +133,7 @@ class TemplateController extends Controller
 
     public function edit($id)
     {
-        $userTemplate = UserTemplate::with(['template', 'fields'])->findOrFail($id);
+        $userTemplate = UserTemplate::with(['template', 'fields', 'templateSections', 'templateSections.elements'])->findOrFail($id);
         if ($userTemplate->template_id == 1) {
             $template = UlaunchTemplate::with([
                 'steps',

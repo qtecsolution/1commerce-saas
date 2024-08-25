@@ -6,7 +6,7 @@
     <div class="overlay" id="overlay">
         <nav class="overlay-menu">
             <ul>
-                <li><a href="#" class="smooth-scroll">Home</a></li>
+                <li><a href="#" class="smooth-scroll" content   editable="true">Home</a></li>
                 <li>
                     <a href="#start" class="smooth-scroll">About product</a>
                 </li>
@@ -190,19 +190,6 @@
             </div>
         </section>
 
-        <div class="cta-1 bg-dark padding-top-bottom text-center white-text">
-            <div class="container-fluid anima scale-in">
-                <span>​Do you like PAPER CUP - Mockup? </span>
-                <a
-                    class="btn"
-                    href="#"
-                    data-toggle="modal"
-                    data-target="#product-modal"
-                    ><b>$5</b> Buy now</a
-                >
-            </div>
-        </div>
-
         <section id="news" class="content-1 bg-image-2 padding-top-bottom">
             <div class="container">
                 <div class="row justify-content-end">
@@ -223,91 +210,6 @@
                             <blockquote class="blockquote">
                                 <p>Jessica Red</p>
                             </blockquote>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="facts" class="numbers-1 padding-top-bottom text-center">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="numbers-item">
-                            <h2 class="counter">367</h2>
-                            <h4>Purchases</h4>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="numbers-item">
-                            <h2>
-                                <span class="counter">99.1</span> <span>%</span>
-                            </h2>
-                            <h4>User Ratings</h4>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="numbers-item">
-                            <h2>
-                                <span class="counter">17</span> <span>k</span>
-                            </h2>
-                            <h4>Followers</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div class="cta-1 bg-shop padding-top-bottom text-center">
-            <div class="container-fluid anima scale-in">
-                <span>​Email for a custom and/or unlimited license.</span>
-                <a
-                    class="btn dark"
-                    href="#"
-                    data-toggle="modal"
-                    data-target=".text-modal"
-                    >Mock-up License</a
-                >
-            </div>
-        </div>
-
-        <section class="parallax-container white-text">
-            <div class="dark-overlay"></div>
-            <div class="parallax">
-                <img
-                    :src="imageSource('/images/creator.jpg')"
-                    alt="About the creator"
-                    style="display: block"
-                />
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div
-                        class="col-md-8 mx-auto text-center"
-                        style="height: 500px"
-                    >
-                        <div class="center-vertical">
-                            <div class="center-vertical-box">
-                                <h2>ABOUT THE CREATOR</h2>
-                                <p>
-                                    Many desktop publishing packages and web
-                                    page editors now use Lorem Ipsum as their
-                                    default model text, and a search for 'lorem
-                                    ipsum' will uncover many web sites still in
-                                    their infancy. Various versions have evolved
-                                    over the years, sometimes by accident,
-                                    sometimes on purpose (injected humour and
-                                    the like).
-                                </p>
-                                <br />
-                                <a
-                                    class="btn"
-                                    href="#"
-                                    data-toggle="modal"
-                                    data-target="#product-modal"
-                                    ><b>$5</b> Buy now</a
-                                >
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -576,7 +478,57 @@ export default {
     data() {
         return {
             appUrl: window.location.origin,
+            
+            // menu items
+            menuItems: [],
+
+            // hero area
+            heroAreaTitle: "",
+            heroAreaSubtitle: "",
+            heroAreaDescription: "",
+            heroAreaButton: [],
+            heroAreaImage: "",
+            heroAreaBg: "",
+
+            // about area
+            aboutAreaTitle: "",
+            aboutAreaSubtitle: "",
+            aboutAreaDescription: "",
+            aboutAreaBg: "",
+
+            // ingredients area
+            ingredientsAreaTitle: "",
+            ingredientItems: [],
+            ingredientAreaButton: [],
+            ingredientAreaImage: "",
+            ingredientAreaBg: "",
+
+            // features area
+            featuresAreaTitle: "",
+            featuresAreaSubtitle: "",
+            featureItems: [],
+            featuresAreaBg: "",
+
+            // review area
+            reviewAreaTitle: "",
+            reviewAreaImage: "",
+            reviewItems: [],
+            reviewAreaBg: "",
+
+            // order area
+            orderTitle: "",
+            orderSubTitle: "",
+            orderButton: [],
+            orderBg: "",
+
+            // footer area
+            footerAreaText: "",
+            footerAreaBg: "",
+            footerAreaLinks: [],
         };
+    },
+    mounted() {
+        console.log(this.user_template);
     },
     methods: {
         toast(icon, title) {
@@ -597,7 +549,7 @@ export default {
 
             return `${this.appUrl}/${this.user_template.template.assets_path}/${path}`;
         },
-    }
+    },
 };
 </script>
 

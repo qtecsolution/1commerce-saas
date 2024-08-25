@@ -3,11 +3,8 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Attar</title>
-
-    <meta name="description" content="1E-shop - Bootstrap Theme from angelostudio.net">
-    <meta name="author" content="ANGELOSTUDIO.NET">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	{!! renderSeoTags($userTemplate->id) !!}
 
     <link rel="stylesheet" href="{{ asset($template->assets_path . '/css/bootstrap.min.css') }}">
     {{-- <link rel="stylesheet" href="{{ asset($template->assets_path . '/css/font-awesome.min.css') }}"> --}}

@@ -61,4 +61,9 @@ class UserTemplate extends Model
     {
         return $this->belongsTo(TemplateSeoTag::class, 'id', 'user_template_id');
     }
+
+    public function templateSections()
+    {
+        return $this->hasMany(TemplateSection::class);
+    }
 }

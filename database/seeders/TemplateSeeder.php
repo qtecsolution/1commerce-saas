@@ -41,7 +41,7 @@ class TemplateSeeder extends Seeder
             Template::create([
                 'name' => 'Attar',
                 'slug' => 'attar',
-                'assets_path' => 'attar',
+                'assets_path' => 'Attar',
                 'blade_path' => 'attar'
             ]);
         }
