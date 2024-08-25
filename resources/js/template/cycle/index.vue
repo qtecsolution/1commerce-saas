@@ -15,8 +15,8 @@
         title="Logo settings"
       >
         <div
-          class="bg-primary text-white text-center rounded-circle cursor-pointer"
-          style="width: 30px; height: 30px"
+          class="bg-dark text-white text-center rounded-circle"
+          style="width: 30px; height: 30px; cursor: pointer"
           data-bs-toggle="modal"
           data-bs-target="#logoImageModal"
         >
@@ -77,8 +77,8 @@
                       title="Image settings"
                     >
                       <div
-                        class="bg-primary text-white text-center rounded-circle cursor-pointer"
-                        style="width: 30px; height: 30px"
+                        class="bg-dark text-white text-center rounded-circle"
+                        style="width: 30px; height: 30px; cursor: pointer"
                         data-bs-toggle="modal"
                         data-bs-target="#heroImageModal"
                       >
@@ -114,8 +114,8 @@
                      <div class="position-absolute top-0 end-0 mt-2"
                                     title="Button settings"
                                 >
-                   <div class="bg-primary text-white text-center rounded-circle cursor-pointer"
-                                        style="width: 30px; height: 30px"
+                   <div class="bg-dark text-white text-center rounded-circle"
+                                        style="width: 30px; height: 30px; cursor: pointer"
                                         data-bs-toggle="modal"
                                         data-bs-target="#heroButtonModal"
                                     >
@@ -266,8 +266,8 @@
                   title="Image settings"
                 >
                   <div
-                    class="bg-primary text-white text-center rounded-circle cursor-pointer"
-                    style="width: 30px; height: 30px"
+                    class="bg-dark text-white text-center rounded-circle"
+                    style="width: 30px; height: 30px; cursor: pointer"
                     data-bs-toggle="modal"
                     data-bs-target="#featureImageModal"
                   >
@@ -312,8 +312,8 @@
           title="About Image settings"
         >
           <div
-            class="bg-primary text-white text-center rounded-circle cursor-pointer"
-            style="width: 30px; height: 30px; margin-left: 280px"
+            class="bg-dark text-white text-center rounded-circle"
+            style="width: 30px; height: 30px; margin-left: 280px; cursor: pointer"
             data-bs-toggle="modal"
             data-bs-target="#aboutImageModal"
           >
@@ -341,8 +341,8 @@
           {{ testimonialTitle }}
         </h1>
         <div
-          class="bg-primary text-white text-center rounded-circle cursor-pointer"
-          style="width: 30px; height: 30px; margin-left: 150px"
+          class="bg-dark text-white text-center rounded-circle"
+          style="width: 30px; height: 30px; margin-left: 150px; cursor: pointer"
           data-bs-toggle="modal"
           data-bs-target="#testimonialModal"
         >
@@ -516,8 +516,8 @@
           <div class="map_main">
             <div class="map-responsive">
               <div
-                class="bg-primary text-white text-center rounded-circle cursor-pointer"
-                style="width: 30px; height: 30px"
+                class="bg-dark text-white text-center rounded-circle"
+                style="width: 30px; height: 30px; cursor: pointer"
                 data-bs-toggle="modal"
                 data-bs-target="#mapModal"
               >

@@ -1,4 +1,6 @@
 @php
+    $trackingApi = trackingApi($userTemplate->id);
+
     $hero_area = $cycle->hero_area != null ? json_decode($cycle->hero_area, true) : null;
     $feature_area = $cycle->features_area ? json_decode($cycle->features_area, true) : null;
     $testimonial_area = $cycle->testimonials_area != null ? json_decode($cycle->testimonials_area) : null;
@@ -17,10 +19,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>Cycle</title>
-      <meta name="keywords" content="">
-      <meta name="description" content="">
-      <meta name="author" content="">
+      {!! renderSeoTags($userTemplate->id) !!}
       <!-- bootstrap css -->
       <link rel="stylesheet" type="text/css" href="{{ asset($userTemplate->template->assets_path . '/css/bootstrap.min.css')}}">
       <!-- style css -->
@@ -28,7 +27,9 @@
       <!-- Responsive-->
       <link rel="stylesheet" href="{{ asset($userTemplate->template->assets_path . '/css/responsive.css')}}">
       <!-- fevicon -->
-      <link rel="icon" href="{{ asset($userTemplate->template->assets_path . '/images/fevicon.png')}}" type="image/gif" />
+      <link rel="shortcut icon"
+         href="{{ $userTemplate->fav_icon ? asset('storage/' . $userTemplate->fav_icon) : asset($userTemplate->template->assets_path . '/images/favicon.png') }}"
+         type="image/x-icon">
       <!-- Scrollbar Custom CSS -->
       <link rel="stylesheet" href="{{ asset($userTemplate->template->assets_path . '/css/jquery.mCustomScrollbar.min.css')}}">
       <!-- Tweaks for older IEs-->
@@ -57,6 +58,8 @@
           background-image: linear-gradient(-13deg, #ffffff 30%, {{$hero_area['background_color']}} 20%) !important;
           }
       </style>
+
+      {!! $trackingApi['head_code'] !!}
    </head>
    <body>
     <!-- header section start -->
