@@ -15,4 +15,9 @@ class Transaction extends Model
     {
         return $this->belongsTo(OrderPayment::class, 'reference_id', 'id');
     }
+
+    public function withdrawal()
+    {
+        return $this->belongsTo(Withdraw::class, 'reference_id', 'id');
+    }
 }

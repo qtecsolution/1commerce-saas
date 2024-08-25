@@ -31,7 +31,7 @@
                                         <input type="number" class="form-control" name="amount" min="0"
                                             placeholder="Enter Amount to Withdraw" required>
                                         <small class="text-danger">
-                                            {{ $chargePercent }}% charge applicable. Minimum withdraw amount is BDT 100.
+                                            {{ $chargePercent }}% charge applicable.
                                         </small>
                                     </div>
                                     <div class="form-group">
@@ -101,9 +101,9 @@
                                             </label>
                                         </div>
                                         <div class="d-flex justify-content-between">
-                                            <input type="number" class="form-control col-md-4" name="security_code"
+                                            <input type="number" class="form-control col-6" name="security_code"
                                                 min="0" placeholder="Enter Security Code" required>
-                                            <button type="submit" class="btn btn-primary w-25"
+                                            <button type="submit" class="btn btn-primary col-4"
                                                 id="submit_btn">Submit</button>
                                         </div>
                                     </div>
@@ -129,34 +129,26 @@
                                 Bank Name
                                 <sup class="text-danger">*</sup>
                             </label>
-                            <input type="text" class="form-control" name="bank_name" min="0"
+                            <input type="text" class="form-control" name="bank_name"
                                 placeholder="Enter Bank Name" required>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="account_number">
-                                Account Number
-                                <sup class="text-danger">*</sup>
-                            </label>
-                            <input type="number" class="form-control" name="account_number" min="0"
-                                placeholder="Enter Account Number" required>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="district">
-                                District
-                                <sup class="text-danger">*</sup>
-                            </label>
-                            <input type="text" class="form-control" name="district" min="0"
-                                placeholder="Enter District" required>
-                        </div>
-                        <div class="form-group col-md-4">
                             <label for="branch_name">
                                 Branch Name
                                 <sup class="text-danger">*</sup>
                             </label>
-                            <input type="text" class="form-control" name="branch_name" min="0"
+                            <input type="text" class="form-control" name="branch_name"
                                 placeholder="Enter Branch Name" required>
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-6">
+                            <label for="district">
+                                District
+                                <sup class="text-danger">*</sup>
+                            </label>
+                            <input type="text" class="form-control" name="district"
+                                placeholder="Enter District" required>
+                        </div>
+                        <div class="form-group col-md-6">
                             <label for="routing_number">
                                 Routing Number
                             </label>

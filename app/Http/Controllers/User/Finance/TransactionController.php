@@ -26,22 +26,20 @@ class TransactionController extends Controller
         return $userWallet;
     }
 
-    public function creditTransaction($user_wallet_id, $payment)
+    public function creditTransaction($user_wallet_id, $withdraw)
     {
         $userWallet = UserWallet::find($user_wallet_id);
-        $userWallet->balance -= $payment->amount;
+        $userWallet->balance -= $withdraw->amount;
         $userWallet->save();
 
         Transaction::create([
             'user_id' => $userWallet->user_id,
-            'credit' => $payment->amount,
+            'credit' => $withdraw->amount,
             'balance' => $userWallet->balance,
-            'reference_id' => $payment->id,
+            'reference_id' => $withdraw->id,
             'purpose' => "Withdrawal",
         ]);
 
         return $userWallet;
     }
-
-
 }

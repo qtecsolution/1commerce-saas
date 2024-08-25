@@ -42,12 +42,16 @@
                                                 title="Order Details" target="_blank">
                                                 order#{{ $transaction->payment->order_id }}
                                             </a>
+                                        @elseif ($transaction->withdrawal)
+                                            <a href="javascript:void(0)" title="Withdrawal Details" target="_blank">
+                                                withdrawal#{{ $transaction->reference_id }}
+                                            </a>
                                         @else
                                             {{ $transaction->reference_id }}
                                         @endif
                                     </td>
                                     <td>{{ $transaction->credit > 0 ? number_format($transaction->credit, 2) : null }}</td>
-                                    <td>{{ number_format($transaction->debit, 2) }}</td>
+                                    <td>{{ $transaction->debit > 0 ? number_format($transaction->debit, 2) : null }}</td>
                                     <td>{{ number_format($transaction->balance, 2) }}</td>
                                 </tr>
                             @empty
