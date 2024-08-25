@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\CustomDomain;
 use App\Models\Subscription;
 use App\Models\Template\UserTemplate;
 use App\Models\TemplateSeoTag;
@@ -146,5 +147,24 @@ if (!function_exists('renderSeoTags')) {
         }
 
         return '';
+    }
+}
+
+// Get Domain name and check it
+if (!function_exists('domainCheck')) {
+
+    function domainCheck()
+    {
+        $customDomain = CustomDomain::with('userTemplate')->where('domain_name',request()->getHost())->first();
+        return $customDomain->userTemplate->company_slug ?? false;
+
+    }
+}
+// Reserve sub domain list
+if (!function_exists('resurvedSubDomain')) {
+
+    function resurvedSubDomain()
+    {
+        return ['1com','app', 'main'] ;
     }
 }
