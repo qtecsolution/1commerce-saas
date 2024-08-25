@@ -287,9 +287,10 @@
   </div>
   <!-- cycle section end -->
   <!-- about section start -->
+  
   <div class="about_section layout_padding" id="about" data-target="about">
-    <ColorPicker
-      style="margin-left: 1000px; margin-top: 10px"
+     <ColorPicker
+      style="margin-left: 1050px; margin-top: 40px"
       :color="aboutBg"
       @update="aboutBg = $event"
       @save="saveOrderNowBgColor('bg_color', $event)"
