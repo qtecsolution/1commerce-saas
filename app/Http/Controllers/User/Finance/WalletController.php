@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 
 class WalletController extends Controller
 {
+    protected $chargePercent = 5;
 
     public function createOneWallet(Request $request)
     {
@@ -36,6 +37,17 @@ class WalletController extends Controller
     {
         $transactions = Transaction::where('user_id', auth()->id())->latest()->paginate(10);
         return view('customer.finance.transaction-history', compact('transactions'));
+    }
+
+    public function withdraw(Request $request)
+    {
+        $userWallet = UserWallet::where('user_id', auth()->id())->first();
+        if ($request->isMethod('post')) {
+            dd($request->all(), $userWallet);
+        }
+
+        $chargePercent = $this->chargePercent;
+        return view('customer.finance.withdraw', compact('userWallet', 'chargePercent'));
     }
 
     public function withdrawHistory(Request $request)

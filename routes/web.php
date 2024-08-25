@@ -135,6 +135,7 @@ Route::prefix('app')->middleware('user')->group(function () {
             Route::get("my-wallet", "myWallet")->name('my.wallet');
             Route::post('create/one-wallet', 'createOneWallet')->name('create.one.wallet');
             Route::get('transaction-history', 'transactionHistory')->name('wallet.transaction.history');
+            Route::match(['get', 'post'], 'withdraw', 'withdraw')->name('wallet.withdraw');
             Route::get('withdraw-history', 'withdrawHistory')->name('wallet.withdraw.history');
         });
 
