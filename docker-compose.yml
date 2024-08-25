@@ -1,0 +1,44 @@
+version: "3.8"
+services:
+  app:
+    container_name: 1com-app
+    restart: unless-stopped
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    working_dir: /var/www/html
+    volumes:
+      - ./:/var/www/html:cached
+    depends_on:
+      - db
+    networks:
+      - 1com-network
+  db:
+    image: mysql:latest
+    container_name: 1com-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: 1commerce
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_PASSWORD: laravel
+      MYSQL_USER: laravel
+    #volumes:
+      #- ./docker-compose/mysql:/docker-entrypoint-initdb.d
+    networks:
+      - 1com-network
+  nginx:
+    image: nginx:alpine
+    container_name: 1com-nginx
+    restart: unless-stopped
+    ports:
+      - 8000:80
+    volumes:
+      - ./:/var/www/html:cached
+      - ./docker-compose/nginx:/etc/nginx/conf.d
+    depends_on:
+      - app
+    networks:
+      - 1com-network
+networks:
+  1com-network:
+    driver: bridge
