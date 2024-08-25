@@ -17,8 +17,6 @@
         <div class="container">
             <SetupModal
                 :colorData="siteColor"
-                :logoData="favIcon"
-                :companyName="userTemplate.company_name"
                 @save="savePageSetup"
             />
 
@@ -301,7 +299,7 @@
                                                     />
                                                 </td>
                                                 <div
-                                                    style="position; relative; margin-left: -75px"
+                                                    style="position: relative; margin-left: -75px"
                                                 >
                                                     <ImageModal
                                                         :modalId="'orderAreaImage'"
@@ -764,7 +762,6 @@ export default {
                     ? JSON.parse(this.template.color)
                     : null,
             siteLogo: "",
-            favIcon: "",
             fields: [],
             selectedShippingOption: "inside_dhaka",
         };
@@ -800,10 +797,6 @@ export default {
         this.siteLogo =
             this.user_template != null && this.user_template.company_logo
                 ? this.imageSource(this.user_template.company_logo, "storage")
-                : this.imageSource("images/favicon.png");
-        this.favIcon =
-            this.user_template != null && this.user_template.fav_icon
-                ? this.imageSource(this.user_template.fav_icon, "storage")
                 : this.imageSource("images/favicon.png");
 
         this.fields = this.userTemplate?.fields;
@@ -1124,24 +1117,14 @@ export default {
             this.saveFeaturesArea();
         },
 
-        savePageSetup(data) {
-            const { siteTitle, selectedImage } = data;
-
+        savePageSetup() {
             const formData = new FormData();
-            formData.append("image", selectedImage);
-            formData.append("company_name", siteTitle);
             formData.append("color", JSON.stringify(this.siteColor));
 
             axios
-                .post(`${this.apiUrl}/update-page-setup`, formData)
+                .post(`${this.apiUrl}/update-content-area`, formData)
                 .then((response) => {
                     if (response.data.success) {
-                        if (response.data.imagePath) {
-                            this.favicon = this.imageSource(
-                                response.data.imagePath,
-                                "storage"
-                            );
-                        }
                         this.toast("success", "Updated successfully");
                     } else {
                         this.toast(

@@ -194,6 +194,9 @@ class SeedeeTemplateController extends Controller
         if ($request->footer_area) {
             $this->template->footer_area = $request->input('footer_area');
         }
+        if ($request->color) {
+            $this->template->color = $request->input('color');
+        }
         $this->template->save();
 
         return response()->json(['success' => true]);
@@ -329,49 +332,6 @@ class SeedeeTemplateController extends Controller
         }
 
         return response()->json(['success' => true, 'newItem' => $item]);
-    }
-
-    public function updatePageSetup(Request $request)
-    {
-        $this->template->color = $request->input('color');
-        $this->template->save();
-
-        $userTemplate = UserTemplate::where('template_id',  $this->templateId)->where('user_id', $this->userId)->first();
-
-        $uploadedPath = null;
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-
-            // Check if the image size is less than or equal to 100 KB
-            if ($image->getSize() > 102400) { // 100 KB = 102400 bytes
-                return response()->json(['success' => false, 'message' => 'Image size exceeds 100 KB.']);
-            }
-
-            // Check if the image has a 1:1 aspect ratio
-            $imageDimensions = getimagesize($image);
-            if ($imageDimensions[0] !== $imageDimensions[1]) {
-                return response()->json(['success' => false, 'message' => 'Image must have a 1:1 aspect ratio.']);
-            }
-
-            // If an old favicon exists, delete it
-            if ($userTemplate && isset($userTemplate->fav_icon)) {
-                $oldImagePath = storage_path('app/public/' . $userTemplate->fav_icon);
-                if (file_exists($oldImagePath)) {
-                    unlink($oldImagePath);
-                }
-            }
-
-            // Store the new image
-            $uploadedPath = $image->store('public/seedee');
-            $uploadedPath = 'seedee/' . basename($uploadedPath);
-
-            $userTemplate->fav_icon = $uploadedPath;
-        }
-
-        $userTemplate->company_name = $request->input('company_name');
-        $userTemplate->save();
-
-        return response()->json(['success' => true, 'imagePath' => $uploadedPath]);
     }
 
     public function updateSiteLogo(Request $request)

@@ -49,8 +49,8 @@ class AamarPayService
             "signature_key" => $this->signature_key,
             "desc" => $payload['desc'] ?? "payment description",
             "cus_name" => $payload['cus_name'],
-            "cus_email" => $payload['cus_email'],
-            "cus_phone" => $payload['cus_phone'] ?? '1234567890',
+            "cus_email" => $payload['cus_email'] ?? 'no@mail.com',
+            "cus_phone" => $payload['cus_phone'] ?? '01234567890',
             "cus_add1" => "...",
             "cus_add2" => "...",
             "cus_city" => "...",
@@ -76,6 +76,7 @@ class AamarPayService
 
         // Execute cURL session
         $response = curl_exec($ch);
+
         Log::info($response);
 
         // Check for cURL errors

@@ -120,7 +120,8 @@
                                 </a>
 
                                 <div
-                                    class="position-absolute top-0 end-0 mt-2"
+                                    class="position-absolute mt-2"
+                                    style="top: -10px; left: 38%"
                                     title="Button settings"
                                 >
                                     <div
@@ -499,7 +500,8 @@
                                             >
 
                                             <div
-                                                class="position-absolute top-0 end-0 mt-2"
+                                                class="position-absolute mt-2"
+                                                style="top: -20px; left: 35%"
                                                 title="Button settings"
                                             >
                                                 <div
@@ -615,9 +617,9 @@
                                             >
 
                                             <div
-                                                class="position-absolute top-0 end-0 mt-2"
-                                                title="Button settings"
-                                            >
+                                    class="position-absolute mt-2" style="top: -20px; left: 35%;"
+                                    title="Button settings"
+                                >
                                                 <div
                                                     class="bg-dark text-white text-center rounded-circle cursor-pointer"
                                                     style="
@@ -858,13 +860,14 @@
                                 {{ infoDescription }}
                             </p>
 
-                            <div class="btn-wrapper position-relative">
+                            <div class="btn-wrapper position-relative d-inline-block">
                                 <a :href="infoButton.url" class="btn-buynow">{{
                                     infoButton.title
                                 }}</a>
 
                                 <div
-                                    class="position-absolute top-0 end-0 mt-2"
+                                    class="position-absolute mt-2"
+                                    style="top: 0; right: -35px"
                                     title="Button settings"
                                 >
                                     <div
@@ -1051,10 +1054,11 @@
                                     />
 
                                     <div
-                                        class="col-md-6 col-sm-12 position-relative"
+                                        class="col-12 position-relative"
                                     >
                                         <div
-                                            class="position-absolute top-0 end-0 mt-2"
+                                            class="position-absolute mt-2"
+                                            style="top: 0; left: 25%"
                                             title="Button settings"
                                         >
                                             <div

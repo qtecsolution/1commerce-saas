@@ -80,7 +80,7 @@ class TemplateController extends Controller
                 $path = 'users/logo/' . $request->file('company_logo')->hashName();
             }
 
-            UserTemplate::create([
+            $userTemplate = UserTemplate::create([
                 'user_id' => auth()->id(),
                 'template_id' => $request->template_id,
                 'company_name' => $request->company_name,
@@ -91,6 +91,9 @@ class TemplateController extends Controller
                 'shipping_cost_inside_dhaka' => $request->shipping_cost_inside_dhaka,
                 'shipping_cost_outside_dhaka' => $request->shipping_cost_outside_dhaka,
             ]);
+
+            $templateSeoTag = new TemplateSeoTagController();
+            $templateSeoTag->store($userTemplate->id);
 
             switch ($request->template_id) {
                 case 1:
@@ -168,5 +171,39 @@ class TemplateController extends Controller
                 'status' => true
             ]);
         }
+    }
+
+    public function settings(Request $request, $id)
+    {
+        $request->validate([
+            'favicon' => 'nullable|image|mimes:png,jpg,jpeg|max:2048',
+            'title' => 'required',
+        ]);
+
+        $userTemplate = UserTemplate::with('seoTags')->findOrFail($id);
+        $decodedTags = json_decode($userTemplate->seoTags->tags);
+
+        $imgPath = $userTemplate->fav_icon;
+        if ($request->hasFile('favicon')) {
+            if ($userTemplate->fav_icon) {
+                $oldImagePath = storage_path('app/public/' . $userTemplate->fav_icon);
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
+                }
+            }
+
+            $request->file('favicon')->store('public/favicons');
+            $imgPath = 'favicons/' . $request->file('favicon')->hashName();
+        }
+
+        $userTemplate->fav_icon = $imgPath;
+
+        $decodedTags->title = $request->input('title');
+        $userTemplate->seoTags->tags = json_encode($decodedTags);
+
+        $userTemplate->push();
+
+        Alert::success('Success!', 'Resources Updated Successfully.')->persistent('Close');
+        return back();
     }
 }

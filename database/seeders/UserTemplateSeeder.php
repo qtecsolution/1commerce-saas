@@ -11,7 +11,7 @@ use App\Http\Controllers\Template\SeedeeTemplateController;
 use App\Http\Controllers\Template\UlaunchTemplateController;
 
 class UserTemplateSeeder extends Seeder
-{ 
+{
     /**
     * Run the database seeds.
     *

@@ -2,17 +2,18 @@
 
 namespace App\Models;
 
+use App\Models\Template\UserTemplate;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Transaction extends Model
+class CustomDomain extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
 
-    public function payment()
+    public function userTemplate()
     {
-        return $this->belongsTo(OrderPayment::class, 'reference_id', 'id');
+        return $this->belongsTo(UserTemplate::class);
     }
 }

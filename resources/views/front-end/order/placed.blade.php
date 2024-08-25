@@ -148,7 +148,19 @@
         <div class="title mx-auto">
             Thank you for your order!
             <br>
-            <small style="font-size: 40%">Our agent will contact you soon.</small>
+            @if (@$_GET['status'] == 'failed')
+                <small style="font-size: 40%" class="text-danger">
+                    Your payment was failed.
+                </small>
+            @elseif (@$_GET['status'] == 'canceled')
+                <small style="font-size: 40%" class="text-danger">
+                    Your payment was canceled.
+                </small>
+            @else
+                <small style="font-size: 40%">
+                    Our agent will contact you soon.
+                </small>
+            @endif
         </div>
         <div class="main"> <span id="sub-title">
                 <p><b>Payment Summary</b></p>
@@ -192,8 +204,9 @@
                         <b>{{ $order->currency }} {{ number_format($order->total_amount) }}</b>
                     </div>
                 </div>
+
                 @if (@$order->userTemplate->one_wallet->status == 1 && @$order->userTemplate->userWallet->status == 1)
-                    <button class="btn d-flex mx-auto"> Pay Now </button>
+                    <a href="{{ route('order_payment', $order->id) }}" class="btn d-flex mx-auto"> Pay Now </a>
                 @else
                     <p class="p-5"></p>
                     <p class="p-5"></p>

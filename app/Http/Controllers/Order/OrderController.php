@@ -40,7 +40,7 @@ class OrderController extends Controller
 
     public function show($id)
     {
-        $order = Order::with(['userTemplate', 'dynamicFields'])->find($id);
+        $order = Order::with(['userTemplate', 'dynamicFields', 'payments'])->find($id);
 
         if (empty($order)) {
             toast('Order details not found.', 'error');

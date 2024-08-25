@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\User\Finance;
 
-use App\Http\Controllers\Controller;
 use App\Models\UserWallet;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class WalletController extends Controller
 {
@@ -33,7 +34,8 @@ class WalletController extends Controller
 
     public function transactionHistory(Request $request)
     {
-        abort(404);
+        $transactions = Transaction::where('user_id', auth()->id())->latest()->paginate(10);
+        return view('customer.finance.transaction-history', compact('transactions'));
     }
 
     public function withdrawHistory(Request $request)

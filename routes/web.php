@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AamarPayController;
 use App\Http\Controllers\Auth\UserController;
-
+use App\Http\Controllers\CustomDomainController;
 use App\Http\Controllers\Test\TestController;
 use App\Http\Controllers\User\ShopController;
 use App\Http\Controllers\Order\OrderController;
@@ -24,6 +24,7 @@ use App\Http\Controllers\Template\UlaunchTemplateController;
 use App\Http\Controllers\Template\CycleTemplateController;
 use App\Http\Controllers\FrontEnd\PackageController as FrontEnd_PackageController;
 use App\Http\Controllers\User\Finance\WalletController;
+use App\Http\Controllers\Template\TemplateSeoTagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,9 @@ Route::domain('{subdomain}.' . env('APP_DOMAIN'))->group(function () {
 // place order
 Route::post("place-order", [ShopController::class, 'placeOrder'])->name('place_order');
 Route::get("order-placed/{order_id}", [ShopController::class, 'orderPlaced'])->name('order_placed');
+Route::get("order-pay/{order_id}", [ShopController::class, 'orderPayment'])->name('order_payment');
+Route::post('order-payment/success', [ShopController::class, 'paymentSuccess'])->name('order_payment_success');
+Route::post('order-payment/fail', [ShopController::class, 'paymentFail'])->name('order_payment_fail');
 
 // live preview
 Route::get('shop/{slug}', [ShopController::class, 'livePreview'])->name('live_preview');
@@ -116,6 +120,9 @@ Route::prefix('app')->middleware('user')->group(function () {
             Route::post('tracking-api', 'createApi')->name('tracking_api');
         });
 
+        // seo tag routes
+        Route::post('update-seo-tag', [TemplateSeoTagController::class, 'update'])->name('update_seo_tags');
+
         // payment method routes
         Route::controller(PaymentMethodController::class)->prefix('payment-method')->group(function () {
             Route::post('update/one-wallet', 'updateOneWallet')->name('update.one.wallet');
@@ -138,6 +145,7 @@ Route::prefix('app')->middleware('user')->group(function () {
             Route::get('mine', 'mine')->name('mine');
             Route::get('{id}/edit', 'edit')->name('edit');
             Route::post('slug/availability', 'slugAvailability')->name('slug.availability');
+            Route::post('settings/{id}', 'settings')->name('settings');
 
             // ulaunch
             Route::prefix('ulaunch')->group(function () {
@@ -165,11 +173,11 @@ Route::prefix('app')->middleware('user')->group(function () {
                 Route::post('update-feature-and-step', [SeedeeTemplateController::class, 'updateFeatureAndStep']);
                 Route::post('delete-feature-or-step', [SeedeeTemplateController::class, 'deleteFeatureOrStep']);
                 Route::post('add-feature-or-step', [SeedeeTemplateController::class, 'addFeatureOrStep']);
-                Route::post('update-page-setup', [SeedeeTemplateController::class, 'updatePageSetup']);
                 Route::post('update-site-logo', [SeedeeTemplateController::class, 'updateSiteLogo']);
             });
-             // cycle
-             Route::prefix('cycle')->group(function () {
+
+            // cycle
+            Route::prefix('cycle')->group(function () {
                 Route::post('update-company-logo', [CycleTemplateController::class, 'updateCompanyLogo']);
                 Route::post('update-nav-color', [CycleTemplateController::class, 'updateNavColor']);
                 Route::post('update-menu-area', [CycleTemplateController::class, 'updateMenuArea']);
@@ -191,6 +199,9 @@ Route::prefix('app')->middleware('user')->group(function () {
             Route::post('delete-input-field', [DynamicOrderFormController::class, 'deleteInputField']);
             Route::post('update-input-field', [DynamicOrderFormController::class, 'updateInputField']);
         });
+
+        // ticket routes
+        Route::resource('custom-domain', CustomDomainController::class);
     });
 
     // subscription routes
@@ -217,6 +228,7 @@ Route::prefix('aamar-pay')->group(function () {
     Route::post('fail', [AamarPayController::class, 'fail'])->name('aamar-pay.fail');
     Route::get('cancel', [AamarPayController::class, 'cancel'])->name('aamar-pay.cancel');
 });
+
 /*
 |--------------------------------------------------------------------------
 |   # admin routes

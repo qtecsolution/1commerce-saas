@@ -13,7 +13,6 @@ use App\Models\SubscriptionPayment;
 
 class AamarPayController extends Controller
 {
-
     public function __construct(protected AamarPayService $aamarPayService)
     {
         $this->aamarPayService = $aamarPayService;
@@ -49,7 +48,7 @@ class AamarPayController extends Controller
             'cus_email' => $user->email,
             'cus_phone' => $user->phone,
             'desc' => $package->title,
-            'opt_a' => 'Trnx_' . rand(111, 999),
+            'opt_a' => 'Trnx_' . rand(111111, 999999),
         ];
 
         #Before  going to initiate the payment order status need to insert or update as Pending.
