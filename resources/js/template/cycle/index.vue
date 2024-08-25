@@ -1,6 +1,6 @@
 <template>
   <!-- header section start -->
-  <div class="header_section header_bg" >
+  <div class="header_section header_bg">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a href="javascript:void(0)" class="logo">
         <img
@@ -58,11 +58,11 @@
     </nav>
     <!-- banner section start -->
     <div class="banner_section layout_padding">
-       <ColorPicker 
-       style="margin-left:1000px;margin-top:-50px;"
-      :color="heroBg"
-      @update="heroBg = $event"
-      @save="saveHeroBgColor('bg_color',$event)"
+      <ColorPicker
+        style="margin-left: 1000px; margin-top: -50px"
+        :color="heroBg"
+        @update="heroBg = $event"
+        @save="saveHeroBgColor('bg_color', $event)"
       />
       <div id="" class="" data-ride="">
         <div class="carousel-inner">
@@ -76,7 +76,6 @@
                       class="position-absolute top-0 end-0 mt-2"
                       title="Image settings"
                     >
-                     
                       <div
                         class="bg-primary text-white text-center rounded-circle cursor-pointer"
                         style="width: 30px; height: 30px"
@@ -289,12 +288,12 @@
   <!-- cycle section end -->
   <!-- about section start -->
   <div class="about_section layout_padding" id="about" data-target="about">
-     <ColorPicker 
-        style="margin-left:1000px;margin-top:10px;"
-        :color="aboutBg"
-        @update="aboutBg = $event"
-        @save="saveOrderNowBgColor('bg_color',$event)"
-        />
+    <ColorPicker
+      style="margin-left: 1000px; margin-top: 10px"
+      :color="aboutBg"
+      @update="aboutBg = $event"
+      @save="saveOrderNowBgColor('bg_color', $event)"
+    />
     <div class="container">
       <h1 class="about_taital" contenteditable="true" @blur="updateAboutTitle">
         {{ aboutTitle }}
@@ -358,11 +357,9 @@
               <div class="client_section_2">
                 <div class="client_left">
                   <div>
-
                     <img
                       v-bind:src="`${testimonial.reviewer_image}`"
                       class="client_img"
-                      
                     />
                   </div>
                 </div>
@@ -403,36 +400,46 @@
   <!-- client section end -->
   <!-- contact section start -->
   <div class="contact_section layout_padding" id="order" data-target="order">
-     <ColorPicker 
-        style="margin-left:1000px;margin-top:10px;"
-        :color="orderBg"
-        @update="orderBg = $event"
-        @save="saveOrderNowBgColor('bg_color',$event)"
-        />
+    <ColorPicker
+      style="margin-left: 1000px; margin-top: 10px"
+      :color="orderBg"
+      @update="orderBg = $event"
+      @save="saveOrderNowBgColor('bg_color', $event)"
+    />
     <div class="container">
       <div class="contact_main">
         <h1 class="request_text">Order Now</h1>
         <div class="row">
           <div class="col-md-8">
-            <span class="about_text" contenteditable="true" @blur="updateProductName">{{ productName }}</span>
+            <span
+              class="about_text"
+              contenteditable="true"
+              @blur="updateProductName"
+              >{{ productName }}</span
+            >
           </div>
           <div class="col-md-4 text-end">
-                <span style="margin-right: 5px" class="about_text" contenteditable="true" @blur="updateProductCurrency">
-                {{ productCurrency}}
-                </span>
-                <span style="margin-right: 5px" class="about_text" contenteditable="true" @blur="updateProductPrice">
-                {{ productPrice }}
-                </span>
+            <span
+              style="margin-right: 5px"
+              class="about_text"
+              contenteditable="true"
+              @blur="updateProductCurrency"
+            >
+              {{ productCurrency }}
+            </span>
+            <span
+              style="margin-right: 5px"
+              class="about_text"
+              contenteditable="true"
+              @blur="updateProductPrice"
+            >
+              {{ productPrice }}
+            </span>
           </div>
         </div>
         <div class="form-group"></div>
 
-        <form
-          action=""
-          method="POST"
-          id="order"
-          class="order-form"
-        >
+        <form action="" method="POST" id="order" class="order-form">
           <div class="form-group">
             <input
               type="text"
@@ -442,7 +449,6 @@
               name="customer_name"
               required
             />
-          
           </div>
           <div class="form-group">
             <input
@@ -452,8 +458,8 @@
               name="customer_phone"
               value=""
               required
-            />  
-            </div>
+            />
+          </div>
           <div class="form-group">
             <input
               class="email-bt"
@@ -474,32 +480,30 @@
               id="customer_address"
               name="customer_address"
               required
-              ></textarea
-            >
+            ></textarea>
           </div>
           <FormField
-          :styles="{
-            color: siteColor?.primary_text_color,
-            background_color: siteColor?.background_color,
-          }"
-          v-for="(field, index) in fields"
-          :key="index"
-          :field="field"
-          @delete="deleteField(index, $event)"
-          @update="updateField(index, $event)"
-        />
+            :styles="{
+              color: siteColor?.primary_text_color,
+              background_color: siteColor?.background_color,
+            }"
+            v-for="(field, index) in fields"
+            :key="index"
+            :field="field"
+            @delete="deleteField(index, $event)"
+            @update="updateField(index, $event)"
+          />
           <div class="send_btn">
             <button type="submit">Order Now</button>
           </div>
         </form>
-        
 
         <AddInputModal
           :modalId="'addInputModal'"
           :modalTitle="'Add Dynamic Form'"
           @save="addField"
-        /> 
-        </div>
+        />
+      </div>
     </div>
   </div>
   <!-- contact section end -->
@@ -655,7 +659,10 @@ export default {
     return {
       apiUrl: "",
       appUrl: "",
-      onTestimonialImageError:'',
+      onTestimonialImageError: "",
+
+      companyLogo: "",
+      companyLogoRaw: [],
       // menu area
       menus: [
         {
@@ -772,8 +779,8 @@ export default {
   },
   computed: {},
   mounted() {
-    this.onTestimonialImageError = this.appUrl + "/cycle/images/client-img.png"
-    this.companyLogo = this.appUrl + "/" + this.user_template.company_logo;
+    this.onTestimonialImageError = this.appUrl + "/cycle/images/client-img.png";
+    // this.companyLogo = this.appUrl + "/" + this.user_template.company_logo;
     this.companyLogo =
       this.user_template.company_logo != null && this.user_template.company_logo
         ? this.imageSource(this.user_template.company_logo, "storage")
@@ -843,15 +850,16 @@ export default {
     };
     this.heroButton = heroArea != null ? heroArea.button : defaultHeroButton;
 
-   // order area
+    // order area
     this.fields = this.user_template?.fields;
-   //foooter area
+    //foooter area
     const orderArea =
       this.template.order_area != null
         ? JSON.parse(this.template.order_area)
         : null;
     this.orderTitle = aboutArea?.title || this.orderTitle;
-    this.orderBg = orderArea != null ? orderArea.background_color : this.orderBg;
+    this.orderBg =
+      orderArea != null ? orderArea.background_color : this.orderBg;
 
     //foooter area
     const footerArea =
@@ -871,7 +879,7 @@ export default {
         ? footerArea.mapIframe
         : this.mapIframe;
     this.footerBg = footerArea != null ? footerArea.footerBg : this.footerBg;
-   
+
     // testimonial area
     const testimonialsArea =
       this.template.testimonials_area != null
@@ -902,9 +910,10 @@ export default {
 
     this.testimonials.forEach((testimonial, index) => {
       testimonial.reviewer_image =
-        (this.template.testimonials.length > 0 &&
-        this.template.testimonials[index].reviewer_image != null && this.template.testimonials[index].reviewer_image != '') 
-          ?this.imageSource(
+        this.template.testimonials.length > 0 &&
+        this.template.testimonials[index].reviewer_image != null &&
+        this.template.testimonials[index].reviewer_image != ""
+          ? this.imageSource(
               this.template.testimonials[index].reviewer_image,
               "storage"
             )
@@ -1000,22 +1009,22 @@ export default {
       return `${this.appUrl}/${this.user_template.template.assets_path}/${path}`;
     },
     updateOrderArea() {
-            const formData = new FormData();
-            formData.append("title", this.orderTitle);
-            formData.append("sub_title", this.orderSubTitle);
-            formData.append("button", JSON.stringify(this.orderButton));
-            formData.append("background_color", this.orderBg);
+      const formData = new FormData();
+      formData.append("title", this.orderTitle);
+      formData.append("sub_title", this.orderSubTitle);
+      formData.append("button", JSON.stringify(this.orderButton));
+      formData.append("background_color", this.orderBg);
 
-            axios
-                .post(`${this.apiUrl}/update-order-area`, formData)
-                .then((response) => {
-                    // console.log(response.data);
-                    this.toast("success", "Resources Updated.");
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        },
+      axios
+        .post(`${this.apiUrl}/update-order-area`, formData)
+        .then((response) => {
+          // console.log(response.data);
+          this.toast("success", "Resources Updated.");
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
 
     // aboute area function
     updateAboutDescription(event) {
@@ -1350,82 +1359,78 @@ export default {
         .catch((error) => {
           this.toast("error", "Error updating:", error);
         });
-    },   
-     addField(field) {
-            axios
-                .post(`${this.appUrl}/app/dynamic-form/add-input-field`, {
-                    user_template_id: this.user_template.id,
-                    title: field.title,
-                    name: field.name,
-                    type: field.type,
-                    is_required: field.is_required,
-                    options:
-                        field.options.length > 0
-                            ? JSON.stringify(field.options)
-                            : null,
-                })
-                .then((response) => {
-                    // console.log(response.data);
+    },
+    addField(field) {
+      axios
+        .post(`${this.appUrl}/app/dynamic-form/add-input-field`, {
+          user_template_id: this.user_template.id,
+          title: field.title,
+          name: field.name,
+          type: field.type,
+          is_required: field.is_required,
+          options:
+            field.options.length > 0 ? JSON.stringify(field.options) : null,
+        })
+        .then((response) => {
+          // console.log(response.data);
 
-                    if (response.data.success) {
-                        this.fields.push(response.data.field);
-                        this.toast("success", "Updated successfully");
-                    } else {
-                        this.toast("error", "Failed to update");
-                    }
-                })
-                .catch((error) => {
-                    // console.error(error);
-                    this.toast("error", "Error updating:", error);
-                });
-        },
+          if (response.data.success) {
+            this.fields.push(response.data.field);
+            this.toast("success", "Updated successfully");
+          } else {
+            this.toast("error", "Failed to update");
+          }
+        })
+        .catch((error) => {
+          // console.error(error);
+          this.toast("error", "Error updating:", error);
+        });
+    },
 
-        deleteField(index, field) {
-            axios
-                .post(`${this.appUrl}/app/dynamic-form/delete-input-field`, {
-                    id: field.id,
-                })
-                .then((response) => {
-                    // console.log(response.data);
+    deleteField(index, field) {
+      axios
+        .post(`${this.appUrl}/app/dynamic-form/delete-input-field`, {
+          id: field.id,
+        })
+        .then((response) => {
+          // console.log(response.data);
 
-                    if (response.data.success) {
-                        this.fields.splice(index, 1);
-                        this.toast("success", "Updated successfully");
-                    } else {
-                        this.toast("error", "Failed to update");
-                    }
-                });
-        },
+          if (response.data.success) {
+            this.fields.splice(index, 1);
+            this.toast("success", "Updated successfully");
+          } else {
+            this.toast("error", "Failed to update");
+          }
+        });
+    },
 
-        updateField(index, field) {
-            axios
-                .post(`${this.appUrl}/app/dynamic-form/update-input-field`, {
-                    id: field.id,
-                    title: field.title,
-                    name: field.name,
-                    type: field.type,
-                    is_required: field.is_required,
-                    options:
-                        field.options.length > 0
-                            ? JSON.stringify(field.options)
-                            : null,
-                })
-                .then((response) => {
-                    // console.log(response.data);
+    updateField(index, field) {
+      axios
+        .post(`${this.appUrl}/app/dynamic-form/update-input-field`, {
+          id: field.id,
+          title: field.title,
+          name: field.name,
+          type: field.type,
+          is_required: field.is_required,
+          options:
+            field.options.length > 0 ? JSON.stringify(field.options) : null,
+        })
+        .then((response) => {
+          // console.log(response.data);
 
-                    if (response.data.success) {
-                        this.fields = [
-                            ...this.fields.slice(0, index),
-                            response.data.field,
-                            ...this.fields.slice(index + 1),
-                        ];
+          if (response.data.success) {
+            this.fields = [
+              ...this.fields.slice(0, index),
+              response.data.field,
+              ...this.fields.slice(index + 1),
+            ];
 
-                        this.toast("success", "Updated successfully");
-                    } else {
-                        this.toast("error", "Failed to update");
-                    }
-                });
-        },
+            this.toast("success", "Updated successfully");
+          } else {
+            this.toast("error", "Failed to update");
+          }
+        });
+    },
     saveFooterArea() {
       const formData = new FormData();
       formData.append("address", this.address);
@@ -1492,16 +1497,20 @@ export default {
 </script>
 
 <style scoped>
-.contact_section{
+.contact_section {
   background-color: v-bind("orderBg") !important;
 }
-.footer_section{
+.footer_section {
   background-color: v-bind("orderBg") !important;
 }
-.about_section{
+.about_section {
   background-color: v-bind("aboutBg") !important;
 }
 .header_section {
-  background-image: linear-gradient(-13deg, #ffffff 30%, v-bind(heroBg) 20%) !important;
+  background-image: linear-gradient(
+    -13deg,
+    #ffffff 30%,
+    v-bind(heroBg) 20%
+  ) !important;
 }
 </style>
