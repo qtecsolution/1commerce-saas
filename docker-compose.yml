@@ -1,4 +1,3 @@
-version: "3.8"
 services:
   app:
     container_name: 1com-app
@@ -31,7 +30,7 @@ services:
     container_name: 1com-nginx
     restart: unless-stopped
     ports:
-      - 8000:80
+      - 80:80
     volumes:
       - ./:/var/www/html:cached
       - ./docker-compose/nginx:/etc/nginx/conf.d
