@@ -19,6 +19,7 @@
     </div>
 
     <div id="wrap">
+        <!-- hero section start -->
         <section
             id="hero"
             class="m-center text-center bg-shop full-height"
@@ -45,7 +46,10 @@
                     class="col-sm-12 img-hero"
                     :style="{
                         backgroundImage: `url(${imageSource(
-                            heroAreaImage || '/images/mockup4.png'
+                            heroAreaImage
+                                ? heroAreaImage
+                                : '/images/mockup4.png',
+                            heroAreaImage ? 'storage' : 'public'
                         )})`,
                     }"
                 ></div>
@@ -57,8 +61,10 @@
                 ></a>
             </div>
         </section>
+        <!-- hero section end -->
 
-        <section id="start" class="padding-top-bottom text-center">
+        <!-- about section start -->
+        <section id="about" class="padding-top-bottom text-center">
             <div class="container">
                 <div class="row header">
                     <div class="col-md-12">
@@ -75,14 +81,22 @@
                 </div>
             </div>
         </section>
+        <!-- about section end -->
 
-        <!-- vertical center / slider -->
-        <section id="showcase" class="">
+        <!-- ingredients section start -->
+        <section id="ingredients" class="">
             <div class="container-fluid">
                 <div class="row align-items-center">
                     <div class="col-sm-6 slider">
                         <img
-                            :src="imageSource('/images/cup4.jpg')"
+                            :src="
+                                imageSource(
+                                    ingredientAreaImage
+                                        ? ingredientAreaImage
+                                        : '/images/cup4.jpg',
+                                    ingredientAreaImage ? 'storage' : 'public'
+                                )
+                            "
                             alt=""
                             height="100%"
                         />
@@ -91,16 +105,21 @@
                         <div class="half-box-right">
                             <div class="center-vertical">
                                 <div class="center-vertical-box">
-                                    <h1><b>{{ ingredientsAreaTitle }}</b></h1>
+                                    <h1>
+                                        <b>{{ ingredientAreaTitle }}</b>
+                                    </h1>
                                     <ul style="padding: 20px">
-                                        <li v-for="ingredient in ingredientItems" :key="ingredient.id">{{ ingredient }}</li>
+                                        <li
+                                            v-for="ingredient in ingredientItems"
+                                            :key="ingredient.id"
+                                        >
+                                            {{ ingredient }}
+                                        </li>
                                     </ul>
                                     <a
-                                        href="#"
-                                        data-toggle="modal"
-                                        data-target="#product-modal"
+                                        :href="ingredientAreaButton.url"
                                         class="btn dark"
-                                        ><b>$5</b> BUY NOW</a
+                                        >{{ ingredientAreaButton.title }}</a
                                     >
                                 </div>
                             </div>
@@ -109,99 +128,88 @@
                 </div>
             </div>
         </section>
-        <!-- end vertical center / slider -->
+        <!-- ingredients section end -->
 
+        <!-- features section start -->
         <section id="features" class="features-1">
             <div class="container padding-top-bottom">
                 <div class="row header">
                     <div class="col-md-12">
-                        <h2>Features</h2>
-                        <p>We are here for you</p>
+                        <h2>{{ featuresAreaTitle }}</h2>
+                        <p>{{ featuresAreaSubTitle }}</p>
                     </div>
                 </div>
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-4 anima scale-in">
+                        <div
+                            class="col-md-4 anima scale-in"
+                            v-for="(feature, index) in featureItems"
+                            :key="feature.id"
+                        >
                             <article class="text-center">
                                 <img
-                                    :src="imageSource('/images/demo1.jpg')"
+                                    :src="
+                                        imageSource(
+                                            feature.image
+                                                ? feature.image
+                                                : `/images/demo${
+                                                      index + 1
+                                                  }.jpg`,
+                                            feature.image ? 'storage' : 'public'
+                                        )
+                                    "
                                     alt="#"
                                     class="zoom-img img-fluid center-block"
                                 />
-                                <h3>​ORGANISED LAYERS</h3>
-                                <p>
-                                    Nodal point courier towards decay dome
-                                    advert wonton soup chrome voodoo.
-                                </p>
-                            </article>
-                        </div>
-                        <div class="col-md-4 anima scale-in d1">
-                            <article class="text-center">
-                                <img
-                                    :src="imageSource('/images/demo2.jpg')"
-                                    alt="#"
-                                    class="zoom-img img-fluid center-block"
-                                />
-                                <h3>​SMART OBJECT</h3>
-                                <p>
-                                    Table plastic concrete silent nano-dome
-                                    industrial grade. Hotdog marketing.
-                                </p>
-                            </article>
-                        </div>
-                        <div class="col-md-4 anima scale-in d2">
-                            <article class="text-center">
-                                <img
-                                    :src="imageSource('/images/demo3.jpg')"
-                                    alt="#"
-                                    class="zoom-img img-fluid center-block"
-                                />
-                                <h3>TRANSPARENT BG</h3>
-                                <p>
-                                    Grenade wonton soup faded disposable dome
-                                    cardboard spook refrigerator dolphin.
-                                </p>
+                                <h3>​{{ feature.title }}</h3>
+                                <p>{{ feature.description }}</p>
                             </article>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+        <!-- features section end -->
 
-        <section id="news" class="content-1 bg-image-2 padding-top-bottom">
+        <!-- review section start -->
+        <section
+            id="review"
+            class="content-1 bg-image-2 padding-top-bottom"
+            :style="{
+                backgroundImage: `url(${imageSource(
+                    reviewAreaImage ? reviewAreaImage : '/images/mockup5.png',
+                    reviewAreaImage ? 'storage' : 'public'
+                )})`,
+            }"
+        >
             <div class="container">
                 <div class="row justify-content-end">
                     <div class="col-md-6">
                         <div class="white-box">
-                            <h2><b>NICE Product :)</b></h2>
+                            <h2>
+                                <b>{{ reviewAreaTitle }}</b>
+                            </h2>
                             <p>
-                                Scelerisque pulvinar praesent ultrices, amet
-                                condimentum wisi felis et. At lobortis risus
-                                ipsum praesent urna. Metus lectus duis
-                                porttitor. Tellus debitis suspendisse feugiat,
-                                non tellus in sed luctus lacus rutrum, iaculis
-                                at risus cras vel sit, qui morbi lacus,
-                                ultricies semper. Odio ac, diam donec. Tincidunt
-                                cursus vel nulla tincidunt, vitae ut tempor ut
-                                orci tortor mi
+                                {{ reviewItems.review }}
                             </p>
                             <blockquote class="blockquote">
-                                <p>Jessica Red</p>
+                                <p>{{ reviewItems.reviewer_name }}</p>
                             </blockquote>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+        <!-- review section end -->
 
-        <section id="contact" class="padding-top-bottom">
+        <!-- order section start -->
+        <section id="order" class="padding-top-bottom">
             <div class="container">
                 <div class="row header">
                     <div class="col-md-12">
-                        <h2>Contact me</h2>
+                        <h2>{{ orderTitle }}</h2>
                         <p>
-                            For any questions fill in the form below &amp; we'll
-                            get back to you ASAP!
+                            {{ orderSubTitle }}
                         </p>
                     </div>
                 </div>
@@ -237,12 +245,26 @@
                                     <div class="form-group">
                                         <div class="controls">
                                             <input
-                                                name="email"
-                                                placeholder="Your email"
+                                                name="phone"
+                                                placeholder="Your phone"
                                                 class="form-control input-lg requiredField"
-                                                type="email"
-                                                data-error-invalid="Invalid email address"
-                                                data-error-empty="Enter email"
+                                                type="text"
+                                                data-error-invalid="Invalid phone"
+                                                data-error-empty="Enter phone"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="controls">
+                                            <input
+                                                name="quantity"
+                                                placeholder="Quantity"
+                                                class="form-control input-lg requiredField"
+                                                type="number"
+                                                data-error-invalid="Invalid quantity"
+                                                data-error-empty="Enter quantity"
                                             />
                                         </div>
                                     </div>
@@ -259,6 +281,26 @@
                                     ></textarea>
                                 </div>
                             </div>
+
+                            <!-- :styles="{
+                                    color: siteColor?.primary_text_color,
+                                    background_color:
+                                        siteColor?.background_color,
+                                }" -->
+                            <!-- <FormField
+                                v-for="(field, index) in fields"
+                                :key="index"
+                                :field="field"
+                            /> -->
+                            <!-- @delete="deleteField(index, $event)"
+                                @update="updateField(index, $event)" -->
+
+                            <!-- <AddInputModal
+                                :modalId="'addInputModal'"
+                                :modalTitle="'Add Dynamic Form'"
+                            /> -->
+                            <!-- @save="addField" -->
+
                             <p>
                                 <button
                                     name="submit"
@@ -266,9 +308,9 @@
                                     class="btn btn-store btn-block"
                                     data-error-message="Error!"
                                     data-sending-message="Sending..."
-                                    data-ok-message="Email Sent"
+                                    data-ok-message="Order submitted successfully!"
                                 >
-                                    Send Message
+                                    Order Now
                                 </button>
                             </p>
                             <input
@@ -282,36 +324,34 @@
                 </div>
             </div>
         </section>
+        <!-- order section end -->
 
+        <!-- footer section start -->
         <div class="footer-1 text-center">
             <div class="container-fluid">
                 <a href="#home" class="back-to-top smooth-scroll"
                     ><i class="fa fa-chevron-up"></i
                 ></a>
-                <p>
-                    Made with <i class="fa fa-heart color-text"></i> by
-                    <a href="#">ANGELO Studio</a>.
-                </p>
+                <p>{{ footerAreaText }}</p>
                 <ul class="social-links-2">
-                    <li>
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-dribbble"></i></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-twitter"></i></a>
+                    <li v-for="link in footerAreaLinks" :key="link.id">
+                        <a :href="link.url"><i :class="link.icon"></i></a>
                     </li>
                 </ul>
             </div>
         </div>
+        <!-- footer section end -->
     </div>
 </template>
 
 <script>
+import AddInputModal from "../components/add-input-modal.vue";
+import FormField from "../components/form-field.vue";
+
 export default {
     name: "Attar",
     props: ["user_template", "template"],
+    components: [FormField, AddInputModal],
     data() {
         return {
             appUrl: window.location.origin,
@@ -336,7 +376,7 @@ export default {
             aboutAreaTextColor: "",
 
             // ingredients area
-            ingredientsAreaTitle: "",
+            ingredientAreaTitle: "",
             ingredientItems: [],
             ingredientAreaButton: [],
             ingredientAreaImage: "",
@@ -348,18 +388,22 @@ export default {
             featuresAreaSubTitle: "",
             featureItems: [],
             featuresAreaBgColor: "",
+            featuresAreaTextColor: "",
 
             // review area
             reviewAreaTitle: "",
             reviewAreaImage: "",
             reviewItems: [],
             reviewAreaBgColor: "",
+            reviewAreaTextColor: "",
 
             // order area
             orderTitle: "",
             orderSubTitle: "",
             orderButton: [],
             orderBgColor: "",
+            orderTextColor: "",
+            fields: [],
 
             // footer area
             footerAreaText: "",
@@ -408,7 +452,7 @@ export default {
             this.getElement("ingredients", "ingredients").data
         );
 
-        this.ingredientsAreaTitle = ingredientsArea.title;
+        this.ingredientAreaTitle = ingredientsArea.title;
         this.ingredientItems = ingredientsAreaElement.items;
         this.ingredientAreaButton = ingredientsAreaElement.button;
         this.ingredientAreaImage = ingredientsAreaElement.image;
@@ -417,12 +461,45 @@ export default {
 
         // features area
         let featuresArea = this.getSection("features");
-        let featuresAreaElement = this.decodedData(
-            this.getElement("features", "features").data
+
+        this.featuresAreaTitle = featuresArea.title;
+        this.featuresAreaSubTitle = featuresArea.sub_title;
+        this.featureItems = this.user_template.template.features;
+        this.featuresAreaBgColor = featuresArea.bg_color;
+        this.featuresAreaTextColor = featuresArea.text_color;
+
+        // review area
+        let reviewArea = this.getSection("review");
+        let reviewAreaElement = this.decodedData(
+            this.getElement("review", "review").data
         );
 
-        console.log(featuresArea, featuresAreaElement);
-        
+        this.reviewAreaTitle = reviewAreaElement.title;
+        this.reviewAreaImage = reviewAreaElement.image;
+        this.reviewItems = this.user_template.template.testimonials[0];
+        this.reviewAreaBgColor = reviewArea.bg_color;
+        this.reviewAreaTextColor = reviewArea.text_color;
+
+        // order area
+        let orderArea = this.getSection("order");
+
+        this.orderTitle = orderArea.title;
+        this.orderSubTitle = orderArea.sub_title;
+        this.orderBgColor = orderArea.bg_color;
+        this.orderTextColor = orderArea.text_color;
+        this.fields = this.user_template.fields;
+
+        // console.log(this.user_template.fields);
+
+        // footer area
+        let footerArea = this.getSection("footer");
+        let footerAreaElement = this.decodedData(
+            this.getElement("footer", "footer").data
+        );
+
+        this.footerAreaText = footerAreaElement.text;
+        this.footerAreaBgColor = footerArea.bg_color;
+        this.footerAreaLinks = footerAreaElement.links;
     },
     methods: {
         toast(icon, title) {

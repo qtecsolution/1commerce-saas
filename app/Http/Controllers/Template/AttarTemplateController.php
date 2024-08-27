@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Template;
 
 use App\Http\Controllers\Controller;
 use App\Models\OrderFormAdditionalField;
+use App\Models\Template\TemplateFeature;
 use App\Models\Template\TemplateSection;
 use App\Models\Template\TemplateSectionElement;
 use App\Models\Template\TemplateTestimonial;
@@ -115,29 +116,36 @@ class AttarTemplateController extends Controller
         // Create features section
         $feature = TemplateSection::create([
             'user_template_id' => $userTemplate->id,
-            'section' => 'features'
+            'section' => 'features',
+            'title' => 'Features',
+            'sub_title' => 'Our Attar Perfumes',
         ]);
 
-        TemplateSectionElement::create([
-            'template_section_id' => $feature->id,
-            'name' => 'features',
-            'data' => json_encode([
-                [
-                    'title' => '100% Natural',
-                    'description' => 'Our Attar Perfumes are made from pure, natural ingredients without any synthetic additives.',
-                    'image' => null
-                ],
-                [
-                    'title' => 'Long-Lasting Fragrance',
-                    'description' => 'Enjoy the lasting aroma of our perfumes that linger beautifully throughout the day.',
-                    'image' => null
-                ],
-                [
-                    'title' => 'Handcrafted with Care',
-                    'description' => 'Each perfume is meticulously handcrafted to preserve the integrity of its essence.',
-                    'image' => null
-                ]
-            ])
+        TemplateFeature::create([
+            'template_id' => $userTemplate->template_id,
+            'user_id' => auth()->id(),
+            'title' => '100% Natural',
+            'description' => 'Our Attar Perfumes are made from pure, natural ingredients without any synthetic additives.',
+            'position' => 1,
+            'image' => null
+        ]);
+
+        TemplateFeature::create([
+            'template_id' => $userTemplate->template_id,
+            'user_id' => auth()->id(),
+            'title' => 'Long-Lasting Fragrance',
+            'description' => 'Enjoy the lasting aroma of our perfumes that linger beautifully throughout the day.',
+            'position' => 2,
+            'image' => null
+        ]);
+
+        TemplateFeature::create([
+            'template_id' => $userTemplate->template_id,
+            'user_id' => auth()->id(),
+            'title' => 'Handcrafted with Care',
+            'description' => 'Each perfume is meticulously handcrafted to preserve the integrity of its essence.',
+            'position' => 3,
+            'image' => null
         ]);
 
         // Create review section
@@ -150,7 +158,8 @@ class AttarTemplateController extends Controller
             'template_section_id' => $review->id,
             'name' => 'review',
             'data' => json_encode([
-                'image' => null
+                'image' => null,
+                'title' => 'Customer Review :)',
             ])
         ]);
 
@@ -222,11 +231,9 @@ class AttarTemplateController extends Controller
             'data' => json_encode([
                 'text' => 'Copyright © 2024. All rights reserved.',
                 'links' => [
-                    ['label' => 'Facebook', 'url' => 'https://www.facebook.com/'],
-                    ['label' => 'Twitter', 'url' => 'https://twitter.com/'],
-                    ['label' => 'Instagram', 'url' => 'https://www.instagram.com/'],
-                    ['label' => 'Linkedin', 'url' => 'https://www.linkedin.com/'],
-                    ['label' => 'Youtube', 'url' => 'https://www.youtube.com/'],
+                    ['label' => 'Facebook', 'url' => 'https://www.facebook.com/', 'icon' => 'fab fa-facebook-f'],
+                    ['label' => 'Instagram', 'url' => 'https://www.instagram.com/', 'icon' => 'fab fa-instagram'],
+                    ['label' => 'Youtube', 'url' => 'https://www.youtube.com/', 'icon' => 'fab fa-youtube']
                 ]
             ])
         ]);

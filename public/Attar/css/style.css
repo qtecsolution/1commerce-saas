@@ -1006,13 +1006,13 @@ form p {
 }
 
 .bg-image-2 {
-    background: #d486f7 url(../images/mockup5.png)no-repeat center center;
+    background: #d486f7 no-repeat center center;
     background-size: cover
 }
 
 @media (max-width:767px) {
     .bg-image-2 {
-        background: #d486f7 url(../images/mockup5.png)no-repeat 20% center
+        background: #d486f7 no-repeat 20% center
     }
 }
 
