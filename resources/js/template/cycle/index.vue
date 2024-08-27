@@ -59,7 +59,7 @@
     <!-- banner section start -->
     <div class="banner_section layout_padding">
       <ColorPicker
-        style="margin-left: 1000px; margin-top: -50px"
+        style="margin-left: 50%; margin-top: -50px"
         :color="heroBg"
         @update="heroBg = $event"
         @save="saveHeroBgColor('bg_color', $event)"
@@ -290,7 +290,7 @@
   
   <div class="about_section layout_padding" id="about" data-target="about">
      <ColorPicker
-      style="margin-left: 1050px; margin-top: 40px"
+      style="margin-left:20%; margin-top: -80px"
       :color="aboutBg"
       @update="aboutBg = $event"
       @save="saveOrderNowBgColor('bg_color', $event)"
@@ -402,7 +402,7 @@
   <!-- contact section start -->
   <div class="contact_section layout_padding" id="order" data-target="order">
     <ColorPicker
-      style="margin-left: 1000px; margin-top: 10px"
+      style="margin-left: 20%; margin-top: -60px"
       :color="orderBg"
       @update="orderBg = $event"
       @save="saveOrderNowBgColor('bg_color', $event)"
