@@ -349,8 +349,9 @@ ul.costomer li a span {color: #5502bb;}
 
 .text-bg a {
      font-size: 16px;
-     background-color: #1f1716;
-     color: #fff;
+     border: 2px solid #ffffff;
+     background-color: transparent;
+     color: #ffffff;
      padding: 10px 0px;
      width: 100%;
      max-width: 190px;
@@ -670,14 +671,13 @@ $grey: #999;
 .order .main_form .order {
      font-size: 16px;
      transition: ease-in all 0.5s;
-     /* background-color: #000; */
      border: 2px solid white;
      background: transparent;
      color: #fff;
-     padding: 12px 70px;
+     padding: 10px 70px;
      margin: 0 auto;
      display: block;
-     border-radius: 10px;
+     border-radius: 25px;
 }
 
 .order .main_form .order:hover {
