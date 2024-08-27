@@ -148,13 +148,13 @@ class CycleTemplateController extends Controller
                 "background_color" => "#283618",
                 "button" => [
                     "title" => "Order Now",
-                    "url" => null,
-                    "color" => "transparent",
-                    "text_color" => "#20bea7",
-                    "border_color" => "#20bea7",
-                    "hover_color" => "#20bea7",
-                    "hover_text_color" => "white",
-                    "hover_border_color" => "#20bea7"
+                    "url" => "",
+                    "color" => "#f7c17b",
+                    "text_color" => "white",
+                    "border_color" => "white",
+                    "hover_color" => "white",
+                    "hover_text_color" => "black",
+                    "hover_border_color" => "white"
                 ],
             ]),
             'footer_area' => json_encode([

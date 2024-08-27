@@ -557,6 +557,17 @@
             @save="addField"
           />
           <div class="send_btn">
+            <div
+              class="bg-primary text-white text-center rounded-circle cursor-pointer"
+              style="width: 40px; height: 30px"
+              data-bs-toggle="modal"
+              data-bs-target="#orderNowButton"
+            >
+              <i
+                class="fas fa-pen-nib"
+                style="font-size: 20px; margin-top: 5px"
+              ></i>
+            </div>
             <button type="submit">Order Now</button>
           </div>
         </form>
@@ -671,12 +682,20 @@
     :previewURL="mapIframe"
     @update="updateMap"
   />
-   <ButtonModal
+  <ButtonModal
     modalId="featureButton"
     modalTitle="Feature Button"
     section="feature"
     @save="updateFeatureButton"
     :buttonData="featureButton"
+  />
+
+  <ButtonModal
+    modalId="orderNowButton"
+    modalTitle="Order Button"
+    section="order"
+    @save="updateOrderButton"
+    :buttonData="orderButton"
   />
   <ButtonModal
     modalId="heroButtonModal"
@@ -948,7 +967,18 @@ export default {
     this.orderTitle = aboutArea?.title || this.orderTitle;
     this.orderBg =
       orderArea != null ? orderArea.background_color : this.orderBg;
-
+    const defaultOrderButton = {
+      title: "Order Now",
+      url: "#buy",
+      color: "#f7c17b",
+      text_color: "white",
+      border_color: "white",
+      hover_color: "white",
+      hover_text_color: "black",
+      hover_border_color: "white",
+    };
+    this.orderButton =
+      (orderArea != null && orderArea.button) ? orderArea.button : defaultOrderButton;
     //foooter area
     const footerArea =
       this.template.footer_area != null
@@ -1102,7 +1132,6 @@ export default {
       formData.append("sub_title", this.orderSubTitle);
       formData.append("button", JSON.stringify(this.orderButton));
       formData.append("background_color", this.orderBg);
-
       axios
         .post(`${this.apiUrl}/update-order-area`, formData)
         .then((response) => {
@@ -1616,5 +1645,15 @@ export default {
   background-color: v-bind("featureButton.hover_color") !important;
   color: v-bind("featureButton.hover_text_color") !important;
   border-color: v-bind("featureButton.hover_border_color") !important;
+}
+ 
+.send_btn button {
+    background-color: v-bind("orderButton.color") !important;
+    color: v-bind("orderButton.text_color") !important;
+}
+
+.send_btn button:hover {
+    background-color:v-bind("orderButton.hover_color") !important ;
+    color:v-bind("orderButton.hover_text_color") !important;
 }
 </style>
