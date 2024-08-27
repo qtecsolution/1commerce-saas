@@ -279,11 +279,10 @@ class CycleTemplateController extends Controller
     {
         $heroArea = $this->template->hero_area;
         $uploadedPath = null;
-
+        $decodedData = json_decode($heroArea);
+        $uploadedPath =  $decodedData->image;
         if ($heroArea) {
             if ($request->hasFile('image')) {
-                $decodedData = json_decode($heroArea);
-
                 if ($decodedData && isset($decodedData->image)) {
                     $oldImagePath = storage_path('app/public/' . $decodedData->image);
                     if (file_exists($oldImagePath)) {
@@ -294,6 +293,7 @@ class CycleTemplateController extends Controller
                 $uploadedPath = $request->file('image')->store('public/cycle');
                 $uploadedPath = 'cycle/' . basename($uploadedPath);
             }
+
         } else {
             if ($request->hasFile('image')) {
                 $uploadedPath = $request->file('image')->store('public/cycle');
@@ -358,10 +358,11 @@ class CycleTemplateController extends Controller
     {
         $featureArea = $this->template->features_area;
         $uploadedPath = null;
+        $decodedData = json_decode($featureArea);
+        $uploadedPath =  $decodedData->image;
 
         if ($featureArea) {
             if ($request->hasFile('image')) {
-                $decodedData = json_decode($featureArea);
                 if ($decodedData && isset($decodedData->image)) {
                     $oldImagePath = storage_path('app/public/' . $decodedData->image);
                     if (file_exists($oldImagePath)) {
@@ -399,10 +400,10 @@ class CycleTemplateController extends Controller
         
         $aboutArea = $this->template->about_area;
         $uploadedPath = null;
-
+        $decodedData = json_decode($aboutArea);
+        $uploadedPath = $decodedData->image;
         if ($aboutArea) {
             if ($request->hasFile('image')) {
-                $decodedData = json_decode($aboutArea);
 
                 if ($decodedData && isset($decodedData->image)) {
                     $oldImagePath = storage_path('app/public/' . $decodedData->image);
