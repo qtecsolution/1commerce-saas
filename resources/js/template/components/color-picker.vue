@@ -106,4 +106,11 @@ label {
     color: white;
     padding: 2px;
 }
+
+.color-picker-wrapper div:nth-child(1){
+    align-items: center !important;
+}
+.color-picker-button {
+    height: 50% !important;
+}
 </style>

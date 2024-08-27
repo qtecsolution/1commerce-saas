@@ -65,7 +65,7 @@ class CycleTemplateController extends Controller
                 "feature_subtitle" => "It is a long established fact that a reader will be distracted by the",
                 "feature_product_description" => "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
                 "image" => null,
-                "background_color" => "#f7f7f7"
+                "background_color" => "#f7c17b"
             ]),
 
             'about_area' => json_encode([
@@ -385,6 +385,7 @@ class CycleTemplateController extends Controller
             'feature_subtitle' => $request->input('feature_subtitle'),
             'feature_product_description' => $request->input('feature_product_description'),
             'image' => $uploadedPath,
+            'background_color' => $request->input('background_color'),
         ]);
 
         $this->template->save();

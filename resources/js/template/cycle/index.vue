@@ -20,7 +20,10 @@
           data-bs-toggle="modal"
           data-bs-target="#logoImageModal"
         >
-          <i class="fas fa-pen-nib" style="font-size: 20px; margin-top: 5px"></i>
+          <i
+            class="fas fa-pen-nib"
+            style="font-size: 20px; margin-top: 5px"
+          ></i>
         </div>
       </div>
       <!-- <button
@@ -260,6 +263,12 @@
           <div class="col-md-6">
             <div class="box_main_3">
               <!-- <h6 class="number_text_2">02</h6> -->
+              <ColorPicker
+                style="margin-left: 50%; margin-top: -50px"
+                :color="featureBg"
+                @update="featureBg = $event"
+                @save="saveFeatureBgColor('bg_color', $event)"
+              />
               <div class="image_2" style="margin-top: 100px !important">
                 <div
                   class="position-absolute top-0 end-0 mt-2"
@@ -287,10 +296,10 @@
   </div>
   <!-- cycle section end -->
   <!-- about section start -->
-  
+
   <div class="about_section layout_padding" id="about" data-target="about">
-     <ColorPicker
-      style="margin-left:20%; margin-top: -80px"
+    <ColorPicker
+      style="margin-left: 20%; margin-top: -80px"
       :color="aboutBg"
       @update="aboutBg = $event"
       @save="saveOrderNowBgColor('bg_color', $event)"
@@ -317,7 +326,10 @@
             data-bs-toggle="modal"
             data-bs-target="#aboutImageModal"
           >
-            <i class="fas fa-pen-nib" style="font-size: 20px; margin-top: 5px"></i>
+            <i
+              class="fas fa-pen-nib"
+              style="font-size: 20px; margin-top: 5px"
+            ></i>
           </div>
         </div>
         <img :src="aboutImage" class="image_5" />
@@ -346,7 +358,10 @@
           data-bs-toggle="modal"
           data-bs-target="#testimonialModal"
         >
-          <i class="fas fa-pen-nib" style="font-size: 20px; margin-top: 5px"></i>
+          <i
+            class="fas fa-pen-nib"
+            style="font-size: 20px; margin-top: 5px"
+          ></i>
         </div>
         <div
           v-for="(testimonial, index) in testimonials"
@@ -702,7 +717,7 @@ export default {
       featureSubTitle: "Explore the awesome",
       featureImage: "",
       featureImageRaw: "",
-      featureBg: "#f7f7f7",
+      featureBg: "#f7c17b",
 
       // about area
       aboutTitle: "",
@@ -810,6 +825,10 @@ export default {
       featuresArea != null && featuresArea.image
         ? this.imageSource(featuresArea.image, "storage")
         : this.appUrl + "/cycle/images/img-1.png";
+    this.featureBg =
+      featuresArea != null && featuresArea.background_color
+        ? featuresArea.background_color
+        : this.featureBg;
 
     // hero area
     const heroArea =
@@ -1190,6 +1209,7 @@ export default {
       const formData = new FormData();
       formData.append("feature_title", this.sectionTitle1);
       formData.append("feature_subtitle", this.sectionSubtitle1);
+      formData.append("background_color", this.featureBg);
       formData.append("feature_product_description", this.productDescription);
       formData.append("image", this.featureImageRaw);
       axios
@@ -1330,8 +1350,8 @@ export default {
       this.updateAboutArea();
     },
     saveFeatureBgColor(key, data) {
-      this.featuresArea[key] = data;
-      this.saveFeaturesArea();
+      this.featureBg = data;
+      this.updateFeaturesArea();
     },
 
     savePageSetup(data) {
@@ -1506,6 +1526,9 @@ export default {
 }
 .about_section {
   background-color: v-bind("aboutBg") !important;
+}
+.box_main_3:after {
+  background-color: v-bind("featureBg") !important;
 }
 .header_section {
   background-image: linear-gradient(
