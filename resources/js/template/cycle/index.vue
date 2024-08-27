@@ -309,7 +309,7 @@
       style="margin-left: 20%; margin-top: -80px"
       :color="aboutBg"
       @update="aboutBg = $event"
-      @save="saveOrderNowBgColor('bg_color', $event)"
+      @save="saveAboutBgColor('bg_color', $event)"
     />
     <div class="container">
       <h1 class="about_taital" contenteditable="true" @blur="updateAboutTitle">

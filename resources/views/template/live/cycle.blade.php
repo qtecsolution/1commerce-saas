@@ -72,14 +72,15 @@
         }
 
         .buy_bt a {
-            background-color: {{$feature_area_button['color']}} !important;
-            color: {{$feature_area_button['text_color']}} !important;
-            border-color: {{$feature_area_button['border_color']}} !important;
+            background-color: {{ $feature_area_button['color'] }} !important;
+            color: {{ $feature_area_button['text_color'] }} !important;
+            border-color: {{ $feature_area_button['border_color'] }} !important;
         }
+
         .buy_bt a:hover {
-            background-color: {{$feature_area_button['hover_color']}} !important;
-            color: {{$feature_area_button['hover_text_color']}} !important;
-            border-color: {{$feature_area_button['hover_border_color']}} !important;
+            background-color: {{ $feature_area_button['hover_color'] }} !important;
+            color: {{ $feature_area_button['hover_text_color'] }} !important;
+            border-color: {{ $feature_area_button['hover_border_color'] }} !important;
         }
     </style>
 </head>
