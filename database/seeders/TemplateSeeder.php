@@ -45,5 +45,13 @@ class TemplateSeeder extends Seeder
                 'blade_path' => 'attar'
             ]);
         }
+        if (!Template::where('id', 5)->exists()) {
+            Template::create([
+                'name' => 'Cosmetic',
+                'slug' => 'cosmetic',
+                'assets_path' => 'cosmetic',
+                'blade_path' => 'cosmetic'
+            ]);
+        }
     }
 }
