@@ -32,7 +32,7 @@
             <div class="card-header py-2 d-flex flex-row align-items-center justify-content-between">
                 <h3 class="mb-0">{{ $title }}</h3>
                 <p class="mb-0">
-                    <a href="{{ route('templates.mine') }}" class="btn brn-sm btn-danger">
+                    <a href="{{ route('templates.mine') }}" class="btn  btn-sm btn-danger">
                         Back
                     </a>
                 </p>

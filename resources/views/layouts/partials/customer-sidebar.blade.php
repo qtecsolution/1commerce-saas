@@ -67,7 +67,7 @@
             <a href="{{ route('wallet.transaction.history') }}">Transaction History</a>
         </li>
         <li class="{{ Route::currentRouteName() == 'wallet.withdraw.history' ? 'active' : '' }}">
-            <a href="{{ route('wallet.withdraw.history') }}">Withdraw History</a>
+            <a href="{{ route('wallet.withdraw.history') }}">Withdrawal History</a>
         </li>
     </ul>
 </li>

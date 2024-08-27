@@ -31,10 +31,10 @@ class ShopController extends Controller
     public function index($subdomain)
     {
         // Validate that the subdomain is permissible and does not conflict with reserved subdomains.
-        $IsAllowed = !in_array($subdomain, resurvedSubDomain());
-        if($IsAllowed){
+        $IsAllowed = !in_array($subdomain, recurvedSubDomain());
+        if ($IsAllowed) {
             return $this->livePreview($subdomain);
-        }else{
+        } else {
             // If match with reserved subdomain, it returns global home page 
             return WebController::index();
         }

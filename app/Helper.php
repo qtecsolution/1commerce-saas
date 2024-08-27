@@ -161,9 +161,9 @@ if (!function_exists('domainCheck')) {
     }
 }
 // Reserve sub domain list
-if (!function_exists('resurvedSubDomain')) {
+if (!function_exists('recurvedSubDomain')) {
 
-    function resurvedSubDomain()
+    function recurvedSubDomain()
     {
         return ['1com','app', 'main'] ;
     }

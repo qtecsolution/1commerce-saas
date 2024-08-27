@@ -119,11 +119,18 @@ class WalletController extends Controller
             }
         }
 
-        return view('customer.finance.withdraw', compact('userWallet', 'chargePercent'));
+        return view('customer.finance.withdraw.index', compact('userWallet', 'chargePercent'));
     }
 
-    public function withdrawHistory(Request $request)
+    public function withdrawHistory()
     {
-        abort(404);
+        $withdraws = Withdraw::where('user_id', auth()->id())->latest()->paginate(10);
+        return view('customer.finance.withdraw.history', compact('withdraws'));
+    }
+
+    public function withdrawDetails($id)
+    {
+        $withdraw = Withdraw::findOrFail($id);
+        return view('customer.finance.withdraw.details', compact('withdraw'));
     }
 }

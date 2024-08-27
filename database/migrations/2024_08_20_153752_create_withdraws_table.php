@@ -22,7 +22,7 @@ return new class extends Migration
             $table->double('payable')->default(0);
             $table->string('payment_method');
             $table->json('details');
-            $table->json('payment_reference')->nullable();
+            $table->text('payment_reference')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });

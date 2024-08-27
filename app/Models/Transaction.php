@@ -13,11 +13,19 @@ class Transaction extends Model
 
     public function payment()
     {
-        return $this->belongsTo(OrderPayment::class, 'reference_id', 'id');
+        if ($this->attributes['purpose'] == 'Order Payment') {
+            return $this->belongsTo(OrderPayment::class, 'reference_id', 'id');
+        }
+
+        return $this->belongsTo(User::class)->where('id', 0);
     }
 
     public function withdrawal()
     {
-        return $this->belongsTo(Withdraw::class, 'reference_id', 'id');
+        if ($this->attributes['purpose'] == 'Withdrawal' || $this->attributes['purpose'] == 'Withdrawal Refund') {
+            return $this->belongsTo(Withdraw::class, 'reference_id', 'id');
+        }
+
+        return $this->belongsTo(User::class)->where('id', 0);
     }
 }

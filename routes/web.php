@@ -14,6 +14,7 @@ use App\Http\Controllers\Package\PackageController;
 use App\Http\Controllers\Setting\SettingController;
 use App\Http\Controllers\DynamicOrderFormController;
 use App\Http\Controllers\Dashboard\CustomerDashboard;
+use App\Http\Controllers\Finance\WithdrawalController;
 use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\Template\TemplateController;
 use App\Http\Controllers\User\SubscriptionController;
@@ -137,6 +138,7 @@ Route::prefix('app')->middleware('user')->group(function () {
             Route::get('transaction-history', 'transactionHistory')->name('wallet.transaction.history');
             Route::match(['get', 'post'], 'withdraw', 'withdraw')->name('wallet.withdraw');
             Route::get('withdraw-history', 'withdrawHistory')->name('wallet.withdraw.history');
+            Route::get('withdraw-details/{id}', 'withdrawDetails')->name('wallet.withdraw.show');
         });
 
         // template routes
@@ -250,6 +252,13 @@ Route::prefix('admin')->middleware('admin')->group(function () {
         Route::get('inspect-support-ticket/{id}', 'inspectTicket')->name('inspect_support_ticket');
         Route::post('reply-support-ticket', 'replyTicket')->name('admin_reply_support_ticket');
         Route::get('support-ticket-status/{id}/{status}', 'status')->name('support_ticket_status');
+    });
+
+    // ticket routes
+    Route::controller(WithdrawalController::class)->prefix('withdrawal')->group(function () {
+        Route::get("index", "index")->name('withdrawal.index');
+        Route::get('show/{id}', 'show')->name('withdrawal.show');
+        Route::match(['get', 'post'], 'approve-reject/{id}', 'approveReject')->name('withdrawal.approve_reject');
     });
 });
 

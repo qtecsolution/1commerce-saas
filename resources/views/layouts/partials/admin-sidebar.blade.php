@@ -14,14 +14,22 @@
         <span class="title">Packages</span>
     </a>
 </li>
-{{-- <li class="nav-item dropdown">
-    <a href="{{ route('couriers.index') }}">
+<li class="nav-item dropdown">
+    <a href="">
         <span class="icon-holder">
-            <i class="fas fa-truck"></i>
+            <i class="fas fa-users"></i>
         </span>
-        <span class="title">Couriers</span>
+        <span class="title">Users</span>
     </a>
-</li> --}}
+</li>
+<li class="nav-item dropdown">
+    <a href="{{ route('withdrawal.index') }}">
+        <span class="icon-holder">
+            <i class="fas fa-dollar-sign"></i>
+        </span>
+        <span class="title">Withdrawals</span>
+    </a>
+</li>
 <li class="nav-item dropdown">
     <a href="{{ route('support_tickets') }}">
         <span class="icon-holder">
