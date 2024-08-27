@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - cicd-prod  # Triggers deployment on push to the cicd-prod branch
-  pull_request:
-    branches:
-      - cicd-prod  # Optional: Triggers deployment on pull request to the cicd-prod branch
 
 jobs:
   deploy:
