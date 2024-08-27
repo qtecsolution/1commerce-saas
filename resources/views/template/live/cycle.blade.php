@@ -1,6 +1,8 @@
 @php
     $hero_area = $cycle->hero_area != null ? json_decode($cycle->hero_area, true) : null;
     $feature_area = $cycle->features_area ? json_decode($cycle->features_area, true) : null;
+    $feature_area = $cycle->features_area ? json_decode($cycle->features_area, true) : null;
+    $feature_area_button = $feature_area['button'];
     $testimonial_area = $cycle->testimonials_area != null ? json_decode($cycle->testimonials_area) : null;
     $about_area = $cycle->about_area != null ? json_decode($cycle->about_area, true) : null;
     $order_area = $cycle->order_area != null ? json_decode($cycle->order_area, true) : null;
@@ -68,6 +70,17 @@
         .footer_section {
             background-color: {{ $order_area['background_color'] }} !important;
         }
+
+        .buy_bt a {
+            background-color: {{$feature_area_button['color']}} !important;
+            color: {{$feature_area_button['text_color']}} !important;
+            border-color: {{$feature_area_button['border_color']}} !important;
+        }
+        .buy_bt a:hover {
+            background-color: {{$feature_area_button['hover_color']}} !important;
+            color: {{$feature_area_button['hover_text_color']}} !important;
+            border-color: {{$feature_area_button['hover_border_color']}} !important;
+        }
     </style>
 </head>
 
@@ -76,7 +89,8 @@
     <div class="header_section header_bg">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a href="#" class="logo">
-               <img src="{{ fetchImage($userTemplate->company_logo, $userTemplate->template->assets_path . '/images/logo.png') }}"></a>
+                <img
+                    src="{{ fetchImage($userTemplate->company_logo, $userTemplate->template->assets_path . '/images/logo.png') }}"></a>
             {{-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -160,10 +174,10 @@
                         <p class="lorem_text">{{ $feature_area['feature_product_description'] }}</p>
                         <div class="btn_main">
                             <div class="buy_bt"><a href="#">Buy Now</a></div>
-                            <h4 class="price_text">Price 
-                              <span style="margin-right:8px !important;">{{ $userTemplate->product_currency }}</span> 
-                              <span>{{ $userTemplate->product_price }}</span>
-                             </h4>
+                            <h4 class="price_text">Price
+                                <span style="margin-right:8px !important;">{{ $userTemplate->product_currency }}</span>
+                                <span>{{ $userTemplate->product_price }}</span>
+                            </h4>
                         </div>
                     </div>
                     <div class="col-md-6">

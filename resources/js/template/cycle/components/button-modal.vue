@@ -164,7 +164,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <div class="form-group mb-2">
                                 <label for="text" class="form-label">
                                     Button Border Color:
@@ -218,7 +218,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="modal-footer d-flex justify-content-center">

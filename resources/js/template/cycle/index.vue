@@ -241,7 +241,15 @@
               {{ productDescription }}
             </p>
             <div class="btn_main">
-              <div class="buy_bt"><a href="#order">Buy Now</a></div>
+              <div class="buy_bt"><a href="#order">{{featureButton.title}}</a></div>
+              <div 
+              class="bg-primary text-white text-center rounded-circle cursor-pointer"
+              style="width: 40px; height: 30px;"
+              data-bs-toggle="modal"
+              data-bs-target="#featureButton"
+              >
+             <i class="fas fa-pen-nib" style="font-size: 20px; margin-top: 5px"></i>
+              </div>
               <h4 class="price_text">
                 Price
                 <span
@@ -629,6 +637,13 @@
     :previewURL="mapIframe"
     @update="updateMap"
   />
+   <ButtonModal
+    modalId="featureButton"
+    modalTitle="Feature Button"
+    section="feature"
+    @save="updateFeatureButton"
+    :buttonData="featureButton"
+  />
   <ButtonModal
     modalId="heroButtonModal"
     modalTitle="Hero Button"
@@ -717,6 +732,7 @@ export default {
       featureImage: "",
       featureImageRaw: "",
       featureBg: "#f7c17b",
+      featureButton: [],
 
       // about area
       aboutTitle: "",
@@ -828,6 +844,19 @@ export default {
       featuresArea != null && featuresArea.background_color
         ? featuresArea.background_color
         : this.featureBg;
+     const defaultFeatureButton = {
+            title: "Buy Now",
+            url: "#order",
+            color: "#f7c17b",
+            text_color: "white",
+            border_color: "#f7c17b",
+            hover_color: "#283618",
+            hover_text_color: "white",
+            hover_border_color: "#283618",
+        };
+
+        this.featureButton =
+            (featuresArea != null && featuresArea.button) ? featuresArea.button : defaultFeatureButton;
 
     // hero area
     const heroArea =
@@ -1209,6 +1238,7 @@ export default {
       formData.append("feature_title", this.sectionTitle1);
       formData.append("feature_subtitle", this.sectionSubtitle1);
       formData.append("background_color", this.featureBg);
+      formData.append("button", JSON.stringify(this.featureButton));
       formData.append("feature_product_description", this.productDescription);
       formData.append("image", this.featureImageRaw);
       axios
@@ -1535,5 +1565,16 @@ export default {
     #ffffff 30%,
     v-bind(heroBg) 20%
   ) !important;
+}
+.buy_bt a{
+    background-color: v-bind("featureButton.color") !important;
+    color: v-bind("featureButton.text_color") !important;
+    border-color: v-bind("featureButton.border_color") !important;
+}
+
+.buy_bt a:hover{
+    background-color: v-bind("featureButton.hover_color") !important;
+    color: v-bind("featureButton.hover_text_color") !important;
+    border-color: v-bind("featureButton.hover_border_color") !important;
 }
 </style>
