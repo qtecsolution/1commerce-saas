@@ -6,6 +6,7 @@
         <img
           :src="companyLogo"
           width="50"
+          height="40"
           class="logo"
           :alt="user_template.company_name"
         />

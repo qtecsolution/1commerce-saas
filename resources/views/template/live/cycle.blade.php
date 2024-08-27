@@ -90,8 +90,9 @@
     <div class="header_section header_bg">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a href="#" class="logo">
-                <img
-                    src="{{ fetchImage($userTemplate->company_logo, $userTemplate->template->assets_path . '/images/logo.png') }}"></a>
+                <img class="logo" width="50" height="40"
+                    src="{{ fetchImage($userTemplate->company_logo, $userTemplate->template->assets_path . '/images/logo.png') }}">
+            </a>
             {{-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
