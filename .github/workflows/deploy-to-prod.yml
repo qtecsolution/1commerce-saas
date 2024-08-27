@@ -20,12 +20,15 @@ jobs:
     - name: Set up SSH agent
       uses: webfactory/ssh-agent@v0.5.3
       with:
-        ssh-private-key: |
-          ${{ secrets.EC2_SSH_KEY }}
+        ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
+
+    - name: Test SSH connection
+      run: |
+        ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} echo "SSH connection successful"
 
     - name: Deploy to EC2
       run: |
-        ssh -o StrictHostKeyChecking=no -i /home/runner/.ssh/ssh_key ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
+        ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
           cd ${{ secrets.EC2_PATH }}
           git pull origin cicd-prod
           make setup
