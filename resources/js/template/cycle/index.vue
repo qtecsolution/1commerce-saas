@@ -242,27 +242,29 @@
               {{ productDescription }}
             </p>
             <div class="btn_main">
-              <div class="buy_bt"><a href="#order">{{featureButton.title}}</a></div>
-              <div 
-              class="bg-primary text-white text-center rounded-circle cursor-pointer"
-              style="width: 40px; height: 30px;"
-              data-bs-toggle="modal"
-              data-bs-target="#featureButton"
+              <div class="buy_bt">
+                <a href="#order">{{ featureButton.title }}</a>
+              </div>
+              <div
+                class="bg-primary text-white text-center rounded-circle cursor-pointer"
+                style="width: 40px; height: 30px"
+                data-bs-toggle="modal"
+                data-bs-target="#featureButton"
               >
-             <i class="fas fa-pen-nib" style="font-size: 20px; margin-top: 5px"></i>
+                <i
+                  class="fas fa-pen-nib"
+                  style="font-size: 20px; margin-top: 5px"
+                ></i>
               </div>
               <h4 class="price_text">
                 Price
                 <span
-                  style="margin-right:8px !important;"
+                  style="margin-right: 8px !important"
                   contenteditable="true"
                   @blur="updateProductCurrency"
                   >{{ productCurrency }}
                 </span>
-                <span
-                  contenteditable="true"
-                  @blur="updateProductPrice"
-                >
+                <span contenteditable="true" @blur="updateProductPrice">
                   {{ productPrice }}</span
                 >
               </h4>
@@ -496,6 +498,38 @@
               required
             />
           </div>
+
+          <div class="form-group" style="color: #ffffff !important">
+            <div class="form-check d-flex justify-content-between">
+              <div>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="shipping_cost"
+                  id="flexRadioDefault1"
+                  checked
+                />
+                <label class="form-check-label" for="flexRadioDefault1">
+                  Shiping Cost (Inside Dhaka)
+                </label>
+              </div>
+              {{ productCurrency + " " + shippingCostInDhaka }}
+            </div>
+            <div class="form-check d-flex justify-content-between">
+              <div>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="shipping_cost"
+                  id="flexRadioDefault2"
+                />
+                <label class="form-check-label" for="flexRadioDefault2">
+                  Shipping Cost (Outside Dhaka)
+                </label>
+              </div>
+              {{ productCurrency + " " + shippingCostOutDhaka }}
+            </div>
+          </div>
           <div class="form-group">
             <textarea
               class="massage-bt"
@@ -517,16 +551,15 @@
             @delete="deleteField(index, $event)"
             @update="updateField(index, $event)"
           />
+          <AddInputModal
+            :modalId="'addInputModal'"
+            :modalTitle="'Add Dynamic Form'"
+            @save="addField"
+          />
           <div class="send_btn">
             <button type="submit">Order Now</button>
           </div>
         </form>
-
-        <AddInputModal
-          :modalId="'addInputModal'"
-          :modalTitle="'Add Dynamic Form'"
-          @save="addField"
-        />
       </div>
     </div>
   </div>
@@ -791,6 +824,8 @@ export default {
         "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
       productPrice: "400",
       productCurrency: "$",
+      shippingCostInDhaka: "",
+      shippingCostOutDhaka: "",
       productImage: this.appUrl + "/cycle/images/img-5.png",
       productImageRaw: "",
 
@@ -824,6 +859,8 @@ export default {
     this.productName = this.user_template.product_name;
     this.productPrice = this.user_template.product_price;
     this.productCurrency = this.user_template.product_currency;
+    this.shippingCostInDhaka = this.user_template.shipping_cost_inside_dhaka;
+    this.shippingCostOutDhaka = this.user_template.shipping_cost_outside_dhaka;
 
     //feature area
     const featuresArea =
@@ -845,19 +882,21 @@ export default {
       featuresArea != null && featuresArea.background_color
         ? featuresArea.background_color
         : this.featureBg;
-     const defaultFeatureButton = {
-            title: "Buy Now",
-            url: "#order",
-            color: "#f7c17b",
-            text_color: "white",
-            border_color: "#f7c17b",
-            hover_color: "#283618",
-            hover_text_color: "white",
-            hover_border_color: "#283618",
-        };
+    const defaultFeatureButton = {
+      title: "Buy Now",
+      url: "#order",
+      color: "#f7c17b",
+      text_color: "white",
+      border_color: "#f7c17b",
+      hover_color: "#283618",
+      hover_text_color: "white",
+      hover_border_color: "#283618",
+    };
 
-        this.featureButton =
-            (featuresArea != null && featuresArea.button) ? featuresArea.button : defaultFeatureButton;
+    this.featureButton =
+      featuresArea != null && featuresArea.button
+        ? featuresArea.button
+        : defaultFeatureButton;
 
     // hero area
     const heroArea =
@@ -1567,15 +1606,15 @@ export default {
     v-bind(heroBg) 20%
   ) !important;
 }
-.buy_bt a{
-    background-color: v-bind("featureButton.color") !important;
-    color: v-bind("featureButton.text_color") !important;
-    border-color: v-bind("featureButton.border_color") !important;
+.buy_bt a {
+  background-color: v-bind("featureButton.color") !important;
+  color: v-bind("featureButton.text_color") !important;
+  border-color: v-bind("featureButton.border_color") !important;
 }
 
-.buy_bt a:hover{
-    background-color: v-bind("featureButton.hover_color") !important;
-    color: v-bind("featureButton.hover_text_color") !important;
-    border-color: v-bind("featureButton.hover_border_color") !important;
+.buy_bt a:hover {
+  background-color: v-bind("featureButton.hover_color") !important;
+  color: v-bind("featureButton.hover_text_color") !important;
+  border-color: v-bind("featureButton.hover_border_color") !important;
 }
 </style>

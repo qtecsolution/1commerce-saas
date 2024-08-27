@@ -4,7 +4,7 @@
     @if (in_array($field['type'], ['text', 'number', 'date', 'time', 'datetime-local']))
         <input type="{{ $field['type'] }}" name="{{ $field['name'] }}" class="email-bt"
             @if ($field['is_required']) required @endif
-            placeholder="{{ strtoupper($field['name']) }}"
+            placeholder="{{ ucfirst(str_replace('_', ' ', $field['name'])) }}"
             style="background-color: {{ @$styles['background_color'] }} !important;" />
     @elseif ($field['type'] === 'textarea')
         <textarea name="{{ $field['name'] }}" rows="2" class="form-control"

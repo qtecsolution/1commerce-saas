@@ -292,6 +292,29 @@
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
+                    <div class="form-group" style="color: #ffffff !important">
+                        <div class="form-check d-flex justify-content-between">
+                            <div>
+                                <input class="form-check-input" type="radio" name="shipping_cost"
+                                    id="flexRadioDefault1" checked
+                                    value="{{ $userTemplate['shipping_cost_inside_dhaka'] }}">
+                                <label class="form-check-label" for="flexRadioDefault1"> Shiping Cost (Inside Dhaka)
+                                </label>
+                            </div>
+                            {{ $userTemplate['product_currency'] . ' ' . $userTemplate['shipping_cost_inside_dhaka'] }}
+                        </div>
+                        <div class="form-check d-flex justify-content-between">
+                            <div>
+                                <input class="form-check-input" type="radio" name="shipping_cost"
+                                    id="flexRadioDefault2"
+                                    value="{{ $userTemplate['shipping_cost_outside_dhaka'] }}">
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Shipping Cost (Outside Dhaka)
+                                </label>
+                            </div>
+                            {{ $userTemplate['product_currency'] . ' ' . $userTemplate['shipping_cost_outside_dhaka'] }}
+                        </div>
+                    </div>
                     <div class="form-group">
                         <textarea class="massage-bt" placeholder="Address" rows="5" id="customer_address" name="customer_address"
                             required>{{ old('customer_address') }}</textarea>
