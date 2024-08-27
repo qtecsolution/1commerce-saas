@@ -245,13 +245,12 @@
               <h4 class="price_text">
                 Price
                 <span
-                  style="color: #f7c17b"
+                  style="margin-right:8px !important;"
                   contenteditable="true"
                   @blur="updateProductCurrency"
                   >{{ productCurrency }}
                 </span>
                 <span
-                  style="color: #325662"
                   contenteditable="true"
                   @blur="updateProductPrice"
                 >

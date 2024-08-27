@@ -160,9 +160,10 @@
                         <p class="lorem_text">{{ $feature_area['feature_product_description'] }}</p>
                         <div class="btn_main">
                             <div class="buy_bt"><a href="#">Buy Now</a></div>
-                            <h4 class="price_text">Price <span
-                                    style=" color: #f7c17b">{{ $userTemplate->product_currency }}</span> <span
-                                    style=" color: #325662">{{ $userTemplate->product_price }}</span></h4>
+                            <h4 class="price_text">Price 
+                              <span style="margin-right:8px !important;">{{ $userTemplate->product_currency }}</span> 
+                              <span>{{ $userTemplate->product_price }}</span>
+                             </h4>
                         </div>
                     </div>
                     <div class="col-md-6">
