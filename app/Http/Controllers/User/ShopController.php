@@ -31,7 +31,7 @@ class ShopController extends Controller
     public function index($subdomain)
     {
         // Validate that the subdomain is permissible and does not conflict with reserved subdomains.
-        $IsAllowed = !in_array($subdomain, recurvedSubDomain());
+        $IsAllowed = !in_array($subdomain, reservedSubDomain());
         if ($IsAllowed) {
             return $this->livePreview($subdomain);
         } else {
