@@ -80,26 +80,26 @@ class AttarTemplateController extends Controller
             ])
         ]);
 
-        // Create fragrances section
+        // Create ingredients section
         $showcase = TemplateSection::create([
             'user_template_id' => $userTemplate->id,
-            'section' => 'fragrances',
-            'title' => 'Our Fragrances',
+            'section' => 'ingredients',
+            'title' => 'Our Ingredients',
         ]);
 
         TemplateSectionElement::create([
             'template_section_id' => $showcase->id,
-            'name' => 'fragrances',
+            'name' => 'ingredients',
             'data' => json_encode([
                 'items' => [
-                    'Rose Attar - A timeless fragrance of pure roses',
-                    'Sandalwood Attar - The warmth of precious sandalwood',
-                    'Oud Attar - The mystique of exotic oud',
-                    'Jasmine Attar - The sweet embrace of jasmine blooms',
-                    'Musk Attar - The deep, sensual notes of musk'
+                    "Pure Rose Essence - A captivating and timeless floral aroma",
+                    "Sandalwood Oil - A deep, woody fragrance with soothing warmth",
+                    "Oud Extract - An exotic, rich scent with smoky undertones",
+                    "Jasmine Bloom Extract - A sweet, floral scent reminiscent of fresh blooms",
+                    "Musk Essence - A sensual, earthy fragrance with lasting depth"
                 ],
                 'button' => [
-                    'title' => 'Discover More',
+                    'title' => 'Order Now',
                     'url' => '#order',
                     'color' => 'black',
                     'text_color' => 'white',
