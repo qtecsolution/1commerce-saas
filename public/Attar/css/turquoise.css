@@ -1,0 +1,86 @@
+/*====================================
+=            COLOR turquoise            =
+====================================*/
+/*
+turquoise
+2fe6ce
+18cab2
+*/
+
+
+.bg-shop {
+  background-color: #FABC3F;
+}
+
+a {
+	color: #FABC3F;
+}
+a:hover {
+  color: #18cab2;
+
+}
+
+#hero .hero-start-link:hover,
+#hero .hero-start-link:focus:hover {
+  color: #FABC3F;
+}
+
+.color-text {
+	color: #FABC3F;
+}
+.btn {
+	background: #FABC3F;
+	-webkit-box-shadow: 0 4px 0 #18cab2;
+	-moz-box-shadow: 0 4px 0 #18cab2;
+	box-shadow: 0 4px 0 #18cab2;
+}
+
+.numbers-1 h2 {
+  color: #FABC3F;
+}
+.features-1 article .zoom-img {
+  border: 6px solid #FABC3F;
+}
+
+.back-to-top {
+	background: #FABC3F;
+}
+
+.social-links-2 li a:hover {
+	color: #202020;
+	background:#FABC3F;
+	border-color: #FABC3F;
+}
+#menu-link:hover .menu-icon{
+    background-color: #FABC3F;
+} 
+#menu-link.is-clicked{
+    background-color: #FABC3F;
+}
+.myform .form-control:focus,
+.myform textarea.inputError:focus,
+.input-group .form-control:focus {
+	border: 2px solid #FABC3F;
+}
+.hero-start-link:hover {
+	color:#FABC3F;
+}
+.overlay nav ul li a:after {
+    background: #FABC3F;
+}
+.close-modal:hover {
+  background-color: #FABC3F;
+}
+.zoom-img  {
+	border: 6px solid #FABC3F;
+}
+
+.bg-image-2 {
+  background-color: #FABC3F;
+}
+.footer-1 .back-to-top {
+    background: #FABC3F;
+}
+/*-----  End of COLOR turquoise  ------*/
+
+
