@@ -63,11 +63,11 @@ class CycleTemplateController extends Controller
             'features_area' => json_encode([
                 "feature_title" => "Our Cycle",
                 "feature_subtitle" => "It is a long established fact that a reader will be distracted by the",
-                "feature_product_description"=>"It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
+                "feature_product_description" => "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
                 "image" => null,
                 "background_color" => "#f7f7f7"
             ]),
-            
+
             'about_area' => json_encode([
                 "title" => "About Our cycle Store",
                 "description" => "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
@@ -149,8 +149,8 @@ class CycleTemplateController extends Controller
             'footer_area' => json_encode([
                 "address" => "Lorem Addresss, Lorem City , Bangladesh",
                 "phone" => "Call Now +263238",
-                "email"=>"demo@gmail.com",
-                "mapIframe"=>'<iframe
+                "email" => "demo@gmail.com",
+                "mapIframe" => '<iframe
                     src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&amp;q=Eiffel+Tower+Paris+France"
                     width="600"
                     height="400"
@@ -158,9 +158,9 @@ class CycleTemplateController extends Controller
                     style="border: 0; width: 100%"
                     allowfullscreen
                   ></iframe>',
-                "footerBg"=>"#ffffff",
-                "footerText1"=>"footerText1",
-                "footerText2"=>"footerText2",
+                "footerBg" => "#ffffff",
+                "footerText1" => "footerText1",
+                "footerText2" => "footerText2",
             ])
         ]);
 
@@ -279,9 +279,10 @@ class CycleTemplateController extends Controller
     {
         $heroArea = $this->template->hero_area;
         $uploadedPath = null;
-        $decodedData = json_decode($heroArea);
-        $uploadedPath =  $decodedData->image;
         if ($heroArea) {
+
+            $decodedData = json_decode($heroArea);
+            $uploadedPath =  $decodedData->image;
             if ($request->hasFile('image')) {
                 if ($decodedData && isset($decodedData->image)) {
                     $oldImagePath = storage_path('app/public/' . $decodedData->image);
@@ -293,7 +294,6 @@ class CycleTemplateController extends Controller
                 $uploadedPath = $request->file('image')->store('public/cycle');
                 $uploadedPath = 'cycle/' . basename($uploadedPath);
             }
-
         } else {
             if ($request->hasFile('image')) {
                 $uploadedPath = $request->file('image')->store('public/cycle');
@@ -358,10 +358,11 @@ class CycleTemplateController extends Controller
     {
         $featureArea = $this->template->features_area;
         $uploadedPath = null;
-        $decodedData = json_decode($featureArea);
-        $uploadedPath =  $decodedData->image;
 
         if ($featureArea) {
+
+            $decodedData = json_decode($featureArea);
+            $uploadedPath =  $decodedData->image;
             if ($request->hasFile('image')) {
                 if ($decodedData && isset($decodedData->image)) {
                     $oldImagePath = storage_path('app/public/' . $decodedData->image);
@@ -388,21 +389,21 @@ class CycleTemplateController extends Controller
 
         $this->template->save();
         return response()->json([
-            'success'=>true,
+            'success' => true,
             'message' => 'Our Product Area Updated.',
             'data' => $this->template->feature_area,
-            'prductImage'=>$uploadedPath
+            'prductImage' => $uploadedPath
         ]);
     }
 
     public function updateAboutArea(Request $request)
     {
-        
+
         $aboutArea = $this->template->about_area;
         $uploadedPath = null;
-        $decodedData = json_decode($aboutArea);
-        $uploadedPath = $decodedData->image;
         if ($aboutArea) {
+            $decodedData = json_decode($aboutArea);
+            $uploadedPath = $decodedData->image;
             if ($request->hasFile('image')) {
 
                 if ($decodedData && isset($decodedData->image)) {
@@ -422,7 +423,7 @@ class CycleTemplateController extends Controller
             }
         }
 
-      
+
         $this->template->about_area = json_encode([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
@@ -433,39 +434,39 @@ class CycleTemplateController extends Controller
         return response()->json([
             'message' => 'About Area Updated.',
             'data' => $this->template->about_area,
-            'aboutImage'=>$uploadedPath
+            'aboutImage' => $uploadedPath
         ]);
     }
 
     public function updateTestimonialsArea(Request $request)
     {
         //Update the testimonials area metadata
-         $this->template->testimonials_area = json_encode([
+        $this->template->testimonials_area = json_encode([
             'title' => $request->input('title'),
             'sub_title' => $request->input('sub_title'),
             'background_color' => $request->input('background_color'),
         ]);
         $this->template->save();
-       TemplateTestimonial::where('template_id',$this->templateId)->delete();
-       $items = $request->input('items', []);
-       if($items){
-        foreach ($items as $index => $item) {
-            $path = null;
-            if ($request->hasFile("image_{$index}")) {
-                $file = $request->file("image_{$index}");
-                $path = $file->store('public/cycle');
+        TemplateTestimonial::where('template_id', $this->templateId)->delete();
+        $items = $request->input('items', []);
+        if ($items) {
+            foreach ($items as $index => $item) {
+                $path = null;
+                if ($request->hasFile("image_{$index}")) {
+                    $file = $request->file("image_{$index}");
+                    $path = $file->store('public/cycle');
+                }
+                $data = [
+                    'template_id' => $this->templateId,
+                    'user_id' => $this->userId,
+                    'review' => $item['review'] ?? '',
+                    'reviewer_name' => $item['reviewer_name'] ?? '',
+                    'reviewer_bio' => $item['reviewer_bio'] ?? '',
+                    'reviewer_image' => $path ? str_replace('public/', '', $path) : '',
+                ];
+                TemplateTestimonial::create($data);
             }
-            $data = [
-                'template_id' => $this->templateId,
-                'user_id' => $this->userId,
-                'review' => $item['review'] ?? '',
-                'reviewer_name' => $item['reviewer_name'] ?? '',
-                'reviewer_bio' => $item['reviewer_bio'] ?? '',
-                'reviewer_image' => $path ? str_replace('public/', '', $path) : '',
-            ];
-            TemplateTestimonial::create($data);
         }
-       }
         // Ensure relationships are reloaded
         $this->template->load('testimonials');
         return response()->json([
@@ -539,7 +540,7 @@ class CycleTemplateController extends Controller
             ]);
         }
         return response()->json([
-            'success'=>true,
+            'success' => true,
             'message' => 'Product Info Updated.',
             'data' => $template
         ]);
