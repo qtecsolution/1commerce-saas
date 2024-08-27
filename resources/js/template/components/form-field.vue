@@ -89,6 +89,7 @@
                 @save="updateField($event)"
             />
             <button
+                v-if="is_deletable"
                 type="button"
                 class="button2"
                 @click="deleteField"
@@ -107,6 +108,7 @@ export default {
         EditInputModal,
     },
     props: {
+        is_deletable: Boolean,
         field: {
             title: String,
             name: String,

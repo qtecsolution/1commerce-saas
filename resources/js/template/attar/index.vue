@@ -207,9 +207,9 @@
             <div class="container">
                 <div class="row header">
                     <div class="col-md-12">
-                        <h2>{{ orderTitle }}</h2>
+                        <h2>{{ orderAreaTitle }}</h2>
                         <p>
-                            {{ orderSubTitle }}
+                            {{ orderAreaSubTitle }}
                         </p>
                     </div>
                 </div>
@@ -217,9 +217,46 @@
                     <div class="col-lg-8 mx-auto contact-info">
                         <div id="alert-contact">
                             <div class="alert alert-success" role="alert">
-                                <strong>Your message has been sent.</strong>
+                                <strong>Order placed successfully.</strong>
                             </div>
                         </div>
+
+                        <div class="ms-card mb-3">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div
+                                        class="col-md-8"
+                                        contenteditable="true"
+                                        @blur="updateProductName"
+                                    >
+                                        {{
+                                            this.user_template.product_name ??
+                                            ""
+                                        }}
+                                    </div>
+                                    <div class="col-md-4 text-right">
+                                        <span
+                                            style="margin-right: 5px"
+                                            contenteditable="true"
+                                            @blur="updateProductCurrency"
+                                            >{{
+                                                this.user_template
+                                                    .product_currency ?? "৳"
+                                            }}</span
+                                        >
+                                        <span
+                                            contenteditable="true"
+                                            @blur="updateProductPrice"
+                                            >{{
+                                                this.user_template
+                                                    .product_price ?? 0
+                                            }}</span
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <form
                             id="contact-form"
                             action="#"
@@ -227,79 +264,24 @@
                             method="post"
                             novalidate=""
                         >
-                            <div class="row clearfix">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="controls">
-                                            <input
-                                                name="contactName"
-                                                placeholder="Your name"
-                                                class="form-control input-lg requiredField"
-                                                type="text"
-                                                data-error-empty="Enter name"
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="controls">
-                                            <input
-                                                name="phone"
-                                                placeholder="Your phone"
-                                                class="form-control input-lg requiredField"
-                                                type="text"
-                                                data-error-invalid="Invalid phone"
-                                                data-error-empty="Enter phone"
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <div class="controls">
-                                            <input
-                                                name="quantity"
-                                                placeholder="Quantity"
-                                                class="form-control input-lg requiredField"
-                                                type="number"
-                                                data-error-invalid="Invalid quantity"
-                                                data-error-empty="Enter quantity"
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="controls">
-                                    <textarea
-                                        name="comments"
-                                        placeholder="Your message"
-                                        class="form-control input-lg requiredField"
-                                        rows="5"
-                                        data-error-empty="Enter message"
-                                    ></textarea>
-                                </div>
-                            </div>
-
-                            <!-- :styles="{
-                                    color: siteColor?.primary_text_color,
-                                    background_color:
-                                        siteColor?.background_color,
-                                }" -->
-                            <!-- <FormField
-                                v-for="(field, index) in fields"
+                            <FormField
+                                :styles="{
+                                    color: orderAreaTextColor,
+                                    backgroundColor: orderAreaBgColor,
+                                }"
+                                v-for="(field, index) in orderAreaFields"
                                 :key="index"
                                 :field="field"
-                            /> -->
-                            <!-- @delete="deleteField(index, $event)"
-                                @update="updateField(index, $event)" -->
+                                @delete="deleteOrderAreaField(index, $event)"
+                                @update="updateOrderAreaField(index, $event)"
+                                :is_deletable="index >= 4"
+                            />
 
-                            <!-- <AddInputModal
+                            <AddInputModal
                                 :modalId="'addInputModal'"
                                 :modalTitle="'Add Dynamic Form'"
-                            /> -->
-                            <!-- @save="addField" -->
+                                @save="addOrderAreaField"
+                            />
 
                             <p>
                                 <button
@@ -347,11 +329,15 @@
 <script>
 import AddInputModal from "../components/add-input-modal.vue";
 import FormField from "../components/form-field.vue";
+import DynamicFormMethods from "../components/DynamicFormMethods";
 
 export default {
     name: "Attar",
     props: ["user_template", "template"],
-    components: [FormField, AddInputModal],
+    components: {
+        AddInputModal,
+        FormField,
+    },
     data() {
         return {
             appUrl: window.location.origin,
@@ -398,12 +384,12 @@ export default {
             reviewAreaTextColor: "",
 
             // order area
-            orderTitle: "",
-            orderSubTitle: "",
-            orderButton: [],
-            orderBgColor: "",
-            orderTextColor: "",
-            fields: [],
+            orderAreaTitle: "",
+            orderAreaSubTitle: "",
+            orderAreaButton: [],
+            orderAreaBgColor: "",
+            orderAreaTextColor: "",
+            orderAreaFields: [],
 
             // footer area
             footerAreaText: "",
@@ -483,13 +469,11 @@ export default {
         // order area
         let orderArea = this.getSection("order");
 
-        this.orderTitle = orderArea.title;
-        this.orderSubTitle = orderArea.sub_title;
-        this.orderBgColor = orderArea.bg_color;
-        this.orderTextColor = orderArea.text_color;
-        this.fields = this.user_template.fields;
-
-        // console.log(this.user_template.fields);
+        this.orderAreaTitle = orderArea.title;
+        this.orderAreaSubTitle = orderArea.sub_title;
+        this.orderAreaBgColor = orderArea.bg_color;
+        this.orderAreaTextColor = orderArea.text_color;
+        this.orderAreaFields = this.user_template.fields;
 
         // footer area
         let footerArea = this.getSection("footer");
@@ -502,6 +486,8 @@ export default {
         this.footerAreaLinks = footerAreaElement.links;
     },
     methods: {
+        ...DynamicFormMethods,
+
         toast(icon, title) {
             this.$swal({
                 toast: true,
@@ -544,4 +530,23 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+/* Custom Card Styles */
+.ms-card {
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Card Header */
+.ms-card .card-header {
+    background-color: #f8f9fa;
+    border-bottom: none;
+    border-radius: 15px 15px 0 0;
+}
+
+/* Card Body */
+.ms-card .card-body {
+    padding: 20px;
+}
+</style>
