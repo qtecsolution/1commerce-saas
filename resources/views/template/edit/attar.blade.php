@@ -4,14 +4,14 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	{!! renderSeoTags($userTemplate->id) !!}
+    {!! renderSeoTags($userTemplate->id) !!}
 
     <link rel="stylesheet" href="{{ asset($template->assets_path . '/css/bootstrap.min.css') }}">
     {{-- <link rel="stylesheet" href="{{ asset($template->assets_path . '/css/font-awesome.min.css') }}"> --}}
     <link href="{{ asset('assets/font-awesome/css/all.min.css') }}" rel="stylesheet" media="screen">
     <link rel="stylesheet" href="{{ asset($template->assets_path . '/css/owl.carousel.css') }}">
     <link rel="stylesheet" href="{{ asset($template->assets_path . '/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset($template->assets_path . '/css/turquoise.css') }}" class="colors">
+    {{-- <link rel="stylesheet" href="{{ asset($template->assets_path . '/css/turquoise.css') }}" class="colors"> --}}
 
     <!-- inject:vite (css/js) -->
     @vite('resources/css/app.css')
@@ -50,3 +50,6 @@
     <script type="text/javascript" src="{{ asset($template->assets_path . '/js/numbers.js') }}"></script>
     <script type="text/javascript" src="{{ asset($template->assets_path . '/js/contact.js') }}"></script>
     <script type="text/javascript" src="{{ asset($template->assets_path . '/js/parallax.js') }}"></script>
+</body>
+
+</html>
