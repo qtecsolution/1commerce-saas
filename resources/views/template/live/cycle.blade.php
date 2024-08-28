@@ -1,4 +1,6 @@
 @php
+    $trackingApi = trackingApi($userTemplate->id);
+
     $hero_area = $cycle->hero_area != null ? json_decode($cycle->hero_area, true) : null;
     $feature_area = $cycle->features_area ? json_decode($cycle->features_area, true) : null;
     $feature_area = $cycle->features_area ? json_decode($cycle->features_area, true) : null;
@@ -20,11 +22,9 @@
     <!-- mobile metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-    <!-- site metas -->
-    <title>Cycle</title>
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <meta name="author" content="">
+
+    {!! renderSeoTags($userTemplate->id) !!}
+
     <!-- bootstrap css -->
     <link rel="stylesheet" type="text/css"
         href="{{ asset($userTemplate->template->assets_path . '/css/bootstrap.min.css') }}">
@@ -32,9 +32,10 @@
     <link rel="stylesheet" type="text/css" href="{{ asset($userTemplate->template->assets_path . '/css/style.css') }}">
     <!-- Responsive-->
     <link rel="stylesheet" href="{{ asset($userTemplate->template->assets_path . '/css/responsive.css') }}">
-    <!-- fevicon -->
-    <link rel="icon" href="{{ asset($userTemplate->template->assets_path . '/images/fevicon.png') }}"
-        type="image/gif" />
+    {{-- fevicon icon --}}
+    <link rel="shortcut icon"
+        href="{{ $userTemplate->fav_icon ? asset('storage/' . $userTemplate->fav_icon) : asset($userTemplate->template->assets_path . '/images/logo.png') }}"
+        type="image/x-icon">
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet"
         href="{{ asset($userTemplate->template->assets_path . '/css/jquery.mCustomScrollbar.min.css') }}">
@@ -51,52 +52,14 @@
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
     <!-- /inject:vite (css/js) -->
-    <style>
-        .header_section {
-            background-image: linear-gradient(-13deg, #ffffff 30%, {{ $hero_area['background_color'] }} 20%) !important;
-        }
+    @include('template.live.styles.cycle')
 
-        .box_main_3:after {
-            background-color: {{ $feature_area['background_color'] }} !important;
-        }
-
-        .about_section {
-            background-color: {{ $about_area['background_color'] }} !important;
-        }
-
-        .contact_section {
-            background-color: {{ $order_area['background_color'] }} !important;
-        }
-
-        .footer_section {
-            background-color: {{ $order_area['background_color'] }} !important;
-        }
-
-        .buy_bt a {
-            background-color: {{ $feature_area_button['color'] }} !important;
-            color: {{ $feature_area_button['text_color'] }} !important;
-            border-color: {{ $feature_area_button['border_color'] }} !important;
-        }
-
-        .buy_bt a:hover {
-            background-color: {{ $feature_area_button['hover_color'] }} !important;
-            color: {{ $feature_area_button['hover_text_color'] }} !important;
-            border-color: {{ $feature_area_button['hover_border_color'] }} !important;
-        }
-
-        .send_btn button {
-            background-color: {{ $order_area_button['color'] }} !important;
-            color: {{ $order_area_button['text_color'] }} !important;
-        }
-
-        .send_btn button:hover {
-            background-color: {{ $order_area_button['hover_color'] }} !important;
-            color: {{ $order_area_button['hover_text_color'] }} !important;
-        }
-    </style>
+    {!! $trackingApi['head_code'] !!}
 </head>
 
 <body>
+    {!! $trackingApi['body_code'] !!}
+    
     <!-- header section start -->
     <div class="header_section header_bg">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -104,25 +67,6 @@
                 <img class="logo" width="50" height="40"
                     src="{{ fetchImage($userTemplate->company_logo, $userTemplate->template->assets_path . '/images/logo.png') }}">
             </a>
-            {{-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-               <ul class="navbar-nav mr-auto">
-                  <li class="nav-item active">
-                     <a class="nav-link" href="#">Home</a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="#about">About</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#testimonial">Testimonial</a>
-                 </li>
-               </ul>
-            </div>
-            <div id="main">
-               <span style="font-size:36px;cursor:pointer; color: #fff" onclick="openNav()"><img src="{{ asset($userTemplate->template->assets_path . '/images/toggle-icon.png')}}" style="height: 30px;"></span>
-            </div> --}}
         </nav>
         <!-- banner section start -->
         <div class="banner_section layout_padding">
@@ -140,18 +84,11 @@
                                 <div class="col-md-5">
                                     <h1 class="banner_taital">{{ $hero_area['title'] }}</h1>
                                     <p class="banner_text">{{ $hero_area['description'] }}</p>
-                                    {{-- <div class="contact_bt"><a href="">Shop Now</a></div> --}}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                {{-- <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
-               <i class="fa fa-angle-left"></i>
-               </a>
-               <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
-               <i class="fa fa-angle-right"></i> --}}
-                </a>
             </div>
         </div>
         <!-- banner section end -->
@@ -162,24 +99,6 @@
         <div class="container">
             <h1 class="cycle_taital">{{ $feature_area['feature_title'] }}</h1>
             <p class="cycle_text">{{ $feature_area['feature_subtitle'] }}</p>
-            {{-- <div class="cycle_section_2 layout_padding">
-               <div class="row">
-                  <div class="col-md-6">
-                     <div class="box_main">
-                        <h6 class="number_text">01</h6>
-                        <div class="image_2"><img src="{{ asset($userTemplate->template->assets_path . '/images/img-2.png')}}"></div>
-                     </div>
-                  </div>
-                  <div class="col-md-6">
-                     <h1 class="cycles_text">Cycles</h1>
-                     <p class="lorem_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p>
-                     <div class="btn_main">
-                        <div class="buy_bt"><a href="#">Buy Now</a></div>
-                        <h4 class="price_text">Price <span style=" color: #f7c17b">$</span> <span style=" color: #325662">200</span></h4>
-                     </div>
-                  </div>
-               </div>
-            </div> --}}
             <div class="cycle_section_3 layout_padding">
                 <div class="row">
                     <div class="col-md-6">
@@ -362,14 +281,6 @@
                                 class="padding_left_0">{{ $footer_area['phone'] }}</span></a></div>
                     <div class="call_text"><a href="#"><span
                                 class="padding_left_0">{{ $footer_area['email'] }}</span></a></div>
-                    <div class="social_icon">
-                        {{-- <ul>
-                        <li><a href="#"><img src="{{ asset($userTemplate->template->assets_path . '/images/fb-icon1.png')}}"></a></li>
-                        <li><a href="#"><img src="{{ asset($userTemplate->template->assets_path . '/images/twitter-icon.png')}}"></a></li>
-                        <li><a href="#"><img src="{{ asset($userTemplate->template->assets_path . '/images/linkedin-icon.png')}}"></a></li>
-                        <li><a href="#"><img src="{{ asset($userTemplate->template->assets_path . '/images/instagram-icon.png')}}"></a></li>
-                     </ul> --}}
-                    </div>
                 </div>
             </div>
         </div>
@@ -396,22 +307,6 @@
     <!-- javascript -->
     <script src="{{ asset($userTemplate->template->assets_path . '/js/owl.carousel.js') }}"></script>
     <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-    <script>
-        function openNav() {
-            document.getElementById("mySidenav").style.width = "250px";
-            document.getElementById("main").style.marginLeft = "250px";
-        }
-
-        function closeNav() {
-            document.getElementById("mySidenav").style.width = "0";
-            document.getElementById("main").style.marginLeft = "0";
-
-        }
-
-        $("#main").click(function() {
-            $("#navbarSupportedContent").toggleClass("nav-normal")
-        })
-    </script>
 </body>
 
 </html>
