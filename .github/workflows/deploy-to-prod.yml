@@ -27,6 +27,7 @@ jobs:
       run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
           cd ${{ secrets.EC2_PATH }}
+          sudo git fetch origin cicd-prod
           sudo git pull origin cicd-prod
           make setup
         EOF
