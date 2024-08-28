@@ -82,14 +82,15 @@ class AttarTemplateController extends Controller
         ]);
 
         // Create ingredients section
-        $showcase = TemplateSection::create([
+        $ingredients = TemplateSection::create([
             'user_template_id' => $userTemplate->id,
             'section' => 'ingredients',
             'title' => 'Our Ingredients',
+            'bg_color' => '#e0a800',
         ]);
 
         TemplateSectionElement::create([
-            'template_section_id' => $showcase->id,
+            'template_section_id' => $ingredients->id,
             'name' => 'ingredients',
             'data' => json_encode([
                 'items' => [
@@ -151,7 +152,8 @@ class AttarTemplateController extends Controller
         // Create review section
         $review = TemplateSection::create([
             'user_template_id' => $userTemplate->id,
-            'section' => 'review'
+            'section' => 'review',
+            'bg_color' => '#e0a800',
         ]);
 
         TemplateSectionElement::create([
