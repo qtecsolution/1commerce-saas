@@ -65,7 +65,7 @@ class CustomDomainController extends Controller
      */
     public function show(CustomDomain $customDomain)
     {
-        //
+        return "Hello Check";
     }
 
     /**
