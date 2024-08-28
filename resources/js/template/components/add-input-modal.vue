@@ -1,5 +1,5 @@
 <template>
-    <div class="col-12">
+    <div class="col-12 p-0">
         <button
             type="button"
             class="btn btn-info btn-sm my-2 col-12"

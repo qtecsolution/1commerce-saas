@@ -295,9 +295,9 @@ section {
     padding-top: 5px
 }
 
-.myform .form-group label {
+/* .myform .form-group label {
     display: none
-}
+} */
 
 .myform .no-placeholder .form-group label {
     display: block
