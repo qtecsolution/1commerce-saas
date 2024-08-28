@@ -721,7 +721,7 @@ $grey: #999;
  .order-custom-radio {
      width: 20px; /* Custom width for the radio button */
      height: 20px; /* Custom height for the radio button */
-     accent-color: #007bff; /* Custom color for the selected radio button */
+     accent-color: #6503d2; /* Custom color for the selected radio button */
      margin-right: 0px; /* Space between the radio button and the label */
  }
  
