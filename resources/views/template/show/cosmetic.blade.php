@@ -111,12 +111,12 @@
                     <div class="quality_text">
                         <h3>Information</h3>
                         <p>
-                            <ul>
-                                <li>Net Quantity: 15g</li>
-                                <li>Manufacturer/Company Name : Nutracos</li>
-                                <li>Commodity: Night Cream</li>
-                                <li>Expiry Date: 30 Months (From date of Manufacturing)</li>
-                            </ul>
+                        <ul>
+                            <li>Net Quantity: 15g</li>
+                            <li>Manufacturer/Company Name : Nutracos</li>
+                            <li>Commodity: Night Cream</li>
+                            <li>Expiry Date: 30 Months (From date of Manufacturing)</li>
+                        </ul>
                         </p>
                     </div>
                 </div>
@@ -147,8 +147,14 @@
                             <div class="container">
                                 <div class="carousel-caption">
                                     <figure><img src="{{ asset($template->assets_path . '/images/banner1.jpg') }}"
-                                            alt="banner 2" style="height: 500px; width: 900px; border-radius: 20px" /></figure>
-                                    <p>The results are astounding – 90% of women witnessed visibly smoother and more radiant skin. This crème's transformative powers extend to improving radiance, deeply nourishing your skin, and leaving it silky smooth. Tested by dermatologists, this crème is suitable for all skin types. Its non-sticky, easy-to-blend formula ensures that your skin's unique needs are met, whether you have normal, dry, oily, or combination skin.
+                                            alt="banner 2" style="height: 500px; width: 900px; border-radius: 20px" />
+                                    </figure>
+                                    <p>The results are astounding – 90% of women witnessed visibly smoother and more
+                                        radiant skin. This crème's transformative powers extend to improving radiance,
+                                        deeply nourishing your skin, and leaving it silky smooth. Tested by
+                                        dermatologists, this crème is suitable for all skin types. Its non-sticky,
+                                        easy-to-blend formula ensures that your skin's unique needs are met, whether you
+                                        have normal, dry, oily, or combination skin.
                                     </p>
 
                                 </div>
@@ -159,8 +165,14 @@
                             <div class="container">
                                 <div class="carousel-caption">
                                     <figure><img src="{{ asset($template->assets_path . '/images/banner2.jpg') }}"
-                                            alt="banner 2" style="height: 500px; width: 900px; border-radius: 20px" /></figure>
-                                    <p>The results are astounding – 90% of women witnessed visibly smoother and more radiant skin. This crème's transformative powers extend to improving radiance, deeply nourishing your skin, and leaving it silky smooth. Tested by dermatologists, this crème is suitable for all skin types. Its non-sticky, easy-to-blend formula ensures that your skin's unique needs are met, whether you have normal, dry, oily, or combination skin.
+                                            alt="banner 2" style="height: 500px; width: 900px; border-radius: 20px" />
+                                    </figure>
+                                    <p>The results are astounding – 90% of women witnessed visibly smoother and more
+                                        radiant skin. This crème's transformative powers extend to improving radiance,
+                                        deeply nourishing your skin, and leaving it silky smooth. Tested by
+                                        dermatologists, this crème is suitable for all skin types. Its non-sticky,
+                                        easy-to-blend formula ensures that your skin's unique needs are met, whether you
+                                        have normal, dry, oily, or combination skin.
                                     </p>
 
                                 </div>
@@ -171,8 +183,14 @@
                             <div class="container">
                                 <div class="carousel-caption">
                                     <figure><img src="{{ asset($template->assets_path . '/images/banner3.png') }}"
-                                            alt="banner 2" style="height: 500px; width: 900px; border-radius: 20px" /></figure>
-                                    <p>The results are astounding – 90% of women witnessed visibly smoother and more radiant skin. This crème's transformative powers extend to improving radiance, deeply nourishing your skin, and leaving it silky smooth. Tested by dermatologists, this crème is suitable for all skin types. Its non-sticky, easy-to-blend formula ensures that your skin's unique needs are met, whether you have normal, dry, oily, or combination skin.
+                                            alt="banner 2" style="height: 500px; width: 900px; border-radius: 20px" />
+                                    </figure>
+                                    <p>The results are astounding – 90% of women witnessed visibly smoother and more
+                                        radiant skin. This crème's transformative powers extend to improving radiance,
+                                        deeply nourishing your skin, and leaving it silky smooth. Tested by
+                                        dermatologists, this crème is suitable for all skin types. Its non-sticky,
+                                        easy-to-blend formula ensures that your skin's unique needs are met, whether you
+                                        have normal, dry, oily, or combination skin.
                                     </p>
 
                                 </div>
@@ -273,37 +291,107 @@
         <div id="order" class="order">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="titlepage">
-                            <h2>Order <span class="white">Now</span></h2>
+                            <h2>Order Now</h2>
                         </div>
-                        <div class="cont">
-                            <span>Lakmē Glycolic </br>
-                                Night Cream 15g </span>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <form class="main_form">
+                        <form class="main_form card p-5">
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <input class="orderfield" placeholder="Full Name" type="text"
-                                        name="
-                              Full Name">
+                                    <div class="row">
+                                        <!-- Product Information -->
+                                        <div class="col-sm-12 order-product-info mb-3">
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <div>
+                                                    <img src="{{ asset($template->assets_path . '/images/img.png') }}"
+                                                        class="order-product-image">
+                                                </div>
+                                                <div class="order-product-name">
+                                                    <h3>Lakmē Glycolic Night Cream 15g</h3>
+                                                </div>
+                                                <div>
+                                                    <h1 class="order-multiplier">x</h1>
+                                                </div>
+                                                <div class="order-quantity-input">
+                                                    <input class="orderfield" placeholder="Qty"
+                                                        type="number" name="Quantity" min="1"
+                                                        value="1">
+                                                </div>
+                                                <div class="order-product-price">
+                                                    <h3>500.00 TK.</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-12">
+                                            <label class="order-shipping-option d-flex p-3">
+                                                <input class="order-custom-radio " type="radio"
+                                                    name="shippingOption" id="shippingOption1" checked>
+                                                <div class="order-form-check-label">
+                                                    <h3>Shipping Cost (Inside Dhaka)</h3>
+                                                </div>
+                                                <div class="order-shipping-price">
+                                                    <h3>50.00 TK.</h3>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <label class="order-shipping-option d-flex p-3">
+                                                <input class="order-custom-radio " type="radio"
+                                                    name="shippingOption" id="shippingOption2">
+                                                <div class="order-form-check-label">
+                                                    <h3>Shipping Cost (Outside Dhaka)</h3>
+                                                </div>
+                                                <div class="order-shipping-price">
+                                                    <h3>100.00 TK.</h3>
+                                                </div>
+                                            </label>
+                                        </div>
+                                      
+                                        <!-- Divider -->
+                                        <div class="col-sm-12">
+                                            <hr class="order-divider">
+                                        </div>
+
+                                        <!-- Subtotal -->
+                                        <div class="col-sm-12">
+                                            <div
+                                                class="d-flex align-items-center justify-content-between order-subtotal">
+                                                <div>
+                                                    <h3>Total</h3>
+                                                </div>
+                                                <div>
+                                                    <h3>550.00 TK.</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+
                                 <div class="col-sm-6">
-                                    <input class="orderfield" placeholder="Email" type="text" name=" Email">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <input class="orderfield" placeholder="Full Name" type="text"
+                                                name="
+                                  Full Name">
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <input class="orderfield" placeholder="Email" type="text"
+                                                name=" Email">
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <input class="orderfield" placeholder="Phone" type="text"
+                                                name="Phone">
+                                        </div>
+
+                                        <div class="col-sm-12">
+                                            <textarea class="textarea" placeholder="Address" type="text" name="Address"></textarea>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-sm-6">
-                                    <input class="orderfield" placeholder="Phone" type="text" name="Phone">
-                                </div>
-                                <div class="col-sm-6">
-                                    <input class="orderfield" placeholder="Quantity" type="number" name="Quantity" min="1" value="1">
-                                </div>
-                                <div class="col-sm-12">
-                                    <textarea class="textarea" placeholder="Address" type="text" name="Address"></textarea>
-                                </div>
-                                <div class="col-sm-12">
-                                    <button class="order">ORDER NOW</button>
+
+                                <div class="col-sm-12 mt-2">
+                                    <button class="order">PLACE ORDER</button>
                                 </div>
                             </div>
                         </form>
@@ -319,7 +407,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <p>© 2024 All Rights Reserved. <a href="https://qtecsolution.com/">QTEC SL</a></p>
+                        <p>© 2024 All Rights Reserved. QTEC SL</p>
                     </div>
                 </div>
             </div>
