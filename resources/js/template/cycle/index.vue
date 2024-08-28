@@ -1360,6 +1360,7 @@ export default {
       formData.append("title", this.testimonialTitle);
       testimonials.forEach((item, index) => {
         formData.append(`image_${index}`, item.reviewer_image);
+        formData.append(`items[${index}][id]`, item.id);
         formData.append(`items[${index}][template_id]`, item.template_id);
         formData.append(`items[${index}][user_id]`, item.user_id);
         formData.append(`items[${index}][review]`, item.review);

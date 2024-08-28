@@ -460,7 +460,7 @@ class CycleTemplateController extends Controller
             'background_color' => $request->input('background_color'),
         ]);
         $this->template->save();
-        TemplateTestimonial::where('template_id', $this->templateId)->delete();
+        $temp_test =  TemplateTestimonial::where('template_id', $this->templateId)->get();
         $items = $request->input('items', []);
         if ($items) {
             foreach ($items as $index => $item) {
@@ -468,6 +468,10 @@ class CycleTemplateController extends Controller
                 if ($request->hasFile("image_{$index}")) {
                     $file = $request->file("image_{$index}");
                     $path = $file->store('public/cycle');
+                } else {
+                    if ($item['id'] != null && $temp_test->firstWhere('id', $item['id'])) {
+                        $path = $temp_test->firstWhere('id', $item['id'])->reviewer_image;
+                    }
                 }
                 $data = [
                     'template_id' => $this->templateId,
@@ -477,7 +481,8 @@ class CycleTemplateController extends Controller
                     'reviewer_bio' => $item['reviewer_bio'] ?? '',
                     'reviewer_image' => $path ? str_replace('public/', '', $path) : '',
                 ];
-                TemplateTestimonial::create($data);
+
+                TemplateTestimonial::updateOrCreate(['id' => $item['id']], $data);
             }
         }
         // Ensure relationships are reloaded
