@@ -5,8 +5,8 @@
     $feature_area_button = $feature_area['button'];
     $testimonial_area = $cycle->testimonials_area != null ? json_decode($cycle->testimonials_area) : null;
     $about_area = $cycle->about_area != null ? json_decode($cycle->about_area, true) : null;
-    $about_area_button = $about_area['button'] ?? '';
     $order_area = $cycle->order_area != null ? json_decode($cycle->order_area, true) : null;
+    $order_area_button = $order_area['button'];
     $footer_area = $cycle->footer_area != null ? json_decode($cycle->footer_area, true) : null;
 @endphp
 <!DOCTYPE html>
@@ -85,13 +85,13 @@
         }
 
         .send_btn button {
-            background-color: {{ $about_area_button['color'] }} !important;
-            color: {{ $about_area_button['text_color'] }} !important;
+            background-color: {{ $order_area_button['color'] }} !important;
+            color: {{ $order_area_button['text_color'] }} !important;
         }
 
         .send_btn button:hover {
-            background-color: {{ $about_area_button['hover_color'] }} !important;
-            color: {{ $about_area_button['hover_text_color'] }} !important;
+            background-color: {{ $order_area_button['hover_color'] }} !important;
+            color: {{ $order_area_button['hover_text_color'] }} !important;
         }
     </style>
 </head>
