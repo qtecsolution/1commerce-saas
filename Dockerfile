@@ -34,10 +34,10 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 
 # Install Laravel dependencies
-RUN composer install
+# RUN composer install
 
 # Generate application key
-RUN php artisan key:generate
+# RUN php artisan key:generate
 
 # Change permissions of the vendor directory
 RUN chmod -R 775 /var/www/html/storage

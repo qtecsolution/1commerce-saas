@@ -5,7 +5,7 @@ setup:
 	@make permission
 	@make copy-env
 	@make generate-key
-	@make storage-link
+	@make migrate
 
 build:
 	docker compose build
