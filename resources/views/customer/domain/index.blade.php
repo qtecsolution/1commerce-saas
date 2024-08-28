@@ -11,7 +11,7 @@
         <div class="container">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title"> Add Custom Domain</h4>
+                    <h4 class="card-title"> <i class="fa fa-plus-circle"></i> Add Custom Domain</h4>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('custom-domain.store') }}" method="post">
