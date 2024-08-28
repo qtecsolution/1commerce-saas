@@ -36,6 +36,9 @@ copy-env:
 migrate:
 	@echo "Run database migration ..."
 	docker exec 1com-app bash -c "php artisan migrate"
+migrate-fresh:
+	@echo "Run database migration ..."
+	docker exec 1com-app bash -c "php artisan migrate:fresh --seed"
 db-seed:
 	@echo "Run db seed ..."
 	docker exec 1com-app bash -c "php artisan db:seed"
