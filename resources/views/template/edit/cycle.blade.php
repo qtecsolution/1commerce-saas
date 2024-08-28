@@ -43,7 +43,30 @@
     @vite('resources/js/app.js')
     <!-- /inject:vite (css/js) -->
 
-</head>
+      <!-- Javascript files-->
+      {{-- <script src="{{ asset($userTemplate->template->assets_path . '/js/jquery.min.js')}}"></script> --}}
+      <script src="{{ asset($userTemplate->template->assets_path . '/js/popper.min.js')}}"></script>
+      {{-- <script src="{{ asset($userTemplate->template->assets_path . '/js/bootstrap.bundle.min.js')}}"></script> --}}
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+      <script src="{{ asset($userTemplate->template->assets_path . '/js/jquery-3.0.0.min.js')}}"></script> 
+      <script src="{{ asset($userTemplate->template->assets_path . '/js/plugin.js')}}"></script>
+      <!-- sidebar -->
+      <script src="{{ asset($userTemplate->template->assets_path . '/js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
+      <script src="{{ asset($userTemplate->template->assets_path . '/js/custom.js')}}"></script>
+      <!-- javascript --> 
+      <script src="{{ asset($userTemplate->template->assets_path . '/js/owl.carousel.js')}}"></script>
+      <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+      <script>
+         function openNav() {
+           document.getElementById("mySidenav").style.width = "250px";
+           document.getElementById("main").style.marginLeft = "250px";
+         }
+         
+         function closeNav() {
+           document.getElementById("mySidenav").style.width = "0";
+           document.getElementById("main").style.marginLeft= "0";
+          
+         }
 
 <body>
     <x-template-edit-bar :userTemplate="$userTemplate" />

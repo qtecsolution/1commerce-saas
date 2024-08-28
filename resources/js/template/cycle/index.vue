@@ -6,6 +6,7 @@
         <img
           :src="companyLogo"
           width="50"
+          height="40"
           class="logo"
           :alt="user_template.company_name"
         />
@@ -20,7 +21,10 @@
           data-bs-toggle="modal"
           data-bs-target="#logoImageModal"
         >
-          <i class="fas fa-pen-nib" style="font-size: 20px; margin-top: 5px"></i>
+          <i
+            class="fas fa-pen-nib"
+            style="font-size: 20px; margin-top: 5px"
+          ></i>
         </div>
       </div>
       <!-- <button
@@ -59,7 +63,7 @@
     <!-- banner section start -->
     <div class="banner_section layout_padding">
       <ColorPicker
-        style="margin-left: 1000px; margin-top: -50px"
+        style="margin-left: 50%; margin-top: -50px"
         :color="heroBg"
         @update="heroBg = $event"
         @save="saveHeroBgColor('bg_color', $event)"
@@ -238,20 +242,29 @@
               {{ productDescription }}
             </p>
             <div class="btn_main">
-              <div class="buy_bt"><a href="#order">Buy Now</a></div>
+              <div class="buy_bt">
+                <a href="#order">{{ featureButton.title }}</a>
+              </div>
+              <div
+                class="bg-primary text-white text-center rounded-circle cursor-pointer"
+                style="width: 40px; height: 30px"
+                data-bs-toggle="modal"
+                data-bs-target="#featureButton"
+              >
+                <i
+                  class="fas fa-pen-nib"
+                  style="font-size: 20px; margin-top: 5px"
+                ></i>
+              </div>
               <h4 class="price_text">
                 Price
                 <span
-                  style="color: #f7c17b"
+                  style="margin-right: 8px !important"
                   contenteditable="true"
                   @blur="updateProductCurrency"
                   >{{ productCurrency }}
                 </span>
-                <span
-                  style="color: #325662"
-                  contenteditable="true"
-                  @blur="updateProductPrice"
-                >
+                <span contenteditable="true" @blur="updateProductPrice">
                   {{ productPrice }}</span
                 >
               </h4>
@@ -260,6 +273,12 @@
           <div class="col-md-6">
             <div class="box_main_3">
               <!-- <h6 class="number_text_2">02</h6> -->
+              <ColorPicker
+                style="margin-left: 50%; margin-top: -50px"
+                :color="featureBg"
+                @update="featureBg = $event"
+                @save="saveFeatureBgColor('bg_color', $event)"
+              />
               <div class="image_2" style="margin-top: 100px !important">
                 <div
                   class="position-absolute top-0 end-0 mt-2"
@@ -287,13 +306,13 @@
   </div>
   <!-- cycle section end -->
   <!-- about section start -->
-  
+
   <div class="about_section layout_padding" id="about" data-target="about">
-     <ColorPicker
-      style="margin-left: 1050px; margin-top: 40px"
+    <ColorPicker
+      style="margin-left: 20%; margin-top: -80px"
       :color="aboutBg"
       @update="aboutBg = $event"
-      @save="saveOrderNowBgColor('bg_color', $event)"
+      @save="saveAboutBgColor('bg_color', $event)"
     />
     <div class="container">
       <h1 class="about_taital" contenteditable="true" @blur="updateAboutTitle">
@@ -317,7 +336,10 @@
             data-bs-toggle="modal"
             data-bs-target="#aboutImageModal"
           >
-            <i class="fas fa-pen-nib" style="font-size: 20px; margin-top: 5px"></i>
+            <i
+              class="fas fa-pen-nib"
+              style="font-size: 20px; margin-top: 5px"
+            ></i>
           </div>
         </div>
         <img :src="aboutImage" class="image_5" />
@@ -346,7 +368,10 @@
           data-bs-toggle="modal"
           data-bs-target="#testimonialModal"
         >
-          <i class="fas fa-pen-nib" style="font-size: 20px; margin-top: 5px"></i>
+          <i
+            class="fas fa-pen-nib"
+            style="font-size: 20px; margin-top: 5px"
+          ></i>
         </div>
         <div
           v-for="(testimonial, index) in testimonials"
@@ -402,7 +427,7 @@
   <!-- contact section start -->
   <div class="contact_section layout_padding" id="order" data-target="order">
     <ColorPicker
-      style="margin-left: 1000px; margin-top: 10px"
+      style="margin-left: 20%; margin-top: -60px"
       :color="orderBg"
       @update="orderBg = $event"
       @save="saveOrderNowBgColor('bg_color', $event)"
@@ -473,6 +498,38 @@
               required
             />
           </div>
+
+          <div class="form-group" style="color: #ffffff !important">
+            <div class="form-check d-flex justify-content-between">
+              <div>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="shipping_cost"
+                  id="flexRadioDefault1"
+                  checked
+                />
+                <label class="form-check-label" for="flexRadioDefault1">
+                  Shiping Cost (Inside Dhaka)
+                </label>
+              </div>
+              {{ productCurrency + " " + shippingCostInDhaka }}
+            </div>
+            <div class="form-check d-flex justify-content-between">
+              <div>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="shipping_cost"
+                  id="flexRadioDefault2"
+                />
+                <label class="form-check-label" for="flexRadioDefault2">
+                  Shipping Cost (Outside Dhaka)
+                </label>
+              </div>
+              {{ productCurrency + " " + shippingCostOutDhaka }}
+            </div>
+          </div>
           <div class="form-group">
             <textarea
               class="massage-bt"
@@ -494,16 +551,26 @@
             @delete="deleteField(index, $event)"
             @update="updateField(index, $event)"
           />
+          <AddInputModal
+            :modalId="'addInputModal'"
+            :modalTitle="'Add Dynamic Form'"
+            @save="addField"
+          />
           <div class="send_btn">
+            <div
+              class="bg-primary text-white text-center rounded-circle cursor-pointer"
+              style="width: 40px; height: 30px"
+              data-bs-toggle="modal"
+              data-bs-target="#orderNowButton"
+            >
+              <i
+                class="fas fa-pen-nib"
+                style="font-size: 20px; margin-top: 5px"
+              ></i>
+            </div>
             <button type="submit">Order Now</button>
           </div>
         </form>
-
-        <AddInputModal
-          :modalId="'addInputModal'"
-          :modalTitle="'Add Dynamic Form'"
-          @save="addField"
-        />
       </div>
     </div>
   </div>
@@ -616,6 +683,21 @@
     @update="updateMap"
   />
   <ButtonModal
+    modalId="featureButton"
+    modalTitle="Feature Button"
+    section="feature"
+    @save="updateFeatureButton"
+    :buttonData="featureButton"
+  />
+
+  <ButtonModal
+    modalId="orderNowButton"
+    modalTitle="Order Button"
+    section="order"
+    @save="updateOrderButton"
+    :buttonData="orderButton"
+  />
+  <ButtonModal
     modalId="heroButtonModal"
     modalTitle="Hero Button"
     section="hero"
@@ -702,7 +784,8 @@ export default {
       featureSubTitle: "Explore the awesome",
       featureImage: "",
       featureImageRaw: "",
-      featureBg: "#f7f7f7",
+      featureBg: "#f7c17b",
+      featureButton: [],
 
       // about area
       aboutTitle: "",
@@ -760,6 +843,8 @@ export default {
         "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
       productPrice: "400",
       productCurrency: "$",
+      shippingCostInDhaka: "",
+      shippingCostOutDhaka: "",
       productImage: this.appUrl + "/cycle/images/img-5.png",
       productImageRaw: "",
 
@@ -793,6 +878,8 @@ export default {
     this.productName = this.user_template.product_name;
     this.productPrice = this.user_template.product_price;
     this.productCurrency = this.user_template.product_currency;
+    this.shippingCostInDhaka = this.user_template.shipping_cost_inside_dhaka;
+    this.shippingCostOutDhaka = this.user_template.shipping_cost_outside_dhaka;
 
     //feature area
     const featuresArea =
@@ -810,6 +897,25 @@ export default {
       featuresArea != null && featuresArea.image
         ? this.imageSource(featuresArea.image, "storage")
         : this.appUrl + "/cycle/images/img-1.png";
+    this.featureBg =
+      featuresArea != null && featuresArea.background_color
+        ? featuresArea.background_color
+        : this.featureBg;
+    const defaultFeatureButton = {
+      title: "Buy Now",
+      url: "#order",
+      color: "#f7c17b",
+      text_color: "white",
+      border_color: "#f7c17b",
+      hover_color: "#283618",
+      hover_text_color: "white",
+      hover_border_color: "#283618",
+    };
+
+    this.featureButton =
+      featuresArea != null && featuresArea.button
+        ? featuresArea.button
+        : defaultFeatureButton;
 
     // hero area
     const heroArea =
@@ -861,7 +967,18 @@ export default {
     this.orderTitle = aboutArea?.title || this.orderTitle;
     this.orderBg =
       orderArea != null ? orderArea.background_color : this.orderBg;
-
+    const defaultOrderButton = {
+      title: "Order Now",
+      url: "#buy",
+      color: "#f7c17b",
+      text_color: "white",
+      border_color: "white",
+      hover_color: "white",
+      hover_text_color: "black",
+      hover_border_color: "white",
+    };
+    this.orderButton =
+      (orderArea != null && orderArea.button) ? orderArea.button : defaultOrderButton;
     //foooter area
     const footerArea =
       this.template.footer_area != null
@@ -1015,7 +1132,6 @@ export default {
       formData.append("sub_title", this.orderSubTitle);
       formData.append("button", JSON.stringify(this.orderButton));
       formData.append("background_color", this.orderBg);
-
       axios
         .post(`${this.apiUrl}/update-order-area`, formData)
         .then((response) => {
@@ -1190,6 +1306,8 @@ export default {
       const formData = new FormData();
       formData.append("feature_title", this.sectionTitle1);
       formData.append("feature_subtitle", this.sectionSubtitle1);
+      formData.append("background_color", this.featureBg);
+      formData.append("button", JSON.stringify(this.featureButton));
       formData.append("feature_product_description", this.productDescription);
       formData.append("image", this.featureImageRaw);
       axios
@@ -1242,6 +1360,7 @@ export default {
       formData.append("title", this.testimonialTitle);
       testimonials.forEach((item, index) => {
         formData.append(`image_${index}`, item.reviewer_image);
+        formData.append(`items[${index}][id]`, item.id);
         formData.append(`items[${index}][template_id]`, item.template_id);
         formData.append(`items[${index}][user_id]`, item.user_id);
         formData.append(`items[${index}][review]`, item.review);
@@ -1330,8 +1449,8 @@ export default {
       this.updateAboutArea();
     },
     saveFeatureBgColor(key, data) {
-      this.featuresArea[key] = data;
-      this.saveFeaturesArea();
+      this.featureBg = data;
+      this.updateFeaturesArea();
     },
 
     savePageSetup(data) {
@@ -1507,11 +1626,35 @@ export default {
 .about_section {
   background-color: v-bind("aboutBg") !important;
 }
+.box_main_3:after {
+  background-color: v-bind("featureBg") !important;
+}
 .header_section {
   background-image: linear-gradient(
     -13deg,
     #ffffff 30%,
     v-bind(heroBg) 20%
   ) !important;
+}
+.buy_bt a {
+  background-color: v-bind("featureButton.color") !important;
+  color: v-bind("featureButton.text_color") !important;
+  border-color: v-bind("featureButton.border_color") !important;
+}
+
+.buy_bt a:hover {
+  background-color: v-bind("featureButton.hover_color") !important;
+  color: v-bind("featureButton.hover_text_color") !important;
+  border-color: v-bind("featureButton.hover_border_color") !important;
+}
+ 
+.send_btn button {
+    background-color: v-bind("orderButton.color") !important;
+    color: v-bind("orderButton.text_color") !important;
+}
+
+.send_btn button:hover {
+    background-color:v-bind("orderButton.hover_color") !important ;
+    color:v-bind("orderButton.hover_text_color") !important;
 }
 </style>
