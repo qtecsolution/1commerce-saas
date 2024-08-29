@@ -74,14 +74,14 @@
                      <h1 class="cycles_text">Stylis Cycle</h1>
                      <p class="lorem_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p>
                      <div class="btn_main">
-                        <div class="buy_bt"><a href="#">Buy Now</a></div>
-                        <h4 class="price_text">Price <span style=" color: #f7c17b">$</span> <span style=" color: #325662">200</span></h4>
+                        <div class="buy_bt"><a href="#order">Buy Now</a></div>
+                        {{-- <h4 class="price_text">Price <span style=" color: #f7c17b">$</span> <span style=" color: #325662">200</span></h4> --}}
                      </div>
                   </div>
                   <div class="col-md-6">
                      <div class="box_main_3">
-                        <h6 class="number_text_2">02</h6>
-                        <div class="image_2"><img src="{{ asset($template->assets_path . '/images/img-3.png')}}"></div>
+                        {{-- <h6 class="number_text_2">02</h6> --}}
+                        <div style="margin-top: 100px!important" class="image_2"><img src="{{ asset($template->assets_path . '/images/img-3.png')}}"></div>
                      </div>
                   </div>
                </div>
@@ -171,16 +171,46 @@
          <div class="container">
             <div class="contact_main">
                <h1 class="request_text">Order Now</h1>
+               <div class="row">
+                  <div class="col-md-8 justify-content-start">
+                      <p class="about_text">Cycle</p>
+                  </div>
+                  <div class="col-md-4 text-end">
+                      <span style="margin-right: 5px">
+                          <p class="about_text">BDT 12000</p>
+                      </span>
+                  </div>
+              </div>
                <form action="/action_page.php">
                   <div class="form-group">
                      <input type="text" class="email-bt" placeholder="Name" name="Name">
                   </div>
                   <div class="form-group">
-                     <input type="text" class="email-bt" placeholder="Email" name="Name">
+                     <input type="text" class="email-bt" placeholder="Phone" name="Email">
                   </div>
                   <div class="form-group">
-                     <input type="text" class="email-bt" placeholder="Phone Numbar" name="Email">
+                     <input type="Number" class="email-bt" placeholder="Quantity" name="Name">
                   </div>
+                  <div class="form-group" style="color: #ffffff !important">
+                     <div class="form-check d-flex justify-content-between">
+                         <div>
+                             <input class="form-check-input" type="radio" name="shipping_cost"
+                                 id="flexRadioDefault1" checked
+                                 value="">
+                             <label class="form-check-label" for="flexRadioDefault1"> Shiping Cost (Inside Dhaka)</label>
+                         </div>
+                         BDT 300
+                     </div>
+                     <div class="form-check d-flex justify-content-between">
+                         <div>
+                             <input class="form-check-input" type="radio" name="shipping_cost"
+                                 id="flexRadioDefault2"
+                                 value="">
+                             <label class="form-check-label" for="flexRadioDefault2">Shipping Cost (Outside Dhaka)</label>
+                         </div>
+                         BDT 500
+                     </div>
+                 </div>
                   <div class="form-group">
                      <textarea class="massage-bt" placeholder="Address" rows="5" id="comment" name="Address"></textarea>
                   </div>
