@@ -83,42 +83,7 @@ class CycleTemplateController extends Controller
                 "title" => "About Our cycle Store",
                 "description" => "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
                 "background_color" => "#283618",
-                "items" => [
-                    [
-                        "title" => "Different preset Signup & Order forms ready to use.",
-                        "sub_title" => "FRESH NEWS FROM THE LABS",
-                        "description" => "Pri quas audiam virtute ut, case utamur fuisset eam ut, iisque accommodare an eam. Reque blandit qui eu, cu vix nonumy volumus. Legendos intellegam id usu, vide oporteat vix eu, id illud principes has.",
-                        "button" => [
-                            "title" => "Purchase Now",
-                            "url" => "#order",
-                            "color" => "transparent",
-                            "text_color" => "#20bea7",
-                            "border_color" => "#20bea7",
-                            "hover_color" => "#20bea7",
-                            "hover_text_color" => "white",
-                            "hover_border_color" => "#20bea7"
-                        ],
-                        "image" => null,
-                        "image_raw" => null
-                    ],
-                    [
-                        "title" => "Different preset Signup & Order forms ready to use.",
-                        "sub_title" => "FRESH NEWS FROM THE LABS",
-                        "description" => "Pri quas audiam virtute ut, case utamur fuisset eam ut, iisque accommodare an eam. Reque blandit qui eu, cu vix nonumy volumus. Legendos intellegam id usu, vide oporteat vix eu, id illud principes has.",
-                        "button" => [
-                            "title" => "Purchase Now",
-                            "url" => "#order",
-                            "color" => "transparent",
-                            "text_color" => "#20bea7",
-                            "border_color" => "#20bea7",
-                            "hover_color" => "#20bea7",
-                            "hover_text_color" => "white",
-                            "hover_border_color" => "#20bea7"
-                        ],
-                        "image" => null,
-                        "image_raw" => null
-                    ]
-                ]
+                "image" => null,
             ]),
             'testimonials_area' => json_encode([
                 "title" => "What our Customer say",
@@ -416,7 +381,7 @@ class CycleTemplateController extends Controller
         $uploadedPath = null;
         if ($aboutArea) {
             $decodedData = json_decode($aboutArea);
-            $uploadedPath = $decodedData->image;
+            $uploadedPath = $decodedData->image??null;
             if ($request->hasFile('image')) {
 
                 if ($decodedData && isset($decodedData->image)) {

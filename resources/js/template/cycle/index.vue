@@ -930,12 +930,11 @@ export default {
       heroArea != null && heroArea.image
         ? this.imageSource(heroArea.image, "storage")
         : this.appUrl + "/cycle/images/img-1.png";
-
     // about area
     const aboutArea = this.template.about_area
       ? JSON.parse(this.template.about_area)
       : null;
-
+    
     this.aboutBg =
       aboutArea != null ? aboutArea.background_color : this.aboutBg;
     this.aboutTitle = aboutArea?.title || this.aboutTitle;
@@ -1177,10 +1176,9 @@ export default {
           },
         })
         .then((response) => {
-          this.aboutImage = this.imageSource(
-            response.data.aboutImage,
-            "storage"
-          );
+          this.aboutImage = response.data.aboutImage != null
+        ? this.imageSource(response.data.aboutImage, "storage")
+        : this.appUrl + "/cycle/images/img-5.png";
           this.toast("success", "Resources Updated.");
         })
         .catch((error) => {
