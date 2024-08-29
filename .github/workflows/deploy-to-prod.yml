@@ -22,6 +22,10 @@ jobs:
     - name: Test SSH connection
       run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} echo "SSH connection successful"
+    
+    - name: Add GitHub to Known Hosts
+      run: |
+        ssh-keyscan github.com >> ~/.ssh/known_hosts
 
     - name: Deploy to EC2
       run: |
