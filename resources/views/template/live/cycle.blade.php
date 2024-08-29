@@ -59,7 +59,7 @@
 
 <body>
     {!! $trackingApi['body_code'] !!}
-    
+
     <!-- header section start -->
     <div class="header_section header_bg">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -105,7 +105,9 @@
                         <h1 class="cycles_text">{{ $userTemplate->product_name }}</h1>
                         <p class="lorem_text">{{ $feature_area['feature_product_description'] }}</p>
                         <div class="btn_main">
-                            <div class="buy_bt"><a href="">Buy Now</a></div>
+                            <div class="buy_bt">
+                                <a href="{{ $feature_area_button['url'] }}">{{ $feature_area_button['title'] }}</a>
+                            </div>
                             {{-- <h4 class="price_text">Price
                                 <span style="margin-right:8px !important;">{{ $userTemplate->product_currency }}</span>
                                 <span>{{ $userTemplate->product_price }}</span>
@@ -180,7 +182,7 @@
     <div class="contact_section layout_padding">
         <div class="container">
             <div class="contact_main">
-                <h1 class="request_text">Order Now</h1>
+                <h1 class="request_text"> {{ $order_area['title'] }}</h1>
                 <div class="row">
                     <div class="col-md-8 justify-content-start">
                         <p class="about_text">{{ $userTemplate->product_name }}</p>
@@ -256,7 +258,7 @@
                         <x-cycle-form-field :field="$field" />
                     @endforeach
                     <div class="send_btn">
-                        <button type="submit">Order Now</button>
+                        <button type="submit">{{ $order_area_button['title'] }}</button>
                     </div>
                 </form>
             </div>

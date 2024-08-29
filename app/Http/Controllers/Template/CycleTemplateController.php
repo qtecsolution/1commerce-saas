@@ -381,7 +381,7 @@ class CycleTemplateController extends Controller
         $uploadedPath = null;
         if ($aboutArea) {
             $decodedData = json_decode($aboutArea);
-            $uploadedPath = $decodedData->image??null;
+            $uploadedPath = $decodedData->image ?? null;
             if ($request->hasFile('image')) {
 
                 if ($decodedData && isset($decodedData->image)) {
@@ -455,7 +455,7 @@ class CycleTemplateController extends Controller
         TemplateTestimonial::where([
             ['template_id', '=', $this->templateId],
             ['is_active', '=', 0]
-        ])->delete();        
+        ])->delete();
         // Ensure relationships are reloaded
         $this->template->load('testimonials');
         return response()->json([

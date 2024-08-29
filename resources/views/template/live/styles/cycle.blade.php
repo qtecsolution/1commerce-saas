@@ -40,4 +40,9 @@
         background-color: {{ $order_area_button['hover_color'] }} !important;
         color: {{ $order_area_button['hover_text_color'] }} !important;
     }
+
+    .copyright_section {
+        background-color: {{ $footer_area['footerBg'] }} !important;
+
+    }
 </style>
