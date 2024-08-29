@@ -817,7 +817,7 @@ box-shadow: 0px 8px 7px 3px
 #my_slider a.carousel-control-prev {
     left: 640px;
     top: 93%;
-    background-color: #f7c17b;
+    background-color: #000000;
     color: #ffffff;
 }
 
@@ -831,7 +831,7 @@ box-shadow: 0px 8px 7px 3px
 #my_slider .carousel-control-next {
     width: 68px;
     height: 68px;
-    background: #191616;
+    background: #000000;
     opacity: 1;
     font-size: 30px;
     color: #ffffff;
@@ -841,7 +841,7 @@ box-shadow: 0px 8px 7px 3px
 #my_slider .carousel-control-next:hover,
 #my_slider .carousel-control-prev:focus,
 #my_slider .carousel-control-next:focus {
-    background-color: #f7c17b;
+    background-color: #0e4064;
     color: #ffffff;
 }
 

@@ -425,6 +425,7 @@ class CycleTemplateController extends Controller
             'background_color' => $request->input('background_color'),
         ]);
         $this->template->save();
+        TemplateTestimonial::where('template_id', $this->templateId)->update(['is_active' => 0]);
         $temp_test =  TemplateTestimonial::where('template_id', $this->templateId)->get();
         $items = $request->input('items', []);
         if ($items) {
@@ -444,12 +445,17 @@ class CycleTemplateController extends Controller
                     'review' => $item['review'] ?? '',
                     'reviewer_name' => $item['reviewer_name'] ?? '',
                     'reviewer_bio' => $item['reviewer_bio'] ?? '',
+                    'is_active' => 1,
                     'reviewer_image' => $path ? str_replace('public/', '', $path) : '',
                 ];
 
                 TemplateTestimonial::updateOrCreate(['id' => $item['id']], $data);
             }
         }
+        TemplateTestimonial::where([
+            ['template_id', '=', $this->templateId],
+            ['is_active', '=', 0]
+        ])->delete();        
         // Ensure relationships are reloaded
         $this->template->load('testimonials');
         return response()->json([
