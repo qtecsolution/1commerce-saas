@@ -627,7 +627,7 @@ $grey: #999;
 }
 
 .order .titlepage {
-     text-align: left;
+     text-align: center;
      padding-top: 0px;
 }
 .order .titlepage h2 {color: #ffffff; font-weight: bold;}
@@ -638,17 +638,23 @@ $grey: #999;
 }
 
 .main_form {
-    padding-top: 137px;
+    padding-top: 30px;
+}
+.main_form h3{
+    color: rgb(0, 0, 0);
+}
+.main_form h1{
+    color: rgb(0, 0, 0);
 }
 
 .order .main_form .orderfield {
-     border: #ffffff solid 2px;
+     border: #000000 solid 2px;
      padding: 0px 1px;
      margin-bottom: 20px;
      width: 100%;
      height: 42px;
      background: transparent;
-     color: #ffffff;
+     color: #000000;
      font-size: 16px;
      border-top: inherit;
      border-right: inherit;
@@ -657,9 +663,9 @@ $grey: #999;
 
 .order .main_form .textarea {
      margin-bottom: 25px;
-     color: #ffffff !important;
+     color: #000000 !important;
      width: 100%;
-     border: #ffffff solid 2px;
+     border: #000000 solid 2px;
      padding: 0px 1px;
      padding-top: 38px;
      background: transparent;
@@ -671,26 +677,117 @@ $grey: #999;
 .order .main_form .order {
      font-size: 16px;
      transition: ease-in all 0.5s;
-     border: 2px solid white;
+     border: 2px solid #fa7528;
      background: transparent;
-     color: #fff;
+     color: #fa7528;
      padding: 10px 70px;
      margin: 0 auto;
      display: block;
      border-radius: 25px;
+     font-weight: bold;
+     letter-spacing: 5px;
 }
 
 .order .main_form .order:hover {
      background-color: #fd882f;
      transition: ease-in all 0.5s;
-     color: #fff;
+     color: #ffffff;
+     font-weight: bold;
 }
 
 #order *::placeholder {
-     color: #ffffff;
+     color: #000000;
      opacity: 1;
 }
-
+/* Make the label clickable */
+.order-shipping-option {
+     cursor: pointer; /* Pointer cursor to indicate the area is clickable */
+     border: 1px solid #ccc; /* Border around the option */
+     border-radius: 5px; /* Rounded corners for the option */
+     background-color: #f8f9fa; /* Light background color for the option */
+     transition: background-color 0.3s ease; /* Smooth transition for background color */
+     padding: 10px; /* Padding inside the option for better spacing */
+     display: flex; /* Use flexbox to align items */
+     align-items: center; /* Center items vertically */
+     margin-bottom: 10px; /* Space between options */
+     justify-content: space-between;
+ }
+ 
+ .order-shipping-option:hover {
+     background-color: #e9ecef; /* Darker background on hover */
+ }
+ 
+ /* Larger and custom-colored radio button */
+ .order-custom-radio {
+     width: 20px; /* Custom width for the radio button */
+     height: 20px; /* Custom height for the radio button */
+     accent-color: #6503d2; /* Custom color for the selected radio button */
+     margin-right: 0px; /* Space between the radio button and the label */
+ }
+ 
+ /* Font style for the label inside the option */
+ .order-form-check-label h3 {
+     margin: 0; /* Remove default margin */
+     font-size: 16px; /* Set font size */
+ }
+ 
+ /* When the radio button is checked, apply bold font to the label */
+ .order-shipping-option input:checked + .order-form-check-label h3 {
+     font-weight: bold; /* Bold text when selected */
+ }
+ 
+ /* Remove default focus outline for radio buttons */
+ .order-custom-radio:focus {
+     outline: none;
+ }
+ 
+ /* Product Image */
+ .order-product-image {
+     width: 50px; /* Set the width of the product image */
+     background: white; /* Background color for the image */
+     border-radius: 50%; /* Make the image round */
+ }
+ 
+ /* Product Name */
+ .order-product-name {
+     flex: 1; /* Take up remaining space */
+     padding-left: 15px; /* Space between image and text */
+ }
+ 
+ /* Multiplier (x) */
+ .order-multiplier {
+     margin: 0; /* Remove default margin */
+ }
+ 
+ /* Quantity Input */
+ .order-quantity-input {
+     max-width: 60px; /* Set maximum width for the input */
+     padding-left: 15px; /* Space between elements */
+ }
+ 
+ /* Product Price */
+ .order-product-price {
+     padding-left: 15px; /* Space between elements */
+ }
+ 
+ /* Shipping Price */
+ .order-shipping-price h3 {
+     margin: 0; /* Remove default margin */
+     font-size: 16px; /* Set font size */
+ }
+ 
+ /* Divider */
+ .order-divider {
+     border: 1px solid #505050; /* Set divider style */
+     margin-top: 0; /* Remove margin from top */
+ }
+ 
+ /* Subtotal Section */
+ .order-subtotal h3 {
+     margin: 0; /* Remove default margin */
+     font-size: 18px; /* Set font size */
+     font-weight: bold;
+ }
 .current {
      color: #fff;
      margin-top: -4px;

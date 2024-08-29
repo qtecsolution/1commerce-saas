@@ -113,6 +113,10 @@ class TemplateController extends Controller
                     $cycle = new AttarTemplateController();
                     $cycle->initialSetup(auth()->id());
                     break;
+                case 5:
+                    $cosmetic = new CosmeticTemplateController();
+                    $cosmetic->initialSetup(auth()->id());
+                    break;
                 default:
                     // code
                     break;

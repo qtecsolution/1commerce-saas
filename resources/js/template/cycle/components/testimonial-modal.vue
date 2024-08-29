@@ -42,6 +42,10 @@
                         >
                             <div class="flex justify-start ml-2 mt-4">
                                 <input
+                                    v-model="testimonial.id"
+                                    type="hidden"
+                                />
+                                 <input
                                     v-model="testimonial.review"
                                     placeholder="Enter Customer Review"
                                     class="w-full py-2 border border-indigo-500 rounded mr-2 col-8"
@@ -99,6 +103,7 @@ export default {
     return {
       testimonials: [
         {
+          id:"",
           review: "",
           reviewer_name: "",
           reviewer_image: "",
@@ -135,8 +140,8 @@ export default {
     validateTestimonials() {
       return this.testimonials.every(testimonial => 
         testimonial.review.trim() !== "" &&
-        testimonial.reviewer_name.trim() !== "" &&
-        testimonial.reviewer_image !== ""
+        testimonial.reviewer_name.trim() !== ""
+        // testimonial.reviewer_image !== ""
       );
     },
     addMore() {
@@ -145,6 +150,7 @@ export default {
         return;
       }
       this.testimonials.push({
+        id: "",
         review: "",
         reviewer_name: "",
         reviewer_image: "",

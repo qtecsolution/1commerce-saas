@@ -63,7 +63,7 @@
     .slider a {
         font-size: 12px;
     }
-    .contact .titlepage {padding-bottom: 0;}
+    .order .titlepage {padding-bottom: 0;}
     .main_form {
         padding: 25px;
     }
@@ -71,13 +71,13 @@
   .quality_text h3 {font-size: 25px;}
   .quality_text p {font-size: 14px;
 line-height: 22px;}
- .contact {
+ .order {
     margin-top: 60px;
 background: #6302d3;
 padding-bottom: 60px;
 padding-top: 0px;
 }
-    .bg_ba {background: inherit;}
+   
 }
 
 @media (min-width: 576px) and (max-width: 767px) {
@@ -102,15 +102,15 @@ padding-top: 0px;
         max-width: 233px;
         margin-bottom: 30px;
     }
-    .contact {
+    .order {
         margin-top: 70px;
     }
-     .contact {
+     .order {
 background: #6302d3;
 padding-bottom: 60px;
 padding-top: 0px;
 }
-    .bg_ba {background: inherit;}
+    
 
     .quality_text h3 {font-size: 28px;}
 .quality_text {
@@ -161,7 +161,7 @@ padding-top: 0px;
 
 line-height: 46px;
     }
-    .contact .titlepage {
+    .order .titlepage {
         padding-bottom: 10px;
         padding-top: 0;
     }
@@ -177,13 +177,13 @@ line-height: 46px;
         max-width: 233px;
         margin-bottom: 30px;
     }
-    .contact {
+    .order {
         margin-top: 60px;
 background: #6302d3;
 padding-bottom: 60px;
 padding-top: 0px;
 }
-    .bg_ba {background: inherit;}
+  
     .slider a {font-size: 16px;}
 .quality_text h3 {font-size: 28px;}
 .quality_text {
@@ -194,7 +194,7 @@ padding-top: 0px;
 .quality {padding-bottom: 228px;}
 .customers {margin-top: -224px;}
 .banner2 .carousel-caption p {font-size: 14px;}
-.contact .titlepage h2 {padding-top: 40px;}
+.order .titlepage h2 {padding-top: 40px;}
 
 }
 
