@@ -257,7 +257,7 @@
       <script src="{{ asset($template->assets_path . '/js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
       <script src="{{ asset($template->assets_path . '/js/custom.js')}}"></script>
       <!-- javascript --> 
-      <script src="{{ asset($template->assets_path . '/js/owl.carousel.js')}}"></script>
+      {{-- <script src="{{ asset($template->assets_path . '/js/owl.carousel.js')}}"></script> --}}
       <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
    </body>
 </html>

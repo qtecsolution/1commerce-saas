@@ -1062,7 +1062,7 @@ export default {
       this.template.testimonials.length > 0
         ? this.template.testimonials
         : this.testimonials;
-    const defaultTestimonialImage = "cycle/images/client-img.png";
+    const defaultTestimonialImage = "/images/client-img.png";
 
     this.testimonials.forEach((testimonial, index) => {
       testimonial.reviewer_image =
