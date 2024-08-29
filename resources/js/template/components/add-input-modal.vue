@@ -96,7 +96,7 @@
                             v-for="(option, index) in field.options"
                             :key="index"
                         >
-                            <div class="col-10">
+                            <div class="col-8">
                                 <input
                                     v-model="field.options[index]"
                                     type="text"

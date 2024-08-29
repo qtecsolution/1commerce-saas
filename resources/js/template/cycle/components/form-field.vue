@@ -1,7 +1,7 @@
 <template>
     <div
         class="form-group"
-        style="color: #ffffff !important; text-align: left !important"
+        style="color: #ffffff !important; text-align: left !important;"
     >
         <!-- <label :for="field.name" :style="{ color: styles.color }">{{
             field.title
@@ -23,11 +23,11 @@
         <textarea
             v-if="field.type === 'textarea'"
             :name="field.name"
-            rows="2"
             class="massage-bt"
+            rows="5"
+            :placeholder="formattedPlaceholder"
             :required="field.is_required == 1 ? true : false"
-        >
-formattedPlaceholder</textarea
+        ></textarea
         >
 
         <!-- Select Input -->

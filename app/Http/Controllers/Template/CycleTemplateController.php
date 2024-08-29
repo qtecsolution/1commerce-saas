@@ -526,6 +526,8 @@ class CycleTemplateController extends Controller
                 'product_name' => $request->input('product_name'),
                 'product_price' => $request->input('product_price'),
                 'product_currency' => $request->input('product_currency'),
+                'shipping_cost_inside_dhaka' => $request->input('shipping_cost_in_dhaka'),
+                'shipping_cost_outside_dhaka' => $request->input('shipping_cost_out_dhaka'),
             ]);
         }
         return response()->json([
