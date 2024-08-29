@@ -439,7 +439,7 @@
     />
     <div class="container">
       <div class="contact_main">
-        <h1 class="request_text">Order Now</h1>
+        <h1 class="request_text" contenteditable="true" @blur="updateOrderTitle">{{orderTitle}}</h1>
         <div class="row">
           <div class="col-md-8">
             <span
@@ -669,6 +669,12 @@
   <!-- copyright section start -->
   <div class="copyright_section">
     <div class="container">
+      <ColorPicker
+        style="margin-left: 10%; margin-top: 10px"
+        :color="footerBg"
+        @update="footerBg = $event"
+        @save="saveFooterBgColor('bg_color', $event)"
+      />
       <p class="copyright_text">
         Copyright 2019 All Right Reserved By.<a href="#"> 1commerce </a>
       </p>
@@ -993,7 +999,7 @@ export default {
       this.template.order_area != null
         ? JSON.parse(this.template.order_area)
         : null;
-    this.orderTitle = aboutArea?.title || this.orderTitle;
+    this.orderTitle = orderArea?.title || this.orderTitle;
     this.orderBg =
       orderArea != null ? orderArea.background_color : this.orderBg;
     const defaultOrderButton = {
@@ -1173,7 +1179,15 @@ export default {
           console.error(error);
         });
     },
+    updateOrderTitle(event) {
+      const newValue = event.target.textContent.trim();
+      if (this.orderTitle == newValue) {
+        return;
+      }
 
+      this.orderTitle = this.updateContent(event);
+      this.updateOrderArea();
+    },
     // aboute area function
     updateAboutDescription(event) {
       const newValue = event.target.textContent.trim();
@@ -1494,6 +1508,10 @@ export default {
       this.orderBg = data;
       this.updateOrderArea();
     },
+     saveFooterBgColor(key, data) {
+      this.footerBg = data;
+      this.saveFooterArea();
+    },
 
     saveAboutBgColor(key, data) {
       this.aboutBg = data;
@@ -1707,5 +1725,9 @@ export default {
 .send_btn button:hover {
   background-color: v-bind("orderButton.hover_color") !important ;
   color: v-bind("orderButton.hover_text_color") !important;
+}
+.copyright_section {
+  background-color: v-bind(footerBg) !important ;
+  
 }
 </style>
