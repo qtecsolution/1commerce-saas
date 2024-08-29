@@ -53,9 +53,11 @@ class TemplateSectionController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'data' => 'required|string',
-            'status' => 'nullable|boolean'
+            'status' => 'nullable|boolean',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048', // 2MB Max
         ]);
+
+        return $request->all();
 
         // Ensure the section exists
         $section = TemplateSection::find($sectionId);

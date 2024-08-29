@@ -3,7 +3,7 @@
 @import url(animate.min.css);
 @import url(normalize.css);
 @import url(icomoon.css);
-@import url(css/font-awesome.min.css);
+@import url(font-awesome.min.css);
 @import url(meanmenu.css);
 @import url(owl.carousel.min.css);
 @import url(swiper.min.css);
@@ -209,7 +209,7 @@ button {
 .header_section {
     width: 100%;
     float: left;
-    background-image: linear-gradient(-13deg, #ffffff 30%, #274d5a 20%);
+    background-image: linear-gradient(-13deg, #ffffff 30%, #025f59 20%);
     position: relative;
     overflow-x: hidden; 
 }
@@ -349,7 +349,7 @@ button {
     margin: 0 auto;
     text-align: center;
     background-color: #f7c17b;
-    color: #325662;
+    color: #025f59;
     font-size: 20px;
     font-weight: bold;
     border-radius: 100px;
@@ -421,7 +421,7 @@ button {
 #main_slider .carousel-control-next {
     width: 68px;
     height: 68px;
-    background: #325662;
+    background: #025f59;
     opacity: 1;
     font-size: 30px;
     color: #ffffff;
@@ -476,7 +476,7 @@ button {
     height: 50px;
     font-size: 18px;
     color: #ffffff;
-    background-color: #325662;
+    background-color: #025f59;
     border-radius: 100px;
     text-align: center;
     padding: 10px 0px;
@@ -519,7 +519,7 @@ clip-path: polygon(0 0, 75% 8%, 75% 80%, 0% 100%);
     position: absolute;
     width: 180px;
     height: 1px;
-    background-color: #325662;
+    background-color: #025f59;
     left: 0px;
     right: initial;
     margin: 0 auto;
@@ -548,8 +548,8 @@ clip-path: polygon(0 0, 75% 8%, 75% 80%, 0% 100%);
     float: left;
     font-size: 18px;
     color: #ffffff;
-    /* background-color: #325662; */
-    background-color: #f7c17b;
+    /* background-color: #025f59; */
+    background-color: #025f59;
     padding: 8px 5px;
     text-align: center;
     font-weight: bold;
@@ -580,7 +580,7 @@ clip-path: polygon(0 0, 75% 8%, 75% 80%, 0% 100%);
 }
 .box_main_3:after {
     content: '';
-    background-color: #f7c17b;
+    background-color: #025f59;
     position: absolute;
     width: 420px;
     right: 0px;
@@ -597,7 +597,7 @@ clip-path: polygon(0 0, 75% 8%, 75% 80%, 0% 100%);
     height: 50px;
     font-size: 18px;
     color: #ffffff;
-    background-color: #325662;
+    background-color: #025f59;
     border-radius: 100px;
     text-align: center;
     padding: 10px 0px;
@@ -627,7 +627,7 @@ clip-path: polygon(0 0, 75% 8%, 75% 80%, 0% 100%);
 }
 .read_bt a:hover{
     color: #ffffff;
-    background-color: #325662;
+    background-color: #025f59;
 }
 
 /* cycle section end */
@@ -636,7 +636,7 @@ clip-path: polygon(0 0, 75% 8%, 75% 80%, 0% 100%);
 .about_section {
     width: 100%;
     float: left;
-    background-color: #325662;
+    background-color: #025f59;
     /* background-image: url(../images/about-bg.png); */
     height: auto;
     padding: 90px 0px;
@@ -739,7 +739,7 @@ box-shadow: 0px 8px 7px 3px
 }
 .read_bt_1 a:hover{
     color: #ffffff;
-    background-color: #325662;
+    background-color: #025f59;
 }
 
 
@@ -817,7 +817,7 @@ box-shadow: 0px 8px 7px 3px
 #my_slider a.carousel-control-prev {
     left: 640px;
     top: 93%;
-    background-color: #f7c17b;
+    background-color: #000000;
     color: #ffffff;
 }
 
@@ -831,7 +831,7 @@ box-shadow: 0px 8px 7px 3px
 #my_slider .carousel-control-next {
     width: 68px;
     height: 68px;
-    background: #191616;
+    background: #000000;
     opacity: 1;
     font-size: 30px;
     color: #ffffff;
@@ -841,7 +841,7 @@ box-shadow: 0px 8px 7px 3px
 #my_slider .carousel-control-next:hover,
 #my_slider .carousel-control-prev:focus,
 #my_slider .carousel-control-next:focus {
-    background-color: #f7c17b;
+    background-color: #0e4064;
     color: #ffffff;
 }
 
@@ -943,7 +943,7 @@ box-shadow: 0px 8px 7px 3px
 .contact_section {
     width: 100%;
     float: left;
-    background-color: #355764;
+    background-color: #025f59;
     height: auto;
     padding-bottom: 90px;
 }
@@ -1010,7 +1010,7 @@ textarea#comment::placeholder {
     color: #ffffff;
     font-size: 18px;
     padding: 10px 0px;
-    background-color: #f7c17b;
+    background-color: #000;
     border-radius: 10px;
 }
 
@@ -1026,7 +1026,7 @@ textarea#comment::placeholder {
     color: #ffffff;
     font-size: 18px;
     padding: 10px 0px;
-    background-color: #f7c17b;
+    background-color: #000;
     border-radius: 10px;
 }
 
@@ -1040,7 +1040,7 @@ textarea#comment::placeholder {
 .footer_section {
     width: 100%;
     float: left;
-    background-color: #355764;
+    background-color: #025f59;
     height: auto;
     background-size: cover;
 }

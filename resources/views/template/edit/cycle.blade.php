@@ -9,9 +9,9 @@
     <!-- mobile metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-    <!-- site metas -->
+
     {!! renderSeoTags($userTemplate->id) !!}
-    
+
     <!-- Font Awesome icon css-->
     <link href="{{ asset('assets/font-awesome/css/all.min.css') }}" rel="stylesheet" media="screen">
 
@@ -22,9 +22,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset($userTemplate->template->assets_path . '/css/style.css') }}">
     <!-- Responsive-->
     <link rel="stylesheet" href="{{ asset($userTemplate->template->assets_path . '/css/responsive.css') }}">
-    <!-- fevicon -->
+    {{-- fevicon icon --}}
     <link rel="shortcut icon"
-        href="{{ $userTemplate->fav_icon ? asset('storage/' . $userTemplate->fav_icon) : asset($userTemplate->template->assets_path . '/images/favicon.png') }}"
+        href="{{ $userTemplate->fav_icon ? asset('storage/' . $userTemplate->fav_icon) : asset($userTemplate->template->assets_path . '/images/logo.png') }}"
         type="image/x-icon">
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet"
@@ -47,42 +47,31 @@
 
 <body>
     <x-template-edit-bar :userTemplate="$userTemplate" />
-
     <main id="app" class="mt-5">
         <cycle :user_template="{{ json_encode($userTemplate) }}" :template="{{ json_encode($template) }}" />
     </main>
 
     <!-- Javascript files-->
-    <script src="{{ asset($userTemplate->template->assets_path . '/js/jquery.min.js') }}"></script>
+    <script src="{{ asset($userTemplate->template->assets_path . '/js/jquery.min.js')}}"></script>
+    {{-- <script>
+        var jQuery1 = jQuery.noConflict(true);
+      </script> --}}
     <script src="{{ asset($userTemplate->template->assets_path . '/js/popper.min.js') }}"></script>
-    <script src="{{ asset($userTemplate->template->assets_path . '/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset($userTemplate->template->assets_path . '/js/bootstrap.bundle.min.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
     <script src="{{ asset($userTemplate->template->assets_path . '/js/jquery-3.0.0.min.js') }}"></script>
+    <script>
+        var jQuery2 = jQuery.noConflict(true);
+    </script>
     <script src="{{ asset($userTemplate->template->assets_path . '/js/plugin.js') }}"></script>
     <!-- sidebar -->
     <script src="{{ asset($userTemplate->template->assets_path . '/js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
     <script src="{{ asset($userTemplate->template->assets_path . '/js/custom.js') }}"></script>
     <!-- javascript -->
-    <script src="{{ asset($userTemplate->template->assets_path . '/js/owl.carousel.js') }}"></script>
+    {{-- <script src="{{ asset($userTemplate->template->assets_path . '/js/owl.carousel.js') }}"></script> --}}
     <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-    <script>
-        function openNav() {
-            document.getElementById("mySidenav").style.width = "250px";
-            document.getElementById("main").style.marginLeft = "250px";
-        }
-
-        function closeNav() {
-            document.getElementById("mySidenav").style.width = "0";
-            document.getElementById("main").style.marginLeft = "0";
-
-        }
-
-        $("#main").click(function() {
-            $("#navbarSupportedContent").toggleClass("nav-normal")
-        })
-    </script>
 </body>
 
 </html>

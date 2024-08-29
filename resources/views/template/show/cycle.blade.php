@@ -20,7 +20,7 @@
       <!-- Responsive-->
       <link rel="stylesheet" href="{{ asset($template->assets_path . '/css/responsive.css')}}">
       <!-- fevicon -->
-      <link rel="icon" href="{{ asset($template->assets_path . '/images/fevicon.png')}}" type="image/gif" />
+      <link rel="icon" href="{{ asset($template->assets_path . '/images/logo.png')}}" type="image/gif" />
       <!-- Scrollbar Custom CSS -->
       <link rel="stylesheet" href="{{ asset($template->assets_path . '/css/jquery.mCustomScrollbar.min.css')}}">
       <!-- Tweaks for older IEs-->
@@ -37,25 +37,6 @@
          <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a href="index.html" class="logo">
                <img src="{{ asset($template->assets_path . '/images/logo.png')}}"></a>
-            {{-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> --}}
-            {{-- <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-               <ul class="navbar-nav mr-auto">
-                  <li class="nav-item active">
-                     <a class="nav-link" href="#">Home</a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="#about">About</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#testimonial">Testimonial</a>
-                 </li>
-               </ul>
-            </div> --}}
-            {{-- <div id="main">
-               <span style="font-size:36px;cursor:pointer; color: #fff" onclick="openNav()"><img src="{{ asset($template->assets_path . '/images/toggle-icon.png')}}" style="height: 30px;"></span>
-            </div> --}}
          </nav>
          <!-- banner section start -->
          <div class="banner_section layout_padding">
@@ -77,12 +58,6 @@
                      </div>
                   </div>
                </div>
-               {{-- <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
-               <i class="fa fa-angle-left"></i>
-               </a>
-               <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
-               <i class="fa fa-angle-right"></i>
-               </a> --}}
             </div>
          </div>
          <!-- banner section end -->
@@ -93,38 +68,20 @@
          <div class="container">
             <h1 class="cycle_taital">Our Cycle</h1>
             <p class="cycle_text">It is a long established fact that a reader will be distracted by the </p>
-            {{-- <div class="cycle_section_2 layout_padding">
-               <div class="row">
-                  <div class="col-md-6">
-                     <div class="box_main">
-                        <h6 class="number_text">01</h6>
-                        <div class="image_2"><img src="{{ asset($template->assets_path . '/images/img-2.png')}}"></div>
-                     </div>
-                  </div>
-                  <div class="col-md-6">
-                     <h1 class="cycles_text">Cycles</h1>
-                     <p class="lorem_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p>
-                     <div class="btn_main">
-                        <div class="buy_bt"><a href="#">Buy Now</a></div>
-                        <h4 class="price_text">Price <span style=" color: #f7c17b">$</span> <span style=" color: #325662">200</span></h4>
-                     </div>
-                  </div>
-               </div>
-            </div> --}}
             <div class="cycle_section_3 layout_padding">
                <div class="row">
                   <div class="col-md-6">
                      <h1 class="cycles_text">Stylis Cycle</h1>
                      <p class="lorem_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p>
                      <div class="btn_main">
-                        <div class="buy_bt"><a href="#">Buy Now</a></div>
-                        <h4 class="price_text">Price <span style=" color: #f7c17b">$</span> <span style=" color: #325662">200</span></h4>
+                        <div class="buy_bt"><a href="#order">Buy Now</a></div>
+                        {{-- <h4 class="price_text">Price <span style=" color: #f7c17b">$</span> <span style=" color: #325662">200</span></h4> --}}
                      </div>
                   </div>
                   <div class="col-md-6">
                      <div class="box_main_3">
-                        <h6 class="number_text_2">02</h6>
-                        <div class="image_2"><img src="{{ asset($template->assets_path . '/images/img-3.png')}}"></div>
+                        {{-- <h6 class="number_text_2">02</h6> --}}
+                        <div style="margin-top: 100px!important" class="image_2"><img src="{{ asset($template->assets_path . '/images/img-3.png')}}"></div>
                      </div>
                   </div>
                </div>
@@ -204,7 +161,7 @@
                <i class="fa fa-angle-left"></i>
             </a>
             <a class="carousel-control-next" href="#my_slider" role="button" data-slide="next">
-              <i class="fa fa-angle-right"></i>
+               <i class="fa fa-angle-right"></i>
             </a>
          </div>
       </div>
@@ -214,16 +171,46 @@
          <div class="container">
             <div class="contact_main">
                <h1 class="request_text">Order Now</h1>
+               <div class="row">
+                  <div class="col-md-8 justify-content-start">
+                      <p class="about_text">Cycle</p>
+                  </div>
+                  <div class="col-md-4 text-end">
+                      <span style="margin-right: 5px">
+                          <p class="about_text">BDT 12000</p>
+                      </span>
+                  </div>
+              </div>
                <form action="/action_page.php">
                   <div class="form-group">
                      <input type="text" class="email-bt" placeholder="Name" name="Name">
                   </div>
                   <div class="form-group">
-                     <input type="text" class="email-bt" placeholder="Email" name="Name">
+                     <input type="text" class="email-bt" placeholder="Phone" name="Email">
                   </div>
                   <div class="form-group">
-                     <input type="text" class="email-bt" placeholder="Phone Numbar" name="Email">
+                     <input type="Number" class="email-bt" placeholder="Quantity" name="Name">
                   </div>
+                  <div class="form-group" style="color: #ffffff !important">
+                     <div class="form-check d-flex justify-content-between">
+                         <div>
+                             <input class="form-check-input" type="radio" name="shipping_cost"
+                                 id="flexRadioDefault1" checked
+                                 value="">
+                             <label class="form-check-label" for="flexRadioDefault1"> Shiping Cost (Inside Dhaka)</label>
+                         </div>
+                         BDT 300
+                     </div>
+                     <div class="form-check d-flex justify-content-between">
+                         <div>
+                             <input class="form-check-input" type="radio" name="shipping_cost"
+                                 id="flexRadioDefault2"
+                                 value="">
+                             <label class="form-check-label" for="flexRadioDefault2">Shipping Cost (Outside Dhaka)</label>
+                         </div>
+                         BDT 500
+                     </div>
+                 </div>
                   <div class="form-group">
                      <textarea class="massage-bt" placeholder="Address" rows="5" id="comment" name="Address"></textarea>
                   </div>
@@ -240,7 +227,7 @@
                <div class="col-lg-8 col-sm-12 padding_0">
                   <div class="map_main">
                      <div class="map-responsive">
-                       <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&amp;q=Eiffel+Tower+Paris+France" width="600" height="400" frameborder="0" style="border:0; width: 100%;" allowfullscreen=""></iframe>
+                        <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&amp;q=Eiffel+Tower+Paris+France" width="600" height="400" frameborder="0" style="border:0; width: 100%;" allowfullscreen=""></iframe>
                      </div>
                   </div>
                </div>
@@ -248,14 +235,6 @@
                   <div class="call_text"><a href="#"><span class="padding_left_0">Page when looking at its layou</span></a></div>
                   <div class="call_text"><a href="#"><span class="padding_left_0">Call Now  +01 123467890</span></a></div>
                   <div class="call_text"><a href="#"><span class="padding_left_0">demo@gmail.com</span></a></div>
-                  <div class="social_icon">
-                     {{-- <ul>
-                        <li><a href="#"><img src="{{ asset($template->assets_path . '/images/fb-icon1.png')}}"></a></li>
-                        <li><a href="#"><img src="{{ asset($template->assets_path . '/images/twitter-icon.png')}}"></a></li>
-                        <li><a href="#"><img src="{{ asset($template->assets_path . '/images/linkedin-icon.png')}}"></a></li>
-                        <li><a href="#"><img src="{{ asset($template->assets_path . '/images/instagram-icon.png')}}"></a></li>
-                     </ul> --}}
-                  </div>
                </div>
             </div>
          </div>
@@ -278,23 +257,7 @@
       <script src="{{ asset($template->assets_path . '/js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
       <script src="{{ asset($template->assets_path . '/js/custom.js')}}"></script>
       <!-- javascript --> 
-      <script src="{{ asset($template->assets_path . '/js/owl.carousel.js')}}"></script>
+      {{-- <script src="{{ asset($template->assets_path . '/js/owl.carousel.js')}}"></script> --}}
       <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-      <script>
-         function openNav() {
-           document.getElementById("mySidenav").style.width = "250px";
-           document.getElementById("main").style.marginLeft = "250px";
-         }
-         
-         function closeNav() {
-           document.getElementById("mySidenav").style.width = "0";
-           document.getElementById("main").style.marginLeft= "0";
-          
-         }
-
-         $("#main").click(function(){
-             $("#navbarSupportedContent").toggleClass("nav-normal")
-         })
-      </script>
    </body>
 </html>

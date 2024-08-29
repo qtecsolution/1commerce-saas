@@ -42,17 +42,36 @@
                         }}</a>
                     </div>
                 </div>
-                <div
-                    class="col-sm-12 img-hero"
-                    :style="{
-                        backgroundImage: `url(${imageSource(
-                            heroAreaImage
-                                ? heroAreaImage
-                                : '/images/mockup4.png',
-                            heroAreaImage ? 'storage' : 'public'
-                        )})`,
-                    }"
-                ></div>
+                <div class="col-sm-12 img-hero">
+                    <img
+                        :src="
+                            imageSource(
+                                heroAreaImage
+                                    ? heroAreaImage
+                                    : '/images/mockup4.png',
+                                heroAreaImage ? 'storage' : 'public'
+                            )
+                        "
+                        alt=""
+                        class="img-fluid"
+                    />
+                    <ImageModal
+                        :modalId="'heroImageModal'"
+                        :modalTitle="'Edit Hero Area Image'"
+                        :image="
+                            imageSource(
+                                heroAreaImage
+                                    ? heroAreaImage
+                                    : '/images/mockup4.png',
+                                heroAreaImage ? 'storage' : 'public'
+                            )
+                        "
+                        section="hero"
+                        element="hero"
+                        storeData="heroAreaImage"
+                        @save="updateImage"
+                    />
+                </div>
 
                 <a
                     href="#start"
@@ -327,9 +346,13 @@
 </template>
 
 <script>
+import axios from "axios";
 import AddInputModal from "../components/add-input-modal.vue";
 import FormField from "../components/form-field.vue";
 import DynamicFormMethods from "../components/DynamicFormMethods";
+import ButtonModal from "../components/button-modal.vue";
+import ImageModal from "../components/ImageModal.vue";
+import ColorPicker from "../components/color-picker.vue";
 
 export default {
     name: "Attar",
@@ -337,6 +360,9 @@ export default {
     components: {
         AddInputModal,
         FormField,
+        ButtonModal,
+        ImageModal,
+        ColorPicker,
     },
     data() {
         return {
@@ -525,6 +551,50 @@ export default {
 
         decodedData(data) {
             return JSON.parse(data);
+        },
+
+        updateImage(data) {
+            console.log(data);
+            let section = data.section;
+            let element = data.element;
+            let imageFile = data.image;
+            let storeData = data.storeData;
+
+            // check if element is exist or not
+            let findSection = this.getSection(section);
+            let findElement = this.getElement(section, element);
+            if (!findElement) {
+                this.toast("error", "Element not found.");
+                return false;
+            }
+
+            const formData = new FormData();
+            formData.append("image", imageFile);
+            formData.append("name", element);
+
+            axios
+                .post(
+                    `${this.appUrl}/app/templates/element/update/${findElement.template_section_id}`,
+                    formData
+                )
+                .then((response) => {
+                    console.log(response.data);
+                    
+                    this.storeData = this.imageSource(
+                        response.data.image,
+                        "storage"
+                    );
+
+                    this.toast("success", "Resource updated successfully.");
+                })
+                .catch((error) => {
+                    console.error(error);
+                    
+                    this.toast(
+                        "error",
+                        "Something went wrong. Please try again."
+                    );
+                });
         },
     },
 };

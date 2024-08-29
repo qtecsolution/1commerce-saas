@@ -27,7 +27,7 @@
     {!! renderSeoTags($userTemplate->id) !!}
 
     <link href="{{ asset($userTemplate->template->assets_path . '/css/icon.css') }}" rel="stylesheet">
-    {{-- favi icon --}}
+    {{-- fevicon icon --}}
     <link rel="shortcut icon"
         href="{{ $userTemplate->fav_icon ? asset('storage/' . $userTemplate->fav_icon) : asset($userTemplate->template->assets_path . '/images/favicon.png') }}"
         type="image/x-icon">

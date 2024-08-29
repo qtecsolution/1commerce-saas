@@ -48,4 +48,8 @@ export default {
         this.updateButtonProperties(this.orderButton, data);
         this.updateOrderArea();
     },
+    updateFeatureButton(data) {
+        this.updateButtonProperties(this.orderButton, data);
+        this.updateFeaturesArea();
+    },
 };

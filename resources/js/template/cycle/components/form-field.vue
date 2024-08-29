@@ -1,5 +1,8 @@
 <template>
-    <div class="form-group">
+    <div
+        class="form-group"
+        style="color: #ffffff !important; text-align: left !important;"
+    >
         <!-- <label :for="field.name" :style="{ color: styles.color }">{{
             field.title
         }}</label> -->
@@ -20,10 +23,12 @@
         <textarea
             v-if="field.type === 'textarea'"
             :name="field.name"
-            rows="2"
             class="massage-bt"
+            rows="5"
+            :placeholder="formattedPlaceholder"
             :required="field.is_required == 1 ? true : false"
-        >formattedPlaceholder</textarea>
+        ></textarea
+        >
 
         <!-- Select Input -->
         <select
@@ -39,6 +44,7 @@
 
         <!-- Radio Inputs -->
         <div v-if="field.type === 'radio'">
+            <label :for="field.name">{{ field.title }}</label>
             <div
                 v-for="(option, index) in parsedOptions"
                 :key="index"
@@ -61,6 +67,7 @@
 
         <!-- Checkbox Inputs -->
         <div v-if="field.type === 'checkbox'">
+            <label :for="field.name">{{ field.title }}</label>
             <div
                 v-for="(option, index) in parsedOptions"
                 :key="index"
@@ -135,9 +142,12 @@ export default {
             }
             return this.field.options;
         },
-         formattedPlaceholder() {
-      return this.field.title.charAt(0).toUpperCase() + this.field.title.slice(1);
-    }
+        formattedPlaceholder() {
+            return (
+                this.field.title.charAt(0).toUpperCase() +
+                this.field.title.slice(1)
+            );
+        },
     },
     methods: {
         deleteField() {
