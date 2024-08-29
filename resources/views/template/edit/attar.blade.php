@@ -13,7 +13,10 @@
     <link rel="stylesheet" href="{{ asset($template->assets_path . '/css/style.css') }}">
     {{-- <link rel="stylesheet" href="{{ asset($template->assets_path . '/css/turquoise.css') }}" class="colors"> --}}
 
-    
+    <!-- inject:vite (css/js) -->
+    @vite('resources/css/app.css')
+    @vite('resources/js/app.js')
+    <!-- /inject:vite (css/js) -->
 
     <style>
         #menu-link {

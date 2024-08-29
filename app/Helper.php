@@ -160,11 +160,44 @@ if (!function_exists('domainCheck')) {
 
     }
 }
+
 // Reserve sub domain list
 if (!function_exists('reservedSubDomain')) {
 
     function reservedSubDomain()
     {
         return ['1com','app', 'main'] ;
+    }
+}
+
+if (!function_exists('fileUpload')) {
+    function fileUpload($file, $directory, $disk = 'public', $fileName = null)
+    {
+        // Generate a unique file name if not provided
+        $fileName = $fileName ?: time() . uniqid('', true) . '.' . $file->getClientOriginalExtension();
+
+        // Store the file on the disk
+        $uploadedAt = Storage::disk($disk)->putFileAs($directory, $file, $fileName);
+
+        return $uploadedAt;
+    }
+}
+
+if (!function_exists('fileRemove')) {
+    function fileRemove($path)
+    {
+        if ($path == null || $path == '') {
+            return false;
+        }
+
+        $absolutePath = storage_path() . '/app/public/' . $path;
+
+        if (file_exists($absolutePath)) {
+            unlink($absolutePath);
+
+            return true;
+        } else {
+            return false;
+        }
     }
 }

@@ -41,7 +41,7 @@
             ADMIN
         </a>
         <div>
-            <div class="btn btn-light px-3 btn-sm" title="Page Settings" data-bs-toggle="modal"
+            <div class="ms-btn ms-btn-light px-3 ms-btn-sm" title="Page Settings" data-bs-toggle="modal"
                 data-bs-target="#pageSetupModal">
                 Page Settings
             </div>

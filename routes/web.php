@@ -151,17 +151,20 @@ Route::prefix('app')->middleware('user')->group(function () {
             Route::post('slug/availability', 'slugAvailability')->name('slug.availability');
             Route::post('settings/{id}', 'settings')->name('settings');
 
-            // Route to create or update a section
+            // Route to update a section
             Route::post('section/update', [TemplateSectionController::class, 'section']);
 
             // Route to get a section by its ID
             Route::get('section/{id}', [TemplateSectionController::class, 'getSection']);
 
-            // Route to create or update an element within a section by section ID
+            // Route to update an element within a section by section ID
             Route::post('element/update/{sectionId}', [TemplateSectionController::class, 'element']);
 
             // Route to get an element by its ID
             Route::get('element/{id}', [TemplateSectionController::class, 'getElement']);
+
+            // Route to update feature item
+            Route::post('feature/save', [TemplateSectionController::class, 'feature']);
 
             // ulaunch
             Route::prefix('ulaunch')->group(function () {

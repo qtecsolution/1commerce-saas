@@ -10,6 +10,7 @@
                     <a
                         :href="menu.url"
                         class="smooth-scroll"
+                        :contenteditable="isEditable"
                         contenteditable="true"
                         >{{ menu.label }}</a
                     >
@@ -28,12 +29,13 @@
             <div class="center-box">
                 <div class="hero-unit">
                     <div class="container">
-                        <h1 class="title">{{ heroAreaTitle }}</h1>
-                        <h3>
-                            <b>{{ heroAreaSubTitle }}</b>
+                        <h1 class="title" :contenteditable="isEditable">
+                            {{ heroAreaTitle }}
+                        </h1>
+                        <h3 class="fw-bold" :contenteditable="isEditable">
+                            {{ heroAreaSubTitle }}
                         </h3>
-                        <p class="mx-md-5">
-                            <br />
+                        <p class="mx-md-5" :contenteditable="isEditable">
                             {{ heroAreaDescription }}
                         </p>
                         <br />
@@ -42,7 +44,7 @@
                         }}</a>
                     </div>
                 </div>
-                <div class="col-sm-12 img-hero">
+                <div class="col-md-8 offset-md-2 img-hero mb-4">
                     <img
                         :src="
                             imageSource(
@@ -87,13 +89,17 @@
             <div class="container">
                 <div class="row header">
                     <div class="col-md-12">
-                        <h2>{{ aboutAreaTitle }}</h2>
-                        <p>{{ aboutAreaSubTitle }}</p>
+                        <h2 :contenteditable="isEditable">
+                            {{ aboutAreaTitle }}
+                        </h2>
+                        <p :contenteditable="isEditable">
+                            {{ aboutAreaSubTitle }}
+                        </p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-8 mx-auto">
-                        <p>
+                        <p :contenteditable="isEditable">
                             {{ aboutAreaDescription }}
                         </p>
                     </div>
@@ -119,16 +125,37 @@
                             alt=""
                             height="100%"
                         />
+
+                        <ImageModal
+                            :modalId="'ingredientImageModal'"
+                            :modalTitle="'Edit Ingredient Area Image'"
+                            :image="
+                                imageSource(
+                                    ingredientAreaImage
+                                        ? ingredientAreaImage
+                                        : '/images/cup4.jpg',
+                                    ingredientAreaImage ? 'storage' : 'public'
+                                )
+                            "
+                            section="ingredients"
+                            element="ingredients"
+                            storeData="ingredientAreaImage"
+                            @save="updateImage"
+                        />
                     </div>
                     <div class="col-sm-6 bg-shop" style="height: 500px">
                         <div class="half-box-right">
                             <div class="center-vertical">
                                 <div class="center-vertical-box">
-                                    <h1>
-                                        <b>{{ ingredientAreaTitle }}</b>
+                                    <h1
+                                        class="fw-bold"
+                                        :contenteditable="isEditable"
+                                    >
+                                        {{ ingredientAreaTitle }}
                                     </h1>
                                     <ul style="padding: 20px">
                                         <li
+                                            :contenteditable="isEditable"
                                             v-for="ingredient in ingredientItems"
                                             :key="ingredient.id"
                                         >
@@ -154,34 +181,47 @@
             <div class="container padding-top-bottom">
                 <div class="row header">
                     <div class="col-md-12">
-                        <h2>{{ featuresAreaTitle }}</h2>
-                        <p>{{ featuresAreaSubTitle }}</p>
+                        <h2 :contenteditable="isEditable">
+                            {{ featuresAreaTitle }}
+                        </h2>
+                        <p :contenteditable="isEditable">
+                            {{ featuresAreaSubTitle }}
+                        </p>
                     </div>
                 </div>
                 <div class="container">
                     <div class="row">
                         <div
-                            class="col-md-4 anima scale-in"
+                            class="col-md-4"
                             v-for="(feature, index) in featureItems"
                             :key="feature.id"
                         >
                             <article class="text-center">
-                                <img
-                                    :src="
-                                        imageSource(
-                                            feature.image
-                                                ? feature.image
-                                                : `/images/demo${
-                                                      index + 1
-                                                  }.jpg`,
-                                            feature.image ? 'storage' : 'public'
-                                        )
-                                    "
-                                    alt="#"
-                                    class="zoom-img img-fluid center-block"
-                                />
-                                <h3>​{{ feature.title }}</h3>
-                                <p>{{ feature.description }}</p>
+                                <div>
+                                    <img
+                                        :src="getFeatureImage(feature, index)"
+                                        alt="#"
+                                        class="zoom-img img-fluid center-block"
+                                    />
+
+                                    <ImageModal
+                                        :modalId="`feature${
+                                            index + 1
+                                        }ImageModal`"
+                                        modalTitle="Edit Feature Area Image"
+                                        :image="getFeatureImage(feature, index)"
+                                        section="features"
+                                        element="features"
+                                        :storeData="`featureItems[${index}]`"
+                                        @save="saveFeature"
+                                    />
+                                </div>
+                                <h3 :contenteditable="isEditable">
+                                    ​{{ feature.title }}
+                                </h3>
+                                <p :contenteditable="isEditable">
+                                    {{ feature.description }}
+                                </p>
                             </article>
                         </div>
                     </div>
@@ -201,18 +241,29 @@
                 )})`,
             }"
         >
+            <ImageModal
+                :modalId="'reviewImageModal'"
+                modalTitle="Edit Feature Area Image"
+                :image="reviewAreaImage"
+                section="review"
+                element="review"
+                storeData="reviewAreaImage"
+                @save="updateImage"
+            />
             <div class="container">
                 <div class="row justify-content-end">
                     <div class="col-md-6">
                         <div class="white-box">
-                            <h2>
-                                <b>{{ reviewAreaTitle }}</b>
+                            <h2 class="fw-bold" :contenteditable="isEditable">
+                                {{ reviewAreaTitle }}
                             </h2>
-                            <p>
+                            <p :contenteditable="isEditable">
                                 {{ reviewItems.review }}
                             </p>
                             <blockquote class="blockquote">
-                                <p>{{ reviewItems.reviewer_name }}</p>
+                                <p :contenteditable="isEditable">
+                                    {{ reviewItems.reviewer_name }}
+                                </p>
                             </blockquote>
                         </div>
                     </div>
@@ -226,8 +277,10 @@
             <div class="container">
                 <div class="row header">
                     <div class="col-md-12">
-                        <h2>{{ orderAreaTitle }}</h2>
-                        <p>
+                        <h2 :contenteditable="isEditable">
+                            {{ orderAreaTitle }}
+                        </h2>
+                        <p :contenteditable="isEditable">
                             {{ orderAreaSubTitle }}
                         </p>
                     </div>
@@ -245,8 +298,7 @@
                                 <div class="row">
                                     <div
                                         class="col-md-8"
-                                        contenteditable="true"
-                                        @blur="updateProductName"
+                                        :contenteditable="isEditable"
                                     >
                                         {{
                                             this.user_template.product_name ??
@@ -256,21 +308,16 @@
                                     <div class="col-md-4 text-right">
                                         <span
                                             style="margin-right: 5px"
-                                            contenteditable="true"
-                                            @blur="updateProductCurrency"
+                                            :contenteditable="isEditable"
                                             >{{
                                                 this.user_template
                                                     .product_currency ?? "৳"
                                             }}</span
                                         >
-                                        <span
-                                            contenteditable="true"
-                                            @blur="updateProductPrice"
-                                            >{{
-                                                this.user_template
-                                                    .product_price ?? 0
-                                            }}</span
-                                        >
+                                        <span :contenteditable="isEditable">{{
+                                            this.user_template.product_price ??
+                                            0
+                                        }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -333,7 +380,7 @@
                 <a href="#home" class="back-to-top smooth-scroll"
                     ><i class="fa fa-chevron-up"></i
                 ></a>
-                <p>{{ footerAreaText }}</p>
+                <p :contenteditable="isEditable">{{ footerAreaText }}</p>
                 <ul class="social-links-2">
                     <li v-for="link in footerAreaLinks" :key="link.id">
                         <a :href="link.url"><i :class="link.icon"></i></a>
@@ -367,6 +414,7 @@ export default {
     data() {
         return {
             appUrl: window.location.origin,
+            isEditable: false,
 
             // menu items
             menuItems: [],
@@ -424,6 +472,7 @@ export default {
         };
     },
     mounted() {
+        this.isEditable = true;
         let sections = this.user_template.template_sections;
         // console.log(sections);
 
@@ -553,8 +602,17 @@ export default {
             return JSON.parse(data);
         },
 
+        getFeatureImage(feature, index) {
+            const imagePath = feature.image
+                ? feature.image
+                : `/images/demo${index + 1}.jpg`;
+            const storageType = feature.image ? "storage" : "public";
+            return this.imageSource(imagePath, storageType);
+        },
+
         updateImage(data) {
             console.log(data);
+
             let section = data.section;
             let element = data.element;
             let imageFile = data.image;
@@ -579,22 +637,76 @@ export default {
                 )
                 .then((response) => {
                     console.log(response.data);
-                    
-                    this.storeData = this.imageSource(
-                        response.data.image,
-                        "storage"
-                    );
+
+                    (this[storeData] = response.data.image), "storage";
 
                     this.toast("success", "Resource updated successfully.");
                 })
                 .catch((error) => {
                     console.error(error);
-                    
+
                     this.toast(
                         "error",
                         "Something went wrong. Please try again."
                     );
                 });
+        },
+
+        saveFeature(data) {
+            console.log(data);
+
+            let section = data.section;
+            let element = data.element;
+            let imageFile = data.image;
+            let storeData = data.storeData;
+
+            // Check if the feature exists
+            let findFeature = this.getNestedProperty(this, storeData) ?? null;
+            if (!findFeature) {
+                this.toast("error", "Feature not found.");
+                return false;
+            }
+
+            const formData = new FormData();
+            formData.append("id", findFeature.id ?? null);
+            formData.append("image", imageFile);
+
+            axios
+                .post(`${this.appUrl}/app/templates/feature/save`, formData)
+                .then((response) => {
+                    console.log(response.data);
+                    let updatedFeature = response.data.feature;
+
+                    // Find the index of the feature in the featureItems array
+                    const featureIndex = this.featureItems.findIndex(
+                        (item) => item.id === findFeature.id
+                    );
+
+                    if (featureIndex !== -1) {
+                        // Directly update the feature at the found index
+                        this.featureItems.splice(featureIndex, 1, updatedFeature);
+                    } else {
+                        // If not found, push the new feature
+                        this.featureItems.push(updatedFeature);
+                    }
+
+                    this.toast("success", "Resource updated successfully.");
+                })
+                .catch((error) => {
+                    console.error(error);
+                    this.toast(
+                        "error",
+                        "Something went wrong. Please try again."
+                    );
+                });
+        },
+
+        getNestedProperty(obj, path) {
+            // Split the string path into segments, e.g., 'featureItems[0]' becomes ['featureItems', '0']
+            const keys = path.replace(/\[(\w+)\]/g, ".$1").split(".");
+
+            // Traverse through the object based on the keys
+            return keys.reduce((o, key) => (o ? o[key] : undefined), obj);
         },
     },
 };
@@ -618,5 +730,9 @@ export default {
 /* Card Body */
 .ms-card .card-body {
     padding: 20px;
+}
+
+.fw-bold {
+    font-weight: bold;
 }
 </style>
