@@ -42,7 +42,7 @@
 <body class="main-layout">
 
     <x-template-edit-bar :userTemplate="$userTemplate" />
-@dd($userTemplate);
+{{-- @dd($userTemplate); --}}
     <main id="app" style="margin-top: 50px">
         <cosmetic :user_template="{{ json_encode($userTemplate) }}" :template="{{ json_encode($template) }}" />
     </main>

@@ -1,14 +1,14 @@
 <template>
     <!-- loader  -->
     <div class="loader_bg">
-        <div class="loader"><img :src="imageSource('/images/loading.gif','public')" alt="#" />
+        <div class="loader"><img :src="imageSource('/images/loading.gif', 'public')" alt="#" />
         </div>
     </div>
     <!-- end loader -->
     <!-- header -->
     <header>
         <!-- header inner -->
-        <div class="header_bg">
+        <div class="header_bg" :style="headerBgStyle">
             <div class="header">
                 <div class="container">
                     <div class="row">
@@ -17,7 +17,7 @@
                                 <div class="center-desk">
                                     <div class="logo">
                                         <a href="#"><img
-                                                :src="imageSource('/images/logo.png','public')"
+                                                :src="imageSource(headerAreaLogo ? headerAreaLogo : '/images/logo.png', headerAreaLogo ? 'storage' : 'public')"
                                                 alt="logo" width="80px" /></a>
                                     </div>
                                 </div>
@@ -25,7 +25,7 @@
                         </div>
                         <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
                             <ul class="costomer">
-                                <li>Call Us : +880 160000000</li>
+                                <li>{{ headerAreaContact }}</li>
                             </ul>
                         </div>
                     </div>
@@ -34,24 +34,21 @@
             <!-- end header inner -->
             <!-- end header -->
             <!-- banner -->
-            <section class="banner_main">
+            <section class="banner_main" :style="heroAreaStyles">
                 <div class="container-fluid">
                     <div class="row d_flex">
                         <div class="col-md-6">
                             <div class="text-bg">
-                                <span>Cream</span>
-                                <h1>Lakmē Glycolic Night Cream 15g </h1>
-                                <p>Wake up to brighter, illuminated skin! Experience the restorative power of Glycolic
-                                    Acid as your sleep. Introducing our masterfully crafted Lakmé Glycolic Illuminate
-                                    Night Crème, an exceptional night cream enriched with the goodness of Glycolic Acid
-                                    and Niacinamide, a true beauty sleep experience.</p>
-                                <a href="#order">Order Now</a>
+                                <span>{{ heroAreaSubTitle }}</span>
+                                <h1>{{ heroAreaTitle }}</h1>
+                                <p>{{ heroAreaDescription }}</p>
+                                <a :href="heroAreaButton.url">{{ heroAreaButton.title }} </a>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="text-img">
-                                <figure><img :src="
-                                    imageSource('/images/img.png','public')"
+                                <figure><img
+                                        :src="imageSource(heroAreaImage ? heroAreaImage : '/images/img.png', heroAreaImage ? 'storage' : 'public')"
                                         style="border-radius: 50%;width: 600px" /></figure>
                             </div>
                         </div>
@@ -63,24 +60,23 @@
     <!-- end banner -->
 
     <!-- quality  -->
-    <div class="quality ">
+    <div class="quality" :style="informationAreaStyles">
         <div class="container">
             <div class="row d_flex">
                 <div class="col-md-8">
                     <div class="quality_box">
-                        <figure><img :src="imageSource('/images/qt.jpg','public')" alt="product" />
+                        <figure><img
+                                :src="imageSource(informationImage ? informationImage : '/images/qt.jpg', informationImage ? 'storage' : 'public')"
+                                alt="product" />
                         </figure>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="quality_text">
-                        <h3>Information</h3>
+                        <h3>{{ informationTitle }}</h3>
                         <p>
                         <ul>
-                            <li>Net Quantity: 15g</li>
-                            <li>Manufacturer/Company Name : Nutracos</li>
-                            <li>Commodity: Night Cream</li>
-                            <li>Expiry Date: 30 Months (From date of Manufacturing)</li>
+                            <li v-for="(item, index) in informationItems" :key="index">{{ item }}</li>
                         </ul>
                         </p>
                     </div>
@@ -95,7 +91,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="titlepage">
-                        <h2>Product Details</h2>
+                        <h2>{{ sliderAreaTitle }}</h2>
                     </div>
                 </div>
             </div>
@@ -107,57 +103,16 @@
                         <li data-target="#myCarousel" data-slide-to="2"></li>
                     </ol>
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-
+                        <div v-for="(item, index) in sliderItems" :key="index"
+                            :class="['carousel-item', { active: index === 0 }]">
                             <div class="container">
                                 <div class="carousel-caption">
-                                    <figure><img :src="imageSource('/images/banner1.jpg','public')"
-                                            alt="banner 2" style="height: 500px; width: 900px; border-radius: 20px" />
+                                    <figure>
+                                        <img :src="imageSource(item.image ? item.image : '/images/banner' + (index + 1) + '.jpg', item.image ? 'storage' : 'public')"
+                                            :alt="'banner ' + (index + 1)"
+                                            style="height: 500px; width: 900px; border-radius: 20px" />
                                     </figure>
-                                    <p>The results are astounding – 90% of women witnessed visibly smoother and more
-                                        radiant skin. This crème's transformative powers extend to improving radiance,
-                                        deeply nourishing your skin, and leaving it silky smooth. Tested by
-                                        dermatologists, this crème is suitable for all skin types. Its non-sticky,
-                                        easy-to-blend formula ensures that your skin's unique needs are met, whether you
-                                        have normal, dry, oily, or combination skin.
-                                    </p>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-
-                            <div class="container">
-                                <div class="carousel-caption">
-                                    <figure><img :src="imageSource('/images/banner2.jpg','public')"
-                                            alt="banner 2" style="height: 500px; width: 900px; border-radius: 20px" />
-                                    </figure>
-                                    <p>The results are astounding – 90% of women witnessed visibly smoother and more
-                                        radiant skin. This crème's transformative powers extend to improving radiance,
-                                        deeply nourishing your skin, and leaving it silky smooth. Tested by
-                                        dermatologists, this crème is suitable for all skin types. Its non-sticky,
-                                        easy-to-blend formula ensures that your skin's unique needs are met, whether you
-                                        have normal, dry, oily, or combination skin.
-                                    </p>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-
-                            <div class="container">
-                                <div class="carousel-caption">
-                                    <figure><img :src=" imageSource('/images/banner3.png','public')"
-                                            alt="banner 2" style="height: 500px; width: 900px; border-radius: 20px" />
-                                    </figure>
-                                    <p>The results are astounding – 90% of women witnessed visibly smoother and more
-                                        radiant skin. This crème's transformative powers extend to improving radiance,
-                                        deeply nourishing your skin, and leaving it silky smooth. Tested by
-                                        dermatologists, this crème is suitable for all skin types. Its non-sticky,
-                                        easy-to-blend formula ensures that your skin's unique needs are met, whether you
-                                        have normal, dry, oily, or combination skin.
-                                    </p>
-
+                                    <p>{{ item.description }}</p>
                                 </div>
                             </div>
                         </div>
@@ -183,9 +138,8 @@
                 <div class="col-md-12">
                     <div class="titlepage">
                         <h2>Says Clients </h2>
-                        <p>use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in
-                            the<br>
-                            middle of text. All the Lorem Ipsum generators on the
+                        <p>
+                            {{ clientSaysDescription }}
                         </p>
                     </div>
                 </div>
@@ -194,54 +148,11 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="owl-carousel owl-theme">
-                            <div class="item">
+                            <div v-for="(item, index) in clientSaysItems" :key="index" class="item"
+                                :style="{ backgroundColor: item.bg_color, color: item.text_color }">
                                 <span></span>
-                                <h3>when looking </h3>
-                                <p>It is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is that
-                                    it has a more-or-less normal distribution of letters,</p>
-                            </div>
-                            <div class="item">
-                                <span></span>
-                                <h3>when looking </h3>
-                                <p>It is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is that
-                                    it has a more-or-less normal distribution of letters,</p>
-                            </div>
-                            <div class="item">
-                                <span></span>
-                                <h3>when looking </h3>
-                                <p>It is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is that
-                                    it has a more-or-less normal distribution of letters,</p>
-                            </div>
-                            <div class="item">
-                                <span></span>
-                                <h3>when looking </h3>
-                                <p>It is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is that
-                                    it has a more-or-less normal distribution of letters,</p>
-                            </div>
-                            <div class="item">
-                                <span></span>
-                                <h3>when looking </h3>
-                                <p>It is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is that
-                                    it has a more-or-less normal distribution of letters,</p>
-                            </div>
-                            <div class="item">
-                                <span></span>
-                                <h3>when looking </h3>
-                                <p>It is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is that
-                                    it has a more-or-less normal distribution of letters,</p>
-                            </div>
-                            <div class="item">
-                                <span></span>
-                                <h3>when looking </h3>
-                                <p>It is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is that
-                                    it has a more-or-less normal distribution of letters,</p>
+                                <h3>{{ item.title }}</h3>
+                                <p>{{ item.description }}</p>
                             </div>
                         </div>
                     </div>
@@ -268,7 +179,7 @@
                                         <div class="col-sm-12 order-product-info mb-3">
                                             <div class="d-flex align-items-center justify-content-between">
                                                 <div>
-                                                    <img :src="imageSource('/images/img.png','public')"
+                                                    <img :src="imageSource('/images/img.png', 'public')"
                                                         class="order-product-image">
                                                 </div>
                                                 <div class="order-product-name">
@@ -278,9 +189,8 @@
                                                     <h1 class="order-multiplier">x</h1>
                                                 </div>
                                                 <div class="order-quantity-input">
-                                                    <input class="orderfield" placeholder="Qty"
-                                                        type="number" name="Quantity" min="1"
-                                                        value="1">
+                                                    <input class="orderfield" placeholder="Qty" type="number"
+                                                        name="Quantity" min="1" value="1">
                                                 </div>
                                                 <div class="order-product-price">
                                                     <h3>500.00 TK.</h3>
@@ -290,8 +200,8 @@
 
                                         <div class="col-sm-12">
                                             <label class="order-shipping-option d-flex p-3">
-                                                <input class="order-custom-radio " type="radio"
-                                                    name="shippingOption" id="shippingOption1" checked>
+                                                <input class="order-custom-radio " type="radio" name="shippingOption"
+                                                    id="shippingOption1" checked>
                                                 <div class="order-form-check-label">
                                                     <h3>Shipping Cost (Inside Dhaka)</h3>
                                                 </div>
@@ -302,8 +212,8 @@
                                         </div>
                                         <div class="col-sm-12">
                                             <label class="order-shipping-option d-flex p-3">
-                                                <input class="order-custom-radio " type="radio"
-                                                    name="shippingOption" id="shippingOption2">
+                                                <input class="order-custom-radio " type="radio" name="shippingOption"
+                                                    id="shippingOption2">
                                                 <div class="order-form-check-label">
                                                     <h3>Shipping Cost (Outside Dhaka)</h3>
                                                 </div>
@@ -312,7 +222,7 @@
                                                 </div>
                                             </label>
                                         </div>
-                                      
+
                                         <!-- Divider -->
                                         <div class="col-sm-12">
                                             <hr class="order-divider">
@@ -336,21 +246,19 @@
                                 <div class="col-sm-6">
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <input class="orderfield" placeholder="Full Name" type="text"
-                                                name="
+                                            <input class="orderfield" placeholder="Full Name" type="text" name="
                                   Full Name">
                                         </div>
                                         <div class="col-sm-12">
-                                            <input class="orderfield" placeholder="Email" type="text"
-                                                name=" Email">
+                                            <input class="orderfield" placeholder="Email" type="text" name=" Email">
                                         </div>
                                         <div class="col-sm-12">
-                                            <input class="orderfield" placeholder="Phone" type="text"
-                                                name="Phone">
+                                            <input class="orderfield" placeholder="Phone" type="text" name="Phone">
                                         </div>
 
                                         <div class="col-sm-12">
-                                            <textarea class="textarea" placeholder="Address" type="text" name="Address"></textarea>
+                                            <textarea class="textarea" placeholder="Address" type="text"
+                                                name="Address"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -397,8 +305,12 @@ export default {
         return {
             appUrl: window.location.origin,
 
-            // menu items
-            menuItems: [],
+
+
+            // header area
+            headerAreaLogo: "",
+            headerAreaBgImage: "",
+            headerAreaContact: "",
 
             // hero area
             heroAreaTitle: "",
@@ -409,27 +321,27 @@ export default {
             heroAreaBgColor: "",
             heroAreaTextColor: "",
 
-            // about area
-            aboutAreaTitle: "",
-            aboutAreaSubTitle: "",
-            aboutAreaDescription: "",
-            aboutAreaBgColor: "",
-            aboutAreaTextColor: "",
+            // Information area
+            informationBgColor: "",
+            informationTextColor: "",
+            informationTitle: "",
+            informationItems: [],
+            informationImage: "",
+            informationImageBorderColor: "",
 
-            // ingredients area
-            ingredientAreaTitle: "",
-            ingredientItems: [],
-            ingredientAreaButton: [],
-            ingredientAreaImage: "",
-            ingredientAreaBgColor: "",
-            ingredientAreaTextColor: "",
+            // slider area
+            sliderAreaTitle: "",
+            sliderItems: [],
+            sliderAreaImage: "",
+            sliderAreaBgColor: "",
+            sliderAreaTextColor: "",
 
-            // features area
-            featuresAreaTitle: "",
-            featuresAreaSubTitle: "",
-            featureItems: [],
-            featuresAreaBgColor: "",
-            featuresAreaTextColor: "",
+            // client says area
+            clientSaysAreaTitle: "",
+            clientSaysAreaTextColor: "",
+            clientSaysDescription: [],
+            clientSaysItems: [],
+            clientSaysAreaBgColor: "",
 
             // review area
             reviewAreaTitle: "",
@@ -456,10 +368,14 @@ export default {
         let sections = this.user_template.template_sections;
         // console.log(sections);
 
-        // menu area
-        this.menuItems = this.decodedData(
-            this.getElement("header", "menu").data
+        // header area
+        let headerAreaElement = this.decodedData(
+            this.getElement("header", "header").data
         );
+
+        this.headerAreaLogo = headerAreaElement.image;
+        this.headerAreaBgImage = headerAreaElement.bg_image;
+        this.headerAreaContact = headerAreaElement.contact;
 
         // hero area
         let heroArea = this.getSection("hero");
@@ -472,42 +388,41 @@ export default {
         this.heroAreaDescription = heroAreaElement.description;
         this.heroAreaButton = heroAreaElement.button;
         this.heroAreaImage = heroAreaElement.image;
-        this.heroAreaBgColor = heroArea.bg_color;
-        this.heroAreaTextColor = heroArea.text_color;
 
-        // about area
-        let aboutArea = this.getSection("about");
-        let aboutAreaElement = this.decodedData(
-            this.getElement("about", "about").data
+        // information area
+        let information = this.getSection("information");
+        let informationElement = this.decodedData(
+            this.getElement("information", "information").data
         );
 
-        this.aboutAreaTitle = aboutArea.title;
-        this.aboutAreaSubTitle = aboutArea.sub_title;
-        this.aboutAreaDescription = aboutAreaElement.description;
-        this.aboutAreaBgColor = aboutArea.bg_color;
-        this.aboutAreaTextColor = aboutArea.text_color;
+        this.informationBgColor = information.bg_color;
+        this.informationTextColor = information.text_color;
+        this.informationTitle = informationElement.title;
+        this.informationItems = informationElement.items;
+        this.informationImage = informationElement.image;
+        this.informationImageBorderColor = informationElement.image_border_color;
 
-        // ingredients area
-        let ingredientsArea = this.getSection("ingredients");
-        let ingredientsAreaElement = this.decodedData(
-            this.getElement("ingredients", "ingredients").data
+        // slider area
+        let sliderArea = this.getSection("slider");
+        let sliderAreaElement = this.decodedData(
+            this.getElement("slider", "slider").data
         );
 
-        this.ingredientAreaTitle = ingredientsArea.title;
-        this.ingredientItems = ingredientsAreaElement.items;
-        this.ingredientAreaButton = ingredientsAreaElement.button;
-        this.ingredientAreaImage = ingredientsAreaElement.image;
-        this.ingredientAreaBgColor = ingredientsArea.bg_color;
-        this.ingredientAreaTextColor = ingredientsArea.text_color;
+        this.sliderAreaTitle = sliderArea.title;
+        this.sliderItems = sliderAreaElement.items;
 
-        // features area
-        let featuresArea = this.getSection("features");
+        // client says area
+        let clientSaysArea = this.getSection("clients_says");
+        let clientSaysAreaElement = this.decodedData(
+            this.getElement("clients_says", "clients_says").data
+        );
 
-        this.featuresAreaTitle = featuresArea.title;
-        this.featuresAreaSubTitle = featuresArea.sub_title;
-        this.featureItems = this.user_template.template.features;
-        this.featuresAreaBgColor = featuresArea.bg_color;
-        this.featuresAreaTextColor = featuresArea.text_color;
+        this.clientSaysAreaTitle = clientSaysArea.title;
+        this.clientSaysAreaBgColor = clientSaysArea.bg_color;
+        this.clientSaysAreaTextColor = clientSaysArea.text_color;
+        this.clientSaysDescription = clientSaysAreaElement.description;
+        this.clientSaysItems = clientSaysAreaElement.items;
+
 
         // review area
         let reviewArea = this.getSection("review");
@@ -539,6 +454,31 @@ export default {
         this.footerAreaText = footerAreaElement.text;
         this.footerAreaBgColor = footerArea.bg_color;
         this.footerAreaLinks = footerAreaElement.links;
+    },
+    computed: {
+        headerBgStyle() {
+            const imagePath = this.headerAreaBgImage ? this.headerAreaBgImage : 'images/banner.png';
+            const storageType = this.headerAreaBgImage ? 'storage' : 'public';
+            return {
+                backgroundImage: `url(${this.imageSource(imagePath, storageType)})`
+            };
+        },
+        heroAreaStyles() {
+            return {
+                '--hero-border-color': this.heroAreaButton.border_color,
+                '--hero-bg-color': this.heroAreaButton.color,
+                '--hero-text-color': this.heroAreaButton.text_color,
+                '--hero-hover-border-color': this.heroAreaButton.hover_border_color,
+                '--hero-hover-bg-color': this.heroAreaButton.hover_color,
+                '--hero-hover-text-color': this.heroAreaButton.hover_text_color,
+            };
+        },
+        informationAreaStyles() {
+            return {
+                '--information-bg-color': this.informationBgColor,
+                '--information-img-border-color': this.informationImageBorderColor,
+            };
+        }
     },
     methods: {
         ...DynamicFormMethods,
@@ -585,23 +525,41 @@ export default {
 };
 </script>
 
-<style>
-/* Custom Card Styles */
-.ms-card {
-    border-radius: 6px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
+<style scoped>
+.text-bg a {
+    border: 2px solid var(--hero-border-color);
+    background-color: var(--hero-bg-color);
+    color: var(--hero-text-color);
 }
 
-/* Card Header */
-.ms-card .card-header {
-    background-color: #f8f9fa;
-    border-bottom: none;
-    border-radius: 15px 15px 0 0;
+.text-bg a:hover {
+    border: 2px solid var(--hero-hover-border-color);
+    background-color: var(--hero-hover-bg-color);
+    color: var(--hero-hover-text-color);
 }
 
-/* Card Body */
-.ms-card .card-body {
-    padding: 20px;
+.quality {
+    background: var(--information-bg-color);
+}
+
+.quality .quality_box::before {
+    position: absolute;
+    content: "";
+    left: 15px;
+    border-top: 20px;
+    height: 20px;
+    background: var(--information-img-border-color);
+    width: 77%;
+    top: -5px;
+}
+
+.quality .quality_box::after {
+    position: absolute;
+    content: "";
+    left: 10px;
+    height: 80%;
+    background: var(--information-img-border-color);
+    width: 20px;
+    top: -5px;
 }
 </style>
