@@ -439,7 +439,13 @@
     />
     <div class="container">
       <div class="contact_main">
-        <h1 class="request_text" contenteditable="true" @blur="updateOrderTitle">{{orderTitle}}</h1>
+        <h1
+          class="request_text"
+          contenteditable="true"
+          @blur="updateOrderTitle"
+        >
+          {{ orderTitle }}
+        </h1>
         <div class="row">
           <div class="col-md-8">
             <span
@@ -528,7 +534,7 @@
                   class="about_text"
                   contenteditable="true"
                   @blur="updateShipCostInDhaka"
-                 >
+                >
                   {{ shippingCostInDhaka }}
                 </span>
               </div>
@@ -598,7 +604,7 @@
                 style="font-size: 20px; margin-top: 5px"
               ></i>
             </div>
-            <button type="submit">{{orderButton.title}}</button>
+            <button type="submit">{{ orderButton.title }}</button>
           </div>
         </form>
       </div>
@@ -1056,12 +1062,7 @@ export default {
       this.template.testimonials.length > 0
         ? this.template.testimonials
         : this.testimonials;
-    const defaultTestimonialImages = [
-      "images/client-img.png",
-      "images/client-img.png",
-      "images/client-img.png",
-      "images/client-img.png",
-    ];
+    const defaultTestimonialImage = "cycle/images/client-img.png";
 
     this.testimonials.forEach((testimonial, index) => {
       testimonial.reviewer_image =
@@ -1072,7 +1073,7 @@ export default {
               this.template.testimonials[index].reviewer_image,
               "storage"
             )
-          : this.imageSource(defaultTestimonialImages[index]);
+          : this.imageSource(defaultTestimonialImage);
     });
   },
   beforeDestroy() {},
@@ -1441,18 +1442,12 @@ export default {
         .then((response) => {
           this.toast("success", "Resources Updated.");
           this.testimonials = response.data.data;
-
-          const defaultTestimonialImages = [
-            "images/client-img.png",
-            "images/client-img.png",
-            "images/client-img.png",
-          ];
-
           this.testimonials.forEach((testimonial, index) => {
             testimonial.reviewer_image =
-              testimonial.reviewer_image != null
+              testimonial.reviewer_image != null &&
+              testimonial.reviewer_image != ""
                 ? this.imageSource(testimonial.reviewer_image, "storage")
-                : this.imageSource(defaultTestimonialImages[index]);
+                : this.appUrl + "/cycle/images/client-img.png";
           });
         })
         .catch((error) => {
@@ -1508,7 +1503,7 @@ export default {
       this.orderBg = data;
       this.updateOrderArea();
     },
-     saveFooterBgColor(key, data) {
+    saveFooterBgColor(key, data) {
       this.footerBg = data;
       this.saveFooterArea();
     },
@@ -1728,6 +1723,5 @@ export default {
 }
 .copyright_section {
   background-color: v-bind(footerBg) !important ;
-  
 }
 </style>
