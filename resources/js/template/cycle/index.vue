@@ -246,8 +246,8 @@
                 <a :href="featureButton.url">{{ featureButton.title }}</a>
               </div>
               <div
-                class="bg-dark text-white text-center rounded-circle cursor-pointer"
-                style="width: 30px; height: 30px"
+                class="bg-dark text-white text-center rounded-circle"
+                style="width: 30px; height: 30px; cursor: pointer"
                 data-bs-toggle="modal"
                 data-bs-target="#featureButton"
               >
@@ -594,8 +594,8 @@
           />
           <div class="send_btn">
             <div
-              class="bg-dark text-white text-center rounded-circle cursor-pointer"
-              style="width: 30px; height: 30px"
+              class="bg-dark text-white text-center rounded-circle"
+              style="width: 30px; height: 30px; cursor: pointer"
               data-bs-toggle="modal"
               data-bs-target="#orderNowButton"
             >
