@@ -83,42 +83,7 @@ class CycleTemplateController extends Controller
                 "title" => "About Our cycle Store",
                 "description" => "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters",
                 "background_color" => "#283618",
-                "items" => [
-                    [
-                        "title" => "Different preset Signup & Order forms ready to use.",
-                        "sub_title" => "FRESH NEWS FROM THE LABS",
-                        "description" => "Pri quas audiam virtute ut, case utamur fuisset eam ut, iisque accommodare an eam. Reque blandit qui eu, cu vix nonumy volumus. Legendos intellegam id usu, vide oporteat vix eu, id illud principes has.",
-                        "button" => [
-                            "title" => "Purchase Now",
-                            "url" => "#order",
-                            "color" => "transparent",
-                            "text_color" => "#20bea7",
-                            "border_color" => "#20bea7",
-                            "hover_color" => "#20bea7",
-                            "hover_text_color" => "white",
-                            "hover_border_color" => "#20bea7"
-                        ],
-                        "image" => null,
-                        "image_raw" => null
-                    ],
-                    [
-                        "title" => "Different preset Signup & Order forms ready to use.",
-                        "sub_title" => "FRESH NEWS FROM THE LABS",
-                        "description" => "Pri quas audiam virtute ut, case utamur fuisset eam ut, iisque accommodare an eam. Reque blandit qui eu, cu vix nonumy volumus. Legendos intellegam id usu, vide oporteat vix eu, id illud principes has.",
-                        "button" => [
-                            "title" => "Purchase Now",
-                            "url" => "#order",
-                            "color" => "transparent",
-                            "text_color" => "#20bea7",
-                            "border_color" => "#20bea7",
-                            "hover_color" => "#20bea7",
-                            "hover_text_color" => "white",
-                            "hover_border_color" => "#20bea7"
-                        ],
-                        "image" => null,
-                        "image_raw" => null
-                    ]
-                ]
+                "image" => null,
             ]),
             'testimonials_area' => json_encode([
                 "title" => "What our Customer say",
@@ -416,7 +381,7 @@ class CycleTemplateController extends Controller
         $uploadedPath = null;
         if ($aboutArea) {
             $decodedData = json_decode($aboutArea);
-            $uploadedPath = $decodedData->image;
+            $uploadedPath = $decodedData->image ?? null;
             if ($request->hasFile('image')) {
 
                 if ($decodedData && isset($decodedData->image)) {
@@ -460,6 +425,7 @@ class CycleTemplateController extends Controller
             'background_color' => $request->input('background_color'),
         ]);
         $this->template->save();
+        TemplateTestimonial::where('template_id', $this->templateId)->update(['is_active' => 0]);
         $temp_test =  TemplateTestimonial::where('template_id', $this->templateId)->get();
         $items = $request->input('items', []);
         if ($items) {
@@ -479,12 +445,17 @@ class CycleTemplateController extends Controller
                     'review' => $item['review'] ?? '',
                     'reviewer_name' => $item['reviewer_name'] ?? '',
                     'reviewer_bio' => $item['reviewer_bio'] ?? '',
+                    'is_active' => 1,
                     'reviewer_image' => $path ? str_replace('public/', '', $path) : '',
                 ];
 
                 TemplateTestimonial::updateOrCreate(['id' => $item['id']], $data);
             }
         }
+        TemplateTestimonial::where([
+            ['template_id', '=', $this->templateId],
+            ['is_active', '=', 0]
+        ])->delete();
         // Ensure relationships are reloaded
         $this->template->load('testimonials');
         return response()->json([
@@ -555,6 +526,8 @@ class CycleTemplateController extends Controller
                 'product_name' => $request->input('product_name'),
                 'product_price' => $request->input('product_price'),
                 'product_currency' => $request->input('product_currency'),
+                'shipping_cost_inside_dhaka' => $request->input('shipping_cost_in_dhaka'),
+                'shipping_cost_outside_dhaka' => $request->input('shipping_cost_out_dhaka'),
             ]);
         }
         return response()->json([

@@ -6,7 +6,7 @@
             placeholder="{{ ucfirst(str_replace('_', ' ', $field['name'])) }}"
             style="background-color: {{ @$styles['background_color'] }} !important;" />
     @elseif ($field['type'] === 'textarea')
-        <textarea name="{{ $field['name'] }}" rows="2" class="form-control" placeholder="{{ ucfirst(str_replace('_', ' ', $field['name'])) }}"
+        <textarea name="{{ $field['name'] }}" class="massage-bt" rows="5" class="form-control" placeholder="{{ ucfirst(str_replace('_', ' ', $field['name'])) }}"
             @if ($field['is_required']) required @endif></textarea>
     @elseif ($field['type'] === 'select')
         <select name="{{ $field['name'] }}" class="form-control" @if ($field['is_required']) required @endif
