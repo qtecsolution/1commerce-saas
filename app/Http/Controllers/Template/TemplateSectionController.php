@@ -10,31 +10,15 @@ use Illuminate\Http\Request;
 
 class TemplateSectionController extends Controller
 {
-    public function section(Request $request)
+    public function updateSection(Request $request, $id)
     {
-        $validatedData = $request->validate([
-            'user_template_id' => 'required|exists:user_templates,id',
-            'section' => 'required|string|max:255',
-            'title' => 'required|string|max:255',
-            'sub_title' => 'required|string|max:255',
-            'bg_color' => 'required|string|max:7',
-            'text_color' => 'required|string|max:7',
-            'status' => 'nullable|boolean'
+        $section = TemplateSection::findOrFail($id);
+        $section->update([
+            'title' => $request->title ?? $section->title,
+            'sub_title' => $request->sub_title ?? $section->sub_title,
+            'bg_color' => $request->bg_color ?? $section->bg_color,
+            'text_color' => $request->text_color ?? $section->text_color,
         ]);
-
-        $section = TemplateSection::updateOrCreate(
-            [
-                'user_template_id' => $validatedData['user_template_id'],
-                'section' => $validatedData['section']
-            ],
-            [
-                'title' => $validatedData['title'],
-                'sub_title' => $validatedData['sub_title'],
-                'bg_color' => $validatedData['bg_color'],
-                'text_color' => $validatedData['text_color'],
-                'status' => $validatedData['status'] ?? true
-            ]
-        );
 
         return response()->json(['section' => $section], 200);
     }

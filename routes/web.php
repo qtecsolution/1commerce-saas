@@ -152,7 +152,7 @@ Route::prefix('app')->middleware('user')->group(function () {
             Route::post('settings/{id}', 'settings')->name('settings');
 
             // Route to update a section
-            Route::post('section/update', [TemplateSectionController::class, 'section']);
+            Route::post('section/update/{id}', [TemplateSectionController::class, 'updateSection']);
 
             // Route to get a section by its ID
             Route::get('section/{id}', [TemplateSectionController::class, 'getSection']);

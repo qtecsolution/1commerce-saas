@@ -29,10 +29,10 @@
             <div class="center-box">
                 <div class="hero-unit">
                     <div class="container">
-                        <h1 class="title" :contenteditable="isEditable">
+                        <h1 class="title" :contenteditable="isEditable" @blur="updateTitle('hero', 'heroAreaTitle', $event)">
                             {{ heroAreaTitle }}
                         </h1>
-                        <h3 class="fw-bold" :contenteditable="isEditable">
+                        <h3 class="fw-bold" :contenteditable="isEditable" @blur="updateSubTitle('hero', 'heroAreaSubTitle', $event)">
                             {{ heroAreaSubTitle }}
                         </h3>
                         <p class="mx-md-5" :contenteditable="isEditable">
@@ -89,10 +89,10 @@
             <div class="container">
                 <div class="row header">
                     <div class="col-md-12">
-                        <h2 :contenteditable="isEditable">
+                        <h2 :contenteditable="isEditable" @blur="updateTitle('about', 'aboutAreaTitle', $event)">
                             {{ aboutAreaTitle }}
                         </h2>
-                        <p :contenteditable="isEditable">
+                        <p :contenteditable="isEditable" @blur="updateSubTitle('about', 'aboutAreaSubTitle', $event)">
                             {{ aboutAreaSubTitle }}
                         </p>
                     </div>
@@ -150,6 +150,7 @@
                                     <h1
                                         class="fw-bold"
                                         :contenteditable="isEditable"
+                                        @blur="updateTitle('ingredients', 'ingredientAreaTitle', $event)"
                                     >
                                         {{ ingredientAreaTitle }}
                                     </h1>
@@ -181,10 +182,10 @@
             <div class="container padding-top-bottom">
                 <div class="row header">
                     <div class="col-md-12">
-                        <h2 :contenteditable="isEditable">
+                        <h2 :contenteditable="isEditable" @blur="updateTitle('features', 'featuresAreaTitle', $event)">
                             {{ featuresAreaTitle }}
                         </h2>
-                        <p :contenteditable="isEditable">
+                        <p :contenteditable="isEditable" @blur="updateSubTitle('features', 'featuresAreaSubTitle', $event)">
                             {{ featuresAreaSubTitle }}
                         </p>
                     </div>
@@ -254,7 +255,7 @@
                 <div class="row justify-content-end">
                     <div class="col-md-6">
                         <div class="white-box">
-                            <h2 class="fw-bold" :contenteditable="isEditable">
+                            <h2 class="fw-bold" :contenteditable="isEditable" @blur="updateTitle('review', 'reviewAreaTitle', $event)">
                                 {{ reviewAreaTitle }}
                             </h2>
                             <p :contenteditable="isEditable">
@@ -277,10 +278,10 @@
             <div class="container">
                 <div class="row header">
                     <div class="col-md-12">
-                        <h2 :contenteditable="isEditable">
+                        <h2 :contenteditable="isEditable" @blur="updateTitle('order', 'orderAreaTitle', $event)">
                             {{ orderAreaTitle }}
                         </h2>
-                        <p :contenteditable="isEditable">
+                        <p :contenteditable="isEditable" @blur="updateSubTitle('order', 'orderAreaSubTitle', $event)">
                             {{ orderAreaSubTitle }}
                         </p>
                     </div>
@@ -708,6 +709,63 @@ export default {
             // Traverse through the object based on the keys
             return keys.reduce((o, key) => (o ? o[key] : undefined), obj);
         },
+
+        updateContent(event) {
+            const rawContent =
+                event.target.innerHTML ?? event.target.textContent;
+            const sanitizedContent = rawContent.replace(/&nbsp;/g, " ");
+
+            return sanitizedContent;
+        },
+
+        updateTitle(section, storeData, event) {
+            const newValue = event.target.textContent.trim();
+            if (this.orderSubTitle == newValue) {
+                return;
+            }
+
+            this[storeData] = this.updateContent(event);
+            // console.log(this[storeData]);
+            
+            this.updateSection(section, 'title', this[storeData]);
+        },
+
+        updateSubTitle(section, storeData, event) {
+            const newValue = event.target.textContent.trim();
+            if (this.orderSubTitle == newValue) {
+                return;
+            }
+
+            this[storeData] = this.updateContent(event);
+            // console.log(this[storeData]);
+
+            this.updateSection(section, 'sub_title', this[storeData]);
+        },
+
+        updateSection(section, prefix, data) {
+            let findSection = this.getSection(section);
+            if (!findSection) {
+                this.toast("error", "Section not found.");
+                return false;
+            }
+
+            let formData = new FormData();
+            formData.append(prefix, data);
+
+            axios
+                .post(`${this.appUrl}/app/templates/section/update/${findSection.id}`, formData)
+                .then((response) => {
+                    console.log(response.data);
+                    this.toast("success", "Section updated successfully.");
+                })
+                .catch((error) => {
+                    console.error(error);
+                    this.toast(
+                        "error",
+                        "Something went wrong. Please try again."
+                    );
+                });
+        }
     },
 };
 </script>
