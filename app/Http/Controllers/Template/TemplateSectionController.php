@@ -34,12 +34,15 @@ class TemplateSectionController extends Controller
         return response()->json(['section' => $section], 200);
     }
 
-    public function element(Request $request, $sectionId)
+    public function updateElement(Request $request, $sectionId)
     {
+        // Validate the request
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'status' => 'nullable|boolean',
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048', // 2MB Max
+            'name' => 'required|string',
+            'prefix' => 'nullable|string',
+            'value' => 'nullable|string',
+            'status' => 'nullable|boolean'
         ]);
 
         // Ensure the section exists
@@ -49,28 +52,39 @@ class TemplateSectionController extends Controller
         }
 
         // Ensure the element exists
-        $element = TemplateSectionElement::where('template_section_id', $sectionId)->where('name', $validatedData['name'])->first();
+        $element = TemplateSectionElement::where('template_section_id', $sectionId)
+            ->where('name', $validatedData['name'])
+            ->first();
         if (!$element) {
             return response()->json(['error' => 'Element not found'], 404);
         }
 
-        $decodeElementData = json_decode($element->data) ?? [];
+        // Decode the element data
+        $elementData = json_decode($element->data, true) ?? [];
 
+        // Handle image upload
         if ($request->hasFile('image')) {
-            fileRemove($decodeElementData->image);
-            $uploadedPath =  fileUpload($request->file('image'), 'templates/' . $sectionId . '/elements');
+            // Remove the old image if exists
+            if (isset($elementData['image'])) {
+                fileRemove($elementData['image']);
+            }
+
+            // Upload the new image
+            $elementData['image'] = fileUpload($request->file('image'), "templates/elements");
         }
 
-        $decodeElementData->image = $uploadedPath ?? $decodeElementData->image;
+        // Update the specified prefix with the new value if provided
+        if ( !is_null( $request->prefix ) && !is_null( $request->value ) && $request->value != 'null' ) {
+            $elementData[$request->prefix] = $request->value;
+        }
 
-        $element->update(
-            [
-                'data' => json_encode($decodeElementData),
-                'status' => $validatedData['status'] ?? true
-            ]
-        );
+        // Update the element data and status
+        $element->update([
+            'data' => json_encode($elementData),
+            'status' => $request->input('status', true), // Defaults to true if not provided
+        ]);
 
-        return response()->json(['element' => $element, 'image' => $uploadedPath], 200);
+        return response()->json(['element' => $element, $request->prefix => $elementData[$request->prefix]], 200);
     }
 
     public function getElement($id)

@@ -158,7 +158,7 @@ Route::prefix('app')->middleware('user')->group(function () {
             Route::get('section/{id}', [TemplateSectionController::class, 'getSection']);
 
             // Route to update an element within a section by section ID
-            Route::post('element/update/{sectionId}', [TemplateSectionController::class, 'element']);
+            Route::post('element/update/{sectionId}', [TemplateSectionController::class, 'updateElement']);
 
             // Route to get an element by its ID
             Route::get('element/{id}', [TemplateSectionController::class, 'getElement']);

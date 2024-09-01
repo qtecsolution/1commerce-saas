@@ -13,9 +13,9 @@ use Illuminate\Http\Request;
 
 class AttarTemplateController extends Controller
 {
-    public function initialSetup($userId)
+    public function initialSetup($userId, $templateId)
     {
-        $userTemplate = UserTemplate::where('user_id', $userId)->first();
+        $userTemplate = UserTemplate::where('user_id', $userId)->where('template_id', $templateId)->first();
 
         // Create header section with menu elements
         $header = TemplateSection::create([

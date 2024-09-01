@@ -1106,7 +1106,7 @@ blockquote {
 
 .footer-1 {
     background-color: #1d2023;
-    padding: 80px 0 70px 0;
+    padding: 40px 0 20px 0;
     color: #b6b6b6;
     overflow: visible
 }
@@ -1120,7 +1120,7 @@ blockquote {
     width: 52px;
     height: 52px;
     line-height: 45px;
-    margin: -78px auto 26px;
+    margin: -35px auto 26px;
     display: block;
     font-size: 28px;
     text-align: center;

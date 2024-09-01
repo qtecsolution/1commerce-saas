@@ -11,7 +11,6 @@
                         :href="menu.url"
                         class="smooth-scroll"
                         :contenteditable="isEditable"
-                        contenteditable="true"
                         >{{ menu.label }}</a
                     >
                 </li>
@@ -23,19 +22,52 @@
         <!-- hero section start -->
         <section
             id="hero"
-            class="m-center text-center bg-shop full-height"
+            class="m-center text-center full-height"
             style="height: 752px"
+            :style="{ 'background-color': heroAreaBgColor }"
         >
+            <ColorPicker
+                style="margin-top: 40px; margin-left: 10px"
+                :color="heroAreaBgColor"
+                section="hero"
+                @update="heroAreaBgColor = $event"
+                @save="updateBgColor($event)"
+            />
             <div class="center-box">
                 <div class="hero-unit">
                     <div class="container">
-                        <h1 class="title" :contenteditable="isEditable" @blur="updateTitle('hero', 'heroAreaTitle', $event)">
+                        <h1
+                            class="title"
+                            :contenteditable="isEditable"
+                            @blur="updateTitle('hero', 'heroAreaTitle', $event)"
+                        >
                             {{ heroAreaTitle }}
                         </h1>
-                        <h3 class="fw-bold" :contenteditable="isEditable" @blur="updateSubTitle('hero', 'heroAreaSubTitle', $event)">
+                        <h3
+                            class="fw-bold"
+                            :contenteditable="isEditable"
+                            @blur="
+                                updateSubTitle(
+                                    'hero',
+                                    'heroAreaSubTitle',
+                                    $event
+                                )
+                            "
+                        >
                             {{ heroAreaSubTitle }}
                         </h3>
-                        <p class="mx-md-5" :contenteditable="isEditable">
+                        <p
+                            class="mx-md-5"
+                            :contenteditable="isEditable"
+                            @blur="
+                                updateDescription(
+                                    'hero',
+                                    'hero',
+                                    'heroAreaDescription',
+                                    $event
+                                )
+                            "
+                        >
                             {{ heroAreaDescription }}
                         </p>
                         <br />
@@ -71,7 +103,7 @@
                         section="hero"
                         element="hero"
                         storeData="heroAreaImage"
-                        @save="updateImage"
+                        @save="updateResource"
                     />
                 </div>
 
@@ -85,21 +117,56 @@
         <!-- hero section end -->
 
         <!-- about section start -->
-        <section id="about" class="padding-top-bottom text-center">
+        <section
+            id="about"
+            class="padding-top-bottom text-center"
+            :style="{ 'background-color': aboutAreaBgColor }"
+        >
+            <ColorPicker
+                style="margin-top: -40px; margin-left: 10px"
+                :color="aboutAreaBgColor"
+                section="about"
+                @update="aboutAreaBgColor = $event"
+                @save="updateBgColor($event)"
+            />
             <div class="container">
                 <div class="row header">
                     <div class="col-md-12">
-                        <h2 :contenteditable="isEditable" @blur="updateTitle('about', 'aboutAreaTitle', $event)">
+                        <h2
+                            :contenteditable="isEditable"
+                            @blur="
+                                updateTitle('about', 'aboutAreaTitle', $event)
+                            "
+                        >
                             {{ aboutAreaTitle }}
                         </h2>
-                        <p :contenteditable="isEditable" @blur="updateSubTitle('about', 'aboutAreaSubTitle', $event)">
+                        <p
+                            :contenteditable="isEditable"
+                            @blur="
+                                updateSubTitle(
+                                    'about',
+                                    'aboutAreaSubTitle',
+                                    $event
+                                )
+                            "
+                        >
                             {{ aboutAreaSubTitle }}
                         </p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-8 mx-auto">
-                        <p :contenteditable="isEditable">
+                        <p
+                            :contenteditable="isEditable"
+                            @blur="
+                                updateDescription(
+                                    'about',
+                                    'about',
+                                    'aboutAreaDescription',
+                                    $event
+                                )
+                            "
+                        >
                             {{ aboutAreaDescription }}
                         </p>
                     </div>
@@ -109,7 +176,14 @@
         <!-- about section end -->
 
         <!-- ingredients section start -->
-        <section id="ingredients" class="">
+        <section id="ingredients">
+            <ColorPicker
+                style="top: 10px; right: 10px; z-index: 1"
+                :color="ingredientAreaBgColor"
+                section="ingredients"
+                @update="ingredientAreaBgColor = $event"
+                @save="updateBgColor($event)"
+            />
             <div class="container-fluid">
                 <div class="row align-items-center">
                     <div class="col-sm-6 slider">
@@ -140,17 +214,27 @@
                             section="ingredients"
                             element="ingredients"
                             storeData="ingredientAreaImage"
-                            @save="updateImage"
+                            @save="updateResource"
                         />
                     </div>
-                    <div class="col-sm-6 bg-shop" style="height: 500px">
+                    <div
+                        class="col-sm-6"
+                        style="height: 500px"
+                        :style="{ 'background-color': ingredientAreaBgColor }"
+                    >
                         <div class="half-box-right">
                             <div class="center-vertical">
                                 <div class="center-vertical-box">
                                     <h1
                                         class="fw-bold"
                                         :contenteditable="isEditable"
-                                        @blur="updateTitle('ingredients', 'ingredientAreaTitle', $event)"
+                                        @blur="
+                                            updateTitle(
+                                                'ingredients',
+                                                'ingredientAreaTitle',
+                                                $event
+                                            )
+                                        "
                                     >
                                         {{ ingredientAreaTitle }}
                                     </h1>
@@ -159,10 +243,27 @@
                                             :contenteditable="isEditable"
                                             v-for="ingredient in ingredientItems"
                                             :key="ingredient.id"
+                                            v-on:change="updateIngredients"
                                         >
                                             {{ ingredient }}
                                         </li>
                                     </ul>
+
+                                    <!-- Input to add new ingredients -->
+                                    <div class="row mb-5">
+                                        <div class="col">
+                                            <input
+                                            v-model="newIngredient"
+                                            placeholder="Add new ingredient"
+                                            @keyup.enter="addIngredient"
+                                            class="form-control"
+                                        />
+                                        </div>
+
+                                        <div @click="addIngredient" class="bg-primary py-1 px-2 rounded text-white">
+                                            Add Ingredient
+                                        </div>
+                                    </div>
                                     <a
                                         :href="ingredientAreaButton.url"
                                         class="btn dark"
@@ -178,14 +279,43 @@
         <!-- ingredients section end -->
 
         <!-- features section start -->
-        <section id="features" class="features-1">
+        <section
+            id="features"
+            class="features-1"
+            :style="{ 'background-color': featuresAreaBgColor }"
+        >
+            <ColorPicker
+                style="top: 10px; left: 10px"
+                :color="featuresAreaBgColor"
+                section="features"
+                @update="featuresAreaBgColor = $event"
+                @save="updateBgColor($event)"
+            />
             <div class="container padding-top-bottom">
                 <div class="row header">
                     <div class="col-md-12">
-                        <h2 :contenteditable="isEditable" @blur="updateTitle('features', 'featuresAreaTitle', $event)">
+                        <h2
+                            :contenteditable="isEditable"
+                            @blur="
+                                updateTitle(
+                                    'features',
+                                    'featuresAreaTitle',
+                                    $event
+                                )
+                            "
+                        >
                             {{ featuresAreaTitle }}
                         </h2>
-                        <p :contenteditable="isEditable" @blur="updateSubTitle('features', 'featuresAreaSubTitle', $event)">
+                        <p
+                            :contenteditable="isEditable"
+                            @blur="
+                                updateSubTitle(
+                                    'features',
+                                    'featuresAreaSubTitle',
+                                    $event
+                                )
+                            "
+                        >
                             {{ featuresAreaSubTitle }}
                         </p>
                     </div>
@@ -231,57 +361,40 @@
         </section>
         <!-- features section end -->
 
-        <!-- review section start -->
-        <section
-            id="review"
-            class="content-1 bg-image-2 padding-top-bottom"
-            :style="{
-                backgroundImage: `url(${imageSource(
-                    reviewAreaImage ? reviewAreaImage : '/images/mockup5.png',
-                    reviewAreaImage ? 'storage' : 'public'
-                )})`,
-            }"
-        >
-            <ImageModal
-                :modalId="'reviewImageModal'"
-                modalTitle="Edit Feature Area Image"
-                :image="reviewAreaImage"
-                section="review"
-                element="review"
-                storeData="reviewAreaImage"
-                @save="updateImage"
-            />
-            <div class="container">
-                <div class="row justify-content-end">
-                    <div class="col-md-6">
-                        <div class="white-box">
-                            <h2 class="fw-bold" :contenteditable="isEditable" @blur="updateTitle('review', 'reviewAreaTitle', $event)">
-                                {{ reviewAreaTitle }}
-                            </h2>
-                            <p :contenteditable="isEditable">
-                                {{ reviewItems.review }}
-                            </p>
-                            <blockquote class="blockquote">
-                                <p :contenteditable="isEditable">
-                                    {{ reviewItems.reviewer_name }}
-                                </p>
-                            </blockquote>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- review section end -->
-
         <!-- order section start -->
-        <section id="order" class="padding-top-bottom">
+        <section
+            id="order"
+            class="padding-top-bottom"
+            :style="{ 'background-color': orderAreaBgColor }"
+        >
+            <ColorPicker
+                style="top: 10px; left: 10px"
+                :color="orderAreaBgColor"
+                section="order"
+                @update="orderAreaBgColor = $event"
+                @save="updateBgColor($event)"
+            />
             <div class="container">
                 <div class="row header">
                     <div class="col-md-12">
-                        <h2 :contenteditable="isEditable" @blur="updateTitle('order', 'orderAreaTitle', $event)">
+                        <h2
+                            :contenteditable="isEditable"
+                            @blur="
+                                updateTitle('order', 'orderAreaTitle', $event)
+                            "
+                        >
                             {{ orderAreaTitle }}
                         </h2>
-                        <p :contenteditable="isEditable" @blur="updateSubTitle('order', 'orderAreaSubTitle', $event)">
+                        <p
+                            :contenteditable="isEditable"
+                            @blur="
+                                updateSubTitle(
+                                    'order',
+                                    'orderAreaSubTitle',
+                                    $event
+                                )
+                            "
+                        >
                             {{ orderAreaSubTitle }}
                         </p>
                     </div>
@@ -376,17 +489,22 @@
         <!-- order section end -->
 
         <!-- footer section start -->
-        <div class="footer-1 text-center">
+        <div
+            class="footer-1 text-center position-relative"
+            :style="{ 'background-color': footerAreaBgColor }"
+        >
+            <ColorPicker
+                style="top: 10px; left: 10px"
+                :color="footerAreaBgColor"
+                section="footer"
+                @update="footerAreaBgColor = $event"
+                @save="updateBgColor($event)"
+            />
             <div class="container-fluid">
                 <a href="#home" class="back-to-top smooth-scroll"
                     ><i class="fa fa-chevron-up"></i
                 ></a>
                 <p :contenteditable="isEditable">{{ footerAreaText }}</p>
-                <ul class="social-links-2">
-                    <li v-for="link in footerAreaLinks" :key="link.id">
-                        <a :href="link.url"><i :class="link.icon"></i></a>
-                    </li>
-                </ul>
             </div>
         </div>
         <!-- footer section end -->
@@ -400,7 +518,7 @@ import FormField from "../components/form-field.vue";
 import DynamicFormMethods from "../components/DynamicFormMethods";
 import ButtonModal from "../components/button-modal.vue";
 import ImageModal from "../components/ImageModal.vue";
-import ColorPicker from "../components/color-picker.vue";
+import ColorPicker from "../components/ColorPicker.vue";
 
 export default {
     name: "Attar",
@@ -443,6 +561,7 @@ export default {
             ingredientAreaImage: "",
             ingredientAreaBgColor: "",
             ingredientAreaTextColor: "",
+            newIngredient: "",
 
             // features area
             featuresAreaTitle: "",
@@ -450,13 +569,6 @@ export default {
             featureItems: [],
             featuresAreaBgColor: "",
             featuresAreaTextColor: "",
-
-            // review area
-            reviewAreaTitle: "",
-            reviewAreaImage: "",
-            reviewItems: [],
-            reviewAreaBgColor: "",
-            reviewAreaTextColor: "",
 
             // order area
             orderAreaTitle: "",
@@ -469,7 +581,6 @@ export default {
             // footer area
             footerAreaText: "",
             footerAreaBgColor: "",
-            footerAreaLinks: [],
         };
     },
     mounted() {
@@ -530,18 +641,6 @@ export default {
         this.featuresAreaBgColor = featuresArea.bg_color;
         this.featuresAreaTextColor = featuresArea.text_color;
 
-        // review area
-        let reviewArea = this.getSection("review");
-        let reviewAreaElement = this.decodedData(
-            this.getElement("review", "review").data
-        );
-
-        this.reviewAreaTitle = reviewAreaElement.title;
-        this.reviewAreaImage = reviewAreaElement.image;
-        this.reviewItems = this.user_template.template.testimonials[0];
-        this.reviewAreaBgColor = reviewArea.bg_color;
-        this.reviewAreaTextColor = reviewArea.text_color;
-
         // order area
         let orderArea = this.getSection("order");
 
@@ -559,7 +658,6 @@ export default {
 
         this.footerAreaText = footerAreaElement.text;
         this.footerAreaBgColor = footerArea.bg_color;
-        this.footerAreaLinks = footerAreaElement.links;
     },
     methods: {
         ...DynamicFormMethods,
@@ -685,7 +783,11 @@ export default {
 
                     if (featureIndex !== -1) {
                         // Directly update the feature at the found index
-                        this.featureItems.splice(featureIndex, 1, updatedFeature);
+                        this.featureItems.splice(
+                            featureIndex,
+                            1,
+                            updatedFeature
+                        );
                     } else {
                         // If not found, push the new feature
                         this.featureItems.push(updatedFeature);
@@ -726,8 +828,8 @@ export default {
 
             this[storeData] = this.updateContent(event);
             // console.log(this[storeData]);
-            
-            this.updateSection(section, 'title', this[storeData]);
+
+            this.updateSection(section, "title", this[storeData]);
         },
 
         updateSubTitle(section, storeData, event) {
@@ -739,7 +841,50 @@ export default {
             this[storeData] = this.updateContent(event);
             // console.log(this[storeData]);
 
-            this.updateSection(section, 'sub_title', this[storeData]);
+            this.updateSection(section, "sub_title", this[storeData]);
+        },
+
+        updateDescription(section, element, storeData, event) {
+            const newValue = event.target.textContent.trim();
+            if (this.orderSubTitle == newValue) {
+                return;
+            }
+
+            this[storeData] = this.updateContent(event);
+            // console.log(this[storeData]);
+
+            this.updateResource({
+                section: section,
+                element: element,
+                storeData: storeData,
+                image: null,
+                prefix: "description",
+                value: this[storeData]
+            });
+        },
+
+        addIngredient() {
+            if (this.newIngredient.trim()) {
+                this.ingredientItems.push(this.newIngredient.trim());
+                this.newIngredient = ""; // Clear the input after adding
+            }
+
+            this.updateIngredients();
+        },
+
+        updateIngredients() {
+            this.updateResource({
+                section: "ingredients",
+                element: "ingredients",
+                storeData: "ingredientItems",
+                image: null,
+                prefix: "items",
+                value: this.ingredientItems,
+            });
+        },
+
+        updateBgColor(data) {
+            this.updateSection(data.section, "bg_color", data.color);
         },
 
         updateSection(section, prefix, data) {
@@ -753,7 +898,10 @@ export default {
             formData.append(prefix, data);
 
             axios
-                .post(`${this.appUrl}/app/templates/section/update/${findSection.id}`, formData)
+                .post(
+                    `${this.appUrl}/app/templates/section/update/${findSection.id}`,
+                    formData
+                )
                 .then((response) => {
                     console.log(response.data);
                     this.toast("success", "Section updated successfully.");
@@ -765,7 +913,59 @@ export default {
                         "Something went wrong. Please try again."
                     );
                 });
-        }
+        },
+
+        updateResource(data) {
+            // console.log(data);
+
+            let section = data.section;
+            let element = data.element;
+            let imageFile = data.image || null;
+            let prefix = data.prefix || "image"; // Default to "image" if prefix isn't provided
+            let value = data.value || null;
+            let storeData = data.storeData || null;
+
+            // Check if section exists
+            let findSection = this.getSection(section);
+            if (!findSection) {
+                this.toast("error", "Section not found.");
+                return false;
+            }
+
+            // Check if element exists
+            let findElement = this.getElement(findSection.section, element);
+            if (!findElement) {
+                this.toast("error", "Element not found.");
+                return false;
+            }
+
+            const formData = new FormData();
+            if (imageFile) {
+                formData.append("image", imageFile);
+            }
+            formData.append("name", element);
+            formData.append("prefix", prefix);
+            formData.append("value", value);
+
+            axios
+                .post(
+                    `${this.appUrl}/app/templates/element/update/${findSection.id}`,
+                    formData
+                )
+                .then((response) => {
+                    console.log(response.data);
+                    this[storeData] = response.data[prefix];
+
+                    this.toast("success", `${prefix} updated successfully.`);
+                })
+                .catch((error) => {
+                    console.error(error);
+                    this.toast(
+                        "error",
+                        "Something went wrong. Please try again."
+                    );
+                });
+        },
     },
 };
 </script>
