@@ -78,7 +78,7 @@ export default {
         };
     },
     mounted() {
-        console.log(this.image, this.section, this.storeData);
+        // console.log(this.image, this.section, this.storeData);
     },
     watch: {
         image: {
