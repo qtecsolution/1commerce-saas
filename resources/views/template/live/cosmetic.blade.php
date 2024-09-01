@@ -182,7 +182,7 @@
 
                             <div class="container">
                                 <div class="carousel-caption">
-                                    <figure><img src="{{ asset($template->assets_path . '/images/banner3.png') }}"
+                                    <figure><img src="{{ asset($template->assets_path . '/images/banner3.jpg') }}"
                                             alt="banner 2" style="height: 500px; width: 900px; border-radius: 20px" />
                                     </figure>
                                     <p>The results are astounding – 90% of women witnessed visibly smoother and more

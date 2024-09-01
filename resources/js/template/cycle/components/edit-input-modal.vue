@@ -96,7 +96,7 @@
                             v-for="(option, index) in editableField.options"
                             :key="index"
                         >
-                            <div class="col-10">
+                            <div class="col-8">
                                 <input
                                     v-model="editableField.options[index]"
                                     type="text"

@@ -243,11 +243,11 @@
             </p>
             <div class="btn_main">
               <div class="buy_bt">
-                <a href="#order">{{ featureButton.title }}</a>
+                <a :href="featureButton.url">{{ featureButton.title }}</a>
               </div>
               <div
-                class="bg-primary text-white text-center rounded-circle cursor-pointer"
-                style="width: 40px; height: 30px"
+                class="bg-dark text-white text-center rounded-circle"
+                style="width: 30px; height: 30px; cursor: pointer"
                 data-bs-toggle="modal"
                 data-bs-target="#featureButton"
               >
@@ -256,7 +256,7 @@
                   style="font-size: 20px; margin-top: 5px"
                 ></i>
               </div>
-              <h4 class="price_text">
+              <!-- <h4 class="price_text">
                 Price
                 <span
                   style="margin-right: 8px !important"
@@ -267,7 +267,7 @@
                 <span contenteditable="true" @blur="updateProductPrice">
                   {{ productPrice }}</span
                 >
-              </h4>
+              </h4> -->
             </div>
           </div>
           <div class="col-md-6">
@@ -332,7 +332,12 @@
         >
           <div
             class="bg-dark text-white text-center rounded-circle"
-            style="width: 30px; height: 30px; margin-left: 280px; cursor: pointer"
+            style="
+              width: 30px;
+              height: 30px;
+              margin-left: 280px;
+              cursor: pointer;
+            "
             data-bs-toggle="modal"
             data-bs-target="#aboutImageModal"
           >
@@ -434,7 +439,13 @@
     />
     <div class="container">
       <div class="contact_main">
-        <h1 class="request_text">Order Now</h1>
+        <h1
+          class="request_text"
+          contenteditable="true"
+          @blur="updateOrderTitle"
+        >
+          {{ orderTitle }}
+        </h1>
         <div class="row">
           <div class="col-md-8">
             <span
@@ -513,7 +524,20 @@
                   Shiping Cost (Inside Dhaka)
                 </label>
               </div>
-              {{ productCurrency + " " + shippingCostInDhaka }}
+
+              <div class="col-md-4 text-end">
+                <span style="margin-right: 5px" class="about_text">
+                  {{ productCurrency }}
+                </span>
+                <span
+                  style="margin-right: 5px"
+                  class="about_text"
+                  contenteditable="true"
+                  @blur="updateShipCostInDhaka"
+                >
+                  {{ shippingCostInDhaka }}
+                </span>
+              </div>
             </div>
             <div class="form-check d-flex justify-content-between">
               <div>
@@ -527,7 +551,19 @@
                   Shipping Cost (Outside Dhaka)
                 </label>
               </div>
-              {{ productCurrency + " " + shippingCostOutDhaka }}
+              <div class="col-md-4 text-end">
+                <span style="margin-right: 5px" class="about_text">
+                  {{ productCurrency }}
+                </span>
+                <span
+                  style="margin-right: 5px"
+                  class="about_text"
+                  contenteditable="true"
+                  @blur="updateShipCostOutDhaka"
+                >
+                  {{ shippingCostOutDhaka }}
+                </span>
+              </div>
             </div>
           </div>
           <div class="form-group">
@@ -558,8 +594,8 @@
           />
           <div class="send_btn">
             <div
-              class="bg-primary text-white text-center rounded-circle cursor-pointer"
-              style="width: 40px; height: 30px"
+              class="bg-dark text-white text-center rounded-circle"
+              style="width: 30px; height: 30px; cursor: pointer"
               data-bs-toggle="modal"
               data-bs-target="#orderNowButton"
             >
@@ -568,7 +604,7 @@
                 style="font-size: 20px; margin-top: 5px"
               ></i>
             </div>
-            <button type="submit">Order Now</button>
+            <button type="submit">{{ orderButton.title }}</button>
           </div>
         </form>
       </div>
@@ -639,6 +675,12 @@
   <!-- copyright section start -->
   <div class="copyright_section">
     <div class="container">
+      <ColorPicker
+        style="margin-left: 10%; margin-top: 10px"
+        :color="footerBg"
+        @update="footerBg = $event"
+        @save="saveFooterBgColor('bg_color', $event)"
+      />
       <p class="copyright_text">
         Copyright 2019 All Right Reserved By.<a href="#"> 1commerce </a>
       </p>
@@ -930,7 +972,6 @@ export default {
       heroArea != null && heroArea.image
         ? this.imageSource(heroArea.image, "storage")
         : this.appUrl + "/cycle/images/img-1.png";
-
     // about area
     const aboutArea = this.template.about_area
       ? JSON.parse(this.template.about_area)
@@ -964,7 +1005,7 @@ export default {
       this.template.order_area != null
         ? JSON.parse(this.template.order_area)
         : null;
-    this.orderTitle = aboutArea?.title || this.orderTitle;
+    this.orderTitle = orderArea?.title || this.orderTitle;
     this.orderBg =
       orderArea != null ? orderArea.background_color : this.orderBg;
     const defaultOrderButton = {
@@ -978,7 +1019,9 @@ export default {
       hover_border_color: "white",
     };
     this.orderButton =
-      (orderArea != null && orderArea.button) ? orderArea.button : defaultOrderButton;
+      orderArea != null && orderArea.button
+        ? orderArea.button
+        : defaultOrderButton;
     //foooter area
     const footerArea =
       this.template.footer_area != null
@@ -1019,12 +1062,7 @@ export default {
       this.template.testimonials.length > 0
         ? this.template.testimonials
         : this.testimonials;
-    const defaultTestimonialImages = [
-      "images/client-img.png",
-      "images/client-img.png",
-      "images/client-img.png",
-      "images/client-img.png",
-    ];
+    const defaultTestimonialImage = "/images/client-img.png";
 
     this.testimonials.forEach((testimonial, index) => {
       testimonial.reviewer_image =
@@ -1035,7 +1073,7 @@ export default {
               this.template.testimonials[index].reviewer_image,
               "storage"
             )
-          : this.imageSource(defaultTestimonialImages[index]);
+          : this.imageSource(defaultTestimonialImage);
     });
   },
   beforeDestroy() {},
@@ -1142,7 +1180,15 @@ export default {
           console.error(error);
         });
     },
+    updateOrderTitle(event) {
+      const newValue = event.target.textContent.trim();
+      if (this.orderTitle == newValue) {
+        return;
+      }
 
+      this.orderTitle = this.updateContent(event);
+      this.updateOrderArea();
+    },
     // aboute area function
     updateAboutDescription(event) {
       const newValue = event.target.textContent.trim();
@@ -1177,10 +1223,10 @@ export default {
           },
         })
         .then((response) => {
-          this.aboutImage = this.imageSource(
-            response.data.aboutImage,
-            "storage"
-          );
+          this.aboutImage =
+            response.data.aboutImage != null
+              ? this.imageSource(response.data.aboutImage, "storage")
+              : this.appUrl + "/cycle/images/img-5.png";
           this.toast("success", "Resources Updated.");
         })
         .catch((error) => {
@@ -1260,6 +1306,8 @@ export default {
       formData.append("product_name", this.productName);
       formData.append("product_price", this.productPrice);
       formData.append("product_currency", this.productCurrency);
+      formData.append("shipping_cost_in_dhaka", this.shippingCostInDhaka);
+      formData.append("shipping_cost_out_dhaka", this.shippingCostOutDhaka);
       axios
         .post(`${this.apiUrl}/update-product-info`, formData, {})
         .then((response) => {
@@ -1298,6 +1346,24 @@ export default {
       }
 
       this.productCurrency = this.updateContent(event);
+      this.updateProductDetails();
+    },
+    updateShipCostInDhaka(event) {
+      const newValue = event.target.textContent.trim();
+      if (this.shippingCostInDhaka == newValue) {
+        return;
+      }
+
+      this.shippingCostInDhaka = this.updateContent(event);
+      this.updateProductDetails();
+    },
+    updateShipCostOutDhaka(event) {
+      const newValue = event.target.textContent.trim();
+      if (this.shippingCostOutDhaka == newValue) {
+        return;
+      }
+
+      this.shippingCostOutDhaka = this.updateContent(event);
       this.updateProductDetails();
     },
 
@@ -1376,18 +1442,12 @@ export default {
         .then((response) => {
           this.toast("success", "Resources Updated.");
           this.testimonials = response.data.data;
-
-          const defaultTestimonialImages = [
-            "images/client-img.png",
-            "images/client-img.png",
-            "images/client-img.png",
-          ];
-
           this.testimonials.forEach((testimonial, index) => {
             testimonial.reviewer_image =
-              testimonial.reviewer_image != null
+              testimonial.reviewer_image != null &&
+              testimonial.reviewer_image != ""
                 ? this.imageSource(testimonial.reviewer_image, "storage")
-                : this.imageSource(defaultTestimonialImages[index]);
+                : this.appUrl + "/cycle/images/client-img.png";
           });
         })
         .catch((error) => {
@@ -1442,6 +1502,10 @@ export default {
     saveOrderNowBgColor(key, data) {
       this.orderBg = data;
       this.updateOrderArea();
+    },
+    saveFooterBgColor(key, data) {
+      this.footerBg = data;
+      this.saveFooterArea();
     },
 
     saveAboutBgColor(key, data) {
@@ -1647,14 +1711,17 @@ export default {
   color: v-bind("featureButton.hover_text_color") !important;
   border-color: v-bind("featureButton.hover_border_color") !important;
 }
- 
+
 .send_btn button {
-    background-color: v-bind("orderButton.color") !important;
-    color: v-bind("orderButton.text_color") !important;
+  background-color: v-bind("orderButton.color") !important;
+  color: v-bind("orderButton.text_color") !important;
 }
 
 .send_btn button:hover {
-    background-color:v-bind("orderButton.hover_color") !important ;
-    color:v-bind("orderButton.hover_text_color") !important;
+  background-color: v-bind("orderButton.hover_color") !important ;
+  color: v-bind("orderButton.hover_text_color") !important;
+}
+.copyright_section {
+  background-color: v-bind(footerBg) !important ;
 }
 </style>
