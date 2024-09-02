@@ -149,30 +149,6 @@ class AttarTemplateController extends Controller
             'image' => null
         ]);
 
-        // Create review section
-        $review = TemplateSection::create([
-            'user_template_id' => $userTemplate->id,
-            'section' => 'review',
-            'bg_color' => '#e0a800',
-        ]);
-
-        TemplateSectionElement::create([
-            'template_section_id' => $review->id,
-            'name' => 'review',
-            'data' => json_encode([
-                'image' => null,
-                'title' => 'Customer Review :)',
-            ])
-        ]);
-
-        // Create testimonial
-        TemplateTestimonial::create([
-            'template_id' => $userTemplate->template_id,
-            'user_id' => 1,
-            'review' => 'The Attar Perfume collection is simply mesmerizing. The scents are so pure and natural, it feels like a walk through a fragrant garden. I’m in love with every drop!',
-            'reviewer_name' => 'Aisha Khan'
-        ]);
-
         // Create order section
         $order = TemplateSection::create([
             'user_template_id' => $userTemplate->id,
@@ -181,10 +157,28 @@ class AttarTemplateController extends Controller
             'sub_title' => 'Embrace the Essence of Purity',
         ]);
 
+        TemplateSectionElement::create([
+            'template_section_id' => $order->id,
+            'name' => 'order',
+            'data' => json_encode([
+                'button' => [
+                    'title' => 'Order Now',
+                    'url' => '#order',
+                    'color' => '#e0a800',
+                    'text_color' => 'black',
+                    'border_color' => '#e0a800',
+                    'hover_color' => '#e0a800',
+                    'hover_text_color' => 'black',
+                    'hover_border_color' => '#e0a800',
+                ],
+                'image' => null
+            ])
+        ]);
+
         OrderFormAdditionalField::create([
             'user_template_id' => $userTemplate->id,
             'title' => 'Name',
-            'name' => 'name',
+            'name' => 'customer_name',
             'type' => 'text',
             'placeholder' => 'Your Name',
             'is_required' => 1,
@@ -194,7 +188,7 @@ class AttarTemplateController extends Controller
         OrderFormAdditionalField::create([
             'user_template_id' => $userTemplate->id,
             'title' => 'Phone',
-            'name' => 'phone',
+            'name' => 'customer_phone',
             'type' => 'text',
             'placeholder' => 'Your Phone',
             'is_required' => 1,
@@ -214,7 +208,7 @@ class AttarTemplateController extends Controller
         OrderFormAdditionalField::create([
             'user_template_id' => $userTemplate->id,
             'title' => 'Address',
-            'name' => 'address',
+            'name' => 'customer_address',
             'type' => 'textarea',
             'placeholder' => 'Address',
             'is_required' => 1,
@@ -224,19 +218,16 @@ class AttarTemplateController extends Controller
         // Create footer section
         $footer = TemplateSection::create([
             'user_template_id' => $userTemplate->id,
-            'section' => 'footer'
+            'section' => 'footer',
+            'bg_color' => '#1d2023',
+            'text_color' => 'white',
         ]);
 
         TemplateSectionElement::create([
             'template_section_id' => $footer->id,
             'name' => 'footer',
             'data' => json_encode([
-                'text' => 'Copyright © 2024. All rights reserved.',
-                'links' => [
-                    ['label' => 'Facebook', 'url' => 'https://www.facebook.com/', 'icon' => 'fab fa-facebook-f'],
-                    ['label' => 'Instagram', 'url' => 'https://www.instagram.com/', 'icon' => 'fab fa-instagram'],
-                    ['label' => 'Youtube', 'url' => 'https://www.youtube.com/', 'icon' => 'fab fa-youtube']
-                ]
+                'text' => 'Copyright © 2024. All rights reserved.'
             ])
         ]);
     }

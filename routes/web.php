@@ -164,7 +164,10 @@ Route::prefix('app')->middleware('user')->group(function () {
             Route::get('element/{id}', [TemplateSectionController::class, 'getElement']);
 
             // Route to update feature item
-            Route::post('feature/save', [TemplateSectionController::class, 'feature']);
+            Route::post('feature/save', [TemplateSectionController::class, 'saveFeature']);
+
+            // Route to update product details
+            Route::post('product-details/update', [TemplateSectionController::class, 'updateProductDetails']);
 
             // ulaunch
             Route::prefix('ulaunch')->group(function () {

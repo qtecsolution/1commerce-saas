@@ -42,7 +42,7 @@ class ShopController extends Controller
 
     public static function livePreview($slug)
     {
-        $userTemplate = UserTemplate::with(['template', 'fields'])->where('company_slug', $slug)->firstOrFail();
+        $userTemplate = UserTemplate::with(['template', 'template.features', 'template.testimonials', 'fields', 'templateSections', 'templateSections.elements'])->where('company_slug', $slug)->firstOrFail();
         if ($userTemplate->template_id == 1) {
             $ulaunch = UlaunchTemplate::with(['steps', 'features', 'testimonials'])
                 ->where('user_id', $userTemplate->user_id)
@@ -59,7 +59,10 @@ class ShopController extends Controller
                 ->where('user_id', $userTemplate->user_id)
                 ->firstOrFail();
             return view('template.live.cycle', compact('cycle', 'userTemplate'));
-        }
+        } else if ($userTemplate->template_id == 4) {
+            $template = $userTemplate->template;
+            return view('template.live.attar', compact('template', 'userTemplate'));
+        } 
 
         abort(404);
     }

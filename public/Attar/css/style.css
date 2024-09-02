@@ -813,9 +813,9 @@ form p {
     -moz-transition: none;
     -o-transition: none;
     transition: none;
-    -webkit-box-shadow: 0 4px 0 #c356f4;
+    /* -webkit-box-shadow: 0 4px 0 #c356f4;
     -moz-box-shadow: 0 4px 0 #c356f4;
-    box-shadow: 0 4px 0 #c356f4
+    box-shadow: 0 4px 0 #c356f4 */
 }
 
 .btn:focus,
@@ -861,9 +861,9 @@ form p {
     box-shadow: none;
     color: #202020;
     text-decoration: none;
-    -webkit-box-shadow: 0 4px 0 #e0e0e0;
+    /* -webkit-box-shadow: 0 4px 0 #e0e0e0;
     -moz-box-shadow: 0 4px 0 #e0e0e0;
-    box-shadow: 0 4px 0 #e0e0e0
+    box-shadow: 0 4px 0 #e0e0e0 */
 }
 
 .btn.white:focus,
@@ -881,9 +881,9 @@ form p {
     box-shadow: none;
     color: #fff;
     text-decoration: none;
-    -webkit-box-shadow: 0 4px 0 #000;
+    /* -webkit-box-shadow: 0 4px 0 #000;
     -moz-box-shadow: 0 4px 0 #000;
-    box-shadow: 0 4px 0 #000
+    box-shadow: 0 4px 0 #000 */
 }
 
 .btn.dark:focus,

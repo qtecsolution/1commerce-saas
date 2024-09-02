@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Template\TemplateFeature;
 use App\Models\Template\TemplateSection;
 use App\Models\Template\TemplateSectionElement;
+use App\Models\Template\UserTemplate;
 use Illuminate\Http\Request;
 
 class TemplateSectionController extends Controller
@@ -73,9 +74,19 @@ class TemplateSectionController extends Controller
             $elementData['image'] = fileUpload($request->file('image'), "templates/elements");
         }
 
+        if ($request->prefix == 'items') {
+            $elementData[$request->prefix] = explode(',', $request->value);
+        }
+
+        if ($request->prefix == 'button') {
+            $elementData[$request->prefix] = json_decode($request->value, true);
+        }
+
         // Update the specified prefix with the new value if provided
-        if ( !is_null( $request->prefix ) && !is_null( $request->value ) && $request->value != 'null' ) {
-            $elementData[$request->prefix] = $request->value;
+        if (!is_null($request->prefix) && !is_null($request->value) && $request->value != 'null') {
+            if ($request->prefix != 'items' && $request->prefix != 'button') {
+                $elementData[$request->prefix] = $request->value;
+            }
         }
 
         // Update the element data and status
@@ -98,13 +109,14 @@ class TemplateSectionController extends Controller
         return response()->json(['element' => $element], 200);
     }
 
-    public function feature(Request $request)
+    public function saveFeature(Request $request)
     {
+        // Validate the request data
         $validatedData = $request->validate([
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048', // 2MB Max
         ]);
 
-        // Find the feature by ID, if it exists
+        // Retrieve the feature by ID or create a new instance
         $feature = TemplateFeature::find($request->id);
         $uploadedPath = $feature->image ?? null;
 
@@ -119,18 +131,40 @@ class TemplateSectionController extends Controller
             $uploadedPath = fileUpload($request->file('image'), 'templates/features');
         }
 
-        // Update or create the feature
-        $updatedFeature = TemplateFeature::updateOrCreate(
-            ['id' => $request->id],
-            [
-                'image' => $uploadedPath,
-                'title' => $request->title ?? ($feature->title ?? ''),
-                'description' => $request->description ?? ($feature->description ?? ''),
-                'icon' => $request->icon ?? ($feature->icon ?? ''),
-                'url' => $request->url ?? ($feature->url ?? ''),
-            ]
-        );
+        // If no feature exists, create a new one
+        if (!$feature) {
+            $feature = new TemplateFeature();
+            $feature->template_id = $request->template_id;
+            $feature->user_id = auth()->id();
+            $feature->position = TemplateFeature::where('template_id', $request->template_id)->count() + 1;
+        }
 
-        return response()->json(['feature' => $updatedFeature, 'image' => $uploadedPath], 200);
+        // Update the feature details
+        $feature->image = $uploadedPath;
+        $feature->title = $request->title ?? $feature->title;
+        $feature->description = $request->description ?? $feature->description;
+        $feature->icon = $request->icon ?? $feature->icon;
+        $feature->url = $request->url ?? $feature->url;
+
+        // Save the feature
+        $feature->save();
+
+        return response()->json(['feature' => $feature, 'image' => $uploadedPath], 200);
+    }
+
+    public function updateProductDetails(Request $request)
+    {
+        $userTemplate = UserTemplate::where('template_id',  $request->template_id)->where('user_id', auth()->id())->first();
+        if (!$userTemplate) {
+            return response()->json(['success' => false, 'error' => 'Template not purchased']);
+        }
+
+        $userTemplate->product_name = $request->product_name;
+        $userTemplate->product_price = $request->product_price;
+        $userTemplate->shipping_cost_inside_dhaka = $request->shipping_cost_inside_dhaka;
+        $userTemplate->shipping_cost_outside_dhaka = $request->shipping_cost_outside_dhaka;
+        $userTemplate->save();
+
+        return response()->json(['success' => true]);
     }
 }

@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     {!! renderSeoTags($userTemplate->id) !!}
 
+    <link rel="shortcut icon"
+        href="{{ $userTemplate->fav_icon ? asset('storage/' . $userTemplate->fav_icon) : asset($userTemplate->template->assets_path . '/images/favicon.png') }}"
+        type="image/x-icon">
+
     <link rel="stylesheet" href="{{ asset($template->assets_path . '/css/bootstrap.min.css') }}">
     {{-- <link rel="stylesheet" href="{{ asset($template->assets_path . '/css/font-awesome.min.css') }}"> --}}
     <link href="{{ asset('assets/font-awesome/css/all.min.css') }}" rel="stylesheet" media="screen">
@@ -29,7 +33,8 @@
     <x-template-edit-bar :userTemplate="$userTemplate" />
 
     <main id="app" style="margin-top: 50px">
-        <attar :user_template="{{ json_encode($userTemplate) }}" :template="{{ json_encode($template) }}" />
+        <attar :user_template="{{ json_encode($userTemplate) }}" :template="{{ json_encode($template) }}"
+            :is_editable="true" />
     </main>
 
     <!-- Core scrips -->
