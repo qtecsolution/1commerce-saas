@@ -33,7 +33,7 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 
-      <!-- inject:vite (css/js) -->
+    <!-- inject:vite (css/js) -->
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
     <!-- /inject:vite (css/js) -->
@@ -43,11 +43,10 @@
 <body class="main-layout">
 
     <x-template-edit-bar :userTemplate="$userTemplate" />
-{{-- @dd($userTemplate); --}}
+
     <main id="app" style="margin-top: 50px">
         <cosmetic :user_template="{{ json_encode($userTemplate) }}" :template="{{ json_encode($template) }}" />
     </main>
-
 
     <!-- Javascript files-->
     <script src="{{ asset($template->assets_path . '/js/jquery.min.js') }}"></script>

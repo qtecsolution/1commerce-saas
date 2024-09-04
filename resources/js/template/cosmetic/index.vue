@@ -1,10 +1,11 @@
 <template>
     <!-- loader  -->
-    <div class="loader_bg">
+    <!-- <div class="loader_bg">
         <div class="loader"><img :src="imageSource('/images/loading.gif', 'public')" alt="#" />
         </div>
-    </div>
+    </div> -->
     <!-- end loader -->
+
     <!-- header -->
     <header>
         <!-- header inner -->
@@ -145,7 +146,6 @@
             </div>
         </div>
     </div>
-
 
     <!-- testimonial -->
     <div class="testimonial">
@@ -290,6 +290,7 @@
         </div>
     </div>
     <!-- end order -->
+
     <!--  footer -->
     <footer :style="footerAreaStyles">
         <div class="footer">
@@ -306,24 +307,27 @@
 </template>
 
 <script>
-import AddInputModal from "../components/add-input-modal.vue";
-import FormField from "../components/form-field.vue";
-import DynamicFormMethods from "../components/DynamicFormMethods";
-import ImageModal from "../components/ImageModal.vue";
+import OneBuilder from "../1Builder/1Builder.js";
+import ButtonModal from "../1Builder/components/ButtonModal.vue";
+import ColorPicker from "../1Builder/components/ColorPicker.vue"; "../1Builder/components/ColorPicker.vue";
+import ImageModal from "../1Builder/components/ImageModal.vue";
+import DynamicFormMethods from "../1Builder/components/form/DynamicFormMethods.js";
+import AddFieldModal from "../1Builder/components/form/AddFieldModal.vue";
+import FormField from "../1Builder/components/form/FormField.vue";
 
 export default {
     name: "Cosmetic",
     props: ["user_template", "template"],
     components: {
-        AddInputModal,
-        FormField,
-        ImageModal
+        ButtonModal,
+        ColorPicker,
+        ImageModal,
+        AddFieldModal,
+        FormField
     },
     data() {
         return {
             appUrl: window.location.origin,
-
-
 
             // header area
             headerAreaLogo: "",
@@ -457,131 +461,10 @@ export default {
         this.footerAreaBgColor = footerArea.bg_color;
         // this.footerAreaLinks = footerAreaElement.links;
     },
-    computed: {
-        headerBgStyle() {
-            const imagePath = this.headerAreaBgImage ? this.headerAreaBgImage : 'images/banner.png';
-            const storageType = this.headerAreaBgImage ? 'storage' : 'public';
-            return {
-                backgroundImage: `url(${this.imageSource(imagePath, storageType)})`
-            };
-        },
-        heroAreaStyles() {
-            return {
-                '--hero-border-color': this.heroAreaButton.border_color,
-                '--hero-bg-color': this.heroAreaButton.color,
-                '--hero-text-color': this.heroAreaButton.text_color,
-                '--hero-hover-border-color': this.heroAreaButton.hover_border_color,
-                '--hero-hover-bg-color': this.heroAreaButton.hover_color,
-                '--hero-hover-text-color': this.heroAreaButton.hover_text_color,
-            };
-        },
-        informationAreaStyles() {
-            return {
-                '--information-bg-color': this.informationBgColor,
-                '--information-img-border-color': this.informationImageBorderColor,
-            };
-        },
-        orderAreaStyles() {
-            return {
-                '--order-bg-color': this.orderAreaBgColor,
-                '--order-text-color': this.orderAreaTextColor,
-                '--order-button-bg-color': this.orderAreaButton.bg_color,
-                '--order-button-text-color': this.orderAreaButton.text_color,
-                '--order-button-border-color': this.orderAreaButton.border_color,
-                '--order-button-hover-color': this.orderAreaButton.hover_color,
-                '--order-button-hover-text-color': this.orderAreaButton.hover_text_color,
-                '--order-button-hover-border-color': this.orderAreaButton.hover_border_color,
-            };
-        },
-        footerAreaStyles() {
-            return {
-                '--footer-bg-color': this.footerAreaBgColor,
-                '--footer-text-color': this.footerAreaTextColor,
-            };
-        }
-    },
     methods: {
         ...DynamicFormMethods,
-
-        toast(icon, title) {
-            this.$swal({
-                toast: true,
-                icon: icon,
-                title: title,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 3000,
-            });
-        },
-
-        imageSource(path, disk = "public") {
-            if (disk == "storage" && path) {
-                return `${this.appUrl}/storage/${path}`;
-            }
-
-            return `${this.appUrl}/${this.user_template.template.assets_path}/${path}`;
-        },
-
-        getSection(section) {
-            return this.user_template.template_sections.find(
-                (item) => item.section === section
-            );
-        },
-
-        getElement(section, element) {
-            let filteredSection = this.user_template.template_sections.find(
-                (item) => item.section === section
-            );
-
-            return filteredSection.elements.find(
-                (item) => item.name === element
-            );
-        },
-
-        decodedData(data) {
-            return JSON.parse(data);
-        },
-        updateImage(data) {
-            console.log(data);
-
-            let section = data.section;
-            let element = data.element;
-            let imageFile = data.image;
-            let storeData = data.storeData;
-
-            // check if element is exist or not
-            let findSection = this.getSection(section);
-            let findElement = this.getElement(section, element);
-            if (!findElement) {
-                this.toast("error", "Element not found.");
-                return false;
-            }
-
-            const formData = new FormData();
-            formData.append("image", imageFile);
-            formData.append("name", element);
-
-            axios
-                .post(
-                    `${this.appUrl}/app/templates/element/update/${findElement.template_section_id}`,
-                    formData
-                )
-                .then((response) => {
-                    console.log(response.data);
-
-                    (this[storeData] = response.data.image), "storage";
-
-                    this.toast("success", "Resource updated successfully.");
-                })
-                .catch((error) => {
-                    console.error(error);
-
-                    this.toast(
-                        "error",
-                        "Something went wrong. Please try again."
-                    );
-                });
-        },
+        ...OneBuilder,
+        
     },
 };
 </script>
@@ -625,41 +508,41 @@ export default {
 }
 
 .bg_ba {
-     font-family: Poppins;
-     background: var(--order-bg-color);
+    font-family: Poppins;
+    background: var(--order-bg-color);
 }
 .order .titlepage h2 {color: var(--order-text-color); font-weight: bold;}
 .order .main_form .order {
-     font-size: 16px;
-     transition: ease-in all 0.5s;
-     border: 2px solid var(--order-button-border-color);
-     background: var(--order-button-bg-color);
-     color: var(--order-button-text-color);
-     padding: 10px 70px;
-     margin: 0 auto;
-     display: block;
-     border-radius: 25px;
-     font-weight: bold;
-     letter-spacing: 5px;
-     text-transform: uppercase;
+    font-size: 16px;
+    transition: ease-in all 0.5s;
+    border: 2px solid var(--order-button-border-color);
+    background: var(--order-button-bg-color);
+    color: var(--order-button-text-color);
+    padding: 10px 70px;
+    margin: 0 auto;
+    display: block;
+    border-radius: 25px;
+    font-weight: bold;
+    letter-spacing: 5px;
+    text-transform: uppercase;
 }
 
 .order .main_form .order:hover {
-     background-color: var(--order-button-hover-color);
-     transition: ease-in all 0.5s;
-     color: var(--order-button-hover-text-color);
-     font-weight: bold;
+    background-color: var(--order-button-hover-color);
+    transition: ease-in all 0.5s;
+    color: var(--order-button-hover-text-color);
+    font-weight: bold;
 }
 
 .footer {
-     padding: 20px 0px;
-     background: var(--footer-bg-color);
+    padding: 20px 0px;
+    background: var(--footer-bg-color);
 }
 
 .footer p {
-     color: var(--footer-text-color);
-     font-size: 18px;
-     line-height: 22px;
-     text-align: center;
+    color: var(--footer-text-color);
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
 }
 </style>
