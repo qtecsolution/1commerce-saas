@@ -981,7 +981,7 @@ form p {
     background-repeat: no-repeat;
     background-position: center top !important;
     text-align: center;
-    padding-top: 100px;
+    /* padding-top: 100px; */
     /* height: 400px */
 }
 
