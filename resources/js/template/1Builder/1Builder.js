@@ -41,7 +41,7 @@ export default {
     getFeatureImage(feature, index) {
         const imagePath = feature.image
             ? feature.image
-            : `/images/feature${index + 1}.png`;
+            : `/images/feature${index > 2 ? 1 : index + 1}.png`;
         const storageType = feature.image ? "storage" : "public";
         return this.imageSource(imagePath, storageType);
     },
@@ -93,6 +93,48 @@ export default {
                 }
 
                 this.toast("success", "Feature saved successfully.");
+            })
+            .catch((error) => {
+                console.error(error);
+                this.toast(
+                    "error",
+                    "Something went wrong. Please try again."
+                );
+            });
+    },
+
+    copyFeature() {
+        let lastFeatureItem =
+            this.featureItems[this.featureItems.length - 1];
+
+        console.log(lastFeatureItem);
+
+        this.saveFeature({
+            id: null,
+            template_id: lastFeatureItem.template_id,
+            index: this.featureItems.length + 1,
+            title: lastFeatureItem.title,
+            description: lastFeatureItem.description
+        });
+    },
+
+    removeFeature(index) {
+        let feature = this.featureItems[index];
+        if (!feature) {
+            this.toast("error", "Feature not found.");
+            return;
+        }
+
+        axios
+            .delete(`${this.appUrl}/app/templates/feature/delete/${feature.id}`)
+            .then((response) => {
+                console.log(response.data);
+
+                this.featureItems = this.featureItems.filter(
+                    (item) => item.id !== feature.id
+                );
+
+                this.toast("success", "Feature removed successfully.");
             })
             .catch((error) => {
                 console.error(error);

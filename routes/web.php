@@ -163,8 +163,11 @@ Route::prefix('app')->middleware('user')->group(function () {
             // Route to get an element by its ID
             Route::get('element/{id}', [TemplateSectionController::class, 'getElement']);
 
-            // Route to update feature item
+            // Route to create & update feature item
             Route::post('feature/save', [TemplateSectionController::class, 'saveFeature']);
+            
+            // Route to delete feature item
+            Route::delete('feature/delete/{id}', [TemplateSectionController::class, 'deleteFeature']);
 
             // Route to update product details
             Route::post('product-details/update', [TemplateSectionController::class, 'updateProductDetails']);

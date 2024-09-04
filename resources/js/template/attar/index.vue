@@ -369,6 +369,13 @@
                             :key="feature.id"
                         >
                             <article class="text-center">
+                                <div
+                                    class="remove-feature"
+                                    @click="removeFeature(index)"
+                                    v-if="index > 2"
+                                >
+                                    <i class="fas fa-times"></i>
+                                </div>
                                 <div>
                                     <img
                                         :src="getFeatureImage(feature, index)"
@@ -425,6 +432,15 @@
                                     {{ feature.description }}
                                 </p>
                             </article>
+                        </div>
+
+                        <div class="col-12">
+                            <button
+                                class="btn btn-primary col-12"
+                                @click="copyFeature"
+                            >
+                                Add Feature
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -758,7 +774,7 @@ export default {
                 this.selectedShippingOption === "inside_dhaka"
                     ? shippingCostInsideDhaka
                     : shippingCostOutsideDhaka;
-            
+
             return (productPrice + shippingCost).toFixed(2);
         },
     },
@@ -942,5 +958,18 @@ input[type="radio"] {
     background-color: v-bind("orderAreaButton.hover_color") !important;
     color: v-bind("orderAreaButton.hover_text_color");
     border-color: v-bind("orderAreaButton.hover_border_color");
+}
+
+.remove-feature {
+    position: absolute;
+    top: -12px;
+    right: 30px;
+    width: 26px;
+    height: 26px;
+    background: #000;
+    color: #fff;
+    border-radius: 50%;
+    line-height: 25px;
+    cursor: pointer;
 }
 </style>

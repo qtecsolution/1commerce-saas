@@ -152,6 +152,13 @@ class TemplateSectionController extends Controller
         return response()->json(['feature' => $feature, 'image' => $uploadedPath], 200);
     }
 
+    public function deleteFeature($id)
+    {
+        TemplateFeature::findOrFail($id)->delete();
+
+        return response()->json(['success' => true]);
+    }
+
     public function updateProductDetails(Request $request)
     {
         $userTemplate = UserTemplate::where('template_id',  $request->template_id)->where('user_id', auth()->id())->first();
