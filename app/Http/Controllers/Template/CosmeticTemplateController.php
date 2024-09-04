@@ -4,18 +4,16 @@ namespace App\Http\Controllers\Template;
 
 use App\Http\Controllers\Controller;
 use App\Models\OrderFormAdditionalField;
-use App\Models\Template\TemplateFeature;
 use App\Models\Template\TemplateSection;
 use App\Models\Template\TemplateSectionElement;
-use App\Models\Template\TemplateTestimonial;
 use App\Models\Template\UserTemplate;
 use Illuminate\Http\Request;
 
 class CosmeticTemplateController extends Controller
 {
-    public function initialSetup($userId)
+    public function initialSetup($userId, $templateId)
     {
-        $userTemplate = UserTemplate::where('user_id', $userId)->first();
+        $userTemplate = UserTemplate::where('user_id', $userId)->where('template_id', $templateId)->first();
 
         // Create header section with menu elements
         $header = TemplateSection::create([
@@ -148,6 +146,20 @@ class CosmeticTemplateController extends Controller
                         'title' => 'Client Name Here',
                         'description' => 'Description Here...'
                     ],
+                    [
+                        'bg_color' => '#f67b18',
+                        'hover_color' => '#5502bb',
+                        'text_color' => 'white',
+                        'title' => 'Client Name Here',
+                        'description' => 'Description Here...'
+                    ],
+                    [
+                        'bg_color' => '#f67b18',
+                        'hover_color' => '#5502bb',
+                        'text_color' => 'white',
+                        'title' => 'Client Name Here',
+                        'description' => 'Description Here...'
+                    ],
                 ]
             ])
         ]);
@@ -157,6 +169,25 @@ class CosmeticTemplateController extends Controller
             'user_template_id' => $userTemplate->id,
             'section' => 'order',
             'title' => 'Order Now',
+            'bg_color' => '#6503d2',
+            'text_color' => '#ffffff'
+        ]);
+
+        TemplateSectionElement::create([
+            'template_section_id' => $order->id,
+            'name' => 'order',
+            'data' => json_encode([
+                'button' => [
+                    'title' => 'Place Order ',
+                    'url' => '#order',
+                    'bg_color' => 'transparent',
+                    'text_color' => '#fa7528',
+                    'border_color' => '#fa7528',
+                    'hover_color' => '#fd882f',
+                    'hover_text_color' => '#ffffff',
+                    'hover_border_color' => '#fa7528',
+                ]
+            ])
         ]);
 
         OrderFormAdditionalField::create([
@@ -211,7 +242,9 @@ class CosmeticTemplateController extends Controller
         // Create footer section
         $footer = TemplateSection::create([
             'user_template_id' => $userTemplate->id,
-            'section' => 'footer'
+            'section' => 'footer',
+            'bg_color' => '#fa7528',
+            'text_color' => '#ffffff',
         ]);
 
         TemplateSectionElement::create([
