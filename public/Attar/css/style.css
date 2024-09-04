@@ -1285,9 +1285,10 @@ blockquote {
 }
 
 .slider {
-    background-color: #b6b6b6;
+    /* background-color: #b6b6b6; */
     height: 500px;
-    padding: 0
+    padding: 0;
+    text-align: center;
 }
 
 .slider .landing {

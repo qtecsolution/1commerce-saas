@@ -89,9 +89,9 @@
         }
 
         #hero .btnStyle:hover {
-            background-color: {{ $heroElement->button->color }};
-            color: {{ $heroElement->button->text_color }};
-            border-color: {{ $heroElement->button->border_color }};
+            background-color: {{ $heroElement->button->hover_color }};
+            color: {{ $heroElement->button->hover_text_color }};
+            border-color: {{ $heroElement->button->hover_border_color }};
         }
 
         #ingredients .btnStyle {
@@ -101,9 +101,9 @@
         }
 
         #ingredients .btnStyle:hover {
-            background-color: {{ $ingredientsElement->button->color }};
-            color: {{ $ingredientsElement->button->text_color }};
-            border-color: {{ $ingredientsElement->button->border_color }};
+            background-color: {{ $ingredientsElement->button->hover_color }};
+            color: {{ $ingredientsElement->button->hover_text_color }};
+            border-color: {{ $ingredientsElement->button->hover_border_color }};
         }
 
         #order .btnStyle {
@@ -113,9 +113,9 @@
         }
 
         #order .btnStyle:hover {
-            background-color: {{ $orderElement->button->color }};
-            color: {{ $orderElement->button->text_color }};
-            border-color: {{ $orderElement->button->border_color }};
+            background-color: {{ $orderElement->button->hover_color }};
+            color: {{ $orderElement->button->hover_text_color }};
+            border-color: {{ $orderElement->button->hover_border_color }};
         }
     </style>
 
@@ -153,8 +153,9 @@
 
                 <div class="hero-unit ">
                     <div class="container ">
-                        <h1 class="title">{{ $heroSection->title }}</h3>
-                            <p>{{ $heroSection->sub_title }}</p>
+                        <h1 class="title">{{ $heroSection->title }}</h1>
+                            <h3>{{ $heroSection->sub_title }}</h3>
+                            <p>{{ $heroElement->description }}</p>
                             <br>
                             <a class="btn white btnStyle"
                                 href="{{ $heroElement->button->url }}">{{ $heroElement->button->title }}</a>
@@ -166,7 +167,7 @@
                         if ($heroElement->image) {
                             $link = asset('storage/' . $heroElement->image);
                         } else {
-                            $link = asset($userTemplate->template->assets_path . '/images/mockup4.png');
+                            $link = asset($userTemplate->template->assets_path . '/images/attar.png');
                         }
                     @endphp
                     <img src="{{ $link }}" alt="image" class="img-fluid">
@@ -202,7 +203,7 @@
                             if ($ingredientsElement->image) {
                                 $link = asset('storage/' . $ingredientsElement->image);
                             } else {
-                                $link = asset($userTemplate->template->assets_path . '/images/cup4.jpg');
+                                $link = asset($userTemplate->template->assets_path . '/images/attar.jpg');
                             }
                         @endphp
                         <img src="{{ $link }}" alt="" height="100%">
@@ -246,10 +247,10 @@
                                         } else {
                                             $link = asset(
                                                 $userTemplate->template->assets_path .
-                                                    '/images/demo' .
+                                                    '/images/feature' .
                                                     $key +
                                                     1 .
-                                                    '.jpg',
+                                                    '.png',
                                             );
                                         }
                                     @endphp
@@ -371,13 +372,13 @@
     <!-- end core scripts -->
 
     <!-- sliders -->
-    <script type="text/javascript" src="{{ asset($template->assets_path . '/js/owl.carousel.min.js') }}"></script>
+    {{-- <script type="text/javascript" src="{{ asset($template->assets_path . '/js/owl.carousel.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset($template->assets_path . '/js/jquery.waitforimages.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset($template->assets_path . '/js/sliders.js') }}"></script>
     <script type="text/javascript" src="{{ asset($template->assets_path . '/js/jquery.counterup.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset($template->assets_path . '/js/numbers.js') }}"></script>
     <script type="text/javascript" src="{{ asset($template->assets_path . '/js/contact.js') }}"></script>
-    <script type="text/javascript" src="{{ asset($template->assets_path . '/js/parallax.js') }}"></script>
+    <script type="text/javascript" src="{{ asset($template->assets_path . '/js/parallax.js') }}"></script> --}}
 
     <script>
         $(document).ready(function() {

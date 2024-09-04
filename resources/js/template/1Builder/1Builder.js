@@ -41,7 +41,7 @@ export default {
     getFeatureImage(feature, index) {
         const imagePath = feature.image
             ? feature.image
-            : `/images/demo${index + 1}.jpg`;
+            : `/images/feature${index + 1}.png`;
         const storageType = feature.image ? "storage" : "public";
         return this.imageSource(imagePath, storageType);
     },

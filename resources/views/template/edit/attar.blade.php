@@ -48,13 +48,13 @@
     <!-- end core scripts -->
 
     <!-- sliders -->
-    <script type="text/javascript" src="{{ asset($template->assets_path . '/js/owl.carousel.min.js') }}"></script>
+    {{-- <script type="text/javascript" src="{{ asset($template->assets_path . '/js/owl.carousel.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset($template->assets_path . '/js/jquery.waitforimages.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset($template->assets_path . '/js/sliders.js') }}"></script>
     <script type="text/javascript" src="{{ asset($template->assets_path . '/js/jquery.counterup.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset($template->assets_path . '/js/numbers.js') }}"></script>
     <script type="text/javascript" src="{{ asset($template->assets_path . '/js/contact.js') }}"></script>
-    <script type="text/javascript" src="{{ asset($template->assets_path . '/js/parallax.js') }}"></script>
+    <script type="text/javascript" src="{{ asset($template->assets_path . '/js/parallax.js') }}"></script> --}}
 </body>
 
 </html>

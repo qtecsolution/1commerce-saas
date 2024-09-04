@@ -7,7 +7,6 @@ use App\Models\OrderFormAdditionalField;
 use App\Models\Template\TemplateFeature;
 use App\Models\Template\TemplateSection;
 use App\Models\Template\TemplateSectionElement;
-use App\Models\Template\TemplateTestimonial;
 use App\Models\Template\UserTemplate;
 use Illuminate\Http\Request;
 
@@ -17,24 +16,24 @@ class AttarTemplateController extends Controller
     {
         $userTemplate = UserTemplate::where('user_id', $userId)->where('template_id', $templateId)->first();
 
-        // Create header section with menu elements
-        $header = TemplateSection::create([
-            'user_template_id' => $userTemplate->id,
-            'section' => 'header'
-        ]);
+        // // Create header section with menu elements
+        // $header = TemplateSection::create([
+        //     'user_template_id' => $userTemplate->id,
+        //     'section' => 'header'
+        // ]);
 
-        TemplateSectionElement::create([
-            'template_section_id' => $header->id,
-            'name' => 'menu',
-            'data' => json_encode([
-                ['label' => 'Home', 'url' => '/'],
-                ['label' => 'About Product', 'url' => '#about'],
-                ['label' => 'Fragrances', 'url' => '#fragrances'],
-                ['label' => 'Ingredients', 'url' => '#ingredients'],
-                ['label' => 'Features', 'url' => '#features'],
-                ['label' => 'Order', 'url' => '#order'],
-            ]),
-        ]);
+        // TemplateSectionElement::create([
+        //     'template_section_id' => $header->id,
+        //     'name' => 'menu',
+        //     'data' => json_encode([
+        //         ['label' => 'Home', 'url' => '/'],
+        //         ['label' => 'About Product', 'url' => '#about'],
+        //         ['label' => 'Fragrances', 'url' => '#fragrances'],
+        //         ['label' => 'Ingredients', 'url' => '#ingredients'],
+        //         ['label' => 'Features', 'url' => '#features'],
+        //         ['label' => 'Order', 'url' => '#order'],
+        //     ]),
+        // ]);
 
         // Create hero section
         $hero = TemplateSection::create([
@@ -227,7 +226,7 @@ class AttarTemplateController extends Controller
             'template_section_id' => $footer->id,
             'name' => 'footer',
             'data' => json_encode([
-                'text' => 'Copyright © 2024. All rights reserved.'
+                'text' => 'Copyright © 2024 Attar Inc. All rights reserved.'
             ])
         ]);
     }

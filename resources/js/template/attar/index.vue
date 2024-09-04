@@ -95,7 +95,7 @@
                             imageSource(
                                 heroAreaImage
                                     ? heroAreaImage
-                                    : '/images/mockup4.png',
+                                    : '/images/attar.png',
                                 heroAreaImage ? 'storage' : 'public'
                             )
                         "
@@ -110,7 +110,7 @@
                             imageSource(
                                 heroAreaImage
                                     ? heroAreaImage
-                                    : '/images/mockup4.png',
+                                    : '/images/attar.png',
                                 heroAreaImage ? 'storage' : 'public'
                             )
                         "
@@ -208,7 +208,7 @@
                                 imageSource(
                                     ingredientAreaImage
                                         ? ingredientAreaImage
-                                        : '/images/cup4.jpg',
+                                        : '/images/attar.jpg',
                                     ingredientAreaImage ? 'storage' : 'public'
                                 )
                             "
@@ -224,7 +224,7 @@
                                 imageSource(
                                     ingredientAreaImage
                                         ? ingredientAreaImage
-                                        : '/images/cup4.jpg',
+                                        : '/images/attar.jpg',
                                     ingredientAreaImage ? 'storage' : 'public'
                                 )
                             "
@@ -768,9 +768,9 @@ export default {
         // console.log(sections);
 
         // menu area
-        this.menuItems = this.decodedData(
-            this.getElement("header", "menu").data
-        );
+        // this.menuItems = this.decodedData(
+        //     this.getElement("header", "menu").data
+        // );
 
         // hero area
         let heroArea = this.getSection("hero");
