@@ -413,7 +413,7 @@
     <!-- About Product section ends -->
 
     <!-- Testimonials starts -->
-    <section class="testimonials parallaxie" id="testimonial"
+    <section class="testimonials parallaxie" id="testimonials"
         style="background-color: {{ $testimonials_area['background_color'] }}">
         <div class="container">
             <!-- Section Title start -->
