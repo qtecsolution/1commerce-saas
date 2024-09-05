@@ -76,7 +76,7 @@
                                     <td>{{ $order->currency }} {{ number_format($order->shipping_cost, 2) }}</td>
                                     <td>{{ $order->currency }} {{ number_format($order->discount_amount, 2) }}</td>
                                     <td>{{ $order->currency }} {{ number_format($order->total_amount, 2) }}</td>
-                                    <td>
+                                    <td class="dropdown">
                                         <div class="btn-group btn-group-sm">
                                             <button type="button"
                                                 class="btn btn-{{ orderStatusColor($order->status) }} dropdown-toggle"
@@ -86,7 +86,7 @@
                                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left">
                                                 @foreach (orderStatusList() as $key => $value)
                                                     <a href="{{ route('order.update.status', [$order->id, $key + 1]) }}"
-                                                        class="dropdown-item">
+                                                        class="dropdown-item {{ $order->status == $key + 1 ? 'bg-' . orderStatusColor($order->status) . ' text-white' : '' }}">
                                                         {{ $value['label'] }}
                                                     </a>
                                                 @endforeach

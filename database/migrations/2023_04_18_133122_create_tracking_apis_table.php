@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('tracking_apis', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(UserTemplate::class)->constrained()->cascadeOnDelete();
+            $table->longText('fb_varification_key')->nullable();
             $table->longText('fb_pixel_value')->nullable();
             $table->longText('gtm_head_value')->nullable();
             $table->longText('gtm_body_value')->nullable();
