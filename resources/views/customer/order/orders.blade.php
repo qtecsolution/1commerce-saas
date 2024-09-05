@@ -76,7 +76,7 @@
                                     <td>{{ $order->currency }} {{ number_format($order->shipping_cost, 2) }}</td>
                                     <td>{{ $order->currency }} {{ number_format($order->discount_amount, 2) }}</td>
                                     <td>{{ $order->currency }} {{ number_format($order->total_amount, 2) }}</td>
-                                    <td class="dropdown">
+                                    <td>
                                         <div class="btn-group btn-group-sm">
                                             <button type="button"
                                                 class="btn btn-{{ orderStatusColor($order->status) }} dropdown-toggle"

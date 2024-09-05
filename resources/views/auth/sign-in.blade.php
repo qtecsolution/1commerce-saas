@@ -27,6 +27,9 @@
                                             <input type="text" class="form-control" id="userName" placeholder="Username"
                                                 name="username" value="{{ old('username') }}">
                                         </div>
+                                        @error('username')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
                                         <label class="font-weight-semibold" for="password">Password:</label>
@@ -39,6 +42,9 @@
                                             <input type="password" class="form-control" id="password"
                                                 placeholder="Password" name="password" value="{{ old('password') }}">
                                         </div>
+                                        @error('password')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
                                         <span class="font-size-13 text-muted">

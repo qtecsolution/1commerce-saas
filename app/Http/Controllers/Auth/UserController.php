@@ -47,10 +47,12 @@ class UserController extends Controller
                 } else {
                     // sign-out and return back
                     Auth::logout();
+                    toast('The username or password is incorrect.', 'error');
                     return redirect()->back();
                 }
             } else {
                 // return back
+                toast('The username or password is incorrect.', 'error');
                 return redirect()->back();
             }
         } else {
@@ -206,7 +208,7 @@ class UserController extends Controller
 
         // update password
         $user->update([
-            'password' => bcrypt($request->new_password)
+            'password' => bcrypt($request->password)
         ]);
 
         // return back

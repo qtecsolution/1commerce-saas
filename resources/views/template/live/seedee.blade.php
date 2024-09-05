@@ -231,11 +231,13 @@
                                         <div class="d-flex align-items-start">
                                             <input type="radio" checked name="delivery-area"
                                                 class="form-check-input me-2" id="cashOnDelivery">
-                                            <label class="label m-0 secondary_text_color" for="cashOnDelivery">
-                                                {{ $order_area['payment_title'] }}
-                                            </label>
-                                            <div class="tagline secondary_text_color">
-                                                {{ $order_area['payment_sub_title'] }}
+                                            <div>
+                                                <label class="label m-0 secondary_text_color" for="cashOnDelivery">
+                                                    {{ $order_area['payment_title'] }}
+                                                </label>
+                                                <div class="tagline secondary_text_color">
+                                                    {{ $order_area['payment_sub_title'] }}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
