@@ -13,18 +13,13 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         $templateIds = UserTemplate::where('user_id', auth()->id())->pluck('id');
-        if (count($templateIds) > 0) {
-            $query = Order::with(['userTemplate'])->whereIn('user_template_id', $templateIds);
-            if ($request->status) {
-                $query->where('status', $request->status);
-            }
-            $orders = $query->latest()->paginate(10);
-
-            return view('customer.order.orders', compact('orders'));
+        $query = Order::with(['userTemplate'])->whereIn('user_template_id', $templateIds);
+        if ($request->status) {
+            $query->where('status', $request->status);
         }
+        $orders = $query->latest()->paginate(10);
 
-        Alert::error('Oops!', 'Template Not Setup yet.');
-        return to_route('templates.index');
+        return view('customer.order.orders', compact('orders'));
     }
 
     public function updateStatus($id, $status)
