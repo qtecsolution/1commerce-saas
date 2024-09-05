@@ -204,6 +204,24 @@ export default {
         });
     },
 
+    updateFooterText(prefix, storeData, event) {
+        const newValue = event.target.textContent.trim();
+        if (this.orderSubTitle == newValue) {
+            return;
+        }
+
+        this[storeData] = this.updateContent(event);
+        // console.log(this[storeData]);
+
+        this.updateResource({
+            section: 'footer',
+            element: 'footer',
+            storeData: storeData,
+            prefix: prefix,
+            value: this[storeData],
+        });
+    },
+
     updateButton(data) {
 
         this.updateResource({
@@ -257,7 +275,7 @@ export default {
         let value = data.value || null;
         let storeData = data.storeData || null;
 
-        if (prefix == "button") {
+        if (prefix == "button" || prefix == "items") {
             value = JSON.stringify(data.value);
         }
 

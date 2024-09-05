@@ -171,11 +171,6 @@ img {
      padding: 0;
 }
 
-.form-control:focus {
-     border-color: #ffffff !important;
-     box-shadow: 0 0 0 .2rem rgba(255, 255, 255, .25);
-}
-
 .navbar-form input {
      border: none !important;
 }
@@ -260,22 +255,22 @@ button {
 }
 
 
-/*-- costomer--*/
+/*-- customer--*/
 
-ul.costomer {
+ul.customer {
      float: right;
 }
 
-ul.costomer li {
+ul.customer li {
      color: #fff;
      font-size: 20px;
      font-weight: 500;
 }
 
-ul.costomer li a {
+ul.customer li a {
      color: #fff;
 }
-ul.costomer li a span {color: #5502bb;}
+ul.customer li a span {color: #5502bb;}
 
 /*-- header area --*/
 

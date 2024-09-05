@@ -1,7 +1,8 @@
 <template>
     <!-- loader  -->
     <!-- <div class="loader_bg">
-        <div class="loader"><img :src="imageSource('/images/loading.gif', 'public')" alt="#" />
+        <div class="loader">
+            <img :src="imageSource('/images/loading.gif', 'public')" alt="#" />
         </div>
     </div> -->
     <!-- end loader -->
@@ -9,24 +10,52 @@
     <!-- header -->
     <header>
         <!-- header inner -->
-        <div class="header_bg" :style="headerBgStyle">
+        <div class="header_bg">
             <div class="header">
                 <div class="container">
                     <div class="row">
-                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+                        <div
+                            class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section"
+                        >
                             <div class="full">
                                 <div class="center-desk">
                                     <div class="logo">
-                                        <a href="#"><img
-                                                :src="imageSource(headerAreaLogo ? headerAreaLogo : '/images/logo.png', headerAreaLogo ? 'storage' : 'public')"
-                                                alt="logo" width="80px" /></a>
+                                        <a href="#">
+                                            <img
+                                                :src="
+                                                    imageSource(
+                                                        headerAreaLogo
+                                                            ? headerAreaLogo
+                                                            : '/images/logo.png',
+                                                        headerAreaLogo
+                                                            ? 'storage'
+                                                            : 'public'
+                                                    )
+                                                "
+                                                alt="logo"
+                                                width="80px"
+                                            />
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
-                            <ul class="costomer">
-                                <li>{{ headerAreaContact }}</li>
+                            <ul class="customer">
+                                <li
+                                    contenteditable="true"
+                                    @blur="
+                                        updateResource({
+                                            section: 'header',
+                                            element: 'header',
+                                            storeData: 'headerAreaContact',
+                                            prefix: 'contact',
+                                            value: $event.target.innerText,
+                                        })
+                                    "
+                                >
+                                    {{ headerAreaContact }}
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -34,39 +63,71 @@
             </div>
             <!-- end header inner -->
             <!-- end header -->
+
             <!-- banner -->
-            <section class="banner_main" :style="heroAreaStyles">
+            <section class="banner_main">
                 <div class="container-fluid">
                     <div class="row d_flex">
                         <div class="col-md-6">
                             <div class="text-bg">
-                                <span>{{ heroAreaSubTitle }}</span>
-                                <h1>{{ heroAreaTitle }}</h1>
-                                <p>{{ heroAreaDescription }}</p>
-                                <a :href="heroAreaButton.url">{{ heroAreaButton.title }} </a>
+                                <span
+                                    contenteditable="true"
+                                    @blur="
+                                        updateSubTitle(
+                                            'hero',
+                                            'heroAreaSubTitle',
+                                            $event
+                                        )
+                                    "
+                                    >{{ heroAreaSubTitle }}</span
+                                >
+                                <h1
+                                    contenteditable="true"
+                                    @blur="
+                                        updateTitle(
+                                            'hero',
+                                            'heroAreaTitle',
+                                            $event
+                                        )
+                                    "
+                                >
+                                    {{ heroAreaTitle }}
+                                </h1>
+                                <p
+                                    contenteditable="true"
+                                    @blur="
+                                        updateDescription(
+                                            'hero',
+                                            'hero',
+                                            'heroAreaDescription',
+                                            $event
+                                        )
+                                    "
+                                >
+                                    {{ heroAreaDescription }}
+                                </p>
+                                <a :href="heroAreaButton.url"
+                                    >{{ heroAreaButton.title }}
+                                </a>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="text-img">
-                                <figure><img
-                                        :src="imageSource(heroAreaImage ? heroAreaImage : '/images/img.png', heroAreaImage ? 'storage' : 'public')"
-                                        style="border-radius: 50%;width: 600px" /></figure>
-                    <ImageModal
-                        :modalId="'heroImageModal'"
-                        :modalTitle="'Edit Hero Area Image'"
-                        :image="
-                            imageSource(
-                                heroAreaImage
-                                    ? heroAreaImage
-                                    : '/images/img.png',
-                                heroAreaImage ? 'storage' : 'public'
-                            )
-                        "
-                        section="hero"
-                        element="hero"
-                        storeData="heroAreaImage"
-                        @save="updateImage"
-                    />
+                                <figure>
+                                    <img
+                                        :src="
+                                            imageSource(
+                                                heroAreaImage
+                                                    ? heroAreaImage
+                                                    : '/images/img.png',
+                                                heroAreaImage
+                                                    ? 'storage'
+                                                    : 'public'
+                                            )
+                                        "
+                                        style="border-radius: 50%; width: 600px"
+                                    />
+                                </figure>
                             </div>
                         </div>
                     </div>
@@ -76,76 +137,237 @@
     </header>
     <!-- end banner -->
 
-    <!-- quality  -->
-    <div class="quality" :style="informationAreaStyles">
+    <!-- information area start -->
+    <div class="quality">
         <div class="container">
             <div class="row d_flex">
                 <div class="col-md-8">
                     <div class="quality_box">
-                        <figure><img
-                                :src="imageSource(informationImage ? informationImage : '/images/qt.jpg', informationImage ? 'storage' : 'public')"
-                                alt="product" />
+                        <figure>
+                            <img
+                                :src="
+                                    imageSource(
+                                        informationImage
+                                            ? informationImage
+                                            : '/images/qt.jpg',
+                                        informationImage ? 'storage' : 'public'
+                                    )
+                                "
+                                alt="product"
+                            />
                         </figure>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="quality_text">
-                        <h3>{{ informationTitle }}</h3>
-                        <p>
+                    <div class="quality_text position-relative">
+                        <h3
+                            contenteditable="true"
+                            @blur="
+                                updateTitle(
+                                    'information',
+                                    'informationTitle',
+                                    $event
+                                )
+                            "
+                        >
+                            {{ informationTitle }}
+                        </h3>
                         <ul>
-                            <li v-for="(item, index) in informationItems" :key="index">{{ item }}</li>
+                            <li
+                                v-for="(item, index) in informationItems"
+                                :key="index"
+                            >
+                                <span
+                                    contenteditable="true"
+                                    v:alue="item"
+                                    @blur="updateInformation(index, $event)"
+                                    >{{ item }}</span
+                                >
+                                <i
+                                    @click="removeInformation(index)"
+                                    class="fas fa-times ml-2"
+                                ></i>
+                            </li>
                         </ul>
-                        </p>
+
+                        <!-- Input to add new ingredients -->
+                        <div class="row mt-5">
+                            <div class="col">
+                                <input
+                                    v-model="newInformation"
+                                    placeholder="Add new information"
+                                    class="form-control"
+                                />
+                            </div>
+
+                            <div
+                                @click="addInformation"
+                                class="bg-primary py-1 px-2 rounded text-white"
+                            >
+                                Add
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- end quality  -->
+    <!-- information area end -->
 
+    <!-- slider area start -->
     <div class="customers">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="titlepage">
-                        <h2>{{ sliderAreaTitle }}</h2>
+                        <h2
+                            contenteditable="true"
+                            @blur="
+                                updateTitle('slider', 'sliderAreaTitle', $event)
+                            "
+                        >
+                            {{ sliderAreaTitle }}
+                        </h2>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div id="myCarousel" class="carousel slide banner2" data-ride="carousel">
+                <div
+                    id="myCarousel"
+                    class="carousel slide banner2"
+                    data-ride="carousel"
+                >
                     <ol class="carousel-indicators">
-                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li
+                            data-target="#myCarousel"
+                            data-slide-to="0"
+                            class="active"
+                        ></li>
                         <li data-target="#myCarousel" data-slide-to="1"></li>
                         <li data-target="#myCarousel" data-slide-to="2"></li>
                     </ol>
+
                     <div class="carousel-inner">
-                        <div v-for="(item, index) in sliderItems" :key="index"
-                            :class="['carousel-item', { active: index === 0 }]">
+                        <div
+                            v-for="(item, index) in sliderItems"
+                            :key="index"
+                            :class="['carousel-item', { active: index === 0 }]"
+                        >
+                            <div
+                                class="slider-update-btn"
+                                data-toggle="modal"
+                                :data-target="'#exampleModal' + index"
+                            >
+                                <i class="fas fa-pen"></i>
+                            </div>
                             <div class="container">
                                 <div class="carousel-caption">
                                     <figure>
-                                        <img :src="imageSource(item.image ? item.image : '/images/banner' + (index + 1) + '.jpg', item.image ? 'storage' : 'public')"
+                                        <img
+                                            :src="
+                                                imageSource(
+                                                    item.image
+                                                        ? item.image
+                                                        : '/images/banner' +
+                                                              (index + 1) +
+                                                              '.jpg',
+                                                    item.image
+                                                        ? 'storage'
+                                                        : 'public'
+                                                )
+                                            "
                                             :alt="'banner ' + (index + 1)"
-                                            style="height: 500px; width: 900px; border-radius: 20px" />
+                                            style="
+                                                height: 500px;
+                                                width: 900px;
+                                                border-radius: 20px;
+                                            "
+                                        />
                                     </figure>
                                     <p>{{ item.description }}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div
+        class="modal fade"
+        :id="'exampleModal' + index"
+        tabindex="-1"
+        :aria-labelledby="'sliderModalLabel' + index"
+        aria-hidden="true"
+        v-for="(item, index) in sliderItems"
+        :key="index"
+    >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" :id="'exampleModalLabel' + index">
+                        Slider {{ index + 1 }}
+                    </h5>
+                    <button
+                        type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                    >
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <img
+                            :src="
+                                imageSource(
+                                    item.image
+                                        ? item.image
+                                        : '/images/banner' +
+                                              (index + 1) +
+                                              '.jpg',
+                                    item.image ? 'storage' : 'public'
+                                )
+                            "
+                            alt=""
+                            class="img-fluid"
+                        />
+                        <label for="" class="mt-2">Image:</label>
+                        <input
+                            type="file"
+                            class="form-control"
+                            accept="image/*"
+                            @onchange="newSliderImage"
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label for="">Description:</label>
+                        <textarea
+                            rows="5"
+                            class="form-control"
+                            v-model="item.description"
+                        >{{ item.description }}</textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-dismiss="modal"
+                    >
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-primary" @click="updateSlider(item.id)">
+                        Save changes
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- slider area end -->
 
     <!-- testimonial -->
     <div class="testimonial">
@@ -153,8 +375,29 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="titlepage">
-                        <h2>Says Clients </h2>
-                        <p>
+                        <h2
+                            contenteditable="true"
+                            @blur="
+                                updateTitle(
+                                    'clients_says',
+                                    'clientSaysAreaTitle',
+                                    $event
+                                )
+                            "
+                        >
+                            {{ clientSaysAreaTitle }}
+                        </h2>
+                        <p
+                            contenteditable="true"
+                            @blur="
+                                updateDescription(
+                                    'clients_says',
+                                    'clients_says',
+                                    'clientSaysDescription',
+                                    $event
+                                )
+                            "
+                        >
                             {{ clientSaysDescription }}
                         </p>
                     </div>
@@ -164,8 +407,15 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="owl-carousel owl-theme">
-                            <div v-for="(item, index) in clientSaysItems" :key="index" class="item"
-                                :style="{ backgroundColor: item.bg_color, color: item.text_color }">
+                            <div
+                                v-for="(item, index) in clientSaysItems"
+                                :key="index"
+                                class="item"
+                                :style="{
+                                    backgroundColor: item.bg_color,
+                                    color: item.text_color,
+                                }"
+                            >
                                 <span></span>
                                 <h3>{{ item.title }}</h3>
                                 <p>{{ item.description }}</p>
@@ -178,81 +428,229 @@
     </div>
     <!-- end testimonial -->
 
-    <div class="bg_ba" :style="orderAreaStyles">
+    <!-- order area start -->
+    <div class="bg_ba">
         <!-- order section-->
         <div id="order" class="order">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="titlepage">
-                            <h2>{{ orderAreaTitle }}</h2>
+                            <h2
+                                contenteditable="true"
+                                @blur="
+                                    updateTitle(
+                                        'order',
+                                        'orderAreaTitle',
+                                        $event
+                                    )
+                                "
+                            >
+                                {{ orderAreaTitle }}
+                            </h2>
                         </div>
                         <form class="main_form card p-5">
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="row">
                                         <!-- Product Information -->
-                                        <div class="col-sm-12 order-product-info mb-3">
-                                            <div class="d-flex align-items-center justify-content-between">
+                                        <div
+                                            class="col-sm-12 order-product-info mb-3"
+                                        >
+                                            <div
+                                                class="d-flex align-items-center justify-content-between"
+                                            >
                                                 <div>
-                                                    <img :src="imageSource('/images/img.png', 'public')"
-                                                        class="order-product-image">
+                                                    <img
+                                                        :src="
+                                                            imageSource(
+                                                                user_template.product_image ??
+                                                                    '/images/img.png',
+                                                                user_template.product_image
+                                                                    ? 'storage'
+                                                                    : 'public'
+                                                            )
+                                                        "
+                                                        class="order-product-image"
+                                                    />
                                                 </div>
                                                 <div class="order-product-name">
-                                                    <h3>Lakmē Glycolic Night Cream 15g</h3>
+                                                    <h3
+                                                        @blur="
+                                                            updateProductDetails(
+                                                                'product_name',
+                                                                $event
+                                                            )
+                                                        "
+                                                        contenteditable="true"
+                                                    >
+                                                        {{
+                                                            user_template.product_name
+                                                        }}
+                                                    </h3>
                                                 </div>
-                                                <div>
-                                                    <h1 class="order-multiplier">x</h1>
+                                                <div
+                                                    class="order-product-price"
+                                                >
+                                                    <h3>
+                                                        <span
+                                                            class="order-product-currency"
+                                                            @blur="
+                                                                updateProductDetails(
+                                                                    'product_price',
+                                                                    $event
+                                                                )
+                                                            "
+                                                            contenteditable="true"
+                                                        >
+                                                            {{
+                                                                user_template.product_price
+                                                            }}
+                                                        </span>
+                                                        {{
+                                                            user_template.product_currency
+                                                        }}
+                                                    </h3>
                                                 </div>
-                                                <div class="order-quantity-input">
-                                                    <input class="orderfield" placeholder="Qty" type="number"
-                                                        name="Quantity" min="1" value="1">
+                                                <div class="ml-3">
+                                                    <h1
+                                                        class="order-multiplier"
+                                                    >
+                                                        x
+                                                    </h1>
                                                 </div>
-                                                <div class="order-product-price">
-                                                    <h3>500.00 TK.</h3>
+                                                <div
+                                                    class="order-quantity-input"
+                                                >
+                                                    <input
+                                                        class="orderfield"
+                                                        placeholder="Qty"
+                                                        type="number"
+                                                        name="Quantity"
+                                                        min="1"
+                                                        v-model="orderQuantity"
+                                                    />
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="col-sm-12">
-                                            <label class="order-shipping-option d-flex p-3">
-                                                <input class="order-custom-radio " type="radio" name="shippingOption"
-                                                    id="shippingOption1" checked>
-                                                <div class="order-form-check-label">
-                                                    <h3>Shipping Cost (Inside Dhaka)</h3>
+                                            <label
+                                                class="order-shipping-option d-flex p-3"
+                                            >
+                                                <input
+                                                    class="order-custom-radio"
+                                                    type="radio"
+                                                    name="shippingOption"
+                                                    :checked="
+                                                        selectedShippingOption ===
+                                                        'inside_dhaka'
+                                                    "
+                                                />
+                                                <div
+                                                    class="order-form-check-label"
+                                                >
+                                                    <h3>
+                                                        Shipping Cost (Inside
+                                                        Dhaka)
+                                                    </h3>
                                                 </div>
-                                                <div class="order-shipping-price">
-                                                    <h3>50.00 TK.</h3>
+                                                <div
+                                                    class="order-shipping-price"
+                                                >
+                                                    <h3>
+                                                        <span
+                                                            class="mr-2"
+                                                            @blur="
+                                                                updateProductDetails(
+                                                                    'shipping_cost_inside_dhaka',
+                                                                    $event
+                                                                )
+                                                            "
+                                                            contenteditable="true"
+                                                        >
+                                                            {{
+                                                                user_template.shipping_cost_inside_dhaka
+                                                            }}
+                                                        </span>
+                                                        <span>
+                                                            {{
+                                                                user_template.product_currency
+                                                            }}
+                                                        </span>
+                                                    </h3>
                                                 </div>
                                             </label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <label class="order-shipping-option d-flex p-3">
-                                                <input class="order-custom-radio " type="radio" name="shippingOption"
-                                                    id="shippingOption2">
-                                                <div class="order-form-check-label">
-                                                    <h3>Shipping Cost (Outside Dhaka)</h3>
+                                            <label
+                                                class="order-shipping-option d-flex p-3"
+                                            >
+                                                <input
+                                                    class="order-custom-radio"
+                                                    type="radio"
+                                                    name="shippingOption"
+                                                    :checked="
+                                                        selectedShippingOption ===
+                                                        'outside_dhaka'
+                                                    "
+                                                />
+                                                <div
+                                                    class="order-form-check-label"
+                                                >
+                                                    <h3>
+                                                        Shipping Cost (Outside
+                                                        Dhaka)
+                                                    </h3>
                                                 </div>
-                                                <div class="order-shipping-price">
-                                                    <h3>100.00 TK.</h3>
+                                                <div
+                                                    class="order-shipping-price"
+                                                >
+                                                    <h3>
+                                                        <span
+                                                            class="mr-2"
+                                                            @blur="
+                                                                updateProductDetails(
+                                                                    'shipping_cost_outside_dhaka',
+                                                                    $event
+                                                                )
+                                                            "
+                                                            contenteditable="true"
+                                                        >
+                                                            {{
+                                                                user_template.shipping_cost_outside_dhaka
+                                                            }}
+                                                        </span>
+                                                        <span>
+                                                            {{
+                                                                user_template.product_currency
+                                                            }}
+                                                        </span>
+                                                    </h3>
                                                 </div>
                                             </label>
                                         </div>
 
                                         <!-- Divider -->
                                         <div class="col-sm-12">
-                                            <hr class="order-divider">
+                                            <hr class="order-divider" />
                                         </div>
 
                                         <!-- Subtotal -->
                                         <div class="col-sm-12">
                                             <div
-                                                class="d-flex align-items-center justify-content-between order-subtotal">
+                                                class="d-flex align-items-center justify-content-between order-subtotal"
+                                            >
                                                 <div>
                                                     <h3>Total</h3>
                                                 </div>
                                                 <div>
-                                                    <h3>550.00 TK.</h3>
+                                                    <h3>
+                                                        {{ subtotal }}
+                                                        {{
+                                                            user_template.product_currency
+                                                        }}
+                                                    </h3>
                                                 </div>
                                             </div>
                                         </div>
@@ -260,27 +658,73 @@
                                 </div>
 
                                 <div class="col-sm-6">
-                                    <div class="row">
+                                    <div class="row d-none">
                                         <div class="col-sm-12">
-                                            <input class="orderfield" placeholder="Full Name" type="text" name="
-                                  Full Name">
+                                            <input
+                                                class="orderfield"
+                                                placeholder="Full Name"
+                                                type="text"
+                                                name="Full Name"
+                                            />
                                         </div>
                                         <div class="col-sm-12">
-                                            <input class="orderfield" placeholder="Email" type="text" name=" Email">
+                                            <input
+                                                class="orderfield"
+                                                placeholder="Email"
+                                                type="text"
+                                                name=" Email"
+                                            />
                                         </div>
                                         <div class="col-sm-12">
-                                            <input class="orderfield" placeholder="Phone" type="text" name="Phone">
+                                            <input
+                                                class="orderfield"
+                                                placeholder="Phone"
+                                                type="text"
+                                                name="Phone"
+                                            />
                                         </div>
 
                                         <div class="col-sm-12">
-                                            <textarea class="textarea" placeholder="Address" type="text"
-                                                name="Address"></textarea>
+                                            <textarea
+                                                class="textarea"
+                                                placeholder="Address"
+                                                type="text"
+                                                name="Address"
+                                            ></textarea>
                                         </div>
                                     </div>
+
+                                    <FormField
+                                        :styles="{
+                                            color: orderAreaTextColor,
+                                            backgroundColor: orderAreaBgColor,
+                                        }"
+                                        v-for="(
+                                            field, index
+                                        ) in orderAreaFields"
+                                        :key="index"
+                                        :field="field"
+                                        @delete="
+                                            deleteOrderAreaField(index, $event)
+                                        "
+                                        @update="
+                                            updateOrderAreaField(index, $event)
+                                        "
+                                        :isDeletable="index >= 4"
+                                        :isEditable="true"
+                                    />
+
+                                    <AddFieldModal
+                                        :modalId="'AddFieldModal'"
+                                        :modalTitle="'Add Dynamic Form'"
+                                        @save="addOrderAreaField"
+                                    />
                                 </div>
 
                                 <div class="col-sm-12 mt-2">
-                                    <button class="order">{{ orderAreaButton.title }}</button>
+                                    <button class="order">
+                                        {{ orderAreaButton.title }}
+                                    </button>
                                 </div>
                             </div>
                         </form>
@@ -289,15 +733,26 @@
             </div>
         </div>
     </div>
-    <!-- end order -->
+    <!-- order area end -->
 
     <!--  footer -->
-    <footer :style="footerAreaStyles">
+    <footer>
         <div class="footer">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <p>{{ footerAreaText }}</p>
+                        <p
+                            contenteditable="true"
+                            @blur="
+                                updateFooterText(
+                                    'text',
+                                    'footerAreaText',
+                                    $event
+                                )
+                            "
+                        >
+                            {{ footerAreaText }}
+                        </p>
                     </div>
                 </div>
             </div>
@@ -309,7 +764,8 @@
 <script>
 import OneBuilder from "../1Builder/1Builder.js";
 import ButtonModal from "../1Builder/components/ButtonModal.vue";
-import ColorPicker from "../1Builder/components/ColorPicker.vue"; "../1Builder/components/ColorPicker.vue";
+import ColorPicker from "../1Builder/components/ColorPicker.vue";
+("../1Builder/components/ColorPicker.vue");
 import ImageModal from "../1Builder/components/ImageModal.vue";
 import DynamicFormMethods from "../1Builder/components/form/DynamicFormMethods.js";
 import AddFieldModal from "../1Builder/components/form/AddFieldModal.vue";
@@ -323,7 +779,7 @@ export default {
         ColorPicker,
         ImageModal,
         AddFieldModal,
-        FormField
+        FormField,
     },
     data() {
         return {
@@ -350,6 +806,7 @@ export default {
             informationItems: [],
             informationImage: "",
             informationImageBorderColor: "",
+            newInformation: "",
 
             // slider area
             sliderAreaTitle: "",
@@ -357,6 +814,7 @@ export default {
             sliderAreaImage: "",
             sliderAreaBgColor: "",
             sliderAreaTextColor: "",
+            newSliderImage: "",
 
             // client says area
             clientSaysAreaTitle: "",
@@ -371,6 +829,8 @@ export default {
             orderAreaTextColor: "",
             orderAreaFields: [],
             orderAreaButton: [],
+            selectedShippingOption: "inside_dhaka",
+            orderQuantity: 1,
 
             // footer area
             footerAreaTextColor: "",
@@ -415,7 +875,8 @@ export default {
         this.informationTitle = informationElement.title;
         this.informationItems = informationElement.items;
         this.informationImage = informationElement.image;
-        this.informationImageBorderColor = informationElement.image_border_color;
+        this.informationImageBorderColor =
+            informationElement.image_border_color;
 
         // slider area
         let sliderArea = this.getSection("slider");
@@ -449,7 +910,7 @@ export default {
         this.orderAreaTextColor = orderArea.text_color;
         this.orderAreaFields = this.user_template.fields;
         this.orderAreaButton = orderAreaElement.button;
-        
+
         // footer area
         let footerArea = this.getSection("footer");
         let footerAreaElement = this.decodedData(
@@ -461,88 +922,97 @@ export default {
         this.footerAreaBgColor = footerArea.bg_color;
         // this.footerAreaLinks = footerAreaElement.links;
     },
+    watch: {
+        selectedShippingOption(newVal, oldVal) {
+            this.calculateSubtotal();
+        },
+
+        orderQuantity(newVal, oldVal) {
+            this.calculateSubtotal();
+        },
+    },
+
+    computed: {
+        subtotal() {
+            return this.calculateSubtotal();
+        },
+    },
+
     methods: {
         ...DynamicFormMethods,
         ...OneBuilder,
-        
+
+        calculateSubtotal() {
+            const productPrice =
+                parseFloat(this.user_template.product_price) || 0;
+            const shippingCostInsideDhaka =
+                parseFloat(this.user_template.shipping_cost_inside_dhaka) || 0;
+            const shippingCostOutsideDhaka =
+                parseFloat(this.user_template.shipping_cost_outside_dhaka) || 0;
+            const shippingCost =
+                this.selectedShippingOption === "inside_dhaka"
+                    ? shippingCostInsideDhaka
+                    : shippingCostOutsideDhaka;
+
+            return (productPrice * this.orderQuantity + shippingCost).toFixed(
+                2
+            );
+        },
+
+        addInformation() {
+            if (this.newInformation.trim()) {
+                this.informationItems.push(this.newInformation.trim());
+                this.newInformation = "";
+            }
+
+            this.updateInformations();
+        },
+
+        removeInformation(index) {
+            this.informationItems.splice(index, 1);
+            this.updateInformations();
+        },
+
+        updateInformation(index, event) {
+            this.informationItems[index] = event.target.innerText;
+            this.updateInformations();
+        },
+
+        updateInformations() {
+            this.updateResource({
+                section: "information",
+                element: "information",
+                storeData: "informationItems",
+                prefix: "items",
+                value: this.informationItems,
+            });
+        },
+
+        updateSlider() {
+            this.updateResource({
+                section: "slider",
+                element: "slider",
+                storeData: "sliderItems",
+                prefix: "items",
+                value: this.sliderItems,
+            });
+        },
     },
 };
 </script>
 
 <style scoped>
-.text-bg a {
-    border: 2px solid var(--hero-border-color);
-    background-color: var(--hero-bg-color);
-    color: var(--hero-text-color);
-}
-
-.text-bg a:hover {
-    border: 2px solid var(--hero-hover-border-color);
-    background-color: var(--hero-hover-bg-color);
-    color: var(--hero-hover-text-color);
-}
-
-.quality {
-    background: var(--information-bg-color);
-}
-
-.quality .quality_box::before {
-    position: absolute;
-    content: "";
-    left: 15px;
-    border-top: 20px;
-    height: 20px;
-    background: var(--information-img-border-color);
-    width: 77%;
-    top: -5px;
-}
-
-.quality .quality_box::after {
-    position: absolute;
-    content: "";
-    left: 10px;
-    height: 80%;
-    background: var(--information-img-border-color);
-    width: 20px;
-    top: -5px;
-}
-
-.bg_ba {
-    font-family: Poppins;
-    background: var(--order-bg-color);
-}
-.order .titlepage h2 {color: var(--order-text-color); font-weight: bold;}
-.order .main_form .order {
-    font-size: 16px;
-    transition: ease-in all 0.5s;
-    border: 2px solid var(--order-button-border-color);
-    background: var(--order-button-bg-color);
-    color: var(--order-button-text-color);
-    padding: 10px 70px;
-    margin: 0 auto;
-    display: block;
-    border-radius: 25px;
-    font-weight: bold;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-}
-
-.order .main_form .order:hover {
-    background-color: var(--order-button-hover-color);
-    transition: ease-in all 0.5s;
-    color: var(--order-button-hover-text-color);
-    font-weight: bold;
-}
-
-.footer {
-    padding: 20px 0px;
-    background: var(--footer-bg-color);
-}
-
-.footer p {
-    color: var(--footer-text-color);
-    font-size: 18px;
-    line-height: 22px;
+.slider-update-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #ffffff;
     text-align: center;
+    line-height: 30px;
+    color: #000000;
+    position: absolute;
+    top: 0;
+    right: 6%;
+    cursor: pointer;
 }
 </style>

@@ -75,7 +75,8 @@ class TemplateSectionController extends Controller
         }
 
         if ($request->prefix == 'items') {
-            $elementData[$request->prefix] = explode(',', $request->value);
+            // $elementData[$request->prefix] = explode(',', $request->value);
+            $elementData[$request->prefix] = json_decode($request->value);
         }
 
         if ($request->prefix == 'button') {

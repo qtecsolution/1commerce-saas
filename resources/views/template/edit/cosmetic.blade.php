@@ -52,6 +52,7 @@
     <script src="{{ asset($template->assets_path . '/js/jquery.min.js') }}"></script>
     <script src="{{ asset($template->assets_path . '/js/popper.min.js') }}"></script>
     <script src="{{ asset($template->assets_path . '/js/bootstrap.bundle.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset($template->assets_path . '/js/bootstrap5.js') }}"></script>
     <script src="{{ asset($template->assets_path . '/js/jquery-3.0.0.min.js') }}"></script>
     <script src="{{ asset($template->assets_path . '/js/plugin.js') }}"></script>
     <!-- sidebar -->

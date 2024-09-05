@@ -19,7 +19,7 @@
             <div class="card-body">
                 <div class="row">
                     @foreach ($templates as $key => $template)
-                        @if ($key !== 4)
+                        {{-- @if ($key !== 4) --}}
                             <div class="col-md-4">
                                 <div class="card overflow-hidden">
                                     <div class="card-body p-0">
@@ -39,7 +39,7 @@
                                     </div>
                                 </div>
                             </div>
-                        @endif
+                        {{-- @endif --}}
                     @endforeach
                 </div>
             </div>

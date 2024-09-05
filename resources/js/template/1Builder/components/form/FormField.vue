@@ -5,7 +5,7 @@
         }}</label>
         <input
             v-if="
-                ['text', 'number', 'date', 'time', 'datetime-local'].includes(
+                ['text', 'email', 'number', 'date', 'time', 'datetime-local'].includes(
                     field.type
                 )
             "
