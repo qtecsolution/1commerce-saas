@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Str;
 use App\Models\CustomDomain;
-use App\Models\Template\UserTemplate;
 use Illuminate\Http\Request;
+use App\Models\Template\UserTemplate;
 use Illuminate\Support\Facades\Validator;
 
 class CustomDomainController extends Controller
@@ -15,17 +16,15 @@ class CustomDomainController extends Controller
     public function index()
     {
         $userTemplates = UserTemplate::where('user_id', auth()->user()->id)->get();
-        if(count($userTemplates)==0){
+        if (count($userTemplates) == 0) {
             // Alert
             toast('Setup your template first!', 'error');
             // return to tickets
             return redirect()->route('templates.index');
         }
-        $domains = CustomDomain::with('userTemplate')->where('user_id',auth()->user()->id)->get();
-        return view('customer.domain.index', compact('userTemplates','domains'));
+        $domains = CustomDomain::with('userTemplate')->where('user_id', auth()->user()->id)->get();
+        return view('customer.domain.index', compact('userTemplates', 'domains'));
     }
-
-    
 
     /**
      * Store a newly created resource in storage.
@@ -40,9 +39,9 @@ class CustomDomainController extends Controller
             ],
             'user_template_id' => 'required',
         ]);
-        try{
+        try {
             $userTemplate = UserTemplate::where('id', $request->user_template_id)->first();
-            $domain = \Str::lower($request->domain_name);
+            $domain = Str::lower($request->domain_name);
             // Check A Records
             $dnsStatus = $this->checkDnsRecords($domain);
             //Create new domain
@@ -78,9 +77,9 @@ class CustomDomainController extends Controller
         $customDomain->update([
             'is_verified' => $dnsStatus['status'],
         ]);
-        if($dnsStatus['status'] == 0){
+        if ($dnsStatus['status'] == 0) {
             toast($dnsStatus['message'], 'error');
-        }else{
+        } else {
             toast($dnsStatus['message'], 'success');
         }
         return redirect()->back();
@@ -100,12 +99,12 @@ class CustomDomainController extends Controller
         ]);
         if ($validator->fails()) {
             return redirect()->back()
-                             ->withErrors($validator)->withInput()
-                             ->with('id',$customDomain->id);
+                ->withErrors($validator)->withInput()
+                ->with('id', $customDomain->id);
         }
         try {
             // Domain convert to lower case
-            $domain = \Str::lower($request->update_domain_name);
+            $domain = Str::lower($request->update_domain_name);
             // Check A Records
             $dnsStatus = $this->checkDnsRecords($domain);
             $customDomain->update([
@@ -141,10 +140,10 @@ class CustomDomainController extends Controller
      */
     public function checkDnsRecords($domain)
     {
-        $expectedIp = env('SERVER_IP')??'13.235.223.227';
+        $expectedIp = env('SERVER_IP') ?? '13.235.223.227';
 
         // Check the A record for '@' (root domain)
-         $rootRecords = dns_get_record($domain, DNS_A);
+        $rootRecords = dns_get_record($domain, DNS_A);
         $rootRecordExists = false;
         foreach ($rootRecords as $record) {
             if ($record['ip'] === $expectedIp) {
@@ -165,13 +164,13 @@ class CustomDomainController extends Controller
         }
         // Return the result
         if ($rootRecordExists && $wwwRecordExists) {
-            return ['status'=>1,'message' => 'Both A records are correctly configured.'];
+            return ['status' => 1, 'message' => 'Both A records are correctly configured.'];
         } elseif (!$rootRecordExists && !$wwwRecordExists) {
-            return ['status'=>0,'message' => 'Neither A record is correctly configured.'];
+            return ['status' => 0, 'message' => 'Neither A record is correctly configured.'];
         } elseif (!$rootRecordExists) {
-            return ['status'=>2,'message' => 'The A record for the root domain (@) is not correctly configured.'];
+            return ['status' => 2, 'message' => 'The A record for the root domain (@) is not correctly configured.'];
         } else {
-            return ['status'=>3,'message' => 'The A record for www is not correctly configured.'];
+            return ['status' => 3, 'message' => 'The A record for www is not correctly configured.'];
         }
     }
 }
