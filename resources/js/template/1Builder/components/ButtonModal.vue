@@ -4,6 +4,7 @@
         data-bs-toggle="modal"
         :data-bs-target="'#' + modalId"
         :title="modalTitle"
+        :style="style"
     ></i>
 
     <div
@@ -251,6 +252,7 @@ export default {
         "section",
         "element",
         "storeData",
+        "style"
     ],
     emits: ["save"],
     methods: {

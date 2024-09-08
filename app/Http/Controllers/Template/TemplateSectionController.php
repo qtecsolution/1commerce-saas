@@ -99,6 +99,22 @@ class TemplateSectionController extends Controller
         return response()->json(['element' => $element, $request->prefix => $elementData[$request->prefix]], 200);
     }
 
+    public function saveImage(Request $request)
+    {
+        // Validate the request
+        $validatedData = $request->validate([
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048', // 2MB Max
+        ]);
+
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            // Upload the new image
+            $uploadedPath = fileUpload($request->file('image'), "templates/elements");
+        }
+
+        return response()->json(['image' => $uploadedPath], 200);
+    }
+
     public function getElement($id)
     {
         $element = TemplateSectionElement::find($id);

@@ -145,14 +145,6 @@ export default {
             });
     },
 
-    getNestedProperty(obj, path) {
-        // Split the string path into segments, e.g., 'featureItems[0]' becomes ['featureItems', '0']
-        const keys = path.replace(/\[(\w+)\]/g, ".$1").split(".");
-
-        // Traverse through the object based on the keys
-        return keys.reduce((o, key) => (o ? o[key] : undefined), obj);
-    },
-
     updateContent(event) {
         const rawContent =
             event.target.innerHTML ?? event.target.textContent;
@@ -276,8 +268,10 @@ export default {
         let storeData = data.storeData || null;
 
         if (prefix == "button" || prefix == "items") {
-            value = JSON.stringify(data.value);
+            value = JSON.stringify(value);
         }
+
+        console.log(value);
 
         // Check if section exists
         let findSection = this.getSection(section);
@@ -319,6 +313,42 @@ export default {
                     "Something went wrong. Please try again."
                 );
             });
+    },
+
+    async saveImage(data) {
+        let storeData = this.getNestedProperty(this, data.storeData);
+        if (!storeData) {
+            console.error(`Invalid storeData path: ${data.storeData}`);
+            this.toast("error", "Invalid slider item.");
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append("image", data.image);
+
+        await axios
+            .post(`${this.appUrl}/app/templates/element/save-image`, formData)
+            .then((response) => {
+                if (response.data && response.data.image) {
+                    storeData.image = response.data.image; // Update the image URL
+                    this.toast("success", "Image uploaded successfully.");
+
+                    // If you need to trigger some update after saving, uncomment below
+                    // this.updateSlider();
+                } else {
+                    this.toast("error", "Failed to get the uploaded image URL.");
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+                this.toast("error", "Something went wrong. Please try again.");
+            });
+    },
+
+    getNestedProperty(obj, path) {
+        // Ensure that path string is correctly formatted and exists
+        const keys = path.replace(/\[(\w+)\]/g, ".$1").split(".");
+        return keys.reduce((o, key) => (o ? o[key] : undefined), obj);
     },
 
     updateProductDetails(key, event) {

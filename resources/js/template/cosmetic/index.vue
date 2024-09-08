@@ -109,6 +109,15 @@
                                 <a :href="heroAreaButton.url"
                                     >{{ heroAreaButton.title }}
                                 </a>
+                                <ButtonModal
+                                    :modalId="'heroAreaButton'"
+                                    :modalTitle="'Edit Hero Area Button'"
+                                    :buttonData="heroAreaButton"
+                                    section="hero"
+                                    element="hero"
+                                    storeData="heroAreaButton"
+                                    @save="updateButton"
+                                />
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -231,7 +240,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row justify-content-center">
                 <div
                     id="myCarousel"
                     class="carousel slide banner2"
@@ -256,9 +265,16 @@
                             <div
                                 class="slider-update-btn"
                                 data-toggle="modal"
-                                :data-target="'#exampleModal' + index"
+                                :data-target="'#sliderModal' + index"
                             >
                                 <i class="fas fa-pen"></i>
+                            </div>
+                            <div
+                                class="slider-add-btn"
+                                data-toggle="modal"
+                                :data-target="'#sliderAddModal' + index"
+                            >
+                                <i class="fas fa-plus"></i>
                             </div>
                             <div class="container">
                                 <div class="carousel-caption">
@@ -297,7 +313,7 @@
     <!-- Modal -->
     <div
         class="modal fade"
-        :id="'exampleModal' + index"
+        :id="'sliderModal' + index"
         tabindex="-1"
         :aria-labelledby="'sliderModalLabel' + index"
         aria-hidden="true"
@@ -307,7 +323,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" :id="'exampleModalLabel' + index">
+                    <h5 class="modal-title" :id="'sliderModalLabel' + index">
                         Slider {{ index + 1 }}
                     </h5>
                     <button
@@ -335,12 +351,12 @@
                             alt=""
                             class="img-fluid"
                         />
-                        <label for="" class="mt-2">Image:</label>
+                        <label for="" class="mt-2 d-block">Image:</label>
                         <input
                             type="file"
                             class="form-control"
                             accept="image/*"
-                            @onchange="newSliderImage"
+                            @change="updateSlidersImage(index, $event)"
                         />
                     </div>
                     <div class="form-group">
@@ -349,7 +365,8 @@
                             rows="5"
                             class="form-control"
                             v-model="item.description"
-                        >{{ item.description }}</textarea>
+                            >{{ item.description }}</textarea
+                        >
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -360,7 +377,11 @@
                     >
                         Close
                     </button>
-                    <button type="button" class="btn btn-primary" @click="updateSlider(item.id)">
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        @click="updateSliders()"
+                    >
                         Save changes
                     </button>
                 </div>
@@ -725,6 +746,19 @@
                                     <button class="order">
                                         {{ orderAreaButton.title }}
                                     </button>
+                                    <ButtonModal
+                                        :modalId="'orderAreaButton'"
+                                        :modalTitle="'Edit Order Area Button'"
+                                        :buttonData="orderAreaButton"
+                                        section="order"
+                                        element="order"
+                                        storeData="orderAreaButton"
+                                        @save="updateButton"
+                                        :style="{
+                                            top: 0,
+                                            right: '25%'
+                                        }"
+                                    />
                                 </div>
                             </div>
                         </form>
@@ -814,7 +848,7 @@ export default {
             sliderAreaImage: "",
             sliderAreaBgColor: "",
             sliderAreaTextColor: "",
-            newSliderImage: "",
+            newSlider: [],
 
             // client says area
             clientSaysAreaTitle: "",
@@ -897,7 +931,7 @@ export default {
         this.clientSaysAreaBgColor = clientSaysArea.bg_color;
         this.clientSaysAreaTextColor = clientSaysArea.text_color;
         this.clientSaysDescription = clientSaysAreaElement.description;
-        this.clientSaysItems = clientSaysAreaElement.items;
+        this.clientSaysItems = [];
 
         // order area
         let orderArea = this.getSection("order");
@@ -988,7 +1022,21 @@ export default {
             });
         },
 
-        updateSlider() {
+        addSlider() {
+            if (this.newSlider) {
+                this.sliderItems.push(this.newSlider);
+                this.newSlider = "";
+            }
+
+            this.updateSliders();
+        },
+
+        removeSlider(index) {
+            this.sliderItems.splice(index, 1);
+            this.updateSliders();
+        },
+
+        updateSliders() {
             this.updateResource({
                 section: "slider",
                 element: "slider",
@@ -996,6 +1044,25 @@ export default {
                 prefix: "items",
                 value: this.sliderItems,
             });
+
+            // turn off modal
+            $("#sliderModal").modal("hide");
+        },
+
+        async updateSlidersImage(index, event) {
+            const file = event.target.files[0];
+            if (!file) {
+                this.toast("error", "No file selected.");
+                return;
+            }
+
+            // Trigger image save and update process
+            await this.saveImage({
+                storeData: `sliderItems[${index}]`, // path to the image in data
+                image: file, // actual image file
+            });
+
+            this.newSliderImage = this.sliderItems[index].image;
         },
     },
 };
@@ -1012,7 +1079,21 @@ export default {
     color: #000000;
     position: absolute;
     top: 0;
-    right: 6%;
+    right: 40px;
+    cursor: pointer;
+}
+
+.slider-add-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    text-align: center;
+    line-height: 30px;
+    color: #000000;
+    position: absolute;
+    top: 0;
+    right: 0;
     cursor: pointer;
 }
 </style>
