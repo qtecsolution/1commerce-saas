@@ -268,10 +268,7 @@
                                     <span style="text-align: center; color: #000000; font-size: 30px;"><i
                                             class="fas fa-quote-left"></i></span>
                                     <h3>{{ $reviewItem->reviewer_name }}</h3>
-                                    <p>It is a long established fact that a reader will be distracted by the readable
-                                        content of a page when looking at its layout. The point of using Lorem Ipsum is
-                                        that
-                                        it has a more-or-less normal distribution of letters,</p>
+                                    <p>{{ $reviewItem->review }}</p>
                                 </div>
                             @endforeach
                         </div>

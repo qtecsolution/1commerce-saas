@@ -553,15 +553,7 @@
                     <button
                         type="button"
                         class="btn btn-primary"
-                        @click="
-                            saveReview({
-                                id: item.id,
-                                template_id: item.template_id,
-                                index,
-                                reviewer_name: item.reviewer_name,
-                                review: item.review,
-                            })
-                        "
+                        @click="updateReviews(index, item)"
                     >
                         Save changes
                     </button>
@@ -1166,7 +1158,7 @@ export default {
                 value: this.sliderItems,
             });
 
-            const modalElement = document.getElementById(`sliderModal` + index);
+            const modalElement = document.getElementById('sliderModal' + index);
             const modal = bootstrap.Modal.getInstance(modalElement);
             if (modal) {
                 modal.hide();
@@ -1189,16 +1181,16 @@ export default {
             this.newSliderImage = this.sliderItems[index].image;
         },
 
-        updateReviews(index) {
-            this.updateResource({
-                section: "review",
-                element: "review",
-                storeData: "reviewItems",
-                prefix: "items",
-                value: this.reviewItems,
+        updateReviews(index, item) {
+            this.saveReview({
+                id: item.id,
+                template_id: item.template_id,
+                index,
+                reviewer_name: item.reviewer_name,
+                review: item.review,
             });
 
-            const modalElement = document.getElementById(`reviewModal` + index);
+            const modalElement = document.getElementById('reviewModal' + index);
             const modal = bootstrap.Modal.getInstance(modalElement);
             if (modal) {
                 modal.hide();
