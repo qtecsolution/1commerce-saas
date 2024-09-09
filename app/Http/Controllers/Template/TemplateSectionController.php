@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Template\TemplateFeature;
 use App\Models\Template\TemplateSection;
 use App\Models\Template\TemplateSectionElement;
+use App\Models\Template\TemplateTestimonial;
 use App\Models\Template\UserTemplate;
 use Illuminate\Http\Request;
 
@@ -75,7 +76,8 @@ class TemplateSectionController extends Controller
         }
 
         if ($request->prefix == 'items') {
-            $elementData[$request->prefix] = explode(',', $request->value);
+            // $elementData[$request->prefix] = explode(',', $request->value);
+            $elementData[$request->prefix] = json_decode($request->value);
         }
 
         if ($request->prefix == 'button') {
@@ -96,6 +98,22 @@ class TemplateSectionController extends Controller
         ]);
 
         return response()->json(['element' => $element, $request->prefix => $elementData[$request->prefix]], 200);
+    }
+
+    public function saveImage(Request $request)
+    {
+        // Validate the request
+        $validatedData = $request->validate([
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048', // 2MB Max
+        ]);
+
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            // Upload the new image
+            $uploadedPath = fileUpload($request->file('image'), "templates/elements");
+        }
+
+        return response()->json(['image' => $uploadedPath], 200);
     }
 
     public function getElement($id)
@@ -171,6 +189,60 @@ class TemplateSectionController extends Controller
         $userTemplate->shipping_cost_inside_dhaka = $request->shipping_cost_inside_dhaka;
         $userTemplate->shipping_cost_outside_dhaka = $request->shipping_cost_outside_dhaka;
         $userTemplate->save();
+
+        return response()->json(['success' => true]);
+    }
+
+    public function saveReview(Request $request)
+    {
+        // Validate the request data
+        $validatedData = $request->validate([
+            'reviewer_image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048', // 2MB Max for the image
+            'review' => 'required|string',
+            'reviewer_name' => 'required|string',
+            'reviewer_bio' => 'nullable|string',
+            'rating' => 'nullable|numeric|min:1|max:5'
+        ]);
+
+        // Retrieve the review by ID or create a new instance
+        $review = TemplateTestimonial::find($request->id);
+        $uploadedPath = $review->reviewer_image ?? null;
+
+        // Check if a new image file is uploaded
+        if ($request->hasFile('reviewer_image')) {
+            if ($review && $review->reviewer_image) {
+                // Remove the existing image
+                fileRemove($review->reviewer_image);
+            }
+
+            // Upload the new image
+            $uploadedPath = fileUpload($request->file('reviewer_image'), 'reviews/images');
+        }
+
+        // If no review exists, create a new one
+        if (!$review) {
+            $review = new TemplateTestimonial();
+            $review->template_id = $request->template_id;
+            $review->user_id = auth()->id();
+            $review->position = TemplateTestimonial::where('template_id', $request->template_id)->count() + 1;
+        }
+
+        // Update the review details
+        $review->reviewer_image = $uploadedPath;
+        $review->review = $request->review;
+        $review->reviewer_name = $request->reviewer_name;
+        $review->reviewer_bio = $request->reviewer_bio ?? $review->reviewer_bio;
+        $review->rating = $request->rating ?? $review->rating;
+
+        // Save the review
+        $review->save();
+
+        return response()->json(['review' => $review, 'reviewer_image' => $uploadedPath], 200);
+    }
+
+    public function deleteReview($id)
+    {
+        TemplateTestimonial::findOrFail($id)->delete();
 
         return response()->json(['success' => true]);
     }

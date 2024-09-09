@@ -59,10 +59,10 @@ class ShopController extends Controller
                 ->where('user_id', $userTemplate->user_id)
                 ->firstOrFail();
             return view('template.live.cycle', compact('cycle', 'userTemplate'));
-        } else if ($userTemplate->template_id == 4) {
+        } else {
             $template = $userTemplate->template;
-            return view('template.live.attar', compact('template', 'userTemplate'));
-        } 
+            return view('template.live.' . $template->slug, compact('template', 'userTemplate'));
+        }
 
         abort(404);
     }

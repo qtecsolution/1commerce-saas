@@ -1,3 +1,34 @@
+@php
+    // dd($userTemplate);
+
+    $trackingApi = trackingApi($userTemplate->id);
+    $sections = $userTemplate->templateSections;
+
+    $headerSection = $sections->where('section', 'header')->first();
+    $headerElement = json_decode($headerSection->elements->first()->data);
+
+    $heroSection = $sections->where('section', 'hero')->first();
+    $heroElement = json_decode($heroSection->elements->first()->data);
+
+    $informationSection = $sections->where('section', 'information')->first();
+    $informationElement = json_decode($informationSection->elements->first()->data);
+
+    $sliderSection = $sections->where('section', 'slider')->first();
+    $sliderElement = json_decode($sliderSection->elements->first()->data);
+
+    $reviewSection = $sections->where('section', 'review')->first();
+    $reviewElement = json_decode($reviewSection->elements->first()->data);
+
+    $orderSection = $sections->where('section', 'order')->first();
+    $orderElement = json_decode($orderSection->elements->first()->data);
+
+    $footerSection = $sections->where('section', 'footer')->first();
+    $footerElement = json_decode($footerSection->elements->first()->data);
+
+    // @dd($orderElement->button)
+
+@endphp
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,11 +39,8 @@
     <!-- mobile metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-    <!-- site metas -->
-    <title>Cosmetic</title>
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    {!! renderSeoTags($userTemplate->id) !!}
+
     <!-- bootstrap css -->
     <link rel="stylesheet" href="{{ asset($template->assets_path . '/css/bootstrap.min.css') }}">
     <!-- style css -->
@@ -25,26 +53,55 @@
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="{{ asset($template->assets_path . '/css/jquery.mCustomScrollbar.min.css') }}">
     <!-- Tweaks for older IEs-->
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link href="{{ asset('assets/font-awesome/css/all.min.css') }}" rel="stylesheet" media="screen">
+    {{-- <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"> --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
         media="screen">
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
+    <style>
+        /* Button Styles */
+        #hero .btnStyle {
+            background-color: {{ $heroElement->button->color }};
+            color: {{ $heroElement->button->text_color }};
+            border-color: {{ $heroElement->button->border_color }};
+        }
+
+        #hero .btnStyle:hover {
+            background-color: {{ $heroElement->button->hover_color }};
+            color: {{ $heroElement->button->hover_text_color }};
+            border-color: {{ $heroElement->button->hover_border_color }};
+        }
+
+        #order .btnStyle {
+            background-color: {{ $orderElement->button->color }};
+            color: {{ $orderElement->button->text_color }};
+            border-color: {{ $orderElement->button->border_color }};
+        }
+
+        #order .btnStyle:hover {
+            background-color: {{ $orderElement->button->hover_color }};
+            color: {{ $orderElement->button->hover_text_color }};
+            border-color: {{ $orderElement->button->hover_border_color }};
+        }
+    </style>
 </head>
 <!-- body -->
 
 <body class="main-layout">
     <!-- loader  -->
-    <div class="loader_bg">
+    {{-- <div class="loader_bg">
         <div class="loader"><img src="{{ asset($template->assets_path . '/images/loading.gif') }}" alt="#" />
         </div>
-    </div>
+    </div> --}}
     <!-- end loader -->
-    <!-- header -->
-    <header>
-        <!-- header inner -->
+
+    <!-- hero area start -->
+    <header id="hero">
         <div class="header_bg">
+            <!-- header inner -->
             <div class="header">
                 <div class="container">
                     <div class="row">
@@ -52,42 +109,56 @@
                             <div class="full">
                                 <div class="center-desk">
                                     <div class="logo">
-                                        <a href="#"><img
-                                                src="{{ asset($template->assets_path . '/images/logo.png') }}"
-                                                alt="logo" width="80px" /></a>
+                                        @php
+                                            if ($userTemplate->company_logo) {
+                                                $link = asset('storage/' . $userTemplate->company_logo);
+                                            } else {
+                                                $link = asset(
+                                                    $userTemplate->template->assets_path . '/images/logo.png',
+                                                );
+                                            }
+                                        @endphp
+                                        <a href="#"><img src="{{ $link }}" alt="logo"
+                                                width="80px" /></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
-                            <ul class="costomer">
-                                <li>Call Us : +880 160000000</li>
+                            <ul class="customer">
+                                <li>{{ $headerElement->contact }}</li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- end header inner -->
-            <!-- end header -->
+
             <!-- banner -->
             <section class="banner_main">
                 <div class="container-fluid">
                     <div class="row d_flex">
                         <div class="col-md-6">
                             <div class="text-bg">
-                                <span>Cream</span>
-                                <h1>Lakmē Glycolic Night Cream 15g </h1>
-                                <p>Wake up to brighter, illuminated skin! Experience the restorative power of Glycolic
-                                    Acid as your sleep. Introducing our masterfully crafted Lakmé Glycolic Illuminate
-                                    Night Crème, an exceptional night cream enriched with the goodness of Glycolic Acid
-                                    and Niacinamide, a true beauty sleep experience.</p>
-                                <a href="#order">Order Now</a>
+                                <span>{{ $heroSection->sub_title }}</span>
+                                <h1>{{ $heroSection->title }}</h1>
+                                <p>{{ $heroElement->description }}</p>
+                                <a href="{{ $heroElement->button->url }}"
+                                    class="btnStyle">{{ $heroElement->button->title }}</a>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="text-img">
-                                <figure><img src="{{ asset($template->assets_path . '/images/img.png') }}"
-                                        style="border-radius: 50%;width: 600px" /></figure>
+                                <figure>
+                                    @php
+                                        if ($heroElement->image) {
+                                            $link = asset('storage/' . $heroElement->image);
+                                        } else {
+                                            $link = asset($userTemplate->template->assets_path . '/images/img.png');
+                                        }
+                                    @endphp
+                                    <img src="{{ $link }}" style="border-radius: 50%;width: 600px" />
+                                </figure>
                             </div>
                         </div>
                     </div>
@@ -95,7 +166,7 @@
             </section>
         </div>
     </header>
-    <!-- end banner -->
+    <!-- hero area end -->
 
     <!-- quality  -->
     <div class="quality ">
@@ -103,19 +174,26 @@
             <div class="row d_flex">
                 <div class="col-md-8">
                     <div class="quality_box">
-                        <figure><img src="{{ asset($template->assets_path . '/images/qt.jpg') }}" alt="product" />
+                        <figure>
+                            @php
+                                if ($informationElement->image) {
+                                    $link = asset('storage/' . $informationElement->image);
+                                } else {
+                                    $link = asset($userTemplate->template->assets_path . '/images/qt.jpg');
+                                }
+                            @endphp
+                            <img src="{{ $link }}" alt="product" />
                         </figure>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="quality_text">
-                        <h3>Information</h3>
+                        <h3>{{ $informationSection->title }}</h3>
                         <p>
                         <ul>
-                            <li>Net Quantity: 15g</li>
-                            <li>Manufacturer/Company Name : Nutracos</li>
-                            <li>Commodity: Night Cream</li>
-                            <li>Expiry Date: 30 Months (From date of Manufacturing)</li>
+                            @foreach ($informationElement->items as $item)
+                                <li>{{ $item }}</li>
+                            @endforeach
                         </ul>
                         </p>
                     </div>
@@ -130,7 +208,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="titlepage">
-                        <h2>Product Details</h2>
+                        <h2>{{ $sliderSection->title }}</h2>
                     </div>
                 </div>
             </div>
@@ -142,74 +220,33 @@
                         <li data-target="#myCarousel" data-slide-to="2"></li>
                     </ol>
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-
-                            <div class="container">
-                                <div class="carousel-caption">
-                                    <figure><img src="{{ asset($template->assets_path . '/images/banner1.jpg') }}"
-                                            alt="banner 2" style="height: 500px; width: 900px; border-radius: 20px" />
-                                    </figure>
-                                    <p>The results are astounding – 90% of women witnessed visibly smoother and more
-                                        radiant skin. This crème's transformative powers extend to improving radiance,
-                                        deeply nourishing your skin, and leaving it silky smooth. Tested by
-                                        dermatologists, this crème is suitable for all skin types. Its non-sticky,
-                                        easy-to-blend formula ensures that your skin's unique needs are met, whether you
-                                        have normal, dry, oily, or combination skin.
-                                    </p>
-
+                        @foreach ($sliderElement->items as $key => $sliderItem)
+                            <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                                <div class="container">
+                                    <div class="carousel-caption">
+                                        <figure>
+                                            @php
+                                                if ($sliderItem->image) {
+                                                    $link = asset('storage/' . $sliderItem->image);
+                                                } else {
+                                                    $link = asset(
+                                                        $userTemplate->template->assets_path . '/images/banner1.jpg',
+                                                    );
+                                                }
+                                            @endphp
+                                            <img src="{{ $link }}" alt="banner 2"
+                                                style="height: 500px; width: 900px; border-radius: 20px" />
+                                        </figure>
+                                        <p>{{ $sliderItem->description }}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="carousel-item">
-
-                            <div class="container">
-                                <div class="carousel-caption">
-                                    <figure><img src="{{ asset($template->assets_path . '/images/banner2.jpg') }}"
-                                            alt="banner 2" style="height: 500px; width: 900px; border-radius: 20px" />
-                                    </figure>
-                                    <p>The results are astounding – 90% of women witnessed visibly smoother and more
-                                        radiant skin. This crème's transformative powers extend to improving radiance,
-                                        deeply nourishing your skin, and leaving it silky smooth. Tested by
-                                        dermatologists, this crème is suitable for all skin types. Its non-sticky,
-                                        easy-to-blend formula ensures that your skin's unique needs are met, whether you
-                                        have normal, dry, oily, or combination skin.
-                                    </p>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-
-                            <div class="container">
-                                <div class="carousel-caption">
-                                    <figure><img src="{{ asset($template->assets_path . '/images/banner3.jpg') }}"
-                                            alt="banner 2" style="height: 500px; width: 900px; border-radius: 20px" />
-                                    </figure>
-                                    <p>The results are astounding – 90% of women witnessed visibly smoother and more
-                                        radiant skin. This crème's transformative powers extend to improving radiance,
-                                        deeply nourishing your skin, and leaving it silky smooth. Tested by
-                                        dermatologists, this crème is suitable for all skin types. Its non-sticky,
-                                        easy-to-blend formula ensures that your skin's unique needs are met, whether you
-                                        have normal, dry, oily, or combination skin.
-                                    </p>
-
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
-                    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
                 </div>
             </div>
         </div>
     </div>
-
 
     <!-- testimonial -->
     <div class="testimonial">
@@ -217,11 +254,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="titlepage">
-                        <h2>Says Clients </h2>
-                        <p>use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in
-                            the<br>
-                            middle of text. All the Lorem Ipsum generators on the
-                        </p>
+                        <h2>{{ $reviewSection->title }}</h2>
+                        <p>{{ $reviewElement->description }}</p>
                     </div>
                 </div>
             </div>
@@ -229,55 +263,17 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="owl-carousel owl-theme">
-                            <div class="item">
-                                <span></span>
-                                <h3>when looking </h3>
-                                <p>It is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is that
-                                    it has a more-or-less normal distribution of letters,</p>
-                            </div>
-                            <div class="item">
-                                <span></span>
-                                <h3>when looking </h3>
-                                <p>It is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is that
-                                    it has a more-or-less normal distribution of letters,</p>
-                            </div>
-                            <div class="item">
-                                <span></span>
-                                <h3>when looking </h3>
-                                <p>It is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is that
-                                    it has a more-or-less normal distribution of letters,</p>
-                            </div>
-                            <div class="item">
-                                <span></span>
-                                <h3>when looking </h3>
-                                <p>It is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is that
-                                    it has a more-or-less normal distribution of letters,</p>
-                            </div>
-                            <div class="item">
-                                <span></span>
-                                <h3>when looking </h3>
-                                <p>It is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is that
-                                    it has a more-or-less normal distribution of letters,</p>
-                            </div>
-                            <div class="item">
-                                <span></span>
-                                <h3>when looking </h3>
-                                <p>It is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is that
-                                    it has a more-or-less normal distribution of letters,</p>
-                            </div>
-                            <div class="item">
-                                <span></span>
-                                <h3>when looking </h3>
-                                <p>It is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is that
-                                    it has a more-or-less normal distribution of letters,</p>
-                            </div>
+                            @foreach ($template->testimonials as $reviewItem)
+                                <div class="item">
+                                    <span style="text-align: center; color: #000000; font-size: 30px;"><i
+                                            class="fas fa-quote-left"></i></span>
+                                    <h3>{{ $reviewItem->reviewer_name }}</h3>
+                                    <p>It is a long established fact that a reader will be distracted by the readable
+                                        content of a page when looking at its layout. The point of using Lorem Ipsum is
+                                        that
+                                        it has a more-or-less normal distribution of letters,</p>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -295,7 +291,10 @@
                         <div class="titlepage">
                             <h2>Order Now</h2>
                         </div>
-                        <form class="main_form card p-5">
+                        <form action="{{ route('place_order') }}" method="POST" class="main_form card p-5">
+                            @csrf
+                            <input type="hidden" name="user_template_id" value="{{ $userTemplate->id }}">
+
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="row">
@@ -307,47 +306,73 @@
                                                         class="order-product-image">
                                                 </div>
                                                 <div class="order-product-name">
-                                                    <h3>Lakmē Glycolic Night Cream 15g</h3>
-                                                </div>
-                                                <div>
-                                                    <h1 class="order-multiplier">x</h1>
-                                                </div>
-                                                <div class="order-quantity-input">
-                                                    <input class="orderfield" placeholder="Qty"
-                                                        type="number" name="Quantity" min="1"
-                                                        value="1">
+                                                    <h3>{{ $orderSection->title }}</h3>
                                                 </div>
                                                 <div class="order-product-price">
-                                                    <h3>500.00 TK.</h3>
+                                                    <h3>
+                                                        <span class="order-product-price">
+                                                            {{ $userTemplate->product_price }}
+                                                        </span>
+                                                        {{ $userTemplate->product_currency }}
+                                                    </h3>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h1 class="order-multiplier">
+                                                        x
+                                                    </h1>
+                                                </div>
+                                                <div class="order-quantity-input">
+                                                    <input class="orderfield" placeholder="Qty" type="number"
+                                                        name="quantity" min="1" value="1" />
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="col-sm-12">
                                             <label class="order-shipping-option d-flex p-3">
-                                                <input class="order-custom-radio " type="radio"
-                                                    name="shippingOption" id="shippingOption1" checked>
+                                                <input class="order-custom-radio" type="radio" name="shipping_cost"
+                                                    value="{{ $userTemplate->shipping_cost_inside_dhaka }}" checked />
                                                 <div class="order-form-check-label">
-                                                    <h3>Shipping Cost (Inside Dhaka)</h3>
+                                                    <h3>
+                                                        Shipping Cost (Inside
+                                                        Dhaka)
+                                                    </h3>
                                                 </div>
                                                 <div class="order-shipping-price">
-                                                    <h3>50.00 TK.</h3>
+                                                    <h3>
+                                                        <span class="mr-2">
+                                                            {{ $userTemplate->shipping_cost_inside_dhaka }}
+                                                        </span>
+                                                        <span>
+                                                            {{ $userTemplate->product_currency }}
+                                                        </span>
+                                                    </h3>
                                                 </div>
                                             </label>
                                         </div>
                                         <div class="col-sm-12">
                                             <label class="order-shipping-option d-flex p-3">
-                                                <input class="order-custom-radio " type="radio"
-                                                    name="shippingOption" id="shippingOption2">
+                                                <input class="order-custom-radio" type="radio" name="shipping_cost"
+                                                    value="{{ $userTemplate->shipping_cost_outside_dhaka }}" />
                                                 <div class="order-form-check-label">
-                                                    <h3>Shipping Cost (Outside Dhaka)</h3>
+                                                    <h3>
+                                                        Shipping Cost (Outside
+                                                        Dhaka)
+                                                    </h3>
                                                 </div>
                                                 <div class="order-shipping-price">
-                                                    <h3>100.00 TK.</h3>
+                                                    <h3>
+                                                        <span class="mr-2">
+                                                            {{ $userTemplate->shipping_cost_outside_dhaka }}
+                                                        </span>
+                                                        <span>
+                                                            {{ $userTemplate->product_currency }}
+                                                        </span>
+                                                    </h3>
                                                 </div>
                                             </label>
                                         </div>
-                                      
+
                                         <!-- Divider -->
                                         <div class="col-sm-12">
                                             <hr class="order-divider">
@@ -361,7 +386,10 @@
                                                     <h3>Total</h3>
                                                 </div>
                                                 <div>
-                                                    <h3>550.00 TK.</h3>
+                                                    <h3>
+                                                        <span id="subtotal">100</span>
+                                                        {{ $userTemplate->product_currency }}
+                                                    </h3>
                                                 </div>
                                             </div>
                                         </div>
@@ -369,29 +397,21 @@
                                 </div>
 
                                 <div class="col-sm-6">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <input class="orderfield" placeholder="Full Name" type="text"
-                                                name="
-                                  Full Name">
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <input class="orderfield" placeholder="Email" type="text"
-                                                name=" Email">
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <input class="orderfield" placeholder="Phone" type="text"
-                                                name="Phone">
-                                        </div>
+                                    @foreach ($userTemplate->fields as $field)
+                                        <x-form-field :field="$field" :styles="[
+                                            'color' => '#000',
+                                            'background_color' => '#fff',
+                                        ]" />
 
-                                        <div class="col-sm-12">
-                                            <textarea class="textarea" placeholder="Address" type="text" name="Address"></textarea>
-                                        </div>
-                                    </div>
+                                        @error($field->name)
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
+                                    @endforeach
                                 </div>
 
                                 <div class="col-sm-12 mt-2">
-                                    <button class="order">PLACE ORDER</button>
+                                    <button class="order btnStyle"
+                                        type="submit">{{ $orderElement->button->title }}</button>
                                 </div>
                             </div>
                         </form>
@@ -407,7 +427,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <p>© 2024 All Rights Reserved. QTEC SL</p>
+                        <p>{{ $footerElement->text }}</p>
                     </div>
                 </div>
             </div>
@@ -455,6 +475,28 @@
             this.toggle = !this.toggle;
             $(this).children("span").text(this.toggle ? "-" : "+");
             return false;
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $("input[name='quantity'], input[name='shipping_cost']").on("input", function() {
+                calculateTotal();
+            });
+
+            function calculateTotal() {
+                var price = parseFloat({{ json_encode($userTemplate['product_price']) }}) || 0;
+                var shipping = parseFloat($("input[name='shipping_cost']:checked").val()) || 0;
+                var quantity = parseFloat($("input[name='quantity']").val()) || 1;
+                var total = (price * quantity + shipping).toFixed(2);
+                $("#subtotal").html(total);
+            }
+
+            @if (old('quantity'))
+                $(window).on("load", calculateTotal);
+            @endif
+
+            calculateTotal();
         });
     </script>
 </body>

@@ -8,11 +8,8 @@
     <!-- mobile metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-    <!-- site metas -->
-    <title>Cosmetic</title>
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    {!! renderSeoTags($userTemplate->id) !!}
+    
     <!-- bootstrap css -->
     <link rel="stylesheet" href="{{ asset($template->assets_path . '/css/bootstrap.min.css') }}">
     <!-- style css -->
@@ -52,6 +49,7 @@
     <script src="{{ asset($template->assets_path . '/js/jquery.min.js') }}"></script>
     <script src="{{ asset($template->assets_path . '/js/popper.min.js') }}"></script>
     <script src="{{ asset($template->assets_path . '/js/bootstrap.bundle.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset($template->assets_path . '/js/bootstrap5.js') }}"></script>
     <script src="{{ asset($template->assets_path . '/js/jquery-3.0.0.min.js') }}"></script>
     <script src="{{ asset($template->assets_path . '/js/plugin.js') }}"></script>
     <!-- sidebar -->

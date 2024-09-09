@@ -58,9 +58,9 @@ $(function () {
 	/* NiceSelect
 	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
 
-	$(document).ready(function () {
-		$('select').niceSelect();
-	});
+	// $(document).ready(function () {
+	// 	$('select').niceSelect();
+	// });
 
 	/* OwlCarousel - Blog Post slider
 	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
