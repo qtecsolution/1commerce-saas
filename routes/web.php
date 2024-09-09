@@ -169,6 +169,12 @@ Route::prefix('app')->middleware('user')->group(function () {
             
             // Route to delete feature item
             Route::delete('feature/delete/{id}', [TemplateSectionController::class, 'deleteFeature']);
+            
+            // Route to create & update review item
+            Route::post('review/save', [TemplateSectionController::class, 'saveReview']);
+            
+            // Route to delete review item
+            Route::delete('review/delete/{id}', [TemplateSectionController::class, 'deleteReview']);
 
             // Route to update product details
             Route::post('product-details/update', [TemplateSectionController::class, 'updateProductDetails']);

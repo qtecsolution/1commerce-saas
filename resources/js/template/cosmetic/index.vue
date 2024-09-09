@@ -7,10 +7,10 @@
     </div> -->
     <!-- end loader -->
 
-    <!-- header -->
-    <header>
-        <!-- header inner -->
+    <!-- hero area start -->
+    <header id="hero">
         <div class="header_bg">
+            <!-- header inner -->
             <div class="header">
                 <div class="container">
                     <div class="row">
@@ -62,7 +62,6 @@
                 </div>
             </div>
             <!-- end header inner -->
-            <!-- end header -->
 
             <!-- banner -->
             <section class="banner_main">
@@ -106,7 +105,7 @@
                                 >
                                     {{ heroAreaDescription }}
                                 </p>
-                                <a :href="heroAreaButton.url"
+                                <a :href="heroAreaButton.url" class="btnStyle"
                                     >{{ heroAreaButton.title }}
                                 </a>
                                 <ButtonModal
@@ -136,15 +135,34 @@
                                         "
                                         style="border-radius: 50%; width: 600px"
                                     />
+                                    <ImageModal
+                                        :modalId="'heroImageModal'"
+                                        :modalTitle="'Edit Hero Area Image'"
+                                        :image="
+                                            imageSource(
+                                                heroAreaImage
+                                                    ? heroAreaImage
+                                                    : '/images/img.png',
+                                                heroAreaImage
+                                                    ? 'storage'
+                                                    : 'public'
+                                            )
+                                        "
+                                        section="hero"
+                                        element="hero"
+                                        storeData="heroAreaImage"
+                                        @save="updateResource"
+                                    />
                                 </figure>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
+            <!-- end banner -->
         </div>
     </header>
-    <!-- end banner -->
+    <!-- hero area end -->
 
     <!-- information area start -->
     <div class="quality">
@@ -163,6 +181,22 @@
                                     )
                                 "
                                 alt="product"
+                            />
+                            <ImageModal
+                                :modalId="'informationImageModal'"
+                                :modalTitle="'Edit Information Area Image'"
+                                :image="
+                                    imageSource(
+                                        informationImage
+                                            ? informationImage
+                                            : '/images/qt.jpg',
+                                        informationImage ? 'storage' : 'public'
+                                    )
+                                "
+                                section="information"
+                                element="information"
+                                storeData="informationImage"
+                                @save="updateResource"
                             />
                         </figure>
                     </div>
@@ -269,13 +303,13 @@
                             >
                                 <i class="fas fa-pen"></i>
                             </div>
-                            <div
+                            <!-- <div
                                 class="slider-add-btn"
                                 data-toggle="modal"
                                 :data-target="'#sliderAddModal' + index"
                             >
                                 <i class="fas fa-plus"></i>
-                            </div>
+                            </div> -->
                             <div class="container">
                                 <div class="carousel-caption">
                                     <figure>
@@ -380,7 +414,7 @@
                     <button
                         type="button"
                         class="btn btn-primary"
-                        @click="updateSliders()"
+                        @click="updateSliders(index)"
                     >
                         Save changes
                     </button>
@@ -390,7 +424,7 @@
     </div>
     <!-- slider area end -->
 
-    <!-- testimonial -->
+    <!-- testimonial area start -->
     <div class="testimonial">
         <div class="container">
             <div class="row">
@@ -400,7 +434,7 @@
                             contenteditable="true"
                             @blur="
                                 updateTitle(
-                                    'clients_says',
+                                    'review',
                                     'clientSaysAreaTitle',
                                     $event
                                 )
@@ -412,8 +446,8 @@
                             contenteditable="true"
                             @blur="
                                 updateDescription(
-                                    'clients_says',
-                                    'clients_says',
+                                    'review',
+                                    'review',
                                     'clientSaysDescription',
                                     $event
                                 )
@@ -429,7 +463,7 @@
                     <div class="col-md-12">
                         <div class="owl-carousel owl-theme">
                             <div
-                                v-for="(item, index) in clientSaysItems"
+                                v-for="(item, index) in reviews"
                                 :key="index"
                                 class="item"
                                 :style="{
@@ -437,9 +471,25 @@
                                     color: item.text_color,
                                 }"
                             >
-                                <span></span>
-                                <h3>{{ item.title }}</h3>
-                                <p>{{ item.description }}</p>
+                                <div
+                                    class="review-update-btn"
+                                    data-toggle="modal"
+                                    :data-target="'#reviewModal' + index"
+                                >
+                                    <i class="fas fa-pen"></i>
+                                </div>
+                                <span
+                                    style="
+                                        text-align: center;
+                                        color: #000000;
+                                        font-size: 30px;
+                                    "
+                                    ><i class="fas fa-quote-left"></i
+                                ></span>
+                                <h3 style="font-size: 20px">
+                                    {{ item.reviewer_name }}
+                                </h3>
+                                <p>{{ item.review }}</p>
                             </div>
                         </div>
                     </div>
@@ -447,11 +497,82 @@
             </section>
         </div>
     </div>
-    <!-- end testimonial -->
+
+    <!-- Modal -->
+    <div
+        class="modal fade"
+        :id="'reviewModal' + index"
+        tabindex="-1"
+        :aria-labelledby="'reviewModalLabel' + index"
+        aria-hidden="true"
+        v-for="(item, index) in reviews"
+        :key="index"
+    >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" :id="'reviewModalLabel' + index">
+                        Review {{ index + 1 }}
+                    </h5>
+                    <button
+                        type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                    >
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="">Reviewer Name:</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            v-model="item.reviewer_name"
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label for="">Review:</label>
+                        <textarea
+                            rows="5"
+                            class="form-control"
+                            v-model="item.review"
+                            >{{ item.review }}</textarea
+                        >
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-dismiss="modal"
+                    >
+                        Close
+                    </button>
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        @click="
+                            saveReview({
+                                id: item.id,
+                                template_id: item.template_id,
+                                index,
+                                reviewer_name: item.reviewer_name,
+                                review: item.review,
+                            })
+                        "
+                    >
+                        Save changes
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- testimonial area end -->
 
     <!-- order area start -->
     <div class="bg_ba">
-        <!-- order section-->
         <div id="order" class="order">
             <div class="container">
                 <div class="row">
@@ -743,7 +864,7 @@
                                 </div>
 
                                 <div class="col-sm-12 mt-2">
-                                    <button class="order">
+                                    <button class="order btnStyle">
                                         {{ orderAreaButton.title }}
                                     </button>
                                     <ButtonModal
@@ -756,7 +877,7 @@
                                         @save="updateButton"
                                         :style="{
                                             top: 0,
-                                            right: '25%'
+                                            right: '25%',
                                         }"
                                     />
                                 </div>
@@ -854,7 +975,7 @@ export default {
             clientSaysAreaTitle: "",
             clientSaysAreaTextColor: "",
             clientSaysDescription: [],
-            clientSaysItems: [],
+            reviews: [],
             clientSaysAreaBgColor: "",
 
             // order area
@@ -906,7 +1027,7 @@ export default {
 
         this.informationBgColor = information.bg_color;
         this.informationTextColor = information.text_color;
-        this.informationTitle = informationElement.title;
+        this.informationTitle = information.title;
         this.informationItems = informationElement.items;
         this.informationImage = informationElement.image;
         this.informationImageBorderColor =
@@ -922,16 +1043,16 @@ export default {
         this.sliderItems = sliderAreaElement.items;
 
         // client says area
-        let clientSaysArea = this.getSection("clients_says");
+        let clientSaysArea = this.getSection("review");
         let clientSaysAreaElement = this.decodedData(
-            this.getElement("clients_says", "clients_says").data
+            this.getElement("review", "review").data
         );
 
         this.clientSaysAreaTitle = clientSaysArea.title;
         this.clientSaysAreaBgColor = clientSaysArea.bg_color;
         this.clientSaysAreaTextColor = clientSaysArea.text_color;
         this.clientSaysDescription = clientSaysAreaElement.description;
-        this.clientSaysItems = [];
+        this.reviews = this.user_template.template.testimonials;
 
         // order area
         let orderArea = this.getSection("order");
@@ -1036,7 +1157,7 @@ export default {
             this.updateSliders();
         },
 
-        updateSliders() {
+        updateSliders(index) {
             this.updateResource({
                 section: "slider",
                 element: "slider",
@@ -1045,8 +1166,11 @@ export default {
                 value: this.sliderItems,
             });
 
-            // turn off modal
-            $("#sliderModal").modal("hide");
+            const modalElement = document.getElementById(`sliderModal` + index);
+            const modal = bootstrap.Modal.getInstance(modalElement);
+            if (modal) {
+                modal.hide();
+            }
         },
 
         async updateSlidersImage(index, event) {
@@ -1063,6 +1187,22 @@ export default {
             });
 
             this.newSliderImage = this.sliderItems[index].image;
+        },
+
+        updateReviews(index) {
+            this.updateResource({
+                section: "review",
+                element: "review",
+                storeData: "reviewItems",
+                prefix: "items",
+                value: this.reviewItems,
+            });
+
+            const modalElement = document.getElementById(`reviewModal` + index);
+            const modal = bootstrap.Modal.getInstance(modalElement);
+            if (modal) {
+                modal.hide();
+            }
         },
     },
 };
@@ -1095,5 +1235,44 @@ export default {
     top: 0;
     right: 0;
     cursor: pointer;
+}
+
+.review-update-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    text-align: center;
+    line-height: 30px;
+    color: #000000;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+/* Button Styles */
+#hero .btnStyle {
+    background-color: v-bind("heroAreaButton.color");
+    color: v-bind("heroAreaButton.text_color");
+    border-color: v-bind("heroAreaButton.border_color");
+}
+
+#hero .btnStyle:hover {
+    background-color: v-bind("heroAreaButton.hover_color") !important;
+    color: v-bind("heroAreaButton.hover_text_color");
+    border-color: v-bind("heroAreaButton.hover_border_color");
+}
+
+#order .btnStyle {
+    background-color: v-bind("orderAreaButton.color");
+    color: v-bind("orderAreaButton.text_color");
+    border-color: v-bind("orderAreaButton.border_color");
+}
+
+#order .btnStyle:hover {
+    background-color: v-bind("orderAreaButton.hover_color") !important;
+    color: v-bind("orderAreaButton.hover_text_color");
+    border-color: v-bind("orderAreaButton.hover_border_color");
 }
 </style>

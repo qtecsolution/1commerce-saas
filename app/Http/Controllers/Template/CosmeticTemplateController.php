@@ -65,14 +65,14 @@ class CosmeticTemplateController extends Controller
             'user_template_id' => $userTemplate->id,
             'section' => 'information',
             'bg_color' => '#7122e7',
-            'text_color' => '#6e6d70'
+            'text_color' => '#6e6d70',
+            'title' => 'Information'
         ]);
 
         TemplateSectionElement::create([
             'template_section_id' => $information->id,
             'name' => 'information',
             'data' => json_encode([
-                'title' => 'Information',
                 'items' => [
                     'Net Quantity: 15g',
                     'Manufacturer/Company Name : Nutracos',
@@ -111,17 +111,17 @@ class CosmeticTemplateController extends Controller
             ])
         ]);
 
-        $clientSays = TemplateSection::create([
+        $review = TemplateSection::create([
             'user_template_id' => $userTemplate->id,
-            'section' => 'clients_says',
-            'title' => 'Says Clients',
+            'section' => 'review',
+            'title' => 'Reviews',
             'bg_color' => '#f5f4f5',
             'text_color' => '#6f6e71',
         ]);
 
         TemplateSectionElement::create([
-            'template_section_id' => $clientSays->id,
-            'name' => 'clients_says',
+            'template_section_id' => $review->id,
+            'name' => 'review',
             'data' => json_encode([
                 'description' => "use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the
                 middle of text. All the Lorem Ipsum generators on the",
@@ -156,7 +156,7 @@ class CosmeticTemplateController extends Controller
                 'button' => [
                     'title' => 'Place Order ',
                     'url' => '#order',
-                    'bg_color' => 'transparent',
+                    'color' => 'transparent',
                     'text_color' => '#fa7528',
                     'border_color' => '#fa7528',
                     'hover_color' => '#fd882f',
@@ -169,7 +169,7 @@ class CosmeticTemplateController extends Controller
         OrderFormAdditionalField::create([
             'user_template_id' => $userTemplate->id,
             'title' => 'Name',
-            'name' => 'name',
+            'name' => 'customer_name',
             'type' => 'text',
             'placeholder' => 'Your Name',
             'is_required' => 1,
@@ -179,7 +179,7 @@ class CosmeticTemplateController extends Controller
         OrderFormAdditionalField::create([
             'user_template_id' => $userTemplate->id,
             'title' => 'Phone',
-            'name' => 'phone',
+            'name' => 'customer_phone',
             'type' => 'text',
             'placeholder' => 'Your Phone',
             'is_required' => 1,
@@ -188,18 +188,8 @@ class CosmeticTemplateController extends Controller
 
         OrderFormAdditionalField::create([
             'user_template_id' => $userTemplate->id,
-            'title' => 'Quantity',
-            'name' => 'quantity',
-            'type' => 'number',
-            'placeholder' => 'Quantity',
-            'is_required' => 1,
-            'order' => 4
-        ]);
-
-        OrderFormAdditionalField::create([
-            'user_template_id' => $userTemplate->id,
             'title' => 'Address',
-            'name' => 'address',
+            'name' => 'customer_address',
             'type' => 'textarea',
             'placeholder' => 'Address',
             'is_required' => 1,
