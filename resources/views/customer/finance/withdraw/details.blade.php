@@ -3,6 +3,14 @@
 @endphp
 @extends('layouts.app')
 
+@section('page_css')
+    <style>
+        td {
+            padding: 8px !important;
+        }
+    </style>
+@endsection
+
 @section('page_content')
     <div class="col-12">
         <div class="card">
@@ -58,11 +66,32 @@
 
                         <div class="row justify-content-between">
                             <div class="col-md-5">
-                                <h5 class="font-weight-bold">Payment Method</h5>
+                                <h5 class="font-weight-bold">Payment Method:</h5>
                             </div>
-                            <div class="col-md-7">
-                                <h5>:</h5>
-                                <pre class=""><code style="white-space: pre-wrap;">{{ json_encode(json_decode($withdraw->details), JSON_PRETTY_PRINT) }}</code></pre>
+                            <div class="col-md-12">
+                                <!-- Table for displaying payment method and details -->
+                                <table class="table table-bordered">
+                                    {{-- <thead>
+                                        <tr>
+                                            <th>Key</th>
+                                            <th>Value</th>
+                                        </tr>
+                                    </thead> --}}
+                                    <tbody>
+                                        <!-- Loop through and display details -->
+                                        @php
+                                            $details = json_decode($withdraw->details);
+                                        @endphp
+                                        @if ($details)
+                                            @foreach ($details as $key => $detail)
+                                                <tr>
+                                                    <td>{{ ucwords(str_replace('_', ' ', $key)) }}</td>
+                                                    <td>{{ $detail ?? 'N/A' }}</td>
+                                                </tr>
+                                            @endforeach
+                                        @endif
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
 

@@ -369,6 +369,9 @@
     <script type="text/javascript" src="{{ asset($template->assets_path . '/js/core.js') }}"></script>
     <script type="text/javascript" src="{{ asset($template->assets_path . '/js/menu-overlay.js') }}"></script>
     <script type="text/javascript" src="{{ asset($template->assets_path . '/js/placeholders.min.js') }}"></script>
+    
+    <!-- Form Submit Handler -->
+    <script type="text/javascript" src="{{ asset('assets/js/form-submit-handler.js') }}"></script>
     <!-- end core scripts -->
 
     <!-- sliders -->
@@ -401,7 +404,6 @@
             calculateTotal();
         });
     </script>
-
 </body>
 
 </html>

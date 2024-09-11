@@ -310,6 +310,9 @@
     
     {{-- <script src="{{ asset($userTemplate->template->assets_path . '/js/owl.carousel.js') }}"></script> --}}
     <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+    
+    <!-- Form Submit Handler -->
+    <script type="text/javascript" src="{{ asset('assets/js/form-submit-handler.js') }}"></script>
 </body>
 
 </html>

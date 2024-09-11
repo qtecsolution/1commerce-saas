@@ -442,6 +442,10 @@
     <script src="{{ asset($template->assets_path . '/js/custom.js') }}"></script>
     <script src="{{ asset($template->assets_path . '/js/owl.carousel.min.js') }}"></script>
     <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+    
+    <!-- Form Submit Handler -->
+    <script type="text/javascript" src="{{ asset('assets/js/form-submit-handler.js') }}"></script>
+
     <script>
         $(document).ready(function() {
             var owl = $('.owl-carousel');

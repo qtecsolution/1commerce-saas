@@ -3,6 +3,14 @@
 @endphp
 @extends('layouts.app')
 
+@section('page_css')
+<style>
+    td {
+        padding: 8px !important;
+    }
+</style>
+@endsection
+
 @section('page_content')
     <div class="container-fluid">
         <div class="card">
@@ -176,10 +184,57 @@
                                         <td>{{ $payment->transaction_id }}</td>
                                         <td>
                                             @if ($payment->response_payload != null)
-                                                <a href="javascript:void(0)" class="view-payload"
+                                                {{-- <a href="javascript:void(0)" class="view-payload"
                                                     data-payload="{{ $payment->decrypted_payload }}">
                                                     View
+                                                </a> --}}
+                                                <a href="javascript:void(0)" class="view-payload" data-toggle="modal"
+                                                    data-target="#payloadModal_{{ $payment->id }}">
+                                                    View
                                                 </a>
+
+                                                <div class="modal fade" id="payloadModal_{{ $payment->id }}"
+                                                    tabindex="-1" role="dialog"
+                                                    aria-labelledby="payloadModalLabel_{{ $payment->id }}"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title"
+                                                                    id="payloadModalLabel_{{ $payment->id }}">Response
+                                                                    Payload for Order#{{ $payment->order_id }}</h5>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <!-- Table for displaying payment method and details -->
+                                                                <table class="table table-bordered">
+                                                                    <tbody>
+                                                                        <!-- Loop through and display details -->
+                                                                        @php
+                                                                            $details = json_decode($payment->response_payload);
+                                                                        @endphp
+                                                                        @if ($details)
+                                                                            @foreach ($details as $key => $detail)
+                                                                                <tr>
+                                                                                    <td>{{ ucwords(str_replace('_', ' ', $key)) }}
+                                                                                    </td>
+                                                                                    <td>{{ $detail ?? 'N/A' }}</td>
+                                                                                </tr>
+                                                                            @endforeach
+                                                                        @endif
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             @endif
                                         </td>
                                     </tr>
@@ -199,7 +254,7 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="payloadModal" tabindex="-1" role="dialog" aria-labelledby="payloadModalLabel"
+    {{-- <div class="modal fade" id="payloadModal" tabindex="-1" role="dialog" aria-labelledby="payloadModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -211,14 +266,15 @@
                 </div>
                 <div class="modal-body">
                     <pre id="payloadContent" style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; overflow-x: auto;"></pre>
+
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
-    </div>
-
+    </div> --}}
 @endsection
 
 @section('page_js')
@@ -232,30 +288,30 @@
         }
     </script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add event listener to all "View" links
-            document.querySelectorAll('.view-payload').forEach(function(element) {
-                element.addEventListener('click', function(event) {
-                    event.preventDefault();
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     // Add event listener to all "View" links
+        //     document.querySelectorAll('.view-payload').forEach(function(element) {
+        //         element.addEventListener('click', function(event) {
+        //             event.preventDefault();
 
-                    let payload = event.target.getAttribute('data-payload');
+        //             let payload = event.target.getAttribute('data-payload');
 
-                    // Parse and format the JSON payload (if it's valid JSON)
-                    try {
-                        let jsonPayload = JSON.parse(payload);
+        //             // Parse and format the JSON payload (if it's valid JSON)
+        //             try {
+        //                 let jsonPayload = JSON.parse(payload);
 
-                        payload = JSON.stringify(jsonPayload, null, 4);
-                    } catch (error) {
-                        // If parsing fails, show the raw payload
-                    }
+        //                 payload = JSON.stringify(jsonPayload, null, 4);
+        //             } catch (error) {
+        //                 // If parsing fails, show the raw payload
+        //             }
 
-                    // Set the content of the modal's body
-                    document.getElementById('payloadContent').textContent = payload;
+        //             // Set the content of the modal's body
+        //             document.getElementById('payloadContent').textContent = payload;
 
-                    // Show the modal
-                    $('#payloadModal').modal('show');
-                });
-            });
-        });
+        //             // Show the modal
+        //             $('#payloadModal').modal('show');
+        //         });
+        //     });
+        // });
     </script>
 @endsection

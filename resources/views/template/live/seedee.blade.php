@@ -301,6 +301,10 @@
         </div>
     </section>
     <script src="{{ asset($userTemplate->template->assets_path . '/js/jquery-3.7.1.min.js') }}"></script>
+    
+    <!-- Form Submit Handler -->
+    <script type="text/javascript" src="{{ asset('assets/js/form-submit-handler.js') }}"></script>
+
     <script>
         $("#quantity").on("input", function() {
             calculateTotal();

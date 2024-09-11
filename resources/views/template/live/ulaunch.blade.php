@@ -621,6 +621,8 @@
     <script src="{{ asset($userTemplate->template->assets_path . '/js/function.js') }}"></script>
     <!-- Sweet Alert -->
     @include('sweetalert::alert')
+    <!-- Form Submit Handler -->
+    <script type="text/javascript" src="{{ asset('assets/js/form-submit-handler.js') }}"></script>
 
 </body>
 
