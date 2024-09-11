@@ -1,11 +1,12 @@
 <?php
 
+use Illuminate\Support\Str;
 use App\Models\CustomDomain;
 use App\Models\Subscription;
-use App\Models\Template\UserTemplate;
 use App\Models\TemplateSeoTag;
+use App\Models\Template\UserTemplate;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 if (!function_exists('isSubscriptionPaid')) {
 
@@ -157,7 +158,6 @@ if (!function_exists('domainCheck')) {
     {
         $customDomain = CustomDomain::with('userTemplate')->where('domain_name',request()->getHost())->first();
         return $customDomain->userTemplate->company_slug ?? false;
-
     }
 }
 

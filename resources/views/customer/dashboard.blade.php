@@ -24,11 +24,15 @@
                         </div>
                     </div>
                     <div class="col-md-4">
+                        @php
+                            $subscription = auth()->user()->subscription_details;
+                            $package = auth()->user()->subscription_details?->package_details;
+                        @endphp
                         <p>
-                            <strong>Current Plan:</strong> Premium
+                            <strong>Current Plan:</strong> {{ $package->title }}
                         </p>
                         <p>
-                            <strong>Renewal Date:</strong> 25th Dec 2024
+                            <strong>Renewal Date:</strong> {{ date('F d, Y', strtotime($subscription->ending_date)) }}
                         </p>
                     </div>
                 </div>
@@ -48,31 +52,26 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Landing Page 1</td>
-                            <td>Product 1</td>
-                            <td>$49.99</td>
-                            <td>120</td>
-                            <td>
-                                <a href="#">
-                                    http://example.com
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Landing Page 2</td>
-                            <td>Product 2</td>
-                            <td>$29.99</td>
-                            <td>120</td>
-                            <td>
-                                <a href="#">
-                                    http://example.com
-                                </a>
-                            </td>
-                        </tr>
+                        @foreach ($userTemplates as $userTemplate)
+                            <tr>
+                                <td>{{ $userTemplate->company_name }}</td>
+                                <td>{{ $userTemplate->product_name }}</td>
+                                <td>
+                                    {{ $userTemplate->product_currency . ' ' . number_format($userTemplate->product_price, 2) }}
+                                </td>
+                                <td>{{ count($userTemplate->orders) }}</td>
+                                <td>
+                                    <a href="{{ route('user_shop', $userTemplate->company_slug) }}">
+                                        {{ route('user_shop', $userTemplate->company_slug) }}
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
-                <button class="btn btn-primary mb-3">Create New Landing Page</button>
+                <a href="{{ route('templates.index') }}" class="btn btn-primary mb-3">
+                    Create New Landing Page
+                </a>
             </div>
         </div>
 
@@ -89,27 +88,30 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>#12345</td>
-                            <td>John Doe</td>
-                            <td>$99.99</td>
-                            <td><span class="badge bg-success">Completed</span></td>
-                            <td>
-                                <button class="btn btn-sm btn-primary">View</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>#12346</td>
-                            <td>Jane Smith</td>
-                            <td>$49.99</td>
-                            <td><span class="badge bg-warning">Pending</span></td>
-                            <td>
-                                <button class="btn btn-sm btn-primary">View</button>
-                            </td>
-                        </tr>
+                        @foreach ($orders as $order)
+                            <tr>
+                                <td>#{{ $order->id }}</td>
+                                <td>{{ $order->customer_name }}</td>
+                                <td>
+                                    {{ $order->currency . ' ' . number_format($order->total_amount, 2) }}
+                                </td>
+                                <td>
+                                    <span class="badge bg-{{ orderStatusColor($order->status) }}">
+                                        {{ orderStatusText($order->status) }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <a href="{{ route('order.show', $order->id) }}" class="btn btn-sm btn-primary">
+                                        View
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
-                <a href="#" class="btn btn-link">View All Orders</a>
+                <a href="{{ route('orders') }}" class="btn btn-link">
+                    View All Orders
+                </a>
             </div>
         </div>
     </div>

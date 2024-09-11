@@ -29,6 +29,9 @@
                                                 <input type="text" class="form-control" id="name" placeholder="name"
                                                     name="name" value="{{ old('name') }}">
                                             </div>
+                                            @error('name')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -39,6 +42,9 @@
                                                 <input type="text" class="form-control" id="phone"
                                                     placeholder="phone" name="phone" value="{{ old('phone') }}">
                                             </div>
+                                            @error('phone')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -49,6 +55,9 @@
                                                 <input type="email" class="form-control" id="email"
                                                     placeholder="email" name="email" value="{{ old('email') }}">
                                             </div>
+                                            @error('email')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -59,18 +68,25 @@
                                                 <input type="password" class="form-control" id="password"
                                                     placeholder="Password" name="password" value="{{ old('password') }}">
                                             </div>
+                                            @error('password')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="font-weight-semibold" for="password_confirmation">Confirm
-                                                Password:</label>
+                                            <label class="font-weight-semibold" for="password_confirmation">
+                                                Confirm Password:
+                                            </label>
                                             <div class="input-affix m-b-10">
                                                 <i class="prefix-icon anticon anticon-lock"></i>
                                                 <input type="password" class="form-control" id="password_confirmation"
                                                     placeholder="Confirm Password" name="password_confirmation"
                                                     value="{{ old('password_confirmation') }}">
                                             </div>
+                                            @error('password_confirmation')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-12">

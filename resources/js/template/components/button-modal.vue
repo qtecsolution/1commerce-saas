@@ -40,6 +40,9 @@
                                     class="form-control"
                                 />
                             </div>
+                            <span class="text-danger" v-if="titleError">
+                                This field is required
+                            </span>
                         </div>
 
                         <div class="col-md-6">
@@ -246,8 +249,19 @@
 export default {
     props: ["modalId", "modalTitle", "buttonData"],
     emits: ["save"],
+    data() {
+        return {
+            titleError: false,
+        };
+    },
     methods: {
         saveChanges() {
+            if (this.buttonData.title == "" || this.buttonData.title == null) {
+                this.titleError = true;
+                this.buttonData.title = "Untitled";
+                return;
+            }
+
             this.$emit("save", this.buttonData);
             const modalElement = document.getElementById(this.modalId);
             const modal = bootstrap.Modal.getInstance(modalElement);

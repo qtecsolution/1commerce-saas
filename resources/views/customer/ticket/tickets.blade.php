@@ -180,16 +180,19 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                {{-- update ticket modal start --}}
+                                                {{-- Update ticket modal start --}}
                                                 <a href="#" class="btn btn-sm btn-danger"
-                                                    onclick="document.getElementById('delete-form-{{ $item->id }}').submit();">Delete</a>
+                                                    onclick="event.preventDefault(); if(confirm('Are you sure?')) { document.getElementById('delete-form-{{ $item->id }}').submit(); }">
+                                                    Delete
+                                                </a>
 
                                                 <form id="delete-form-{{ $item->id }}"
                                                     action="{{ route('tickets.destroy', $item->id) }}" method="POST"
-                                                    style="display: none;" onsubmit="return confirm('Are you sure?')">
+                                                    style="display: none;">
                                                     @csrf
                                                     @method('DELETE')
                                                 </form>
+                                                {{-- Update ticket modal end --}}
                                             @endif
                                         </div>
                                     </td>

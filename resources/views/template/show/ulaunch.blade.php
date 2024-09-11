@@ -66,7 +66,7 @@
                         <li class="nav-item active"><a href="#home" class="nav-link active">Home</a></li>
                         <li class="nav-item"><a href="#features" class="nav-link">Features</a></li>
                         <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
-                        <li class="nav-item"><a href="#testimonial" class="nav-link">Testimonial</a></li>
+                        <li class="nav-item"><a href="#testimonials" class="nav-link">Testimonial</a></li>
                     </ul>
                 </div>
                 <!-- Navbar End -->
@@ -354,7 +354,7 @@
     <!-- About Product section ends -->
 
     <!-- Testimonials starts -->
-    <section class="testimonials parallaxie position-relative" id="testimonial">
+    <section class="testimonials parallaxie position-relative" id="testimonials">
         <div class="container">
             <!-- Section Title start -->
             <div class="row">

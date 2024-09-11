@@ -6,9 +6,11 @@ use App\Models\Withdraw;
 use App\Models\UserWallet;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use App\Models\PaymentMethod;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\User\Finance\TransactionController;
+use App\Models\Template\UserTemplate;
 
 class WalletController extends Controller
 {
@@ -31,6 +33,19 @@ class WalletController extends Controller
                 'status' => $request->status ?? 1
             ]
         );
+
+        foreach (UserTemplate::where('user_id', auth()->id())->get() as $value) {
+            PaymentMethod::firstOrCreate(
+                [
+                    'user_id' => auth()->id(),
+                    'user_template_id' => $value->id,
+                    'name' => 'one_wallet',
+                ],
+                [
+                    'status' => 1
+                ]
+            );
+        }
 
         toast('Wallet setup successful.', 'success');
         return back();

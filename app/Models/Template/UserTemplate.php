@@ -2,6 +2,7 @@
 
 namespace App\Models\Template;
 
+use App\Models\Order;
 use App\Models\PaymentMethod;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\OrderFormAdditionalField;
@@ -65,5 +66,10 @@ class UserTemplate extends Model
     public function templateSections()
     {
         return $this->hasMany(TemplateSection::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'user_template_id', 'id');
     }
 }

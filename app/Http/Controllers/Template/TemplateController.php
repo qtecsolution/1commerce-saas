@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers\Template;
 
+use App\Models\UserWallet;
 use Illuminate\Support\Str;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
+use App\Models\PaymentMethod;
 use App\Models\Template\Template;
 use App\Http\Controllers\Controller;
 use App\Models\Template\UserTemplate;
-use App\Models\Template\SeedeeTemplate;
 use App\Models\Template\CycleTemplate;
+use App\Models\Template\SeedeeTemplate;
 use App\Models\Template\UlaunchTemplate;
 use RealRashid\SweetAlert\Facades\Alert;
-use App\Http\Controllers\Template\SeedeeTemplateController;
 use App\Http\Controllers\Template\CycleTemplateController;
-use App\Models\Subscription;
+use App\Http\Controllers\Template\SeedeeTemplateController;
 
 class TemplateController extends Controller
 {
@@ -120,6 +122,15 @@ class TemplateController extends Controller
                 default:
                     // code
                     break;
+            }
+
+            if (UserWallet::where('user_id', auth()->id())->exists()) {
+                PaymentMethod::create([
+                    'user_id' => auth()->id(),
+                    'user_template_id' => $userTemplate->id,
+                    'name' => 'one_wallet',
+                    'status' => 1
+                ]);
             }
 
             Alert::success('Success!', 'Template Added Successfully.')->persistent('Close');

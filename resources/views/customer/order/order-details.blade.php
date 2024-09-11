@@ -97,7 +97,7 @@
                                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left">
                                                 @foreach (orderStatusList() as $key => $value)
                                                     <a href="{{ route('order.update.status', [$order->id, $key + 1]) }}"
-                                                        class="dropdown-item">
+                                                        class="dropdown-item {{ $order->status == $key + 1 ? 'bg-' . orderStatusColor($order->status) . ' text-white' : '' }}">
                                                         {{ $value['label'] }}
                                                     </a>
                                                 @endforeach

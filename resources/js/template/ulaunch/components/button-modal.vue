@@ -34,6 +34,9 @@
                                     class="form-control"
                                 />
                             </div>
+                            <span class="text-danger" v-if="titleError">
+                                This field is required
+                            </span>
                         </div>
 
                         <div class="col-md-6">
@@ -223,7 +226,11 @@
                     >
                         Close
                     </button>
-                    <button type="button" class="btn btn-primary" @click="sendToParent">
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        @click="sendToParent"
+                    >
                         Save
                     </button>
                 </div>
@@ -236,8 +243,20 @@
 export default {
     name: "ButtonModal",
     props: ["modalId", "modalTitle", "section", "buttonData"],
+    emits: ["update"],
+    data() {
+        return {
+            titleError: false,
+        };
+    },
     methods: {
         sendToParent() {
+            if (this.buttonData.title == "" || this.buttonData.title == null) {
+                this.titleError = true;
+                this.buttonData.title = "Untitled";
+                return;
+            }
+
             this.$emit("update", {
                 section: this.section,
                 button: this.buttonData,

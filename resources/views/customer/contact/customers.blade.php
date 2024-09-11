@@ -99,11 +99,13 @@
                                             <a class="btn btn-sm btn-primary text-white" data-toggle="modal"
                                                 data-target="#editModal_{{ $customer->id }}">Edit</a>
                                             <a href="#" class="btn btn-sm btn-danger"
-                                                onclick="document.getElementById('delete-form-{{ $customer->id }}').submit();">Delete</a>
+                                                onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this customer?')) { document.getElementById('delete-form-{{ $customer->id }}').submit(); }">
+                                                Delete
+                                            </a>
 
                                             <form id="delete-form-{{ $customer->id }}"
                                                 action="{{ route('customers.destroy', $customer->id) }}" method="POST"
-                                                style="display: none;" onsubmit="return confirm('Are you sure?')">
+                                                style="display: none;">
                                                 @csrf
                                                 @method('DELETE')
                                             </form>
@@ -128,9 +130,8 @@
                                                                     <label for="" class="form-label">Name<span
                                                                             class="text-danger"><sup>*</sup></span>
                                                                         :</label>
-                                                                    <input type="text" name="name"
-                                                                        placeholder="name" id=""
-                                                                        value="{{ $customer->name }}"
+                                                                    <input type="text" name="name" placeholder="name"
+                                                                        id="" value="{{ $customer->name }}"
                                                                         class="form-control" required>
                                                                 </div>
                                                                 <div class="form-group">
