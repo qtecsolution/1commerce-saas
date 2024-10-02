@@ -166,13 +166,13 @@ Route::prefix('app')->middleware('user')->group(function () {
 
             // Route to create & update feature item
             Route::post('feature/save', [TemplateSectionController::class, 'saveFeature']);
-            
+
             // Route to delete feature item
             Route::delete('feature/delete/{id}', [TemplateSectionController::class, 'deleteFeature']);
-            
+
             // Route to create & update review item
             Route::post('review/save', [TemplateSectionController::class, 'saveReview']);
-            
+
             // Route to delete review item
             Route::delete('review/delete/{id}', [TemplateSectionController::class, 'deleteReview']);
 
@@ -235,11 +235,11 @@ Route::prefix('app')->middleware('user')->group(function () {
         // ticket routes
         Route::resource('custom-domain', CustomDomainController::class);
     });
-
-    // subscription routes
-    Route::resource('/subscription', SubscriptionController::class);
-    Route::get('/subscription/extend/{id}', [SubscriptionController::class, 'extend'])->name('subscription.extend');
 });
+
+// subscription routes
+Route::resource('/subscription', SubscriptionController::class);
+Route::get('/subscription/extend/{id}', [SubscriptionController::class, 'extend'])->name('subscription.extend');
 
 
 // SSLCOMMERZ Start

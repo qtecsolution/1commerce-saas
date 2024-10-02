@@ -79,7 +79,7 @@
     </div>
     {{-- section area start --}}
     @foreach ($packages as $item)
-        @if ($item->id == $subscription->package_id)
+        @if ($item->id == $subscription->package_id && $endingDate > $today)
             @continue
         @endif
         <div class="col-md-4">

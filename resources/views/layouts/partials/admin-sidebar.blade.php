@@ -14,14 +14,14 @@
         <span class="title">Packages</span>
     </a>
 </li>
-<li class="nav-item dropdown">
+{{-- <li class="nav-item dropdown">
     <a href="">
         <span class="icon-holder">
             <i class="fas fa-users"></i>
         </span>
         <span class="title">Users</span>
     </a>
-</li>
+</li> --}}
 <li class="nav-item dropdown">
     <a href="{{ route('withdrawal.index') }}">
         <span class="icon-holder">
