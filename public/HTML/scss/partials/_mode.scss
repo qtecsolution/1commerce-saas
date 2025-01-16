@@ -1,0 +1,9 @@
+$darkMode: false;
+
+@mixin darkMode {
+  @if ($darkMode) {
+    @media (prefers-color-scheme: light) {
+      @content;
+    }
+  }
+}

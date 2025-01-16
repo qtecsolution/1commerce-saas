@@ -1,0 +1,50 @@
+@use '../../global' as *;
+@use '../../partials' as *;
+
+input,
+select,
+textarea {
+  border: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+input[type='date']::before {
+  content: attr(data-placeholder);
+  @include w100;
+}
+
+input[type='date']:focus::before,
+input[type='date']:valid::before {
+  display: none;
+}
+
+textarea {
+  resize: none;
+}
+
+// HIDE INPUT ARROWS
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+input[type='search']::-webkit-search-decoration,
+input[type='search']::-webkit-search-cancel-button,
+input[type='search']::-webkit-search-results-button,
+input[type='search']::-webkit-search-results-decoration {
+  display: none;
+
+  &:focus {
+    outline: none;
+  }
+}

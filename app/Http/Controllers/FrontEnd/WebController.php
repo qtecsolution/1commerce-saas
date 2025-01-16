@@ -8,12 +8,13 @@ use Illuminate\Http\Request;
 
 class WebController extends Controller
 {
-    public static function index()
+    public function index()
     {
         // Validate that the domain is exists and return matched slug(subdomain).
-        if(domainCheck() != false){
+        if (domainCheck() != false) {
             return ShopController::livePreview(domainCheck());
         }
-        return view('front-end.home');
+        // return view('front-end.home');
+        return redirect('HTML/index.html');
     }
 }

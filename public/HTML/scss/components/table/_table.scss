@@ -1,0 +1,13 @@
+@use '../../global' as *;
+@use '../../partials' as *;
+
+table {
+  tr {
+    vertical-align: middle;
+
+    th,
+    td {
+      vertical-align: middle;
+    }
+  }
+}

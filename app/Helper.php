@@ -128,9 +128,9 @@ if (!function_exists('renderSeoTags')) {
                 if (str_contains($tag, 'og:')) {
                     if ($tag === 'og:image') {
                         $value = Str::startsWith($value, ['http', 'https'])
-                        ? $value
-                        : asset('storage/' . $value);
-    
+                            ? $value
+                            : asset('storage/' . $value);
+
                         $html .= "<meta property=\"{$tag}\" content=\"{$value}\">" . PHP_EOL;
                     } else {
                         $html .= "<meta property=\"{$tag}\" content=\"{$value}\">" . PHP_EOL;
@@ -156,7 +156,7 @@ if (!function_exists('domainCheck')) {
 
     function domainCheck()
     {
-        $customDomain = CustomDomain::with('userTemplate')->where('domain_name',request()->getHost())->first();
+        $customDomain = CustomDomain::with('userTemplate')->where('domain_name', request()->getHost())->first();
         return $customDomain->userTemplate->company_slug ?? false;
     }
 }
@@ -166,7 +166,7 @@ if (!function_exists('reservedSubDomain')) {
 
     function reservedSubDomain()
     {
-        return ['1com','app', 'main'] ;
+        return ['1com', 'app', 'main'];
     }
 }
 

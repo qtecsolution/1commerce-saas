@@ -1,0 +1,2065 @@
+/*============================== 
+	- Template Name: JG-HEALTHCARE HTML TEMPLATE
+	- Author: Qtec Solution Limited
+	- Version: 1.0
+	- Website: https://qtecsolution.com/
+================================= */
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400..800&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css");
+html {
+  box-sizing: border-box;
+  font-size: 100%;
+}
+html:focus-within {
+  scroll-behavior: inherit;
+}
+
+* {
+  box-sizing: inherit;
+}
+*::before, *::after {
+  box-sizing: inherit;
+}
+
+a,
+abbr,
+acronym,
+address,
+applet,
+article,
+aside,
+audio,
+b,
+big,
+blockquote,
+button,
+body,
+canvas,
+caption,
+center,
+cite,
+code,
+dd,
+del,
+details,
+dfn,
+div,
+dl,
+dt,
+em,
+embed,
+fieldset,
+figcaption,
+figure,
+footer,
+form,
+header,
+hgroup,
+html,
+i,
+input,
+iframe,
+img,
+ins,
+kbd,
+label,
+legend,
+li,
+mark,
+menu,
+main,
+nav,
+object,
+ol,
+output,
+option,
+p,
+pre,
+q,
+ruby,
+s,
+samp,
+section,
+small,
+span,
+strike,
+strong,
+sub,
+summary,
+select,
+sup,
+table,
+tbody,
+td,
+tfoot,
+th,
+thead,
+time,
+tr,
+tt,
+u,
+ul,
+var,
+video {
+  margin: 0;
+  font-family: inherit;
+}
+a::-moz-selection, abbr::-moz-selection, acronym::-moz-selection, address::-moz-selection, applet::-moz-selection, article::-moz-selection, aside::-moz-selection, audio::-moz-selection, b::-moz-selection, big::-moz-selection, blockquote::-moz-selection, button::-moz-selection, body::-moz-selection, canvas::-moz-selection, caption::-moz-selection, center::-moz-selection, cite::-moz-selection, code::-moz-selection, dd::-moz-selection, del::-moz-selection, details::-moz-selection, dfn::-moz-selection, div::-moz-selection, dl::-moz-selection, dt::-moz-selection, em::-moz-selection, embed::-moz-selection, fieldset::-moz-selection, figcaption::-moz-selection, figure::-moz-selection, footer::-moz-selection, form::-moz-selection, header::-moz-selection, hgroup::-moz-selection, html::-moz-selection, i::-moz-selection, input::-moz-selection, iframe::-moz-selection, img::-moz-selection, ins::-moz-selection, kbd::-moz-selection, label::-moz-selection, legend::-moz-selection, li::-moz-selection, mark::-moz-selection, menu::-moz-selection, main::-moz-selection, nav::-moz-selection, object::-moz-selection, ol::-moz-selection, output::-moz-selection, option::-moz-selection, p::-moz-selection, pre::-moz-selection, q::-moz-selection, ruby::-moz-selection, s::-moz-selection, samp::-moz-selection, section::-moz-selection, small::-moz-selection, span::-moz-selection, strike::-moz-selection, strong::-moz-selection, sub::-moz-selection, summary::-moz-selection, select::-moz-selection, sup::-moz-selection, table::-moz-selection, tbody::-moz-selection, td::-moz-selection, tfoot::-moz-selection, th::-moz-selection, thead::-moz-selection, time::-moz-selection, tr::-moz-selection, tt::-moz-selection, u::-moz-selection, ul::-moz-selection, var::-moz-selection, video::-moz-selection {
+  background: #107cb9;
+  color: hsl(0, 0%, 100%);
+}
+a::selection,
+abbr::selection,
+acronym::selection,
+address::selection,
+applet::selection,
+article::selection,
+aside::selection,
+audio::selection,
+b::selection,
+big::selection,
+blockquote::selection,
+button::selection,
+body::selection,
+canvas::selection,
+caption::selection,
+center::selection,
+cite::selection,
+code::selection,
+dd::selection,
+del::selection,
+details::selection,
+dfn::selection,
+div::selection,
+dl::selection,
+dt::selection,
+em::selection,
+embed::selection,
+fieldset::selection,
+figcaption::selection,
+figure::selection,
+footer::selection,
+form::selection,
+header::selection,
+hgroup::selection,
+html::selection,
+i::selection,
+input::selection,
+iframe::selection,
+img::selection,
+ins::selection,
+kbd::selection,
+label::selection,
+legend::selection,
+li::selection,
+mark::selection,
+menu::selection,
+main::selection,
+nav::selection,
+object::selection,
+ol::selection,
+output::selection,
+option::selection,
+p::selection,
+pre::selection,
+q::selection,
+ruby::selection,
+s::selection,
+samp::selection,
+section::selection,
+small::selection,
+span::selection,
+strike::selection,
+strong::selection,
+sub::selection,
+summary::selection,
+select::selection,
+sup::selection,
+table::selection,
+tbody::selection,
+td::selection,
+tfoot::selection,
+th::selection,
+thead::selection,
+time::selection,
+tr::selection,
+tt::selection,
+u::selection,
+ul::selection,
+var::selection,
+video::selection {
+  background: #107cb9;
+  color: hsl(0, 0%, 100%);
+}
+
+body {
+  background: hsl(0, 0%, 100%);
+  color: #19191a;
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.3;
+  text-rendering: optimizeSpeed;
+  scroll-snap-type: y mandatory;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-family: "Baloo Da 2", sans-serif;
+}
+h1::-moz-selection, h2::-moz-selection, h3::-moz-selection, h4::-moz-selection, h5::-moz-selection, h6::-moz-selection {
+  background: #107cb9;
+  color: hsl(0, 0%, 100%);
+}
+h1::selection,
+h2::selection,
+h3::selection,
+h4::selection,
+h5::selection,
+h6::selection {
+  background: #107cb9;
+  color: hsl(0, 0%, 100%);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+svg,
+picture {
+  width: 100%;
+  height: 100%;
+}
+
+a {
+  transition: all 350ms ease-in-out;
+}
+
+a,
+span {
+  display: inline-block;
+}
+
+a,
+a:visited,
+a:active,
+a:hover {
+  text-decoration: none;
+}
+
+strong,
+i {
+  font-weight: bolder;
+}
+
+iframe {
+  width: 100%;
+}
+
+select {
+  cursor: pointer;
+}
+
+::-webkit-datetime-edit-year-field:not([aria-valuenow]),
+::-webkit-datetime-edit-month-field:not([aria-valuenow]),
+::-webkit-datetime-edit-day-field:not([aria-valuenow]) {
+  color: transparent;
+}
+
+.display-1,
+.display-2,
+.display-3,
+.display-4,
+.display-4,
+.display-5,
+.display-6 {
+  font-family: "Baloo Da 2", sans-serif;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+hr {
+  margin: 0rem;
+  opacity: 1;
+}
+
+.singUp_button {
+  display: inline-flex;
+  font-size: 0.75rem;
+  padding: 0.625rem 0.625rem 0.5rem 0.625rem;
+  border-radius: 0.625rem;
+  background: hsl(0, 0%, 100%);
+  color: #de00a5;
+  font-family: "Baloo Da 2", sans-serif;
+  font-weight: 500;
+  line-height: 125%;
+  transition: all 0.35s ease-in-out;
+}
+@media screen and (min-width: 48rem) {
+  .singUp_button {
+    padding: 0.8125rem 1.5625rem 0.75rem 1.5625rem;
+    font-size: 1.125rem;
+  }
+}
+.singUp_button:hover {
+  background: #de00a5;
+  color: hsl(0, 0%, 100%);
+}
+
+.logIn_button {
+  display: inline-flex;
+  font-size: 0.75rem;
+  padding: 0.625rem 0.625rem 0.5rem 0.625rem;
+  border-radius: 0.625rem;
+  background: #de00a5;
+  color: hsl(0, 0%, 100%);
+  font-family: "Baloo Da 2", sans-serif;
+  font-weight: 500;
+  line-height: 125%;
+  transition: all 0.35s ease-in-out;
+}
+@media screen and (min-width: 48rem) {
+  .logIn_button {
+    padding: 0.8125rem 1.5625rem 0.75rem 1.5625rem;
+    font-size: 1.125rem;
+  }
+}
+.logIn_button:hover {
+  background: hsl(0, 0%, 100%);
+  color: #de00a5;
+}
+
+.plan_button {
+  display: inline-flex;
+  font-size: 0.75rem;
+  padding: 0.625rem 0.625rem 0.5rem 0.625rem;
+  border-radius: 0.625rem;
+  background: #de00a5;
+  color: hsl(0, 0%, 100%);
+  font-family: "Baloo Da 2", sans-serif;
+  font-weight: 500;
+  line-height: 125%;
+  transition: all 0.35s ease-in-out;
+  border: #de00a5 1px solid;
+}
+@media screen and (min-width: 48rem) {
+  .plan_button {
+    padding: 0.8125rem 1.5625rem 0.75rem 1.5625rem;
+    font-size: 1.125rem;
+  }
+}
+.plan_button:hover {
+  background: hsl(0, 0%, 100%);
+  color: #de00a5;
+}
+
+.premium_button {
+  display: inline-flex;
+  font-size: 0.75rem;
+  padding: 0.625rem 0.625rem 0.5rem 0.625rem;
+  border-radius: 0.625rem;
+  background: #ffe7f9;
+  color: #52474f;
+  font-family: "Baloo Da 2", sans-serif;
+  font-weight: 500;
+  line-height: 125%;
+  transition: all 0.35s ease-in-out;
+  border: #ffe7f9 1px solid;
+}
+@media screen and (min-width: 48rem) {
+  .premium_button {
+    padding: 0.8125rem 1.5625rem 0.75rem 1.5625rem;
+    font-size: 1.125rem;
+  }
+}
+.premium_button:hover {
+  background: hsl(0, 0%, 100%);
+}
+
+.primary_btn {
+  display: inline-flex;
+  padding: 1.0625rem 3.3125rem 1rem 3.3125rem;
+  border-radius: 0.625rem;
+  border: 1.5px solid #ffd2f3;
+  background: #de00a5;
+  box-shadow: 0px 4px 40px 0px rgba(222, 0, 165, 0.35);
+  color: hsl(0, 0%, 100%);
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 125%;
+  transition: all 0.35s ease-in-out;
+}
+@media screen and (min-width: 48rem) {
+  .primary_btn {
+    font-size: 1.25rem;
+  }
+}
+.primary_btn:hover {
+  background: hsl(0, 0%, 100%);
+  color: #de00a5;
+}
+
+input,
+select,
+textarea {
+  border: none;
+}
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+}
+
+input[type=date]::before {
+  content: attr(data-placeholder);
+  width: 100%;
+}
+
+input[type=date]:focus::before,
+input[type=date]:valid::before {
+  display: none;
+}
+
+textarea {
+  resize: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -webkit-appearance: textfield;
+          appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+input[type=search]::-webkit-search-decoration,
+input[type=search]::-webkit-search-cancel-button,
+input[type=search]::-webkit-search-results-button,
+input[type=search]::-webkit-search-results-decoration {
+  display: none;
+}
+input[type=search]::-webkit-search-decoration:focus,
+input[type=search]::-webkit-search-cancel-button:focus,
+input[type=search]::-webkit-search-results-button:focus,
+input[type=search]::-webkit-search-results-decoration:focus {
+  outline: none;
+}
+
+.preloader {
+  background: #f5f5f6;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  inset: 0;
+  z-index: 9999999999;
+}
+.preloader .loader {
+  width: 9.375rem;
+  height: 9.375rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.loader-7 {
+  width: 4rem;
+  height: 4rem;
+  border: solid 0.1875rem #de00a5;
+  border-radius: 100%;
+  display: inline-block;
+  position: relative;
+  animation: rotation 1s linear infinite;
+}
+.loader-7:after, .loader-7:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: #de00a5;
+  width: calc(4rem / 8);
+  height: calc(4rem / 8);
+  border-radius: 100%;
+}
+.loader-7:before {
+  left: auto;
+  top: auto;
+  right: 0;
+  bottom: 0;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+table tr {
+  vertical-align: middle;
+}
+table tr th,
+table tr td {
+  vertical-align: middle;
+}
+
+body {
+  font-family: "Baloo Da 2", sans-serif;
+}
+
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  transition: background-color 0.35s ease;
+}
+.header.scrolled {
+  background-color: rgba(189, 174, 212, 0.8274509804);
+}
+.header_wrapper {
+  padding: 1.875rem 0rem;
+}
+.header_wrapper .inner_nav .logo .mobile-menu {
+  border: none;
+  padding-top: 7px;
+  border-radius: 100%;
+  width: 1.875rem;
+  height: 1.875rem;
+}
+.header_wrapper .inner_nav .logo img {
+  width: 6.25rem;
+}
+@media screen and (min-width: 36rem) {
+  .header_wrapper .inner_nav .logo img {
+    width: 8.125rem;
+  }
+}
+@media screen and (min-width: 48rem) {
+  .header_wrapper .inner_nav .logo img {
+    width: 11.5625rem;
+  }
+}
+.header_wrapper .inner_nav .navLinks {
+  gap: 1.25rem;
+  border-radius: 12px;
+  border: 1px solid #dec8ff;
+  background: rgba(255, 255, 255, 0.33);
+  padding: 1.25rem 1.875rem;
+}
+@media screen and (min-width: 75rem) {
+  .header_wrapper .inner_nav .navLinks {
+    padding: 1.25rem 4.375rem;
+    gap: 2.25rem;
+  }
+}
+.header_wrapper .inner_nav .navLinks .navItem .navLink {
+  color: hsl(0, 0%, 100%);
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1rem;
+  transition: all 0.35s ease-in-out;
+}
+.header_wrapper .inner_nav .navLinks .navItem .navLink:hover {
+  color: #7024ec;
+}
+.header_wrapper .inner_nav .navLinks .navItem .navLink.active {
+  color: #7024ec;
+}
+.header_wrapper .inner_nav .cta_btns {
+  gap: 0.5rem;
+}
+@media screen and (min-width: 36rem) {
+  .header_wrapper .inner_nav .cta_btns {
+    gap: 1rem;
+  }
+}
+.header .offcanvas {
+  width: 18.75rem;
+}
+.header .offcanvas .offcanvas-body .mobile_navLinks .navItem {
+  border: 1px solid #dec8ff;
+  background: #dec8ff;
+  padding: 0.5rem 0.3125rem;
+  border-radius: 0.3125rem;
+}
+.header .offcanvas .offcanvas-body .mobile_navLinks .navItem .navLink {
+  color: hsl(0, 0%, 0%);
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1rem;
+  transition: all 0.35s ease-in-out;
+}
+.header .offcanvas .offcanvas-body .mobile_navLinks .navItem .navLink:hover {
+  color: #7024ec;
+}
+.header .offcanvas .offcanvas-body .mobile_navLinks .navItem .navLink.active {
+  color: #7024ec;
+}
+
+.hero_section {
+  background: url("../../assets/images/Home/Hero-bg.png") no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+@media screen and (min-width: 87.5rem) {
+  .hero_section .hero_Container {
+    max-width: 90.625rem;
+  }
+}
+.hero_section .hero_wrapper {
+  padding: 8.75rem 0rem 6.25rem 0rem;
+  overflow-x: hidden;
+}
+@media screen and (min-width: 36rem) {
+  .hero_section .hero_wrapper {
+    padding: 11.25rem 0rem 7.8125rem 0rem;
+  }
+}
+@media screen and (min-width: 62rem) {
+  .hero_section .hero_wrapper {
+    padding: 15.625rem 0rem 7.8125rem 0rem;
+  }
+}
+@media screen and (min-width: 87.5rem) {
+  .hero_section .hero_wrapper {
+    padding: 15.625rem 0rem 7.8125rem 3.125rem;
+  }
+}
+@media screen and (min-width: 36rem) {
+  .hero_section .hero_wrapper {
+    overflow-x: visible;
+  }
+}
+.hero_section .hero_wrapper .Hero_Arrow {
+  top: 3rem;
+  display: none;
+}
+@media screen and (min-width: 62rem) {
+  .hero_section .hero_wrapper .Hero_Arrow {
+    display: block;
+    left: -6.25rem;
+  }
+}
+@media screen and (min-width: 87.5rem) {
+  .hero_section .hero_wrapper .Hero_Arrow {
+    left: -10.625rem;
+  }
+}
+.hero_section .hero_wrapper .hero_left_content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5625rem;
+}
+@media screen and (min-width: 75rem) {
+  .hero_section .hero_wrapper .hero_left_content {
+    gap: 2.1875rem;
+  }
+}
+.hero_section .hero_wrapper .hero_left_content .hero_title {
+  max-width: 34.375rem;
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 1.875rem;
+  font-weight: 800;
+  line-height: 140%;
+  background: linear-gradient(280deg, #fff 9.23%, #e4d2ff 98.94%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+@media screen and (min-width: 62rem) {
+  .hero_section .hero_wrapper .hero_left_content .hero_title {
+    font-size: 2.5rem;
+  }
+}
+@media screen and (min-width: 75rem) {
+  .hero_section .hero_wrapper .hero_left_content .hero_title {
+    font-size: 3.75rem;
+  }
+}
+.hero_section .hero_wrapper .hero_left_content .hero_description {
+  max-width: 28.375rem;
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 1.25rem;
+  line-height: 140%;
+  background: radial-gradient(110.79% 110.79% at -5.18% 62.86%, #fff 0%, #ebdefe 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+@media screen and (min-width: 75rem) {
+  .hero_section .hero_wrapper .hero_left_content .hero_description {
+    font-size: 1.5rem;
+  }
+}
+.hero_section .hero_wrapper .hero_right_content {
+  z-index: 1;
+}
+.hero_section .hero_wrapper .hero_right_content .hero_image_wrapper {
+  border-radius: 2.5rem;
+  background: linear-gradient(90deg, #f178c6 1.18%, #edf966 70.17%, #95d7cb 100.03%), rgba(255, 255, 255, 0);
+  padding: 0.9375rem;
+}
+.hero_section .hero_wrapper .hero_right_content .hero_image_wrapper .hero_image {
+  border-radius: 2rem;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.hero_section .hero_wrapper .hero_right_content .hero_dots_wrapper {
+  right: 0px;
+  bottom: -40px;
+  z-index: -1;
+}
+@media screen and (min-width: 48rem) {
+  .hero_section .hero_wrapper .hero_right_content .hero_dots_wrapper {
+    right: -40px;
+  }
+}
+
+.our_services {
+  margin-top: 4.375rem;
+}
+@media screen and (min-width: 48rem) {
+  .our_services {
+    margin-top: 8.75rem;
+  }
+}
+.our_services_wrapper .service_item {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 1.25rem 0.625rem 1.25rem 1.25rem;
+  border: 1px dashed #de00a5;
+  border-radius: 1rem;
+}
+@media screen and (min-width: 75rem) {
+  .our_services_wrapper .service_item {
+    padding: 1.875rem 1.875rem 1.875rem 1.875rem;
+    gap: 1.25rem;
+  }
+}
+.our_services_wrapper .service_item.data {
+  border: 1px dashed #ff9c11;
+}
+.our_services_wrapper .service_item.marketing {
+  border: 1px dashed #7024ec;
+}
+.our_services_wrapper .service_item .service_image_wrapper img {
+  width: 100%;
+  border-radius: 1rem;
+}
+.our_services_wrapper .service_item .service_content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+.our_services_wrapper .service_item .service_content .service_title {
+  color: #1a0013;
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 90%;
+}
+@media screen and (min-width: 75rem) {
+  .our_services_wrapper .service_item .service_content .service_title {
+    font-size: 1.25rem;
+  }
+}
+@media screen and (min-width: 87.5rem) {
+  .our_services_wrapper .service_item .service_content .service_title {
+    font-size: 1.5rem;
+  }
+}
+.our_services_wrapper .service_item .service_content .service_description {
+  color: #52474f;
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 0.875rem;
+  line-height: 167%;
+  max-width: 14.375rem;
+}
+
+.features_section {
+  background: linear-gradient(180deg, rgba(251, 245, 205, 0) 0%, rgba(251, 245, 205, 0.65) 15%, rgba(251, 245, 205, 0) 50%);
+  padding: 3.75rem 0rem 3.75rem 0rem;
+}
+@media screen and (min-width: 48rem) {
+  .features_section {
+    padding: 7.5rem 0rem 3.75rem 0rem;
+  }
+}
+.features_section_wrapper .features_section_header {
+  display: flex;
+  flex-direction: column;
+  gap: 2.125rem;
+  margin-bottom: 3.125rem;
+}
+@media screen and (min-width: 48rem) {
+  .features_section_wrapper .features_section_header {
+    margin-bottom: 6.25rem;
+  }
+}
+.features_section_wrapper .features_section_header .features_section_title {
+  display: inline-flex;
+  padding: 0.3125rem 1.3125rem;
+  gap: 0.75rem;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 0.5rem;
+  border: 1px solid #ffb700;
+}
+.features_section_wrapper .features_section_header .features_section_title svg {
+  width: 0.625rem;
+  height: 0.625rem;
+}
+.features_section_wrapper .features_section_header .features_section_title .sub_title {
+  color: #ffb700;
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-top: 0.375rem;
+}
+.features_section_wrapper .features_section_header .title {
+  color: #1a0013;
+  text-align: center;
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 125%;
+}
+@media screen and (min-width: 48rem) {
+  .features_section_wrapper .features_section_header .title {
+    font-size: 2.625rem;
+  }
+}
+.features_section_wrapper .features_section_header .title span {
+  color: #7024ec;
+}
+.features_section_wrapper .features_section_header .description {
+  color: #52474f;
+  text-align: center;
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 1.25rem;
+  line-height: 167%;
+  max-width: 39rem;
+  margin: 0 auto;
+}
+
+.section_image_content {
+  overflow-x: hidden;
+}
+.section_image_content.upload_product {
+  margin-top: 4.375rem;
+}
+@media screen and (min-width: 48rem) {
+  .section_image_content.upload_product {
+    margin-top: 8.75rem;
+  }
+}
+.section_image_content .section_image_wrapper img {
+  border-radius: 1.5rem;
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+.section_image_content .section_content_wrapper .section_title_wrapper .title {
+  color: #1a0013;
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  max-width: 25rem;
+}
+@media screen and (min-width: 36rem) {
+  .section_image_content .section_content_wrapper .section_title_wrapper .title {
+    font-size: 2rem;
+  }
+}
+.section_image_content .section_content_wrapper .section_title_wrapper .title_arrow {
+  left: 0rem;
+  bottom: -0.625rem;
+}
+@media screen and (min-width: 36rem) {
+  .section_image_content .section_content_wrapper .section_title_wrapper .title_arrow {
+    left: 5.625rem;
+  }
+}
+.section_image_content .section_content_wrapper .section_title_wrapper .title_arrow svg {
+  width: 8.125rem;
+}
+@media screen and (min-width: 36rem) {
+  .section_image_content .section_content_wrapper .section_title_wrapper .title_arrow svg {
+    width: 11.1875rem;
+  }
+}
+.section_image_content .section_content_wrapper .section_title_wrapper .upload {
+  left: 6.875rem;
+  bottom: -0.625rem;
+}
+@media screen and (min-width: 36rem) {
+  .section_image_content .section_content_wrapper .section_title_wrapper .upload {
+    left: 8.9375rem;
+  }
+}
+.section_image_content .section_content_wrapper .section_title_wrapper .upload svg {
+  width: 5.625rem;
+}
+@media screen and (min-width: 36rem) {
+  .section_image_content .section_content_wrapper .section_title_wrapper .upload svg {
+    width: 8.125rem;
+  }
+}
+.section_image_content .section_content_wrapper .description {
+  color: #52474f;
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 1rem;
+  line-height: 1.9375rem;
+  max-width: 35.125rem;
+}
+
+.order_section {
+  padding-top: 4.375rem;
+}
+@media screen and (min-width: 48rem) {
+  .order_section {
+    padding-top: 8.75rem;
+  }
+}
+.order_section_wrapper .order {
+  left: 0rem;
+  bottom: -0.625rem;
+}
+.order_section_wrapper .order svg {
+  width: 3.75rem;
+}
+@media screen and (min-width: 36rem) {
+  .order_section_wrapper .order svg {
+    width: 5rem;
+  }
+}
+
+.choosing_template_wrapper {
+  background-image: url("../../assets/images/Home/choosing_template_bg.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 3.125rem 0.9375rem;
+  margin-top: 0rem;
+  border-radius: 1.5rem;
+}
+@media screen and (min-width: 48rem) {
+  .choosing_template_wrapper {
+    margin-top: 6.25rem;
+  }
+}
+@media screen and (min-width: 62rem) {
+  .choosing_template_wrapper {
+    padding: 6.25rem 2.5rem;
+  }
+}
+.choosing_template_wrapper .choosing_template_header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+.choosing_template_wrapper .choosing_template_header .title_wrapper .title {
+  color: #1a0013;
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+}
+.choosing_template_wrapper .choosing_template_header .title_wrapper .title_arrow {
+  width: 6.5rem;
+  left: 5rem;
+  bottom: -0.625rem;
+}
+.choosing_template_wrapper .choosing_template_header .description {
+  color: #52474f;
+  text-align: center;
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 1rem;
+  line-height: 1.9375rem;
+  max-width: 71.5rem;
+}
+.choosing_template_wrapper .choosing_template_content {
+  margin-top: 1.5625rem;
+  margin-bottom: 3.125rem;
+}
+@media screen and (min-width: 62rem) {
+  .choosing_template_wrapper .choosing_template_content {
+    margin-top: 3.4375rem;
+    margin-bottom: 6.25rem;
+  }
+}
+.choosing_template_wrapper .choosing_template_content .template_card {
+  display: block;
+}
+.choosing_template_wrapper .choosing_template_content .template_card .template_image {
+  width: 100%;
+  border-radius: 0.75rem;
+}
+@media screen and (min-width: 48rem) {
+  .choosing_template_wrapper .choosing_template_content .template_card .template_image {
+    border-radius: 1.5rem;
+  }
+}
+.choosing_template_wrapper .choosing_template_content .template_card .template_title {
+  background: #7024ec;
+  color: hsl(0, 0%, 100%);
+  text-align: center;
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 1.125rem 0rem 0.875rem 0rem;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border-bottom-right-radius: 0.75rem;
+  border-bottom-left-radius: 0.75rem;
+}
+@media screen and (min-width: 48rem) {
+  .choosing_template_wrapper .choosing_template_content .template_card .template_title {
+    border-bottom-right-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+  }
+}
+
+.domain_section {
+  padding-top: 4.375rem;
+}
+@media screen and (min-width: 48rem) {
+  .domain_section {
+    padding-top: 8.75rem;
+  }
+}
+.domain_section_wrapper .domain_arrow {
+  left: 4.6875rem;
+  bottom: -0.625rem;
+}
+@media screen and (min-width: 36rem) {
+  .domain_section_wrapper .domain_arrow {
+    left: 5.625rem;
+  }
+}
+.domain_section_wrapper .domain_arrow svg {
+  width: 4.375rem;
+}
+@media screen and (min-width: 36rem) {
+  .domain_section_wrapper .domain_arrow svg {
+    width: 6.375rem;
+  }
+}
+
+.payment_section {
+  padding-top: 4.375rem;
+}
+@media screen and (min-width: 48rem) {
+  .payment_section {
+    padding-top: 8.75rem;
+  }
+}
+.payment_section_wrapper .payment_arrow {
+  left: 6.875rem;
+  bottom: -0.625rem;
+}
+@media screen and (min-width: 36rem) {
+  .payment_section_wrapper .payment_arrow {
+    left: 8.9375rem;
+  }
+}
+.payment_section_wrapper .payment_arrow svg {
+  width: 4.375rem;
+}
+@media screen and (min-width: 36rem) {
+  .payment_section_wrapper .payment_arrow svg {
+    width: 5.1875rem;
+  }
+}
+
+.free_plan_section {
+  padding-top: 4.375rem;
+}
+@media screen and (min-width: 48rem) {
+  .free_plan_section {
+    padding-top: 8.75rem;
+  }
+}
+.free_plan_section_wrapper .free_plan_arrow {
+  left: 5rem;
+  bottom: -0.625rem;
+}
+@media screen and (min-width: 36rem) {
+  .free_plan_section_wrapper .free_plan_arrow {
+    left: 6.75rem;
+  }
+}
+.free_plan_section_wrapper .free_plan_arrow svg {
+  width: 5rem;
+}
+@media screen and (min-width: 36rem) {
+  .free_plan_section_wrapper .free_plan_arrow svg {
+    width: 6.5rem;
+  }
+}
+
+.process_section {
+  background: linear-gradient(180deg, rgba(237, 217, 255, 0) 0%, rgba(237, 217, 255, 0.65) 15%, rgba(237, 217, 255, 0) 50%);
+  padding-top: 3.75rem;
+}
+@media screen and (min-width: 62rem) {
+  .process_section {
+    padding-top: 7.5rem;
+  }
+}
+.process_section_wrapper .process_section_header {
+  display: flex;
+  flex-direction: column;
+  gap: 2.375rem;
+}
+.process_section_wrapper .process_section_header .process_section_title {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.3125rem 1.3125rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+  border: 1px solid #fd1774;
+}
+.process_section_wrapper .process_section_header .process_section_title svg {
+  width: 0.625rem;
+  height: 0.625rem;
+}
+.process_section_wrapper .process_section_header .process_section_title .sub_title {
+  color: #fd1774;
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-top: 0.375rem;
+}
+.process_section_wrapper .process_section_header .title {
+  color: #1a0013;
+  text-align: center;
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+@media screen and (min-width: 48rem) {
+  .process_section_wrapper .process_section_header .title {
+    font-size: 2.625rem;
+  }
+}
+.process_section_wrapper .process_section_header .title span {
+  color: #7024ec;
+}
+.process_section_wrapper .process_section_header .description {
+  color: #52474f;
+  text-align: center;
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 1.25rem;
+}
+.process_section_wrapper .process_section_content {
+  margin-top: 3.75rem;
+  border-radius: 1.5rem;
+  background: linear-gradient(180deg, #6523e3 26.78%, #c11795 159.21%);
+  padding: 3.125rem 1.875rem;
+}
+@media screen and (min-width: 87.5rem) {
+  .process_section_wrapper .process_section_content {
+    padding: 3.125rem 2.5rem;
+  }
+}
+.process_section_wrapper .process_section_content .process_card {
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.2);
+  padding: 2.125rem 1.4375rem;
+  display: flex;
+  align-items: center;
+  gap: 1.375rem;
+  height: 100%;
+}
+.process_section_wrapper .process_section_content .process_card .icon_wrapper svg {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+.process_section_wrapper .process_section_content .process_card .sub_title {
+  color: hsl(0, 0%, 100%);
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 150%;
+}
+@media screen and (min-width: 87.5rem) {
+  .process_section_wrapper .process_section_content .process_card .sub_title {
+    font-size: 1rem;
+  }
+}
+.process_section_wrapper .process_section_content .process_card .description {
+  color: hsl(0, 0%, 100%);
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 0.75rem;
+  line-height: 167%;
+  max-width: 17.3125rem;
+}
+@media screen and (min-width: 87.5rem) {
+  .process_section_wrapper .process_section_content .process_card .description {
+    font-size: 0.875rem;
+  }
+}
+
+.facilities_section {
+  background: linear-gradient(180deg, rgba(217, 245, 247, 0) 0%, rgba(217, 245, 247, 0.5) 15%, rgba(217, 245, 247, 0) 50%);
+  padding: 3.75rem 0rem;
+}
+@media screen and (min-width: 62rem) {
+  .facilities_section {
+    padding: 7.5rem 0rem;
+  }
+}
+.facilities_section_wrapper .facilities_section_header {
+  display: flex;
+  flex-direction: column;
+  gap: 2.375rem;
+}
+.facilities_section_wrapper .facilities_section_header .process_section_title {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.3125rem 1.3125rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+  border: 1px solid #de00a5;
+}
+.facilities_section_wrapper .facilities_section_header .process_section_title svg {
+  width: 0.625rem;
+  height: 0.625rem;
+}
+.facilities_section_wrapper .facilities_section_header .process_section_title .sub_title {
+  color: #de00a5;
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-top: 0.375rem;
+}
+.facilities_section_wrapper .facilities_section_header .title {
+  color: #1a0013;
+  text-align: center;
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+@media screen and (min-width: 48rem) {
+  .facilities_section_wrapper .facilities_section_header .title {
+    font-size: 2.625rem;
+  }
+}
+.facilities_section_wrapper .facilities_section_header .title span {
+  color: #7024ec;
+}
+.facilities_section_wrapper .facilities_section_header .description {
+  color: #52474f;
+  text-align: center;
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 1.25rem;
+}
+.facilities_section_wrapper .facilities_content {
+  z-index: 2;
+  margin-top: 3.75rem;
+}
+.facilities_section_wrapper .facilities_content .process_section_bg {
+  width: 100%;
+  height: 108.9375rem;
+  border-radius: 24px;
+  background: #e5faff;
+  background-blend-mode: color-burn;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.05) inset;
+  bottom: 68px;
+  left: 0;
+  z-index: -1;
+}
+@media screen and (min-width: 48rem) {
+  .facilities_section_wrapper .facilities_content .process_section_bg {
+    height: 51.625rem;
+  }
+}
+@media screen and (min-width: 62rem) {
+  .facilities_section_wrapper .facilities_content .process_section_bg {
+    height: 28.875rem;
+  }
+}
+.facilities_section_wrapper .facilities_content .facilities_card_inner {
+  padding: 0 0.625rem;
+}
+@media screen and (min-width: 36rem) {
+  .facilities_section_wrapper .facilities_content .facilities_card_inner {
+    padding: 0 1.25rem;
+  }
+}
+@media screen and (min-width: 62rem) {
+  .facilities_section_wrapper .facilities_content .facilities_card_inner {
+    padding: 0 2.5rem;
+  }
+}
+.facilities_section_wrapper .facilities_content .facilities_card {
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0px 0px 80px 0px rgba(0, 0, 0, 0.06);
+  padding: 2.9375rem 1.6875rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.875rem;
+  height: 100%;
+}
+.facilities_section_wrapper .facilities_content .facilities_card .icon_wrapper svg {
+  width: 5rem;
+  height: 5rem;
+}
+.facilities_section_wrapper .facilities_content .facilities_card .sub_title {
+  color: var(--, #1a0013);
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: normal;
+  text-align: center;
+}
+.facilities_section_wrapper .facilities_content .facilities_card .description {
+  color: var(--, #52474f);
+  text-align: center;
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 27px; /* 192.857% */
+  max-width: 20.625rem;
+}
+
+.price_section {
+  background: linear-gradient(180deg, rgba(219, 253, 197, 0) 0%, rgba(219, 253, 197, 0.65) 15%, rgba(219, 253, 197, 0) 50%);
+  padding-top: 6.25rem;
+}
+@media screen and (min-width: 48rem) {
+  .price_section {
+    padding-top: 9.375rem;
+  }
+}
+@media screen and (min-width: 62rem) {
+  .price_section {
+    padding-top: 13.125rem;
+  }
+}
+.price_section_wrapper .price_section_header {
+  display: flex;
+  flex-direction: column;
+  gap: 2.375rem;
+}
+.price_section_wrapper .price_section_header .process_section_title {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.3125rem 1.3125rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+  border: 1px solid #64d71f;
+}
+.price_section_wrapper .price_section_header .process_section_title svg {
+  width: 0.625rem;
+  height: 0.625rem;
+}
+.price_section_wrapper .price_section_header .process_section_title .sub_title {
+  color: #64d71f;
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-top: 0.375rem;
+}
+.price_section_wrapper .price_section_header .title {
+  color: #1a0013;
+  text-align: center;
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+@media screen and (min-width: 48rem) {
+  .price_section_wrapper .price_section_header .title {
+    font-size: 2.625rem;
+  }
+}
+.price_section_wrapper .price_section_header .title span {
+  color: #7024ec;
+}
+.price_section_wrapper .price_section_header .description {
+  color: #52474f;
+  text-align: center;
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 1.25rem;
+}
+.price_section_wrapper .price_section_content .nav-tabs {
+  border-bottom: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3.75rem;
+}
+.price_section_wrapper .price_section_content .nav-tabs .inner_tabs {
+  border-radius: 3.0625rem;
+  background: linear-gradient(0deg, #f5f7fa 0%, #f5f7fa 100%), linear-gradient(0deg, #f5f7fa 0%, #f5f7fa 100%), #f5f7fa;
+  padding: 0.3125rem;
+}
+.price_section_wrapper .price_section_content .nav-tabs .monthly {
+  color: #52474f;
+  text-align: center;
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 1.25rem;
+  padding: 0.9375rem 2.0625rem 0.75rem 2.0625rem;
+  border: none;
+  font-weight: 500;
+  border-radius: 3.0625rem;
+  background: transparent;
+}
+.price_section_wrapper .price_section_content .nav-tabs .monthly.active {
+  background: #fff;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.06);
+  font-weight: 600;
+}
+.price_section_wrapper .price_section_content .tab-content .price_section_card_inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.875rem;
+  margin-top: 2.25rem;
+}
+@media screen and (min-width: 48rem) {
+  .price_section_wrapper .price_section_content .tab-content .price_section_card_inner {
+    align-items: start;
+    justify-content: center;
+    flex-direction: row;
+  }
+}
+.price_section_wrapper .price_section_content .tab-content .price_section_card_inner .price_card {
+  max-width: 21.9375rem;
+  width: 100%;
+}
+.price_section_wrapper .price_section_content .tab-content .price_section_card_inner .price_section_card {
+  border-radius: 1.5rem;
+  border: 1px solid #dfd4f1;
+  background: #fff;
+  padding: 2rem;
+  min-height: 40.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.price_section_wrapper .price_section_content .tab-content .price_section_card_inner .price_section_card.active {
+  border: 1px solid #7024ec;
+}
+.price_section_wrapper .price_section_content .tab-content .price_section_card_inner .price_section_card_header .plan {
+  border-radius: 0.375rem;
+  background: #f4eeff;
+  color: #7024ec;
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  padding: 0.4375rem 0.9375rem 0.0625rem 0.9375rem;
+}
+.price_section_wrapper .price_section_content .tab-content .price_section_card_inner .price_section_card_header .plan_price {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.625rem 0;
+  margin-left: 0.75rem;
+  border-bottom: 1px solid #f4eeff;
+}
+.price_section_wrapper .price_section_content .tab-content .price_section_card_inner .price_section_card_header .plan_price .title {
+  color: #1a0013;
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 3.375rem;
+  font-weight: 700;
+  line-height: 3.75rem;
+}
+.price_section_wrapper .price_section_content .tab-content .price_section_card_inner .price_section_card_header .plan_price .sub_title {
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 1.125rem;
+  line-height: 130%;
+  font-weight: 500;
+  letter-spacing: -0.558px;
+  background: linear-gradient(90deg, #6523e3 5.7%, #c11795 99.89%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.price_section_wrapper .price_section_content .tab-content .price_section_card_inner .price_section_card_list {
+  padding: 1.875rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.price_section_wrapper .price_section_content .tab-content .price_section_card_inner .price_section_card_list .item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.price_section_wrapper .price_section_content .tab-content .price_section_card_inner .price_section_card_list .item .icon svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.price_section_wrapper .price_section_content .tab-content .price_section_card_inner .price_section_card_list .item .text {
+  margin-top: 0.25rem;
+  color: #52474f;
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 14px;
+}
+
+.questions_section {
+  background: linear-gradient(180deg, rgba(254, 220, 234, 0) 0%, rgba(254, 220, 234, 0.65) 15%, rgba(254, 220, 234, 0) 50%);
+  padding: 7.5rem 0rem;
+}
+@media screen and (min-width: 62rem) {
+  .questions_section {
+    padding: 7.5rem 0rem;
+  }
+}
+.questions_section_wrapper .questions_section_header {
+  display: flex;
+  flex-direction: column;
+  gap: 2.375rem;
+}
+.questions_section_wrapper .questions_section_header .questions_section_title {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.3125rem 1.3125rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+  border: 1px solid #de00a5;
+}
+.questions_section_wrapper .questions_section_header .questions_section_title svg {
+  width: 0.625rem;
+  height: 0.625rem;
+}
+.questions_section_wrapper .questions_section_header .questions_section_title .sub_title {
+  color: #de00a5;
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-top: 0.375rem;
+}
+.questions_section_wrapper .questions_section_header .title {
+  color: #1a0013;
+  text-align: center;
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+@media screen and (min-width: 48rem) {
+  .questions_section_wrapper .questions_section_header .title {
+    font-size: 2.625rem;
+  }
+}
+.questions_section_wrapper .questions_section_header .title span {
+  color: #7024ec;
+}
+.questions_section_wrapper .questions_section_header .description {
+  color: #52474f;
+  text-align: center;
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 1.25rem;
+}
+.questions_section_wrapper .questions_section_content {
+  margin-top: 3.75rem;
+}
+.questions_section_wrapper .questions_section_content .accordion .accordion-item {
+  margin-bottom: 2.25rem;
+  border-radius: 1rem;
+  border: 0.25px solid #efefef;
+  background: #fff;
+  box-shadow: 0px 5px 16px 0px rgba(0, 0, 0, 0.06);
+}
+.questions_section_wrapper .questions_section_content .accordion .accordion-item .accordion-header .accordion-button {
+  color: #1a0013;
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  border-radius: 1rem;
+}
+@media screen and (min-width: 48rem) {
+  .questions_section_wrapper .questions_section_content .accordion .accordion-item .accordion-header .accordion-button {
+    font-size: 1.875rem;
+  }
+}
+.questions_section_wrapper .questions_section_content .accordion .accordion-item .accordion-header .accordion-button:not(.collapsed) {
+  background-color: hsl(0, 0%, 100%);
+  box-shadow: none;
+}
+.questions_section_wrapper .questions_section_content .accordion .accordion-item .accordion-header .accordion-button:focus {
+  box-shadow: none;
+}
+.questions_section_wrapper .questions_section_content .accordion .accordion-item .accordion-header .accordion-button::after {
+  width: 3rem;
+  height: 3rem;
+  background-image: url("../../assets/images/Home/arrow.png");
+  background-size: cover;
+}
+.questions_section_wrapper .questions_section_content .accordion .accordion-item .accordion-button:not(.collapsed) {
+  border-radius: 0;
+  border-top-right-radius: 1rem;
+  border-top-left-radius: 1rem;
+  border: 1px solid #de00a5;
+  border-bottom: none;
+  box-shadow: 0px 6px 16px 0px rgba(222, 0, 165, 0.19);
+}
+.questions_section_wrapper .questions_section_content .accordion .accordion-item .accordion-button:not(.collapsed)::after {
+  background-image: url("../../assets/images/Home/active-arrow.png");
+  transform: rotate(360deg);
+}
+.questions_section_wrapper .questions_section_content .accordion .accordion-item .accordion-collapse.show {
+  border-bottom-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  border: 1px solid #de00a5;
+  border-top: none;
+  box-shadow: 0px 6px 16px 0px rgba(222, 0, 165, 0.19);
+}
+.questions_section_wrapper .questions_section_content .accordion .accordion-item .accordion-collapse .accordion-body {
+  color: #52474f;
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 1rem;
+}
+@media screen and (min-width: 48rem) {
+  .questions_section_wrapper .questions_section_content .accordion .accordion-item .accordion-collapse .accordion-body {
+    font-size: 1.25rem;
+  }
+}
+
+.testimonial_section {
+  background: linear-gradient(70deg, #45c4f9 0.66%, #701fe5 33.33%, #de00a5 71.77%, #ffc800 100%);
+  padding: 3.75rem 0rem;
+}
+@media screen and (min-width: 62rem) {
+  .testimonial_section {
+    padding: 7.5rem 0rem;
+  }
+}
+.testimonial_section_wrapper .testimonial_section_header {
+  display: flex;
+  flex-direction: column;
+  gap: 2.375rem;
+}
+.testimonial_section_wrapper .testimonial_section_header .testimonial_section_title {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.3125rem 1.3125rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+  border: 1px solid hsl(0, 0%, 100%);
+}
+.testimonial_section_wrapper .testimonial_section_header .testimonial_section_title svg {
+  width: 0.625rem;
+  height: 0.625rem;
+}
+.testimonial_section_wrapper .testimonial_section_header .testimonial_section_title .sub_title {
+  color: hsl(0, 0%, 100%);
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-top: 0.375rem;
+}
+.testimonial_section_wrapper .testimonial_section_header .title {
+  color: hsl(0, 0%, 100%);
+  text-align: center;
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+@media screen and (min-width: 48rem) {
+  .testimonial_section_wrapper .testimonial_section_header .title {
+    font-size: 2.625rem;
+  }
+}
+.testimonial_section_wrapper .testimonial_section_header .title span {
+  color: #7024ec;
+}
+.testimonial_section_wrapper .testimonial_section_header .description {
+  color: hsl(0, 0%, 100%);
+  text-align: center;
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 1.25rem;
+}
+.testimonial_section_wrapper .testimonial_slider_wrapper {
+  margin-top: 3.75rem;
+  padding: 0 3.125rem;
+}
+@media screen and (min-width: 75rem) {
+  .testimonial_section_wrapper .testimonial_slider_wrapper {
+    padding: 0 6.25rem;
+  }
+}
+.testimonial_section_wrapper #swiper-button-next,
+.testimonial_section_wrapper #swiper-button-prev {
+  position: absolute;
+  top: -165px !important;
+}
+@media screen and (min-width: 87.5rem) {
+  .testimonial_section_wrapper #swiper-button-next,
+  .testimonial_section_wrapper #swiper-button-prev {
+    top: -140px !important;
+  }
+}
+.testimonial_section_wrapper #swiper-button-next svg,
+.testimonial_section_wrapper #swiper-button-prev svg {
+  width: 1.875rem;
+  height: 1.875rem;
+}
+@media screen and (min-width: 48rem) {
+  .testimonial_section_wrapper #swiper-button-next svg,
+  .testimonial_section_wrapper #swiper-button-prev svg {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+.testimonial_section_wrapper #swiper-button-next {
+  right: 0 !important;
+}
+.testimonial_section_wrapper .testimonial_card {
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0px 10px 80px 0px rgba(0, 0, 0, 0.06);
+  padding: 1.875rem 1.375rem;
+}
+.testimonial_section_wrapper .testimonial_card svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+.testimonial_section_wrapper .testimonial_card .text {
+  color: #535354;
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 1rem;
+  line-height: 1.75rem;
+}
+.testimonial_section_wrapper .testimonial_card .user_image {
+  width: 44px;
+  height: 44px;
+  border-radius: 100%;
+}
+.testimonial_section_wrapper .testimonial_card .title {
+  color: #141b34;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px; /* 137.5% */
+}
+.testimonial_section_wrapper .testimonial_card .subtitle {
+  color: #141b34;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.footer {
+  background-image: url("../../assets/images/Home/footer-bg.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.footer_wrapper {
+  position: relative;
+  margin-top: 12.5rem;
+  padding-top: 14.0625rem;
+  z-index: 1;
+}
+.footer_wrapper .footer_top_content {
+  position: absolute;
+  top: -16.6875rem;
+  width: 100%;
+  border-radius: 40px;
+  background: #fff;
+  box-shadow: 0px 20px 80px 0px rgba(0, 0, 0, 0.08);
+  padding: 6.4375rem 1.875rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2.25rem;
+}
+@media screen and (min-width: 48rem) {
+  .footer_wrapper .footer_top_content {
+    padding: 6.4375rem 6.4375rem;
+  }
+}
+.footer_wrapper .footer_top_content .footer_title {
+  color: #1a0013;
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 20px;
+  text-align: center;
+  font-weight: 800;
+  line-height: 150%; /* 72px */
+}
+@media screen and (min-width: 48rem) {
+  .footer_wrapper .footer_top_content .footer_title {
+    font-size: 32px;
+  }
+}
+@media screen and (min-width: 62rem) {
+  .footer_wrapper .footer_top_content .footer_title {
+    font-size: 48px;
+  }
+}
+.footer_wrapper .socialLink svg {
+  width: 1.5625rem;
+  height: 1.5625rem;
+}
+@media screen and (min-width: 36rem) {
+  .footer_wrapper .socialLink svg {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+@media screen and (min-width: 48rem) {
+  .footer_wrapper .socialLink svg {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+.footer_wrapper .footer_content {
+  margin-top: 4rem;
+  padding-bottom: 6.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+  overflow-x: hidden;
+}
+.footer_wrapper .footer_content .sub_heading {
+  color: hsl(0, 0%, 100%);
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 2rem;
+}
+.footer_wrapper .footer_content .description {
+  color: hsl(0, 0%, 100%);
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 1rem;
+  line-height: 167%;
+}
+.footer_wrapper .description {
+  color: hsl(0, 0%, 100%);
+  font-family: "Baloo Da 2", sans-serif;
+  font-size: 1rem;
+}
+.footer_wrapper .footer_icon_content .left_1 {
+  top: -14.375rem;
+  left: -1.875rem;
+}
+@media screen and (min-width: 75rem) {
+  .footer_wrapper .footer_icon_content .left_1 {
+    top: -14.375rem;
+    left: -3.125rem;
+  }
+}
+@media screen and (min-width: 85.4375rem) {
+  .footer_wrapper .footer_icon_content .left_1 {
+    top: -17.5rem;
+    left: -5.625rem;
+  }
+}
+@media screen and (min-width: 87.5rem) {
+  .footer_wrapper .footer_icon_content .left_1 {
+    top: -20rem;
+    left: -6.875rem;
+  }
+}
+@media screen and (min-width: 100rem) {
+  .footer_wrapper .footer_icon_content .left_1 {
+    top: -21.0625rem;
+    left: -7.6875rem;
+  }
+}
+.footer_wrapper .footer_icon_content .left_1 img {
+  width: 5.625rem;
+}
+@media screen and (min-width: 62rem) {
+  .footer_wrapper .footer_icon_content .left_1 img {
+    width: 10.5rem;
+  }
+}
+.footer_wrapper .footer_icon_content .left_2 {
+  top: -20rem;
+  left: 0rem;
+}
+.footer_wrapper .footer_icon_content .left_3 {
+  top: 0rem;
+  left: 11.875rem;
+}
+.footer_wrapper .footer_icon_content .right_1 {
+  display: none;
+  top: -12.8125rem;
+  z-index: -1;
+}
+@media screen and (min-width: 75rem) {
+  .footer_wrapper .footer_icon_content .right_1 {
+    display: block;
+    right: -1.25rem;
+  }
+}
+@media screen and (min-width: 85.4375rem) {
+  .footer_wrapper .footer_icon_content .right_1 {
+    right: -2.5rem;
+  }
+}
+@media screen and (min-width: 87.5rem) {
+  .footer_wrapper .footer_icon_content .right_1 {
+    right: -1.875rem;
+  }
+}
+@media screen and (min-width: 100rem) {
+  .footer_wrapper .footer_icon_content .right_1 {
+    right: -5.625rem;
+  }
+}
+.footer_wrapper .footer_icon_content .right_2 {
+  top: -14rem;
+  right: 14rem;
+}
+.footer_wrapper .footer_icon_content .right_3 {
+  top: -1.25rem;
+  right: 7.5rem;
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.rotating {
+  animation: rotating 12s linear infinite;
+}
+
+.updown {
+  animation: updown 1s cubic-bezier(0.36, 0.07, 0.57, 0.99) infinite;
+}
+
+@keyframes updown {
+  0% {
+    transform: translateY(0.25rem);
+  }
+  50% {
+    transform: translateY(0.75rem);
+  }
+  100% {
+    transform: translateY(0.25rem);
+  }
+}
+@keyframes slideDownIn {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+  0% {
+    transform: translateY(-100%);
+  }
+}
+@keyframes slideDownInMobile {
+  0% {
+    transform: translateY(-1.25rem);
+  }
+  100% {
+    transform: translateY(0.625rem);
+  }
+  0% {
+    transform: translateY(-1.25rem);
+  }
+}
+@keyframes slideUpIn {
+  0% {
+    transform: translateY(-1.25rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+  0% {
+    transform: translateY(1.25rem);
+  }
+}
+@keyframes slideUpInMobile {
+  0% {
+    transform: translateY(2.5rem);
+  }
+  100% {
+    transform: translateY(1.5625rem);
+  }
+  0% {
+    transform: translateY(2.5rem);
+  }
+}
+@keyframes slideLeftIn {
+  0% {
+    transform: translateX(6.25rem);
+  }
+  100% {
+    transform: translateX(0);
+  }
+  0% {
+    transform: translateX(-6.25rem);
+  }
+}
+@keyframes slideRightIn {
+  0% {
+    transform: translateX(6.25rem);
+  }
+  100% {
+    transform: translateX(0);
+  }
+  0% {
+    transform: translateX(6.25rem);
+  }
+}
+@keyframes floating {
+  0% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(1%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}/*# sourceMappingURL=style.css.map */

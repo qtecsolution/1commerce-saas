@@ -55,24 +55,7 @@
 
 @section('page_content')
     {{-- navbar area --}}
-    <div class="menu_area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <a href="" class="logo">{{ env('APP_NAME') }}</a>
-                </div>
-                <div class="col-md-8">
-                    <ul>
-                        <li><a href="{{ route('web.home') }}">Home</a></li>
-                        <li><a href="{{ route('web.home') }}">About Us</a></li>
-                        <li><a href="{{ route('web.packages') }}">Packages</a></li>
-                        <li><a href="{{ route('web.home') }}">Contact Us</a></li>
-                        <li><a href="{{ route('sign_in') }}" class="btn btn-primary py-2 text-white">Login</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('front-end.components.navbar-menu')
 
     {{-- hero area --}}
     <section class="hero_area">
@@ -80,7 +63,8 @@
             <div class="container">
                 <div class="text-center m-t-30 m-b-40">
                     <h2>Subscription plans</h2>
-                    <p class="w-45 m-h-auto m-b-30">Climb leg rub face on everything give attitude nap all day for under the bed.
+                    <p class="w-45 m-h-auto m-b-30">Climb leg rub face on everything give attitude nap all day for under the
+                        bed.
                         Chase mice attack feet but rub face.</p>
                 </div>
                 <div class="row">
@@ -91,7 +75,8 @@
                                     <div class="d-flex justify-content-between p-b-20 border-bottom">
                                         <div class="media align-items-center">
                                             <div class="avatar avatar-blue avatar-icon" style="height: 55px; width: 55px;">
-                                                <i class="anticon anticon-coffee font-size-25" style="line-height: 55px"></i>
+                                                <i class="anticon anticon-coffee font-size-25"
+                                                    style="line-height: 55px"></i>
                                             </div>
                                             <div class="m-l-15">
                                                 <h2 class="font-weight-bold font-size-30 m-b-0">
@@ -107,7 +92,7 @@
                                         @php
                                             $features = json_decode($item->features, true);
                                         @endphp
-        
+
                                         @foreach ($features as $feature)
                                             <li class="m-b-20">
                                                 <div class="d-flex justify-content-between">
@@ -120,7 +105,8 @@
                                         @endforeach
                                     </ul>
                                     <div class="text-center">
-                                        <a href="{{ route('web.select_package', $item->id) }}" class="btn btn-primary">Get Started</a>
+                                        <a href="{{ route('web.select_package', $item->id) }}" class="btn btn-primary">Get
+                                            Started</a>
                                     </div>
                                 </div>
                             </div>

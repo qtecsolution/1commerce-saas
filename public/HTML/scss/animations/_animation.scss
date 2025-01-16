@@ -1,0 +1,34 @@
+@use "../global" as *;
+@use "../partials" as *;
+
+@keyframes rotating {
+  from {
+    @include rotate(0);
+  }
+  to {
+    @include rotate(360);
+  }
+}
+
+.rotating {
+  animation: rotating 12s linear infinite;
+}
+
+.updown {
+  animation: updown 1s cubic-bezier(0.36, 0.07, 0.57, 0.99) infinite;
+}
+
+@keyframes updown {
+  0% {
+    @include translateY(size(4));
+  }
+
+  50% {
+    @include translateY(size(12));
+  }
+
+  100% {
+    @include translateY(size(4));
+  }
+}
+
