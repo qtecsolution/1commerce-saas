@@ -116,6 +116,12 @@ make set-permissions
 make generate-key
 ```
 
+-   **Run Migrations**
+
+```bash
+make migrate
+```
+
 -   **Run Migrations and Seed the Database**
 
 ```bash
@@ -126,6 +132,12 @@ make migrate-fresh-seed
 
 ```bash
 make setup-env
+```
+
+-   **Link Storage Files**
+
+```bash
+make storage-link
 ```
 
 ---
