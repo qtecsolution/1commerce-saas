@@ -1,11 +1,19 @@
 setup:
-	@make build
-	@make up
-	@make composer-update
+	@make docker-up-build
+	@make composer-install
 	@make permission
 	@make copy-env
 	@make generate-key
-	@make migrate
+	@make migrate-fresh
+
+docker-up:
+	docker compose up -d
+
+docker-down:
+	docker compose down
+
+docker-up-build:
+	docker compose up -d --build
 
 build:
 	docker compose build
@@ -19,11 +27,6 @@ composer-install:
 permission:
 	@echo "Adjusting permissions..."
 	docker exec 1com-app bash -c "chmod -R 777 /var/www/html/storage"
-up:
-	docker compose up -d
-	
-stop:
-	docker compose stop
 
 generate-key:
 	@echo "Application key Generate ..."
