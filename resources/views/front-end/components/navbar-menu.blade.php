@@ -2,7 +2,10 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <a href="" class="logo">{{ env('APP_NAME') }}</a>
+                <a href="{{ route('web.home') }}" class="logo">
+                    <img src="{{ asset('assets/images/logo/icon.png') }}" class="img-fluid" width="30px" alt="logo">
+                    <span style="font-size: medium">Commerce</span>
+                </a>
             </div>
             <div class="col-md-8">
                 <ul>

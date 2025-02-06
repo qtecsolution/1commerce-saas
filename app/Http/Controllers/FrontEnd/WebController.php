@@ -14,7 +14,6 @@ class WebController extends Controller
         if (domainCheck() != false) {
             return ShopController::livePreview(domainCheck());
         }
-        // return view('front-end.home');
-        return redirect('HTML/index.html');
+        return view('front-end.home');
     }
 }
