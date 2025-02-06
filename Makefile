@@ -1,8 +1,8 @@
 setup:
 	@make docker-up-build
 	@make composer-install
-	@make permission
-	@make copy-env
+	@make set-permissions
+	@make setup-env
 	@make generate-key
 	@make migrate-fresh-seed
 	@make storage-link
@@ -27,7 +27,7 @@ composer-update:
 composer-install:
 	docker exec 1com-app bash -c "composer install"
 
-permission:
+set-permissions:
 	@echo "Adjusting permissions..."
 	docker exec 1com-app bash -c "chmod -R 775 /var/www/html/storage"
 	docker exec 1com-app bash -c "chmod -R 775 /var/www/html/bootstrap"
@@ -36,9 +36,9 @@ generate-key:
 	@echo "Application key Generate ..."
 	docker exec 1com-app bash -c "php artisan key:generate"
 
-copy-env:
+setup-env:
 	@echo "Copy env from env.example ..."
-	docker exec 1com-app bash -c "cp .env.example .env"
+	docker exec 1com-app bash -c "cp .env.docker .env"
 
 migrate:
 	@echo "Run database migration ..."
