@@ -4,7 +4,10 @@ setup:
 	@make permission
 	@make copy-env
 	@make generate-key
-	@make migrate-fresh
+	@make migrate-fresh-seed
+	@make storage-link
+	@make npm-install
+	@make npm-run-dev
 
 docker-up:
 	docker compose up -d
@@ -26,7 +29,8 @@ composer-install:
 
 permission:
 	@echo "Adjusting permissions..."
-	docker exec 1com-app bash -c "chmod -R 777 /var/www/html/storage"
+	docker exec 1com-app bash -c "chmod -R 775 /var/www/html/storage"
+	docker exec 1com-app bash -c "chmod -R 775 /var/www/html/bootstrap"
 
 generate-key:
 	@echo "Application key Generate ..."
@@ -39,12 +43,24 @@ copy-env:
 migrate:
 	@echo "Run database migration ..."
 	docker exec 1com-app bash -c "php artisan migrate"
-migrate-fresh:
+
+migrate-fresh-seed:
 	@echo "Run database migration ..."
 	docker exec 1com-app bash -c "php artisan migrate:fresh --seed"
+
 db-seed:
 	@echo "Run db seed ..."
 	docker exec 1com-app bash -c "php artisan db:seed"
+
 storage-link:
 	@echo "Create a symbolic link at public/storage ..."
 	docker exec 1com-app bash -c "php artisan storage:link"
+
+npm-install:
+	docker exec 1com-app bash -c "npm install"
+
+npm-run-dev:
+	docker exec 1com-app bash -c "npm run dev"
+
+npm-run-build:
+	docker exec 1com-app bash -c "npm run build"
