@@ -70,13 +70,13 @@
                                 <tr>
                                     <td>A Record</td>
                                     <td>@</td>
-                                    <td>13.235.223.227</td>
+                                    <td>{{ env('SERVER_IP') }}</td>
                                     <td>Automatic</td>
                                 </tr>
                                 <tr>
                                     <td>A Record</td>
                                     <td>www</td>
-                                    <td>13.235.223.227</td>
+                                    <td>{{ env('SERVER_IP') }}</td>
                                     <td>Automatic</td>
                                 </tr>
                             </tbody>
