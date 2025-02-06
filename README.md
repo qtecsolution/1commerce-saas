@@ -12,6 +12,13 @@ This project is developed using PHP, Laravel, and Vue.js, specifically designed 
 -   **Scalable Backend**: Powered by Laravel for robust and scalable backend operations.
 -   **Database Management**: Utilizes MySQL for reliable and efficient data storage.
 
+## 🖥️ Usage
+
+-   **Admin Panel**: Access the admin panel to manage landing pages, products, and user accounts.
+-   **Drag-and-Drop Customization**: Use the drag-and-drop interface to customize landing pages in real-time.
+-   **Live Preview**: Preview changes before publishing to ensure the landing page meets your requirements.
+-   **One-Click Publishing**: Publish your landing page with a single click and share it with your audience.
+
 ---
 
 ## 🛠️ Technologies
