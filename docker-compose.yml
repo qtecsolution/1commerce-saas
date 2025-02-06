@@ -19,10 +19,9 @@ services:
     environment:
       MYSQL_DATABASE: 1commerce
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_PASSWORD: laravel
-      MYSQL_USER: laravel
-    #volumes:
-      #- ./docker-compose/mysql:/docker-entrypoint-initdb.d
+      MYSQL_PASSWORD: 1commerce_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
     networks:
       - 1com-network
   nginx:
