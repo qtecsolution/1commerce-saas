@@ -140,7 +140,7 @@ class CustomDomainController extends Controller
      */
     public function checkDnsRecords($domain)
     {
-        $expectedIp = env('SERVER_IP') ?? '13.235.223.227';
+        $expectedIp = env('SERVER_IP', '127.0.0.1');
 
         // Check the A record for '@' (root domain)
         $rootRecords = dns_get_record($domain, DNS_A);
