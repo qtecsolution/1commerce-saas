@@ -196,7 +196,7 @@
 
             <div class="py-5">
                 <p class="text-center description">
-                    কপিরাইট @{{ date('Y') }} ওয়ান ই- কমার্স
+                    কপিরাইট @ {{ date('Y') }} ওয়ান ই- কমার্স
                 </p>
             </div>
         </div>
