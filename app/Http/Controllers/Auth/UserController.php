@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\User\SubscriptionController;
 use App\Models\Package;
-use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,12 +28,12 @@ class UserController extends Controller
         if ($request->isMethod('post')) {
             // data validation
             $request->validate([
-                'username' => 'required|exists:users,username',
+                'email' => 'required|exists:users,email',
                 'password' => 'required'
             ]);
 
             // login user
-            $credentials = $request->only('username', 'password');
+            $credentials = $request->only('email', 'password');
             if (Auth::attempt($credentials, true)) {
                 $request->session()->regenerate();
 
@@ -47,12 +46,12 @@ class UserController extends Controller
                 } else {
                     // sign-out and return back
                     Auth::logout();
-                    toast('The username or password is incorrect.', 'error');
+                    toast('The email or password is incorrect.', 'error');
                     return redirect()->back();
                 }
             } else {
                 // return back
-                toast('The username or password is incorrect.', 'error');
+                toast('The email or password is incorrect.', 'error');
                 return redirect()->back();
             }
         } else {

@@ -1,5 +1,13 @@
 @php
     $title = 'Sign-in';
+    $demoAdmin = [
+        'email' => 'admin@email.com',
+        'password' => 'pa$$word',
+    ];
+    $demoCustomer = [
+        'email' => 'customer@email.com',
+        'password' => 'pa$$word',
+    ];
 @endphp
 @extends('layouts.guest')
 
@@ -24,13 +32,13 @@
                                 <form action="{{ route('sign_in') }}" method="POST">
                                     @csrf
                                     <div class="form-group">
-                                        <label class="font-weight-semibold" for="userName">Username:</label>
+                                        <label class="font-weight-semibold" for="email">Email:</label>
                                         <div class="input-affix">
                                             <i class="prefix-icon anticon anticon-user"></i>
-                                            <input type="text" class="form-control" id="userName" placeholder="Username"
-                                                name="username" value="{{ old('username') }}">
+                                            <input type="text" class="form-control" id="email" placeholder="email"
+                                                name="email" value="{{ old('email') }}">
                                         </div>
-                                        @error('username')
+                                        @error('email')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
@@ -58,6 +66,30 @@
                                             <button class="btn btn-sm btn-primary" type="submit">Sign-in</button>
                                         </div>
                                     </div>
+                                    <div class="form-group">
+                                        <span class="font-size-13 text-muted">
+                                            <a data-toggle="collapse" href="#demoCredentials" role="button"
+                                                aria-expanded="false" aria-controls="demoCredentials">
+                                                Demo Credentials
+                                            </a>
+                                        </span>
+                                        <div class="collapse mt-2" id="demoCredentials">
+                                            <div class="card">
+                                                <div class="card-body bg-light">
+                                                    <p class="mb-0">
+                                                        <strong>Admin:</strong><br>
+                                                        Email: <code>{{ $demoAdmin['email'] }}</code><br>
+                                                        Password: <code>{{ $demoAdmin['password'] }}</code>
+                                                    </p>
+                                                    <p class="mb-0 mt-3">
+                                                        <strong>Customer:</strong><br>
+                                                        Email: <code>{{ $demoCustomer['email'] }}</code><br>
+                                                        Password: <code>{{ $demoCustomer['password'] }}</code>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -67,3 +99,4 @@
         </div>
     </div>
 @endsection
+

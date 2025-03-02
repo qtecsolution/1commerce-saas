@@ -25,7 +25,7 @@
             </li> --}}
         </ul>
         <ul class="nav-right">
-            <li class="dropdown dropdown-animated scale-left">
+            {{-- <li class="dropdown dropdown-animated scale-left">
                 <a href="javascript:void(0);" data-toggle="dropdown">
                     <i class="anticon anticon-bell notification-badge"></i>
                 </a>
@@ -66,7 +66,7 @@
                         </div>
                     </div>
                 </div>
-            </li>
+            </li> --}}
             <li class="dropdown dropdown-animated scale-left">
                 @php
                     $photo = empty(auth()->user()->photo)

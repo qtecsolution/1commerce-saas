@@ -17,20 +17,20 @@ class UserSeeder extends Seeder
         // create default admin user
         $user = new User();
         $user->name = 'Mr Admin';
-        $user->username = 'admin@gmail.com';
+        $user->username = 'admin@email.com';
         $user->phone = '01234567890';
-        $user->email = 'admin@gmail.com';
-        $user->password = bcrypt(12345678);
+        $user->email = 'admin@email.com';
+        $user->password = bcrypt('pa$$word');
         $user->is_admin = 1;
         $user->save();
 
         // create default customer user
         $user = new User();
         $user->name = 'Mr Customer';
-        $user->username = 'customer@gmail.com';
+        $user->username = 'customer@email.com';
         $user->phone = '01234567891';
-        $user->email = 'customer@gmail.com';
-        $user->password = bcrypt(12345678);
+        $user->email = 'customer@email.com';
+        $user->password = bcrypt('pa$$word');
         $user->is_admin = 0;
         $user->save();
 
