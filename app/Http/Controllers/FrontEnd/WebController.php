@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\FrontEnd;
 
+use App\Models\Package;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\User\ShopController;
-use Illuminate\Http\Request;
 
 class WebController extends Controller
 {
@@ -14,6 +15,9 @@ class WebController extends Controller
         if (domainCheck() != false) {
             return ShopController::livePreview(domainCheck());
         }
-        return view('front-end.home');
+
+        return view('front-end.home', [
+            'packages' => Package::where('status', 1)->get()
+        ]);
     }
 }

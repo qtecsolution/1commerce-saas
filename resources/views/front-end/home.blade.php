@@ -1,6 +1,5 @@
 @extends('layouts.landing')
 @section('page_content')
-
     <!-- HERO-SECTION-START -->
     <section class="hero_section" id="hero_section">
         <div class="container hero_Container">
@@ -31,11 +30,14 @@
                     <div class="col-lg-6">
                         <div class="hero_right_content position-relative">
                             <figure class="hero_image_wrapper">
-                                <img class="hero_image" src="{{ asset('1commerce-landing') }}/assets/images/Home/HeroImage.webp" alt="HeroImage" />
+                                <img class="hero_image"
+                                    src="{{ asset('1commerce-landing') }}/assets/images/Home/HeroImage.webp"
+                                    alt="HeroImage" />
                             </figure>
 
                             <figure class="hero_dots_wrapper position-absolute">
-                                <img class="hero_dots" src="{{ asset('1commerce-landing') }}/assets/images/Home/dots.png" alt="dots" />
+                                <img class="hero_dots" src="{{ asset('1commerce-landing') }}/assets/images/Home/dots.png"
+                                    alt="dots" />
                             </figure>
                         </div>
                     </div>
@@ -53,7 +55,8 @@
                     <div class="col-md-6 col-lg-4">
                         <div class="service_item">
                             <figure class="service_image_wrapper">
-                                <img src="{{ asset('1commerce-landing') }}/assets/images/Home/নো-কোডিং.png" alt="নো-কোডিং" />
+                                <img src="{{ asset('1commerce-landing') }}/assets/images/Home/নো-কোডিং.png"
+                                    alt="নো-কোডিং" />
                             </figure>
                             <div class="service_content">
                                 <h2 class="service_title">নো কোডিং</h2>
@@ -67,7 +70,8 @@
                     <div class="col-md-6 col-lg-4">
                         <div class="service_item data">
                             <figure class="service_image_wrapper">
-                                <img src="{{ asset('1commerce-landing') }}/assets/images/Home/ডাটা-সিকিউরিটি.png" alt="১০০% ডাটা সিকিউরিটি" />
+                                <img src="{{ asset('1commerce-landing') }}/assets/images/Home/ডাটা-সিকিউরিটি.png"
+                                    alt="১০০% ডাটা সিকিউরিটি" />
                             </figure>
                             <div class="service_content">
                                 <h2 class="service_title">১০০% ডাটা সিকিউরিটি</h2>
@@ -105,8 +109,8 @@
                 <div class="features_section_header">
                     <div class="d-flex justify-content-center">
                         <div class="features_section_title">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"
-                                viewBox="0 0 10 10" fill="none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"
+                                fill="none">
                                 <circle cx="5" cy="5" r="5" fill="#FFB700" />
                             </svg>
                             <h3 class="sub_title">
@@ -129,7 +133,8 @@
                     <div class="row g-5">
                         <div class="col-lg-6">
                             <figure class="section_image_wrapper">
-                                <img src="{{ asset('1commerce-landing') }}/assets/images/Home/Make_website.png" alt="Make_website" />
+                                <img src="{{ asset('1commerce-landing') }}/assets/images/Home/Make_website.png"
+                                    alt="Make_website" />
                             </figure>
                         </div>
                         <div class="col-lg-6 align-self-center">
@@ -191,7 +196,8 @@
 
                         <div class="col-lg-6 order-1 order-lg-2">
                             <figure class="section_image_wrapper">
-                                <img src="{{ asset('1commerce-landing') }}/assets/images/Home/upload_product.jpg" alt="upload_product" />
+                                <img src="{{ asset('1commerce-landing') }}/assets/images/Home/upload_product.jpg"
+                                    alt="upload_product" />
                             </figure>
                         </div>
                     </div>
@@ -211,8 +217,8 @@
                             দারুণ টেমপ্লেট বেছে নিন
                         </h1>
                         <figure class="title_arrow position-absolute">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="104" height="8"
-                                viewBox="0 0 104 8" fill="none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="104" height="8" viewBox="0 0 104 8"
+                                fill="none">
                                 <path
                                     d="M0.00390625 5.98631C0.00390625 5.98631 22.3189 1.9472 36.6349 2.00052C50.477 2.05208 58.2098 6.26996 72.0515 5.98631C83.7614 5.74635 102.004 2.00052 102.004 2.00052"
                                     stroke="#DE00A5" stroke-width="3" stroke-linecap="round" />
@@ -233,7 +239,8 @@
                     <div class="row g-4">
                         <div class="col-md-6 col-lg-4">
                             <a href="#" class="template_card position-relative">
-                                <img class="template_image" src="{{ asset('1commerce-landing') }}/assets/images/Home/template_image_1.png"
+                                <img class="template_image"
+                                    src="{{ asset('1commerce-landing') }}/assets/images/Home/template_image_1.png"
                                     alt="choosing_template_image_1" />
                                 <h3 class="template_title">
                                     বিউটি প্রোডাক্ট ওয়েবসাইট ডিজাইন
@@ -243,7 +250,8 @@
 
                         <div class="col-md-6 col-lg-4">
                             <a href="#" class="template_card position-relative">
-                                <img class="template_image" src="{{ asset('1commerce-landing') }}/assets/images/Home/template_image_2.png"
+                                <img class="template_image"
+                                    src="{{ asset('1commerce-landing') }}/assets/images/Home/template_image_2.png"
                                     alt="choosing_template_image_1" />
                                 <h3 class="template_title">
                                     ই- কমার্স ওয়েবসাইট ডিজাইন
@@ -253,7 +261,8 @@
 
                         <div class="col-md-6 col-lg-4">
                             <a href="#" class="template_card position-relative">
-                                <img class="template_image" src="{{ asset('1commerce-landing') }}/assets/images/Home/template_image_3.png"
+                                <img class="template_image"
+                                    src="{{ asset('1commerce-landing') }}/assets/images/Home/template_image_3.png"
                                     alt="choosing_template_image_1" />
                                 <h3 class="template_title">
                                     হানি/মধু ওয়েবসাইট ডিজাইন
@@ -263,7 +272,8 @@
 
                         <div class="col-md-6 col-lg-4">
                             <a href="#" class="template_card position-relative">
-                                <img class="template_image" src="{{ asset('1commerce-landing') }}/assets/images/Home/template_image_6.png"
+                                <img class="template_image"
+                                    src="{{ asset('1commerce-landing') }}/assets/images/Home/template_image_6.png"
                                     alt="choosing_template_image_1" />
                                 <h3 class="template_title">
                                     মেডিকেল ওয়েবসাইট ডিজাইন
@@ -273,7 +283,8 @@
 
                         <div class="col-md-6 col-lg-4">
                             <a href="#" class="template_card position-relative">
-                                <img class="template_image" src="{{ asset('1commerce-landing') }}/assets/images/Home/template_image_5.png"
+                                <img class="template_image"
+                                    src="{{ asset('1commerce-landing') }}/assets/images/Home/template_image_5.png"
                                     alt="choosing_template_image_1" />
                                 <h3 class="template_title">
                                     বাইসাইকেল ওয়েবসাইট ডিজাইন
@@ -283,7 +294,8 @@
 
                         <div class="col-md-6 col-lg-4">
                             <a href="#" class="template_card position-relative">
-                                <img class="template_image" src="{{ asset('1commerce-landing') }}/assets/images/Home/template_image_4.png"
+                                <img class="template_image"
+                                    src="{{ asset('1commerce-landing') }}/assets/images/Home/template_image_4.png"
                                     alt="choosing_template_image_1" />
                                 <h3 class="template_title">
                                     ঘড়ি ওয়েবসাইট ডিজাইন
@@ -336,7 +348,8 @@
 
                         <div class="col-lg-6 order-1 order-lg-2">
                             <figure class="section_image_wrapper">
-                                <img src="{{ asset('1commerce-landing') }}/assets/images/Home/order.webp" alt="order" />
+                                <img src="{{ asset('1commerce-landing') }}/assets/images/Home/order.webp"
+                                    alt="order" />
                             </figure>
                         </div>
                     </div>
@@ -354,7 +367,8 @@
                     <div class="row g-5">
                         <div class="col-lg-6">
                             <figure class="section_image_wrapper">
-                                <img src="{{ asset('1commerce-landing') }}/assets/images/Home/domain.webp" alt="domain" />
+                                <img src="{{ asset('1commerce-landing') }}/assets/images/Home/domain.webp"
+                                    alt="domain" />
                             </figure>
                         </div>
                         <div class="col-lg-6 align-self-center">
@@ -428,7 +442,8 @@
 
                         <div class="col-lg-6 order-1 order-lg-2">
                             <figure class="section_image_wrapper">
-                                <img src="{{ asset('1commerce-landing') }}/assets/images/Home/payment.webp" alt="payment" />
+                                <img src="{{ asset('1commerce-landing') }}/assets/images/Home/payment.webp"
+                                    alt="payment" />
                             </figure>
                         </div>
                     </div>
@@ -446,7 +461,8 @@
                     <div class="row g-5">
                         <div class="col-lg-6">
                             <figure class="section_image_wrapper">
-                                <img src="{{ asset('1commerce-landing') }}/assets/images/Home/plan.webp" alt="plan" />
+                                <img src="{{ asset('1commerce-landing') }}/assets/images/Home/plan.webp"
+                                    alt="plan" />
                             </figure>
                         </div>
                         <div class="col-lg-6 align-self-center">
@@ -487,8 +503,8 @@
                 <div class="process_section_header">
                     <div class="d-flex justify-content-center">
                         <div class="process_section_title">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"
-                                viewBox="0 0 10 10" fill="none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"
+                                fill="none">
                                 <circle cx="5.00012" cy="5.00146" r="5" fill="#FD1774" />
                             </svg>
                             <h3 class="sub_title">
@@ -616,8 +632,8 @@
                 <div class="facilities_section_header">
                     <div class="d-flex justify-content-center">
                         <div class="process_section_title">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"
-                                viewBox="0 0 10 10" fill="none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"
+                                fill="none">
                                 <circle cx="5" cy="5" r="5" fill="#DE00A5" />
                             </svg>
                             <h3 class="sub_title">
@@ -911,8 +927,8 @@
                 <div class="testimonial_section_header">
                     <div class="d-flex justify-content-center">
                         <div class="testimonial_section_title">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"
-                                viewBox="0 0 10 10" fill="none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"
+                                fill="none">
                                 <circle cx="5" cy="5" r="5" fill="white" />
                             </svg>
                             <h3 class="sub_title">
@@ -1325,8 +1341,8 @@
                 <div class="price_section_header">
                     <div class="d-flex justify-content-center">
                         <div class="process_section_title">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"
-                                viewBox="0 0 10 10" fill="none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"
+                                fill="none">
                                 <circle cx="5" cy="5" r="5" fill="#64D71F" />
                             </svg>
                             <h3 class="sub_title">
@@ -1349,14 +1365,13 @@
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
                             <div class="inner_tabs">
                                 <button class="monthly active" id="monthly-tab" data-bs-toggle="tab"
-                                    data-bs-target="#monthly" type="button" role="tab"
-                                    aria-controls="monthly" aria-selected="true">
+                                    data-bs-target="#monthly" type="button" role="tab" aria-controls="monthly"
+                                    aria-selected="true">
                                     মাসিক
                                 </button>
 
-                                <button class="monthly" id="yearly-tab" data-bs-toggle="tab"
-                                    data-bs-target="#yearly" type="button" role="tab"
-                                    aria-controls="yearly" aria-selected="false">
+                                <button class="monthly" id="yearly-tab" data-bs-toggle="tab" data-bs-target="#yearly"
+                                    type="button" role="tab" aria-controls="yearly" aria-selected="false">
                                     বার্ষিক
                                 </button>
                             </div>
@@ -1367,419 +1382,17 @@
                         <div class="tab-pane fade active show" id="monthly" role="tabpanel"
                             aria-labelledby="monthly-tab">
                             <div class="price_section_card_inner">
-                                <div class="price_card">
-                                    <div class="price_section_card active">
-                                        <div class="">
-                                            <div class="price_section_card_header">
-                                                <span class="plan">ফ্রি </span>
-                                                <div class="plan_price">
-                                                    <h1 class="title">৳০</h1>
-                                                    <h5 class="sub_title">ফ্রি ফরএভার</h5>
-                                                </div>
-                                            </div>
-                                            <ul class="price_section_card_list list-unstyled">
-                                                <li class="item">
-                                                    <figure class="icon">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                            height="24" viewBox="0 0 24 24" fill="none">
-                                                            <path
-                                                                d="M19.8367 8.43673L10.2367 18.0367C10.1531 18.1206 10.0538 18.1872 9.94438 18.2326C9.83498 18.2781 9.71769 18.3014 9.59924 18.3014C9.48079 18.3014 9.3635 18.2781 9.25411 18.2326C9.14471 18.1872 9.04535 18.1206 8.96174 18.0367L4.76174 13.8367C4.67802 13.753 4.61162 13.6536 4.56631 13.5442C4.521 13.4349 4.49768 13.3176 4.49768 13.1992C4.49768 13.0808 4.521 12.9636 4.56631 12.8542C4.61162 12.7448 4.67802 12.6454 4.76174 12.5617C4.84546 12.478 4.94485 12.4116 5.05423 12.3663C5.16361 12.321 5.28085 12.2977 5.39924 12.2977C5.51764 12.2977 5.63487 12.321 5.74425 12.3663C5.85364 12.4116 5.95302 12.478 6.03674 12.5617L9.59999 16.125L18.5632 7.16323C18.7323 6.99416 18.9616 6.89917 19.2007 6.89917C19.4398 6.89917 19.6692 6.99416 19.8382 7.16323C20.0073 7.33231 20.1023 7.56162 20.1023 7.80073C20.1023 8.03984 20.0073 8.26916 19.8382 8.43823L19.8367 8.43673Z"
-                                                                fill="#52474F" />
-                                                        </svg>
-                                                    </figure>
-
-                                                    <p class="text">এতে প্রোডাক্ট আপলোড</p>
-                                                </li>
-
-                                                <li class="item">
-                                                    <figure class="icon">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                            height="24" viewBox="0 0 24 24" fill="none">
-                                                            <path
-                                                                d="M19.8367 8.43673L10.2367 18.0367C10.1531 18.1206 10.0538 18.1872 9.94438 18.2326C9.83498 18.2781 9.71769 18.3014 9.59924 18.3014C9.48079 18.3014 9.3635 18.2781 9.25411 18.2326C9.14471 18.1872 9.04535 18.1206 8.96174 18.0367L4.76174 13.8367C4.67802 13.753 4.61162 13.6536 4.56631 13.5442C4.521 13.4349 4.49768 13.3176 4.49768 13.1992C4.49768 13.0808 4.521 12.9636 4.56631 12.8542C4.61162 12.7448 4.67802 12.6454 4.76174 12.5617C4.84546 12.478 4.94485 12.4116 5.05423 12.3663C5.16361 12.321 5.28085 12.2977 5.39924 12.2977C5.51764 12.2977 5.63487 12.321 5.74425 12.3663C5.85364 12.4116 5.95302 12.478 6.03674 12.5617L9.59999 16.125L18.5632 7.16323C18.7323 6.99416 18.9616 6.89917 19.2007 6.89917C19.4398 6.89917 19.6692 6.99416 19.8382 7.16323C20.0073 7.33231 20.1023 7.56162 20.1023 7.80073C20.1023 8.03984 20.0073 8.26916 19.8382 8.43823L19.8367 8.43673Z"
-                                                                fill="#52474F" />
-                                                        </svg>
-                                                    </figure>
-
-                                                    <p class="text">অর্ডার ম্যানেজমেন্ট</p>
-                                                </li>
-
-                                                <li class="item">
-                                                    <figure class="icon">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                            height="24" viewBox="0 0 24 24" fill="none">
-                                                            <path
-                                                                d="M19.8367 8.43673L10.2367 18.0367C10.1531 18.1206 10.0538 18.1872 9.94438 18.2326C9.83498 18.2781 9.71769 18.3014 9.59924 18.3014C9.48079 18.3014 9.3635 18.2781 9.25411 18.2326C9.14471 18.1872 9.04535 18.1206 8.96174 18.0367L4.76174 13.8367C4.67802 13.753 4.61162 13.6536 4.56631 13.5442C4.521 13.4349 4.49768 13.3176 4.49768 13.1992C4.49768 13.0808 4.521 12.9636 4.56631 12.8542C4.61162 12.7448 4.67802 12.6454 4.76174 12.5617C4.84546 12.478 4.94485 12.4116 5.05423 12.3663C5.16361 12.321 5.28085 12.2977 5.39924 12.2977C5.51764 12.2977 5.63487 12.321 5.74425 12.3663C5.85364 12.4116 5.95302 12.478 6.03674 12.5617L9.59999 16.125L18.5632 7.16323C18.7323 6.99416 18.9616 6.89917 19.2007 6.89917C19.4398 6.89917 19.6692 6.99416 19.8382 7.16323C20.0073 7.33231 20.1023 7.56162 20.1023 7.80073C20.1023 8.03984 20.0073 8.26916 19.8382 8.43823L19.8367 8.43673Z"
-                                                                fill="#52474F" />
-                                                        </svg>
-                                                    </figure>
-
-                                                    <p class="text">কাস্টম টেমপ্লেট</p>
-                                                </li>
-
-                                                <li class="item">
-                                                    <figure class="icon">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                            height="24" viewBox="0 0 24 24" fill="none">
-                                                            <path
-                                                                d="M19.8367 8.43673L10.2367 18.0367C10.1531 18.1206 10.0538 18.1872 9.94438 18.2326C9.83498 18.2781 9.71769 18.3014 9.59924 18.3014C9.48079 18.3014 9.3635 18.2781 9.25411 18.2326C9.14471 18.1872 9.04535 18.1206 8.96174 18.0367L4.76174 13.8367C4.67802 13.753 4.61162 13.6536 4.56631 13.5442C4.521 13.4349 4.49768 13.3176 4.49768 13.1992C4.49768 13.0808 4.521 12.9636 4.56631 12.8542C4.61162 12.7448 4.67802 12.6454 4.76174 12.5617C4.84546 12.478 4.94485 12.4116 5.05423 12.3663C5.16361 12.321 5.28085 12.2977 5.39924 12.2977C5.51764 12.2977 5.63487 12.321 5.74425 12.3663C5.85364 12.4116 5.95302 12.478 6.03674 12.5617L9.59999 16.125L18.5632 7.16323C18.7323 6.99416 18.9616 6.89917 19.2007 6.89917C19.4398 6.89917 19.6692 6.99416 19.8382 7.16323C20.0073 7.33231 20.1023 7.56162 20.1023 7.80073C20.1023 8.03984 20.0073 8.26916 19.8382 8.43823L19.8367 8.43673Z"
-                                                                fill="#52474F" />
-                                                        </svg>
-                                                    </figure>
-
-                                                    <p class="text">২৪/৭ সাপোর্ট</p>
-                                                </li>
-
-                                                <li class="item">
-                                                    <figure class="icon">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                            height="24" viewBox="0 0 24 24" fill="none">
-                                                            <path
-                                                                d="M19.8367 8.43673L10.2367 18.0367C10.1531 18.1206 10.0538 18.1872 9.94438 18.2326C9.83498 18.2781 9.71769 18.3014 9.59924 18.3014C9.48079 18.3014 9.3635 18.2781 9.25411 18.2326C9.14471 18.1872 9.04535 18.1206 8.96174 18.0367L4.76174 13.8367C4.67802 13.753 4.61162 13.6536 4.56631 13.5442C4.521 13.4349 4.49768 13.3176 4.49768 13.1992C4.49768 13.0808 4.521 12.9636 4.56631 12.8542C4.61162 12.7448 4.67802 12.6454 4.76174 12.5617C4.84546 12.478 4.94485 12.4116 5.05423 12.3663C5.16361 12.321 5.28085 12.2977 5.39924 12.2977C5.51764 12.2977 5.63487 12.321 5.74425 12.3663C5.85364 12.4116 5.95302 12.478 6.03674 12.5617L9.59999 16.125L18.5632 7.16323C18.7323 6.99416 18.9616 6.89917 19.2007 6.89917C19.4398 6.89917 19.6692 6.99416 19.8382 7.16323C20.0073 7.33231 20.1023 7.56162 20.1023 7.80073C20.1023 8.03984 20.0073 8.26916 19.8382 8.43823L19.8367 8.43673Z"
-                                                                fill="#52474F" />
-                                                        </svg>
-                                                    </figure>
-
-                                                    <p class="text">মোবাইল-ফ্রেন্ডলি ডিজাইন</p>
-                                                </li>
-                                            </ul>
-                                        </div>
-
-                                        <a href="" class="plan_button w-100 justify-content-center ">
-                                            চিরকাল ফ্রি প্ল্যান
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="price_card">
-                                    <div class="price_section_card">
-                                        <div class="price_section_card_header">
-                                            <span class="plan">প্রো</span>
-                                            <div class="plan_price">
-                                                <h1 class="title">৳৮০</h1>
-                                                <h5 class="sub_title">বার্ষিক বিল করা হয়</h5>
-                                            </div>
-                                        </div>
-                                        <ul class="price_section_card_list list-unstyled">
-                                            <li class="item">
-                                                <figure class="icon">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                        height="24" viewBox="0 0 24 24" fill="none">
-                                                        <path
-                                                            d="M19.8367 8.43673L10.2367 18.0367C10.1531 18.1206 10.0538 18.1872 9.94438 18.2326C9.83498 18.2781 9.71769 18.3014 9.59924 18.3014C9.48079 18.3014 9.3635 18.2781 9.25411 18.2326C9.14471 18.1872 9.04535 18.1206 8.96174 18.0367L4.76174 13.8367C4.67802 13.753 4.61162 13.6536 4.56631 13.5442C4.521 13.4349 4.49768 13.3176 4.49768 13.1992C4.49768 13.0808 4.521 12.9636 4.56631 12.8542C4.61162 12.7448 4.67802 12.6454 4.76174 12.5617C4.84546 12.478 4.94485 12.4116 5.05423 12.3663C5.16361 12.321 5.28085 12.2977 5.39924 12.2977C5.51764 12.2977 5.63487 12.321 5.74425 12.3663C5.85364 12.4116 5.95302 12.478 6.03674 12.5617L9.59999 16.125L18.5632 7.16323C18.7323 6.99416 18.9616 6.89917 19.2007 6.89917C19.4398 6.89917 19.6692 6.99416 19.8382 7.16323C20.0073 7.33231 20.1023 7.56162 20.1023 7.80073C20.1023 8.03984 20.0073 8.26916 19.8382 8.43823L19.8367 8.43673Z"
-                                                            fill="#52474F" />
-                                                    </svg>
-                                                </figure>
-
-                                                <p class="text">এতে প্রোডাক্ট আপলোড</p>
-                                            </li>
-
-                                            <li class="item">
-                                                <figure class="icon">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                        height="24" viewBox="0 0 24 24" fill="none">
-                                                        <path
-                                                            d="M19.8367 8.43673L10.2367 18.0367C10.1531 18.1206 10.0538 18.1872 9.94438 18.2326C9.83498 18.2781 9.71769 18.3014 9.59924 18.3014C9.48079 18.3014 9.3635 18.2781 9.25411 18.2326C9.14471 18.1872 9.04535 18.1206 8.96174 18.0367L4.76174 13.8367C4.67802 13.753 4.61162 13.6536 4.56631 13.5442C4.521 13.4349 4.49768 13.3176 4.49768 13.1992C4.49768 13.0808 4.521 12.9636 4.56631 12.8542C4.61162 12.7448 4.67802 12.6454 4.76174 12.5617C4.84546 12.478 4.94485 12.4116 5.05423 12.3663C5.16361 12.321 5.28085 12.2977 5.39924 12.2977C5.51764 12.2977 5.63487 12.321 5.74425 12.3663C5.85364 12.4116 5.95302 12.478 6.03674 12.5617L9.59999 16.125L18.5632 7.16323C18.7323 6.99416 18.9616 6.89917 19.2007 6.89917C19.4398 6.89917 19.6692 6.99416 19.8382 7.16323C20.0073 7.33231 20.1023 7.56162 20.1023 7.80073C20.1023 8.03984 20.0073 8.26916 19.8382 8.43823L19.8367 8.43673Z"
-                                                            fill="#52474F" />
-                                                    </svg>
-                                                </figure>
-
-                                                <p class="text">অর্ডার ম্যানেজমেন্ট</p>
-                                            </li>
-
-                                            <li class="item">
-                                                <figure class="icon">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                        height="24" viewBox="0 0 24 24" fill="none">
-                                                        <path
-                                                            d="M19.8367 8.43673L10.2367 18.0367C10.1531 18.1206 10.0538 18.1872 9.94438 18.2326C9.83498 18.2781 9.71769 18.3014 9.59924 18.3014C9.48079 18.3014 9.3635 18.2781 9.25411 18.2326C9.14471 18.1872 9.04535 18.1206 8.96174 18.0367L4.76174 13.8367C4.67802 13.753 4.61162 13.6536 4.56631 13.5442C4.521 13.4349 4.49768 13.3176 4.49768 13.1992C4.49768 13.0808 4.521 12.9636 4.56631 12.8542C4.61162 12.7448 4.67802 12.6454 4.76174 12.5617C4.84546 12.478 4.94485 12.4116 5.05423 12.3663C5.16361 12.321 5.28085 12.2977 5.39924 12.2977C5.51764 12.2977 5.63487 12.321 5.74425 12.3663C5.85364 12.4116 5.95302 12.478 6.03674 12.5617L9.59999 16.125L18.5632 7.16323C18.7323 6.99416 18.9616 6.89917 19.2007 6.89917C19.4398 6.89917 19.6692 6.99416 19.8382 7.16323C20.0073 7.33231 20.1023 7.56162 20.1023 7.80073C20.1023 8.03984 20.0073 8.26916 19.8382 8.43823L19.8367 8.43673Z"
-                                                            fill="#52474F" />
-                                                    </svg>
-                                                </figure>
-
-                                                <p class="text">কাস্টম টেমপ্লেট</p>
-                                            </li>
-
-                                            <li class="item">
-                                                <figure class="icon">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                        height="24" viewBox="0 0 24 24" fill="none">
-                                                        <path
-                                                            d="M19.8367 8.43673L10.2367 18.0367C10.1531 18.1206 10.0538 18.1872 9.94438 18.2326C9.83498 18.2781 9.71769 18.3014 9.59924 18.3014C9.48079 18.3014 9.3635 18.2781 9.25411 18.2326C9.14471 18.1872 9.04535 18.1206 8.96174 18.0367L4.76174 13.8367C4.67802 13.753 4.61162 13.6536 4.56631 13.5442C4.521 13.4349 4.49768 13.3176 4.49768 13.1992C4.49768 13.0808 4.521 12.9636 4.56631 12.8542C4.61162 12.7448 4.67802 12.6454 4.76174 12.5617C4.84546 12.478 4.94485 12.4116 5.05423 12.3663C5.16361 12.321 5.28085 12.2977 5.39924 12.2977C5.51764 12.2977 5.63487 12.321 5.74425 12.3663C5.85364 12.4116 5.95302 12.478 6.03674 12.5617L9.59999 16.125L18.5632 7.16323C18.7323 6.99416 18.9616 6.89917 19.2007 6.89917C19.4398 6.89917 19.6692 6.99416 19.8382 7.16323C20.0073 7.33231 20.1023 7.56162 20.1023 7.80073C20.1023 8.03984 20.0073 8.26916 19.8382 8.43823L19.8367 8.43673Z"
-                                                            fill="#52474F" />
-                                                    </svg>
-                                                </figure>
-
-                                                <p class="text">২৪/৭ সাপোর্ট</p>
-                                            </li>
-
-                                            <li class="item">
-                                                <figure class="icon">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                        height="24" viewBox="0 0 24 24" fill="none">
-                                                        <path
-                                                            d="M19.8367 8.43673L10.2367 18.0367C10.1531 18.1206 10.0538 18.1872 9.94438 18.2326C9.83498 18.2781 9.71769 18.3014 9.59924 18.3014C9.48079 18.3014 9.3635 18.2781 9.25411 18.2326C9.14471 18.1872 9.04535 18.1206 8.96174 18.0367L4.76174 13.8367C4.67802 13.753 4.61162 13.6536 4.56631 13.5442C4.521 13.4349 4.49768 13.3176 4.49768 13.1992C4.49768 13.0808 4.521 12.9636 4.56631 12.8542C4.61162 12.7448 4.67802 12.6454 4.76174 12.5617C4.84546 12.478 4.94485 12.4116 5.05423 12.3663C5.16361 12.321 5.28085 12.2977 5.39924 12.2977C5.51764 12.2977 5.63487 12.321 5.74425 12.3663C5.85364 12.4116 5.95302 12.478 6.03674 12.5617L9.59999 16.125L18.5632 7.16323C18.7323 6.99416 18.9616 6.89917 19.2007 6.89917C19.4398 6.89917 19.6692 6.99416 19.8382 7.16323C20.0073 7.33231 20.1023 7.56162 20.1023 7.80073C20.1023 8.03984 20.0073 8.26916 19.8382 8.43823L19.8367 8.43673Z"
-                                                            fill="#52474F" />
-                                                    </svg>
-                                                </figure>
-
-                                                <p class="text">মোবাইল-ফ্রেন্ডলি ডিজাইন</p>
-                                            </li>
-
-                                            <li class="item">
-                                                <figure class="icon">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                        height="24" viewBox="0 0 24 24" fill="none">
-                                                        <path
-                                                            d="M19.8367 8.43673L10.2367 18.0367C10.1531 18.1206 10.0538 18.1872 9.94438 18.2326C9.83498 18.2781 9.71769 18.3014 9.59924 18.3014C9.48079 18.3014 9.3635 18.2781 9.25411 18.2326C9.14471 18.1872 9.04535 18.1206 8.96174 18.0367L4.76174 13.8367C4.67802 13.753 4.61162 13.6536 4.56631 13.5442C4.521 13.4349 4.49768 13.3176 4.49768 13.1992C4.49768 13.0808 4.521 12.9636 4.56631 12.8542C4.61162 12.7448 4.67802 12.6454 4.76174 12.5617C4.84546 12.478 4.94485 12.4116 5.05423 12.3663C5.16361 12.321 5.28085 12.2977 5.39924 12.2977C5.51764 12.2977 5.63487 12.321 5.74425 12.3663C5.85364 12.4116 5.95302 12.478 6.03674 12.5617L9.59999 16.125L18.5632 7.16323C18.7323 6.99416 18.9616 6.89917 19.2007 6.89917C19.4398 6.89917 19.6692 6.99416 19.8382 7.16323C20.0073 7.33231 20.1023 7.56162 20.1023 7.80073C20.1023 8.03984 20.0073 8.26916 19.8382 8.43823L19.8367 8.43673Z"
-                                                            fill="#52474F" />
-                                                    </svg>
-                                                </figure>
-
-                                                <p class="text">অতিরিক্ত পেমেন্ট গেটওয়ে</p>
-                                            </li>
-
-                                            <li class="item">
-                                                <figure class="icon">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                        height="24" viewBox="0 0 24 24" fill="none">
-                                                        <path
-                                                            d="M19.8367 8.43673L10.2367 18.0367C10.1531 18.1206 10.0538 18.1872 9.94438 18.2326C9.83498 18.2781 9.71769 18.3014 9.59924 18.3014C9.48079 18.3014 9.3635 18.2781 9.25411 18.2326C9.14471 18.1872 9.04535 18.1206 8.96174 18.0367L4.76174 13.8367C4.67802 13.753 4.61162 13.6536 4.56631 13.5442C4.521 13.4349 4.49768 13.3176 4.49768 13.1992C4.49768 13.0808 4.521 12.9636 4.56631 12.8542C4.61162 12.7448 4.67802 12.6454 4.76174 12.5617C4.84546 12.478 4.94485 12.4116 5.05423 12.3663C5.16361 12.321 5.28085 12.2977 5.39924 12.2977C5.51764 12.2977 5.63487 12.321 5.74425 12.3663C5.85364 12.4116 5.95302 12.478 6.03674 12.5617L9.59999 16.125L18.5632 7.16323C18.7323 6.99416 18.9616 6.89917 19.2007 6.89917C19.4398 6.89917 19.6692 6.99416 19.8382 7.16323C20.0073 7.33231 20.1023 7.56162 20.1023 7.80073C20.1023 8.03984 20.0073 8.26916 19.8382 8.43823L19.8367 8.43673Z"
-                                                            fill="#52474F" />
-                                                    </svg>
-                                                </figure>
-
-                                                <p class="text">শুরু মাত্র X টাকা/মাস</p>
-                                            </li>
-
-                                            <li class="item">
-                                                <figure class="icon">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                        height="24" viewBox="0 0 24 24" fill="none">
-                                                        <path
-                                                            d="M19.8367 8.43673L10.2367 18.0367C10.1531 18.1206 10.0538 18.1872 9.94438 18.2326C9.83498 18.2781 9.71769 18.3014 9.59924 18.3014C9.48079 18.3014 9.3635 18.2781 9.25411 18.2326C9.14471 18.1872 9.04535 18.1206 8.96174 18.0367L4.76174 13.8367C4.67802 13.753 4.61162 13.6536 4.56631 13.5442C4.521 13.4349 4.49768 13.3176 4.49768 13.1992C4.49768 13.0808 4.521 12.9636 4.56631 12.8542C4.61162 12.7448 4.67802 12.6454 4.76174 12.5617C4.84546 12.478 4.94485 12.4116 5.05423 12.3663C5.16361 12.321 5.28085 12.2977 5.39924 12.2977C5.51764 12.2977 5.63487 12.321 5.74425 12.3663C5.85364 12.4116 5.95302 12.478 6.03674 12.5617L9.59999 16.125L18.5632 7.16323C18.7323 6.99416 18.9616 6.89917 19.2007 6.89917C19.4398 6.89917 19.6692 6.99416 19.8382 7.16323C20.0073 7.33231 20.1023 7.56162 20.1023 7.80073C20.1023 8.03984 20.0073 8.26916 19.8382 8.43823L19.8367 8.43673Z"
-                                                            fill="#52474F" />
-                                                    </svg>
-                                                </figure>
-
-                                                <p class="text">কাস্টম ডোমেইন</p>
-                                            </li>
-                                        </ul>
-
-                                        <a href="" class="premium_button w-100 justify-content-center ">
-                                            প্রিমিয়াম প্ল্যান
-                                        </a>
-                                    </div>
-                                </div>
+                                @foreach ($packages as $package)
+                                    @include('front-end.components.home.pricing', ['item' => $package])
+                                @endforeach
                             </div>
                         </div>
 
                         <div class="tab-pane fade" id="yearly" role="tabpanel" aria-labelledby="yearly-tab">
                             <div class="price_section_card_inner">
-                                <div class="price_card">
-                                    <div class="price_section_card">
-                                        <div class="">
-                                            <div class="price_section_card_header">
-                                                <span class="plan">ফ্রি </span>
-                                                <div class="plan_price">
-                                                    <h1 class="title">৳০</h1>
-                                                    <h5 class="sub_title">ফ্রি ফরএভার</h5>
-                                                </div>
-                                            </div>
-                                            <ul class="price_section_card_list list-unstyled">
-                                                <li class="item">
-                                                    <figure class="icon">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                            height="24" viewBox="0 0 24 24" fill="none">
-                                                            <path
-                                                                d="M19.8367 8.43673L10.2367 18.0367C10.1531 18.1206 10.0538 18.1872 9.94438 18.2326C9.83498 18.2781 9.71769 18.3014 9.59924 18.3014C9.48079 18.3014 9.3635 18.2781 9.25411 18.2326C9.14471 18.1872 9.04535 18.1206 8.96174 18.0367L4.76174 13.8367C4.67802 13.753 4.61162 13.6536 4.56631 13.5442C4.521 13.4349 4.49768 13.3176 4.49768 13.1992C4.49768 13.0808 4.521 12.9636 4.56631 12.8542C4.61162 12.7448 4.67802 12.6454 4.76174 12.5617C4.84546 12.478 4.94485 12.4116 5.05423 12.3663C5.16361 12.321 5.28085 12.2977 5.39924 12.2977C5.51764 12.2977 5.63487 12.321 5.74425 12.3663C5.85364 12.4116 5.95302 12.478 6.03674 12.5617L9.59999 16.125L18.5632 7.16323C18.7323 6.99416 18.9616 6.89917 19.2007 6.89917C19.4398 6.89917 19.6692 6.99416 19.8382 7.16323C20.0073 7.33231 20.1023 7.56162 20.1023 7.80073C20.1023 8.03984 20.0073 8.26916 19.8382 8.43823L19.8367 8.43673Z"
-                                                                fill="#52474F" />
-                                                        </svg>
-                                                    </figure>
-
-                                                    <p class="text">এতে প্রোডাক্ট আপলোড</p>
-                                                </li>
-
-                                                <li class="item">
-                                                    <figure class="icon">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                            height="24" viewBox="0 0 24 24" fill="none">
-                                                            <path
-                                                                d="M19.8367 8.43673L10.2367 18.0367C10.1531 18.1206 10.0538 18.1872 9.94438 18.2326C9.83498 18.2781 9.71769 18.3014 9.59924 18.3014C9.48079 18.3014 9.3635 18.2781 9.25411 18.2326C9.14471 18.1872 9.04535 18.1206 8.96174 18.0367L4.76174 13.8367C4.67802 13.753 4.61162 13.6536 4.56631 13.5442C4.521 13.4349 4.49768 13.3176 4.49768 13.1992C4.49768 13.0808 4.521 12.9636 4.56631 12.8542C4.61162 12.7448 4.67802 12.6454 4.76174 12.5617C4.84546 12.478 4.94485 12.4116 5.05423 12.3663C5.16361 12.321 5.28085 12.2977 5.39924 12.2977C5.51764 12.2977 5.63487 12.321 5.74425 12.3663C5.85364 12.4116 5.95302 12.478 6.03674 12.5617L9.59999 16.125L18.5632 7.16323C18.7323 6.99416 18.9616 6.89917 19.2007 6.89917C19.4398 6.89917 19.6692 6.99416 19.8382 7.16323C20.0073 7.33231 20.1023 7.56162 20.1023 7.80073C20.1023 8.03984 20.0073 8.26916 19.8382 8.43823L19.8367 8.43673Z"
-                                                                fill="#52474F" />
-                                                        </svg>
-                                                    </figure>
-
-                                                    <p class="text">অর্ডার ম্যানেজমেন্ট</p>
-                                                </li>
-
-                                                <li class="item">
-                                                    <figure class="icon">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                            height="24" viewBox="0 0 24 24" fill="none">
-                                                            <path
-                                                                d="M19.8367 8.43673L10.2367 18.0367C10.1531 18.1206 10.0538 18.1872 9.94438 18.2326C9.83498 18.2781 9.71769 18.3014 9.59924 18.3014C9.48079 18.3014 9.3635 18.2781 9.25411 18.2326C9.14471 18.1872 9.04535 18.1206 8.96174 18.0367L4.76174 13.8367C4.67802 13.753 4.61162 13.6536 4.56631 13.5442C4.521 13.4349 4.49768 13.3176 4.49768 13.1992C4.49768 13.0808 4.521 12.9636 4.56631 12.8542C4.61162 12.7448 4.67802 12.6454 4.76174 12.5617C4.84546 12.478 4.94485 12.4116 5.05423 12.3663C5.16361 12.321 5.28085 12.2977 5.39924 12.2977C5.51764 12.2977 5.63487 12.321 5.74425 12.3663C5.85364 12.4116 5.95302 12.478 6.03674 12.5617L9.59999 16.125L18.5632 7.16323C18.7323 6.99416 18.9616 6.89917 19.2007 6.89917C19.4398 6.89917 19.6692 6.99416 19.8382 7.16323C20.0073 7.33231 20.1023 7.56162 20.1023 7.80073C20.1023 8.03984 20.0073 8.26916 19.8382 8.43823L19.8367 8.43673Z"
-                                                                fill="#52474F" />
-                                                        </svg>
-                                                    </figure>
-
-                                                    <p class="text">কাস্টম টেমপ্লেট</p>
-                                                </li>
-
-                                                <li class="item">
-                                                    <figure class="icon">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                            height="24" viewBox="0 0 24 24" fill="none">
-                                                            <path
-                                                                d="M19.8367 8.43673L10.2367 18.0367C10.1531 18.1206 10.0538 18.1872 9.94438 18.2326C9.83498 18.2781 9.71769 18.3014 9.59924 18.3014C9.48079 18.3014 9.3635 18.2781 9.25411 18.2326C9.14471 18.1872 9.04535 18.1206 8.96174 18.0367L4.76174 13.8367C4.67802 13.753 4.61162 13.6536 4.56631 13.5442C4.521 13.4349 4.49768 13.3176 4.49768 13.1992C4.49768 13.0808 4.521 12.9636 4.56631 12.8542C4.61162 12.7448 4.67802 12.6454 4.76174 12.5617C4.84546 12.478 4.94485 12.4116 5.05423 12.3663C5.16361 12.321 5.28085 12.2977 5.39924 12.2977C5.51764 12.2977 5.63487 12.321 5.74425 12.3663C5.85364 12.4116 5.95302 12.478 6.03674 12.5617L9.59999 16.125L18.5632 7.16323C18.7323 6.99416 18.9616 6.89917 19.2007 6.89917C19.4398 6.89917 19.6692 6.99416 19.8382 7.16323C20.0073 7.33231 20.1023 7.56162 20.1023 7.80073C20.1023 8.03984 20.0073 8.26916 19.8382 8.43823L19.8367 8.43673Z"
-                                                                fill="#52474F" />
-                                                        </svg>
-                                                    </figure>
-
-                                                    <p class="text">২৪/৭ সাপোর্ট</p>
-                                                </li>
-
-                                                <li class="item">
-                                                    <figure class="icon">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                            height="24" viewBox="0 0 24 24" fill="none">
-                                                            <path
-                                                                d="M19.8367 8.43673L10.2367 18.0367C10.1531 18.1206 10.0538 18.1872 9.94438 18.2326C9.83498 18.2781 9.71769 18.3014 9.59924 18.3014C9.48079 18.3014 9.3635 18.2781 9.25411 18.2326C9.14471 18.1872 9.04535 18.1206 8.96174 18.0367L4.76174 13.8367C4.67802 13.753 4.61162 13.6536 4.56631 13.5442C4.521 13.4349 4.49768 13.3176 4.49768 13.1992C4.49768 13.0808 4.521 12.9636 4.56631 12.8542C4.61162 12.7448 4.67802 12.6454 4.76174 12.5617C4.84546 12.478 4.94485 12.4116 5.05423 12.3663C5.16361 12.321 5.28085 12.2977 5.39924 12.2977C5.51764 12.2977 5.63487 12.321 5.74425 12.3663C5.85364 12.4116 5.95302 12.478 6.03674 12.5617L9.59999 16.125L18.5632 7.16323C18.7323 6.99416 18.9616 6.89917 19.2007 6.89917C19.4398 6.89917 19.6692 6.99416 19.8382 7.16323C20.0073 7.33231 20.1023 7.56162 20.1023 7.80073C20.1023 8.03984 20.0073 8.26916 19.8382 8.43823L19.8367 8.43673Z"
-                                                                fill="#52474F" />
-                                                        </svg>
-                                                    </figure>
-
-                                                    <p class="text">মোবাইল-ফ্রেন্ডলি ডিজাইন</p>
-                                                </li>
-                                            </ul>
-                                        </div>
-
-                                        <a href="" class="plan_button w-100 justify-content-center ">
-                                            চিরকাল ফ্রি প্ল্যান
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="price_card">
-                                    <div class="price_section_card">
-                                        <div class="price_section_card_header">
-                                            <span class="plan">প্রো</span>
-                                            <div class="plan_price">
-                                                <h1 class="title">৳৮০</h1>
-                                                <h5 class="sub_title">বার্ষিক বিল করা হয়</h5>
-                                            </div>
-                                        </div>
-                                        <ul class="price_section_card_list list-unstyled">
-                                            <li class="item">
-                                                <figure class="icon">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                        height="24" viewBox="0 0 24 24" fill="none">
-                                                        <path
-                                                            d="M19.8367 8.43673L10.2367 18.0367C10.1531 18.1206 10.0538 18.1872 9.94438 18.2326C9.83498 18.2781 9.71769 18.3014 9.59924 18.3014C9.48079 18.3014 9.3635 18.2781 9.25411 18.2326C9.14471 18.1872 9.04535 18.1206 8.96174 18.0367L4.76174 13.8367C4.67802 13.753 4.61162 13.6536 4.56631 13.5442C4.521 13.4349 4.49768 13.3176 4.49768 13.1992C4.49768 13.0808 4.521 12.9636 4.56631 12.8542C4.61162 12.7448 4.67802 12.6454 4.76174 12.5617C4.84546 12.478 4.94485 12.4116 5.05423 12.3663C5.16361 12.321 5.28085 12.2977 5.39924 12.2977C5.51764 12.2977 5.63487 12.321 5.74425 12.3663C5.85364 12.4116 5.95302 12.478 6.03674 12.5617L9.59999 16.125L18.5632 7.16323C18.7323 6.99416 18.9616 6.89917 19.2007 6.89917C19.4398 6.89917 19.6692 6.99416 19.8382 7.16323C20.0073 7.33231 20.1023 7.56162 20.1023 7.80073C20.1023 8.03984 20.0073 8.26916 19.8382 8.43823L19.8367 8.43673Z"
-                                                            fill="#52474F" />
-                                                    </svg>
-                                                </figure>
-
-                                                <p class="text">এতে প্রোডাক্ট আপলোড</p>
-                                            </li>
-
-                                            <li class="item">
-                                                <figure class="icon">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                        height="24" viewBox="0 0 24 24" fill="none">
-                                                        <path
-                                                            d="M19.8367 8.43673L10.2367 18.0367C10.1531 18.1206 10.0538 18.1872 9.94438 18.2326C9.83498 18.2781 9.71769 18.3014 9.59924 18.3014C9.48079 18.3014 9.3635 18.2781 9.25411 18.2326C9.14471 18.1872 9.04535 18.1206 8.96174 18.0367L4.76174 13.8367C4.67802 13.753 4.61162 13.6536 4.56631 13.5442C4.521 13.4349 4.49768 13.3176 4.49768 13.1992C4.49768 13.0808 4.521 12.9636 4.56631 12.8542C4.61162 12.7448 4.67802 12.6454 4.76174 12.5617C4.84546 12.478 4.94485 12.4116 5.05423 12.3663C5.16361 12.321 5.28085 12.2977 5.39924 12.2977C5.51764 12.2977 5.63487 12.321 5.74425 12.3663C5.85364 12.4116 5.95302 12.478 6.03674 12.5617L9.59999 16.125L18.5632 7.16323C18.7323 6.99416 18.9616 6.89917 19.2007 6.89917C19.4398 6.89917 19.6692 6.99416 19.8382 7.16323C20.0073 7.33231 20.1023 7.56162 20.1023 7.80073C20.1023 8.03984 20.0073 8.26916 19.8382 8.43823L19.8367 8.43673Z"
-                                                            fill="#52474F" />
-                                                    </svg>
-                                                </figure>
-
-                                                <p class="text">অর্ডার ম্যানেজমেন্ট</p>
-                                            </li>
-
-                                            <li class="item">
-                                                <figure class="icon">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                        height="24" viewBox="0 0 24 24" fill="none">
-                                                        <path
-                                                            d="M19.8367 8.43673L10.2367 18.0367C10.1531 18.1206 10.0538 18.1872 9.94438 18.2326C9.83498 18.2781 9.71769 18.3014 9.59924 18.3014C9.48079 18.3014 9.3635 18.2781 9.25411 18.2326C9.14471 18.1872 9.04535 18.1206 8.96174 18.0367L4.76174 13.8367C4.67802 13.753 4.61162 13.6536 4.56631 13.5442C4.521 13.4349 4.49768 13.3176 4.49768 13.1992C4.49768 13.0808 4.521 12.9636 4.56631 12.8542C4.61162 12.7448 4.67802 12.6454 4.76174 12.5617C4.84546 12.478 4.94485 12.4116 5.05423 12.3663C5.16361 12.321 5.28085 12.2977 5.39924 12.2977C5.51764 12.2977 5.63487 12.321 5.74425 12.3663C5.85364 12.4116 5.95302 12.478 6.03674 12.5617L9.59999 16.125L18.5632 7.16323C18.7323 6.99416 18.9616 6.89917 19.2007 6.89917C19.4398 6.89917 19.6692 6.99416 19.8382 7.16323C20.0073 7.33231 20.1023 7.56162 20.1023 7.80073C20.1023 8.03984 20.0073 8.26916 19.8382 8.43823L19.8367 8.43673Z"
-                                                            fill="#52474F" />
-                                                    </svg>
-                                                </figure>
-
-                                                <p class="text">কাস্টম টেমপ্লেট</p>
-                                            </li>
-
-                                            <li class="item">
-                                                <figure class="icon">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                        height="24" viewBox="0 0 24 24" fill="none">
-                                                        <path
-                                                            d="M19.8367 8.43673L10.2367 18.0367C10.1531 18.1206 10.0538 18.1872 9.94438 18.2326C9.83498 18.2781 9.71769 18.3014 9.59924 18.3014C9.48079 18.3014 9.3635 18.2781 9.25411 18.2326C9.14471 18.1872 9.04535 18.1206 8.96174 18.0367L4.76174 13.8367C4.67802 13.753 4.61162 13.6536 4.56631 13.5442C4.521 13.4349 4.49768 13.3176 4.49768 13.1992C4.49768 13.0808 4.521 12.9636 4.56631 12.8542C4.61162 12.7448 4.67802 12.6454 4.76174 12.5617C4.84546 12.478 4.94485 12.4116 5.05423 12.3663C5.16361 12.321 5.28085 12.2977 5.39924 12.2977C5.51764 12.2977 5.63487 12.321 5.74425 12.3663C5.85364 12.4116 5.95302 12.478 6.03674 12.5617L9.59999 16.125L18.5632 7.16323C18.7323 6.99416 18.9616 6.89917 19.2007 6.89917C19.4398 6.89917 19.6692 6.99416 19.8382 7.16323C20.0073 7.33231 20.1023 7.56162 20.1023 7.80073C20.1023 8.03984 20.0073 8.26916 19.8382 8.43823L19.8367 8.43673Z"
-                                                            fill="#52474F" />
-                                                    </svg>
-                                                </figure>
-
-                                                <p class="text">২৪/৭ সাপোর্ট</p>
-                                            </li>
-
-                                            <li class="item">
-                                                <figure class="icon">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                        height="24" viewBox="0 0 24 24" fill="none">
-                                                        <path
-                                                            d="M19.8367 8.43673L10.2367 18.0367C10.1531 18.1206 10.0538 18.1872 9.94438 18.2326C9.83498 18.2781 9.71769 18.3014 9.59924 18.3014C9.48079 18.3014 9.3635 18.2781 9.25411 18.2326C9.14471 18.1872 9.04535 18.1206 8.96174 18.0367L4.76174 13.8367C4.67802 13.753 4.61162 13.6536 4.56631 13.5442C4.521 13.4349 4.49768 13.3176 4.49768 13.1992C4.49768 13.0808 4.521 12.9636 4.56631 12.8542C4.61162 12.7448 4.67802 12.6454 4.76174 12.5617C4.84546 12.478 4.94485 12.4116 5.05423 12.3663C5.16361 12.321 5.28085 12.2977 5.39924 12.2977C5.51764 12.2977 5.63487 12.321 5.74425 12.3663C5.85364 12.4116 5.95302 12.478 6.03674 12.5617L9.59999 16.125L18.5632 7.16323C18.7323 6.99416 18.9616 6.89917 19.2007 6.89917C19.4398 6.89917 19.6692 6.99416 19.8382 7.16323C20.0073 7.33231 20.1023 7.56162 20.1023 7.80073C20.1023 8.03984 20.0073 8.26916 19.8382 8.43823L19.8367 8.43673Z"
-                                                            fill="#52474F" />
-                                                    </svg>
-                                                </figure>
-
-                                                <p class="text">মোবাইল-ফ্রেন্ডলি ডিজাইন</p>
-                                            </li>
-
-                                            <li class="item">
-                                                <figure class="icon">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                        height="24" viewBox="0 0 24 24" fill="none">
-                                                        <path
-                                                            d="M19.8367 8.43673L10.2367 18.0367C10.1531 18.1206 10.0538 18.1872 9.94438 18.2326C9.83498 18.2781 9.71769 18.3014 9.59924 18.3014C9.48079 18.3014 9.3635 18.2781 9.25411 18.2326C9.14471 18.1872 9.04535 18.1206 8.96174 18.0367L4.76174 13.8367C4.67802 13.753 4.61162 13.6536 4.56631 13.5442C4.521 13.4349 4.49768 13.3176 4.49768 13.1992C4.49768 13.0808 4.521 12.9636 4.56631 12.8542C4.61162 12.7448 4.67802 12.6454 4.76174 12.5617C4.84546 12.478 4.94485 12.4116 5.05423 12.3663C5.16361 12.321 5.28085 12.2977 5.39924 12.2977C5.51764 12.2977 5.63487 12.321 5.74425 12.3663C5.85364 12.4116 5.95302 12.478 6.03674 12.5617L9.59999 16.125L18.5632 7.16323C18.7323 6.99416 18.9616 6.89917 19.2007 6.89917C19.4398 6.89917 19.6692 6.99416 19.8382 7.16323C20.0073 7.33231 20.1023 7.56162 20.1023 7.80073C20.1023 8.03984 20.0073 8.26916 19.8382 8.43823L19.8367 8.43673Z"
-                                                            fill="#52474F" />
-                                                    </svg>
-                                                </figure>
-
-                                                <p class="text">অতিরিক্ত পেমেন্ট গেটওয়ে</p>
-                                            </li>
-
-                                            <li class="item">
-                                                <figure class="icon">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                        height="24" viewBox="0 0 24 24" fill="none">
-                                                        <path
-                                                            d="M19.8367 8.43673L10.2367 18.0367C10.1531 18.1206 10.0538 18.1872 9.94438 18.2326C9.83498 18.2781 9.71769 18.3014 9.59924 18.3014C9.48079 18.3014 9.3635 18.2781 9.25411 18.2326C9.14471 18.1872 9.04535 18.1206 8.96174 18.0367L4.76174 13.8367C4.67802 13.753 4.61162 13.6536 4.56631 13.5442C4.521 13.4349 4.49768 13.3176 4.49768 13.1992C4.49768 13.0808 4.521 12.9636 4.56631 12.8542C4.61162 12.7448 4.67802 12.6454 4.76174 12.5617C4.84546 12.478 4.94485 12.4116 5.05423 12.3663C5.16361 12.321 5.28085 12.2977 5.39924 12.2977C5.51764 12.2977 5.63487 12.321 5.74425 12.3663C5.85364 12.4116 5.95302 12.478 6.03674 12.5617L9.59999 16.125L18.5632 7.16323C18.7323 6.99416 18.9616 6.89917 19.2007 6.89917C19.4398 6.89917 19.6692 6.99416 19.8382 7.16323C20.0073 7.33231 20.1023 7.56162 20.1023 7.80073C20.1023 8.03984 20.0073 8.26916 19.8382 8.43823L19.8367 8.43673Z"
-                                                            fill="#52474F" />
-                                                    </svg>
-                                                </figure>
-
-                                                <p class="text">শুরু মাত্র X টাকা/মাস</p>
-                                            </li>
-
-                                            <li class="item">
-                                                <figure class="icon">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                        height="24" viewBox="0 0 24 24" fill="none">
-                                                        <path
-                                                            d="M19.8367 8.43673L10.2367 18.0367C10.1531 18.1206 10.0538 18.1872 9.94438 18.2326C9.83498 18.2781 9.71769 18.3014 9.59924 18.3014C9.48079 18.3014 9.3635 18.2781 9.25411 18.2326C9.14471 18.1872 9.04535 18.1206 8.96174 18.0367L4.76174 13.8367C4.67802 13.753 4.61162 13.6536 4.56631 13.5442C4.521 13.4349 4.49768 13.3176 4.49768 13.1992C4.49768 13.0808 4.521 12.9636 4.56631 12.8542C4.61162 12.7448 4.67802 12.6454 4.76174 12.5617C4.84546 12.478 4.94485 12.4116 5.05423 12.3663C5.16361 12.321 5.28085 12.2977 5.39924 12.2977C5.51764 12.2977 5.63487 12.321 5.74425 12.3663C5.85364 12.4116 5.95302 12.478 6.03674 12.5617L9.59999 16.125L18.5632 7.16323C18.7323 6.99416 18.9616 6.89917 19.2007 6.89917C19.4398 6.89917 19.6692 6.99416 19.8382 7.16323C20.0073 7.33231 20.1023 7.56162 20.1023 7.80073C20.1023 8.03984 20.0073 8.26916 19.8382 8.43823L19.8367 8.43673Z"
-                                                            fill="#52474F" />
-                                                    </svg>
-                                                </figure>
-
-                                                <p class="text">কাস্টম ডোমেইন</p>
-                                            </li>
-                                        </ul>
-
-                                        <a href="" class="premium_button w-100 justify-content-center ">
-                                            প্রিমিয়াম প্ল্যান
-                                        </a>
-                                    </div>
-                                </div>
+                                @foreach ($packages as $package)
+                                    @include('front-end.components.home.pricing', ['item' => $package])
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -1796,8 +1409,8 @@
                 <div class="questions_section_header">
                     <div class="d-flex justify-content-center">
                         <div class="questions_section_title">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"
-                                viewBox="0 0 10 10" fill="none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"
+                                fill="none">
                                 <circle cx="5" cy="5" r="5" fill="#DE00A5" />
                             </svg>
                             <h3 class="sub_title">
@@ -1820,8 +1433,7 @@
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingOne">
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseOne" aria-expanded="true"
-                                    aria-controls="collapseOne">
+                                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                     আমি কি সত্যিই ফ্রি ব্যবহার করতে পারবো?
                                 </button>
                             </h2>
@@ -1836,9 +1448,8 @@
 
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingTwo">
-                                <button class="accordion-button collapsed" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
-                                    aria-controls="collapseTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                     আমাকে কি কোড জানতে হবে?
                                 </button>
                             </h2>
@@ -1853,14 +1464,14 @@
 
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingThree">
-                                <button class="accordion-button collapsed" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true"
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseThree" aria-expanded="true"
                                     aria-controls="collapseThree">
                                     আমি কি পরে আপগ্রেড করতে পারবো?
                                 </button>
                             </h2>
-                            <div id="collapseThree" class="accordion-collapse collapse"
-                                aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                                data-bs-parent="#accordionExample">
                                 <h2 class="accordion-body">
                                     হ্যাঁ! আমাদের ফ্রি প্ল্যানের মাধ্যমে আপনি ওয়েবসাইট তৈরির জন্য প্রয়োজনীয় সবকিছু
                                     পাবেন।
@@ -1870,14 +1481,13 @@
 
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingFour">
-                                <button class="accordion-button collapsed" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false"
-                                    aria-controls="collapseFour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                                     আমাকে কি কোড জানতে হবে?
                                 </button>
                             </h2>
-                            <div id="collapseFour" class="accordion-collapse collapse"
-                                aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                                data-bs-parent="#accordionExample">
                                 <h2 class="accordion-body">
                                     হ্যাঁ! আমাদের ফ্রি প্ল্যানের মাধ্যমে আপনি ওয়েবসাইট তৈরির জন্য প্রয়োজনীয় সবকিছু
                                     পাবেন।
@@ -1887,14 +1497,13 @@
 
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingFive">
-                                <button class="accordion-button collapsed" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="true"
-                                    aria-controls="collapseFive">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
                                     আমি কি সত্যিই ফ্রি ব্যবহার করতে পারবো?
                                 </button>
                             </h2>
-                            <div id="collapseFive" class="accordion-collapse collapse"
-                                aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                                data-bs-parent="#accordionExample">
                                 <h2 class="accordion-body">
                                     হ্যাঁ! আমাদের ফ্রি প্ল্যানের মাধ্যমে আপনি ওয়েবসাইট তৈরির জন্য প্রয়োজনীয় সবকিছু
                                     পাবেন।
@@ -1908,5 +1517,4 @@
         </div>
     </section>
     <!-- QUESTIONS-SECTION-END -->
-
 @endsection

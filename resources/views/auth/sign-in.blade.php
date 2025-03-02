@@ -15,7 +15,10 @@
                                 {{-- error message --}}
                                 <x-alert />
                                 <div class="d-flex align-items-center justify-content-between m-b-30">
-                                    <img class="img-fluid" alt="img" src="{{ asset('assets/images/logo/logo.png') }}">
+                                    <a href="/">
+                                        <img class="img-fluid" alt="img"
+                                            src="{{ asset('assets/images/logo/logo.png') }}">
+                                    </a>
                                     <h2 class="m-b-0">Sign-in</h2>
                                 </div>
                                 <form action="{{ route('sign_in') }}" method="POST">
