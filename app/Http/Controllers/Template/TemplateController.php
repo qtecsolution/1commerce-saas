@@ -44,6 +44,11 @@ class TemplateController extends Controller
 
     public function selectTemplate(Request $request, $id)
     {
+        if (env('DEMO_MODE')) {
+            Alert::error('Oops!', 'This feature is disabled in demo mode.');
+            return back();
+        }
+
         $template = $this->templates->where('id', $id)->first();
         if (!$template) {
             Alert::error('Oops!', 'Template Not Found.');
@@ -135,9 +140,9 @@ class TemplateController extends Controller
 
             Alert::success('Success!', 'Template Added Successfully.')->persistent('Close');
             return to_route('templates.mine');
-        } else {
-            return view('template.setup', compact('template'));
         }
+
+        return view('template.setup', compact('template'));
     }
 
     public function mine()
