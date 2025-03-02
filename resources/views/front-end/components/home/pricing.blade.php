@@ -1,5 +1,5 @@
 <div class="price_card">
-    <div class="price_section_card active">
+    <div class="price_section_card active" style="min-height: 100%">
         <div class="">
             <div class="price_section_card_header">
                 <span class="plan">{{ $item->title }} </span>
