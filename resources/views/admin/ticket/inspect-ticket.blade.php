@@ -68,7 +68,7 @@
                                                 <td>
                                                     <div class="dropdown">
                                                         <a class="btn btn-sm btn-primary rounded-pill dropdown-toggle"
-                                                            href="#" role="button" data-toggle="dropdown"
+                                                            href="javascript:void(0)" role="button" data-toggle="dropdown"
                                                             aria-expanded="false">
                                                             <span class="badge badge-pill bg-white text-dark">
                                                                 @if ($item->status == 1)
@@ -97,7 +97,7 @@
                                     </table>
 
                                     {{-- print support ticket button --}}
-                                    {{-- <a href="#" class="btn btn-success rounded" target="_blank"><i
+                                    {{-- <a href="javascript:void(0)" class="btn btn-success rounded" target="_blank"><i
                                             class="fas fa-print"></i>
                                     </a> --}}
 

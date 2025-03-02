@@ -1,12 +1,4 @@
 <template>
-    <!-- loader  -->
-    <!-- <div class="loader_bg">
-        <div class="loader">
-            <img :src="imageSource('/images/loading.gif', 'public')" alt="#" />
-        </div>
-    </div> -->
-    <!-- end loader -->
-
     <!-- hero area start -->
     <header id="hero">
         <div class="header_bg">
@@ -20,7 +12,7 @@
                             <div class="full">
                                 <div class="center-desk">
                                     <div class="logo">
-                                        <a href="#">
+                                        <a href="javascript:void(0)">
                                             <img
                                                 :src="
                                                     imageSource(
@@ -538,8 +530,7 @@
                             rows="5"
                             class="form-control"
                             v-model="item.review"
-                            >{{ item.review }}</textarea
-                        >
+                        ></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -1158,7 +1149,7 @@ export default {
                 value: this.sliderItems,
             });
 
-            const modalElement = document.getElementById('sliderModal' + index);
+            const modalElement = document.getElementById("sliderModal" + index);
             const modal = bootstrap.Modal.getInstance(modalElement);
             if (modal) {
                 modal.hide();
@@ -1190,7 +1181,7 @@ export default {
                 review: item.review,
             });
 
-            const modalElement = document.getElementById('reviewModal' + index);
+            const modalElement = document.getElementById("reviewModal" + index);
             const modal = bootstrap.Modal.getInstance(modalElement);
             if (modal) {
                 modal.hide();

@@ -63,7 +63,7 @@
                                                 Delete
                                             </a>
                                             <div class="dropdown">
-                                                <a class="btn btn-sm btn-primary dropdown-toggle" href="#"
+                                                <a class="btn btn-sm btn-primary dropdown-toggle" href="javascript:void(0)"
                                                     role="button" data-toggle="dropdown" aria-expanded="false">
                                                     <span class="badge badge-pill bg-white text-dark">
                                                         @if ($item->status == 1)

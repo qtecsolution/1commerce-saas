@@ -12,7 +12,7 @@
                         <h3 class="mb-0">{{ $title }}</h3>
                     </div>
                     <div class="col-md-6 text-right">
-                        <a href="#"></a>
+                        <a href="javascript:void(0)"></a>
                     </div>
                 </div>
             </div>
@@ -45,12 +45,4 @@
             </div>
         </div>
     </div>
-@endsection
-
-@section('page_js')
-    <script>
-        $(document).ready(function() {
-            // code
-        });
-    </script>
 @endsection

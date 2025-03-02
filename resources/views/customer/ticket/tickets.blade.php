@@ -181,7 +181,7 @@
                                                     </div>
                                                 </div>
                                                 {{-- Update ticket modal start --}}
-                                                <a href="#" class="btn btn-sm btn-danger"
+                                                <a href="javascript:void(0)" class="btn btn-sm btn-danger"
                                                     onclick="event.preventDefault(); if(confirm('Are you sure?')) { document.getElementById('delete-form-{{ $item->id }}').submit(); }">
                                                     Delete
                                                 </a>

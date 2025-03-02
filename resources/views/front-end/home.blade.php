@@ -21,7 +21,7 @@
                             </p>
 
                             <div>
-                                <a href="#" class="primary_btn">
+                                <a href="javascript:void(0)" class="primary_btn">
                                     ফ্রি শুরু করুন
                                 </a>
                             </div>
@@ -238,7 +238,7 @@
                 <div class="choosing_template_content">
                     <div class="row g-4">
                         <div class="col-md-6 col-lg-4">
-                            <a href="#" class="template_card position-relative">
+                            <a href="javascript:void(0)" class="template_card position-relative">
                                 <img class="template_image"
                                     src="{{ asset('1commerce-landing') }}/assets/images/Home/template_image_1.png"
                                     alt="choosing_template_image_1" />
@@ -249,7 +249,7 @@
                         </div>
 
                         <div class="col-md-6 col-lg-4">
-                            <a href="#" class="template_card position-relative">
+                            <a href="javascript:void(0)" class="template_card position-relative">
                                 <img class="template_image"
                                     src="{{ asset('1commerce-landing') }}/assets/images/Home/template_image_2.png"
                                     alt="choosing_template_image_1" />
@@ -260,7 +260,7 @@
                         </div>
 
                         <div class="col-md-6 col-lg-4">
-                            <a href="#" class="template_card position-relative">
+                            <a href="javascript:void(0)" class="template_card position-relative">
                                 <img class="template_image"
                                     src="{{ asset('1commerce-landing') }}/assets/images/Home/template_image_3.png"
                                     alt="choosing_template_image_1" />
@@ -271,7 +271,7 @@
                         </div>
 
                         <div class="col-md-6 col-lg-4">
-                            <a href="#" class="template_card position-relative">
+                            <a href="javascript:void(0)" class="template_card position-relative">
                                 <img class="template_image"
                                     src="{{ asset('1commerce-landing') }}/assets/images/Home/template_image_6.png"
                                     alt="choosing_template_image_1" />
@@ -282,7 +282,7 @@
                         </div>
 
                         <div class="col-md-6 col-lg-4">
-                            <a href="#" class="template_card position-relative">
+                            <a href="javascript:void(0)" class="template_card position-relative">
                                 <img class="template_image"
                                     src="{{ asset('1commerce-landing') }}/assets/images/Home/template_image_5.png"
                                     alt="choosing_template_image_1" />
@@ -293,7 +293,7 @@
                         </div>
 
                         <div class="col-md-6 col-lg-4">
-                            <a href="#" class="template_card position-relative">
+                            <a href="javascript:void(0)" class="template_card position-relative">
                                 <img class="template_image"
                                     src="{{ asset('1commerce-landing') }}/assets/images/Home/template_image_4.png"
                                     alt="choosing_template_image_1" />
@@ -306,7 +306,7 @@
                 </div>
 
                 <div class="d-flex justify-content-center">
-                    <a href="#" class="primary_btn">
+                    <a href="javascript:void(0)" class="primary_btn">
                         আরো টেমপ্লেট দেখুন
                     </a>
                 </div>

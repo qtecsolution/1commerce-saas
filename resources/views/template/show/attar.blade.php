@@ -7,11 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="{{ asset($template->assets_path . '/css/bootstrap.min.css') }}">
-    {{-- <link rel="stylesheet" href="{{ asset($template->assets_path . '/css/font-awesome.min.css') }}"> --}}
     <link href="{{ asset('assets/font-awesome/css/all.min.css') }}" rel="stylesheet" media="screen">
     <link rel="stylesheet" href="{{ asset($template->assets_path . '/css/owl.carousel.css') }}">
     <link rel="stylesheet" href="{{ asset($template->assets_path . '/css/style.css') }}">
-    {{-- <link rel="stylesheet" href="{{ asset($template->assets_path . '/css/turquoise.css') }}" class="colors"> --}}
 
     <style>
         /* Custom Card Styles */
@@ -49,26 +47,6 @@
 </head>
 
 <body id="home">
-    {{-- <a id="menu-link" href="#" class="">
-		<span class="menu-icon"></span>
-	</a>
-
-	<div class="overlay" id="overlay">
-		<nav class="overlay-menu">
-			<ul>
-				<li><a href="#" class="smooth-scroll">Home</a></li>
-				<li><a href="#start" class="smooth-scroll">About product</a>
-				</li>
-				<li><a href="#showcase" class="smooth-scroll">Showcase</a>
-				</li>
-				<li><a href="#requirements" class="smooth-scroll">Requirements</a></li>
-				<li><a href="#features" class="smooth-scroll">Features</a>
-				</li>
-				<li><a href="#contact" class="smooth-scroll">Contact</a></li>
-			</ul>
-		</nav>
-	</div> --}}
-
     <div id="wrap">
         <section id="hero" class="m-center text-center bg-shop full-height" style="height: 752px;">
             <div class="center-box">
@@ -82,7 +60,7 @@
                             Each drop encapsulates the richness of tradition and the allure of nature.
                         </p>
                         <br>
-                        <a class="btn white" href="#">BUY NOW</a>
+                        <a class="btn white" href="javascript:void(0)">BUY NOW</a>
                     </div>
                 </div>
                 <div class="col-sm-12 img-hero">
@@ -136,7 +114,7 @@
                                         <li>Changeable background</li>
                                         <li>High resolution 3000 × 1875px</li>
                                     </ul>
-                                    <a href="#" data-toggle="modal" data-target="#product-modal"
+                                    <a href="javascript:void(0)" data-toggle="modal" data-target="#product-modal"
                                         class="btn dark">BUY NOW</a>
                                 </div>
                             </div>
@@ -309,15 +287,6 @@
     <script type="text/javascript" src="{{ asset($template->assets_path . '/js/menu-overlay.js') }}"></script>
     <script type="text/javascript" src="{{ asset($template->assets_path . '/js/placeholders.min.js') }}"></script>
     <!-- end core scripts -->
-
-    <!-- sliders -->
-    {{-- <script type="text/javascript" src="{{ asset($template->assets_path . '/js/owl.carousel.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset($template->assets_path . '/js/jquery.waitforimages.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset($template->assets_path . '/js/sliders.js') }}"></script>
-    <script type="text/javascript" src="{{ asset($template->assets_path . '/js/jquery.counterup.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset($template->assets_path . '/js/numbers.js') }}"></script>
-    <script type="text/javascript" src="{{ asset($template->assets_path . '/js/contact.js') }}"></script>
-    <script type="text/javascript" src="{{ asset($template->assets_path . '/js/parallax.js') }}"></script> --}}
 </body>
 
 </html>

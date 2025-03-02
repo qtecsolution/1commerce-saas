@@ -51,7 +51,7 @@
                                             {{-- <a href="" class="btn btn-sm btn-info">Inspect</a> --}}
                                             <a href="{{ route('packages.edit', $item->id) }}"
                                                 class="btn btn-sm btn-primary">Edit</a>
-                                            <a href="#" class="btn btn-sm btn-danger"
+                                            <a href="javascript:void(0)" class="btn btn-sm btn-danger"
                                                 onclick="document.getElementById('delete-form-{{ $item->id }}').submit();">Delete</a>
 
                                             <form id="delete-form-{{ $item->id }}"

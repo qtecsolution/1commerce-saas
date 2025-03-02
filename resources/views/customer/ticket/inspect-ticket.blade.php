@@ -15,7 +15,7 @@
                                     <h3 class="mb-0">{{ $title }} #{{ $item->ticket_number }}</h3>
                                 </div>
                                 <div class="col-md-6 text-right">
-                                    <a href="#"></a>
+                                    <a href="javascript:void(0)"></a>
                                 </div>
                             </div>
                         </div>
@@ -79,7 +79,7 @@
                                     </table>
 
                                     {{-- print support ticket button --}}
-                                    {{-- <a href="#" class="btn btn-success rounded" target="_blank"><i
+                                    {{-- <a href="javascript:void(0)" class="btn btn-success rounded" target="_blank"><i
                                             class="fas fa-print"></i>
                                     </a> --}}
                                 </div>

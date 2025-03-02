@@ -46,13 +46,11 @@
                      <div class="container">
                         <div class="row">
                            <div class="col-md-7">
-                              {{-- <div class="best_text">Best</div> --}}
                               <div class="image_1"><img src="{{ asset($template->assets_path . '/images/img-1.png')}}"></div>
                            </div>
                            <div class="col-md-5">
                               <h1 class="banner_taital">New Model Cycle</h1>
                               <p class="banner_text">It is a long established fact that a reader will be distracted by the readable content </p>
-                              {{-- <div class="contact_bt"><a href="contact.html">Shop Now</a></div> --}}
                            </div>
                         </div>
                      </div>
@@ -173,14 +171,14 @@
                <h1 class="request_text">Order Now</h1>
                <div class="row">
                   <div class="col-md-8 justify-content-start">
-                      <p class="about_text">Cycle</p>
+                        <p class="about_text">Cycle</p>
                   </div>
                   <div class="col-md-4 text-end">
-                      <span style="margin-right: 5px">
-                          <p class="about_text">BDT 12000</p>
-                      </span>
+                        <span style="margin-right: 5px">
+                           <p class="about_text">BDT 12000</p>
+                        </span>
                   </div>
-              </div>
+               </div>
                <form action="/action_page.php">
                   <div class="form-group">
                      <input type="text" class="email-bt" placeholder="Name" name="Name">
@@ -192,30 +190,30 @@
                      <input type="Number" class="email-bt" placeholder="Quantity" name="Name">
                   </div>
                   <div class="form-group" style="color: #ffffff !important">
-                     <div class="form-check d-flex justify-content-between">
-                         <div>
-                             <input class="form-check-input" type="radio" name="shipping_cost"
-                                 id="flexRadioDefault1" checked
-                                 value="">
-                             <label class="form-check-label" for="flexRadioDefault1"> Shiping Cost (Inside Dhaka)</label>
-                         </div>
-                         BDT 300
-                     </div>
-                     <div class="form-check d-flex justify-content-between">
-                         <div>
-                             <input class="form-check-input" type="radio" name="shipping_cost"
-                                 id="flexRadioDefault2"
-                                 value="">
-                             <label class="form-check-label" for="flexRadioDefault2">Shipping Cost (Outside Dhaka)</label>
-                         </div>
-                         BDT 500
-                     </div>
-                 </div>
+                        <div class="form-check d-flex justify-content-between">
+                           <div>
+                              <input class="form-check-input" type="radio" name="shipping_cost"
+                                    id="flexRadioDefault1" checked
+                                    value="">
+                              <label class="form-check-label" for="flexRadioDefault1"> Shiping Cost (Inside Dhaka)</label>
+                           </div>
+                           BDT 300
+                        </div>
+                        <div class="form-check d-flex justify-content-between">
+                           <div>
+                              <input class="form-check-input" type="radio" name="shipping_cost"
+                                    id="flexRadioDefault2"
+                                    value="">
+                              <label class="form-check-label" for="flexRadioDefault2">Shipping Cost (Outside Dhaka)</label>
+                           </div>
+                           BDT 500
+                        </div>
+                  </div>
                   <div class="form-group">
                      <textarea class="massage-bt" placeholder="Address" rows="5" id="comment" name="Address"></textarea>
                   </div>
                </form>
-               <div class="send_btn"><a href="#">Order Now</a></div>
+               <div class="send_btn"><a href="javascript:void(0)">Order Now</a></div>
             </div>
          </div>
       </div>
@@ -232,9 +230,9 @@
                   </div>
                </div>
                <div class="col-lg-4 col-sm-12">
-                  <div class="call_text"><a href="#"><span class="padding_left_0">Page when looking at its layou</span></a></div>
-                  <div class="call_text"><a href="#"><span class="padding_left_0">Call Now  +01 123467890</span></a></div>
-                  <div class="call_text"><a href="#"><span class="padding_left_0">demo@gmail.com</span></a></div>
+                  <div class="call_text"><a href="javascript:void(0)"><span class="padding_left_0">Page when looking at its layou</span></a></div>
+                  <div class="call_text"><a href="javascript:void(0)"><span class="padding_left_0">Call Now  +01 123467890</span></a></div>
+                  <div class="call_text"><a href="javascript:void(0)"><span class="padding_left_0">demo@gmail.com</span></a></div>
                </div>
             </div>
          </div>
@@ -243,7 +241,7 @@
       <!-- copyright section start -->
       <div class="copyright_section">
          <div class="container">
-            <p class="copyright_text">Copyright 2019 All Right Reserved By.<a href="#"> 1commerce</p><p class="copyright_text">Disrtributed By. <a href="#">1commerce </a></p>
+            <p class="copyright_text">Copyright 2019 All Right Reserved By.<a href="javascript:void(0)"> 1commerce</p><p class="copyright_text">Disrtributed By. <a href="javascript:void(0)">1commerce </a></p>
          </div>
       </div>
       <!-- copyright section end -->    
@@ -256,8 +254,6 @@
       <!-- sidebar -->
       <script src="{{ asset($template->assets_path . '/js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
       <script src="{{ asset($template->assets_path . '/js/custom.js')}}"></script>
-      <!-- javascript --> 
-      {{-- <script src="{{ asset($template->assets_path . '/js/owl.carousel.js')}}"></script> --}}
       <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
    </body>
 </html>

@@ -39,7 +39,7 @@
                             </ul>
                         </div>
                     </div>
-                    <a href="#">
+                    <a href="javascript:void(0)">
                         <img src="{{ asset('1commerce-landing') }}/assets/images/Home/Logo.png" alt="Logo" />
                     </a>
                 </div>

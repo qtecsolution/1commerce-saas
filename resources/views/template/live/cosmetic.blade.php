@@ -1,7 +1,6 @@
 @php
-    // dd($userTemplate);
-
     $trackingApi = trackingApi($userTemplate->id);
+    
     $sections = $userTemplate->templateSections;
 
     $headerSection = $sections->where('section', 'header')->first();
@@ -24,9 +23,6 @@
 
     $footerSection = $sections->where('section', 'footer')->first();
     $footerElement = json_decode($footerSection->elements->first()->data);
-
-    // @dd($orderElement->button)
-
 @endphp
 
 <!DOCTYPE html>
@@ -54,12 +50,8 @@
     <link rel="stylesheet" href="{{ asset($template->assets_path . '/css/jquery.mCustomScrollbar.min.css') }}">
     <!-- Tweaks for older IEs-->
     <link href="{{ asset('assets/font-awesome/css/all.min.css') }}" rel="stylesheet" media="screen">
-    {{-- <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"> --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
         media="screen">
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 
     <style>
         /* Button Styles */
@@ -91,13 +83,6 @@
 <!-- body -->
 
 <body class="main-layout">
-    <!-- loader  -->
-    {{-- <div class="loader_bg">
-        <div class="loader"><img src="{{ asset($template->assets_path . '/images/loading.gif') }}" alt="#" />
-        </div>
-    </div> --}}
-    <!-- end loader -->
-
     <!-- hero area start -->
     <header id="hero">
         <div class="header_bg">
@@ -118,7 +103,7 @@
                                                 );
                                             }
                                         @endphp
-                                        <a href="#"><img src="{{ $link }}" alt="logo"
+                                        <a href="javascript:void(0)"><img src="{{ $link }}" alt="logo"
                                                 width="80px" /></a>
                                     </div>
                                 </div>
@@ -442,7 +427,7 @@
     <script src="{{ asset($template->assets_path . '/js/custom.js') }}"></script>
     <script src="{{ asset($template->assets_path . '/js/owl.carousel.min.js') }}"></script>
     <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-    
+
     <!-- Form Submit Handler -->
     <script type="text/javascript" src="{{ asset('assets/js/form-submit-handler.js') }}"></script>
 

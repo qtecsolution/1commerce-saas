@@ -1,23 +1,4 @@
 <template>
-    <!-- <a id="menu-link" href="#" class="">
-        <span class="menu-icon"></span>
-    </a>
-
-    <div class="overlay" id="overlay">
-        <nav class="overlay-menu">
-            <ul>
-                <li v-for="menu in menuItems" :key="menu.id">
-                    <a
-                        :href="menu.url"
-                        class="smooth-scroll"
-                        :contenteditable="isEditable"
-                        >{{ menu.label }}</a
-                    >
-                </li>
-            </ul>
-        </nav>
-    </div> -->
-
     <div id="wrap">
         <!-- hero section start -->
         <section

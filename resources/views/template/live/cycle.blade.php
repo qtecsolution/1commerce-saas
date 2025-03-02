@@ -1,6 +1,5 @@
 @php
     $trackingApi = trackingApi($userTemplate->id);
-
     $hero_area = $cycle->hero_area != null ? json_decode($cycle->hero_area, true) : null;
     $feature_area = $cycle->features_area ? json_decode($cycle->features_area, true) : null;
     $feature_area = $cycle->features_area ? json_decode($cycle->features_area, true) : null;
@@ -63,7 +62,7 @@
     <!-- header section start -->
     <div class="header_section header_bg">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a href="#" class="logo">
+            <a href="javascript:void(0)" class="logo">
                 <img class="logo" width="50" height="40"
                     src="{{ fetchImage($userTemplate->company_logo, $userTemplate->template->assets_path . '/images/logo.png') }}">
             </a>
@@ -76,7 +75,6 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-7">
-                                    {{-- <div class="best_text">Best</div> --}}
                                     <div class="image_1"><img
                                             src="{{ fetchImage($hero_area['image'] ?? '', $userTemplate->template->assets_path . '/images/img-1.png') }}">
                                     </div>
@@ -108,10 +106,6 @@
                             <div class="buy_bt">
                                 <a href="{{ $feature_area_button['url'] }}">{{ $feature_area_button['title'] }}</a>
                             </div>
-                            {{-- <h4 class="price_text">Price
-                                <span style="margin-right:8px !important;">{{ $userTemplate->product_currency }}</span>
-                                <span>{{ $userTemplate->product_price }}</span>
-                            </h4> --}}
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -277,11 +271,11 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-12">
-                    <div class="call_text"><a href="#"><span
+                    <div class="call_text"><a href="javascript:void(0)"><span
                                 class="padding_left_0">{{ $footer_area['address'] }}</span></a></div>
-                    <div class="call_text"><a href="#"><span
+                    <div class="call_text"><a href="javascript:void(0)"><span
                                 class="padding_left_0">{{ $footer_area['phone'] }}</span></a></div>
-                    <div class="call_text"><a href="#"><span
+                    <div class="call_text"><a href="javascript:void(0)"><span
                                 class="padding_left_0">{{ $footer_area['email'] }}</span></a></div>
                 </div>
             </div>
@@ -291,8 +285,8 @@
     <!-- copyright section start -->
     <div class="copyright_section">
         <div class="container">
-            <p class="copyright_text">Copyright 2019 All Right Reserved By.<a href="#"> 1commerce</p>
-            <p class="copyright_text">Disrtributed By. <a href="#">1commerce </a></p>
+            <p class="copyright_text">Copyright 2019 All Right Reserved By.<a href="javascript:void(0)"> 1commerce</p>
+            <p class="copyright_text">Disrtributed By. <a href="javascript:void(0)">1commerce </a></p>
         </div>
     </div>
     <!-- copyright section end -->
@@ -307,10 +301,10 @@
     <script src="{{ asset($userTemplate->template->assets_path . '/js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
     <script src="{{ asset($userTemplate->template->assets_path . '/js/custom.js') }}"></script>
     <!-- javascript -->
-    
+
     {{-- <script src="{{ asset($userTemplate->template->assets_path . '/js/owl.carousel.js') }}"></script> --}}
     <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-    
+
     <!-- Form Submit Handler -->
     <script type="text/javascript" src="{{ asset('assets/js/form-submit-handler.js') }}"></script>
 </body>

@@ -1,6 +1,4 @@
 @php
-    // dd($userTemplate);
-
     $trackingApi = trackingApi($userTemplate->id);
     $sections = $userTemplate->templateSections;
 
@@ -36,11 +34,9 @@
         type="image/x-icon">
 
     <link rel="stylesheet" href="{{ asset($template->assets_path . '/css/bootstrap.min.css') }}">
-    {{-- <link rel="stylesheet" href="{{ asset($template->assets_path . '/css/font-awesome.min.css') }}"> --}}
     <link href="{{ asset('assets/font-awesome/css/all.min.css') }}" rel="stylesheet" media="screen">
     <link rel="stylesheet" href="{{ asset($template->assets_path . '/css/owl.carousel.css') }}">
     <link rel="stylesheet" href="{{ asset($template->assets_path . '/css/style.css') }}">
-    {{-- <link rel="stylesheet" href="{{ asset($template->assets_path . '/css/turquoise.css') }}" class="colors"> --}}
 
     <style>
         #menu-link {
@@ -126,26 +122,6 @@
 <body id="home">
     {!! $trackingApi['head_code'] !!}
 
-    {{-- <a id="menu-link" href="#" class="">
-        <span class="menu-icon"></span>
-    </a>
-
-    <div class="overlay" id="overlay">
-        <nav class="overlay-menu">
-            <ul>
-                <li><a href="#" class="smooth-scroll">Home</a></li>
-                <li><a href="#start" class="smooth-scroll">About product</a>
-                </li>
-                <li><a href="#showcase" class="smooth-scroll">Showcase</a>
-                </li>
-                <li><a href="#requirements" class="smooth-scroll">Requirements</a></li>
-                <li><a href="#features" class="smooth-scroll">Features</a>
-                </li>
-                <li><a href="#contact" class="smooth-scroll">Contact</a></li>
-            </ul>
-        </nav>
-    </div> --}}
-
     <div id="wrap">
         <section id="hero" class="m-center text-center full-height"
             style="height: 752px; background-color: {{ $heroSection->bg_color }}">
@@ -154,11 +130,11 @@
                 <div class="hero-unit ">
                     <div class="container ">
                         <h1 class="title">{{ $heroSection->title }}</h1>
-                            <h3>{{ $heroSection->sub_title }}</h3>
-                            <p>{{ $heroElement->description }}</p>
-                            <br>
-                            <a class="btn white btnStyle"
-                                href="{{ $heroElement->button->url }}">{{ $heroElement->button->title }}</a>
+                        <h3>{{ $heroSection->sub_title }}</h3>
+                        <p>{{ $heroElement->description }}</p>
+                        <br>
+                        <a class="btn white btnStyle"
+                            href="{{ $heroElement->button->url }}">{{ $heroElement->button->title }}</a>
                     </div>
                 </div>
 
@@ -369,7 +345,7 @@
     <script type="text/javascript" src="{{ asset($template->assets_path . '/js/core.js') }}"></script>
     <script type="text/javascript" src="{{ asset($template->assets_path . '/js/menu-overlay.js') }}"></script>
     <script type="text/javascript" src="{{ asset($template->assets_path . '/js/placeholders.min.js') }}"></script>
-    
+
     <!-- Form Submit Handler -->
     <script type="text/javascript" src="{{ asset('assets/js/form-submit-handler.js') }}"></script>
     <!-- end core scripts -->

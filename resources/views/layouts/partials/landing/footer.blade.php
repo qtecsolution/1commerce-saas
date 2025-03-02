@@ -7,7 +7,7 @@
                     ফ্রি শুরু করুন – কোনো ক্রেডিট কার্ড প্রয়োজন নেই!
                 </h1>
 
-                <a href="#" class="plan_button px-5">
+                <a href="javascript:void(0)" class="plan_button px-5">
                     চিরকাল ফ্রি প্ল্যান
                 </a>
             </div>
@@ -62,11 +62,11 @@
             </div>
 
             <div class="d-flex justify-content-between align-items-center px-3 px-sm-0">
-                <a href="#" class="log">
+                <a href="javascript:void(0)" class="log">
                     <img src="{{ asset('1commerce-landing') }}/assets/images/Home/Logo.png" alt="logo" />
                 </a>
                 <div class="d-flex align-items-center gap-1 gap-sm-3">
-                    <a href="#" class="socialLink">
+                    <a href="javascript:void(0)" class="socialLink">
                         <svg width="48" height="48" viewBox="0 0 48 48" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <circle cx="24" cy="24" r="24" fill="#FFEAFA" />
@@ -82,7 +82,7 @@
                         </svg>
                     </a>
 
-                    <a href="#" class="socialLink">
+                    <a href="javascript:void(0)" class="socialLink">
                         <svg width="48" height="48" viewBox="0 0 48 48" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <circle cx="24" cy="24" r="24" fill="#FFEAFA" />
@@ -96,7 +96,7 @@
                         </svg>
                     </a>
 
-                    <a href="#" class="socialLink">
+                    <a href="javascript:void(0)" class="socialLink">
                         <svg width="48" height="48" viewBox="0 0 48 48" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <circle cx="24" cy="24" r="24" fill="#FFEAFA" />
@@ -106,7 +106,7 @@
                         </svg>
                     </a>
 
-                    <a href="#" class="socialLink">
+                    <a href="javascript:void(0)" class="socialLink">
                         <svg width="48" height="48" viewBox="0 0 48 48" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <circle cx="24" cy="24" r="24" fill="#FFEAFA" />
@@ -138,16 +138,16 @@
                                             </h3>
                                             <ul class="list-unstyled d-flex flex-column gap-3">
                                                 <li>
-                                                    <a href="#" class="description">ফিচার</a>
+                                                    <a href="javascript:void(0)" class="description">ফিচার</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#" class="description">সুবিধা</a>
+                                                    <a href="javascript:void(0)" class="description">সুবিধা</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#" class="description">প্রক্রিয়া</a>
+                                                    <a href="javascript:void(0)" class="description">প্রক্রিয়া</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#" class="description">প্রতিক্রিয়া</a>
+                                                    <a href="javascript:void(0)" class="description">প্রতিক্রিয়া</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -157,16 +157,16 @@
                                             <h3 class="sub_heading">সাপোর্ট</h3>
                                             <ul class="list-unstyled d-flex flex-column gap-3">
                                                 <li>
-                                                    <a href="#" class="description">আমাদের সম্পর্কে</a>
+                                                    <a href="javascript:void(0)" class="description">আমাদের সম্পর্কে</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#" class="description">প্রাইভেসি পলিসি</a>
+                                                    <a href="javascript:void(0)" class="description">প্রাইভেসি পলিসি</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#" class="description">টার্মস অফ সার্ভিস</a>
+                                                    <a href="javascript:void(0)" class="description">টার্মস অফ সার্ভিস</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#" class="description">যোগাযোগ করুন</a>
+                                                    <a href="javascript:void(0)" class="description">যোগাযোগ করুন</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -180,10 +180,10 @@
                                     </h3>
                                     <ul class="list-unstyled d-flex flex-column gap-3">
                                         <li>
-                                            <a href="#" class="description">ফোনঃ ০১৬৭৯৪৯৪১১৬</a>
+                                            <a href="javascript:void(0)" class="description">ফোনঃ ০১৬৭৯৪৯৪১১৬</a>
                                         </li>
                                         <li>
-                                            <a href="#" class="description">ঠিকানাঃ রোড#০৩, বাসা#২৩,
+                                            <a href="javascript:void(0)" class="description">ঠিকানাঃ রোড#০৩, বাসা#২৩,
                                                 নিকুঞ্জ , ঢাকা-১২২৯</a>
                                         </li>
                                     </ul>

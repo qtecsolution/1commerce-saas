@@ -28,9 +28,6 @@
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
         media="screen">
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 </head>
 <!-- body -->
 
@@ -52,7 +49,7 @@
                             <div class="full">
                                 <div class="center-desk">
                                     <div class="logo">
-                                        <a href="#"><img
+                                        <a href="javascript:void(0)"><img
                                                 src="{{ asset($template->assets_path . '/images/logo.png') }}"
                                                 alt="logo" width="80px" /></a>
                                     </div>
@@ -313,9 +310,8 @@
                                                     <h1 class="order-multiplier">x</h1>
                                                 </div>
                                                 <div class="order-quantity-input">
-                                                    <input class="orderfield" placeholder="Qty"
-                                                        type="number" name="Quantity" min="1"
-                                                        value="1">
+                                                    <input class="orderfield" placeholder="Qty" type="number"
+                                                        name="Quantity" min="1" value="1">
                                                 </div>
                                                 <div class="order-product-price">
                                                     <h3>500.00 TK.</h3>
@@ -347,7 +343,7 @@
                                                 </div>
                                             </label>
                                         </div>
-                                      
+
                                         <!-- Divider -->
                                         <div class="col-sm-12">
                                             <hr class="order-divider">
@@ -372,8 +368,7 @@
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <input class="orderfield" placeholder="Full Name" type="text"
-                                                name="
-                                  Full Name">
+                                                name="Full Name">
                                         </div>
                                         <div class="col-sm-12">
                                             <input class="orderfield" placeholder="Email" type="text"

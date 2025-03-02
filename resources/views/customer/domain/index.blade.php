@@ -124,7 +124,7 @@
                                         <td> {{ date('d-m-Y', strtotime($domain->created_at)) }} </td>
                                         <td>
                                             <div class="btn-group">
-                                                <a href="#" class="btn btn-xs btn-warning" data-toggle="modal"
+                                                <a href="javascript:void(0)" class="btn btn-xs btn-warning" data-toggle="modal"
                                                     data-target="#editModal_{{ $domain->id }}"> <i class="fa fa-pen"></i>
                                                 </a>
 
@@ -198,7 +198,7 @@
                                                     </div>
                                                 </div>
                                                 <!-- Delete trigger modal -->
-                                                <a href="#" class="btn btn-xs btn-danger" data-toggle="modal"
+                                                <a href="javascript:void(0)" class="btn btn-xs btn-danger" data-toggle="modal"
                                                     data-target="#deleteModal_{{ $domain->id }}"> <i
                                                         class="fa fa-trash"></i>
                                                 </a>

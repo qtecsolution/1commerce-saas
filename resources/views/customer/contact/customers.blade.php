@@ -98,7 +98,7 @@
                                         <div class="btn-group">
                                             <a class="btn btn-sm btn-primary text-white" data-toggle="modal"
                                                 data-target="#editModal_{{ $customer->id }}">Edit</a>
-                                            <a href="#" class="btn btn-sm btn-danger"
+                                            <a href="javascript:void(0)" class="btn btn-sm btn-danger"
                                                 onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this customer?')) { document.getElementById('delete-form-{{ $customer->id }}').submit(); }">
                                                 Delete
                                             </a>
