@@ -1,12 +1,12 @@
 # 1Commerce – One-Page Shop Builder
 
-1Commerce is the ultimate platform for small and medium-sized enterprises (SMEs) to craft and launch high-converting landing pages with ease. With an intuitive real-time customization, and niche product optimization, businesses can showcase their products effortlessly. Powered by PHP, Laravel, Vue.js, and Bootstrap, it delivers a seamless, responsive, and scalable experience across all devices. Whether you're a startup or an established brand, 1Commerce transforms your ideas into stunning landing pages—without the hassle of coding.
+1Commerce is the ultimate platform for small and medium-sized enterprises (SMEs) to craft and launch high-converting single page shops with ease. With an intuitive real-time customization, and niche product optimization, businesses can showcase their products effortlessly. Powered by PHP, Laravel, Vue.js, and Bootstrap, it delivers a seamless, responsive, and scalable experience across all devices. Whether you're a startup or an established brand, 1Commerce transforms your ideas into stunning single page shops—without the hassle of coding.
 
 ---
 
 ## 🚀 Features
 
--   **Real-Time Customization**: Easily customize landing pages in real-time with a user-friendly interface.
+-   **Real-Time Customization**: Easily customize single page shops in real-time with a user-friendly interface.
 -   **Niche Product Focus**: Tailored for SMEs to showcase and manage niche products effectively.
 -   **Responsive Design**: Built with Bootstrap and Vue.js for a seamless experience across devices.
 -   **Scalable Backend**: Powered by Laravel for robust and scalable backend operations.
@@ -14,8 +14,8 @@
 
 ## 🖥️ Usage
 
--   **Admin Panel**: Access the admin panel to manage landing pages, products, and user accounts.
--   **Drag-and-Drop Customization**: Use the drag-and-drop interface to customize landing pages in real-time.
+-   **Admin Panel**: Access the admin panel to manage single page shops, products, and user accounts.
+-   **Real-time Customization**: Use the interactive interface to customize single page shops in real-time.
 -   **Live Preview**: Preview changes before publishing to ensure the landing page meets your requirements.
 -   **One-Click Publishing**: Publish your landing page with a single click and share it with your audience.
 
