@@ -171,7 +171,7 @@ php artisan serve
 npm run dev
 ```
 
-Your application will be available at [http://127.0.0.1:8000](http://127.0.0.1:8000).
+Your application will be available at [http://localhost:8000](http://localhost:8000).
 
 ---
 
