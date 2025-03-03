@@ -70,88 +70,8 @@ This application requires a server with the following specifications:
 
 This guide covers two setup methods:
 
-1. **Using Docker**
-2. **Setting Up Locally (Without Docker)**
-
-### 🐳 Setup with Docker
-
-#### 1. Clone the Repository
-
-```bash
-git clone https://github.com/qtecsolution/1commerce.git
-```
-
-```bash
-cd 1commerce
-```
-
-#### 2. Initialize the Project
-
-```bash
-make setup
-```
-
-The application should now be accessible at [http://localhost](http://localhost).
-
-#### Available Docker Commands
-
--   **Manage Container**
-
-```bash
-make docker-up
-```
-
-```bash
-make docker-down
-```
-
--   **Install Dependencies**
-
-```bash
-make composer-install
-```
-
-```bash
-make composer-update
-```
-
--   **Set File Permissions**
-
-```bash
-make set-permissions
-```
-
--   **Generate Application Key**
-
-```bash
-make generate-key
-```
-
--   **Run Migrations**
-
-```bash
-make migrate
-```
-
--   **Run Migrations and Seed the Database**
-
-```bash
-make migrate-fresh-seed
-```
-
--   **Setup Environment File**
-
-```bash
-make setup-env
-```
-
--   **Link Storage Files**
-
-```bash
-make storage-link
-```
-
----
+1. **Setting Up Locally (Without Docker)**
+2. **Using Docker**
 
 ### 🚀 Setup Without Docker
 
@@ -252,6 +172,86 @@ npm run dev
 ```
 
 Your application will be available at [http://127.0.0.1:8000](http://127.0.0.1:8000).
+
+---
+
+### 🐳 Setup with Docker
+
+#### 1. Clone the Repository
+
+```bash
+git clone https://github.com/qtecsolution/1commerce.git
+```
+
+```bash
+cd 1commerce
+```
+
+#### 2. Initialize the Project
+
+```bash
+make setup
+```
+
+The application should now be accessible at [http://localhost](http://localhost).
+
+#### Available Docker Commands
+
+-   **Manage Container**
+
+```bash
+make docker-up
+```
+
+```bash
+make docker-down
+```
+
+-   **Install Dependencies**
+
+```bash
+make composer-install
+```
+
+```bash
+make composer-update
+```
+
+-   **Set File Permissions**
+
+```bash
+make set-permissions
+```
+
+-   **Generate Application Key**
+
+```bash
+make generate-key
+```
+
+-   **Run Migrations**
+
+```bash
+make migrate
+```
+
+-   **Run Migrations and Seed the Database**
+
+```bash
+make migrate-fresh-seed
+```
+
+-   **Setup Environment File**
+
+```bash
+make setup-env
+```
+
+-   **Link Storage Files**
+
+```bash
+make storage-link
+```
 
 ## 🛠️ Additional Information
 
