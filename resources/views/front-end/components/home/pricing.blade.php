@@ -26,8 +26,8 @@
             </ul>
         </div>
 
-        <a href="{{ route('web.select_package', $item->id) }}" class="plan_button w-100 justify-content-center ">
-            চিরকাল ফ্রি প্ল্যান
+        <a href="{{ route('web.select_package', $item->id) }}" class="plan_button w-100 justify-content-center">
+            {{ $item->price == 0 ? 'চিরকাল ফ্রি প্ল্যান' : 'প্রিমিয়াম প্ল্যান' }}
         </a>
     </div>
 </div>
