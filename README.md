@@ -1,4 +1,4 @@
-# 1Commerce – One-Page Shop Builder
+# 1Commerce: One-Page Shop Builder
 
 1Commerce is the ultimate platform for small and medium-sized enterprises (SMEs) to craft and launch high-converting single page shops with ease. With an intuitive real-time customization, and niche product optimization, businesses can showcase their products effortlessly. Powered by PHP, Laravel, Vue.js, and Bootstrap, it delivers a seamless, responsive, and scalable experience across all devices. Whether you're a startup or an established brand, 1Commerce transforms your ideas into stunning single page shops—without the hassle of coding.
 
