@@ -1,4 +1,4 @@
-# 1Commerce – Your Smart Landing Page Builder
+# 1Commerce – One-Page Shop Builder
 
 1Commerce is the ultimate platform for small and medium-sized enterprises (SMEs) to craft and launch high-converting landing pages with ease. With an intuitive drag-and-drop interface, real-time customization, and niche product optimization, businesses can showcase their products effortlessly. Powered by PHP, Laravel, Vue.js, and Bootstrap, it delivers a seamless, responsive, and scalable experience across all devices. Whether you're a startup or an established brand, 1Commerce transforms your ideas into stunning landing pages—without the hassle of coding.
 
