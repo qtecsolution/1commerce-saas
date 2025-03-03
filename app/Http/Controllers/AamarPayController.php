@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Services\AamarPayService;
 use Illuminate\Support\Facades\DB;
 use App\Models\SubscriptionPayment;
+use Illuminate\Support\Facades\Auth;
 
 class AamarPayController extends Controller
 {
@@ -85,6 +86,15 @@ class AamarPayController extends Controller
                     'payload_response' => json_encode($response),
                 ]);
             $this->subscriptionUpdate($response['opt_a']);
+
+            if (!Auth::check()) {
+                $order_details = DB::table('subscription_payments')
+                    ->where('transaction_id', $response['opt_a'])
+                    ->first();
+
+                $user = User::where('email', $order_details->email)->first();
+                Auth::login($user);
+            }
 
             toast('Transaction is successfully Completed', 'success');
             return to_route('subscription.index');
