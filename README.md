@@ -85,6 +85,16 @@ You can browse the live demo of the 1commerce at the following link:
 <img src="./public/assets/images/git/live-edit-3.png" width="900px" />
 <img src="./public/assets/images/git/live-edit-4.png" width="900px" />
 
+### SEO Optimization:
+
+<img src="./public/assets/images/git/seo-0.png" width="900px" />
+<img src="./public/assets/images/git/seo-1.png" width="900px" />
+<img src="./public/assets/images/git/seo-2.png" width="900px" />
+
+### Payment Methods:
+
+<img src="./public/assets/images/git/payment-methods.png" width="900px" />
+
 ### 1wallet:
 
 <img src="./public/assets/images/git/1wallet.png" width="900px" />
