@@ -1,6 +1,6 @@
-# 1Commerce: One-Page Shop Builder
+# 1Commerce SaaS: One-Page Shop Builder
 
-1Commerce is the ultimate platform for small and medium-sized enterprises (SMEs) to craft and launch high-converting single page shops with ease. With an intuitive real-time customization, and niche product optimization, businesses can showcase their products effortlessly. Powered by PHP, Laravel, Vue.js, and Bootstrap, it delivers a seamless, responsive, and scalable experience across all devices. Whether you're a startup or an established brand, 1Commerce transforms your ideas into stunning single page shops—without the hassle of coding.
+1Commerce SaaS is the ultimate platform for small and medium-sized enterprises (SMEs) to craft and launch high-converting single page shops with ease. With an intuitive real-time customization, and niche product optimization, businesses can showcase their products effortlessly. Powered by PHP, Laravel, Vue.js, and Bootstrap, it delivers a seamless, responsive, and scalable experience across all devices. Whether you're a startup or an established brand, 1Commerce transforms your ideas into stunning single page shops—without the hassle of coding.
 
 ---
 
@@ -53,7 +53,7 @@
 
 ## 🎥 Demo
 
-You can browse the live demo of the 1commerce at the following link:
+You can browse the live demo of the 1commerce-saas at the following link:
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-%230077B5?style=for-the-badge&logo=google-chrome&logoColor=white)](https://1commerce.qtecsolution.com/)
 
@@ -137,7 +137,7 @@ You can browse the live demo of the 1commerce at the following link:
 
 ## 📦 Installation
 
-Welcome to the setup guide for the **1Commerce**. This document provides comprehensive steps to install, configure, and run the project in your local environment, using both Docker and a native setup. Follow these instructions to ensure proper configuration.
+Welcome to the setup guide for the **1commerce-saas**. This document provides comprehensive steps to install, configure, and run the project in your local environment, using both Docker and a native setup. Follow these instructions to ensure proper configuration.
 
 ## 📝 Prerequisites
 
@@ -178,11 +178,11 @@ This guide covers two setup methods:
 #### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/qtecsolution/1commerce.git
+git clone https://github.com/qtecsolution/1commerce-saas.git
 ```
 
 ```bash
-cd 1commerce
+cd 1commerce-saas
 ```
 
 #### 2. Install PHP Dependencies & NPM Dependencies
@@ -280,11 +280,11 @@ Your application will be available at [http://localhost:8000](http://localhost:8
 #### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/qtecsolution/1commerce.git
+git clone https://github.com/qtecsolution/1commerce-saas.git
 ```
 
 ```bash
-cd 1commerce
+cd 1commerce-saas
 ```
 
 #### 2. Initialize the Project
@@ -365,7 +365,7 @@ This is an open source project and contributions are welcome. If you are interes
 
 ## 📝 License
 
-The 1commerce project is open source and available under the MIT License. You are free to use, modify, and distribute this codebase in accordance with the terms of the license.
+The 1commerce-saas project is open source and available under the MIT License. You are free to use, modify, and distribute this codebase in accordance with the terms of the license.
 
 Please refer to the LICENSE file for more details.
 
