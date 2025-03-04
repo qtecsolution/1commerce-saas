@@ -59,7 +59,35 @@ You can browse the live demo of the 1commerce at the following link:
 
 ### Dashboard:
 
-<img src="./public/assets/git/dashboard.php" width="900px" />
+<img src="./public/assets/git/dashboard.png" width="900px" />
+
+### Order Management:
+
+<img src="./public/assets/git/orders.png" width="900px" />
+
+### Support Ticket:
+
+<img src="./public/assets/git/support-tickets.png" width="900px" />
+
+### Template Store:
+
+<img src="./public/assets/git/landing-pages.png" width="900px" />
+
+### My Templates:
+
+<img src="./public/assets/git/my-templates.png" width="900px" />
+
+### 1wallet:
+
+<img src="./public/assets/git/1wallet.png" width="900px" />
+
+### Subscription Management:
+
+<img src="./public/assets/git/subscription.png" width="900px" />
+
+### Custom Domain Setup:
+
+<img src="./public/assets/git/custom-domain.png" width="900px" />
 
 ## 📦 Installation
 
