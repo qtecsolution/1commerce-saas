@@ -57,6 +57,10 @@ You can browse the live demo of the 1commerce at the following link:
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-%230077B5?style=for-the-badge&logo=google-chrome&logoColor=white)](https://1commerce.qtecsolution.com/)
 
+### Dashboard:
+
+<img src="./public/assets/git/dashboard.php" width="900px" />
+
 ## 📦 Installation
 
 Welcome to the setup guide for the **1Commerce**. This document provides comprehensive steps to install, configure, and run the project in your local environment, using both Docker and a native setup. Follow these instructions to ensure proper configuration.
