@@ -61,7 +61,7 @@
                                 </td>
                                 <td>{{ count($userTemplate->orders) }}</td>
                                 <td>
-                                    <a href="{{ route('user_shop', $userTemplate->company_slug) }}">
+                                    <a href="{{ route('user_shop', $userTemplate->company_slug) }}" target="_blank">
                                         {{ route('user_shop', $userTemplate->company_slug) }}
                                     </a>
                                 </td>
