@@ -80,13 +80,9 @@ You can browse the live demo of the 1commerce at the following link:
 ### Real-time Page Edit:
 
 <img src="./public/assets/images/git/live-edit-0.png" width="900px" />
-<br>
 <img src="./public/assets/images/git/live-edit-1.png" width="900px" />
-<br>
 <img src="./public/assets/images/git/live-edit-2.png" width="900px" />
-<br>
 <img src="./public/assets/images/git/live-edit-3.png" width="900px" />
-<br>
 <img src="./public/assets/images/git/live-edit-4.png" width="900px" />
 
 ### 1wallet:
