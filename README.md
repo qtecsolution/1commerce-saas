@@ -4,20 +4,40 @@
 
 ---
 
-## 🚀 Features
+## ✨ Features
 
--   **Real-Time Customization**: Easily customize single page shops in real-time with a user-friendly interface.
--   **Niche Product Focus**: Tailored for SMEs to showcase and manage niche products effectively.
--   **Responsive Design**: Built with Bootstrap and Vue.js for a seamless experience across devices.
--   **Scalable Backend**: Powered by Laravel for robust and scalable backend operations.
--   **Database Management**: Utilizes MySQL for reliable and efficient data storage.
+### 🎨 Shop Customization
 
-## 🖥️ Usage
+-   **Real-Time Editor** – Customize your shop's appearance and layout in real-time with an intuitive interface
+-   **Live Preview** – See changes instantly as you make them, ensuring your shop looks perfect
+-   **Mobile-First Design** – Fully responsive layouts that work seamlessly across all devices
+-   **Custom Templates** – Choose from a variety of pre-designed templates for quick setup
 
--   **Admin Panel**: Access the admin panel to manage single page shops, products, and user accounts.
--   **Real-time Customization**: Use the interactive interface to customize single page shops in real-time.
--   **Live Preview**: Preview changes before publishing to ensure the landing page meets your requirements.
--   **One-Click Publishing**: Publish your landing page with a single click and share it with your audience.
+### 💼 Business Tools
+
+-   **Product Management** – Easy-to-use interface for managing products, inventory, and pricing
+-   **Free Subdomain** – Get a free subdomain to host your shop
+-   **Custom Domain Setup** – Set up a custom domain for each shop
+-   **Order Tracking** – Monitor and manage orders from a centralized dashboard
+-   **Customer Order Management** – Manage customer orders, and view order history
+-   **Payment Management** – Streamlined processes for managing transactions and refunds
+-   **Analytics Dashboard** – Track sales, visitor behavior, and other key metrics
+-   **SEO Optimization** – Built-in tools to improve your shop's search engine visibility
+-   **Support Ticketing** – Raise support tickets for assistance with your shop
+-   **1Wallet** – Custom wallet system for receiving order payments
+-   **1Wallet Activation** – Activate the 1Wallet feature for each shop
+-   **Transaction History** – View all transactions in the 1Wallet dashboard
+-   **Cash Withdrawal** – Withdraw cash from your 1Wallet balance
+-   **Subscription Management** – Manage subscription plans, billing cycles, and customer subscriptions with ease
+-   **Subscription Package Management** – Manage package plans, pricing, and features from the admin panel
+
+### 💳 Payment Solutions
+
+-   **Multiple Gateways** – Support for various payment methods including:
+    -   AamarPay – Secure payment gateway for local transactions
+    -   Stripe – Global payment processing (coming soon)
+    -   bKash – Mobile financial services integration (coming soon)
+-   **Secure Transactions** – PCI-compliant payment processing for customer safety
 
 ---
 
@@ -30,7 +50,9 @@
 -   **Package Manager**: Composer (PHP), npm (JavaScript)
 
 ---
+
 ## 🎥 Demo
+
 You can browse the live demo of the 1commerce at the following link:
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-%230077B5?style=for-the-badge&logo=google-chrome&logoColor=white)](https://1commerce.qtecsolution.com/)
@@ -273,12 +295,10 @@ Please refer to the LICENSE file for more details.
 
 If you encounter any issues or have questions, feel free to reach out through the following channels:
 
-- Open an issue on the [GitHub repository](https://github.com/qtecsolution/AI-Content-Image-Generator-SaaS).
-- **Call for Queries**: +8801313522828 (WhatsApp)
-- **Contact Form**: [Qtec Solution Contact Page](https://qtecsolution.com/contact-us)
-- **Email**: [info@qtecsolution.com](mailto:info@qtecsolution.com)
-
-
+-   Open an issue on the [GitHub repository](https://github.com/qtecsolution/AI-Content-Image-Generator-SaaS).
+-   **Call for Queries**: +8801313522828 (WhatsApp)
+-   **Contact Form**: [Qtec Solution Contact Page](https://qtecsolution.com/contact-us)
+-   **Email**: [info@qtecsolution.com](mailto:info@qtecsolution.com)
 
 ## Follow Us on Social Media
 
@@ -292,4 +312,3 @@ Stay updated with the latest news, updates, and releases:
 [![X](https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white)](https://twitter.com/qtec_solution)
 [![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@qtecsolutionlimited)
 [![Website](https://img.shields.io/badge/Website-000000?style=for-the-badge&logo=google-chrome&logoColor=white)](https://qtecsolution.com/)
-
