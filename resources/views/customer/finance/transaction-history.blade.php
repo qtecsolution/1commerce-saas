@@ -43,7 +43,8 @@
                                                 order#{{ $transaction->payment->order_id }}
                                             </a>
                                         @elseif ($transaction->withdrawal)
-                                            <a href="javascript:void(0)" title="Withdrawal Details" target="_blank">
+                                            <a href="{{ route('wallet.withdraw.show', $transaction->reference_id) }}"
+                                                title="Withdrawal Details" target="_blank">
                                                 withdrawal#{{ $transaction->reference_id }}
                                             </a>
                                         @else
