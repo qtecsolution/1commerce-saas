@@ -63,7 +63,8 @@
 
             <div class="d-flex justify-content-between align-items-center px-3 px-sm-0">
                 <a href="javascript:void(0)" class="log">
-                    <img src="{{ asset('1commerce-landing') }}/assets/images/Home/Logo.png" alt="logo" />
+                    <img src="{{ asset('1commerce-landing') }}/assets/images/Home/Logo.png" class="img-fluid"
+                        width="500" alt="logo" />
                 </a>
                 <div class="d-flex align-items-center gap-1 gap-sm-3">
                     <a href="javascript:void(0)" class="socialLink">
@@ -157,13 +158,16 @@
                                             <h3 class="sub_heading">সাপোর্ট</h3>
                                             <ul class="list-unstyled d-flex flex-column gap-3">
                                                 <li>
-                                                    <a href="javascript:void(0)" class="description">আমাদের সম্পর্কে</a>
+                                                    <a href="javascript:void(0)" class="description">আমাদের
+                                                        সম্পর্কে</a>
                                                 </li>
                                                 <li>
-                                                    <a href="javascript:void(0)" class="description">প্রাইভেসি পলিসি</a>
+                                                    <a href="javascript:void(0)" class="description">প্রাইভেসি
+                                                        পলিসি</a>
                                                 </li>
                                                 <li>
-                                                    <a href="javascript:void(0)" class="description">টার্মস অফ সার্ভিস</a>
+                                                    <a href="javascript:void(0)" class="description">টার্মস অফ
+                                                        সার্ভিস</a>
                                                 </li>
                                                 <li>
                                                     <a href="javascript:void(0)" class="description">যোগাযোগ করুন</a>

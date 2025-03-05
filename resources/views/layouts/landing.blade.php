@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>One-Ecommerce</title>
+    <title>One-Commerce</title>
     <!-- FAVICON-ICON -->
-    <link rel="shortcut icon" href="{{ asset('1commerce-landing') }}/assets/images/favicon_io/favicon.ico"
+    <link rel="shortcut icon" href="{{ asset('1commerce-landing') }}/assets/images/favicon_io/icon.png"
         type="image/svg+xml" />
     <!-- BACK-TO-TOP-CSS -->
     <link rel="stylesheet" href="{{ asset('1commerce-landing') }}/assets/css/back-top/back-top.css" />

@@ -2,8 +2,9 @@
 <div class="header">
     <div class="logo logo-dark">
         <a href="/">
-            <img src="{{ asset('assets/images/logo/logo.png') }}" alt="Logo">
-            <img class="logo-fold" src="{{ asset('assets/images/logo/logo-fold.png') }}" alt="Logo">
+            <img src="{{ asset('assets/images/logo/logo.png') }}" width="200px" class="mt-2" alt="Logo">
+            <img class="logo-fold" src="{{ asset('assets/images/logo/logo-fold.png') }}"
+                style="width: 52px; padding: 2px; margin: 8px 0 8px 14px;" alt="Logo">
         </a>
     </div>
     <div class="nav-wrap">
