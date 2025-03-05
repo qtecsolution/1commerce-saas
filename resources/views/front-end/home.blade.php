@@ -55,7 +55,7 @@
                     <div class="col-md-6 col-lg-4">
                         <div class="service_item">
                             <figure class="service_image_wrapper">
-                                <img src="{{ asset('1commerce-landing') }}/assets/images/Home/নো-কোডিং.png"
+                                <img src="{{ asset('1commerce-landing') }}/assets/images/Home/no-coding.png"
                                     alt="নো-কোডিং" />
                             </figure>
                             <div class="service_content">
